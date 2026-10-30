@@ -1,8 +1,10 @@
+## Week 3, Session 5 — G-methods, IV, DiD, RDD; heterogeneity of treatment effect {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect}
+
 <div class="callout callout-note">
 **Workflow lab:** Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-learning-objectives}
 
 - Use inverse-probability weighting as a g-method for time-varying
   confounding.
@@ -12,11 +14,11 @@
 - Estimate and interpret heterogeneity of treatment effect (HTE) with a
   subgroup-agnostic method.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-prerequisites}
 
 Propensity-score and IPTW basics (W3 S4).
 
-## Background
+### Background {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-background}
 
 Traditional regression adjustment fails for time-varying confounders
 that are affected by prior treatment — adjusting for them blocks part of
@@ -33,7 +35,7 @@ causal forests, meta-learners (S-, T-, X-learner), or Bayesian
 hierarchical models to estimate conditional average treatment effects
 (CATEs) while controlling for multiple testing.
 
-## Setup
+### Setup {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-setup}
 
 ```r
 library(tidyverse)
@@ -42,15 +44,16 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-1-goal}
 
 Simulate a time-varying-confounding scenario, estimate the causal effect
 naively and then with IPTW (a marginal structural model), and finish
 with a simple HTE estimate.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-2-approach}
 
 ```r
+n <- 2000
 df <- tibble(
   l0 = rnorm(n),
   a0 = rbinom(n, 1, plogis(0.2 * l0)),
@@ -64,11 +67,12 @@ The true effect of each treatment is positive and additive. `l1` is a
 time-varying confounder because it is affected by `a0` and predicts
 both `a1` and `y`.
 
-## 3. Execution
+### 3. Execution {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-3-execution}
 
 Naive regression adjusting for `l1` blocks part of the `a0` effect.
 
 ```r
+naive <- lm(y ~ a0 + a1 + l0 + l1, data = df)
 tidy(naive, conf.int = TRUE) |>
   filter(term %in% c("a0", "a1"))
 ```
@@ -76,6 +80,7 @@ tidy(naive, conf.int = TRUE) |>
 IPTW with stabilised weights:
 
 ```r
+num0 <- glm(a0 ~ 1, data = df, family = binomial)
 den0 <- glm(a0 ~ l0, data = df, family = binomial)
 num1 <- glm(a1 ~ a0, data = df, family = binomial)
 den1 <- glm(a1 ~ a0 + l0 + l1, data = df, family = binomial)
@@ -91,17 +96,18 @@ tidy(msm, conf.int = TRUE) |>
   filter(term %in% c("a0", "a1"))
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-4-check}
 
 Balance and weight sanity:
 
 ```r
+summary(df$sw)
 ```
 
 Stabilised weights should centre on 1 with no extreme tail. If they do
 not, a term in the treatment model is likely misspecified.
 
-## 5. Report
+### 5. Report {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-5-report}
 
 > In a simulated cohort with time-varying confounding (*n* = 2000),
 > naive regression underestimated the effect of initial treatment. An
@@ -112,35 +118,36 @@ not, a term in the treatment model is likely misspecified.
 > its own assumptions. Heterogeneity of treatment effect can be
 > explored with causal forests or meta-learners.
 
-### Brief sketches
+#### Brief sketches {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-brief-sketches}
 
 - **IV:** regress `y` on an instrument `z` to recover `β = cov(y,z)/cov(a,z)`.
 - **DiD:** fit `lm(y ~ time*group)` on repeated measures.
 - **RDD:** fit local linear regression on each side of the assignment cutoff.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-common-pitfalls}
 
 - Using ordinary regression adjustment for time-varying confounders.
 - Trimming extreme weights silently, hiding model misspecification.
 - Reporting subgroup p-values without multiplicity control as HTE
   evidence.
 
-## Further reading
+### Further reading {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-further-reading}
 
 - Hernán MA, Robins JM. *Causal Inference: What If.*
 - Athey S, Imbens GW. (2019). *Machine Learning Methods That Economists Should Know About.*
 
-## Session info
+### Session info {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-16-design)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

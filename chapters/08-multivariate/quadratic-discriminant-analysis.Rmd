@@ -1,12 +1,14 @@
-## Introduction
+## Quadratic Discriminant Analysis {#sec-chapters-08-multivariate-quadratic-discriminant-analysis}
+
+### Introduction {#sec-chapters-08-multivariate-quadratic-discriminant-analysis-introduction}
 
 Quadratic discriminant analysis (QDA) extends linear discriminant analysis (LDA) by allowing each class to have its own covariance matrix instead of pooling across classes. The relaxation transforms the decision boundary from a hyperplane (LDA) into a conic section (ellipse, parabola, or hyperbola) and gives the classifier flexibility to handle classes whose spread differs in shape or orientation. The cost is parameter count: $K$ separate covariance matrices instead of one, which means more training data is required to estimate them precisely.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-quadratic-discriminant-analysis-prerequisites}
 
 A working understanding of linear discriminant analysis, multivariate Normal distributions, and the role of class covariance matrices in shaping decision boundaries.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-quadratic-discriminant-analysis-theory}
 
 The QDA discriminant for class $k$ is
 
@@ -14,11 +16,11 @@ $$\delta_k(x) = -\tfrac{1}{2}(x - \mu_k)^\top \Sigma_k^{-1} (x - \mu_k) - \tfrac
 
 where $\mu_k, \Sigma_k, \pi_k$ are the class mean, class covariance, and class prior probability respectively. A test observation is assigned to the class with the largest $\delta_k(x)$. The quadratic term in $x$ is what produces non-linear decision boundaries; pooling covariances across classes (as LDA does) eliminates the quadratic term and recovers linearity.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-quadratic-discriminant-analysis-assumptions}
 
 Multivariate Normal within each class, with possibly different covariance matrices across classes; independent observations; sufficient observations per class to estimate $\Sigma_k$ stably (rule of thumb: at least 5–10 observations per dimension per class).
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-quadratic-discriminant-analysis-r-implementation}
 
 ```r
 library(MASS)
@@ -32,15 +34,15 @@ pred <- predict(fit_qda, test)
 table(pred$class, test$Species)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-quadratic-discriminant-analysis-output-results}
 
 `qda()` returns class priors, class means, and class-specific group counts. `predict()` provides class labels and posterior probabilities. The confusion matrix (`table(pred$class, test$Species)`) summarises classification accuracy on the held-out fold.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-quadratic-discriminant-analysis-interpretation}
 
 A reporting sentence: "QDA classified the iris test set with 94 % accuracy (47/50 correct); LDA reached 98 % on the same split, suggesting the equal-covariance assumption was reasonable here and the additional flexibility of QDA is not warranted." Compare QDA against LDA whenever class covariances are not obviously different; the simpler model often wins.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-quadratic-discriminant-analysis-practical-tips}
 
 - Prefer QDA when within-class covariance structures clearly differ in scale or orientation; if pooled covariance is a good approximation, LDA generalises better.
 - QDA requires more training data than LDA because of the per-class covariance estimation; in high dimensions or with small classes, LDA or regularised discriminant analysis (RDA) is more reliable.
@@ -49,32 +51,29 @@ A reporting sentence: "QDA classified the iris test set with 94 % accuracy (47/5
 - For high-dimensional or non-Gaussian data, compare against flexible classifiers (random forests, SVMs with RBF kernels); QDA's quadratic boundary may not match the true structure.
 - Diagnose the equal-covariance assumption with Box's M test (`biotools::boxM`); a significant test motivates QDA over LDA, but the test is itself sensitive to non-Normality.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-quadratic-discriminant-analysis-r-packages-used}
 
 `MASS` for `qda()` and `lda()`; `klaR` for `rda()` (regularised discriminant analysis) and `partimat()` for partition diagnostics; `caret` for cross-validated comparison across discriminant variants; `biotools::boxM()` for Box's M test of homogeneity of covariance.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-quadratic-discriminant-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-quadratic-discriminant-analysis-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-quadratic-discriminant-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-quadratic-discriminant-analysis-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## SMOTE for Imbalanced Classes {#sec-chapters-13-ml-smote-imbalanced}
+
+### Introduction {#sec-chapters-13-ml-smote-imbalanced-introduction}
 
 On imbalanced classification problems, classifiers trained with standard loss optimise for the majority class and under-predict the minority. SMOTE (Chawla et al., 2002) addresses this by synthesising new minority examples via interpolation between minority neighbours, balancing the training set without duplicating samples.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-smote-imbalanced-prerequisites}
 
 Classification; understanding of imbalanced data; kNN.
 
-## Theory
+### Theory {#sec-chapters-13-ml-smote-imbalanced-theory}
 
 SMOTE algorithm:
 1. For each minority sample $x_i$, find its $k$ nearest minority neighbours.
@@ -15,11 +17,11 @@ SMOTE algorithm:
 
 Apply within the training set only (never the test set). Variants: Borderline-SMOTE, ADASYN (focus on hard minority regions).
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-smote-imbalanced-assumptions}
 
 Feature space is continuous (SMOTE works poorly for categoricals without adaptation); minority class has enough samples to define meaningful neighbourhoods.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-smote-imbalanced-r-implementation}
 
 ```r
 library(themis); library(recipes); library(dplyr)
@@ -40,15 +42,15 @@ baked <- prep(rec) %>% bake(new_data = NULL)
 table(baked$y)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-smote-imbalanced-output-results}
 
 Original class counts (~475 neg, 25 pos); after SMOTE the minority is upsampled via synthetic examples to match the majority.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-smote-imbalanced-interpretation}
 
 "SMOTE upsampled the 5 % minority class to 50 % synthetic examples, enabling the downstream logistic regression to learn a better boundary. Test AUC improved from 0.74 to 0.83 on the held-out set."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-smote-imbalanced-practical-tips}
 
 - Apply SMOTE **only** to the training set (inside the CV fold), never to test/validation.
 - `over_ratio = 1` creates a fully balanced training set; smaller ratios under-sample less.
@@ -58,31 +60,28 @@ Original class counts (~475 neg, 25 pos); after SMOTE the minority is upsampled 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-smote-imbalanced-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-smote-imbalanced-assumptions) and
+[practical tips](#sec-chapters-13-ml-smote-imbalanced-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-smote-imbalanced-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

@@ -1,22 +1,24 @@
-## Introduction
+## Canonical Correlation Analysis {#sec-chapters-08-multivariate-canonical-correlation}
+
+### Introduction {#sec-chapters-08-multivariate-canonical-correlation-introduction}
 
 Canonical correlation analysis (CCA) finds pairs of linear combinations — one from each of two variable sets — that are maximally correlated. Where multiple regression has one outcome and many predictors, CCA generalises to many outcomes and many predictors simultaneously: the first canonical pair $(U_1, V_1)$ is the linear combination of the predictor side and the linear combination of the outcome side whose correlation is highest. Successive pairs are constrained to be uncorrelated with previous ones, mirroring the orthogonality of principal components.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-canonical-correlation-prerequisites}
 
 A working understanding of multiple regression, principal components analysis, and the geometry of correlation in multivariate spaces.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-canonical-correlation-theory}
 
 Given two sets of variables $X$ ($p$ columns) and $Y$ ($q$ columns), CCA finds pairs of canonical variates $U_k = X a_k$ and $V_k = Y b_k$ maximising $\mathrm{cor}(U_k, V_k)$ subject to $\mathrm{Var}(U_k) = \mathrm{Var}(V_k) = 1$ and orthogonality with previous pairs. There are $\min(p, q)$ canonical pairs, indexed by canonical correlations $\rho_1 \ge \rho_2 \ge \dots$ that are non-increasing.
 
 Inference under multivariate Normality uses Wilks' lambda or Pillai's trace to test whether canonical correlations beyond a given index are zero. Canonical loadings (correlations between original variables and canonical variates) help interpret the structure of each canonical pair.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-canonical-correlation-assumptions}
 
 Multivariate Normality (for the asymptotic significance tests), linear associations between variable sets, and adequate sample size relative to $p + q$. CCA is sensitive to outliers; one or two extreme observations can dominate the canonical structure.
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-canonical-correlation-r-implementation}
 
 ```r
 library(CCA)
@@ -35,15 +37,15 @@ wilks <- (1 - cc_res$cor^2)
 wilks
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-canonical-correlation-output-results}
 
 `cc()` returns canonical correlations (sorted in decreasing order), canonical coefficients (weights for each variable set), and the canonical variate scores. Wilks' lambda statistic and its associated $F$-approximation test the joint significance of canonical correlations from a given index onwards.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-canonical-correlation-interpretation}
 
 A reporting sentence: "Canonical correlation analysis on the iris measurements found a first canonical correlation of $\rho_1 = 0.94$ ($p < 0.001$, Wilks' $\lambda = 0.077$); the canonical loadings showed petal dimensions dominating the $Y$-side combination, indicating that overall flower size is the primary axis of association between the sepal and petal measurements." Report canonical loadings (correlations) rather than raw weights for interpretation; the latter are scale-dependent.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-canonical-correlation-practical-tips}
 
 - Interpret only the first few canonical correlations; later pairs typically capture little signal.
 - For high-dimensional settings ($p + q$ approaching or exceeding $n$), use regularised CCA (`CCA::rcc`); standard CCA breaks down with rank-deficient covariance matrices.
@@ -52,32 +54,29 @@ A reporting sentence: "Canonical correlation analysis on the iris measurements f
 - Canonical loadings (correlations between variables and canonical variates) interpret cleaner than raw weights because they are scale-independent.
 - Always pre-screen outliers; CCA is highly sensitive to extreme observations, and a robust CCA variant (`rrcov::CcaClassic` vs `CcaRobust`) is worth comparing.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-canonical-correlation-r-packages-used}
 
 `CCA` for `cc()`, `rcc()`, and visualisation helpers; `CCP` for asymptotic significance tests (Wilks' lambda, Pillai, Hotelling-Lawley); `vegan::CCorA()` for ecology-flavoured CCA; `mixOmics::cca()` for sparse and regularised variants integrated with omics workflows.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-canonical-correlation-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-canonical-correlation-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-canonical-correlation-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-canonical-correlation-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

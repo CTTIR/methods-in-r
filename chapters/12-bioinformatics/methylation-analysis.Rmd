@@ -1,12 +1,14 @@
-## Introduction
+## DNA Methylation Analysis {#sec-chapters-12-bioinformatics-methylation-analysis}
+
+### Introduction {#sec-chapters-12-bioinformatics-methylation-analysis-introduction}
 
 DNA methylation at CpG dinucleotides is a stable epigenetic mark that regulates gene expression and varies with age, tissue type, environmental exposures, and disease state. The two dominant assays are Illumina arrays (450K, 850K EPIC) measuring methylation at hundreds of thousands of CpGs and whole-genome bisulfite sequencing (WGBS) covering nearly all CpGs at higher cost. Differential methylation analysis identifies CpG positions or regions whose methylation differs between groups, often serving as biomarkers (e.g., cancer subtype classification, age estimation).
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-methylation-analysis-prerequisites}
 
 A working understanding of bisulfite conversion chemistry (unmethylated C → T, methylated C → C), the difference between beta-values and M-values as methylation summaries, and basic linear-modelling on continuous outcomes.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-methylation-analysis-theory}
 
 Two methylation summaries:
 
@@ -21,11 +23,11 @@ The standard pipeline:
 4. Differential methylation at probe level via limma on M-values.
 5. Region-level analysis (DMRcate, bumphunter) for smoother small-effect detection.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-methylation-analysis-assumptions}
 
 Array probes are well-designed (no major cross-reactivity); batch effects are identified and modelled; cell-type composition is adjusted for in blood or other heterogeneous samples — failure to do so creates spurious associations.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-methylation-analysis-r-implementation}
 
 ```r
 library(limma)
@@ -49,15 +51,15 @@ topTable(fit, coef = 2, n = 5)
 summary(decideTests(fit))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-methylation-analysis-output-results}
 
 `topTable()` returns a per-CpG table with log fold change in M-value, raw $p$-value, and BH-adjusted $p$-value. The 50 injected CpGs should appear at the top of the ranked list with the largest absolute fold changes and most significant $p$-values.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-methylation-analysis-interpretation}
 
 A reporting sentence: "Epigenome-wide differential methylation analysis (limma on M-values, design adjusting for age and estimated cell-type composition) identified 1{,}240 differentially methylated CpGs at Bonferroni $p < 10^{-7}$; 62 % were hypermethylated in cases, concentrated in CpG islands of known tumour-suppressor loci. Region-level analysis (DMRcate) identified 87 differentially methylated regions overlapping 64 unique genes." Always state the multiple-testing correction, cell-type adjustment strategy, and use of M-values vs beta-values.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-methylation-analysis-practical-tips}
 
 - Fit regression models on M-values (homoscedastic), but report effect sizes in beta-values (more interpretable as "% methylation difference") for clinical audiences.
 - Cell-type deconvolution (`EpiDISH`, `FlowSorted.Blood.450k`) is mandatory for blood-based EWAS; unadjusted results predominantly reflect composition differences.
@@ -66,32 +68,29 @@ A reporting sentence: "Epigenome-wide differential methylation analysis (limma o
 - For age-related studies, the Horvath, Hannum, or PhenoAge clocks give DNA methylation age estimates that are biologically interpretable; report alongside chronological age.
 - Standardised EWAS pipelines (`meffil`, `PaCES`) offer one-call QC and analysis with sensible defaults.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-methylation-analysis-r-packages-used}
 
 `minfi` for IDAT reading, normalisation, and basic differential analysis; `limma` for linear-modelling on M-values; `DMRcate` for region-level differential methylation; `EpiDISH` and `FlowSorted.Blood.450k` for cell-type deconvolution; `bumphunter` for an alternative region detector; `meffil` for an end-to-end EWAS pipeline; `methylKit` for WGBS analysis.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-methylation-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-methylation-analysis-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-methylation-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-methylation-analysis-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

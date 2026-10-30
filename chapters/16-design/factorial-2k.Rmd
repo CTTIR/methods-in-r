@@ -1,22 +1,24 @@
-## Introduction
+## 2^k Factorial Designs {#sec-chapters-16-design-factorial-2k}
+
+### Introduction {#sec-chapters-16-design-factorial-2k-introduction}
 
 The $2^k$ factorial design studies $k$ factors, each at exactly two levels conventionally coded as $-1$ (low) and $+1$ (high), and runs every one of the $2^k$ possible combinations of factor levels. Because the design is balanced and orthogonal, every main effect and every interaction up to the $k$-way is estimable independently of every other, with all estimates having the same standard error. This combination of compactness, orthogonality, and full-information estimation makes the $2^k$ factorial the workhorse of industrial design of experiments (DoE), the natural starting point for product development and process improvement, and the foundation on which fractional factorials and response-surface designs are built.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-factorial-2k-prerequisites}
 
 A working understanding of ANOVA with multiple factors, the concept of an interaction effect, and the use of coded factor levels (the orthogonal $\pm 1$ scheme that simplifies computation and interpretation).
 
-## Theory
+### Theory {#sec-chapters-16-design-factorial-2k-theory}
 
 With coded levels $\pm 1$, every factor effect is an orthogonal contrast: the main effect of factor A is the average response at $A = +1$ minus the average response at $A = -1$, and analogously for any interaction (a product of $\pm 1$ columns averaged across runs). Orthogonality means each effect is estimated independently of every other effect, that the effects are uncorrelated, and that the analysis can proceed by simple linear regression with the coded factors and their products as predictors.
 
 For an unreplicated $2^k$ run, residual degrees of freedom are zero and conventional ANOVA inference is impossible; Daniel's normal-probability plot of effects provides a graphical alternative that flags large effects against the inert ones, which form a Normal-distributed reference.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-factorial-2k-assumptions}
 
 Two-level factor effects suffice to capture variation in the response (no curvature within the design region requiring a third level), runs are independent, and the residual error is approximately Normal with constant variance. Replicated designs satisfy these assumptions more transparently and allow formal $F$-tests; unreplicated designs rely on the small number of large effects against many inert effects ("effect sparsity") for inference.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-factorial-2k-r-implementation}
 
 ```r
 library(FrF2)
@@ -37,15 +39,15 @@ fit <- lm(y ~ A * B * C, data = fac)
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-factorial-2k-output-results}
 
 `FrF2()` generates a randomised $2^k$ layout with replication. The fitted regression returns coefficients for all main effects and all interactions; in coded units these coefficients are exactly half the conventional "factor effect" magnitudes. With replication, residual degrees of freedom support standard $t$-tests and an ANOVA partitioning into main, interaction, and residual sums of squares.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-factorial-2k-interpretation}
 
 A reporting sentence: "The $2^3$ factorial design with two replicates estimated significant main effects of factor A (2.1, $p < 0.001$) and factor B (1.4, $p < 0.001$) and a significant AB interaction (0.8, $p = 0.01$); factor C and all higher-order interactions were not significantly different from zero. Combined with an interaction plot, the AB synergy suggests using both factors at their high levels yields the optimal response." Always pair the regression output with an interaction plot when AB-type interactions are significant.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-factorial-2k-practical-tips}
 
 - Always randomise the run order to protect against time-trend confounding; running treatments in factor-level order produces designs in which a temporal drift could be mistaken for a factor effect.
 - With replication, residual degrees of freedom allow formal $t$-tests and $F$-tests; without replication, Daniel's normal-probability plot of effects (or Lenth's pseudo-standard-error procedure) is the standard inferential tool, exploiting effect sparsity.
@@ -54,42 +56,39 @@ A reporting sentence: "The $2^3$ factorial design with two replicates estimated 
 - Always report effect size alongside the $p$-value; a statistically significant tiny effect rarely justifies a process change, while a large but underpowered effect may motivate follow-up experimentation regardless of significance.
 - Pair main-effect plots and interaction plots with the regression table; visual diagnostics are far more informative than coefficient lists alone for engineers and scientists who must act on the result.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-factorial-2k-r-packages-used}
 
 `FrF2` for the canonical $2^k$ design generation, including replication and randomisation, and Daniel's plot via `DanielPlot()`; `DoE.base` for general orthogonal-array construction including $2^k$ as a special case; base R `lm()` and `aov()` for analysis; `unrepx` for unreplicated-design effect identification (Lenth, half-Normal, Box-Meyer); `daewr` for textbook companion datasets and analysis helpers.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-factorial-2k-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-factorial-2k-assumptions) and
+[practical tips](#sec-chapters-16-design-factorial-2k-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-factorial-2k-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

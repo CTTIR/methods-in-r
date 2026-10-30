@@ -2,57 +2,57 @@
 
 The probability machinery the rest of the book leans on: Bayes' rule, common discrete and continuous distributions, the law of total probability, Q-Q diagnostics, and density estimation. The chapter is short on theory and long on R-side intuition.
 
-This chapter contains **40 method pages** and **3 labs**. If you are not sure which method to read, return to [Chapter 0](../../ch00-find-your-method.Rmd) and follow the decision tree to the right node.
+This chapter contains **40 method pages** and **3 labs**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.
 
-## Method pages
+## Method pages {#sec-chapters-03-probability-index-method-pages}
 
 | Method | Source slug |
 |---|---|
-| [Bayes' Theorem](bayes-theorem.Rmd) | `bayes-theorem` |
-| [Conditional Distributions](conditional-distributions.Rmd) | `conditional-distributions` |
-| [Conditional Probability](conditional-probability.Rmd) | `conditional-probability` |
-| [Convolutions of Distributions](convolutions.Rmd) | `convolutions` |
-| [Copulas: An Introduction](copulas-introduction.Rmd) | `copulas-introduction` |
-| [Discrete vs Continuous Variables](discrete-vs-continuous.Rmd) | `discrete-vs-continuous` |
-| [Expectation of a Random Variable](expectation.Rmd) | `expectation` |
-| [Independence](independence.Rmd) | `independence` |
-| [Joint Distributions](joint-distributions.Rmd) | `joint-distributions` |
-| [Kolmogorov's Axioms of Probability](kolmogorov-axioms.Rmd) | `kolmogorov-axioms` |
-| [Law of Total Probability](law-of-total-probability.Rmd) | `law-of-total-probability` |
-| [Marginal Distributions](marginal-distributions.Rmd) | `marginal-distributions` |
-| [Random Variables](random-variables.Rmd) | `random-variables` |
-| [Sample Space and Events](sample-space-events.Rmd) | `sample-space-events` |
-| [Student's t-Distribution](t-distribution.Rmd) | `t-distribution` |
-| [The Bernoulli Distribution](bernoulli-distribution.Rmd) | `bernoulli-distribution` |
-| [The Beta Distribution](beta-distribution.Rmd) | `beta-distribution` |
-| [The Binomial Distribution](binomial-distribution.Rmd) | `binomial-distribution` |
-| [The Chi-Squared Distribution](chi-squared-distribution.Rmd) | `chi-squared-distribution` |
-| [The Correlation Coefficient](correlation-coefficient.Rmd) | `correlation-coefficient` |
-| [The Cumulative Distribution Function](cumulative-distribution-function.Rmd) | `cumulative-distribution-function` |
-| [The Exponential Distribution](exponential-distribution.Rmd) | `exponential-distribution` |
-| [The F Distribution](f-distribution.Rmd) | `f-distribution` |
-| [The Gamma Distribution](gamma-distribution.Rmd) | `gamma-distribution` |
-| [The Geometric Distribution](geometric-distribution.Rmd) | `geometric-distribution` |
-| [The Hazard Function](hazard-function.Rmd) | `hazard-function` |
-| [The Hypergeometric Distribution](hypergeometric-distribution.Rmd) | `hypergeometric-distribution` |
-| [The Log-Normal Distribution](lognormal-distribution.Rmd) | `lognormal-distribution` |
-| [The Multinomial Distribution](multinomial-distribution.Rmd) | `multinomial-distribution` |
-| [The Multivariate Normal Distribution](multivariate-normal.Rmd) | `multivariate-normal` |
-| [The Negative Binomial Distribution](negative-binomial-distribution.Rmd) | `negative-binomial-distribution` |
-| [The Normal Distribution](normal-distribution.Rmd) | `normal-distribution` |
-| [The Poisson Distribution](poisson-distribution.Rmd) | `poisson-distribution` |
-| [The Probability Density Function](probability-density-function.Rmd) | `probability-density-function` |
-| [The Probability Mass Function](probability-mass-function.Rmd) | `probability-mass-function` |
-| [The Survival Function](survival-function.Rmd) | `survival-function` |
-| [The Uniform Distribution](uniform-distribution.Rmd) | `uniform-distribution` |
-| [The Weibull Distribution](weibull-distribution.Rmd) | `weibull-distribution` |
-| [Transformations of Random Variables](transformations-of-rv.Rmd) | `transformations-of-rv` |
-| [Variance and Covariance](variance-covariance-of-rv.Rmd) | `variance-covariance-of-rv` |
+| [Bayes' Theorem](#sec-chapters-03-probability-bayes-theorem) | `bayes-theorem` |
+| [Conditional Distributions](#sec-chapters-03-probability-conditional-distributions) | `conditional-distributions` |
+| [Conditional Probability](#sec-chapters-03-probability-conditional-probability) | `conditional-probability` |
+| [Convolutions of Distributions](#sec-chapters-03-probability-convolutions) | `convolutions` |
+| [Copulas: An Introduction](#sec-chapters-03-probability-copulas-introduction) | `copulas-introduction` |
+| [Discrete vs Continuous Variables](#sec-chapters-03-probability-discrete-vs-continuous) | `discrete-vs-continuous` |
+| [Expectation of a Random Variable](#sec-chapters-03-probability-expectation) | `expectation` |
+| [Independence](#sec-chapters-03-probability-independence) | `independence` |
+| [Joint Distributions](#sec-chapters-03-probability-joint-distributions) | `joint-distributions` |
+| [Kolmogorov's Axioms of Probability](#sec-chapters-03-probability-kolmogorov-axioms) | `kolmogorov-axioms` |
+| [Law of Total Probability](#sec-chapters-03-probability-law-of-total-probability) | `law-of-total-probability` |
+| [Marginal Distributions](#sec-chapters-03-probability-marginal-distributions) | `marginal-distributions` |
+| [Random Variables](#sec-chapters-03-probability-random-variables) | `random-variables` |
+| [Sample Space and Events](#sec-chapters-03-probability-sample-space-events) | `sample-space-events` |
+| [Student's t-Distribution](#sec-chapters-03-probability-t-distribution) | `t-distribution` |
+| [The Bernoulli Distribution](#sec-chapters-03-probability-bernoulli-distribution) | `bernoulli-distribution` |
+| [The Beta Distribution](#sec-chapters-03-probability-beta-distribution) | `beta-distribution` |
+| [The Binomial Distribution](#sec-chapters-03-probability-binomial-distribution) | `binomial-distribution` |
+| [The Chi-Squared Distribution](#sec-chapters-03-probability-chi-squared-distribution) | `chi-squared-distribution` |
+| [The Correlation Coefficient](#sec-chapters-03-probability-correlation-coefficient) | `correlation-coefficient` |
+| [The Cumulative Distribution Function](#sec-chapters-03-probability-cumulative-distribution-function) | `cumulative-distribution-function` |
+| [The Exponential Distribution](#sec-chapters-03-probability-exponential-distribution) | `exponential-distribution` |
+| [The F Distribution](#sec-chapters-03-probability-f-distribution) | `f-distribution` |
+| [The Gamma Distribution](#sec-chapters-03-probability-gamma-distribution) | `gamma-distribution` |
+| [The Geometric Distribution](#sec-chapters-03-probability-geometric-distribution) | `geometric-distribution` |
+| [The Hazard Function](#sec-chapters-03-probability-hazard-function) | `hazard-function` |
+| [The Hypergeometric Distribution](#sec-chapters-03-probability-hypergeometric-distribution) | `hypergeometric-distribution` |
+| [The Log-Normal Distribution](#sec-chapters-03-probability-lognormal-distribution) | `lognormal-distribution` |
+| [The Multinomial Distribution](#sec-chapters-03-probability-multinomial-distribution) | `multinomial-distribution` |
+| [The Multivariate Normal Distribution](#sec-chapters-03-probability-multivariate-normal) | `multivariate-normal` |
+| [The Negative Binomial Distribution](#sec-chapters-03-probability-negative-binomial-distribution) | `negative-binomial-distribution` |
+| [The Normal Distribution](#sec-chapters-03-probability-normal-distribution) | `normal-distribution` |
+| [The Poisson Distribution](#sec-chapters-03-probability-poisson-distribution) | `poisson-distribution` |
+| [The Probability Density Function](#sec-chapters-03-probability-probability-density-function) | `probability-density-function` |
+| [The Probability Mass Function](#sec-chapters-03-probability-probability-mass-function) | `probability-mass-function` |
+| [The Survival Function](#sec-chapters-03-probability-survival-function) | `survival-function` |
+| [The Uniform Distribution](#sec-chapters-03-probability-uniform-distribution) | `uniform-distribution` |
+| [The Weibull Distribution](#sec-chapters-03-probability-weibull-distribution) | `weibull-distribution` |
+| [Transformations of Random Variables](#sec-chapters-03-probability-transformations-of-rv) | `transformations-of-rv` |
+| [Variance and Covariance](#sec-chapters-03-probability-variance-covariance-of-rv) | `variance-covariance-of-rv` |
 
-## Labs
+## Labs {#sec-chapters-03-probability-index-labs}
 
 | Lab |
 |---|
-| [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd) |
-| [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd) |
-| [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd) |
+| [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem) |
+| [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson) |
+| [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots) |

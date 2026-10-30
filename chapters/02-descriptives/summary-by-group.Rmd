@@ -1,12 +1,14 @@
-## Introduction
+## Summary by Group {#sec-chapters-02-descriptives-summary-by-group}
+
+### Introduction {#sec-chapters-02-descriptives-summary-by-group-introduction}
 
 Split-apply-combine is the workhorse pattern of applied data analysis: split the data by a grouping variable, apply a summary function to each group, and combine the results. It produces the per-group means, medians, counts, and other statistics that populate Table 1 of most scientific papers.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-summary-by-group-prerequisites}
 
 The reader should know what the mean, median, and SD are, and be comfortable with R's `dplyr` pipe syntax.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-summary-by-group-theory}
 
 For a dataset with $n$ observations and a grouping variable $g$ taking values $g_1, \ldots, g_k$, split-apply-combine computes
 
@@ -16,11 +18,11 @@ for each group $j$, where $f$ is the summary function (mean, median, quantile, a
 
 R implements this via base `aggregate()`, `tapply()`, and `by()`, and via the modern `dplyr::group_by() |> summarise()` and `data.table` equivalents.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-summary-by-group-assumptions}
 
 Purely descriptive; no distributional assumption. The grouping variable should have enough observations per group for the summary to be meaningful (a mean based on $n = 2$ is noisy).
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-summary-by-group-r-implementation}
 
 ```r
 library(dplyr)
@@ -65,7 +67,7 @@ trial |>
               statistic = list(all_continuous() ~ "{mean} ({sd})"))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-summary-by-group-output-results}
 
 ```
 # A tibble: 2 x 6
@@ -77,11 +79,11 @@ trial |>
 
 The two arms differ in HbA1c (medians 7.3 vs. 6.9) while being comparable in age and sex distribution -- the typical pattern in a Table 1 balance check.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-summary-by-group-interpretation}
 
 Report grouped summaries for every important subgrouping in a study: treatment arms, sex, study site, risk stratum. The `gtsummary::tbl_summary(by = ...)` call produces a fully formatted Table 1 with p-values on request.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-summary-by-group-practical-tips}
 
 - Always include `n` per group so readers know the denominator.
 - Handle missing values explicitly: `summarise(mean(x, na.rm = TRUE))` or pre-filter.
@@ -91,24 +93,21 @@ Report grouped summaries for every important subgrouping in a study: treatment a
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-summary-by-group-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-summary-by-group-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-summary-by-group-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-summary-by-group-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

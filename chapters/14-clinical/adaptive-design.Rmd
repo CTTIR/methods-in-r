@@ -1,12 +1,14 @@
-## Introduction
+## Adaptive Trial Designs {#sec-chapters-14-clinical-adaptive-design}
+
+### Introduction {#sec-chapters-14-clinical-adaptive-design-introduction}
 
 Adaptive designs allow pre-specified modifications -- sample size, randomisation ratios, treatment-arm selection -- based on data accrued during the trial. They promise efficiency but require careful statistical control to preserve Type I error. The FDA and EMA both provide detailed guidance on acceptable adaptive modifications.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-adaptive-design-prerequisites}
 
 Group-sequential trials; alpha spending; sample-size calculation.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-adaptive-design-theory}
 
 Common adaptive features:
 - **Sample-size re-estimation** (blinded or unblinded).
@@ -17,11 +19,11 @@ Common adaptive features:
 
 Maintaining Type I error under pre-specified adaptations requires methods like group-sequential boundaries, combination tests, or conditional error functions.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-adaptive-design-assumptions}
 
 Adaptation rules are fully pre-specified (protocol, SAP); unblinded information access is tightly controlled (Data Monitoring Committee); adjustments are statistically valid.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-adaptive-design-r-implementation}
 
 ```r
 library(rpact)
@@ -41,15 +43,15 @@ ssr <- getSampleSizeMeans(design = design,
 print(ssr)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-adaptive-design-output-results}
 
 Group-sequential boundaries and associated sample sizes per stage; cumulative Type I error preserved at alpha.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-adaptive-design-interpretation}
 
 "The adaptive design applied O'Brien-Fleming boundaries at 50 %, 75 %, and 100 % information; stage-1 interim inefficacy boundary would stop at p > 0.0002, preserving overall alpha = 0.025."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-adaptive-design-practical-tips}
 
 - Pre-specify every adaptation (including the decision rule) in the protocol.
 - FDA/EMA require a detailed justification of the adaptive feature and its operating characteristics.
@@ -59,27 +61,24 @@ Group-sequential boundaries and associated sample sizes per stage; cumulative Ty
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-adaptive-design-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-adaptive-design-assumptions) and
+[practical tips](#sec-chapters-14-clinical-adaptive-design-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-adaptive-design-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

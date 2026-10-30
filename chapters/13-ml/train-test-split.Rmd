@@ -1,12 +1,14 @@
-## Introduction
+## Train-Test Splits {#sec-chapters-13-ml-train-test-split}
+
+### Introduction {#sec-chapters-13-ml-train-test-split-introduction}
 
 A train-test split reserves a random subset of the data for honest evaluation of model generalisation, separating it cleanly from the data used for fitting and tuning. It is the simplest possible evaluation protocol and the foundation of every supervised-learning workflow. The trade-off is straightforward: a larger test set gives more stable error estimates but leaves less data for fitting; for small datasets, cross-validation extracts more value from the available data than a single fixed split.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-train-test-split-prerequisites}
 
 A working understanding of supervised learning, the train-validate-test paradigm, and the difference between hyperparameter tuning and final model evaluation.
 
-## Theory
+### Theory {#sec-chapters-13-ml-train-test-split-theory}
 
 With $n$ observations, reserve $n_{\text{test}}$ for test. Typical ratios are 80/20, 70/30, or 90/10 depending on dataset size. The test-set error is a point estimate of generalisation with variance $O(1/n_{\text{test}})$ — for stable error estimates the test set should be at least a few hundred observations.
 
@@ -14,11 +16,11 @@ With $n$ observations, reserve $n_{\text{test}}$ for test. Typical ratios are 80
 
 **Grouped splits** keep all observations from the same subject, site, or sample together to prevent leakage; ignoring grouping when it exists silently inflates performance estimates.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-train-test-split-assumptions}
 
 Observation pairs $(x_i, y_i)$ are independent and identically distributed (or the dependence structure is respected by the chosen split scheme); deployment distribution matches the training distribution.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-train-test-split-r-implementation}
 
 ```r
 library(rsample); library(dplyr)
@@ -41,15 +43,15 @@ tbl_strata   <- table(training(split2)$y) / nrow(training(split2))
 round(rbind(noStrata = tbl_noStrata, strata = tbl_strata), 3)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-train-test-split-output-results}
 
 The proportion table shows that stratified splitting preserves the 10 % minority-class proportion in both train and test; random splitting can drift by 2–3 percentage points, especially with smaller test sets. `training(split)` and `testing(split)` extract the two folds.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-train-test-split-interpretation}
 
 A reporting sentence: "An 80/20 stratified split preserved the 10 % minority-class proportion in both training and test folds (training: 10.1 %, test: 9.9 %); we tuned hyperparameters on the training set via 5-fold cross-validation and reserved the test set for a single final evaluation, never touching it during model development." Always state the split ratio, stratification, and how the test set was used.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-train-test-split-practical-tips}
 
 - For time series, split chronologically (`rsample::initial_time_split()`); random splitting leaks future information into training and produces optimistic estimates.
 - For grouped data (multiple observations per subject), use `rsample::group_initial_split()` to prevent leakage; ignoring grouping when it exists silently inflates performance estimates.
@@ -58,37 +60,34 @@ A reporting sentence: "An 80/20 stratified split preserved the 10 % minority-cla
 - For final deployment, refit the best model on the training and test sets combined; the test set served its purpose at evaluation time and there is no reason to discard its information.
 - For small datasets, prefer cross-validation over a single train-test split; CV uses the data more efficiently and gives a less variable error estimate.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-train-test-split-r-packages-used}
 
 `rsample::initial_split()` and `initial_time_split()` for splits; `group_initial_split()` and `group_vfold_cv()` for grouped data; `caret::createDataPartition()` for an older alternative; `mlr3::partition()` for mlr3-style splits; base R `sample()` for ad-hoc splitting.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-train-test-split-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-train-test-split-assumptions) and
+[practical tips](#sec-chapters-13-ml-train-test-split-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-train-test-split-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

@@ -2,46 +2,46 @@
 
 Sample-size and power calculations for the designs covered in the rest of the book — t-tests, ANOVA, regression, survival, diagnostic accuracy, equivalence and non-inferiority, sequential designs. Each method page includes the exact `pwr` or simulation call.
 
-This chapter contains **30 method pages** and **2 labs**. If you are not sure which method to read, return to [Chapter 0](../../ch00-find-your-method.Rmd) and follow the decision tree to the right node.
+This chapter contains **30 method pages** and **2 labs**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.
 
-## Method pages
+## Method pages {#sec-chapters-05-power-index-method-pages}
 
 | Method | Source slug |
 |---|---|
-| [Effect Size: Cohen's d](effect-size-cohens-d.Rmd) | `effect-size-cohens-d` |
-| [Effect Size: Cohen's h](effect-size-cohens-h.Rmd) | `effect-size-cohens-h` |
-| [Effect Size: Eta-Squared](effect-size-eta-squared.Rmd) | `effect-size-eta-squared` |
-| [Minimum Detectable Effect](minimum-detectable-effect.Rmd) | `minimum-detectable-effect` |
-| [Post-Hoc Power: A Controversy](post-hoc-power-controversy.Rmd) | `post-hoc-power-controversy` |
-| [Power Analysis: Introduction](power-analysis-introduction.Rmd) | `power-analysis-introduction` |
-| [Power for Agreement (Kappa)](power-agreement-kappa.Rmd) | `power-agreement-kappa` |
-| [Power for Bland-Altman Studies](power-bland-altman.Rmd) | `power-bland-altman` |
-| [Power for Chi-Squared Tests](power-chi-squared.Rmd) | `power-chi-squared` |
-| [Power for Cluster-RCT](power-cluster-rct.Rmd) | `power-cluster-rct` |
-| [Power for Correlation Tests](power-correlation.Rmd) | `power-correlation` |
-| [Power for Cox Regression](power-cox-regression.Rmd) | `power-cox-regression` |
-| [Power for Crossover Trials](power-crossover.Rmd) | `power-crossover` |
-| [Power for Diagnostic Accuracy](power-diagnostic-accuracy.Rmd) | `power-diagnostic-accuracy` |
-| [Power for Equivalence (TOST)](power-equivalence-tost.Rmd) | `power-equivalence-tost` |
-| [Power for ICC](power-icc.Rmd) | `power-icc` |
-| [Power for Linear Regression](power-linear-regression.Rmd) | `power-linear-regression` |
-| [Power for Logistic Regression](power-logistic-regression.Rmd) | `power-logistic-regression` |
-| [Power for McNemar's Test](power-mcnemar.Rmd) | `power-mcnemar` |
-| [Power for Non-Inferiority Trials](power-non-inferiority.Rmd) | `power-non-inferiority` |
-| [Power for One-Proportion Test](power-one-proportion.Rmd) | `power-one-proportion` |
-| [Power for One-Sample t-Test](power-one-sample-t.Rmd) | `power-one-sample-t` |
-| [Power for One-Way ANOVA](power-anova.Rmd) | `power-anova` |
-| [Power for Paired t-Test](power-paired-t.Rmd) | `power-paired-t` |
-| [Power for Repeated-Measures ANOVA](power-repeated-measures.Rmd) | `power-repeated-measures` |
-| [Power for Stepped-Wedge Trials](power-stepped-wedge.Rmd) | `power-stepped-wedge` |
-| [Power for the Log-Rank Test](power-logrank-test.Rmd) | `power-logrank-test` |
-| [Power for Two-Proportion Test](power-two-proportions.Rmd) | `power-two-proportions` |
-| [Sample Size for a Two-Sample t-Test](power-two-sample-t.Rmd) | `power-two-sample-t` |
-| [Sample Size Sensitivity Analysis](sensitivity-analysis-sample-size.Rmd) | `sensitivity-analysis-sample-size` |
+| [Effect Size: Cohen's d](#sec-chapters-05-power-effect-size-cohens-d) | `effect-size-cohens-d` |
+| [Effect Size: Cohen's h](#sec-chapters-05-power-effect-size-cohens-h) | `effect-size-cohens-h` |
+| [Effect Size: Eta-Squared](#sec-chapters-05-power-effect-size-eta-squared) | `effect-size-eta-squared` |
+| [Minimum Detectable Effect](#sec-chapters-05-power-minimum-detectable-effect) | `minimum-detectable-effect` |
+| [Post-Hoc Power: A Controversy](#sec-chapters-05-power-post-hoc-power-controversy) | `post-hoc-power-controversy` |
+| [Power Analysis: Introduction](#sec-chapters-05-power-power-analysis-introduction) | `power-analysis-introduction` |
+| [Power for Agreement (Kappa)](#sec-chapters-05-power-power-agreement-kappa) | `power-agreement-kappa` |
+| [Power for Bland-Altman Studies](#sec-chapters-05-power-power-bland-altman) | `power-bland-altman` |
+| [Power for Chi-Squared Tests](#sec-chapters-05-power-power-chi-squared) | `power-chi-squared` |
+| [Power for Cluster-RCT](#sec-chapters-05-power-power-cluster-rct) | `power-cluster-rct` |
+| [Power for Correlation Tests](#sec-chapters-05-power-power-correlation) | `power-correlation` |
+| [Power for Cox Regression](#sec-chapters-05-power-power-cox-regression) | `power-cox-regression` |
+| [Power for Crossover Trials](#sec-chapters-05-power-power-crossover) | `power-crossover` |
+| [Power for Diagnostic Accuracy](#sec-chapters-05-power-power-diagnostic-accuracy) | `power-diagnostic-accuracy` |
+| [Power for Equivalence (TOST)](#sec-chapters-05-power-power-equivalence-tost) | `power-equivalence-tost` |
+| [Power for ICC](#sec-chapters-05-power-power-icc) | `power-icc` |
+| [Power for Linear Regression](#sec-chapters-05-power-power-linear-regression) | `power-linear-regression` |
+| [Power for Logistic Regression](#sec-chapters-05-power-power-logistic-regression) | `power-logistic-regression` |
+| [Power for McNemar's Test](#sec-chapters-05-power-power-mcnemar) | `power-mcnemar` |
+| [Power for Non-Inferiority Trials](#sec-chapters-05-power-power-non-inferiority) | `power-non-inferiority` |
+| [Power for One-Proportion Test](#sec-chapters-05-power-power-one-proportion) | `power-one-proportion` |
+| [Power for One-Sample t-Test](#sec-chapters-05-power-power-one-sample-t) | `power-one-sample-t` |
+| [Power for One-Way ANOVA](#sec-chapters-05-power-power-anova) | `power-anova` |
+| [Power for Paired t-Test](#sec-chapters-05-power-power-paired-t) | `power-paired-t` |
+| [Power for Repeated-Measures ANOVA](#sec-chapters-05-power-power-repeated-measures) | `power-repeated-measures` |
+| [Power for Stepped-Wedge Trials](#sec-chapters-05-power-power-stepped-wedge) | `power-stepped-wedge` |
+| [Power for the Log-Rank Test](#sec-chapters-05-power-power-logrank-test) | `power-logrank-test` |
+| [Power for Two-Proportion Test](#sec-chapters-05-power-power-two-proportions) | `power-two-proportions` |
+| [Sample Size for a Two-Sample t-Test](#sec-chapters-05-power-power-two-sample-t) | `power-two-sample-t` |
+| [Sample Size Sensitivity Analysis](#sec-chapters-05-power-sensitivity-analysis-sample-size) | `sensitivity-analysis-sample-size` |
 
-## Labs
+## Labs {#sec-chapters-05-power-index-labs}
 
 | Lab |
 |---|
-| [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd) |
-| [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd) |
+| [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting) |
+| [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation) |

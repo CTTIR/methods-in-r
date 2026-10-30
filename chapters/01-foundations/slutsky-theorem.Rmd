@@ -1,12 +1,14 @@
-## Introduction
+## Slutsky's Theorem {#sec-chapters-01-foundations-slutsky-theorem}
+
+### Introduction {#sec-chapters-01-foundations-slutsky-theorem-introduction}
 
 Slutsky's theorem is one of the workhorse results of asymptotic statistics. It says that we can substitute a consistent estimator for a constant in an asymptotic statement, without changing the limiting distribution. This simple-sounding result is what makes the Wald statistic have an asymptotic standard-normal distribution, what justifies using the sample SD in place of the population SD in a t-statistic's denominator, and what underlies countless routine asymptotic arguments in applied work.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-slutsky-theorem-prerequisites}
 
 The reader should understand convergence in probability and convergence in distribution.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-slutsky-theorem-theory}
 
 **Slutsky's theorem.** Suppose $Y_n \xrightarrow{d} Y$ and $Z_n \xrightarrow{P} c$, where $c$ is a constant. Then:
 
@@ -28,11 +30,11 @@ Slutsky's theorem gives $W_n \xrightarrow{d} \mathcal{N}(0, 1) \cdot 1 = \mathca
 
 This is why the Wald statistic with an estimated SE still has a standard-normal limit. The same principle applies to Wald chi-squared statistics, score statistics, and almost every test statistic in asymptotic theory.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-slutsky-theorem-assumptions}
 
 Slutsky's theorem requires (i) $Z_n$ converges in probability to a constant, not to a random variable, and (ii) the combined operation (sum, product, quotient) is well-defined. For quotients the constant must not be zero; dividing by a small random denominator can still introduce tail issues at finite $n$ that Slutsky does not warn about.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-slutsky-theorem-r-implementation}
 
 ```r
 set.seed(2026)
@@ -55,7 +57,7 @@ c(mean = mean(wald_stats),
 
 We simulate the Wald statistic across 5000 replications. Slutsky's theorem predicts the limiting distribution is standard normal; the simulation confirms empirically.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-slutsky-theorem-output-results}
 
 ```
     mean       sd
@@ -64,11 +66,11 @@ We simulate the Wald statistic across 5000 replications. Slutsky's theorem predi
 
 The empirical mean is near zero and SD near one, confirming standard-normal behaviour. The Q-Q plot falls on the reference line.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-slutsky-theorem-interpretation}
 
 Slutsky's theorem is rarely cited by name in applied papers, but its conclusions appear constantly. The phrase "by the CLT, and using the consistency of $\hat{\sigma}$ for $\sigma$, the Wald statistic is asymptotically standard normal" is a Slutsky argument compressed into a single sentence.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-slutsky-theorem-practical-tips}
 
 - When you see an asymptotic argument that swaps an estimator for a parameter, that is (usually) Slutsky at work.
 - Slutsky's theorem does not help when both sequences are non-degenerate; for that, joint convergence and the continuous mapping theorem are needed.
@@ -78,27 +80,24 @@ Slutsky's theorem is rarely cited by name in applied papers, but its conclusions
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-slutsky-theorem-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-slutsky-theorem-assumptions) and
+[practical tips](#sec-chapters-01-foundations-slutsky-theorem-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-slutsky-theorem-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

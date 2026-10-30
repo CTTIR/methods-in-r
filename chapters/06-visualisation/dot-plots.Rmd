@@ -1,22 +1,24 @@
-## Introduction
+## Dot Plots {#sec-chapters-06-visualisation-dot-plots}
+
+### Introduction {#sec-chapters-06-visualisation-dot-plots-introduction}
 
 "Dot plot" refers to two distinct chart types that share a name and a geometry but answer different questions. **Cleveland dot plots** show one value per category as a single point, replacing bar charts for ranked comparisons; they were popularised by William Cleveland's 1985 *Elements of Graphing Data* on the grounds that perceiving position is more accurate than perceiving length. **Wilkinson dot plots** show one point per observation, stacked at the relevant x-value, and act as a hand-drawn histogram that exposes individual observations rather than binned counts.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-dot-plots-prerequisites}
 
 A working knowledge of `ggplot2`, an idea of when to prefer position to length encoding, and basic familiarity with histograms and bar charts.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-dot-plots-theory}
 
 **Cleveland dot plots** (`geom_point()` with category on y and value on x) eliminate the visual noise of bar lengths and make small differences across many categories easy to compare. A faint horizontal segment from zero to the point — `geom_segment()` — preserves the bar-like sense of "distance from origin" without committing the visual heaviness of a filled bar.
 
 **Wilkinson dot plots** (`geom_dotplot()`) bin observations along one axis and stack equal-sized dots in each bin. The `method = "histodot"` argument anchors bins to the data range; `method = "dotdensity"` adapts bin centres to local density. They are most useful for small samples (n < 100) where every observation should be visible; for larger samples, jittered strip plots or swarm plots scale better.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-dot-plots-assumptions}
 
 For Cleveland dot plots: one value per category (or a clearly defined summary). For Wilkinson dot plots: the binwidth makes sense for the data range — too small and dots stack into spikes; too large and they merge into bars.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-dot-plots-r-implementation}
 
 ```r
 library(ggplot2)
@@ -41,15 +43,15 @@ ggplot(iris, aes(Species, Sepal.Length)) +
   theme_minimal()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-dot-plots-output-results}
 
 Three views: a Cleveland dot plot ranking car classes by mean highway mpg with faint baseline segments, a Wilkinson dot plot of the 32 `mtcars` mpg values stacked as a histogram, and a grouped Wilkinson plot showing sepal-length distributions for three iris species side by side.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-dot-plots-interpretation}
 
 A reporting sentence (figure caption): "Cleveland dot plot of mean highway fuel economy (mpg) by class for 234 vehicles; categories are ordered by descending mean. Wilkinson dot plot of mpg values for 32 vehicles, with each dot representing a single car." When showing summary points, always describe which summary (mean, median, count) the dot represents.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-dot-plots-practical-tips}
 
 - Order Cleveland-dot categories by value with `forcats::fct_reorder()` or `reorder()`; alphabetic orderings rarely communicate ranking.
 - Combine Cleveland dot plots with horizontal error bars (`geom_errorbarh()` or `geom_segment()` for confidence intervals) when uncertainty is important.
@@ -58,30 +60,26 @@ A reporting sentence (figure caption): "Cleveland dot plot of mean highway fuel 
 - Dot plots in presentation slides work better than bar charts at small sizes; the bar's length advantage becomes a length-perception headache when the bar is only a few pixels tall.
 - Above a few hundred observations per category, switch from Wilkinson dot plots to strip plots, swarm plots (`ggbeeswarm`), or violin plots; stacked dots no longer scale.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-dot-plots-r-packages-used}
 
 `ggplot2` for `geom_dotplot()`, `geom_point()`, and `geom_segment()`; `forcats` for category reordering; `ggbeeswarm` for swarm-style dot plots that scale to larger samples; `ggdist` for slabinterval geoms that combine the dot-plot and density idioms.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-dot-plots-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-dot-plots-assumptions) and [practical tips](#sec-chapters-06-visualisation-dot-plots-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-dot-plots-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

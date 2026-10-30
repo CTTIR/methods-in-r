@@ -1,12 +1,14 @@
-## Introduction
+## Batch Correction with ComBat {#sec-chapters-12-bioinformatics-batch-correction-combat}
+
+### Introduction {#sec-chapters-12-bioinformatics-batch-correction-combat-introduction}
 
 Batch effects — systematic technical variation introduced by different sequencing dates, instruments, library-prep operators, or reagent lots — bias gene-expression measurements in ways that can swamp biological signal if not addressed. ComBat is the most widely used batch-correction method, applying an empirical-Bayes adjustment to centre and scale each gene's distribution per batch. It is appropriate when batches are known and condition is not confounded with batch; the alternative — including batch as a covariate in differential-expression models — preserves more information when downstream analysis explicitly models batch.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-batch-correction-combat-prerequisites}
 
 A working understanding of normalisation, the distinction between technical and biological variation, and basic empirical-Bayes shrinkage.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-batch-correction-combat-theory}
 
 ComBat models each gene's expression as
 
@@ -16,11 +18,11 @@ with sample $i$, gene $j$, batch $b$, additive batch effect $\gamma_{bj}$, and m
 
 ComBat-Seq (in `sva`) is the count-data analogue, designed for raw RNA-seq counts before normalisation; standard ComBat assumes log-normalised input.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-batch-correction-combat-assumptions}
 
 Batches are known; biological condition is not perfectly confounded with batch (otherwise correction is impossible); sufficient samples per batch for stable empirical-Bayes shrinkage.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-batch-correction-combat-r-implementation}
 
 ```r
 library(sva)
@@ -41,15 +43,15 @@ expr_corrected <- ComBat(dat = expr, batch = batch, mod = mod)
 # prcomp(t(expr))$x[, 1:2]; prcomp(t(expr_corrected))$x[, 1:2]
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-batch-correction-combat-output-results}
 
 `ComBat()` returns the batch-corrected expression matrix; `ComBat_seq()` returns batch-corrected counts. PCA before and after correction is the standard QC check: condition-driven clustering should remain or strengthen, while batch-driven separation should diminish substantially.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-batch-correction-combat-interpretation}
 
 A reporting sentence: "ComBat correction with condition included as a covariate (`mod = model.matrix(~ condition)`) reduced batch variance from 35 % of PC1 to under 5 %, while preserving the condition-driven separation that explains 28 % of the remaining variance. The corrected matrix was used for downstream visualisation and clustering." Always report which covariates were preserved during correction.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-batch-correction-combat-practical-tips}
 
 - Do *not* run ComBat when condition is fully confounded with batch — the correction will remove the biological signal along with the batch effect.
 - Use `ComBat_seq()` for raw RNA-seq counts; standard ComBat is for log-normalised data.
@@ -58,32 +60,29 @@ A reporting sentence: "ComBat correction with condition included as a covariate 
 - Alternative methods include RUVSeq (latent factor extraction), svaseq (surrogate variable analysis), and `limma::removeBatchEffect()` (simple linear adjustment); the choice depends on whether batches are known.
 - Pair correction with PCA before and after as a routine QC step; visible improvement is the validation for whether the correction worked.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-batch-correction-combat-r-packages-used}
 
 `sva::ComBat()` and `ComBat_seq()` for the canonical empirical-Bayes batch correction; `RUVSeq` for unsupervised factor-based correction; `limma::removeBatchEffect()` for simple linear batch removal; `harmony` for batch correction in single-cell RNA-seq workflows.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-batch-correction-combat-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-batch-correction-combat-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-batch-correction-combat-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-batch-correction-combat-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

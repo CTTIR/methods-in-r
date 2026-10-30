@@ -1,12 +1,14 @@
-## Introduction
+## Outlier Detection Rules {#sec-chapters-02-descriptives-outlier-detection-rules}
+
+### Introduction {#sec-chapters-02-descriptives-outlier-detection-rules-introduction}
 
 Outlier detection is a diagnostic step, not a cleaning step: flagged points should be investigated, not automatically removed. Several rules produce flags from different premises; each has a different trade-off between sensitivity and robustness. This page covers the common univariate rules and their assumptions.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-outlier-detection-rules-prerequisites}
 
 The reader should know what mean, median, SD, and IQR are.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-outlier-detection-rules-theory}
 
 - **1.5 x IQR fence (Tukey)**: observations outside $[Q_1 - 1.5 \cdot \mathrm{IQR}, \ Q_3 + 1.5 \cdot \mathrm{IQR}]$ are mild outliers; $3 \cdot \mathrm{IQR}$ marks extremes. Robust and distribution-free.
 - **Z-score (3-sigma)**: $|z_i| > 3$ where $z_i = (x_i - \bar{x})/s$. Sensitive to the outliers it is trying to flag (masking).
@@ -15,13 +17,13 @@ The reader should know what mean, median, SD, and IQR are.
 
 Masking and swamping are two pitfalls: masking occurs when true outliers inflate the SD and hide themselves; swamping occurs when one outlier drags neighbours across the threshold, falsely flagging them.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-outlier-detection-rules-assumptions}
 
 - IQR fence and Hampel: no distributional assumption; robust.
 - Z-score: approximately normal distribution.
 - Grubbs' test: normality and a single suspected outlier.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-outlier-detection-rules-r-implementation}
 
 ```r
 library(outliers)
@@ -47,7 +49,7 @@ which(abs(h) > 3)
 grubbs.test(x)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-outlier-detection-rules-output-results}
 
 ```
 IQR fence flags:   [49, 50]
@@ -58,11 +60,11 @@ Grubbs: G = 2.81, p = 0.03
 
 The IQR and Hampel rules identify both extreme values; the z-score, inflated by those same values, identifies only the most extreme. Grubbs' test rejects the null that the extreme point is from the same distribution.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-outlier-detection-rules-interpretation}
 
 Report which rule you applied and how many observations it flagged. "Two observations exceeded the Tukey 1.5 x IQR upper fence; both were verified as accurate data-entry values and retained in the primary analysis" is a defensible sentence.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-outlier-detection-rules-practical-tips}
 
 - Flag, investigate, decide. Never delete silently.
 - For skewed data, IQR fences still flag normal-range observations as outliers; consider log-transformation first.
@@ -72,24 +74,21 @@ Report which rule you applied and how many observations it flagged. "Two observa
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-outlier-detection-rules-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-outlier-detection-rules-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-outlier-detection-rules-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-outlier-detection-rules-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

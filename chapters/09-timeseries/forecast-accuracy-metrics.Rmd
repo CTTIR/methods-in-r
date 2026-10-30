@@ -1,12 +1,14 @@
-## Introduction
+## Forecast Accuracy Metrics {#sec-chapters-09-timeseries-forecast-accuracy-metrics}
+
+### Introduction {#sec-chapters-09-timeseries-forecast-accuracy-metrics-introduction}
 
 Forecast accuracy is evaluated through error metrics that compare predictions against held-out actuals. Each metric encodes a different loss function and has different units, so the choice of metric depends on the substantive cost structure of forecasting errors. The four most widely reported are MAE, RMSE, MAPE, and MASE; understanding their differences and trade-offs is essential for fair comparison across forecasting methods and across series.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-forecast-accuracy-metrics-prerequisites}
 
 A working understanding of forecasting, the difference between in-sample and out-of-sample evaluation, and basic loss-function concepts.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-forecast-accuracy-metrics-theory}
 
 Let $e_t = y_t - \hat y_t$ be the forecast error on the test window of length $n$.
 
@@ -17,11 +19,11 @@ Let $e_t = y_t - \hat y_t$ be the forecast error on the test window of length $n
 
 For probabilistic forecasts, the continuous ranked probability score (CRPS) generalises MAE to forecast distributions and is the standard scoring rule for prediction intervals.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-forecast-accuracy-metrics-assumptions}
 
 A comparable held-out test window of sufficient length to give stable error estimates; the chosen metric matches the substantive loss function of forecasting errors.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-forecast-accuracy-metrics-r-implementation}
 
 ```r
 library(forecast)
@@ -35,15 +37,15 @@ fc   <- forecast(fit, h = length(test))
 accuracy(fc, test)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-forecast-accuracy-metrics-output-results}
 
 `accuracy()` returns a table with ME (mean error, indicates bias), RMSE, MAE, MPE, MAPE, MASE, and ACF1 (lag-1 autocorrelation of residuals) on both the training and test sets. The training-set numbers measure in-sample fit; the test-set numbers are the genuine out-of-sample predictive performance.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-forecast-accuracy-metrics-interpretation}
 
 A reporting sentence: "On the held-out three-year window, the ARIMA forecast achieved test-set RMSE of 22.8 passengers, MAE of 18.5, and MASE of 0.42; the MASE below 1 confirms substantially better predictive performance than a naive seasonal forecast." Always report multiple metrics — RMSE for squared-error context, MAE for absolute-error context, MASE for scale-free comparison.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-forecast-accuracy-metrics-practical-tips}
 
 - Report multiple metrics; they reward different error properties and a model can dominate on one while losing on another.
 - MAPE is popular in business reporting but misleading for series with values near zero or with negative values; use sMAPE or MASE instead.
@@ -52,30 +54,27 @@ A reporting sentence: "On the held-out three-year window, the ARIMA forecast ach
 - For comparing many forecasts across many series, aggregate metrics via rolling-origin cross-validation; a single train/test split is sensitive to the choice of cutoff.
 - For probabilistic forecasts, report CRPS or interval scores; point-forecast metrics ignore the prediction-interval calibration.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-forecast-accuracy-metrics-r-packages-used}
 
 `forecast::accuracy()` for the standard suite of point-forecast metrics; `Metrics::rmse()`, `mae()`, `mape()` for individual metrics; `scoringRules` for proper scoring rules including CRPS for probabilistic forecasts; `fabletools::accuracy()` for the modern tidyverts equivalent.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-forecast-accuracy-metrics-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-forecast-accuracy-metrics-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-forecast-accuracy-metrics-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-forecast-accuracy-metrics-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

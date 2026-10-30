@@ -1,22 +1,24 @@
-## Introduction
+## Microbiome Analysis with DADA2 {#sec-chapters-12-bioinformatics-microbiome-dada2}
+
+### Introduction {#sec-chapters-12-bioinformatics-microbiome-dada2-introduction}
 
 DADA2 (Divisive Amplicon Denoising Algorithm 2) infers exact amplicon sequence variants (ASVs) from 16S rRNA, 18S, ITS, or other amplicon sequencing data. It replaces the older OTU-clustering approach (which lumps similar sequences together at, typically, 97 % identity) with single-nucleotide resolution. ASVs are reproducible across studies — the same sequence is the same variant regardless of who runs the analysis — and allow finer taxonomic assignment than the threshold-based OTU representation.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-microbiome-dada2-prerequisites}
 
 A working understanding of amplicon sequencing (paired-end or single-end Illumina), primer trimming, and basic microbial ecology including the OTU vs ASV distinction.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-microbiome-dada2-theory}
 
 DADA2 fits a position- and quality-aware error model from the observed FASTQ data, then uses it to distinguish real biological variants from sequencing errors. The intuition: a sequence appearing more often than the error model predicts is a candidate ASV; sequences explained by errors from a more abundant variant are merged into it. The final output is a per-sample ASV count table (analogous to a gene count matrix in RNA-seq) that feeds the same downstream pipeline — alpha and beta diversity, differential-abundance testing, ordination.
 
 The standard pipeline: filter and trim FASTQs, learn error rates, denoise per sample, merge paired-end reads, construct a sequence table, remove chimeras, assign taxonomy.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-microbiome-dada2-assumptions}
 
 Primers have been removed before DADA2 input; paired-end reads overlap sufficiently for merging; error rates are sample-specific (DADA2 estimates them per run).
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-microbiome-dada2-r-implementation}
 
 DADA2 processes FASTQs on disk; here we simulate a post-DADA2 ASV count table for downstream analysis:
 
@@ -56,15 +58,15 @@ The actual DADA2 calls (commented for the simulation example):
 # seqtab.nochim <- removeBimeraDenovo(seqtab, method = "consensus")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-microbiome-dada2-output-results}
 
 The DADA2 output is an ASV-by-sample count matrix together with taxonomy assignments from SILVA or GTDB. Wrapping the count table, taxonomy, and sample metadata in a `phyloseq` object provides the standard input for downstream community ecology analyses.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-microbiome-dada2-interpretation}
 
 A reporting sentence: "DADA2 inferred 2{,}148 amplicon sequence variants across 50 samples after chimera removal; 980 ASVs were assigned to phylum level using the SILVA v138 reference, with median read depth of 42{,}300 reads per sample. The resulting `phyloseq` object served as input to alpha-diversity (Shannon, Simpson) and beta-diversity (Bray-Curtis NMDS) analyses." Always state the reference database version and the read-retention rate.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-microbiome-dada2-practical-tips}
 
 - Always run `removeBimeraDenovo()` after sequence-table construction to strip chimeric ASVs; they accumulate during PCR and can be a substantial fraction of the count.
 - Assign taxonomy with SILVA (v138 or later for 16S) or GTDB; species-level assignment for short amplicons is usually unreliable due to limited resolution.
@@ -73,32 +75,29 @@ A reporting sentence: "DADA2 inferred 2{,}148 amplicon sequence variants across 
 - Always check per-sample read-retention at each DADA2 step (filtering, denoising, merging, chimera removal); large drops at any step usually mean over-strict parameters.
 - For 16S V4 region with overlapping 250 bp paired-end reads, `truncLen = c(240, 160)` is a sensible starting point; tune based on quality profiles.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-microbiome-dada2-r-packages-used}
 
 `dada2` for ASV inference and the canonical workflow; `phyloseq` for downstream community-ecology analysis on the ASV count table; `DECIPHER` for fast taxonomy assignment; `vegan` for alpha and beta diversity; `ANCOMBC` and `ALDEx2` for compositional differential-abundance testing.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-microbiome-dada2-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-microbiome-dada2-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-microbiome-dada2-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-microbiome-dada2-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

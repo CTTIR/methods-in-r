@@ -1,12 +1,14 @@
-## Introduction
+## Counting Reads with featureCounts {#sec-chapters-12-bioinformatics-counting-reads-feature-counts}
+
+### Introduction {#sec-chapters-12-bioinformatics-counting-reads-feature-counts-introduction}
 
 After read alignment, the next step in most RNA-seq pipelines is summarising aligned reads into per-gene (or per-feature) count matrices for differential-expression analysis. `featureCounts` (in `Rsubread`) and HTSeq-count are the two standard tools; both consume BAM files plus a GTF annotation and produce a gene-by-sample count matrix. The choices that matter — strand-specificity, multi-mapper handling, paired-end mode, and meta-feature aggregation — directly affect downstream conclusions and must match the experimental library prep.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-counting-reads-feature-counts-prerequisites}
 
 A working understanding of BAM alignment files, GTF/GFF annotation formats, and the difference between transcript-level and gene-level expression quantification.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-counting-reads-feature-counts-theory}
 
 Each aligned read is assigned to a feature (gene, exon, or other annotated region) it overlaps. Key configuration choices:
 
@@ -17,11 +19,11 @@ Each aligned read is assigned to a feature (gene, exon, or other annotated regio
 
 For transcript-level counts, pseudo-alignment tools (Salmon, Kallisto) skip the BAM-producing alignment step and provide isoform-level abundance estimates directly.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-counting-reads-feature-counts-assumptions}
 
 The GTF annotation matches the genome reference used for alignment; the strand-specificity setting matches the library prep; aligned BAMs are coordinate-sorted (or sortable by `featureCounts`).
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-counting-reads-feature-counts-r-implementation}
 
 ```r
 library(Rsubread)
@@ -38,15 +40,15 @@ library(Rsubread)
 # counts$counts: gene x sample matrix
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-counting-reads-feature-counts-output-results}
 
 `featureCounts()` returns a list with `$counts` (gene-by-sample matrix), `$annotation` (per-gene metadata including length used for FPKM/TPM normalisation), and `$stat` (per-sample summary of assigned vs ambiguous vs unassigned reads).
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-counting-reads-feature-counts-interpretation}
 
 A reporting sentence: "featureCounts (Rsubread v2.16) assigned 82 % of mapped reads to GENCODE v44 gene features (`strandSpecific = 2`, `isPairedEnd = TRUE`); 8 % were ambiguous due to multi-gene overlap and 10 % were unassigned to any feature. The high assignment rate confirms the strand setting matches the dUTP library prep." Always quote the assignment rate; sub-50 % rates signal serious problems (wrong strand, annotation mismatch).
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-counting-reads-feature-counts-practical-tips}
 
 - Report `$stat` summaries alongside the count matrix; low assignment rates (below 60 % for typical RNA-seq) signal alignment, annotation, or strand-setting problems.
 - Strand-specificity must match library protocol exactly; check with `infer_experiment.py` from RSeQC or visual inspection in IGV when uncertain.
@@ -55,32 +57,29 @@ A reporting sentence: "featureCounts (Rsubread v2.16) assigned 82 % of mapped re
 - Bundle counts with metadata in a `SummarizedExperiment` object for downstream Bioconductor workflows (DESeq2, edgeR, limma all accept `SummarizedExperiment`).
 - Include feature length in the output and use it for normalisation when reporting TPM/FPKM; raw counts alone do not control for gene length differences.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-counting-reads-feature-counts-r-packages-used}
 
 `Rsubread::featureCounts()` for the canonical implementation; `GenomicAlignments::summarizeOverlaps()` for an alternative Bioconductor-style approach; `tximport` for importing transcript-level estimates from Salmon/Kallisto into `SummarizedExperiment`; `tximeta` for metadata-aware imports.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-counting-reads-feature-counts-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-counting-reads-feature-counts-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-counting-reads-feature-counts-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-counting-reads-feature-counts-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

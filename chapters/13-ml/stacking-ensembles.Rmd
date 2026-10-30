@@ -1,12 +1,14 @@
-## Introduction
+## Stacking Ensembles {#sec-chapters-13-ml-stacking-ensembles}
+
+### Introduction {#sec-chapters-13-ml-stacking-ensembles-introduction}
 
 Stacking, also called stacked generalisation (Wolpert 1992), combines predictions from several diverse base learners using a second-level meta-learner trained to predict the target from the base-model predictions. Stacking consistently wins competitive ML benchmarks when base models are individually decent and sufficiently diverse — the meta-learner captures complementary strengths that no single model can match. It generalises bagging (one type of model averaged) and boosting (one type of model sequentially trained) to arbitrary heterogeneous ensembles.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-stacking-ensembles-prerequisites}
 
 A working understanding of cross-validation, the bias-variance trade-off in ensembling, and the difference between in-sample and out-of-fold predictions.
 
-## Theory
+### Theory {#sec-chapters-13-ml-stacking-ensembles-theory}
 
 The standard stacking workflow:
 
@@ -16,11 +18,11 @@ The standard stacking workflow:
 
 Using OOF predictions for the meta-learner prevents leakage that would occur if the meta-learner trained on in-sample base predictions.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-stacking-ensembles-assumptions}
 
 Base learners are sufficiently diverse (a trees + linear + kNN combination usually outperforms five different tree variants); the meta-learner is simple enough that it does not over-fit the small set of base predictions.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-stacking-ensembles-r-implementation}
 
 ```r
 library(tidymodels); library(stacks)
@@ -56,15 +58,15 @@ st_fit   <- fit_members(st_blend)
 st_fit
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-stacking-ensembles-output-results}
 
 `fit_members()` returns the trained stack with meta-learner coefficients weighting each base model. Inspecting `st_blend` shows the chosen blending weights — typically a non-negative least-squares or penalised regression solution that emphasises the base models with the most distinctive predictive signal.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-stacking-ensembles-interpretation}
 
 A reporting sentence: "Stacking a random forest and a regularised logistic regression via a penalised linear meta-learner achieved test ROC AUC of 0.89, exceeding either base model alone (RF 0.85, logistic 0.80); the meta-learner weighted RF at 0.62 and logistic at 0.38, with both contributions retained at non-zero values." Always report base-model performances, the meta-learner choice, and the blending weights.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-stacking-ensembles-practical-tips}
 
 - Base-model diversity (tree + linear + kNN + neural net) matters more than having many similar learners; a stack of five XGBoost variants is rarely better than a single well-tuned XGBoost.
 - Use a regularised linear meta-learner (lasso or non-negative LS); unregularised meta-learners over-fit the relatively small set of OOF predictions.
@@ -73,37 +75,34 @@ A reporting sentence: "Stacking a random forest and a regularised logistic regre
 - The `stacks` package (tidymodels) automates the workflow and integrates with the broader `tune` ecosystem for cross-validated base-model tuning.
 - `SuperLearner` is the classical alternative outside tidymodels; both produce equivalent results given the same base models.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-stacking-ensembles-r-packages-used}
 
 `stacks` for tidymodels-based stacking; `SuperLearner` for the classical implementation; `tune::fit_resamples()` for the cross-validated base-learner predictions; `parsnip` for unified base-model specifications; `glmnet` and `ranger` for the standard base-learner choices.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-stacking-ensembles-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-stacking-ensembles-assumptions) and
+[practical tips](#sec-chapters-13-ml-stacking-ensembles-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-stacking-ensembles-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

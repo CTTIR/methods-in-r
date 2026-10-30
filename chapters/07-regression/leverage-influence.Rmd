@@ -1,12 +1,14 @@
-## Introduction
+## Leverage and Influence {#sec-chapters-07-regression-leverage-influence}
+
+### Introduction {#sec-chapters-07-regression-leverage-influence-introduction}
 
 Leverage and influence diagnostics identify observations whose removal would substantially change a regression fit. The two concepts are distinct: leverage measures how unusual an observation is in the predictor space, influence measures how much it actually affects the fitted coefficients. High leverage without a large residual is harmless; high residual without leverage produces a poor fit but not influential coefficients; only the combination of both produces an observation that disproportionately drives the regression.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-leverage-influence-prerequisites}
 
 A working understanding of residual diagnostics, the hat matrix, and the leave-one-out perspective on regression.
 
-## Theory
+### Theory {#sec-chapters-07-regression-leverage-influence-theory}
 
 **Hat values** $h_{ii}$ are the diagonal of the projection matrix $H = X(X^\top X)^{-1} X^\top$. They measure each observation's leverage in the predictor space; the trace $\sum h_{ii} = p + 1$ (number of parameters), so the average is $(p+1)/n$. Conventional threshold: $h_{ii} > 2(p+1)/n$ is high leverage.
 
@@ -16,11 +18,11 @@ A working understanding of residual diagnostics, the hat matrix, and the leave-o
 
 **DFFITS**: standardised change in fitted value at observation $i$; analogous to DFBETA but for predictions rather than coefficients.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-leverage-influence-assumptions}
 
 Classical OLS assumptions; the diagnostics above are linear-regression-specific. For GLMs, `influence.measures()` provides analogues based on one-step approximations.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-leverage-influence-r-implementation}
 
 ```r
 library(car)
@@ -43,15 +45,15 @@ which(cooks > 4 / nrow(mtcars))
 influencePlot(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-leverage-influence-output-results}
 
 Each diagnostic flags candidate observations. `car::influencePlot()` produces a single integrated plot with leverage on the x-axis, studentised residual on the y-axis, and point size proportional to Cook's distance — the canonical three-way diagnostic.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-leverage-influence-interpretation}
 
 A reporting sentence: "Influence diagnostics flagged three observations as candidates for further inspection (Maserati Bora: high leverage and large residual; Cadillac Fleetwood, Lincoln Continental: high leverage with moderate residuals); refitting without these observations changed the coefficient on weight by less than 0.3 SE units, with substantive conclusions unchanged." Sensitivity analyses are the right way to report influence diagnostics; pointing out flagged observations without consequence checks adds noise rather than signal.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-leverage-influence-practical-tips}
 
 - Leverage is determined by the predictor matrix alone; outliers in the response are residual problems, not leverage.
 - Only the combination of leverage and large residual produces influence; investigate flagged points before removing them.
@@ -60,46 +62,43 @@ A reporting sentence: "Influence diagnostics flagged three observations as candi
 - For GLMs, `influence.measures(fit)` returns DFBETAs, hat values, and Cook's-distance equivalents based on one-step approximations.
 - Robust regression (`MASS::rlm`, `robustbase::lmrob`) automatically downweights influential observations; useful when influential points are genuine and should be retained but should not dominate the fit.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-leverage-influence-r-packages-used}
 
 Base R `hatvalues()`, `dfbetas()`, `dffits()`, `cooks.distance()`, `influence.measures()`; `car::influencePlot()` for the three-way diagnostic visualisation; `performance::check_outliers()` for tidy diagnostics; `MASS::rlm()` and `robustbase::lmrob()` for robust regression alternatives.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-leverage-influence-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-leverage-influence-assumptions) and
+[practical tips](#sec-chapters-07-regression-leverage-influence-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-leverage-influence-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

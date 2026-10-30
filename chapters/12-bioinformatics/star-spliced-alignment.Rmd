@@ -1,22 +1,24 @@
-## Introduction
+## STAR: Spliced Alignment {#sec-chapters-12-bioinformatics-star-spliced-alignment}
+
+### Introduction {#sec-chapters-12-bioinformatics-star-spliced-alignment-introduction}
 
 STAR (Spliced Transcripts Alignment to a Reference) is the de facto standard short-read RNA-seq aligner. It is designed specifically for the splice-aware alignment problem: reads from mature mRNA cross exon-exon junctions, and a naive aligner that requires contiguous matches misses these split alignments and misclassifies them as multi-mappers or unaligned. STAR's seed-extend algorithm splits reads at candidate junctions, aligns the segments to the reference genome, and assembles them into spliced alignments — including across novel (unannotated) junctions.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-star-spliced-alignment-prerequisites}
 
 A working understanding of RNA-seq experimental design, the difference between mRNA and DNA sequencing, and basic familiarity with sequence alignment concepts.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-star-spliced-alignment-theory}
 
 STAR's two-pass mapping is the standard mode: the first pass aligns each read independently and accumulates a list of candidate splice junctions; the second pass adds those junctions to the reference index and re-aligns, producing more accurate spliced alignments especially across novel junctions. The output is a BAM file plus a tab-separated splice-junction summary (`SJ.out.tab`).
 
 STAR also supports chimeric alignment for fusion-gene detection (reads spanning two distinct genomic loci), expectation-maximisation-based multi-mapper resolution, and stranded alignment when library protocols preserve transcript orientation.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-star-spliced-alignment-assumptions}
 
 Short RNA-seq reads (typically 50–150 bp Illumina); a reference genome and (preferably) a gene annotation in GTF format; sufficient memory — STAR's index for human genome takes about 30 GB of RAM.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-star-spliced-alignment-r-implementation}
 
 ```r
 library(Rsubread)
@@ -32,15 +34,15 @@ library(Rsubread)
 #       annot.inbuilt = "hg38")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-star-spliced-alignment-output-results}
 
 The primary output is a BAM file containing spliced alignments and a `SJ.out.tab` file summarising splice junctions detected (including their support count and annotation status). For typical RNA-seq experiments, 90–95 % of reads align uniquely; a much lower rate signals contamination, library-prep problems, or annotation mismatch.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-star-spliced-alignment-interpretation}
 
 A reporting sentence: "STAR (v2.7.10a) two-pass alignment to GRCh38 with the GENCODE v44 annotation aligned 94 % of reads uniquely; 2.3 million splice junctions were detected, of which 98 % matched annotated junctions, suggesting limited novel splicing in the experimental conditions." Always report the genome assembly, annotation version, and unique-mapping rate.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-star-spliced-alignment-practical-tips}
 
 - STAR needs about 30 GB of RAM for the human genome index; for smaller genomes (yeast, bacteria), it runs comfortably on a laptop.
 - Two-pass mode (`twopassMode = "Basic"`) is standard for novel-junction detection; the first-pass-only mode is faster but less accurate.
@@ -49,32 +51,29 @@ A reporting sentence: "STAR (v2.7.10a) two-pass alignment to GRCh38 with the GEN
 - Pseudo-aligners (Salmon, Kallisto) skip the BAM-producing alignment entirely; faster but less suitable when isoform-level alignments are needed (variant calling, fusion detection).
 - Use a reference GTF annotation to improve junction accuracy; novel-junction detection works without it but is more error-prone.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-star-spliced-alignment-r-packages-used}
 
 `Rsubread` provides splice-aware alignment via `subjunc` and feature counting via `featureCounts`; `Rsamtools` and `GenomicAlignments` for downstream BAM manipulation; `tximport` for importing transcript-level abundance estimates from Salmon, Kallisto, or RSEM into Bioconductor; STAR itself is a command-line tool but its output integrates with all standard R/Bioconductor RNA-seq workflows.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-star-spliced-alignment-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-star-spliced-alignment-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-star-spliced-alignment-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-star-spliced-alignment-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

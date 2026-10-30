@@ -2,49 +2,49 @@
 
 Time-to-event methods: Kaplan-Meier, Cox regression, time-varying covariates, competing risks, multistate models, and survival-targeted machine learning. Censoring is treated as a first-class concept, not a footnote.
 
-This chapter contains **30 method pages** and **5 labs**. If you are not sure which method to read, return to [Chapter 0](../../ch00-find-your-method.Rmd) and follow the decision tree to the right node.
+This chapter contains **30 method pages** and **5 labs**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.
 
-## Method pages
+## Method pages {#sec-chapters-11-survival-index-method-pages}
 
 | Method | Source slug |
 |---|---|
-| [Accelerated Failure Time Models](accelerated-failure-time.Rmd) | `accelerated-failure-time` |
-| [Censoring Types](censoring-types.Rmd) | `censoring-types` |
-| [Checking Cox Assumptions](cox-assumptions-check.Rmd) | `cox-assumptions-check` |
-| [Competing Risks: Cumulative Incidence](competing-risks-cif.Rmd) | `competing-risks-cif` |
-| [Concordance and the C-Index](concordance-c-index.Rmd) | `concordance-c-index` |
-| [Conditional Survival](conditional-survival.Rmd) | `conditional-survival` |
-| [Cox Proportional Hazards Regression](cox-proportional-hazards.Rmd) | `cox-proportional-hazards` |
-| [Fine-Gray Subdistribution Hazards](fine-gray-regression.Rmd) | `fine-gray-regression` |
-| [Frailty Models](frailty-models.Rmd) | `frailty-models` |
-| [Hazard, Survival, and Cumulative Hazard](hazard-survival-cumulative.Rmd) | `hazard-survival-cumulative` |
-| [Interval-Censored Data](interval-censored-data.Rmd) | `interval-censored-data` |
-| [Joint Longitudinal-Survival Models](joint-longitudinal-survival.Rmd) | `joint-longitudinal-survival` |
-| [Kaplan-Meier Estimation](kaplan-meier.Rmd) | `kaplan-meier` |
-| [Landmark Analysis](landmark-analysis.Rmd) | `landmark-analysis` |
-| [Left Truncation](left-truncation.Rmd) | `left-truncation` |
-| [Log-Rank Test: Details](log-rank-test-details.Rmd) | `log-rank-test-details` |
-| [Multi-State Models](multi-state-models.Rmd) | `multi-state-models` |
-| [Parametric Survival: Log-Normal](parametric-survival-lognormal.Rmd) | `parametric-survival-lognormal` |
-| [Parametric Survival: Weibull](parametric-survival-weibull.Rmd) | `parametric-survival-weibull` |
-| [Recurrent Events](recurrent-events.Rmd) | `recurrent-events` |
-| [Restricted Mean Survival Time (RMST)](restricted-mean-survival-time.Rmd) | `restricted-mean-survival-time` |
-| [Royston-Parmar Flexible Parametric Models](flexible-parametric-royston-parmar.Rmd) | `flexible-parametric-royston-parmar` |
-| [Schoenfeld Residuals](schoenfeld-residuals.Rmd) | `schoenfeld-residuals` |
-| [Simulating Survival Data](survival-simulation.Rmd) | `survival-simulation` |
-| [Stratified Cox Models](stratified-cox.Rmd) | `stratified-cox` |
-| [The Brier Score for Survival](brier-score-survival.Rmd) | `brier-score-survival` |
-| [The Nelson-Aalen Estimator](nelson-aalen-estimator.Rmd) | `nelson-aalen-estimator` |
-| [Time-Dependent ROC](time-dependent-roc.Rmd) | `time-dependent-roc` |
-| [Time-Varying Covariates](time-varying-covariates.Rmd) | `time-varying-covariates` |
-| [Weighted Log-Rank Tests](weighted-log-rank.Rmd) | `weighted-log-rank` |
+| [Accelerated Failure Time Models](#sec-chapters-11-survival-accelerated-failure-time) | `accelerated-failure-time` |
+| [Censoring Types](#sec-chapters-11-survival-censoring-types) | `censoring-types` |
+| [Checking Cox Assumptions](#sec-chapters-11-survival-cox-assumptions-check) | `cox-assumptions-check` |
+| [Competing Risks: Cumulative Incidence](#sec-chapters-11-survival-competing-risks-cif) | `competing-risks-cif` |
+| [Concordance and the C-Index](#sec-chapters-11-survival-concordance-c-index) | `concordance-c-index` |
+| [Conditional Survival](#sec-chapters-11-survival-conditional-survival) | `conditional-survival` |
+| [Cox Proportional Hazards Regression](#sec-chapters-11-survival-cox-proportional-hazards) | `cox-proportional-hazards` |
+| [Fine-Gray Subdistribution Hazards](#sec-chapters-11-survival-fine-gray-regression) | `fine-gray-regression` |
+| [Frailty Models](#sec-chapters-11-survival-frailty-models) | `frailty-models` |
+| [Hazard, Survival, and Cumulative Hazard](#sec-chapters-11-survival-hazard-survival-cumulative) | `hazard-survival-cumulative` |
+| [Interval-Censored Data](#sec-chapters-11-survival-interval-censored-data) | `interval-censored-data` |
+| [Joint Longitudinal-Survival Models](#sec-chapters-11-survival-joint-longitudinal-survival) | `joint-longitudinal-survival` |
+| [Kaplan-Meier Estimation](#sec-chapters-11-survival-kaplan-meier) | `kaplan-meier` |
+| [Landmark Analysis](#sec-chapters-11-survival-landmark-analysis) | `landmark-analysis` |
+| [Left Truncation](#sec-chapters-11-survival-left-truncation) | `left-truncation` |
+| [Log-Rank Test: Details](#sec-chapters-11-survival-log-rank-test-details) | `log-rank-test-details` |
+| [Multi-State Models](#sec-chapters-11-survival-multi-state-models) | `multi-state-models` |
+| [Parametric Survival: Log-Normal](#sec-chapters-11-survival-parametric-survival-lognormal) | `parametric-survival-lognormal` |
+| [Parametric Survival: Weibull](#sec-chapters-11-survival-parametric-survival-weibull) | `parametric-survival-weibull` |
+| [Recurrent Events](#sec-chapters-11-survival-recurrent-events) | `recurrent-events` |
+| [Restricted Mean Survival Time (RMST)](#sec-chapters-11-survival-restricted-mean-survival-time) | `restricted-mean-survival-time` |
+| [Royston-Parmar Flexible Parametric Models](#sec-chapters-11-survival-flexible-parametric-royston-parmar) | `flexible-parametric-royston-parmar` |
+| [Schoenfeld Residuals](#sec-chapters-11-survival-schoenfeld-residuals) | `schoenfeld-residuals` |
+| [Simulating Survival Data](#sec-chapters-11-survival-survival-simulation) | `survival-simulation` |
+| [Stratified Cox Models](#sec-chapters-11-survival-stratified-cox) | `stratified-cox` |
+| [The Brier Score for Survival](#sec-chapters-11-survival-brier-score-survival) | `brier-score-survival` |
+| [The Nelson-Aalen Estimator](#sec-chapters-11-survival-nelson-aalen-estimator) | `nelson-aalen-estimator` |
+| [Time-Dependent ROC](#sec-chapters-11-survival-time-dependent-roc) | `time-dependent-roc` |
+| [Time-Varying Covariates](#sec-chapters-11-survival-time-varying-covariates) | `time-varying-covariates` |
+| [Weighted Log-Rank Tests](#sec-chapters-11-survival-weighted-log-rank) | `weighted-log-rank` |
 
-## Labs
+## Labs {#sec-chapters-11-survival-index-labs}
 
 | Lab |
 |---|
-| [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd) |
-| [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd) |
-| [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd) |
-| [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd) |
-| [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd) |
+| [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph) |
+| [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias) |
+| [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models) |
+| [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv) |
+| [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation) |

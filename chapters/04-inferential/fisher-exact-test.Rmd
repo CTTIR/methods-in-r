@@ -1,12 +1,14 @@
-## Introduction
+## Fisher's Exact Test {#sec-chapters-04-inferential-fisher-exact-test}
+
+### Introduction {#sec-chapters-04-inferential-fisher-exact-test-introduction}
 
 Fisher's exact test assesses the association between two categorical variables in a contingency table without relying on the chi-squared large-sample approximation. It is the gold standard for 2x2 tables with small cells, and extends to $r \times c$ tables via network algorithms.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-fisher-exact-test-prerequisites}
 
 Contingency tables, hypergeometric distribution.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-fisher-exact-test-theory}
 
 For a 2x2 table with observed counts and fixed marginal totals, the null distribution of the number of "exposed cases" conditional on the margins is **hypergeometric**:
 
@@ -20,13 +22,13 @@ $$\widehat{OR} = \frac{a d}{b c}.$$
 
 Fisher's test produces a p-value and an exact CI for the OR.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-fisher-exact-test-assumptions}
 
 - Independent observations.
 - 2x2 contingency table (extensions exist for larger tables).
 - Fixed marginals under the null (conditional inference).
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-fisher-exact-test-r-implementation}
 
 ```r
 # 2x2 table: small-cell case
@@ -48,7 +50,7 @@ big <- matrix(c(4, 2, 1,
 fisher.test(big)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-fisher-exact-test-output-results}
 
 ```
         Fisher's Exact Test for Count Data
@@ -63,11 +65,11 @@ odds ratio: 0.179
 
 The exact p-value is 0.027; OR = 0.18 (95 % CI 0.03 to 0.92).
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-fisher-exact-test-interpretation}
 
 For sparse tables, report Fisher's p-value rather than chi-squared. "Among drug-treated patients, 3 of 18 (17 %) experienced the event, compared to 12 of 32 (38 %) controls. Fisher's exact test gave OR 0.18 (95 % CI 0.03 to 0.92), p = 0.027."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-fisher-exact-test-practical-tips}
 
 - Use Fisher's test when any expected cell count is below 5.
 - The two-sided p-value uses R's default "minimum likelihood" rule; other software may use a different rule (doubled one-sided), giving slightly different values.
@@ -77,32 +79,29 @@ For sparse tables, report Fisher's p-value rather than chi-squared. "Among drug-
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-fisher-exact-test-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-fisher-exact-test-assumptions) and
+[practical tips](#sec-chapters-04-inferential-fisher-exact-test-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-fisher-exact-test-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Differencing a Time Series {#sec-chapters-09-timeseries-differencing}
+
+### Introduction {#sec-chapters-09-timeseries-differencing-introduction}
 
 Differencing is the simplest tool for making a non-stationary series stationary: replace each observation by its difference from the previous one. First differences remove linear trends; seasonal differences remove fixed-period seasonality; combined regular and seasonal differencing handles both. The order of differencing $d$ in ARIMA$(p, d, q)$ is exactly the count of first differences applied; the seasonal differencing order $D$ in SARIMA$(p,d,q)(P,D,Q)_s$ counts seasonal differences.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-differencing-prerequisites}
 
 A working understanding of stationarity, AR models, and the relationship between trend, seasonality, and the spectrum of a series.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-differencing-theory}
 
 Standard differencing operations:
 
@@ -17,11 +19,11 @@ Standard differencing operations:
 
 Over-differencing introduces unnecessary moving-average structure (the differenced series has a strong negative lag-1 autocorrelation); always use the minimum differencing order needed for stationarity. KPSS- or ADF-based automated selection (`forecast::ndiffs` and `nsdiffs`) chooses the required orders.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-differencing-assumptions}
 
 The non-stationarity is of the kind that differencing addresses (stochastic trend or fixed-period seasonality); deterministic polynomial trends are better handled by detrending regression.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-differencing-r-implementation}
 
 ```r
 library(forecast)
@@ -43,15 +45,15 @@ ndiffs(log(x))         # regular
 nsdiffs(log(x))        # seasonal
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-differencing-output-results}
 
 `diff(x, lag = s, differences = d)` produces $\Delta^d_s y$. `ndiffs()` returns the required regular differencing order based on KPSS by default; `nsdiffs()` returns the seasonal differencing order. For the log-AirPassengers series, both regular and seasonal differencing once each produces a stationary residual.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-differencing-interpretation}
 
 A reporting sentence: "Monthly air-passenger counts on the log scale required one regular difference and one seasonal difference at lag 12 to achieve stationarity (KPSS $p > 0.10$ on the doubly-differenced series); the resulting series motivates an ARIMA$(0, 1, 1)(0, 1, 1)_{12}$ model on the log scale, equivalent to a multiplicative seasonal ARIMA on the original scale." Always confirm stationarity after differencing.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-differencing-practical-tips}
 
 - Log-transform first for series with variance that grows with the level; the log scale is then additive and the differencing is well-behaved.
 - ARIMA$(p, d, q)$ encodes the differencing order $d$; the corresponding `Arima()` call automatically applies the difference and works with the original series for prediction.
@@ -60,30 +62,27 @@ A reporting sentence: "Monthly air-passenger counts on the log scale required on
 - Always confirm stationarity after differencing with ADF and KPSS; if either test still indicates non-stationarity, examine the data for structural breaks or non-linear trends.
 - For deterministic polynomial trends, detrending regression is more efficient than differencing; ARIMA's stochastic-trend interpretation differs.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-differencing-r-packages-used}
 
 Base R `diff()` for differencing operations; `forecast::ndiffs()`, `nsdiffs()`, and `auto.arima()` for automated differencing decisions; `feasts::unitroot_ndiffs()` and `unitroot_nsdiffs()` for the modern tidyverts equivalents; `tseries::adf.test()` and `kpss.test()` for confirming stationarity after differencing.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-differencing-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-differencing-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-differencing-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-differencing-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

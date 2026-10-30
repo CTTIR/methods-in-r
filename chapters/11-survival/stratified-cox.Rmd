@@ -1,12 +1,14 @@
-## Introduction
+## Stratified Cox Models {#sec-chapters-11-survival-stratified-cox}
+
+### Introduction {#sec-chapters-11-survival-stratified-cox-introduction}
 
 A stratified Cox model is the standard fix when the proportional-hazards assumption fails across the levels of a categorical covariate but holds within them. Stratification estimates a separate baseline hazard $h_{0s}(t)$ for each stratum while constraining the covariate effects $\beta$ to be common across strata. The cost is that you cannot estimate the effect of the stratifier itself — its baselines are absorbed — but the gain is honest hazard-ratio estimation for the rest of the covariates without forcing PH across the problematic dimension.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-stratified-cox-prerequisites}
 
 A working understanding of Cox proportional-hazards regression, the diagnostic role of Schoenfeld residuals, and the concept of stratification as an alternative to direct adjustment.
 
-## Theory
+### Theory {#sec-chapters-11-survival-stratified-cox-theory}
 
 The stratified Cox model is
 
@@ -14,11 +16,11 @@ $$h(t \mid x, \text{stratum} = s) = h_{0s}(t) \exp(x^\top \beta).$$
 
 The partial likelihood is summed across strata: each stratum contributes the standard Cox partial-likelihood term over its own risk sets, and the resulting score equations determine $\hat\beta$. Because the stratum baselines are unrestricted, no assumption is made about how $h_{0s}(t)$ relates across $s$. The trade-off is that the effect of being in stratum $s$ versus another stratum cannot be estimated within the model — that contrast is precisely the term absorbed into the separate baselines.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-stratified-cox-assumptions}
 
 Proportional hazards within each stratum (so the common $\beta$ is meaningful), independent observations, and non-informative censoring.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-stratified-cox-r-implementation}
 
 ```r
 library(survival)
@@ -31,15 +33,15 @@ summary(fit)
 cox.zph(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-stratified-cox-output-results}
 
 `summary(fit)` lists hazard ratios for non-stratified covariates with confidence intervals and Wald tests; the stratifier appears nowhere because its effect is absorbed into the per-stratum baselines. `cox.zph()` checks PH for the remaining covariates within strata.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-stratified-cox-interpretation}
 
 A reporting sentence: "After Schoenfeld residuals indicated a PH violation for ECOG performance status (per-covariate $p < 0.01$), we fit a Cox model stratified on ECOG; the resulting hazard ratios for age (HR 1.02 per year, 95 % CI 1.01 to 1.03) and sex (HR 0.60 for female vs male, 95 % CI 0.42 to 0.85) are pooled across strata." When the stratifier is itself of clinical interest, supplement the model with stratum-specific Kaplan-Meier curves so readers can see the absorbed effect.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-stratified-cox-practical-tips}
 
 - Stratify on a covariate when its PH fails and you do not need its hazard-ratio estimate; if you do need it, switch to a time-varying coefficient via `tt()` or `survSplit()` instead.
 - Many small strata reduce the effective sample size for $\hat\beta$; pool levels (e.g. ECOG 0 vs 1+) when raw stratification leaves few events per stratum.
@@ -48,34 +50,30 @@ A reporting sentence: "After Schoenfeld residuals indicated a PH violation for E
 - Always verify that PH still holds for the unstratified covariates after stratification; failure there motivates additional stratification or a switch to time-varying effects.
 - For continuous covariates that violate PH, stratification requires categorisation (typically into quartiles), which loses information; time-varying coefficients are usually preferable.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-stratified-cox-r-packages-used}
 
 `survival` for `coxph()` with `strata()`; `survminer::ggcoxzph()` for PH diagnostics within strata; `flexsurv` for parametric alternatives that can accommodate non-proportional hazards directly; `timereg` for additive hazards models when stratification is too coarse.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-stratified-cox-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-stratified-cox-assumptions) and [practical tips](#sec-chapters-11-survival-stratified-cox-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-stratified-cox-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

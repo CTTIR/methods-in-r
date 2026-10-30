@@ -1,12 +1,14 @@
-## Introduction
+## Lasso Regression {#sec-chapters-07-regression-lasso-regression}
+
+### Introduction {#sec-chapters-07-regression-lasso-regression-introduction}
 
 The lasso (least absolute shrinkage and selection operator) adds an L1 penalty to ordinary least squares, simultaneously shrinking coefficients and driving some of them exactly to zero. The L1 geometry — the absolute-value penalty has corners on each axis — makes the lasso the canonical method for high-dimensional regression where simultaneous estimation and variable selection is required. It dominates ridge regression when the truth is sparse (a small number of predictors carry the signal) and competes with stepwise selection while having dramatically better statistical properties.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-lasso-regression-prerequisites}
 
 A working understanding of linear regression, ridge regression as the L2-penalised counterpart, cross-validation, and the bias-variance trade-off.
 
-## Theory
+### Theory {#sec-chapters-07-regression-lasso-regression-theory}
 
 The lasso minimises
 
@@ -14,11 +16,11 @@ $$\|y - X\beta\|^2 + \lambda \sum_{j=1}^p |\beta_j|.$$
 
 Larger $\lambda$ produces more shrinkage and more zero coefficients. The L1 penalty's non-differentiability at zero is what produces sparse solutions: the optimisation finds corner points of the constraint region where some $\hat\beta_j = 0$ exactly. Tuning $\lambda$ via $k$-fold cross-validation is standard; the package `glmnet` returns both the prediction-optimal $\lambda_{\min}$ and the more conservative $\lambda_{1\mathrm{se}}$ within one standard error.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-lasso-regression-assumptions}
 
 Standard linear-model assumptions on the residual structure; predictors should be standardised (`glmnet` does this internally and back-transforms). For statistical inference on selected coefficients, naive $p$-values are invalid because of the post-selection bias; tools like `selectiveInference` provide adjusted intervals.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-lasso-regression-r-implementation}
 
 ```r
 library(glmnet)
@@ -35,15 +37,15 @@ plot(cvfit)
 as.matrix(coef(cvfit, s = "lambda.1se"))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-lasso-regression-output-results}
 
 `cv.glmnet()` returns the cross-validation curve (mean squared error vs. log $\lambda$) plus the two recommended $\lambda$ values. `plot(cvfit)` displays the CV curve with confidence intervals and vertical lines marking $\lambda_{\min}$ and $\lambda_{1\mathrm{se}}$. The selected predictors are those with non-zero coefficients at the chosen $\lambda$.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-lasso-regression-interpretation}
 
 A reporting sentence: "Lasso regression with cross-validation-selected $\lambda_{1\mathrm{se}}$ retained three of ten predictors (weight, horsepower, year); the remaining seven coefficients were shrunk to zero exactly. Cross-validated mean squared error was 6.3 mpg² at the chosen $\lambda$." Always report which $\lambda$ rule was used; $\lambda_{\min}$ tends to over-fit, while $\lambda_{1\mathrm{se}}$ is more parsimonious.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-lasso-regression-practical-tips}
 
 - The lasso is unstable when predictors are strongly correlated — it tends to pick one and zero the others arbitrarily; elastic net combines L1 and L2 penalties to mitigate this.
 - Report the selected subset and the cross-validated fit, but never report naive $p$-values after lasso selection; they are invalid.
@@ -52,46 +54,43 @@ A reporting sentence: "Lasso regression with cross-validation-selected $\lambda_
 - The relaxed lasso (re-fitting OLS on the selected variables) often improves predictive performance; available via `glmnet`'s `relax = TRUE`.
 - Always set the random seed before `cv.glmnet()`; the cross-validation folds affect the chosen $\lambda$ and reproducibility requires a fixed seed.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-lasso-regression-r-packages-used}
 
 `glmnet` for the canonical lasso, ridge, and elastic-net implementations with cross-validated tuning; `selectiveInference` for post-selection confidence intervals; `hdi` for high-dimensional inference; `caret` and `tidymodels` for unified cross-validation against alternative penalised methods.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-lasso-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-lasso-regression-assumptions) and
+[practical tips](#sec-chapters-07-regression-lasso-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-lasso-regression-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

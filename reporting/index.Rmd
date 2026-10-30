@@ -1,13 +1,13 @@
-# Reporting Templates
+# Reporting Templates {#sec-reporting-index}
 
 Copy-paste Methods + Results paragraphs, organised by reporting guideline. Pages here are deliberately formulaic: fill the bracketed *italics* with your numbers, replace the placeholder package versions with what you actually used, and check the **Reviewer checklist** link for each method to confirm you have reported every diagnostic a reviewer expects to see.
 
 Templates are organised by guideline:
 
-- **[STROBE — observational studies](strobe.Rmd)** — 186 method templates
-- **[CONSORT — randomised trials](consort.Rmd)** — 141 method templates
-- **[TRIPOD-AI — prediction models](tripod-ai.Rmd)** — 163 method templates
-- **[PRISMA — systematic reviews & meta-analyses](prisma.Rmd)** — 25 method templates
-- **[ARRIVE — animal research](arrive.Rmd)** — 50 method templates
+- **[STROBE — observational studies](#sec-reporting-strobe)** — 186 method templates
+- **[CONSORT — randomised trials](#sec-reporting-consort)** — 141 method templates
+- **[TRIPOD-AI — prediction models](#sec-reporting-tripod-ai)** — 163 method templates
+- **[PRISMA — systematic reviews & meta-analyses](#sec-reporting-prisma)** — 25 method templates
+- **[ARRIVE — animal research](#sec-reporting-arrive)** — 50 method templates
 
 Every page is currently a **skeleton**: placeholders, no narrative text. The prose is written by hand into the slots marked `<!-- TODO:reporting-template -->`.

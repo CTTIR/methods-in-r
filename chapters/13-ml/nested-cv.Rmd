@@ -1,12 +1,14 @@
-## Introduction
+## Nested Cross-Validation {#sec-chapters-13-ml-nested-cv}
+
+### Introduction {#sec-chapters-13-ml-nested-cv-introduction}
 
 When hyperparameters are tuned on the same data used for evaluation, performance estimates are optimistically biased — the chosen hyperparameters fit not only the underlying signal but also the noise in the validation folds, producing CV errors lower than the model achieves on truly new data. Nested cross-validation separates the two concerns: an inner loop tunes hyperparameters on each training fold, and an outer loop evaluates the resulting tuned model on held-out test folds. The outer-loop mean is an honest, low-bias estimate of generalisation error.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-nested-cv-prerequisites}
 
 A working understanding of $k$-fold cross-validation, hyperparameter tuning, and the optimism bias that arises from tuning and evaluating on the same data.
 
-## Theory
+### Theory {#sec-chapters-13-ml-nested-cv-theory}
 
 The standard nested-CV scheme:
 
@@ -17,11 +19,11 @@ The standard nested-CV scheme:
 
 Typical values: outer $K = 5$ to $10$, inner $K' = 5$. Computational cost scales as $K \times K'$ times the cost of fitting one model.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-nested-cv-assumptions}
 
 Observations are iid (or the resampling respects the dependence structure for time-series, clustered, or grouped data); all preprocessing (imputation, scaling, feature engineering) is refit within each inner fold to prevent test-set leakage.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-nested-cv-r-implementation}
 
 ```r
 library(rsample); library(purrr); library(dplyr); library(tidyr)
@@ -61,15 +63,15 @@ outer_rmse <- map_dbl(outer_folds$splits, function(osp) {
 c(mean_rmse = mean(outer_rmse), sd_rmse = sd(outer_rmse))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-nested-cv-output-results}
 
 A vector of $K$ outer-fold RMSE values; the mean estimates generalisation error and the standard deviation quantifies how much that estimate varies across resampling.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-nested-cv-interpretation}
 
 A reporting sentence: "Nested 5 × 5 cross-validation estimated test RMSE of 1.04 ± 0.08 for the ridge regression with hyperparameter $\lambda$ tuned on inner folds; single-CV tuning on the same hyperparameter grid would have produced RMSE 0.92 — under-estimating by approximately 12 %, the optimism cost of tuning and evaluating on the same folds." Always report the outer-fold mean and standard deviation, never a single CV estimate when tuning is involved.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-nested-cv-practical-tips}
 
 - Fit *all* preprocessing (imputation, scaling, feature engineering, target encoding) inside each inner fold; preprocessing on the full outer-training set leaks information into validation.
 - `tidymodels::nested_cv()` and `mlr3::resampling_nested_cv()` formalise the structure and prevent the manual loop errors that nested CV is famous for.
@@ -78,37 +80,34 @@ A reporting sentence: "Nested 5 × 5 cross-validation estimated test RMSE of 1.0
 - Parallelise the inner loop with `future` or `doParallel`; the outer loop is typically fast enough to leave serial.
 - Computational budget can be substantial: 5 × 5 nested CV with 5-point hyperparameter grid runs $5 \times 5 \times 5 = 125$ model fits; account for this when planning.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-nested-cv-r-packages-used}
 
 `rsample` for the outer-loop splits; `tidymodels::tune` and `tune_grid()` for nested-CV-aware hyperparameter optimisation; `mlr3::resampling_nested_cv` and `AutoTuner` for mlr3-style nested CV; `caret::train` with `trainControl(method = "repeatedcv")` for an older alternative.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-nested-cv-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-nested-cv-assumptions) and
+[practical tips](#sec-chapters-13-ml-nested-cv-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-nested-cv-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

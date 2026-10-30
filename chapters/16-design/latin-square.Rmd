@@ -1,12 +1,14 @@
-## Introduction
+## Latin Square Designs {#sec-chapters-16-design-latin-square}
+
+### Introduction {#sec-chapters-16-design-latin-square-introduction}
 
 A Latin square design simultaneously blocks on two nuisance factors — the rows and columns of a $t \times t$ grid — with $t$ treatments arranged so that every treatment appears exactly once in each row and exactly once in each column. The result is a remarkably economical design: $t$ treatments are replicated $t$ times in only $t^2$ experimental units while controlling for two layers of nuisance variation. Latin squares are classical workhorses of agricultural experimentation (where rows and columns might be soil-fertility gradients in two perpendicular directions), industrial DoE (where day and operator are blocked), and clinical-pharmacology crossover trials (where subject and period block the treatment sequence).
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-latin-square-prerequisites}
 
 A working understanding of completely randomised designs, the principle of blocking, and the partitioning of variability in two-way ANOVA models without replication.
 
-## Theory
+### Theory {#sec-chapters-16-design-latin-square-theory}
 
 The standard analysis model is
 
@@ -14,11 +16,11 @@ $$y_{ijk} = \mu + \rho_i + \gamma_j + \tau_k + \varepsilon_{ijk}, \qquad \vareps
 
 with row effect $\rho_i$, column effect $\gamma_j$, treatment effect $\tau_k$, and independent Normal error. The constraint that each treatment appears once per row and once per column defines a Latin square. The design has $(t-1)$ treatment df, $(t-1)$ row df, $(t-1)$ column df, and $(t-1)(t-2)$ residual df, requiring $t^2$ runs in total.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-latin-square-assumptions}
 
 No interactions exist between any pair of the three classifications (treatment, row, column), residual variance is homogeneous, and the response is approximately Normal. The design uses one observation per cell, so departures from these assumptions cannot easily be diagnosed from replication; residual diagnostics and a Tukey one-degree-of-freedom test for non-additivity are essential checks.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-latin-square-r-implementation}
 
 ```r
 library(agricolae)
@@ -35,15 +37,15 @@ fit <- aov(y ~ row + col + trts, data = book)
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-latin-square-output-results}
 
 `design.lsd()` returns a randomised Latin-square layout with row, column, and treatment indicators. The ANOVA partitions the total sum of squares into row, column, treatment, and residual components, with the treatment $F$-test as the primary inference. Reporting the proportions of variability absorbed by row and column blocking alongside the treatment effect characterises the gain from the design.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-latin-square-interpretation}
 
 A reporting sentence: "The $4 \times 4$ Latin square partitioned the 16 observations' variation into row, column, and treatment components. The treatment $F$-test was significant ($F_{3, 6} = 7.2$, $p = 0.02$), with row blocking absorbing 20 % of total variability and column blocking 14 %; residual variance was correspondingly small. The design assumes no row-treatment or column-treatment interaction, supported by visual inspection of the residuals." Always report blocking variance components and verify the no-interaction assumption.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-latin-square-practical-tips}
 
 - Latin squares have very few residual df for small $t$ (only 6 for $t = 4$); consider replication or a larger square if effects of interest are modest in size.
 - The analysis assumes no interactions between treatment and either blocking factor; substantive interactions invalidate the standard $F$-test, and the no-interaction assumption should always be defended from context (or tested via a Tukey one-df non-additivity check).
@@ -52,42 +54,39 @@ A reporting sentence: "The $4 \times 4$ Latin square partitioned the 16 observat
 - Always randomly permute rows, columns, and treatment labels of a standard Latin square to obtain a valid realisation; using an unrandomised square confounds systematic patterns with treatment effects.
 - In crossover clinical trials, "subject" plays the role of one block and "period" the role of the other; carryover effects, if present, violate the no-interaction assumption and must be modelled separately.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-latin-square-r-packages-used}
 
 `agricolae::design.lsd()` for the canonical layout and randomisation; base R `aov()` for the ANOVA analysis; `crossdes` for systematic Latin-square construction including replicated and balanced layouts; `daewr` for textbook examples; `emmeans` for marginal means and treatment contrasts after fitting.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-latin-square-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-latin-square-assumptions) and
+[practical tips](#sec-chapters-16-design-latin-square-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-latin-square-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

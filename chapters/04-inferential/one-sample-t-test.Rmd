@@ -1,12 +1,14 @@
-## Introduction
+## One-Sample t-Test {#sec-chapters-04-inferential-one-sample-t-test}
+
+### Introduction {#sec-chapters-04-inferential-one-sample-t-test-introduction}
 
 The one-sample t-test compares the mean of a single continuous variable to a pre-specified reference value. It answers questions of the form "does the average differ from some benchmark?" -- average IQ differs from 100, mean biomarker level differs from a reference, average weight change differs from zero in a pre-post design (via paired differences).
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-one-sample-t-test-prerequisites}
 
 t-distribution, the concept of a sampling distribution.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-one-sample-t-test-theory}
 
 Given iid observations $X_1, \ldots, X_n$ from $\mathcal{N}(\mu, \sigma^2)$, the test of
 
@@ -22,13 +24,13 @@ Confidence interval for $\mu$: $\bar{X} \pm t_{1 - \alpha/2, n - 1} \cdot s/\sqr
 
 Effect size: Cohen's $d = (\bar{X} - \mu_0) / s$.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-one-sample-t-test-assumptions}
 
 - Independent observations.
 - Normal distribution (or $n$ large enough for CLT to kick in).
 - No extreme outliers affecting the mean.
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-one-sample-t-test-r-implementation}
 
 ```r
 library(effectsize); library(broom)
@@ -47,7 +49,7 @@ shapiro.test(iq)
 boxplot(iq, main = "Sample distribution", col = "#2A9D8F")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-one-sample-t-test-output-results}
 
 ```
 # A tibble: 1 x 8
@@ -62,11 +64,11 @@ Cohen's d |         95% CI
 
 The sample mean is 104, not significantly different from 100 at $\alpha = 0.05$ ($t(44) = 1.82$, $p = 0.076$), with a small-to-medium effect ($d = 0.27$).
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-one-sample-t-test-interpretation}
 
 In a manuscript: "The mean IQ was 104.0 (SD 14.0). The 95 % CI for the mean (98.9 to 109.3) includes the reference value of 100; a one-sample t-test did not reject the null of equal mean (t(44) = 1.82, p = 0.076, Cohen's d = 0.27)."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-one-sample-t-test-practical-tips}
 
 - For $n \geq 30$, the CLT makes the t-test fairly robust to non-normality.
 - For small $n$ with clear non-normality, use the Wilcoxon signed-rank test (one-sample version).
@@ -76,32 +78,29 @@ In a manuscript: "The mean IQ was 104.0 (SD 14.0). The 95 % CI for the mean (98.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-one-sample-t-test-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-one-sample-t-test-assumptions) and
+[practical tips](#sec-chapters-04-inferential-one-sample-t-test-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-one-sample-t-test-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

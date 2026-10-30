@@ -1,12 +1,14 @@
-## Introduction
+## Dirichlet Regression {#sec-chapters-07-regression-dirichlet-regression}
+
+### Introduction {#sec-chapters-07-regression-dirichlet-regression-introduction}
 
 Dirichlet regression models compositional outcomes — vectors of proportions that sum to 1, such as relative cell-type composition in a tissue, time budgets across activities, microbial relative abundances, or budget shares across categories. The Dirichlet distribution is the multivariate generalisation of the Beta and lives on the unit simplex; Dirichlet regression places covariate effects on each component while preserving the unit-sum constraint inherent in compositional data.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-dirichlet-regression-prerequisites}
 
 A working understanding of beta regression, the unit simplex, and compositional data as fundamentally different from independent proportions.
 
-## Theory
+### Theory {#sec-chapters-07-regression-dirichlet-regression-theory}
 
 A composition $Y = (Y_1, \dots, Y_k)$ with $\sum_j Y_j = 1$ and $Y_j > 0$ follows a Dirichlet distribution $\mathrm{Dir}(\alpha_1, \dots, \alpha_k)$. Dirichlet regression parameterises the component means as
 
@@ -16,11 +18,11 @@ with $\alpha_j = \mu_j \phi$ where $\phi$ is a precision parameter. The structur
 
 For very small samples or high precision, the Dirichlet can be unstable; weakly informative Bayesian priors (`brms` with `family = dirichlet()`) are an alternative.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-dirichlet-regression-assumptions}
 
 Components sum to 1 with all components strictly positive (zeros require perturbation or zero-inflated extensions); independent observations; the Dirichlet variance structure is appropriate for the data.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-dirichlet-regression-r-implementation}
 
 ```r
 library(DirichletReg)
@@ -41,15 +43,15 @@ fit <- DirichReg(Y ~ x, data = d)
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-dirichlet-regression-output-results}
 
 `DirichReg()` returns coefficients per non-reference component on the multinomial logit scale plus the precision parameter. Predictions back on the simplex come from `predict()`; they always satisfy the unit-sum constraint by construction.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-dirichlet-regression-interpretation}
 
 A reporting sentence: "Dirichlet regression showed that $x$ positively associated with components 1 and 3 (multinomial-logit slopes 0.5 and 0.7 vs the reference) and negatively with component 2 ($-0.4$); predicted compositions at $x = -1, 0, +1$ shifted from (0.30, 0.40, 0.30) to (0.33, 0.30, 0.37) to (0.36, 0.22, 0.42), preserving the unit-sum constraint." Always communicate compositional results as predicted compositions; raw multinomial-logit coefficients are difficult to interpret.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-dirichlet-regression-practical-tips}
 
 - Exact zeros or exact ones in the composition need perturbation before fitting; `compositions::clr()` and `zCompositions::cmultRepl()` provide standard zero-replacement algorithms.
 - For compositional data with many components ($k > 6$), consider aggregating to fewer meaningful categories or using additive-log-ratio (ALR) or centred-log-ratio (CLR) transformations followed by ordinary multivariate regression.
@@ -58,46 +60,43 @@ A reporting sentence: "Dirichlet regression showed that $x$ positively associate
 - For paired or longitudinal compositional data, a paired Dirichlet model or a mixed-effects extension is needed; ordinary Dirichlet regression assumes independence across observations.
 - For Bayesian Dirichlet regression with weakly informative priors, `brms(family = dirichlet())` provides a familiar interface.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-dirichlet-regression-r-packages-used}
 
 `DirichletReg` for the canonical `DirichReg()` implementation; `compositions` and `zCompositions` for compositional data pre-processing; `brms` for Bayesian Dirichlet regression; `aldex2` for differential-abundance compositional analysis in microbiome work.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-dirichlet-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-dirichlet-regression-assumptions) and
+[practical tips](#sec-chapters-07-regression-dirichlet-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-dirichlet-regression-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

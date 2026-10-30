@@ -1,4 +1,4 @@
-# Colophon {-}
+# Colophon {#sec-95-colophon .unnumbered}
 
 ```{r colophon-info, echo = FALSE, eval = TRUE}
 cat("Built with:\n")

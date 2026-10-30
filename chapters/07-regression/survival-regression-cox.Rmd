@@ -1,12 +1,14 @@
-## Introduction
+## Cox Regression as Regression {#sec-chapters-07-regression-survival-regression-cox}
+
+### Introduction {#sec-chapters-07-regression-survival-regression-cox-introduction}
 
 Cox proportional-hazards regression models time-to-event outcomes with right censoring and is the de facto standard regression tool for survival analysis. This page gives a regression-modelling-focused summary; the Survival Analysis section contains a more detailed treatment with diagnostics, residuals, and stratification. The headline insight is that Cox is a regression in the same family as GLMs — coefficients, standard errors, confidence intervals, and likelihood-ratio tests all behave familiarly — but the response is a `Surv` object encoding both event time and censoring status.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-survival-regression-cox-prerequisites}
 
 A working understanding of survival analysis, the hazard function, censoring, and the partial-likelihood approach to inference.
 
-## Theory
+### Theory {#sec-chapters-07-regression-survival-regression-cox-theory}
 
 The Cox model writes the hazard as
 
@@ -16,11 +18,11 @@ with the baseline hazard $h_0(t)$ left unspecified and the partial likelihood pr
 
 The proportional-hazards assumption — that hazard ratios between any two covariate patterns are constant over time — is the model's defining restriction. When it fails, options include stratification, time-varying coefficients via `tt()` or `survSplit()`, or switching to AFT or RMST-based summaries.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-survival-regression-cox-assumptions}
 
 Proportional hazards across covariate levels (test via Schoenfeld residuals), independent non-informative censoring, no unmodelled time-varying covariate effects, and adequate events per variable for stable estimation (rule of thumb: 10–15 events per regression coefficient).
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-survival-regression-cox-r-implementation}
 
 ```r
 library(survival); library(broom)
@@ -33,15 +35,15 @@ tidy(fit, conf.int = TRUE, exponentiate = TRUE)
 cox.zph(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-survival-regression-cox-output-results}
 
 `tidy()` from `broom` returns a tibble of hazard ratios, confidence intervals, and Wald $p$-values. `summary(fit)` adds the likelihood-ratio test, score test, and Wald test for the joint null. `cox.zph()` reports the proportional-hazards diagnostic for each covariate plus a global test.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-survival-regression-cox-interpretation}
 
 A reporting sentence: "A multivariable Cox model adjusted for age, sex, and ECOG performance status estimated that each additional year of age increased the hazard of death by 2 % (HR 1.02, 95 % CI 1.00 to 1.04, $p = 0.04$); female sex was associated with a 40 % lower hazard (HR 0.60, 95 % CI 0.42 to 0.85, $p = 0.004$). The proportional-hazards assumption was supported (global Schoenfeld $p = 0.55$)." Always pair coefficient reporting with PH diagnostics.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-survival-regression-cox-practical-tips}
 
 - Always run `cox.zph()` after fitting; reporting Cox HRs without PH diagnostics is no longer acceptable in clinical-trial publications.
 - Use Efron's tie-handling method (`ties = "efron"`) for tied event times; the default in older software is Breslow's, which is less accurate.
@@ -50,46 +52,43 @@ A reporting sentence: "A multivariable Cox model adjusted for age, sex, and ECOG
 - For continuous covariates with non-linear effects, add restricted cubic splines (`rms::rcs(x, 4)`) rather than dichotomising.
 - See the Survival Analysis section's dedicated Cox tutorial for extended coverage of residuals, stratification, and influence diagnostics.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-survival-regression-cox-r-packages-used}
 
 `survival` for `coxph()`, `Surv()`, `cox.zph()`; `broom` for `tidy()` and `glance()` summaries; `survminer` for ggplot-style diagnostics; `rms::cph()` for an alternative interface with built-in spline and validation tools.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-survival-regression-cox-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-survival-regression-cox-assumptions) and
+[practical tips](#sec-chapters-07-regression-survival-regression-cox-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-survival-regression-cox-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

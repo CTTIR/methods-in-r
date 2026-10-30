@@ -1,12 +1,14 @@
-## Introduction
+## Random Forests {#sec-chapters-13-ml-random-forest}
+
+### Introduction {#sec-chapters-13-ml-random-forest-introduction}
 
 Random forests, introduced by Breiman in 2001, average predictions from many bootstrapped decision trees, each trained with a random subset of features considered at every split. Two sources of randomness — bootstrap row sampling and feature subsampling — decorrelate the trees and dramatically reduce variance compared with a single tree. The result is a strong off-the-shelf baseline for tabular data: minimal hyperparameter tuning, robust to outliers and irrelevant features, and providing free out-of-bag (OOB) error estimation as a side effect of the bootstrap.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-random-forest-prerequisites}
 
 A working understanding of decision trees, bagging (bootstrap aggregating), and the bias-variance trade-off in ensemble methods.
 
-## Theory
+### Theory {#sec-chapters-13-ml-random-forest-theory}
 
 For each of $B$ trees:
 
@@ -16,11 +18,11 @@ For each of $B$ trees:
 
 Out-of-bag (OOB) error uses observations not selected by each bootstrap as a held-out validation set; aggregating these per-tree predictions across the forest gives a nearly unbiased generalisation estimate at zero additional computational cost.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-random-forest-assumptions}
 
 Observations are independent and identically distributed; features are informative (random forests are robust to irrelevant features but cannot synthesise signal that is not there); the default $m$ value is a starting point but may need tuning for specific datasets.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-random-forest-r-implementation}
 
 ```r
 library(ranger)
@@ -41,15 +43,15 @@ rf$prediction.error         # OOB misclassification error
 rf$variable.importance
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-random-forest-output-results}
 
 `ranger()` returns a fitted random forest with OOB error (`prediction.error`), per-feature variable importance (`variable.importance`), and the underlying tree structures. The OOB error is the standard generalisation estimate; variable importance ranks features by their average contribution to prediction quality.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-random-forest-interpretation}
 
 A reporting sentence: "A 500-tree random forest with `mtry = 1` achieved OOB classification error of 0.17; variable importance identified $x_1$ (impurity decrease 32) and $x_2$ (decrease 18) as the top predictors, consistent with the data-generating logistic process. A held-out test set confirmed the OOB-based estimate (test error 0.16)." Always report OOB error or held-out test error and the top variable importances.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-random-forest-practical-tips}
 
 - Use `ranger` instead of the original `randomForest` package for new analyses; it is dramatically faster and lower-memory while producing essentially identical results.
 - Tune `mtry` on 5-fold cross-validation; the default ($\sqrt p$ for classification, $p/3$ for regression) is reasonable but not always optimal.
@@ -58,37 +60,34 @@ A reporting sentence: "A 500-tree random forest with `mtry = 1` achieved OOB cla
 - OOB error is nearly unbiased for moderate to large $n$; use it instead of cross-validation for rapid hyperparameter screening, then validate the final choice on a held-out test set.
 - For class imbalance, use `class.weights` or `case.weights` (in `ranger`); both are natively supported and more efficient than over- or under-sampling.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-random-forest-r-packages-used}
 
 `ranger` for fast random forests with OOB and permutation importance; `randomForest` for the original Breiman implementation; `parsnip::rand_forest()` for the tidymodels-flavoured wrapper; `caret` for cross-validated tuning; `vip` for variable-importance visualisation; `pdp` for partial-dependence plots.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-random-forest-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-random-forest-assumptions) and
+[practical tips](#sec-chapters-13-ml-random-forest-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-random-forest-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

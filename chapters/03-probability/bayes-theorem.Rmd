@@ -1,12 +1,14 @@
-## Introduction
+## Bayes' Theorem {#sec-chapters-03-probability-bayes-theorem}
+
+### Introduction {#sec-chapters-03-probability-bayes-theorem-introduction}
 
 Bayes' theorem is the rule for inverting conditional probabilities: given $P(B \mid A)$, it tells us $P(A \mid B)$. It is the mathematical bridge between diagnostic sensitivity and positive predictive value, between forward simulation and inverse inference, between a likelihood function and a posterior distribution. Every Bayesian analysis, every clinical prediction, and every probabilistic classifier is an application of Bayes' theorem in disguise.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-bayes-theorem-prerequisites}
 
 Conditional probability and the law of total probability.
 
-## Theory
+### Theory {#sec-chapters-03-probability-bayes-theorem-theory}
 
 For events $A$ and $B$ with $P(B) > 0$,
 
@@ -25,12 +27,12 @@ In the Bayesian vocabulary:
 
 Posterior $\propto$ likelihood $\times$ prior is the single most important slogan in Bayesian statistics.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-bayes-theorem-assumptions}
 
 - $P(B) > 0$; otherwise conditioning is undefined.
 - The prior $P(A)$ must be specified; choosing it is where domain knowledge enters.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-bayes-theorem-r-implementation}
 
 ```r
 library(ggplot2)
@@ -58,7 +60,7 @@ c(prevalence_001 = ppv[which.min(abs(prevalences - 0.01))],
   prevalence_030 = ppv[which.min(abs(prevalences - 0.30))])
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-bayes-theorem-output-results}
 
 ```
 prevalence_001 prevalence_030
@@ -67,11 +69,11 @@ prevalence_001 prevalence_030
 
 At 1% prevalence, a positive test on a 92%-sensitive, 97%-specific assay gives only 24% probability of disease. At 30% prevalence, the same test yields a 93% PPV. The test characteristics are unchanged; the posterior depends crucially on the prior.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-bayes-theorem-interpretation}
 
 The prevalence dependence of PPV is the canonical real-world application of Bayes' theorem. Reporting "our test has 92% sensitivity and 97% specificity" is meaningless without the prevalence of the intended use population; the clinically relevant quantity is PPV.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-bayes-theorem-practical-tips}
 
 - Never cite sensitivity / specificity in isolation when discussing diagnostic utility; always give the PPV and NPV at the target prevalence.
 - Bayes' theorem scales trivially to many hypotheses via the partition form; for continuous parameter spaces, the sums become integrals.
@@ -81,26 +83,23 @@ The prevalence dependence of PPV is the canonical real-world application of Baye
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-bayes-theorem-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-bayes-theorem-assumptions) and
+[practical tips](#sec-chapters-03-probability-bayes-theorem-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-bayes-theorem-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Power Analysis: Introduction {#sec-chapters-05-power-power-analysis-introduction}
+
+### Introduction {#sec-chapters-05-power-power-analysis-introduction-introduction}
 
 Power analysis turns four quantities -- effect size, significance level, power, and sample size -- into a single equation: given any three, the fourth is determined. Every responsible study design pins down three of the four in advance to solve for the fourth (usually sample size). Skipping power analysis leaves studies under- or over-powered, with reputational and ethical consequences.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-analysis-introduction-prerequisites}
 
 Hypothesis testing, Type I and II errors.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-analysis-introduction-theory}
 
 The four quantities:
 
@@ -24,11 +26,11 @@ Given any three, the fourth is computed from the test's non-central distribution
 - Larger SD reduces power; more precise measurement increases it.
 - Power for a one-sided test at $\alpha$ equals power for a two-sided test at $2\alpha$ (when the effect is in the right direction).
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-analysis-introduction-assumptions}
 
 The test's sampling distribution under $H_1$ must be known (or approximable). Power calculations are as valid as the assumed effect-size magnitude; a plausible range is often reported.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-analysis-introduction-r-implementation}
 
 ```r
 library(pwr)
@@ -55,7 +57,7 @@ legend("bottomright", c("n = 30", "n = 100"),
        col = c("#F4A261", "#2A9D8F"), lwd = 2)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-analysis-introduction-output-results}
 
 ```
      Two-sample t test power calculation
@@ -76,11 +78,11 @@ legend("bottomright", c("n = 30", "n = 100"),
 
 64 per arm for a medium effect at 80 % power. With only 30 per arm, the minimum detectable effect is $d = 0.74$.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-analysis-introduction-interpretation}
 
 For a grant or protocol: "Assuming a between-group standardised difference of $d = 0.5$ (a medium effect), $\alpha = 0.05$ two-sided, and power = 0.80, the required sample size is 64 per arm (128 total). We plan to enrol 70 per arm to allow for 10 % loss to follow-up."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-analysis-introduction-practical-tips}
 
 - Choose the effect size from published data or pilot studies, not from Cohen's generic thresholds.
 - Always inflate for dropout; report the final $n$ as target.
@@ -90,25 +92,22 @@ For a grant or protocol: "Assuming a between-group standardised difference of $d
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-analysis-introduction-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-analysis-introduction-assumptions) and
+[practical tips](#sec-chapters-05-power-power-analysis-introduction-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-analysis-introduction-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

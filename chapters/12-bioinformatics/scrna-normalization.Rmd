@@ -1,12 +1,14 @@
-## Introduction
+## scRNA Normalisation {#sec-chapters-12-bioinformatics-scrna-normalization}
+
+### Introduction {#sec-chapters-12-bioinformatics-scrna-normalization-introduction}
 
 Single-cell RNA-seq cells differ in total UMI count by orders of magnitude — a typical 10x Chromium experiment ranges from a few hundred to tens of thousands of UMIs per cell. This library-size variation swamps biological signal if not corrected. Normalisation removes the library-size effect, and variance stabilisation goes further by flattening the mean-variance relationship so that downstream PCA and clustering are driven by biology rather than count magnitude.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-scrna-normalization-prerequisites}
 
 A working understanding of count data, library-size effects, and the negative-binomial distribution as the standard model for count overdispersion.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-scrna-normalization-theory}
 
 Three approaches dominate:
 
@@ -16,11 +18,11 @@ Three approaches dominate:
 
 **Pool-based size factors** (`scran::computeSumFactors`): pool cells for robust size-factor estimation in low-depth settings, addressing the dropout problem that simple library-size normalisation does not.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-scrna-normalization-assumptions}
 
 Library-size effects are multiplicative on count expectations; counts follow a (possibly cell-specific) negative-binomial distribution with gene-specific dispersion.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-scrna-normalization-r-implementation}
 
 ```r
 library(Seurat)
@@ -44,15 +46,15 @@ head(GetAssayData(so, assay = "RNA", slot = "data")[1:5, 1:4])
 head(GetAssayData(so_sct, assay = "SCT", slot = "data")[1:5, 1:4])
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-scrna-normalization-output-results}
 
 Two normalised matrices: LogNormalize (log-counts-per-10k stored in `data` slot of the `RNA` assay) and SCT (Pearson residuals stored in `data` slot of the `SCT` assay). Both feed the same downstream pipeline (PCA, clustering, UMAP) but produce different clustering granularity in practice.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-scrna-normalization-interpretation}
 
 A reporting sentence: "After SCTransform normalisation (`vst.flavor = 'v2'`, `vars.to.regress = 'percent.mt'`), PCA separated the major immune cell types in the first 5 components; LogNormalize required 10 components to achieve comparable separation. The SCT-based clustering identified two additional rare populations (mast cells, plasmacytoid dendritic cells) that LogNormalize merged into larger clusters." Always state the normalisation method and any regressed-out covariates.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-scrna-normalization-practical-tips}
 
 - Use `SCTransform(vst.flavor = "v2")`, the current recommended flavour; it improves on the original SCTransform parameter regularisation.
 - For rare cell types, SCTransform consistently outperforms LogNormalize; for coarse-grained analyses either method works.
@@ -61,32 +63,29 @@ A reporting sentence: "After SCTransform normalisation (`vst.flavor = 'v2'`, `va
 - For multi-sample integration, normalise each sample independently before merging (`SCTransform` per sample, then `IntegrateData` or `harmony`); pooling raw counts then normalising loses sample-specific structure.
 - Regress out unwanted technical covariates (mitochondrial percentage, cell-cycle scores) via `vars.to.regress` in `SCTransform`; this often improves downstream clustering.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-scrna-normalization-r-packages-used}
 
 `Seurat::NormalizeData()` and `SCTransform()` for the canonical scRNA-seq normalisation methods; `scran::computeSumFactors()` for pool-based size factors in the Bioconductor ecosystem; `sctransform` (the underlying engine) for low-level access to the regression model; `scater` for additional QC and normalisation diagnostics.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-scrna-normalization-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-scrna-normalization-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-scrna-normalization-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-scrna-normalization-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

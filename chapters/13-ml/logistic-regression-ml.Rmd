@@ -1,12 +1,14 @@
-## Introduction
+## Logistic Regression as ML {#sec-chapters-13-ml-logistic-regression-ml}
+
+### Introduction {#sec-chapters-13-ml-logistic-regression-ml-introduction}
 
 Logistic regression models class probability as $P(y = 1 \mid x) = \sigma(w^\top x + b)$, where $\sigma$ is the logistic function, and fits parameters by minimising the cross-entropy loss. As an ML workhorse it is well-calibrated by construction, interpretable through coefficients on the log-odds scale, regularisable with L1, L2, or elastic-net penalties, and scales to millions of features — making it the standard baseline for text classification, click-through prediction, and medical risk scoring.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-logistic-regression-ml-prerequisites}
 
 A working understanding of linear models, the cross-entropy / log-loss objective, and regularisation (L1 vs L2 penalties).
 
-## Theory
+### Theory {#sec-chapters-13-ml-logistic-regression-ml-theory}
 
 The regularised log-loss objective is
 
@@ -14,11 +16,11 @@ $$L(w) = -\sum_i \bigl[y_i \log \sigma(w^\top x_i) + (1 - y_i) \log(1 - \sigma(w
 
 with $R(w) = \|w\|_2^2$ for L2 (ridge), $\|w\|_1$ for L1 (lasso), or a convex combination for elastic net. Optimisation uses Newton-Raphson (IRLS) for the unregularised case and coordinate descent (`glmnet`) for the L1/elastic-net case. The penalty parameter $\lambda$ is tuned by cross-validation, with `lambda.min` minimising CV deviance and `lambda.1se` providing a more parsimonious choice within one SE of the minimum.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-logistic-regression-ml-assumptions}
 
 Log-odds are linear in the predictors; observations are independent; sufficient sample size per feature (rule of thumb: $n > 10p$ for unregularised, less for regularised models).
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-logistic-regression-ml-r-implementation}
 
 ```r
 library(glmnet)
@@ -39,15 +41,15 @@ head(coef_min, 10)
 cat("# nonzero:", sum(coef_min != 0) - 1, "\n")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-logistic-regression-ml-output-results}
 
 `cv.glmnet()` returns the cross-validation deviance curve over $\lambda$, the recommended `lambda.min` and `lambda.1se`, and the fitted coefficient paths. Lasso correctly recovered the 5 non-zero coefficients in the data-generating model; the deviance plot shows the U-shaped CV-error curve.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-logistic-regression-ml-interpretation}
 
 A reporting sentence: "Lasso logistic regression with cross-validated $\lambda_{\min} = 0.03$ retained 5 non-zero features that exactly match the data-generating $\beta$; AUC on a held-out test set was 0.84 with calibration intercept $-0.02$ and slope 0.97 — well-calibrated. The sparser `lambda.1se` solution retained 3 features with AUC 0.79." Always report the regularisation choice and a calibration check.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-logistic-regression-ml-practical-tips}
 
 - Standardise features before regularisation; `glmnet` does this internally and back-transforms, but explicit pre-scaling makes the workflow more transparent.
 - Use `lambda.1se` for a sparser, more interpretable model; `lambda.min` is typically more accurate but less parsimonious.
@@ -56,37 +58,34 @@ A reporting sentence: "Lasso logistic regression with cross-validated $\lambda_{
 - For multi-class problems, `family = "multinomial"` in `glmnet` extends the framework natively; alternatively, `nnet::multinom()` for unregularised multinomial regression.
 - For very imbalanced classes, combine logistic regression with class weights (`weights = ...`) or threshold tuning on a validation set.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-logistic-regression-ml-r-packages-used}
 
 `glmnet::cv.glmnet()` for ridge, lasso, and elastic-net logistic regression; `LiblineaR` for fast sparse linear classifiers; base R `glm(family = binomial)` for unregularised logistic regression; `parsnip::logistic_reg()` for tidymodels-flavoured wrappers; `pROC` for ROC and calibration diagnostics.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-logistic-regression-ml-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-logistic-regression-ml-assumptions) and
+[practical tips](#sec-chapters-13-ml-logistic-regression-ml-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-logistic-regression-ml-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

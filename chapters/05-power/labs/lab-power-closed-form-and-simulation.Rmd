@@ -1,9 +1,11 @@
+## Week 1, Session 5 — Power: closed-form and simulation {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation}
+
 <div class="callout callout-note">
 **Inference lab** using the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-learning-objectives}
 
 - Run a closed-form power calculation for a two-sample *t*-test with
   `pwr`.
@@ -12,12 +14,12 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Describe the inputs to any power calculation (effect, variance,
   alpha, design).
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-prerequisites}
 
 inference and mixed-model basics (we will fit a
 small `lmer`).
 
-## Background
+### Background {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-background}
 
 Power is the probability of rejecting the null hypothesis when a
 specific alternative is true. Four inputs set it: the effect size
@@ -40,7 +42,7 @@ model simpler than the one you will actually fit, the closed-form
 is giving you a lower bound on the sample size you need, not an
 answer.
 
-## Setup
+### Setup {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-setup}
 
 ```r
 library(tidyverse)
@@ -52,16 +54,17 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-1-hypothesis}
 
 Detect a standardised mean difference of *d* = 0.4 between two
 groups with 80% power at a 5% two-sided significance level. Then
 power a mixed model with 20 clusters and 10 observations each to
 detect a fixed effect of 0.3.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-2-visualise}
 
 ```r
+ns <- seq(20, 400, by = 20)
 pw <- map_dbl(ns, \(n) pwr.t.test(
   n = n / 2, d = 0.4, sig.level = 0.05, type = "two.sample"
 )$power)
@@ -73,21 +76,23 @@ tibble(n = ns, power = pw) |>
   labs(x = "Total sample size", y = "Power")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-3-assumptions}
 
 Closed-form assumes equal variance across arms, independent
 observations, and the nominal effect size. The simulation below adds
 random intercepts at the cluster level and therefore relaxes
 independence.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-4-conduct}
 
 ```r
+# Closed-form
 res <- pwr.t.test(d = 0.4, power = 0.8, sig.level = 0.05, type = "two.sample")
 res
 ```
 
 ```r
+# Simulation: a small two-arm cluster study
 J   <- 20                              # clusters
 nj  <- 10                              # obs per cluster
 dat <- tibble(
@@ -114,7 +119,7 @@ ps
 Fifty simulations is enough for a teaching demo; in practice use at
 least 1000 for a stable estimate.
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-5-concluding-statement}
 
 > A two-sample *t*-test targeting *d* = 0.4 at 80% power requires
 > about `ceiling(res$n) * 2` participants in total. A mixed
@@ -123,7 +128,7 @@ least 1000 for a stable estimate.
 > simulation (50 replicates).
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-common-pitfalls}
 
 - Using the power formula for independent observations on a
   clustered design.
@@ -133,23 +138,24 @@ least 1000 for a stable estimate.
   the observed pilot effect interchangeably.
 - Simulating with too few replicates.
 
-## Further reading
+### Further reading {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-further-reading}
 
 - Cohen J. *Statistical Power Analysis for the Behavioral Sciences*.
 - Green P, MacLeod CJ (2016), *simr: an R package for power
   analysis of generalized linear mixed models*.
 - Chow SC et al. *Sample Size Calculations in Clinical Research*.
 
-## Session info
+### Session info {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-05-power)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

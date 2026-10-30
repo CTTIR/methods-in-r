@@ -1,9 +1,11 @@
+## Week 2, Session 4 — GLMMs and GEE {#sec-chapters-16-design-labs-lab-glmms-and-gee}
+
 <div class="callout callout-note">
 **Inference lab** using the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-16-design-labs-lab-glmms-and-gee-learning-objectives}
 
 - Fit a binary GLMM for clustered data with `lme4::glmer` and with
   `glmmTMB`.
@@ -12,12 +14,12 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Say why GLMM and GEE estimate different things (subject-specific
   vs population-average).
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-labs-lab-glmms-and-gee-prerequisites}
 
 Linear mixed models and logistic
 regression.
 
-## Background
+### Background {#sec-chapters-16-design-labs-lab-glmms-and-gee-background}
 
 For binary outcomes in clustered data, the two standard approaches
 are generalised linear mixed models (GLMM) and generalised
@@ -42,7 +44,7 @@ person over time, you want a GLMM. If you care about a population-
 average effect for policy or for a marginal treatment effect, you
 want a GEE (or a marginalised GLMM).
 
-## Setup
+### Setup {#sec-chapters-16-design-labs-lab-glmms-and-gee-setup}
 
 ```r
 library(tidyverse)
@@ -53,15 +55,16 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-16-design-labs-lab-glmms-and-gee-1-hypothesis}
 
 Treatment reduces the probability of a repeated binary event in a
 clustered study (clusters = clinics). The true log-odds fixed
 effect is −0.5.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-16-design-labs-lab-glmms-and-gee-2-visualise}
 
 ```r
+J  <- 30
 nj <- 20
 dat <- tibble(
   clinic = factor(rep(seq_len(J), each = nj)),
@@ -79,15 +82,16 @@ dat |>
   labs(x = "Treatment", y = "Event probability per clinic")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-16-design-labs-lab-glmms-and-gee-3-assumptions}
 
 GLMM: normal random intercepts for clinic, correct link.
 GEE: correct mean structure; standard errors robust to working
 correlation.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-16-design-labs-lab-glmms-and-gee-4-conduct}
 
 ```r
+fit_glmer <- glmer(y ~ trt + (1 | clinic),
                    data = dat, family = binomial)
 fit_tmb   <- glmmTMB(y ~ trt + (1 | clinic),
                      data = dat, family = binomial)
@@ -100,6 +104,7 @@ summary(fit_gee)$coefficients
 ```
 
 ```r
+bind_rows(
   glmer   = broom.mixed::tidy(fit_glmer, effects = "fixed"),
   glmmTMB = broom.mixed::tidy(fit_tmb,   effects = "fixed"),
   gee     = broom::tidy(fit_gee),
@@ -109,7 +114,7 @@ summary(fit_gee)$coefficients
   select(model, estimate, std.error)
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-16-design-labs-lab-glmms-and-gee-5-concluding-statement}
 
 > The GLMM gave a subject-specific treatment log-odds of about
 > `round(fixef(fit_glmer)["trt"], 2)`; the GEE gave a population-
@@ -119,7 +124,7 @@ summary(fit_gee)$coefficients
 > answers to different questions.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-16-design-labs-lab-glmms-and-gee-common-pitfalls}
 
 - Comparing GLMM and GEE coefficients as if they estimate the same
   thing.
@@ -130,7 +135,7 @@ summary(fit_gee)$coefficients
 - Fitting a GLMM with too few clusters (< 10) and trusting the
   variance component.
 
-## Further reading
+### Further reading {#sec-chapters-16-design-labs-lab-glmms-and-gee-further-reading}
 
 - Liang KY, Zeger SL (1986), *Longitudinal data analysis using
   generalized linear models*.
@@ -139,16 +144,17 @@ summary(fit_gee)$coefficients
 - Brooks ME et al. (2017), *glmmTMB balances speed and
   flexibility*.
 
-## Session info
+### Session info {#sec-chapters-16-design-labs-lab-glmms-and-gee-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-16-design-labs-lab-glmms-and-gee-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-16-design)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

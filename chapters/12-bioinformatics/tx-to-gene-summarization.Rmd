@@ -1,12 +1,14 @@
-## Introduction
+## Transcript-to-Gene Summarisation {#sec-chapters-12-bioinformatics-tx-to-gene-summarization}
+
+### Introduction {#sec-chapters-12-bioinformatics-tx-to-gene-summarization-introduction}
 
 Pseudo-alignment tools (Salmon, Kallisto) and EM-based quantifiers (RSEM) produce transcript-level (isoform-level) counts. Most differential-expression workflows operate at the gene level, so transcript counts must be aggregated to genes via a transcript-to-gene mapping derived from the annotation. The `tximport` package handles this aggregation cleanly and produces output ready for DESeq2, edgeR, or limma-voom; the related `tximeta` extends this with automatic metadata and reference-genome tracking.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-tx-to-gene-summarization-prerequisites}
 
 A working understanding of transcript-level vs gene-level expression quantification, RNA-seq annotation files (GTF), and the difference between counts, TPM, and effective length.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-tx-to-gene-summarization-theory}
 
 The simplest transcript-to-gene aggregation sums transcript counts within each gene: $\mathrm{gene\ count} = \sum_{\mathrm{transcripts \in gene}} \mathrm{transcript\ count}$. `tximport` adds two important refinements:
 
@@ -15,11 +17,11 @@ The simplest transcript-to-gene aggregation sums transcript counts within each g
 
 Direct transcript-level DE (without aggregation) is supported by tools like swish (`fishpond`) and DRIMSeq for differential transcript usage; aggregation is the right choice when the question is about gene-level expression.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-tx-to-gene-summarization-assumptions}
 
 The transcript-to-gene map matches the annotation used for transcript quantification; sample-file ordering is consistent with metadata.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-tx-to-gene-summarization-r-implementation}
 
 ```r
 library(tximport); library(tximeta)
@@ -34,15 +36,15 @@ library(tximport); library(tximeta)
 # txi$counts: gene x sample matrix
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-tx-to-gene-summarization-output-results}
 
 `tximport()` returns a list with `counts` (gene-by-sample matrix), `abundance` (gene-level TPM), and `length` (effective lengths used for downstream normalisation). The matrix is ready as input to `DESeq2::DESeqDataSetFromTximport()` or as a starting point for edgeR / limma workflows.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-tx-to-gene-summarization-interpretation}
 
 A reporting sentence: "tximport aggregated 190{,}000 transcript-level Salmon estimates to 22{,}000 gene-level counts using a GENCODE v44 transcript-to-gene map; `countsFromAbundance = 'lengthScaledTPM'` produced gene counts that DESeq2 then analysed with effective-length offsets passed via the `txi$length` matrix." Always document the aggregation method and tx-to-gene source.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-tx-to-gene-summarization-practical-tips}
 
 - `countsFromAbundance = "lengthScaledTPM"` is the standard for DE analysis; it scales raw counts by transcript length while preserving the count interpretation.
 - Use `tximeta` instead of raw `tximport` when possible — it automatically retrieves the transcript-to-gene map from the Salmon index's metadata, eliminating annotation-mismatch errors.
@@ -51,32 +53,29 @@ A reporting sentence: "tximport aggregated 190{,}000 transcript-level Salmon est
 - Verify that sample order in `files` matches the rows of your metadata table; off-by-one errors here corrupt the entire downstream analysis silently.
 - For very large studies, `tximport` reads files sequentially; parallelise with `BiocParallel` for substantial speedups.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-tx-to-gene-summarization-r-packages-used}
 
 `tximport` for the canonical aggregation; `tximeta` for metadata-aware aggregation that handles tx-to-gene mapping automatically; `fishpond` for swish-based DTE with bootstrap replicates; `DRIMSeq` and `DEXSeq` for differential transcript usage at the transcript level.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-tx-to-gene-summarization-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-tx-to-gene-summarization-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-tx-to-gene-summarization-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-tx-to-gene-summarization-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

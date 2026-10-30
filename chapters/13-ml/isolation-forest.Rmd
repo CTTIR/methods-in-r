@@ -1,12 +1,14 @@
-## Introduction
+## Isolation Forest {#sec-chapters-13-ml-isolation-forest}
+
+### Introduction {#sec-chapters-13-ml-isolation-forest-introduction}
 
 Isolation Forest (Liu, Ting, and Zhou, 2008) is a tree-based unsupervised anomaly-detection method built on a single intuition: outliers are easier to isolate by random splits than densely packed normal points. The algorithm builds many random trees, partitions the data with random feature-and-split-value choices, and uses each observation's average path length to a terminal node as its anomaly score. Short paths mean easy isolation, which means the point is anomalous; long paths mean the point sits in dense regions that take many splits to isolate.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-isolation-forest-prerequisites}
 
 A working understanding of decision trees, random partitioning, and basic anomaly-detection concepts.
 
-## Theory
+### Theory {#sec-chapters-13-ml-isolation-forest-theory}
 
 Build $T$ isolation trees: at each node, pick a random feature and a random split value uniformly in $[\min, \max]$ for that feature. Tree depth is capped at $\log_2 n$ for computational efficiency. For an observation $x$, the anomaly score is
 
@@ -14,11 +16,11 @@ $$s(x) = 2^{-\mathbb E[h(x)] / c(n)},$$
 
 where $h(x)$ is the average path length across trees and $c(n)$ is a normalising constant equal to the average path length of an unsuccessful BST search on $n$ points. Scores close to 1 indicate clear anomalies; scores around 0.5 indicate normal points; scores well below 0.5 are deep in dense regions.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-isolation-forest-assumptions}
 
 Anomalies are few and distinct from the dense normal points; the subsampling size is sufficient to isolate them ($\psi = 256$ is the canonical default and works well in practice).
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-isolation-forest-r-implementation}
 
 ```r
 library(solitude)
@@ -42,15 +44,15 @@ plot(df, col = ifelse(flagged, "red", "grey60"),
      xlab = "x1", ylab = "x2")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-isolation-forest-output-results}
 
 `isolationForest$predict()` returns a tibble with anomaly scores per observation. Thresholding at a chosen quantile (e.g., the 90th percentile) flags the candidates; the scatter shows flagged points in red and normal points in grey.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-isolation-forest-interpretation}
 
 A reporting sentence: "Isolation Forest with 200 trees and default subsampling scored 14 of 20 injected anomalies (sensitivity 0.70) at the 90th-percentile threshold, with 16 false positives among the 300 normal points (false-positive rate 5.3 %); the score distribution showed a clear bimodal structure separating anomalies from normal points." Always state the number of trees, threshold, and per-class accuracy.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-isolation-forest-practical-tips}
 
 - Tune the contamination threshold (top-$k$ percentile) to match the expected anomaly rate; a 5 % threshold for typical fraud detection, 1 % for very rare events.
 - `num_trees = 100`-`200` is usually sufficient; returns diminish beyond 200 and computational cost grows linearly.
@@ -59,37 +61,34 @@ A reporting sentence: "Isolation Forest with 200 trees and default subsampling s
 - For improved separation in non-axis-aligned anomaly structures, Extended Isolation Forest adds random oblique splits; available via the `isotree` package.
 - Pair anomaly scores with domain expertise; flagged observations should be investigated, not automatically removed or actioned.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-isolation-forest-r-packages-used}
 
 `solitude` for the canonical R6-based isolation forest interface; `isotree` for Extended Isolation Forest with oblique splits and additional anomaly-detection variants; `dbscan::lof()` for Local Outlier Factor as a distance-based alternative; `mlr3` and `tidymodels` for cross-validated anomaly detection with labelled data.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-isolation-forest-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-isolation-forest-assumptions) and
+[practical tips](#sec-chapters-13-ml-isolation-forest-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-isolation-forest-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

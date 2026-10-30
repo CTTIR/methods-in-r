@@ -1,22 +1,24 @@
-## Introduction
+## Effect (Deviation) Coding {#sec-chapters-07-regression-effect-coding}
+
+### Introduction {#sec-chapters-07-regression-effect-coding-introduction}
 
 Effect coding — also called deviation coding or sum-to-zero coding — represents a factor's levels as deviations from the grand mean rather than as differences from a single reference level. The intercept becomes the grand mean and each coefficient becomes a level-vs-grand-mean deviation, with all level deviations summing to zero. This symmetric interpretation is the right framing for factorial ANOVA and for any analysis where no single level is naturally privileged as "reference".
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-effect-coding-prerequisites}
 
 A working understanding of dummy (treatment) coding, factorial ANOVA, and the difference between Type I, II, and III sums of squares in unbalanced designs.
 
-## Theory
+### Theory {#sec-chapters-07-regression-effect-coding-theory}
 
 For a $k$-level factor, effect coding produces $k - 1$ coded columns. Each column codes one non-reference level as $+1$, the implicit reference level as $-1$, and all other levels as $0$. The intercept then equals the grand mean of cell means; the coefficient on each column is the deviation of that level from the grand mean. The implicit reference level's deviation is the negative sum of the explicit coefficients (since deviations sum to zero by construction).
 
 Effect coding matters most in factorial ANOVA with unbalanced designs: Type III sums of squares (the standard ANOVA approach in many disciplines) require orthogonal contrasts to give interpretable interaction tests, and effect coding (or Helmert) is the right choice. Treatment contrasts give Type II SS that confound main effects with interactions.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-effect-coding-assumptions}
 
 Same as regression; the contrast choice does not change fit or predictions, only coefficient interpretation.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-effect-coding-r-implementation}
 
 ```r
 d <- mtcars
@@ -36,15 +38,15 @@ summary(fit_eff)
 mean(tapply(d$mpg, d$cyl, mean))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-effect-coding-output-results}
 
 The intercept equals the grand mean (or grand mean of cell means in unbalanced designs). Each coefficient on a coded column equals the deviation of that level from the grand mean. The deviation of the implicit reference level equals minus the sum of the explicit coefficients.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-effect-coding-interpretation}
 
 A reporting sentence: "Under effect coding (`contr.sum`), the intercept (22.5 mpg) is the grand mean of cell means; 4-cylinder cars averaged 4.4 mpg above the grand mean ($p < 0.001$), 6-cylinder cars 0.5 mpg below ($p = 0.66$), and 8-cylinder cars (implied as the negative sum of the other two coefficients) 3.9 mpg below. Effect coding was used to support Type III SS interpretation of interactions in the factorial design." Always state the contrast choice when reporting ANOVA-style coefficients.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-effect-coding-practical-tips}
 
 - Use effect coding for factorial ANOVA with Type III SS; combine with `car::Anova(fit, type = 3)` for interpretable interaction tests in unbalanced designs.
 - Set effect coding via `contrasts(factor) <- contr.sum(k)` *before* fitting; changing contrasts on a fitted model does not retroactively reinterpret coefficients.
@@ -53,46 +55,43 @@ A reporting sentence: "Under effect coding (`contr.sum`), the intercept (22.5 mp
 - For Type III SS with unbalanced factorial designs, effect coding (or Helmert) is essentially required; treatment coding produces non-orthogonal SS that depend on factor order.
 - The implicit reference level (typically the last) is silent in the output; the user must compute its deviation as the negative sum of the explicit coefficients.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-effect-coding-r-packages-used}
 
 Base R `contr.sum()` and `contrasts<-`; `car::Anova()` with `type = 3` for orthogonal-contrast Type III ANOVA; `emmeans` for marginal means and contrast-stable post-hoc inference; `afex` for repeated-measures ANOVA with effect-coded contrasts as the default.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-effect-coding-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-effect-coding-assumptions) and
+[practical tips](#sec-chapters-07-regression-effect-coding-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-effect-coding-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

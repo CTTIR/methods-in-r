@@ -1,12 +1,14 @@
-## Introduction
+## Power for the Log-Rank Test {#sec-chapters-05-power-power-logrank-test}
+
+### Introduction {#sec-chapters-05-power-power-logrank-test-introduction}
 
 The log-rank test is the standard non-parametric test of equality of two (or more) survival functions and the most widely used inference tool in survival analysis. A central feature of its power calculation distinguishes it from sample-size analyses for $t$-tests, ANOVAs, or proportion comparisons: power depends on the total number of observed events across the two groups, not on the sample size directly. Event-based sample-size planning therefore separates the recruitment question (how many subjects to enrol) from the inferential question (how many events to observe), and links them through assumptions about event rates, accrual time, and follow-up duration. This decoupling is essential to realistic planning of survival trials.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-logrank-test-prerequisites}
 
 A working understanding of the log-rank test, the Kaplan-Meier survival estimator, the proportional-hazards assumption, and the relationship between hazard ratio, event rate, and follow-up time.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-logrank-test-theory}
 
 Under the alternative hypothesis $\mathrm{HR} = \theta$ with equal allocation, the required total number of events is
 
@@ -14,11 +16,11 @@ $$D = \frac{4 (z_{1-\alpha/2} + z_{1-\beta})^2}{\log^2 \theta}.$$
 
 For unequal allocation with arm fractions $\pi_1, \pi_2$ summing to one, the multiplier 4 is replaced by $1/(\pi_1 \pi_2)$. The required sample size $n$ depends on the event probability over the trial duration, which in turn depends on the underlying hazard rates, the planned accrual period, and the post-accrual follow-up period. The relationship is captured in standard formulas (Schoenfeld, Freedman, or Lakatos) and implemented in dedicated power-analysis packages.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-logrank-test-assumptions}
 
 The proportional-hazards assumption holds (approximately) over the trial duration, censoring is independent and non-informative, the accrual pattern and follow-up duration are pre-specified, and the underlying hazard rates are reasonably well-estimated from prior data.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-logrank-test-r-implementation}
 
 ```r
 library(powerSurvEpi); library(gsDesign)
@@ -34,15 +36,15 @@ gs <- gsDesign(k = 3, test.type = 2, alpha = 0.025, beta = 0.20)
 gsBoundSummary(gs)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-logrank-test-output-results}
 
 The closed-form calculation gives roughly 88 events required to detect HR = 0.65 with 80 % power at two-sided $\alpha = 0.05$. With assumed event rates of 40 % in the experimental arm and 55 % in the control arm over the planned follow-up window, this corresponds to roughly 185 subjects (just under 100 per arm). The group-sequential design extends this with multiple looks and appropriate alpha-spending.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-logrank-test-interpretation}
 
 A reporting sentence: "The trial requires 88 events to detect a hazard ratio of 0.65 with 80 % power at two-sided $\alpha = 0.05$ under the log-rank test. Assuming 24 months of uniform accrual and 12 months of additional follow-up, with expected event rates of 55 % (control) and 40 % (treatment) over the trial duration, the planned enrolment is 180 subjects (90 per arm). The protocol triggers the primary analysis when 88 events have been observed, regardless of calendar time, ensuring the planned power is achieved." Always state the event-driven analysis trigger.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-logrank-test-practical-tips}
 
 - Power depends on the total number of events observed, not on the number of subjects enrolled; plan accrual and follow-up to deliver the required event count, and trigger the primary analysis when that count is reached rather than at a fixed calendar time. This is why survival trials report "event-driven" stopping rules.
 - Non-proportional hazards (delayed effects, crossing survival curves, time-varying treatment effects) reduce the log-rank test's power; Fleming-Harrington weighted log-rank tests improve detection of early or late differences and can be pre-specified for trials where non-proportionality is expected.
@@ -51,31 +53,28 @@ A reporting sentence: "The trial requires 88 events to detect a hazard ratio of 
 - For competing risks, the log-rank test is not the appropriate inferential tool; use the Fine-Gray subdistribution-hazard test and its corresponding power-analysis tools (`cmprsk`, `crrSC::power.crr()`).
 - Sensitivity analysis over a range of plausible hazard ratios is standard; protocols with a single point HR are increasingly flagged by reviewers, who expect a defensible bracket.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-05-power-power-logrank-test-r-packages-used}
 
 `powerSurvEpi::ssizeCT.default()` and `powerSurvEpi::powerCT.default()` for canonical log-rank sample-size and power calculations; `gsDesign` and `rpact` for group-sequential survival-trial design with alpha-spending; `nph` for non-proportional-hazards weighted log-rank power; `Hmisc::cpower()` for an alternative interface; `survival::survdiff()` for log-rank analysis after data collection.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-logrank-test-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-logrank-test-assumptions) and
+[practical tips](#sec-chapters-05-power-power-logrank-test-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-logrank-test-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

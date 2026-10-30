@@ -1,12 +1,14 @@
-## Introduction
+## Bias and Variance of Estimators {#sec-chapters-01-foundations-bias-and-variance}
+
+### Introduction {#sec-chapters-01-foundations-bias-and-variance-introduction}
 
 An estimator may differ from the truth for two reasons: systematically (it targets the wrong value on average) and randomly (it bounces around its average). Bias captures the first; variance captures the second. Together they determine how close the estimator is to the truth, as measured by mean squared error (MSE). Many important statistical choices -- between raw and shrinkage estimators, between parametric and non-parametric methods, between simple and flexible models -- are bias/variance trade-offs.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-bias-and-variance-prerequisites}
 
 The reader should know what an expectation is and should be comfortable simulating repeated sampling in R with `replicate()`.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-bias-and-variance-theory}
 
 For an estimator $\hat{\theta}$ of a population parameter $\theta$:
 
@@ -26,11 +28,11 @@ Examples of bias:
 - The MLE of variance in a normal model ($\sigma^2 = \sum (x_i - \bar{x})^2 / n$) is biased downward by a factor of $(n-1)/n$.
 - The sample standard deviation $s = \sqrt{s^2}$ is biased even though $s^2$ is unbiased, because the square root is concave.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-bias-and-variance-assumptions}
 
 The decomposition is an identity -- it always holds -- but its empirical assessment via simulation requires that one can simulate from a known truth. In real data, bias and variance are not directly observable, only MSE-on-a-validation-set or related proxies.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-bias-and-variance-r-implementation}
 
 ```r
 library(ggplot2)
@@ -58,7 +60,7 @@ round(bias_var(est_ub,  true_sigma2), 3)
 
 Two competing estimators of the population variance are compared: the MLE (divide by $n$) and the unbiased estimator (divide by $n - 1$).
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-bias-and-variance-output-results}
 
 ```
     bias variance      mse
@@ -68,11 +70,11 @@ Two competing estimators of the population variance are compared: the MLE (divid
 
 For $n = 10$, the MLE is biased (expected value 8.10 vs. truth 9.00) but has lower variance and lower MSE. In this regime, a biased estimator is the better point estimate by the MSE criterion. As $n$ grows, both bias and the gap in MSE vanish.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-bias-and-variance-interpretation}
 
 When reporting an estimator, one should state whether it is unbiased, and whether the alternative (if any) has smaller MSE. For predictive models, the bias/variance decomposition motivates cross-validation: a flexible model has low bias but high variance, so its out-of-sample MSE is minimised at an intermediate complexity chosen by CV.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-bias-and-variance-practical-tips}
 
 - Unbiasedness is a mathematical convenience, not a goal. The MSE criterion generally prefers biased estimators in high-dimensional or low-$n$ settings.
 - Bias is reported as "bias = $E[\hat{\theta}] - \theta$"; some authors flip the sign (especially in MCMC diagnostics), so read definitions carefully.
@@ -82,27 +84,24 @@ When reporting an estimator, one should state whether it is unbiased, and whethe
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-bias-and-variance-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-bias-and-variance-assumptions) and
+[practical tips](#sec-chapters-01-foundations-bias-and-variance-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-bias-and-variance-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

@@ -1,9 +1,11 @@
+## Week 2, Session 3 — Diagnostic testing: Se, Sp, PPV, NPV, LR {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-learning-objectives}
 
 - Compute sensitivity, specificity, PPV, NPV, and positive and
   negative likelihood ratios from a 2x2 table.
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Sketch a receiver-operating characteristic curve from a continuous
   test statistic.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-prerequisites}
 
 Lab 2.2.
 
-## Background
+### Background {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-background}
 
 A diagnostic test has two operating characteristics intrinsic to the
 test itself: *sensitivity* is the probability that a diseased person
@@ -36,7 +38,7 @@ result with prior information. An LR+ greater than 10 is a strong
 positive; less than 0.1 is a strong negative; values near 1 are
 uninformative.
 
-## Setup
+### Setup {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-setup}
 
 ```r
 library(tidyverse)
@@ -44,18 +46,19 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-1-hypothesis}
 
 Question of interest: how does a continuous biomarker behave as a
 diagnostic test? We are not running an inferential test; we are
 characterising a test's discrimination.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-2-visualise}
 
 Simulate a biomarker that is higher in diseased cases than in
 disease-free controls, with overlap.
 
 ```r
+N <- 500
 prev <- 0.2
 pop <- tibble(
   id = seq_len(N),
@@ -73,7 +76,7 @@ pop |>
   labs(x = "Biomarker level", y = "Density", fill = NULL)
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-3-assumptions}
 
 The gold standard for disease status is assumed perfect. The biomarker
 is continuous and must be dichotomised at some cutoff to behave like
@@ -81,14 +84,16 @@ a positive/negative test. We choose 6 as the cutoff for illustration;
 in practice, the cutoff is itself an outcome of the analysis.
 
 ```r
+cutoff <- 6
 pop <- pop |> mutate(test = as.integer(biomarker > cutoff))
 tab <- table(disease = pop$disease, test = pop$test)
 tab
 ```
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-4-conduct}
 
 ```r
+TP <- tab["1", "1"]; FN <- tab["1", "0"]
 FP <- tab["0", "1"]; TN <- tab["0", "0"]
 
 sens <- TP / (TP + FN)
@@ -109,6 +114,7 @@ diag_tbl
 Convert pre-test odds to post-test odds with the LR.
 
 ```r
+pre_prob <- 0.1
 pre_odds <- pre_prob / (1 - pre_prob)
 post_odds_pos <- pre_odds * lrp
 post_prob_pos <- post_odds_pos / (1 + post_odds_pos)
@@ -125,6 +131,7 @@ tibble(
 Sketch an ROC by sweeping the cutoff.
 
 ```r
+roc <- tibble(
   cut = seq(min(pop$biomarker), max(pop$biomarker), length.out = 200)
 ) |>
   rowwise() |>
@@ -148,7 +155,7 @@ ggplot(roc, aes(fpr, sens)) +
        y = "Sensitivity")
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-5-concluding-statement}
 
 > With a cutoff of `cutoff`, the biomarker had sensitivity
 > `round(sens, 2)`, specificity `round(spec, 2)`, PPV
@@ -163,7 +170,7 @@ ROC curve shows the trade-off across all cutoffs; the area under it
 summarises overall discrimination without committing to a threshold.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-common-pitfalls}
 
 - Quoting a single cutoff's sensitivity and specificity as if they
   were fixed properties of the test, ignoring that a different cutoff
@@ -173,22 +180,23 @@ summarises overall discrimination without committing to a threshold.
 - Using an ROC to compare tests with different prevalence in each
   sample.
 
-## Further reading
+### Further reading {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-further-reading}
 
 - Altman DG & Bland JM, *Diagnostic tests* series, BMJ.
 - Pepe MS. *The Statistical Evaluation of Medical Tests for
   Classification and Prediction*.
 
-## Session info
+### Session info {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-14-clinical)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -21,20 +21,6 @@ options(
 
 set.seed(42)
 
-# bookdown 0.46 bs4_book bug: tweak_part_screwup() trips on
-# `if (xml_attr(parent, "class") == "row")` when the parent div has
-# no class attr (NA == "row" -> NA -> if() error). The tweak is a
-# cosmetic part-heading reflow; no-oping it lets the render complete
-# cleanly. Drop the patch once bookdown ships a fix.
-if (requireNamespace("bookdown", quietly = TRUE) &&
-    "tweak_part_screwup" %in% ls(asNamespace("bookdown"), all.names = TRUE)) {
-  utils::assignInNamespace(
-    "tweak_part_screwup",
-    function(html) invisible(NULL),
-    ns = "bookdown"
-  )
-}
-
 # Citation files copy hook — see refinement §3.3
 if (file.exists("citation.bib")) {
   dir.create("docs/citation-files", recursive = TRUE, showWarnings = FALSE)

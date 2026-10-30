@@ -1,12 +1,14 @@
-## Introduction
+## The Central Limit Theorem {#sec-chapters-01-foundations-central-limit-theorem}
+
+### Introduction {#sec-chapters-01-foundations-central-limit-theorem-introduction}
 
 The central limit theorem (CLT) is the single result that makes classical statistical inference work. It says that when you draw samples of size $n$ from a population with mean $\mu$ and finite variance $\sigma^2$, the distribution of the *sample mean* approaches a normal distribution with mean $\mu$ and variance $\sigma^2/n$ as $n$ grows -- and this is true regardless of the shape of the original population. Almost every t-test, z-test, and confidence interval for a mean rests on this theorem. Without it, the normal distribution would have no privileged role; with it, the normal is the attractor toward which sample means are pulled.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-central-limit-theorem-prerequisites}
 
 A reader should be comfortable with the notions of a random variable, its mean and variance, and the distinction between a population parameter and a sample statistic. Familiarity with R's vectorised operations is helpful but not required.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-central-limit-theorem-theory}
 
 Let $X_1, X_2, \ldots, X_n$ be independent, identically distributed random variables with finite mean $\mu$ and finite variance $\sigma^2$. Define the sample mean $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$. The CLT states that as $n \to \infty$,
 
@@ -14,7 +16,7 @@ $$\sqrt{n}(\bar{X}_n - \mu) \xrightarrow{d} \mathcal{N}(0, \sigma^2),$$
 
 or equivalently, the standardised statistic $Z_n = (\bar{X}_n - \mu)/(\sigma/\sqrt{n})$ converges in distribution to a standard normal. In practical terms, the sampling distribution of $\bar{X}_n$ is approximately $\mathcal{N}(\mu, \sigma^2/n)$ once $n$ is "large enough". What counts as large enough depends on the skewness of the source: a uniform distribution is nearly normal after $n \approx 5$, a right-skewed distribution like the exponential needs $n \approx 30$, and a very heavy-tailed distribution like the Cauchy (which has no finite mean) is never approximated by the CLT because the assumptions fail.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-central-limit-theorem-assumptions}
 
 The theorem requires three conditions:
 
@@ -24,7 +26,7 @@ The theorem requires three conditions:
 
 Independence can be violated by time-series data or clustered sampling; identical distribution fails under confounding; finite variance fails for heavy-tailed generators like the Cauchy or for power-law distributions with tail exponent below two.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-central-limit-theorem-r-implementation}
 
 The clearest way to see the CLT is by simulation. We draw many samples from a skewed population, compute the mean of each, and plot the histogram of those means.
 
@@ -60,15 +62,15 @@ ggplot(df, aes(x = mean_value)) +
 
 The source distribution here is exponential with rate 1, which has mean 1 and variance 1. At $n = 5$ the histogram is still visibly right-skewed; by $n = 30$ it is symmetric and bell-shaped; by $n = 100$ it is indistinguishable from the theoretical normal curve.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-central-limit-theorem-output-results}
 
 Running the simulation produces three panels. The empirical standard deviation of the sample means in each panel is close to $1/\sqrt{n}$: about 0.447 at $n = 5$, 0.183 at $n = 30$, and 0.100 at $n = 100$. The empirical mean is close to 1 in every panel, as the CLT requires.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-central-limit-theorem-interpretation}
 
 For a manuscript, the CLT is rarely cited by name; instead it justifies the use of a normal-based confidence interval or a t-test when the raw data are not normal but the sample size is moderate. A reader reports "with $n = 50$ the sampling distribution of the mean is well-approximated by a normal, so we use a t-based 95% confidence interval", not "by the central limit theorem". The theorem is background; the application is the CI.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-central-limit-theorem-practical-tips}
 
 - For strongly skewed populations (income, biomarker concentrations, counts), plan for $n \geq 30$ before relying on CLT-based inference.
 - The CLT applies to the *mean*, not to individual observations: a single new observation is not made approximately normal by a large $n$.
@@ -77,27 +79,24 @@ For a manuscript, the CLT is rarely cited by name; instead it justifies the use 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-central-limit-theorem-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-central-limit-theorem-assumptions) and
+[practical tips](#sec-chapters-01-foundations-central-limit-theorem-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-central-limit-theorem-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

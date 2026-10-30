@@ -1,12 +1,14 @@
-## Introduction
+## Dummy Coding {#sec-chapters-07-regression-dummy-coding}
+
+### Introduction {#sec-chapters-07-regression-dummy-coding-introduction}
 
 Categorical predictors in regression must be encoded as numeric indicator variables before they enter the linear predictor. R's default is treatment-contrast coding (also called dummy coding), where one level is the implicit reference and the remaining $k - 1$ levels each get a 0/1 indicator. The choice of reference level is partly arbitrary and partly substantive: the reference becomes the baseline against which all other levels are compared, so it should be the level that makes scientific sense — placebo in a clinical trial, "no symptom" in symptom-based predictors, the largest stratum in observational studies.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-dummy-coding-prerequisites}
 
 A working understanding of categorical variables, factor handling in R, and the role of design matrices in regression.
 
-## Theory
+### Theory {#sec-chapters-07-regression-dummy-coding-theory}
 
 For a factor with $k$ levels, treatment coding produces a $k \times (k-1)$ contrast matrix. The reference level has all-zero indicator entries; each other level has a 1 in its own column and 0 elsewhere. Substituting into the linear model:
 
@@ -15,11 +17,11 @@ For a factor with $k$ levels, treatment coding produces a $k \times (k-1)$ contr
 
 Alternative coding schemes — sum-to-zero (`contr.sum`), Helmert (`contr.helmert`), polynomial (`contr.poly`) — change the meaning of the intercept and coefficients but produce identical fits. Ordered factors default to polynomial contrasts in R, which decompose the trend into linear, quadratic, etc. components; override with `contrasts(f) <- contr.treatment` if you want familiar group differences.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-dummy-coding-assumptions}
 
 Same as the underlying regression: linearity in the linear predictor, etc. The choice of contrast affects coefficient interpretation but not model fit, residuals, or predictions.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-dummy-coding-r-implementation}
 
 ```r
 # Default: treatment contrasts with first level as reference
@@ -36,15 +38,15 @@ summary(fit2)
 contrasts(mtcars$cyl)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-dummy-coding-output-results}
 
 The fitted intercept equals the reference-level mean; each coefficient equals the difference from the reference. Re-leveling changes the intercept and coefficients but does not change predictions or residuals.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-dummy-coding-interpretation}
 
 A reporting sentence: "Compared to 4-cylinder cars (reference; mean 26.7 mpg), 6-cylinder cars averaged 6.9 mpg less ($p < 0.001$) and 8-cylinder cars averaged 11.6 mpg less ($p < 0.001$). Treatment contrasts with 4-cylinder as reference were used throughout." Always state the reference level explicitly; reviewers and reanalysts cannot tell from coefficients alone.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-dummy-coding-practical-tips}
 
 - Choose the reference level to match the scientific question — placebo, baseline, control, or "most common" — rather than relying on alphabetic default.
 - Use `relevel(f, ref = "...")` or `forcats::fct_relevel()` to set a specific reference; in `lm()`/`glm()`, the first factor level is always the reference.
@@ -53,46 +55,43 @@ A reporting sentence: "Compared to 4-cylinder cars (reference; mean 26.7 mpg), 6
 - Inspect contrast matrices with `contrasts(f)` to confirm what is actually being fitted; mismatch between expected and actual contrasts is a common source of misinterpreted output.
 - Document the contrast type in methods: "treatment contrasts with placebo as reference" leaves no room for ambiguity.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-dummy-coding-r-packages-used}
 
 Base R `factor()`, `relevel()`, `contrasts()`, `contr.treatment()`, `contr.sum()`, `contr.helmert()`, `contr.poly()`; `forcats` for tidy factor manipulation including `fct_relevel()`; `emmeans::emmeans()` for marginal means and post-hoc contrasts that are interpretation-stable across coding choices.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-dummy-coding-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-dummy-coding-assumptions) and
+[practical tips](#sec-chapters-07-regression-dummy-coding-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-dummy-coding-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

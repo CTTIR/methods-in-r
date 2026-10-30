@@ -1,12 +1,14 @@
-## Introduction
+## Heatmaps for RNA-seq {#sec-chapters-12-bioinformatics-heatmaps-rnaseq}
+
+### Introduction {#sec-chapters-12-bioinformatics-heatmaps-rnaseq-introduction}
 
 Heatmaps compactly display an expression matrix as a colour grid with rows (genes) and columns (samples) optionally clustered hierarchically. For RNA-seq they are the standard visualisation for a differential-expression signature, a curated marker panel, or a pathway-of-interest gene set: colour intensity encodes scaled expression, dendrograms reveal structure, and annotation bars link sample columns to experimental metadata. Done well, a heatmap communicates more about the biological structure of an experiment than dozens of pages of statistical tables.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-heatmaps-rnaseq-prerequisites}
 
 A working understanding of log-CPM or variance-stabilised counts, hierarchical clustering, and the role of row scaling (z-scoring) in making heatmaps interpretable.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-heatmaps-rnaseq-theory}
 
 Raw counts are unsuitable for heatmaps because one strongly expressed gene dominates the colour range and obscures the pattern in lower-expression genes. The standard pre-processing is:
 
@@ -16,11 +18,11 @@ Raw counts are unsuitable for heatmaps because one strongly expressed gene domin
 
 Annotation bars (sample group, batch, time point) overlay metadata on the column dendrogram, making it immediately visible whether sample clustering corresponds to biology or to technical artefacts.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-heatmaps-rnaseq-assumptions}
 
 Row scaling assumes comparable behaviour of genes (one z-score unit means the same thing across genes); column clustering assumes samples are comparable after normalisation; the chosen distance metric and linkage match the cluster structure.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-heatmaps-rnaseq-r-implementation}
 
 ```r
 library(pheatmap)
@@ -46,15 +48,15 @@ pheatmap(mat, scale = "row",
          main = "Top DE genes (row-scaled z-scores)")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-heatmaps-rnaseq-output-results}
 
 `pheatmap()` produces a coloured grid with row and column dendrograms, an annotation strip for the `group` factor, and a colour legend. The two sample clusters separate the control and treatment groups based on the 10 simulated DE genes; the row dendrogram groups the DE genes into a coherent block distinct from the noise rows.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-heatmaps-rnaseq-interpretation}
 
 A reporting sentence (figure caption): "Row-scaled heatmap of the top 50 differentially-expressed genes (z-scores per row, blue-white-red diverging colour scale, Ward linkage on Euclidean distance); samples cluster into two distinct groups corresponding to the experimental conditions, and the top 10 row-cluster shows coherent up-regulation in the treatment group." Always describe the scaling, distance metric, and linkage method.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-heatmaps-rnaseq-practical-tips}
 
 - Always row-scale (z-score) for DE heatmaps; otherwise high-expression genes swamp the colour range and the pattern in lower-expression genes is invisible.
 - Use `ComplexHeatmap::Heatmap()` for richer annotations, row/column splits by cluster, and multi-panel composition; `pheatmap` is simpler for one-off plots.
@@ -63,32 +65,29 @@ A reporting sentence (figure caption): "Row-scaled heatmap of the top 50 differe
 - Use variance-stabilised counts (DESeq2 `vst()` or `rlog()`) rather than raw log-CPM for more robust heatmaps when the dataset has wide expression range.
 - Save the figure at the final publication size (`ggsave()` if using `ggplot`, `pdf()`/`png()` for base plots); shrinking heatmaps in a word processor produces unreadable cell labels.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-heatmaps-rnaseq-r-packages-used}
 
 `pheatmap` for quick standard heatmaps; `ComplexHeatmap` for advanced layouts including multiple annotations, row/column splits, and composition with other panels; `DESeq2::vst()` and `rlog()` for variance-stabilising input transformations; `RColorBrewer` and `viridis` for colour palettes.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-heatmaps-rnaseq-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-heatmaps-rnaseq-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-heatmaps-rnaseq-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-heatmaps-rnaseq-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

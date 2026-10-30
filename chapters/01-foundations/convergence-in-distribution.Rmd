@@ -1,12 +1,14 @@
-## Introduction
+## Convergence in Distribution {#sec-chapters-01-foundations-convergence-in-distribution}
+
+### Introduction {#sec-chapters-01-foundations-convergence-in-distribution-introduction}
 
 Convergence in distribution (also called weak convergence) is the mode of convergence that underlies the central limit theorem. Unlike convergence in probability, which says the random variables themselves get close, convergence in distribution says only that their probability distributions get close. It is the weakest useful mode of convergence in classical probability theory and the one that defines every "asymptotic distribution" quoted in applied statistics.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-convergence-in-distribution-prerequisites}
 
 The reader should know what a CDF is and should have seen the central limit theorem at least once before.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-convergence-in-distribution-theory}
 
 A sequence $Y_n$ converges in distribution to $Y$, written $Y_n \xrightarrow{d} Y$, if
 
@@ -32,11 +34,11 @@ at every continuity point $y$ of $F_Y$. Equivalently, $E[g(Y_n)] \to E[g(Y)]$ fo
 
 $$\sqrt{n}(g(\hat{\theta}) - g(\theta)) \xrightarrow{d} \mathcal{N}(0, [g'(\theta)]^2 \sigma^2).$$
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-convergence-in-distribution-assumptions}
 
 Convergence in distribution is defined for any sequence with values in a metric space; in the classical case, real-valued, with a CDF at every $n$. The CLT additionally requires iid observations with finite variance.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-convergence-in-distribution-r-implementation}
 
 ```r
 library(ggplot2)
@@ -62,15 +64,15 @@ ggplot(df, aes(x = z)) +
 
 We standardise the sample mean of exponential draws; by the CLT, its distribution should approximate the standard normal as $n$ grows.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-convergence-in-distribution-output-results}
 
 The histogram matches the overlaid standard normal density closely; mean and SD of the standardised statistic are near 0 and 1 respectively. Doubling $n$ produces an even tighter match; halving $n$ shows visible skewness that the CLT has not yet erased.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-convergence-in-distribution-interpretation}
 
 Every asymptotic "distribution" in classical statistics -- the normal for Wald tests, the chi-squared for LRTs, the F for ratio tests -- is a statement of convergence in distribution. The practical utility is that the limiting distribution is computable, even when the exact finite-sample distribution is not.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-convergence-in-distribution-practical-tips}
 
 - Convergence in distribution does not imply that expectations converge; "tail probabilities settle" is the safer mental image.
 - Slutsky's theorem is the tool that turns pivot-based arguments into asymptotic ones -- memorise it.
@@ -80,27 +82,24 @@ Every asymptotic "distribution" in classical statistics -- the normal for Wald t
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-convergence-in-distribution-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-convergence-in-distribution-assumptions) and
+[practical tips](#sec-chapters-01-foundations-convergence-in-distribution-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-convergence-in-distribution-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

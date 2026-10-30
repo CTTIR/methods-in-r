@@ -1,12 +1,14 @@
-## Introduction
+## Aesthetics and Geoms {#sec-chapters-06-visualisation-aesthetics-and-geoms}
+
+### Introduction {#sec-chapters-06-visualisation-aesthetics-and-geoms-introduction}
 
 `ggplot2` is built on Wilkinson's grammar of graphics, which separates two concerns that ad-hoc plotting languages tend to conflate. An **aesthetic** is a mapping from a column of data to a visual property: x-position, y-position, colour, fill, shape, size. A **geom** is the geometric object drawn using those aesthetics: a point, a line, a bar, a histogram, a smoother. Once you internalise the split — "what variable becomes which visual property" versus "what shape do I want drawn" — `ggplot2` becomes a Lego kit of swappable parts rather than a dialect to memorise.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-aesthetics-and-geoms-prerequisites}
 
 A working knowledge of basic `ggplot2` syntax (`ggplot()`, `aes()`, `+ geom_*`), and tidy data conventions where each row is an observation and each column a variable.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-aesthetics-and-geoms-theory}
 
 An **aesthetic mapping** lives inside `aes()` and binds a column to a visual property:
 
@@ -22,11 +24,11 @@ A **geom** consumes the aesthetics and draws the corresponding marks. Common geo
 
 Multiple geoms in the same plot share base aesthetics declared in `ggplot(aes(...))` and may add their own. This layering is the heart of the grammar: a complex figure is just a stack of compatible geoms reading the same data.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-aesthetics-and-geoms-assumptions}
 
 Tidy data: one observation per row, one variable per column. Long-format frames are the standard input for `ggplot2`; wide-format data should be reshaped via `tidyr::pivot_longer()` before plotting.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-aesthetics-and-geoms-r-implementation}
 
 ```r
 library(ggplot2); library(palmerpenguins)
@@ -54,15 +56,15 @@ ggplot(penguins, aes(flipper_length_mm, body_mass_g)) +
   theme_minimal()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-aesthetics-and-geoms-output-results}
 
 Four versions of the same scatter: a basic colour-coded plot, the same plot with per-species linear smoothers added, a four-aesthetic plot mapping species to colour and sex to shape simultaneously, and a single-colour version where every aesthetic except position is held constant. Each illustrates a different combination of mapping and setting.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-aesthetics-and-geoms-interpretation}
 
 A reporting sentence (figure caption): "Body mass against flipper length (n = 333 penguins, three species); colour encodes species and shape encodes sex. Per-species linear smoothers are overlaid in the right panel." Be explicit about which aesthetics carry information and which are constant; readers should not have to infer the mapping.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-aesthetics-and-geoms-practical-tips}
 
 - Put aesthetics shared across geoms in the base `ggplot()` call; put geom-specific aesthetics inside the geom. Repetition is fine for clarity but is rarely necessary.
 - Reach for `alpha` to mitigate overplotting in dense scatter plots; values between 0.2 and 0.5 typically reveal density structure.
@@ -71,30 +73,26 @@ A reporting sentence (figure caption): "Body mass against flipper length (n = 33
 - Use `shape` only for two to six groups; beyond that, shapes become indistinguishable and a facet or text label communicates better.
 - When you want a constant value but `ggplot2` keeps drawing a legend, you forgot to move the assignment outside `aes()`; this is the single most common debugging step.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-aesthetics-and-geoms-r-packages-used}
 
 `ggplot2` for the core grammar of graphics; `palmerpenguins` for a clean teaching dataset rich in aesthetic-mapping opportunities; `viridis` and `RColorBrewer` for accessible categorical and continuous scales; `ggrepel` for non-overlapping point labels that supplement aesthetic mappings with text.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-aesthetics-and-geoms-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-aesthetics-and-geoms-assumptions) and [practical tips](#sec-chapters-06-visualisation-aesthetics-and-geoms-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-aesthetics-and-geoms-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

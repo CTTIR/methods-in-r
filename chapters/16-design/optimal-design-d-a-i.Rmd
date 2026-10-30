@@ -1,12 +1,14 @@
-## Introduction
+## Optimal Designs: D, A, I {#sec-chapters-16-design-optimal-design-d-a-i}
+
+### Introduction {#sec-chapters-16-design-optimal-design-d-a-i-introduction}
 
 Computer-generated optimal designs minimise a chosen criterion on the information matrix. When a standard design does not fit constraints (irregular region, mixed-level factors, restricted runs), optimal designs are the primary recourse.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-optimal-design-d-a-i-prerequisites}
 
 Linear regression; Fisher information matrix.
 
-## Theory
+### Theory {#sec-chapters-16-design-optimal-design-d-a-i-theory}
 
 For a design matrix $X$ under the assumed model, the information matrix is $M = X^T X$. Common criteria:
 - **D-optimal**: maximise $\det(M)$ -- minimises the volume of the joint confidence ellipsoid for coefficients.
@@ -16,11 +18,11 @@ For a design matrix $X$ under the assumed model, the information matrix is $M = 
 
 Computer algorithms (Fedorov exchange) search for the optimum.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-optimal-design-d-a-i-assumptions}
 
 Model is correctly specified; $n \geq p$ (parameters); design region is explicit.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-optimal-design-d-a-i-r-implementation}
 
 ```r
 library(AlgDesign)
@@ -46,15 +48,15 @@ i_opt <- optFederov(~ quad(x1, x2),
 i_opt$design
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-optimal-design-d-a-i-output-results}
 
 Two sets of 8 runs from the 9-point candidate set; D-optimal maximises determinant of $X^TX$; I-optimal minimises average prediction variance.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-optimal-design-d-a-i-interpretation}
 
 "D-optimal selected the 8 runs that most tightly constrain the polynomial coefficients; I-optimal picked a different subset that minimises prediction variance across the design region. Choose D for inference on coefficients, I for prediction."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-optimal-design-d-a-i-practical-tips}
 
 - Use D-optimal for parameter-precision goals; I-optimal for prediction-focused studies.
 - Generate several random starts (`nRepeats`); optimal-design search is non-convex.
@@ -64,36 +66,33 @@ Two sets of 8 runs from the 9-point candidate set; D-optimal maximises determina
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-optimal-design-d-a-i-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-optimal-design-d-a-i-assumptions) and
+[practical tips](#sec-chapters-16-design-optimal-design-d-a-i-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-optimal-design-d-a-i-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

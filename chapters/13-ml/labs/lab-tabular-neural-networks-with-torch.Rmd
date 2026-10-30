@@ -1,9 +1,11 @@
+## Week 2, Session 3 — Tabular neural networks with torch {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-learning-objectives}
 
 - Sketch the architecture of a small feed-forward network for tabular
   regression using `torch`.
@@ -11,11 +13,11 @@ Goal → Approach → Execution → Check → Report.
 - Compare a neural network to a linear baseline and be honest about
   when the network is worth the complexity.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-prerequisites}
 
 Regularisation; basic gradient descent intuition.
 
-## Background
+### Background {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-background}
 
 Neural networks rarely beat gradient-boosted trees on small tabular
 biomedical problems. They come into their own when the feature
@@ -37,7 +39,7 @@ every rendering environment. A tiny parallel example using base R
 gradient descent is shown first so the ideas run end-to-end no matter
 what is installed.
 
-## Setup
+### Setup {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-setup}
 
 ```r
 library(tidyverse)
@@ -45,14 +47,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-1-goal}
 
 Fit a small regression by manual gradient descent, then show the
 equivalent `torch` code with `#| eval: false`.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-2-approach}
 
 ```r
+n <- 500; p <- 10
 X <- matrix(rnorm(n * p), n, p)
 beta <- c(2, -1, 0.5, rep(0, p - 3))
 y <- as.numeric(X %*% beta + rnorm(n, 0, 0.5))
@@ -60,11 +63,12 @@ tibble(i = seq_len(n), y = y) |>
   ggplot(aes(i, y)) + geom_point(alpha = 0.3, size = 0.6)
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-3-execution}
 
 Base-R gradient descent on the same problem.
 
 ```r
+w <- rep(0, p); lr <- 0.01
 losses <- numeric(200)
 for (step in 1:200) {
   yhat <- X %*% w
@@ -102,11 +106,12 @@ for (epoch in 1:200) {
 }
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-4-check}
 
 Compare our gradient-descent weights against the OLS solution.
 
 ```r
+lm_coef <- as.numeric(coef(lm(y ~ X - 1)))
 tibble(var = seq_along(w), gd = as.numeric(w), lm = lm_coef, truth = beta) |>
   pivot_longer(-var) |>
   ggplot(aes(var, value, colour = name)) +
@@ -114,7 +119,7 @@ tibble(var = seq_along(w), gd = as.numeric(w), lm = lm_coef, truth = beta) |>
   labs(x = "feature index", y = "coefficient")
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-5-report}
 
 > A small feed-forward network and a linear model both recover the
 > true coefficients on a simulated `n = 500`, `p = 10` regression.
@@ -128,7 +133,7 @@ ResNet on histology. The difference is the architecture, the data
 pipeline, and the compute.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-common-pitfalls}
 
 - Fitting a deep MLP on a small tabular problem and then reporting
   training loss as generalisation error.
@@ -136,21 +141,22 @@ pipeline, and the compute.
   calibrated on normalised scales.
 - Ignoring reproducibility: set both the R seed and the torch seed.
 
-## Further reading
+### Further reading {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-further-reading}
 
 - Goodfellow I, Bengio Y, Courville A, *Deep Learning*, ch. 6.
 - `torch for R` book by Keydana (online).
 
-## Session info
+### Session info {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-13-ml)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

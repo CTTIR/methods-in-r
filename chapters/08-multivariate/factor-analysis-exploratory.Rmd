@@ -1,12 +1,14 @@
-## Introduction
+## Exploratory Factor Analysis {#sec-chapters-08-multivariate-factor-analysis-exploratory}
+
+### Introduction {#sec-chapters-08-multivariate-factor-analysis-exploratory-introduction}
 
 Exploratory factor analysis (EFA) searches for a small number of latent factors that explain the correlations among a larger set of observed variables. It is the cornerstone of psychometric scale development, the standard tool for validating questionnaire structures, and a useful exploratory technique in any context where many correlated indicators are believed to reflect a smaller number of latent constructs. The output — rotated factor loadings together with factor correlations — directly informs item-selection, scale-construction, and CFA model-specification decisions.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-factor-analysis-exploratory-prerequisites}
 
 A working understanding of correlation matrices, principal components analysis, and the conceptual difference between observed indicators and latent constructs.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-factor-analysis-exploratory-theory}
 
 The common factor model is
 
@@ -22,11 +24,11 @@ The standard EFA workflow has five steps:
 4. **Rotate**: varimax (orthogonal) or oblimin / promax (oblique) for interpretable loadings.
 5. **Interpret**: examine rotated loadings, factor correlations, and item communalities.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-factor-analysis-exploratory-assumptions}
 
 Multivariate Normal continuous data for ML extraction; linearity of item-factor relationships; sufficient sample size (rule of thumb: at least 5–10 cases per item, with $n \ge 200$ as a floor).
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-factor-analysis-exploratory-r-implementation}
 
 ```r
 library(psych); library(GPArotation)
@@ -45,15 +47,15 @@ efa <- fa(d, nfactors = 5, rotate = "oblimin", fm = "ml")
 print(efa, cut = 0.3)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-factor-analysis-exploratory-output-results}
 
 `KMO()` returns overall and per-item factorability indices; `cortest.bartlett()` returns the sphericity test. `fa.parallel()` overlays observed eigenvalues on simulated null eigenvalues to determine the number of factors. `fa()` returns rotated loadings, communalities, factor correlations (under oblique rotation), and explained variance per factor.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-factor-analysis-exploratory-interpretation}
 
 A reporting sentence: "EFA on 25 personality items (n = 2,800; KMO = 0.85, Bartlett's $\chi^2 = 18{,}245$, $p < 0.001$) supported a five-factor solution by parallel analysis; oblimin-rotated loadings aligned with the Big Five structure (extraversion, neuroticism, conscientiousness, agreeableness, openness), explaining 45 % of common variance, and factor correlations ranged from 0.15 to 0.42." Always report KMO, Bartlett, the number-of-factors method, the extraction method, and the rotation.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-factor-analysis-exploratory-practical-tips}
 
 - Use parallel analysis (`fa.parallel`) for the number-of-factors decision; avoid the obsolete "eigenvalue > 1" Kaiser rule which over-extracts in most settings.
 - Prefer oblique rotation (oblimin, promax) by default; uncorrelated factors are rare in real psychological or biological data.
@@ -62,32 +64,29 @@ A reporting sentence: "EFA on 25 personality items (n = 2,800; KMO = 0.85, Bartl
 - For confirmatory tests of the resulting structure, run a separate CFA (`lavaan::cfa`) on a held-out sample; never confirm on the data used to extract.
 - Report item communalities alongside loadings; communalities below 0.20 indicate items that contribute little to any factor and may need removal.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-factor-analysis-exploratory-r-packages-used}
 
 `psych` for `fa()`, `KMO()`, `fa.parallel()`, and the comprehensive EFA workflow; `GPArotation` for the underlying rotation algorithms; `EFAtools` for parallel-analysis-aware extraction with bootstrap confidence intervals; `lavaan` for confirmatory factor analysis as the natural follow-up; `MBESS` for additional reliability and structural-equation utilities.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-factor-analysis-exploratory-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-factor-analysis-exploratory-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-factor-analysis-exploratory-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-factor-analysis-exploratory-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

@@ -1,22 +1,24 @@
-## Introduction
+## Clinical Equivalence Trials {#sec-chapters-14-clinical-equivalence-clinical}
+
+### Introduction {#sec-chapters-14-clinical-equivalence-clinical-introduction}
 
 Clinical equivalence trials test whether two treatments are clinically interchangeable within a pre-specified equivalence margin — narrow enough that any difference inside the margin is regarded as clinically meaningless. Bioequivalence studies, used to support generic-drug approval, are the archetypal application: regulators require that the ratio of pharmacokinetic parameters between a generic and the reference product fall within 80 % to 125 % of unity, demonstrating that the generic delivers essentially the same exposure as the originator. Equivalence frameworks also apply in clinical contexts where two interventions are competing on safety or convenience and an investigator wishes to show "no clinically meaningful difference" rather than the more usual "test product is better".
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-equivalence-clinical-prerequisites}
 
 A working understanding of non-inferiority trial design, confidence-interval logic, and the distinction between absence of evidence (high $p$-value) and evidence of absence (CI within an equivalence margin).
 
-## Theory
+### Theory {#sec-chapters-14-clinical-equivalence-clinical-theory}
 
 The two one-sided tests (TOST) procedure rejects the null of non-equivalence if and only if the two-sided 90 % confidence interval of the treatment effect lies entirely within the equivalence margin $[-\Delta, +\Delta]$. This is equivalent to two one-sided tests, each at $\alpha = 0.05$, against the lower and upper non-equivalence boundaries; the overall type-I error is preserved at 0.05 because at most one of the two boundaries can be violated under any single state of the world.
 
 For bioequivalence on log-transformed pharmacokinetic parameters such as $\mathrm{AUC}$ and $C_{\max}$, the ratio $\mu_T / \mu_R$ must lie within $(0.80, 1.25)$, corresponding to $\pm \log(1.25) \approx \pm 0.223$ on the natural-log scale. Log-transformation is mandated by regulators because it makes the test-to-reference ratio symmetric around unity and renders the inference Normal-theory tractable.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-equivalence-clinical-assumptions}
 
 The outcome (typically a log-transformed pharmacokinetic parameter) is approximately Normal, the design is a crossover with adequate washout to eliminate carryover, the within-subject variance is reasonably estimated, and observations are independent across subjects.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-equivalence-clinical-r-implementation}
 
 ```r
 library(PowerTOST)
@@ -40,15 +42,15 @@ ci <- m + c(-1, 1) * qt(0.95, df = n_sub - 1) * sd_d / sqrt(n_sub)
 exp(ci)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-equivalence-clinical-output-results}
 
 `sampleN.TOST()` returns the sample size required to achieve target power for the bioequivalence hypothesis under specified true ratio and within-subject coefficient of variation. The simulation block then computes a 90 % confidence interval on the test-to-reference ratio, which is the regulatory-relevant inference. Reporting both the point ratio and the CI is the standard expected by FDA and EMA.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-equivalence-clinical-interpretation}
 
 A reporting sentence: "The 90 % confidence interval of the test-to-reference ratio was 0.92 to 1.08, fully within the regulatory bioequivalence window of 0.80 to 1.25 for both AUC and $C_{\max}$. The geometric mean ratio was 1.00, with within-subject coefficient of variation 18 %. Bioequivalence was therefore demonstrated under standard FDA and EMA criteria; the formal TOST procedure rejected non-equivalence on both boundaries at $\alpha = 0.05$." Always report the 90 % CI on the back-transformed scale.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-equivalence-clinical-practical-tips}
 
 - Always analyse log-transformed PK parameters rather than raw values; log-ratios are symmetric around unity, the regulatory equivalence window translates to a symmetric range on the log scale, and Normal-theory inference is tractable on the log scale.
 - Use the 90 % confidence interval, not the 95 %; the TOST procedure at $\alpha = 0.05$ corresponds exactly to a two-sided 90 % CI lying entirely within the equivalence margin, and this is the regulatory standard.
@@ -57,33 +59,30 @@ A reporting sentence: "The 90 % confidence interval of the test-to-reference rat
 - Replicate crossover designs (each subject receives test and reference twice) reduce within-subject variance and improve efficiency; they are the standard for highly variable drugs and increasingly the default in modern bioequivalence trials.
 - Pre-specify the equivalence margin, washout period, and analysis model in the protocol; FDA and EMA scrutinise these choices closely, and post-hoc margin selection is grounds for rejection.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-14-clinical-equivalence-clinical-r-packages-used}
 
 `PowerTOST` for canonical TOST sample-size calculation, power analysis, and simulation across crossover and parallel-group equivalence designs; `bear` for end-to-end FDA-compliant bioequivalence analysis with all standard reporting; `bioequivalence` and `bioequivalenceR` for alternative interfaces; `replicateBE` for replicate-design bioequivalence with reference-scaled procedures; `BE` for Bayesian bioequivalence approaches.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-equivalence-clinical-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-equivalence-clinical-assumptions) and
+[practical tips](#sec-chapters-14-clinical-equivalence-clinical-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-equivalence-clinical-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

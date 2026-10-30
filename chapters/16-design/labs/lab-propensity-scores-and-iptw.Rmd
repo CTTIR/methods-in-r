@@ -1,9 +1,11 @@
+## Week 3, Session 4 — Propensity scores and IPTW {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw}
+
 <div class="callout callout-note">
 **Inference lab** using the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-learning-objectives}
 
 - Estimate a propensity score and match nearest-neighbour with
   `MatchIt`.
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
   a weighted outcome model.
 - Diagnose covariate balance with `cobalt::love.plot`.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-prerequisites}
 
 DAGs and logistic regression.
 
-## Background
+### Background {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-background}
 
 The propensity score is the probability of being treated given
 covariates. Under the assumptions of conditional exchangeability
@@ -41,7 +43,7 @@ poor positivity. Stabilised weights and truncation can help, but
 the underlying problem — a region of covariate space where one
 treatment is never seen — cannot be fixed statistically.
 
-## Setup
+### Setup {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-setup}
 
 ```r
 library(tidyverse)
@@ -51,15 +53,16 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-1-hypothesis}
 
 Treatment reduces the outcome by a known amount. We will estimate
 the effect with naive regression, matching, and IPTW, and compare
 with the simulated truth.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-2-visualise}
 
 ```r
+n <- 1000
 dat <- tibble(
   age  = rnorm(n, 60, 10),
   sev  = rnorm(n, 0,   1),
@@ -75,20 +78,22 @@ ggplot(dat, aes(ps, fill = factor(trt))) +
   labs(x = "Propensity score", y = "Density", fill = "Treated?")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-3-assumptions}
 
 No unmeasured confounding (conditional exchangeability); positivity
 (everyone has a non-zero chance of each treatment); correct
 specification of the propensity model.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-4-conduct}
 
 ```r
+# Naive regression
 fit_naive <- lm(y ~ trt + age + sev + sex, data = dat)
 coef(fit_naive)["trt"]
 ```
 
 ```r
+# Nearest-neighbour matching
 m <- matchit(trt ~ age + sev + sex, data = dat,
              method = "nearest", ratio = 1)
 m
@@ -100,6 +105,7 @@ coef(fit_match)["trt"]
 ```
 
 ```r
+# IPTW
 dat <- dat |>
   mutate(w = if_else(trt == 1, 1 / ps, 1 / (1 - ps)))
 fit_iptw <- lm(y ~ trt, data = dat, weights = w)
@@ -110,7 +116,7 @@ coef(fit_iptw)["trt"]
 love.plot(m, thresholds = c(m = 0.1), abs = TRUE)
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-5-concluding-statement}
 
 > The simulated treatment effect was −1.5. The naive regression
 > gave `round(coef(fit_naive)["trt"], 2)`; nearest-neighbour
@@ -119,7 +125,7 @@ love.plot(m, thresholds = c(m = 0.1), abs = TRUE)
 > matching reduced all SMDs below 0.1.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-common-pitfalls}
 
 - Matching with replacement without adjusting inference for the
   repeated use of controls.
@@ -128,7 +134,7 @@ love.plot(m, thresholds = c(m = 0.1), abs = TRUE)
 - Ignoring extreme weights.
 - Picking the matching method that gives the effect you wanted.
 
-## Further reading
+### Further reading {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-further-reading}
 
 - Austin PC (2011), *An introduction to propensity score methods
   for reducing the effects of confounding in observational
@@ -136,16 +142,17 @@ love.plot(m, thresholds = c(m = 0.1), abs = TRUE)
 - Stuart EA (2010), *Matching methods for causal inference*.
 - Hernán MA, Robins JM. *Causal Inference: What If*, ch. 12.
 
-## Session info
+### Session info {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-16-design)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Power for Agreement (Kappa) {#sec-chapters-05-power-power-agreement-kappa}
+
+### Introduction {#sec-chapters-05-power-power-agreement-kappa-introduction}
 
 Cohen's kappa measures agreement beyond chance between two raters on a categorical scale and is the de facto standard for inter-rater reliability with categorical outcomes. Sample-size planning for a kappa-based reliability study addresses one of two distinct questions: how many subjects are needed to estimate kappa with a desired precision (a target 95 % confidence-interval half-width around the expected value), or how many subjects are needed to test a hypothesis about kappa (typically that kappa exceeds a benchmark value such as 0 or 0.6) with adequate power. Modern reliability-study protocols are increasingly precision-driven rather than hypothesis-driven, because a "kappa is greater than zero" claim conveys little practical information about a clinical instrument.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-agreement-kappa-prerequisites}
 
 A working understanding of Cohen's kappa, the marginal-prevalence dependence of kappa's variance, and the distinction between precision-based and hypothesis-test sample-size questions.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-agreement-kappa-theory}
 
 For an expected kappa $\kappa_1$ with marginal prevalences $\pi_1$ and $\pi_2$ for the two raters, the asymptotic variance of the sample kappa is given by the Fleiss-Cicchetti-Everitt formula. Precision-based planning targets a 95 % CI half-width $w$:
 
@@ -14,11 +16,11 @@ $$n \approx \frac{(1 - \kappa_1^2) \, z_{0.975}^2}{w^2 (1 - p_e)^2},$$
 
 with $p_e$ the chance-expected agreement. Hypothesis-test planning targets the power to reject $H_0: \kappa = \kappa_0$ in favour of $H_1: \kappa = \kappa_1$, using a Normal-approximation $z$-test on the difference between estimated and hypothesised values, scaled by the appropriate standard errors.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-agreement-kappa-assumptions}
 
 Subjects are independent and each is rated once by each of the two raters; the expected kappa and the marginal prevalences are pre-specified from pilot data or substantive expectations; the rating scale is categorical (or ordinal with weighted kappa).
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-agreement-kappa-r-implementation}
 
 ```r
 library(irr)
@@ -34,15 +36,15 @@ n_prec <- qnorm(0.975)^2 * (1 - kappa_exp^2) / (w^2 * (1 - p_e)^2)
 ceiling(n_prec)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-agreement-kappa-output-results}
 
 `N.cohen.kappa()` returns the sample size for the hypothesis test of $\kappa_1$ vs $\kappa_0$ given the marginal rates. For an expected $\kappa_1 = 0.70$ against $\kappa_0 = 0$ at balanced marginals, roughly 40 subjects suffice for the hypothesis-test approach; precision-targeted with a 95 % CI half-width of 0.05 requires roughly 83 subjects, illustrating that precision-based planning typically demands more subjects than hypothesis-test planning.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-agreement-kappa-interpretation}
 
 A reporting sentence: "To estimate inter-rater Cohen's kappa with a 95 % CI half-width of 0.05 around an anticipated value of 0.70 (assumed marginal prevalences 0.5 in each rater), 83 subjects are required. The protocol enrols 100 to allow for 15 % unevaluable ratings. A hypothesis-test framing — power to reject $\kappa = 0$ at 80 % power — would require only 40 subjects, but the precision-based plan is preferred because the substantive question is the magnitude of agreement, not whether it differs from zero." Always state the planning paradigm.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-agreement-kappa-practical-tips}
 
 - Kappa's variance depends substantially on the marginal prevalences; very imbalanced marginals (e.g., one category at 5 % prevalence) inflate the variance and require more subjects than balanced marginals at the same expected kappa value.
 - Weighted kappa for ordinal categories has smaller standard error than unweighted kappa for nominal categories with the same number of categories; adjust the sample-size calculation accordingly using the weighted-kappa variance formula.
@@ -51,31 +53,28 @@ A reporting sentence: "To estimate inter-rater Cohen's kappa with a 95 % CI half
 - For continuous ratings, the appropriate reliability statistic is the intraclass correlation coefficient (ICC), and a separate sample-size calculation applies; do not dichotomise continuous ratings to compute kappa.
 - For the kappa-paradox situation where high observed agreement coincides with low kappa due to imbalanced marginals, consider reporting both kappa and the prevalence- and bias-adjusted kappa (PABAK) for a fuller picture of reliability.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-05-power-power-agreement-kappa-r-packages-used}
 
 `irr::N.cohen.kappa()` for the canonical Cohen's-kappa hypothesis-test sample-size calculation; `samplesize::kappa.sample.size()` for an alternative interface and multi-rater extensions; `kappaSize` for kappa sample-size with multi-category outcomes; `simr` for simulation-based extensions; `psych` and `irr` for kappa analysis after data collection.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-agreement-kappa-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-agreement-kappa-assumptions) and
+[practical tips](#sec-chapters-05-power-power-agreement-kappa-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-agreement-kappa-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

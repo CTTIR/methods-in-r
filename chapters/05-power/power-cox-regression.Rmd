@@ -1,12 +1,14 @@
-## Introduction
+## Power for Cox Regression {#sec-chapters-05-power-power-cox-regression}
+
+### Introduction {#sec-chapters-05-power-power-cox-regression-introduction}
 
 In survival analysis, statistical power is driven by the number of **events**, not by the number of enrolled subjects. A Cox regression power calculation determines the required events and, from assumed accrual and follow-up, the number of subjects.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-cox-regression-prerequisites}
 
 Cox proportional hazards, survival analysis.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-cox-regression-theory}
 
 For a continuous predictor with standardised-coefficient effect, the required number of events for Wald test power at $1 - \beta$ and two-sided $\alpha$ is
 
@@ -18,13 +20,13 @@ $$D = \frac{(z_{1-\alpha/2} + z_{1-\beta})^2}{\pi(1 - \pi) \log^2(HR)}.$$
 
 Required subjects $N = D / p_{\text{event}}$, where $p_{\text{event}}$ is the probability of observing the event during follow-up; depends on survival, accrual, and censoring.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-cox-regression-assumptions}
 
 - Proportional hazards.
 - Independent censoring.
 - Known baseline event rate or survival function.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-cox-regression-r-implementation}
 
 ```r
 library(powerSurvEpi)
@@ -40,15 +42,15 @@ D <- (qnorm(0.975) + qnorm(0.80))^2 / log(1.4)^2
 D
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-cox-regression-output-results}
 
 For HR = 0.70 with equal allocation and event rates of 20 % (treatment) and 30 % (control), about 500 events and 1000 subjects are required.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-cox-regression-interpretation}
 
 "The study requires approximately 500 events to detect a hazard ratio of 0.70 with 80 % power. Assuming the expected event probabilities during follow-up, we need to enrol 1000 patients."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-cox-regression-practical-tips}
 
 - Events, not subjects, are the currency of power in survival; count accumulated events, not randomised subjects.
 - Report both target events and target $N$; specify the assumed accrual period and follow-up.
@@ -58,25 +60,22 @@ For HR = 0.70 with equal allocation and event rates of 20 % (treatment) and 30 %
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-cox-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-cox-regression-assumptions) and
+[practical tips](#sec-chapters-05-power-power-cox-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-cox-regression-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

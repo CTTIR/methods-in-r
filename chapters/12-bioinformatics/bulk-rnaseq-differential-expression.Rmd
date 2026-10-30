@@ -1,12 +1,14 @@
-## Introduction
+## Bulk RNA-seq Differential Expression with DESeq2 {#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression}
+
+### Introduction {#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-introduction}
 
 Bulk RNA-seq asks which genes change in expression between conditions. DESeq2 is the most widely used framework for the analysis: it models counts with a negative binomial distribution, shares dispersion information across genes to stabilise estimates in small samples, and tests each gene's log-fold change for significance with multiple-testing correction. A standard DESeq2 workflow goes from a raw count matrix to a list of differentially expressed genes in a dozen lines of R.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-prerequisites}
 
 The reader should understand what a count matrix is (rows = genes, columns = samples), the basic biology of RNA-seq (reads mapped to transcripts, summed per gene), and the idea of a generalised linear model. Familiarity with Bioconductor data structures (`SummarizedExperiment`) is helpful.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-theory}
 
 DESeq2 assumes that the read count $K_{ij}$ for gene $i$ in sample $j$ follows a negative binomial distribution
 
@@ -22,14 +24,14 @@ Three ideas make DESeq2 work well on small-sample studies:
 
 The Wald test compares the estimated coefficient of interest to zero, with standard errors that reflect both the design and the dispersion. The Benjamini-Hochberg procedure controls the false discovery rate across the thousands of genes tested.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-assumptions}
 
 - Read counts follow a negative binomial distribution -- usually reasonable for bulk mRNA-seq; may fail for very-low-coverage or heavily PCR-amplified libraries.
 - The dispersion-mean trend is smooth across genes.
 - Replicates within a condition are exchangeable after accounting for modelled covariates.
 - No confounding between the biological condition and technical covariates (batch, library prep date). If there is, include the technical covariate in the design.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-r-implementation}
 
 ```r
 library(DESeq2)
@@ -64,15 +66,15 @@ plotMA(res, ylim = c(-3, 3))
 
 The toy simulation above creates 20,000 genes and 6 samples, upregulates the first 200 genes in the treated condition, and runs the standard DESeq2 pipeline: construct the DESeqDataSet, filter very-low-count genes, estimate size factors and dispersion, fit the model, and shrink LFCs for reporting.
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-output-results}
 
 The `summary(res)` output reports the number of genes up- and down-regulated at the default alpha (0.1): typically a few hundred in the simulated upregulated set, with a small number of false positives at FDR 10%. The MA plot shows that the shrunken LFCs are compressed toward zero at low mean expression, as desired.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-interpretation}
 
 For a manuscript: "Differential expression between treated and control samples was assessed with DESeq2 (v1.44). Size factors were estimated by the median-of-ratios method; dispersions were shared across genes via the DESeq2 trend; log-fold changes were shrunk using `apeglm`. 212 genes were differentially expressed at an FDR of 5% (154 up, 58 down)."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-practical-tips}
 
 - Use `vst()` or `rlog()` transformations for downstream visualisation (PCA, heatmaps); use raw counts in DESeq2's own pipeline.
 - Filter low-count genes *before* running DESeq (e.g., keep genes with $\geq 10$ counts in $\geq$ the smallest group size). This improves multiple-testing adjusted p-values without inflating false discoveries.
@@ -82,26 +84,23 @@ For a manuscript: "Differential expression between treated and control samples w
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

@@ -1,22 +1,24 @@
-## Introduction
+## Isotonic Regression Calibration {#sec-chapters-13-ml-isotonic-regression}
+
+### Introduction {#sec-chapters-13-ml-isotonic-regression-introduction}
 
 Isotonic regression fits a monotone non-decreasing step function from classifier scores to observed probabilities. It is the non-parametric counterpart to Platt scaling: more flexible (no sigmoid assumption required) but requiring more validation data and more prone to over-fitting. It is the standard post-hoc calibration method for tree-ensemble classifiers (random forest, gradient boosting), whose mis-calibration patterns are often non-sigmoidal.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-isotonic-regression-prerequisites}
 
 A working understanding of calibration plots, the pool-adjacent-violators (PAV) algorithm, and Platt scaling as the parametric alternative.
 
-## Theory
+### Theory {#sec-chapters-13-ml-isotonic-regression-theory}
 
 Given sorted score-label pairs $(f_i, y_i)$, isotonic regression finds the non-decreasing step function $\hat g$ minimising $\sum_i (y_i - \hat g(f_i))^2$. The pool-adjacent-violators algorithm solves this in $O(n)$ time: it walks through the sorted scores, pooling adjacent observations into single steps whenever monotonicity is violated, until the result is non-decreasing.
 
 The fitted step function maps any future score to the observed probability rate within the matching score range from the validation set. The non-parametric flexibility allows fitting any monotone calibration curve, but at the cost of statistical efficiency relative to Platt's two-parameter sigmoid.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-isotonic-regression-assumptions}
 
 The mis-calibration is monotone (almost always the case for well-trained classifiers); enough validation data to estimate the step function without over-fitting (rule of thumb: at least 500 examples).
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-isotonic-regression-r-implementation}
 
 ```r
 set.seed(2026)
@@ -42,15 +44,15 @@ c(naive = mean((naive_p - y[te_idx])^2),
   isotonic = mean((iso_p  - y[te_idx])^2))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-isotonic-regression-output-results}
 
 Brier scores for the three methods: naive sigmoid (no calibration), Platt scaling (parametric sigmoid), and isotonic regression (non-parametric step function). Isotonic typically wins when the underlying calibration curve is non-sigmoidal.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-isotonic-regression-interpretation}
 
 A reporting sentence: "Isotonic regression on the held-out test set produced the lowest Brier score (0.168) compared with Platt scaling (0.181) and the naive sigmoid (0.213); isotonic captured a non-sigmoidal calibration curve that the parametric sigmoid could not. ROC AUC was unchanged across all three methods because the rescaling preserves rank." Always compare both calibration methods and report Brier score plus a reliability diagram.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-isotonic-regression-practical-tips}
 
 - Isotonic regression needs more validation data than Platt scaling (rule of thumb: at least 500 examples; for very imbalanced data, more for the minority class).
 - Prone to over-fit when the validation set is small; the step function can track validation-specific noise, especially in the tails. Cross-validate the calibration step itself for small validation sets.
@@ -59,37 +61,34 @@ A reporting sentence: "Isotonic regression on the held-out test set produced the
 - Step-function output produces piecewise-constant probabilities, which can look strange in sensitive applications; spline-smoothed isotonic exists but is rarely implemented in production.
 - Always pair calibration with a reliability diagram (`probably::cal_plot`, `gbm::calibrate.plot`) showing pre- and post-calibration curves; verify visually that the calibration improved.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-isotonic-regression-r-packages-used}
 
 Base R `isoreg()` for the canonical PAV-based isotonic regression; `caret::calibrate()` and `probably::cal_estimate_isotonic()` for integrated tidymodels-style calibration; `betacal` for the parametric Beta calibration alternative; `mlr3calibration` for calibration extensions in mlr3.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-isotonic-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-isotonic-regression-assumptions) and
+[practical tips](#sec-chapters-13-ml-isotonic-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-isotonic-regression-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Copulas: An Introduction {#sec-chapters-03-probability-copulas-introduction}
+
+### Introduction {#sec-chapters-03-probability-copulas-introduction-introduction}
 
 A copula is a multivariate distribution with uniform marginals. It captures the dependence structure of a joint distribution independently of the marginals. Sklar's theorem says every joint distribution decomposes into its marginals plus a unique copula; this decomposition is the cleanest way to model dependence when the marginals are non-normal.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-copulas-introduction-prerequisites}
 
 Joint and marginal distributions; cumulative distribution function; basic multivariate probability.
 
-## Theory
+### Theory {#sec-chapters-03-probability-copulas-introduction-theory}
 
 **Sklar's theorem** (1959). For any joint CDF $F_{XY}$ with marginals $F_X, F_Y$, there exists a copula $C: [0, 1]^2 \to [0, 1]$ such that
 
@@ -26,11 +28,11 @@ If $F_X, F_Y$ are continuous, $C$ is unique. In the other direction, for any cop
 
 The **probability integral transform** turns any continuous marginal into a uniform: $U = F_X(X) \sim \mathrm{Uniform}(0, 1)$. Copulas operate on the uniform scale and transform back to the original scale via $F_X^{-1}$.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-copulas-introduction-assumptions}
 
 Continuous marginals (for uniqueness); otherwise the copula is unique only up to the joint probabilities of atoms.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-copulas-introduction-r-implementation}
 
 ```r
 library(copula)
@@ -63,7 +65,7 @@ gu_fit <- fitCopula(gumbelCopula(dim = 2), data = U, method = "ml")
 c(gaussian = AIC(gc_fit), clayton = AIC(cc_fit), gumbel = AIC(gu_fit))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-copulas-introduction-output-results}
 
 ```
 [1] 0.7036       # MLE of copula correlation recovers the true 0.7
@@ -74,11 +76,11 @@ gaussian  clayton  gumbel
 
 Gaussian copula has the best AIC, matching the data-generating model. The Clayton and Gumbel copulas mis-specify the tail structure and fit worse.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-copulas-introduction-interpretation}
 
 Copula models are standard in finance (risk aggregation) and increasingly common in epidemiology (joint survival) and genetics (multivariate phenotypes). They let analysts specify marginals appropriate to each variable (gamma for concentrations, Beta for proportions) without forcing joint normality.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-copulas-introduction-practical-tips}
 
 - Do not fit copulas without first checking that the marginals are well-specified; a bad marginal confounds copula diagnosis.
 - The Gaussian copula underestimates joint extremes; for risk applications use a t-copula or Archimedean copulas (Clayton, Gumbel).
@@ -88,26 +90,23 @@ Copula models are standard in finance (risk aggregation) and increasingly common
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-copulas-introduction-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-copulas-introduction-assumptions) and
+[practical tips](#sec-chapters-03-probability-copulas-introduction-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-copulas-introduction-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

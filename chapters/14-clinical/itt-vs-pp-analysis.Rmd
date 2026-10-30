@@ -1,12 +1,14 @@
-## Introduction
+## ITT vs Per-Protocol Analysis {#sec-chapters-14-clinical-itt-vs-pp-analysis}
+
+### Introduction {#sec-chapters-14-clinical-itt-vs-pp-analysis-introduction}
 
 The **intent-to-treat (ITT)** principle analyses participants according to their randomised assignment, irrespective of actual treatment received or adherence. It estimates the effect of *prescribing* the intervention under real-world conditions. **Per-protocol (PP)** restricts analysis to adherent participants and estimates the effect of *receiving* the intervention -- a different estimand.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-itt-vs-pp-analysis-prerequisites}
 
 Randomisation; estimands; missing data.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-itt-vs-pp-analysis-theory}
 
 ITT preserves randomisation and tends to be conservative in superiority trials (dilution by non-adherers). PP can exaggerate efficacy or introduce selection bias because adherence is post-randomisation.
 
@@ -14,11 +16,11 @@ ITT preserves randomisation and tends to be conservative in superiority trials (
 
 **Non-inferiority trials**: PP and ITT are both reported; the more conservative result (less close to margin) drives inference.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-itt-vs-pp-analysis-assumptions}
 
 Randomisation is properly concealed; adherence classification is unaffected by knowledge of outcome; missingness mechanism is characterised.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-itt-vs-pp-analysis-r-implementation}
 
 ```r
 set.seed(2026)
@@ -44,15 +46,15 @@ rbind(ITT = c(est = diff(itt$estimate), p = itt$p.value),
       PP  = c(est = diff(pp $estimate), p = pp $p.value))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-itt-vs-pp-analysis-output-results}
 
 ITT effect is diluted by non-adherence; PP effect recovers the on-treatment effect but is subject to selection bias.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-itt-vs-pp-analysis-interpretation}
 
 "The primary ITT analysis estimated a 0.56 point advantage for the intervention (95 % CI 0.28-0.84, p < 0.001); PP analysis gave 0.71 (CI 0.38-1.04). ITT is the primary inference; PP is supportive."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-itt-vs-pp-analysis-practical-tips}
 
 - Pre-specify ITT as primary in the SAP; never switch post-hoc.
 - Report a flow diagram (CONSORT) showing how participants were classified.
@@ -62,27 +64,24 @@ ITT effect is diluted by non-adherence; PP effect recovers the on-treatment effe
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-itt-vs-pp-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-itt-vs-pp-analysis-assumptions) and
+[practical tips](#sec-chapters-14-clinical-itt-vs-pp-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-itt-vs-pp-analysis-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

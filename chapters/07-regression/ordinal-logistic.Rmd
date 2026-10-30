@@ -1,12 +1,14 @@
-## Introduction
+## Ordinal Logistic Regression {#sec-chapters-07-regression-ordinal-logistic}
+
+### Introduction {#sec-chapters-07-regression-ordinal-logistic-introduction}
 
 Ordinal logistic regression — most commonly the proportional-odds model — handles ordered categorical outcomes such as Likert-scale responses, disease severity grades, NYHA functional class, or cancer stage. It exploits the ordering via a cumulative-probability model: the cumulative odds of being in or below each category share the same set of regression coefficients across all cut-points. Multinomial logistic ignores the ordering and estimates separate coefficients for each non-reference category, which is wasteful when ordering is real and informative.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-ordinal-logistic-prerequisites}
 
 A working understanding of binary logistic regression, ordered categorical variables, and the cumulative-probability framing of ordinal data.
 
-## Theory
+### Theory {#sec-chapters-07-regression-ordinal-logistic-theory}
 
 The proportional-odds model is
 
@@ -16,11 +18,11 @@ with $k$ ordered categories. The cut-points $\alpha_j$ shift with $j$, but the r
 
 The proportional-odds assumption is testable with Brant's test or with a likelihood-ratio test against a more flexible partial-proportional-odds or generalised ordered logit model.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-ordinal-logistic-assumptions}
 
 Ordered categorical outcome with at least three levels, proportional odds across all cut-points, independent observations, and adequate counts in each category (rule of thumb: at least 5–10 events per coefficient in the smallest category).
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-ordinal-logistic-r-implementation}
 
 ```r
 library(MASS); library(brant)
@@ -42,15 +44,15 @@ exp(coef(fit))
 brant(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-ordinal-logistic-output-results}
 
 `polr()` returns coefficients on the cumulative-logit scale plus the cut-point estimates. Exponentiating gives cumulative odds ratios. `brant()` reports an omnibus test for proportional odds plus per-coefficient tests; significant results indicate the assumption fails for that covariate.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-ordinal-logistic-interpretation}
 
 A reporting sentence: "Ordinal logistic regression estimated that each 1-SD increase in $x$ multiplied the cumulative odds of being in a higher category by 2.10 (95 % CI 1.50 to 2.94, $p < 0.001$); Brant's test did not reject the proportional-odds assumption (omnibus $p = 0.44$, all per-covariate $p > 0.20$). The cumulative odds-ratio interpretation applies uniformly across the low-vs-(med + high) and (low + med)-vs-high cut-points." Always test and report the proportional-odds assumption.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-ordinal-logistic-practical-tips}
 
 - Always test the proportional-odds assumption with Brant's test or LRT against a partial-proportional-odds model; reporting cumulative ORs without a check is incomplete.
 - When proportional odds fails for one or more covariates, use partial-proportional-odds (`VGAM::vglm` with `cumulative(parallel = FALSE ~ x)`) or generalised ordered logit (`oglmx`).
@@ -59,46 +61,43 @@ A reporting sentence: "Ordinal logistic regression estimated that each 1-SD incr
 - Report cumulative odds ratios with confidence intervals; the phrasing "odds of being in a higher category" is the clearest way to communicate the cumulative-OR interpretation.
 - For predictions on the absolute-probability scale, use `predict(fit, type = "probs")`; readers absorb predicted category probabilities better than cumulative odds ratios.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-ordinal-logistic-r-packages-used}
 
 `MASS::polr()` for the canonical proportional-odds implementation; `ordinal::clm()` for a modern alternative with mixed-effects extensions; `brant` for proportional-odds testing; `VGAM` for partial-proportional-odds and other ordinal extensions; `oglmx` for generalised ordered logit; `gtsummary::tbl_regression()` for publication-ready tables.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-ordinal-logistic-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-ordinal-logistic-assumptions) and
+[practical tips](#sec-chapters-07-regression-ordinal-logistic-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-ordinal-logistic-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

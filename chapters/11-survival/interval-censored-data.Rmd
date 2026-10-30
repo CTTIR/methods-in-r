@@ -1,22 +1,24 @@
-## Introduction
+## Interval-Censored Data {#sec-chapters-11-survival-interval-censored-data}
+
+### Introduction {#sec-chapters-11-survival-interval-censored-data-introduction}
 
 Interval censoring arises whenever subjects are observed at discrete intervals and the exact event time is therefore unknown — only the interval that contains it is known. Cavity detected at a routine dental check-up, HIV seroconversion identified at a quarterly clinic visit, breakdown of a part discovered at periodic inspection: in each case the event time lies between the last "no event" inspection and the first "event observed" inspection. Treating these as exact event times biases standard survival methods; the Turnbull non-parametric maximum-likelihood estimator (NPMLE) and parametric or semi-parametric extensions handle the interval structure correctly.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-interval-censored-data-prerequisites}
 
 A working understanding of survival analysis, the distinction between right, left, and interval censoring, and basic Kaplan-Meier estimation as the gold-standard right-censored analogue.
 
-## Theory
+### Theory {#sec-chapters-11-survival-interval-censored-data-theory}
 
 Each subject contributes an interval $(L_i, R_i]$ within which the event occurred; right-censored subjects have $R_i = \infty$, exact events have $L_i = R_i$. Turnbull's algorithm finds the NPMLE survival function on a grid of unique left and right endpoints via an EM iteration: at each step it apportions probability mass across the candidate intervals proportional to current estimates and updates the survival estimate from those weighted contributions. Convergence yields the NPMLE up to indeterminacy in regions where the data provide no information (the so-called Turnbull intervals).
 
 For regression, parametric models (Weibull, log-normal) and semi-parametric extensions (PH or PO with monotone splines on the baseline) accept interval-censored input directly. The likelihood is $\prod_i [S(L_i) - S(R_i)]$, which reduces to the standard product in the right-censored special case.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-interval-censored-data-assumptions}
 
 Independent interval censoring (the inspection schedule does not depend on the subject's underlying time-to-event), and accurate interval boundaries.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-interval-censored-data-r-implementation}
 
 ```r
 library(icenReg); library(survival)
@@ -33,15 +35,15 @@ fit_w <- ic_par(cbind(l, u) ~ grp, data = miceData, model = "ph", dist = "weibul
 summary(fit_w)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-interval-censored-data-output-results}
 
 `ic_np()` returns the Turnbull NPMLE for each group with confidence bands and a step-function-style plot. `ic_par()` fits a parametric or semi-parametric regression with hazard-ratio interpretation under PH. The two complement each other: NPMLE for visual exploration, regression for covariate effects.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-interval-censored-data-interpretation}
 
 A reporting sentence: "Turnbull NPMLE showed lower survival in the contaminated group throughout follow-up (12-month survival 28 % vs 52 %); a Weibull PH model adjusted for sex estimated a hazard ratio of 2.1 (95 % CI 1.4 to 3.2)." When the NPMLE flatlines in regions with no information, describe these gaps in the caption rather than letting readers misinterpret the apparent constant survival.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-interval-censored-data-practical-tips}
 
 - `icenReg` is the most actively maintained interval-censored regression package in R; `ic_np()` for non-parametric, `ic_par()` for parametric, `ic_sp()` for semi-parametric with monotone splines.
 - Exact event times in interval notation are encoded as $L = R$; right-censored subjects as $R = \infty$ or `Inf`. Most software accepts both encodings.
@@ -50,34 +52,30 @@ A reporting sentence: "Turnbull NPMLE showed lower survival in the contaminated 
 - For very heavy interval censoring (long inspection intervals), consider sensitivity analyses with imputed event times at the midpoint or right endpoint and check that conclusions are robust.
 - Standard Cox-Snell residuals do not directly apply; use modified residuals from `icenReg::diag_baseline()` for goodness-of-fit checks.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-interval-censored-data-r-packages-used}
 
 `icenReg` for `ic_np()`, `ic_par()`, and `ic_sp()` interval-censored regression; `survival` for `Surv(..., type = "interval2")` and `survreg()` interval-censored support; `Icens` for additional NPMLE algorithms; `intccr` for interval-censored competing risks.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-interval-censored-data-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-interval-censored-data-assumptions) and [practical tips](#sec-chapters-11-survival-interval-censored-data-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-interval-censored-data-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

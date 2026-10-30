@@ -1,12 +1,14 @@
-## Introduction
+## Trim-and-Fill {#sec-chapters-15-metaanalysis-trim-and-fill}
+
+### Introduction {#sec-chapters-15-metaanalysis-trim-and-fill-introduction}
 
 Trim-and-fill, introduced by Duval and Tweedie in 2000, is the most widely used algorithmic approach for adjusting a pooled meta-analytic estimate when the funnel plot looks asymmetric. The idea is intuitive: if some smaller studies on the side opposite the dominant tail of the funnel appear to be missing — possibly because they were never published, never indexed, or never reached the systematic-review screening stage — the procedure imputes mirror-image counterparts and re-pools the augmented set. The difference between the unadjusted and adjusted estimates quantifies how sensitive the conclusion is to the presence of these hypothetical missing studies. Crucially, trim-and-fill is a sensitivity analysis, not a method of bias correction in the strict statistical sense; it cannot recover the true unbiased effect.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-15-metaanalysis-trim-and-fill-prerequisites}
 
 Familiarity with funnel plots, the small-study-effect concept, the inverse-variance random-effects pool, and the distinction between sensitivity analysis and bias correction.
 
-## Theory
+### Theory {#sec-chapters-15-metaanalysis-trim-and-fill-theory}
 
 The algorithm proceeds iteratively:
 
@@ -17,11 +19,11 @@ The algorithm proceeds iteratively:
 
 Iterating to convergence yields the final imputed studies and adjusted pooled estimate. The number of imputed studies is itself an interpretable summary: zero imputations indicate no detectable asymmetry, and a large number indicates substantial sensitivity.
 
-## Assumptions
+### Assumptions {#sec-chapters-15-metaanalysis-trim-and-fill-assumptions}
 
 The observed funnel asymmetry is attributable to selection or publication bias rather than to true between-study heterogeneity correlated with study size; the underlying effect distribution is mirror-symmetric around the true effect; and the pooled model is otherwise correctly specified.
 
-## R Implementation
+### R Implementation {#sec-chapters-15-metaanalysis-trim-and-fill-r-implementation}
 
 ```r
 library(metafor)
@@ -45,15 +47,15 @@ data.frame(method = c("Original", "Trim-and-fill"),
 funnel(tf, main = "Trim-and-fill adjusted funnel")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-15-metaanalysis-trim-and-fill-output-results}
 
 `trimfill()` returns the number of imputed studies, the adjusted pooled estimate with its confidence interval, and an augmented dataset suitable for plotting on a funnel diagram. Reporting both the original pool and the adjusted pool side by side — together with the count of imputations — lets readers see exactly how much the conclusion shifts when the missing studies are introduced.
 
-## Interpretation
+### Interpretation {#sec-chapters-15-metaanalysis-trim-and-fill-interpretation}
 
 A reporting sentence: "Trim-and-fill (Duval and Tweedie, $L_0$ estimator) imputed four potentially missing studies on the left side of the funnel; the adjusted standardised mean difference was 0.18 (95 % CI 0.03 to 0.33), notably attenuated from the unadjusted estimate of 0.32 (0.21 to 0.43). The result suggests the pooled conclusion is sensitive to plausible publication bias, and Egger's regression and PET-PEESE were reported as triangulating sensitivity analyses." Always report the unadjusted estimate as primary and the adjusted estimate as sensitivity.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-15-metaanalysis-trim-and-fill-practical-tips}
 
 - Trim-and-fill is a sensitivity analysis, not a proof of publication bias; report it as such, and never use the adjusted estimate as the primary effect.
 - The method performs poorly when funnel asymmetry is driven by genuine between-study heterogeneity correlated with study size; in such settings it can spuriously imply bias.
@@ -62,32 +64,29 @@ A reporting sentence: "Trim-and-fill (Duval and Tweedie, $L_0$ estimator) impute
 - The $L_0$ estimator (default in `metafor`) is the most widely used; $R_0$ is more conservative; $Q_0$ is rarely used in practice. Sensitivity to estimator choice should be noted when results are borderline.
 - Selection-model approaches (such as Vevea–Hedges weight-function models) and PET-PEESE are increasingly preferred over trim-and-fill in methodological literature; consider them when the small-study effect is consequential to your conclusion.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-15-metaanalysis-trim-and-fill-r-packages-used}
 
 `metafor::trimfill()` for the canonical implementation with all three estimators and `funnel()` overlay; `meta::trimfill()` for the alternative interface within the `meta` ecosystem; `metasens` for trim-and-fill alongside copas and limit-meta-analysis bias-adjustment methods; `weightr` and `puniform` for selection-model alternatives that handle complex bias mechanisms.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-15-metaanalysis-trim-and-fill-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-15-metaanalysis-trim-and-fill-assumptions) and
+[practical tips](#sec-chapters-15-metaanalysis-trim-and-fill-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-15-metaanalysis-trim-and-fill-see-also-labs-in-this-chapter}
 
-- [Systematic reviews and PRISMA](labs/lab-systematic-reviews-and-prisma.Rmd)
-- [Meta-analysis basics](labs/lab-meta-analysis-basics.Rmd)
-- [Network meta-analysis](labs/lab-network-meta-analysis.Rmd)
+- [Systematic reviews and PRISMA](#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma)
+- [Meta-analysis basics](#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics)
+- [Network meta-analysis](#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis)
 
 <!-- END see-also -->

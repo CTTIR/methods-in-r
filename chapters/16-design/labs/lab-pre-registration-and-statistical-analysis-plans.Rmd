@@ -1,19 +1,21 @@
+## Week 4, Session 5 — Pre-registration and statistical analysis plans {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans}
+
 <div class="callout callout-note">
 **Workflow lab:** Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-learning-objectives}
 
 - Distinguish a pre-registration from a statistical analysis plan.
 - Draft the core sections of each for a realistic study.
 - Recognise the forms of post-hoc flexibility that pre-registration is
   designed to prevent.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-prerequisites}
 
 Earlier design and causal-inference material.
 
-## Background
+### Background {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-background}
 
 A pre-registration is a timestamped public record of a study's
 hypotheses, design, and primary analysis. A statistical analysis plan
@@ -32,7 +34,7 @@ pre-registration does not forbid curiosity. It separates *confirmatory*
 analyses (specified in advance) from *exploratory* ones, and requires
 each to be labelled when reported.
 
-## Setup
+### Setup {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-setup}
 
 ```r
 library(tidyverse)
@@ -40,12 +42,12 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-1-goal}
 
 Produce a minimal-but-complete pre-registration template for a
 fictional two-arm randomised trial, plus a SAP skeleton.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-2-approach}
 
 A pre-registration has four mandatory elements:
 
@@ -64,9 +66,9 @@ A SAP adds:
 7. **Subgroup analyses** — pre-specified, limited in number.
 8. **Sensitivity analyses** — especially for primary outcomes.
 
-## 3. Execution — template
+### 3. Execution — template {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-3-execution-template}
 
-```r
+```markdown
 # Pre-registration — Trial X
 
 Protocol version 1.0 | Date 2026-04-18 | PI [NAME]
@@ -97,7 +99,7 @@ Target n = 200 per arm; power = 0.80 for d = 0.3, alpha = 0.05.
 - Adherence: per-protocol analysis as sensitivity.
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-4-check}
 
 Three questions to ask of any pre-registration before posting:
 
@@ -106,7 +108,7 @@ Three questions to ask of any pre-registration before posting:
 2. Are exploratory analyses labelled as such?
 3. Is the target N justified by a calculation a reader can redo?
 
-## 5. Report
+### 5. Report {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-5-report}
 
 > A pre-registration for Trial X was deposited on the OSF on
 > [date] (DOI [doi]). The primary analysis, statistical model, and
@@ -115,28 +117,29 @@ Three questions to ask of any pre-registration before posting:
 > the manuscript with its rationale.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-common-pitfalls}
 
 - Treating pre-registration as a checkbox without a concrete analysis
   plan.
 - Pre-registering two primary outcomes and quoting the winner.
 - Failing to report deviations from plan.
 
-## Further reading
+### Further reading {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-further-reading}
 
 - Nosek BA et al. (2018). *The preregistration revolution.*
 - AMRC / NIHR Statistical Analysis Plan templates.
 
-## Session info
+### Session info {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-16-design)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

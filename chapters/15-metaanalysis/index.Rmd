@@ -2,42 +2,42 @@
 
 Pairwise random- and fixed-effects meta-analysis, network meta-analysis, individual-patient-data meta-analysis, and PRISMA-aligned reporting. Heterogeneity is treated as the main result, not a nuisance.
 
-This chapter contains **25 method pages** and **3 labs**. If you are not sure which method to read, return to [Chapter 0](../../ch00-find-your-method.Rmd) and follow the decision tree to the right node.
+This chapter contains **25 method pages** and **3 labs**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.
 
-## Method pages
+## Method pages {#sec-chapters-15-metaanalysis-index-method-pages}
 
 | Method | Source slug |
 |---|---|
-| [Bivariate SROC Curves](bivariate-sroc.Rmd) | `bivariate-sroc` |
-| [Converting Between Effect Sizes](effect-size-conversion.Rmd) | `effect-size-conversion` |
-| [Cumulative Meta-Analysis](cumulative-meta-analysis.Rmd) | `cumulative-meta-analysis` |
-| [Egger's Test for Funnel Asymmetry](egger-test.Rmd) | `egger-test` |
-| [Fixed-Effect vs. Random-Effects Meta-Analysis](fixed-vs-random-effects.Rmd) | `fixed-vs-random-effects` |
-| [Forest Plots in Meta-Analysis](forest-plot-meta.Rmd) | `forest-plot-meta` |
-| [Funnel Plots](funnel-plot-meta.Rmd) | `funnel-plot-meta` |
-| [Individual Participant Data Meta-Analysis](ipd-meta-analysis.Rmd) | `ipd-meta-analysis` |
-| [Leave-One-Out Meta-Analysis](leave-one-out.Rmd) | `leave-one-out` |
-| [Meta-Analysis of Diagnostic Accuracy](diagnostic-test-meta.Rmd) | `diagnostic-test-meta` |
-| [Meta-Regression](meta-regression.Rmd) | `meta-regression` |
-| [Network Meta-Analysis: Introduction](network-meta-analysis-intro.Rmd) | `network-meta-analysis-intro` |
-| [NMA Consistency and Inconsistency](nma-consistency.Rmd) | `nma-consistency` |
-| [NMA League Tables](nma-league-tables.Rmd) | `nma-league-tables` |
-| [Pooling Correlation Coefficients](correlation-pooling.Rmd) | `correlation-pooling` |
-| [Pooling Log-Odds Ratios](log-odds-ratio-pooling.Rmd) | `log-odds-ratio-pooling` |
-| [Pooling Risk Ratios](risk-ratio-pooling.Rmd) | `risk-ratio-pooling` |
-| [Prediction Intervals in Meta-Analysis](prediction-interval-meta.Rmd) | `prediction-interval-meta` |
-| [Quantifying Heterogeneity: Q and I^2](heterogeneity-q-i2.Rmd) | `heterogeneity-q-i2` |
-| [Selection Models for Publication Bias](selection-models-bias.Rmd) | `selection-models-bias` |
-| [Standardised Mean Difference: Hedges' g](smd-hedges-g.Rmd) | `smd-hedges-g` |
-| [Subgroup Meta-Analysis](subgroup-meta-analysis.Rmd) | `subgroup-meta-analysis` |
-| [SUCRA Rankings](nma-sucra.Rmd) | `nma-sucra` |
-| [Tau-Squared Estimation](tau-squared-estimation.Rmd) | `tau-squared-estimation` |
-| [Trim-and-Fill](trim-and-fill.Rmd) | `trim-and-fill` |
+| [Bivariate SROC Curves](#sec-chapters-15-metaanalysis-bivariate-sroc) | `bivariate-sroc` |
+| [Converting Between Effect Sizes](#sec-chapters-15-metaanalysis-effect-size-conversion) | `effect-size-conversion` |
+| [Cumulative Meta-Analysis](#sec-chapters-15-metaanalysis-cumulative-meta-analysis) | `cumulative-meta-analysis` |
+| [Egger's Test for Funnel Asymmetry](#sec-chapters-15-metaanalysis-egger-test) | `egger-test` |
+| [Fixed-Effect vs. Random-Effects Meta-Analysis](#sec-chapters-15-metaanalysis-fixed-vs-random-effects) | `fixed-vs-random-effects` |
+| [Forest Plots in Meta-Analysis](#sec-chapters-15-metaanalysis-forest-plot-meta) | `forest-plot-meta` |
+| [Funnel Plots](#sec-chapters-15-metaanalysis-funnel-plot-meta) | `funnel-plot-meta` |
+| [Individual Participant Data Meta-Analysis](#sec-chapters-15-metaanalysis-ipd-meta-analysis) | `ipd-meta-analysis` |
+| [Leave-One-Out Meta-Analysis](#sec-chapters-15-metaanalysis-leave-one-out) | `leave-one-out` |
+| [Meta-Analysis of Diagnostic Accuracy](#sec-chapters-15-metaanalysis-diagnostic-test-meta) | `diagnostic-test-meta` |
+| [Meta-Regression](#sec-chapters-15-metaanalysis-meta-regression) | `meta-regression` |
+| [Network Meta-Analysis: Introduction](#sec-chapters-15-metaanalysis-network-meta-analysis-intro) | `network-meta-analysis-intro` |
+| [NMA Consistency and Inconsistency](#sec-chapters-15-metaanalysis-nma-consistency) | `nma-consistency` |
+| [NMA League Tables](#sec-chapters-15-metaanalysis-nma-league-tables) | `nma-league-tables` |
+| [Pooling Correlation Coefficients](#sec-chapters-15-metaanalysis-correlation-pooling) | `correlation-pooling` |
+| [Pooling Log-Odds Ratios](#sec-chapters-15-metaanalysis-log-odds-ratio-pooling) | `log-odds-ratio-pooling` |
+| [Pooling Risk Ratios](#sec-chapters-15-metaanalysis-risk-ratio-pooling) | `risk-ratio-pooling` |
+| [Prediction Intervals in Meta-Analysis](#sec-chapters-15-metaanalysis-prediction-interval-meta) | `prediction-interval-meta` |
+| [Quantifying Heterogeneity: Q and I^2](#sec-chapters-15-metaanalysis-heterogeneity-q-i2) | `heterogeneity-q-i2` |
+| [Selection Models for Publication Bias](#sec-chapters-15-metaanalysis-selection-models-bias) | `selection-models-bias` |
+| [Standardised Mean Difference: Hedges' g](#sec-chapters-15-metaanalysis-smd-hedges-g) | `smd-hedges-g` |
+| [Subgroup Meta-Analysis](#sec-chapters-15-metaanalysis-subgroup-meta-analysis) | `subgroup-meta-analysis` |
+| [SUCRA Rankings](#sec-chapters-15-metaanalysis-nma-sucra) | `nma-sucra` |
+| [Tau-Squared Estimation](#sec-chapters-15-metaanalysis-tau-squared-estimation) | `tau-squared-estimation` |
+| [Trim-and-Fill](#sec-chapters-15-metaanalysis-trim-and-fill) | `trim-and-fill` |
 
-## Labs
+## Labs {#sec-chapters-15-metaanalysis-index-labs}
 
 | Lab |
 |---|
-| [Systematic reviews and PRISMA](labs/lab-systematic-reviews-and-prisma.Rmd) |
-| [Meta-analysis basics](labs/lab-meta-analysis-basics.Rmd) |
-| [Network meta-analysis](labs/lab-network-meta-analysis.Rmd) |
+| [Systematic reviews and PRISMA](#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma) |
+| [Meta-analysis basics](#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics) |
+| [Network meta-analysis](#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis) |

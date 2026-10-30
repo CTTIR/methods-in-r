@@ -1,20 +1,22 @@
+## Week 2, Session 1 — One-way ANOVA and contrasts (emmeans) {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-learning-objectives}
 
 - Fit a one-way ANOVA with `aov()` and interpret the omnibus *F*-test.
 - Use `emmeans` to obtain estimated marginal means and pairwise
   contrasts with controlled family-wise error.
 - Read a Tukey HSD output and translate it into a sentence.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-prerequisites}
 
 t-tests; linear regression basics.
 
-## Background
+### Background {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-background}
 
 Analysis of variance is linear regression with a categorical predictor
 and a tradition. The omnibus *F*-test asks whether any group means
@@ -34,7 +36,7 @@ insidious mistake is to run the omnibus *F*, see it is significant, and
 stop — reporting a single *p*-value without naming which groups
 differ and by how much.
 
-## Setup
+### Setup {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-setup}
 
 ```r
 library(tidyverse)
@@ -44,7 +46,7 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-1-hypothesis}
 
 Using `ToothGrowth`, ask whether guinea-pig tooth length depends on
 dose of vitamin C.
@@ -52,36 +54,39 @@ dose of vitamin C.
 Null: mean tooth length is equal across the three doses.
 Alternative: at least one dose differs.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-2-visualise}
 
 ```r
+tg <- ToothGrowth |> mutate(dose = factor(dose))
 ggplot(tg, aes(dose, len, fill = dose)) +
   geom_boxplot(alpha = 0.6, colour = "grey30") +
   labs(x = "Dose (mg/day)", y = "Tooth length") +
   theme(legend.position = "none")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-3-assumptions}
 
 Approximate normality within groups and equal variances.
 
 ```r
+fit <- aov(len ~ dose, data = tg)
 par(mfrow = c(2, 2))
 plot(fit)
 par(mfrow = c(1, 1))
 bartlett.test(len ~ dose, data = tg)
 ```
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-4-conduct}
 
 ```r
+summary(fit)
 
 emm <- emmeans(fit, ~ dose)
 emm
 pairs(emm, adjust = "tukey")
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-5-concluding-statement}
 
 > Tooth length increased with dose of vitamin C (one-way ANOVA
 > *F* = `round(summary(fit)[[1]]$"F value"[1], 2)`; *p* =
@@ -90,29 +95,30 @@ pairs(emm, adjust = "tukey")
 > both lower doses (all adjusted *p* < 0.05).
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-common-pitfalls}
 
 - Stopping at a significant *F* without reporting which contrasts drive
   it.
 - Reporting unadjusted pairwise *p*-values after the omnibus test.
 - Treating a non-significant Bartlett test as proof of equal variances.
 
-## Further reading
+### Further reading {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-further-reading}
 
 - Lenth RV. *emmeans* package vignette.
 - Oehlert GW. *A First Course in Design and Analysis of Experiments*.
 - Maxwell SE, Delaney HD. *Designing Experiments and Analyzing Data*.
 
-## Session info
+### Session info {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-07-regression)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

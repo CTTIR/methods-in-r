@@ -1,12 +1,14 @@
-## Introduction
+## The Weighted Mean {#sec-chapters-02-descriptives-weighted-mean}
+
+### Introduction {#sec-chapters-02-descriptives-weighted-mean-introduction}
 
 A weighted mean is a generalisation of the arithmetic mean in which each observation carries a positive weight that reflects its importance, reliability, or inclusion probability. Weighted means appear in survey sampling (weights are reciprocals of inclusion probabilities), in meta-analysis (weights are inverse-variance), and in weighted regression.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-weighted-mean-prerequisites}
 
 The reader should know the arithmetic mean and be comfortable with the R function `weighted.mean()`.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-weighted-mean-theory}
 
 Given observations $x_1, \ldots, x_n$ with positive weights $w_1, \ldots, w_n$, the weighted mean is
 
@@ -20,12 +22,12 @@ $$s^2_w = \frac{\sum w_i (x_i - \bar{x}_w)^2}{\sum w_i - 1}$$
 
 (using the frequency-weight convention). For survey weights, a different denominator is used.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-weighted-mean-assumptions}
 
 - Weights must be positive.
 - The choice of weight reflects a real asymmetry (inclusion probability, precision, repetition count); arbitrary weighting is meaningless.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-weighted-mean-r-implementation}
 
 ```r
 library(survey)
@@ -50,7 +52,7 @@ resp <- data.frame(
 weighted.mean(resp$sbp, resp$w)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-weighted-mean-output-results}
 
 ```
 pooled_mean    pooled_se
@@ -59,11 +61,11 @@ pooled_mean    pooled_se
 
 The inverse-variance weighted mean is 1.24 with SE 0.08 -- more precise than the simple average of 1.16 that would ignore the study-level precision.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-weighted-mean-interpretation}
 
 Meta-analytic pooling gives study-level weights that reflect how much each study contributes to the combined evidence. Survey weights make the computed mean estimate the population mean rather than the sample mean. Always report which weights were used.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-weighted-mean-practical-tips}
 
 - Negative or zero weights are invalid; check the input.
 - For survey data, use the `survey` package (`svymean`, `svydesign`) rather than `weighted.mean()` to get the correct SE accounting for design.
@@ -73,24 +75,21 @@ Meta-analytic pooling gives study-level weights that reflect how much each study
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-weighted-mean-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-weighted-mean-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-weighted-mean-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-weighted-mean-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

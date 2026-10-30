@@ -1,12 +1,14 @@
-## Introduction
+## Sampling Distributions {#sec-chapters-01-foundations-sampling-distributions}
+
+### Introduction {#sec-chapters-01-foundations-sampling-distributions-introduction}
 
 The sampling distribution of a statistic is the distribution of its values across hypothetical repetitions of the sampling process. Every confidence interval, every p-value, and every standard error is a statement about the sampling distribution of some statistic. Understanding this concept makes inference intuitive; ignoring it makes it a ritual of incantations.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-sampling-distributions-prerequisites}
 
 The reader should know what a sample mean is and should be comfortable with histograms and R's `replicate()` function.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-sampling-distributions-theory}
 
 Let $T = T(X_1, \ldots, X_n)$ be a statistic computed from a sample of size $n$ drawn from a population with some distribution. The **sampling distribution** of $T$ is the distribution of values $T$ would take if the sampling process were repeated many times, each time drawing a fresh sample of size $n$ from the same population.
 
@@ -23,11 +25,11 @@ $$E[\bar{X}] = \mu, \qquad \mathrm{SE}(\bar{X}) = \sigma/\sqrt{n}.$$
 
 The standard error tells us the typical distance between $\bar{X}$ and $\mu$ -- it is the unit in which confidence intervals are measured.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-sampling-distributions-assumptions}
 
 The theoretical sampling distribution derived in most textbooks assumes iid sampling from a population with finite variance. Deviations (heavy tails, dependence, non-iid sampling) change the shape or the formulas; the bootstrap lets us approximate the sampling distribution empirically without these assumptions.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-sampling-distributions-r-implementation}
 
 ```r
 library(ggplot2)
@@ -58,7 +60,7 @@ ggplot(df, aes(x = xbar, fill = n)) +
 
 For a skewed gamma population, the sampling distribution of the mean concentrates as $n$ grows, and its spread matches the theoretical standard error.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-sampling-distributions-output-results}
 
 ```
 n=10  : mean=19.98, SE=4.42; theoretical SE=4.47
@@ -67,11 +69,11 @@ n=100 : mean=20.01, SE=1.41; theoretical SE=1.41
 
 Increasing $n$ by a factor of 10 decreases the standard error by $\sqrt{10} \approx 3.16$, exactly as the $1/\sqrt{n}$ rule predicts.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-sampling-distributions-interpretation}
 
 The standard deviation of the sampling distribution -- the SE -- is what a confidence interval is built from. A 95% CI for the mean is approximately $\bar{x} \pm 1.96 \cdot \mathrm{SE}(\bar{X})$. When a manuscript reports "mean 19.98 (SE 1.41, 95% CI 17.22--22.74)", every number in that summary is derived from the sampling distribution of the statistic.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-sampling-distributions-practical-tips}
 
 - Do not confuse the standard deviation of the data with the standard error of a statistic. The SD describes variability across individuals; the SE describes variability across hypothetical samples of size $n$.
 - When the theoretical sampling distribution is unknown, approximate it by the bootstrap: resample with replacement from the observed sample, compute the statistic, and use the empirical distribution of the resampled statistics as an estimate.
@@ -81,27 +83,24 @@ The standard deviation of the sampling distribution -- the SE -- is what a confi
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-sampling-distributions-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-sampling-distributions-assumptions) and
+[practical tips](#sec-chapters-01-foundations-sampling-distributions-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-sampling-distributions-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

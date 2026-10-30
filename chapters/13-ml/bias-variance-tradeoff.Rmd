@@ -1,12 +1,14 @@
-## Introduction
+## The Bias-Variance Tradeoff {#sec-chapters-13-ml-bias-variance-tradeoff}
+
+### Introduction {#sec-chapters-13-ml-bias-variance-tradeoff-introduction}
 
 Every supervised-learning error decomposes into structural bias (the wrong model class cannot fit the truth), variance (sampling noise in the fit), and irreducible noise. The bias-variance tradeoff is the single most important mental model for picking between a rigid and a flexible estimator.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-bias-variance-tradeoff-prerequisites}
 
 Regression basics; expected value and variance of estimators.
 
-## Theory
+### Theory {#sec-chapters-13-ml-bias-variance-tradeoff-theory}
 
 For squared loss and a target $f(x) + \varepsilon$ with $\mathbb{E}[\varepsilon] = 0$, $\text{Var}(\varepsilon) = \sigma^2$:
 
@@ -14,11 +16,11 @@ $$\mathbb{E}[(y - \hat{f}(x))^2] = \underbrace{(\mathbb{E}[\hat{f}(x)] - f(x))^2
 
 Complex models: low bias, high variance. Simple models: high bias, low variance. Regularisation, averaging (bagging), and dropout explicitly shift along this curve.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-bias-variance-tradeoff-assumptions}
 
 Squared loss and iid samples; trained estimator is a random function of the training set.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-bias-variance-tradeoff-r-implementation}
 
 ```r
 set.seed(2026)
@@ -44,15 +46,15 @@ simulate_fit <- function(degree) {
 sapply(c(1, 3, 7, 15), simulate_fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-bias-variance-tradeoff-output-results}
 
 As polynomial degree grows, bias^2 falls and variance rises; the sum (excess MSE beyond noise) is minimised at an intermediate flexibility.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-bias-variance-tradeoff-interpretation}
 
 "Polynomial degree 3 balanced bias (0.12) and variance (0.09), minimising excess MSE; degree 15 reduced bias to 0.001 but inflated variance to 0.45, hurting generalisation."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-bias-variance-tradeoff-practical-tips}
 
 - Overfitting corresponds to high variance (the same structure fits differently across training resamples).
 - Underfitting corresponds to high bias (structurally too restrictive to capture the signal).
@@ -62,31 +64,28 @@ As polynomial degree grows, bias^2 falls and variance rises; the sum (excess MSE
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-bias-variance-tradeoff-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-bias-variance-tradeoff-assumptions) and
+[practical tips](#sec-chapters-13-ml-bias-variance-tradeoff-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-bias-variance-tradeoff-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

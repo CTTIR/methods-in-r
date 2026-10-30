@@ -1,12 +1,14 @@
-## Introduction
+## The Poisson Distribution {#sec-chapters-03-probability-poisson-distribution}
+
+### Introduction {#sec-chapters-03-probability-poisson-distribution-introduction}
 
 The Poisson distribution models counts of rare, independent events in a fixed window of time or space. Calls per hour, mutations per kilobase, photons per pixel, hospital admissions per day -- all naturally Poisson when the underlying rate is approximately constant and events do not cluster.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-poisson-distribution-prerequisites}
 
 Discrete distributions and the notion of a rate.
 
-## Theory
+### Theory {#sec-chapters-03-probability-poisson-distribution-theory}
 
 A random variable $X$ is **Poisson$(\lambda)$** if
 
@@ -24,11 +26,11 @@ Moments:
 
 **Connection to exponential**: inter-arrival times in a Poisson process are iid exponential with rate $\lambda$.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-poisson-distribution-assumptions}
 
 The underlying events must be (approximately) independent with a constant rate. Violations of equi-dispersion (variance exceeding mean) signal **overdispersion**, commonly addressed by the negative binomial.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-poisson-distribution-r-implementation}
 
 ```r
 library(ggplot2)
@@ -62,7 +64,7 @@ results <- sapply(n_vals, function(n) {
 t(results)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-poisson-distribution-output-results}
 
 ```
     k    pmf
@@ -86,11 +88,11 @@ t(results)
 
 Mean and variance are both $\approx 3.5$ in the empirical sample; the Poisson limit from binomial tightens as $n \to \infty$.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-poisson-distribution-interpretation}
 
 Poisson regression (`glm(..., family = poisson)`) estimates log-rates from count data; reports of incidence-rate ratios and event-per-person-time summaries are typically Poisson-based. Always check for overdispersion before accepting a Poisson fit at face value.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-poisson-distribution-practical-tips}
 
 - Equi-dispersion is the signature assumption; real count data often violate it.
 - Use quasi-Poisson (`family = quasipoisson`) or negative binomial (`MASS::glm.nb`) when variance exceeds mean.
@@ -100,26 +102,23 @@ Poisson regression (`glm(..., family = poisson)`) estimates log-rates from count
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-poisson-distribution-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-poisson-distribution-assumptions) and
+[practical tips](#sec-chapters-03-probability-poisson-distribution-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-poisson-distribution-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

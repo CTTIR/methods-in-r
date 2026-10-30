@@ -1,12 +1,14 @@
-## Introduction
+## Mean Absolute Deviation {#sec-chapters-02-descriptives-mean-absolute-deviation}
+
+### Introduction {#sec-chapters-02-descriptives-mean-absolute-deviation-introduction}
 
 The mean absolute deviation (MAD) is the average distance of observations from a measure of central tendency. It uses absolute values instead of squares, making it less sensitive to outliers than the standard deviation. In the modern literature, the term "MAD" almost always means the **median absolute deviation from the median**, a robust scale estimator.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-mean-absolute-deviation-prerequisites}
 
 The reader should know what a mean, median, and SD are, and how to compute them in R.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-mean-absolute-deviation-theory}
 
 Two versions exist.
 
@@ -16,11 +18,11 @@ Two versions exist.
 
 R's `mad()` function computes MAD about the median with the 1.4826 scaling constant by default.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-mean-absolute-deviation-assumptions}
 
 MAD is purely descriptive; no distributional assumption.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-mean-absolute-deviation-r-implementation}
 
 ```r
 set.seed(2026)
@@ -32,7 +34,7 @@ mad(x, constant = 1)
 mean(abs(x - mean(x)))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-mean-absolute-deviation-output-results}
 
 ```
 [1] 56.4      # SD inflated by outlier
@@ -43,11 +45,11 @@ mean(abs(x - mean(x)))
 
 The classical SD is nearly six times the robust MAD estimator because a single extreme point at 500 dominates the sum of squares. The MAD about the median is essentially unaffected.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-mean-absolute-deviation-interpretation}
 
 Report MAD when the data contain outliers or when robustness to contamination is desirable. In biomedical chemistry, MAD is the default measure of analytical imprecision for certain platforms.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-mean-absolute-deviation-practical-tips}
 
 - `mad()` defaults: `constant = 1.4826`, `center = median`. Always check whether this is what you want.
 - For a normal sample, MAD $\times$ 1.4826 approximates the SD; the two agree closely at moderate $n$.
@@ -57,24 +59,21 @@ Report MAD when the data contain outliers or when robustness to contamination is
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-mean-absolute-deviation-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-mean-absolute-deviation-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-mean-absolute-deviation-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-mean-absolute-deviation-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Population vs. Sample {#sec-chapters-01-foundations-population-vs-sample}
+
+### Introduction {#sec-chapters-01-foundations-population-vs-sample-introduction}
 
 Everything in applied statistics rests on a distinction that sounds obvious until one tries to pin it down: the difference between the population a claim is about and the sample from which the claim is drawn. A *parameter* summarises the population; a *statistic* summarises the sample. The goal of inference is to use the statistic to say something defensible about the parameter. Confusion between the two is the single most common source of overreach in scientific reporting.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-population-vs-sample-prerequisites}
 
 The reader should know what an average is and should be comfortable with simple R arithmetic. No previous inferential statistics is assumed.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-population-vs-sample-theory}
 
 The **target population** is the set of units about which we want to make a claim: "all adults in Germany", "all HER2-positive breast cancer patients treated at this hospital in 2020", "all spikes recorded from V1 neurons in macaque M during task T". It is defined *first*, in scientific terms, not by what is easy to measure.
 
@@ -21,11 +23,11 @@ By convention, Greek letters denote population parameters and Latin letters deno
 - Population proportion $\pi$, sample proportion $\hat{p}$.
 - Population regression coefficient $\beta$, estimate $\hat{\beta}$.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-population-vs-sample-assumptions}
 
 Inference about the population from the sample requires that the sampling scheme be *representative* -- either by probability sampling (each unit in the frame has a known, positive probability of selection) or by an identified mechanism under which conclusions transfer (e.g., random assignment within a convenience sample, which supports causal but not prevalence claims).
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-population-vs-sample-r-implementation}
 
 ```r
 library(ggplot2)
@@ -49,7 +51,7 @@ quantile(sampling_distribution, c(0.025, 0.975))
 
 We treat `population` as a fictional census of one million values. A single sample of $n = 50$ gives a point estimate $\bar{x}$; repeated sampling traces out the sampling distribution of $\bar{x}$.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-population-vs-sample-output-results}
 
 ```
  population_mean      sample_mean  population_sd       sample_sd
@@ -61,11 +63,11 @@ We treat `population` as a fictional census of one million values. A single samp
 
 The sample mean is close to but not equal to the population mean; the sampling distribution tells us that over repeated sampling, 95% of sample means fall within about $\pm 1.4$ of the truth.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-population-vs-sample-interpretation}
 
 When a paper reports "mean systolic blood pressure in the cohort was 128 mmHg (SD 14)", the reader should understand that this is a *statistic*, and that the population parameter it estimates has some uncertainty, quantified by the standard error or confidence interval. The methods section should state explicitly what population is targeted and through what frame.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-population-vs-sample-practical-tips}
 
 - Define the target population in plain scientific terms before the data arrive. Retrospective definitions invite bias.
 - Document the sampling frame, inclusion/exclusion criteria, and selection probabilities. This is what makes a study reproducible.
@@ -75,27 +77,24 @@ When a paper reports "mean systolic blood pressure in the cohort was 128 mmHg (S
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-population-vs-sample-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-population-vs-sample-assumptions) and
+[practical tips](#sec-chapters-01-foundations-population-vs-sample-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-population-vs-sample-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

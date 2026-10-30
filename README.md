@@ -16,9 +16,11 @@ A free, open-source book by **Raban Heller**.
 
 ## Download
 
-- 📄 [Whole book (PDF)](https://r-heller.github.io/methods-in-r/methods-in-r.pdf)
-- 📚 [EPUB](https://r-heller.github.io/methods-in-r/methods-in-r.epub)
-- 📑 Per-chapter PDFs: every chapter has a download button at the top of its page.
+Check the reading site for available PDF and EPUB downloads.
+
+Download links in a built site appear only for files that build produced. PDF and
+EPUB generation are separate from the HTML build; failed optional formats are
+not advertised as available.
 
 ## What this book covers
 
@@ -30,11 +32,11 @@ desk and needs to know — for the method the authors used — what a competent
 application looks like, which diagnostics should have been reported, and what
 red flags to flag.
 
-Every method page therefore ends with a *For Reviewers* section: the
-misapplications, the missing diagnostics, the red flags in tables and figures,
-and the things to verify against the authors' references and arithmetic. A
-final part, *Reporting Templates*, gives copy-paste Methods and Results
-paragraphs tagged with **STROBE / CONSORT / TRIPOD-AI / PRISMA / ARRIVE**.
+Each method page links its *For Reviewers* section to a shared review checklist
+and the method's assumptions or theory, plus practical tips. The original 569 reviewer
+sections were empty templates; detailed method-specific reviewer notes remain
+editorial work. The final *Reporting Templates* part supplies drafts tagged with
+**STROBE / CONSORT / TRIPOD-AI / PRISMA / ARRIVE**, to adapt to the actual study.
 
 The book covers 16 topic areas — from foundations and inference through
 regression, survival, Bayesian methods, machine learning, bioinformatics, and
@@ -70,15 +72,46 @@ BibTeX:
 
 ## Reproducibility
 
-Built with [bookdown](https://bookdown.org/), R, and `renv`. To rebuild
-locally:
+The HTML is a **static reference**: rendering displays the examples without
+executing every statistical analysis. The 80 lab scripts pass a syntax check;
+the maintenance review executed the tidy-data and import/join labs. This is not
+validation of all methods or a substitute for checking assumptions on your data.
+
+Requirements: R, Pandoc, Python 3, and bookdown >= 0.47. A first HTML build:
 
 ```bash
 git clone https://github.com/r-heller/methods-in-r.git
 cd methods-in-r
-R -e 'renv::restore()'
-R -e 'bookdown::render_book("index.Rmd", output_format = "all")'
+Rscript --vanilla -e 'install.packages(c("bookdown", "rmarkdown", "knitr", "bslib", "downlit", "xml2", "htmltools", "sessioninfo"), repos="https://cloud.r-project.org")'
+python3 -m unittest discover -s tests
+python3 scripts/check-lab-code.py
+Rscript --vanilla -e 'bookdown::render_book("index.Rmd", output_format="bookdown::bs4_book")'
+python3 scripts/build-download-manifest.py
+python3 scripts/check-html-links.py docs /tmp/methods-links.json
+python3 -m http.server 8000 --directory docs
 ```
+
+Open <http://localhost:8000>. To restore the historical dependency snapshot,
+install `renv` and run `renv::restore()` first; this review used current available
+packages rather than qualifying that entire snapshot. EPUB uses
+`bookdown::epub_book`; PDF uses `bookdown::pdf_book` and additionally requires
+XeLaTeX/TinyTeX. To produce the verified EPUB path:
+
+```bash
+Rscript --vanilla -e 'bookdown::render_book("index.Rmd", output_format="bookdown::epub_book")'
+python3 scripts/finalize-epub.py
+python3 scripts/build-download-manifest.py
+```
+
+The EPUB finalizer repairs references after chapter splitting and embeds readable
+BibTeX/RIS attachments. Run the download inventory after building extra formats.
+See [MAINTENANCE.md](MAINTENANCE.md) for the measured scope and remaining work.
+
+The decision tree is a checked-in SVG with editable source in
+`images/decision-tree.mmd`. To regenerate it, install Playwright in a separate
+authoring environment, install its Chromium browser, and run
+`node scripts/render-decision-tree.cjs /path/to/quarto/share/formats/html/mermaid/mermaid.min.js`
+with that environment on `NODE_PATH`. Normal book builds do not need Node or a browser.
 
 ## Sibling volume
 

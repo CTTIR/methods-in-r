@@ -1,22 +1,24 @@
-## Introduction
+## Multi-Omics Integration {#sec-chapters-12-bioinformatics-multiomics-integration}
+
+### Introduction {#sec-chapters-12-bioinformatics-multiomics-integration-introduction}
 
 Multi-omics experiments measure transcriptome, methylome, proteome, etc. on the same samples. Joint analysis exposes coordinated variation across layers that single-layer analyses miss -- cis-regulatory effects of methylation, mRNA-protein correspondence, or integrated disease subtypes.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-multiomics-integration-prerequisites}
 
 Single-omic analysis (DE, methylation, proteomics); PCA / factor analysis basics.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-multiomics-integration-theory}
 
 **MOFA (Multi-Omics Factor Analysis)** learns latent factors explaining variation across omics layers. Each factor has per-layer weights: factors loading strongly on multiple layers capture shared signal; single-layer factors reflect layer-specific variation. MOFA2 adds sparsity for interpretability.
 
 **Similarity network fusion (SNF)** and **iCluster+** offer alternative approaches; DIABLO (`mixOmics`) builds supervised multi-omic classifiers.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-multiomics-integration-assumptions}
 
 Samples are matched across layers; layer-specific noise and scaling are handled by the model; sufficient sample size for factor inference (typically $> 50$).
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-multiomics-integration-r-implementation}
 
 ```r
 library(MOFA2)
@@ -48,15 +50,15 @@ mofa <- create_mofa(list(RNA = m_rna, Methylation = m_meth))
 mofa
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-multiomics-integration-output-results}
 
 A trained MOFA model with latent-factor scores per sample, per-layer feature weights, and variance decomposition per factor x layer.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-multiomics-integration-interpretation}
 
 "MOFA identified 5 latent factors; factor 1 explained 32 % of RNA and 18 % of methylation variance, linked to cancer subtype; factor 2 was RNA-specific and reflected proliferation signature."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-multiomics-integration-practical-tips}
 
 - Standardise each layer before MOFA (mean = 0, SD = 1) so no one layer dominates.
 - Layer-specific factors often reflect technical artefacts; use them to diagnose batch effects.
@@ -66,26 +68,23 @@ A trained MOFA model with latent-factor scores per sample, per-layer feature wei
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-multiomics-integration-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-multiomics-integration-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-multiomics-integration-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-multiomics-integration-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

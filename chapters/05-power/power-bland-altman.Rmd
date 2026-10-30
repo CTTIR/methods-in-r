@@ -1,12 +1,14 @@
-## Introduction
+## Power for Bland-Altman Studies {#sec-chapters-05-power-power-bland-altman}
+
+### Introduction {#sec-chapters-05-power-power-bland-altman-introduction}
 
 Bland-Altman analysis is the standard method for comparing two quantitative measurement methods — a new instrument against a reference standard, two raters' continuous scores, two clinical-laboratory assays. The central output is the 95 % limits of agreement (LoA), defined as the mean difference $\pm 1.96$ SD of paired differences, which describe the range within which 95 % of differences between the two methods are expected to fall. Sample-size planning for a Bland-Altman study therefore targets the precision (CI half-width) of the LoA estimates rather than power to reject a null. With too few subjects, the LoA themselves are estimated imprecisely, and clinical-acceptance decisions about whether the methods are interchangeable become unreliable.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-bland-altman-prerequisites}
 
 A working understanding of the Bland-Altman analysis framework, the calculation of limits of agreement, and the standard-error theory for sample quantiles and Normal-based confidence intervals.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-bland-altman-theory}
 
 The standard error of each limit of agreement is approximately
 
@@ -18,11 +20,11 @@ $$n \approx \left(\frac{1.96 \sqrt{3} \sigma_d}{w}\right)^2 \approx \frac{11.5 \
 
 The factor $\sqrt 3$ arises because the LoA is a linear combination of the sample mean and sample SD; the formula accounts for both components' uncertainty under Normal-distribution theory.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-bland-altman-assumptions}
 
 The paired differences are approximately Normally distributed, no systematic bias varies across the measurement range (proportional bias), subjects are independent, and the SD of differences is reasonably known from pilot data. The Bland-Altman 1999 extension handles repeated measurements per subject with a different formula.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-bland-altman-r-implementation}
 
 ```r
 sigma_d <- 5; w <- 1
@@ -41,15 +43,15 @@ half_ci   <- 1.96 * SE_LoA
 c(LoA_lower, LoA_upper, half_ci)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-bland-altman-output-results}
 
 The closed-form calculation gives $n \approx 288$ for $\sigma_d = 5$ and target half-width 1 unit on each LoA. The simulation block confirms the empirical CI half-width matches the formula prediction; reporting both the analytical calculation and a Monte Carlo verification is good practice when the underlying distributional assumptions are uncertain.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-bland-altman-interpretation}
 
 A reporting sentence: "To estimate the 95 % limits of agreement between the two methods with a 95 % CI half-width of $\pm 1$ unit on each limit (the pre-specified clinical-acceptance criterion), $n = 288$ paired measurements are required, assuming a within-subject difference SD of 5 units from pilot data. The protocol enrols 320 to allow for 10 % unevaluable measurements. Sensitivity analyses across $\sigma_d \in [4, 6]$ yield required $n$ from 184 to 414." Always report the target half-width and pilot-derived $\sigma_d$.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-bland-altman-practical-tips}
 
 - Precision of the LoA is dominated by the SD of differences $\sigma_d$; pilot data to estimate $\sigma_d$ are essential, and protocols that rely on guessed $\sigma_d$ values should report sensitivity analyses across a plausible range.
 - For repeated measurements per subject (multiple paired observations within each individual), the analysis and the sample-size formula both change; use the Bland-Altman 1999 extension and its corresponding precision formula, which accounts for the within-subject correlation.
@@ -58,31 +60,28 @@ A reporting sentence: "To estimate the 95 % limits of agreement between the two 
 - Report the target LoA half-width explicitly in the methods section; vague phrases like "adequate precision" are no longer acceptable in regulatory submissions or method-comparison publications, where reviewers expect explicit precision targets.
 - For ratio-scale outcomes with proportional measurement error, log-transform before computing LoA; the LoA on the log scale back-transforms to a multiplicative LoA that is more interpretable.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-05-power-power-bland-altman-r-packages-used}
 
 `MethComp` for canonical Bland-Altman analysis with confidence intervals on LoA; `BlandAltmanLeh` for an alternative interface with ggplot-style plotting; `pwr` and `MBESS` for general precision-based sample-size tools that translate to LoA contexts; `rmcorr` for repeated-measures correlation alternatives in method-comparison data; `agRee` for ICC-based agreement statistics complementing LoA reporting.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-bland-altman-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-bland-altman-assumptions) and
+[practical tips](#sec-chapters-05-power-power-bland-altman-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-bland-altman-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

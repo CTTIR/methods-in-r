@@ -1,12 +1,14 @@
-## Introduction
+## Model Selection with AIC and BIC {#sec-chapters-07-regression-model-selection-aic-bic}
+
+### Introduction {#sec-chapters-07-regression-model-selection-aic-bic-introduction}
 
 AIC (Akaike information criterion) and BIC (Bayesian information criterion) are penalised likelihood scores for comparing models on the same data. Both reward fit (high likelihood) and penalise complexity (number of parameters). They differ in how aggressively they penalise: BIC's penalty grows with sample size, so BIC favours simpler models in large samples while AIC retains a constant per-parameter cost. Both are essential tools in any model-selection workflow that goes beyond likelihood-ratio tests.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-model-selection-aic-bic-prerequisites}
 
 A working understanding of maximum likelihood, the log-likelihood as a measure of fit, and the bias-variance trade-off in model complexity.
 
-## Theory
+### Theory {#sec-chapters-07-regression-model-selection-aic-bic-theory}
 
 $$\mathrm{AIC} = -2 \log L + 2 k, \qquad \mathrm{BIC} = -2 \log L + k \log n,$$
 
@@ -14,11 +16,11 @@ with $k$ the number of estimated parameters and $n$ the sample size. Lower is be
 
 AIC is asymptotically equivalent to leave-one-out cross-validation under regularity conditions; it targets predictive accuracy. BIC approximates the posterior model probability under a specific prior; it targets identification of the true model when one is in the candidate set. BIC's $\log n$ penalty makes it consistent (it picks the true model as $n \to \infty$ if the true model is among candidates) but conservative in finite samples.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-model-selection-aic-bic-assumptions}
 
 Models compared must be fitted on the same data, with the same response (no transformation differences). For nested models, both AIC and likelihood-ratio tests apply; for non-nested, only AIC and BIC make sense.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-model-selection-aic-bic-r-implementation}
 
 ```r
 fit1 <- lm(mpg ~ wt, data = mtcars)
@@ -33,15 +35,15 @@ delta_aic <- AIC(fit1, fit2, fit3)$AIC - min(AIC(fit1, fit2, fit3)$AIC)
 exp(-delta_aic / 2)     # relative likelihood
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-model-selection-aic-bic-output-results}
 
 `AIC()` and `BIC()` return tabular comparisons with degrees of freedom and the criterion value. The relative likelihoods, computed as $\exp(-\Delta\mathrm{AIC} / 2)$, give the proportional support each model has from the data.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-model-selection-aic-bic-interpretation}
 
 A reporting sentence: "Model 2 (mpg ~ wt + hp) had the lowest AIC at 164.0; Model 1 (wt only) differed by $\Delta\mathrm{AIC} = 8.4$, decisive evidence against Model 1, while Model 3 (with cyl and disp added) had $\Delta\mathrm{AIC} = 1.2$, indicating no meaningful improvement over Model 2 despite the additional predictors. BIC also selected Model 2 ($\Delta\mathrm{BIC} = 6.1$ vs Model 1; Model 3 worse by 5.5)." Always quote $\Delta$ values rather than absolute AICs; only differences are interpretable across model sets.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-model-selection-aic-bic-practical-tips}
 
 - AIC and BIC can disagree; AIC favours larger models, BIC smaller. Choose by question: AIC for prediction, BIC for parsimony or near-true-model selection.
 - Compare only models fitted on the same data with the same response scale; AICs across log-transformed and raw outcomes are not comparable.
@@ -50,46 +52,43 @@ A reporting sentence: "Model 2 (mpg ~ wt + hp) had the lowest AIC at 164.0; Mode
 - AICc (corrected AIC) adds a finite-sample correction and is preferable for small $n$ relative to $k$; the formula is $\mathrm{AICc} = \mathrm{AIC} + 2k(k+1)/(n-k-1)$.
 - Reporting one fit's AIC alone is uninformative; always quote the comparison set.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-model-selection-aic-bic-r-packages-used}
 
 Base R `AIC()` and `BIC()`; `MuMIn::dredge()` and `model.avg()` for exhaustive subset selection and model averaging; `AICcmodavg::AICc()` for small-sample corrections; `performance::compare_performance()` for tidy multi-criterion comparison; `lmtest::lrtest()` for likelihood-ratio tests on nested models.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-model-selection-aic-bic-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-model-selection-aic-bic-assumptions) and
+[practical tips](#sec-chapters-07-regression-model-selection-aic-bic-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-model-selection-aic-bic-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

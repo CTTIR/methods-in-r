@@ -1,12 +1,14 @@
-## Introduction
+## Power for One-Way ANOVA {#sec-chapters-05-power-power-anova}
+
+### Introduction {#sec-chapters-05-power-power-anova-introduction}
 
 Power analysis for one-way ANOVA computes the per-group sample size needed to detect a specified pattern of differences among three or more group means with adequate probability. Where the two-sample $t$-test handles the simple two-group comparison, the one-way ANOVA generalises the comparison to any number of groups, and its power calculation must therefore handle a multi-group effect-size measure rather than a single mean difference. Cohen's $f$ is the standard standardised effect size; it captures the spread of true group means relative to the within-group standard deviation in a single number that maps cleanly to the non-central $F$ distribution under the alternative hypothesis.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-anova-prerequisites}
 
 A working understanding of one-way ANOVA, the omnibus $F$-test, the non-central $F$ distribution, and Cohen's $f$ as the standardised effect size for ANOVA.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-anova-theory}
 
 Cohen's $f$ for one-way ANOVA is
 
@@ -14,11 +16,11 @@ $$f = \frac{\sigma_{\text{between}}}{\sigma_{\text{within}}},$$
 
 the SD of the true group means divided by the within-group SD. The relationship to $\eta^2$ is $f = \sqrt{\eta^2 / (1 - \eta^2)}$. Cohen's conventional benchmarks are 0.10 (small), 0.25 (medium), and 0.40 (large). Under the alternative hypothesis, the omnibus $F$-statistic follows a non-central $F$ with $(k-1, N - k)$ degrees of freedom and non-centrality $\lambda = N f^2$, where $N$ is the total sample size across $k$ groups; power is the tail probability of this non-central $F$ above the critical value.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-anova-assumptions}
 
 The design is balanced (equal $n$ per group; modest imbalance is tolerable but reduces efficiency), within-group variances are approximately equal (homogeneity of variance), and residuals are approximately Normal. Welch-corrected variants accommodate variance heterogeneity at the cost of slightly more complex power calculations.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-anova-r-implementation}
 
 ```r
 library(pwr)
@@ -36,15 +38,15 @@ f_est <- sqrt(mean((group_means - grand_mean)^2)) / pooled_sd
 f_est
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-anova-output-results}
 
 `pwr.anova.test()` returns the per-group sample size required to achieve target power at specified $f$, $\alpha$, and number of groups. For $k = 4$ groups at medium effect $f = 0.25$, 45 per group (180 total) achieves 80 % power; computing $f$ directly from substantive expected group means and a pooled within-group SD ties the calculation to scientifically defensible assumptions.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-anova-interpretation}
 
 A reporting sentence: "With four groups and an anticipated Cohen's $f = 0.25$ (medium effect by Cohen's convention; equivalent to expected group means differing by approximately 0.5 within-group SDs), $n = 45$ participants per group (180 total) are required for 80 % power at $\alpha = 0.05$ using a one-way ANOVA. The protocol allocates 50 per group to allow for 10 % attrition, and pre-specified pairwise Tukey HSD comparisons follow if the omnibus is significant." Always describe $f$ in terms of the underlying group-mean structure.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-anova-practical-tips}
 
 - Compute Cohen's $f$ from substantive expectations about group means and within-group SD wherever possible, rather than relying on Cohen's medium/large benchmarks; tying the calculation to the actual expected pattern is far more defensible than invoking generic effect-size labels.
 - For unequal group variances, power is approximate under the standard formulas; use Welch-adjusted simulation (or `WebPower::wp.kanova()` with explicit variance specification) when heterogeneity is substantial.
@@ -53,31 +55,28 @@ A reporting sentence: "With four groups and an anticipated Cohen's $f = 0.25$ (m
 - Simulation-based power (`simr`, `Superpower`, `faux`) is more flexible for complex designs — unbalanced cells, heterogeneous variances, non-Normal outcomes, mixed-effects structures — and is increasingly the default approach in modern protocol development.
 - For factorial ANOVA (two or more between-subjects factors), the calculation extends naturally with effect sizes for each main effect and interaction; `Superpower::ANOVA_power()` is the standard tool.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-05-power-power-anova-r-packages-used}
 
 `pwr::pwr.anova.test()` for canonical balanced one-way ANOVA power; `WebPower::wp.kanova()` for an alternative interface and unequal-variance extensions; `Superpower::ANOVA_power()` and `Superpower::ANOVA_exact()` for factorial-ANOVA power simulation; `pwrss::pwrss.f.ancova()` for ANCOVA-power calculations; `simr::powerSim()` for general simulation-based ANOVA power.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-anova-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-anova-assumptions) and
+[practical tips](#sec-chapters-05-power-power-anova-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-anova-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

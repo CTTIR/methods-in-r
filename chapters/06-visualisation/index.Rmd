@@ -2,50 +2,50 @@
 
 The `ggplot2` grammar, panelled and faceted layouts, statistical graphics for regression and survival, and visual diagnostics. Style choices are biased toward what reproduces in print and what survives a black-and-white photocopy.
 
-This chapter contains **35 method pages** and **1 lab**. If you are not sure which method to read, return to [Chapter 0](../../ch00-find-your-method.Rmd) and follow the decision tree to the right node.
+This chapter contains **35 method pages** and **1 lab**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.
 
-## Method pages
+## Method pages {#sec-chapters-06-visualisation-index-method-pages}
 
 | Method | Source slug |
 |---|---|
-| [Aesthetics and Geoms](aesthetics-and-geoms.Rmd) | `aesthetics-and-geoms` |
-| [Annotations and Labels](annotations-and-labels.Rmd) | `annotations-and-labels` |
-| [Bar Charts](bar-charts.Rmd) | `bar-charts` |
-| [Bland-Altman Plots](bland-altman-plots.Rmd) | `bland-altman-plots` |
-| [Boxplots](boxplots.Rmd) | `boxplots` |
-| [Bubble Plots](bubble-plots.Rmd) | `bubble-plots` |
-| [Colour Palettes](colour-palettes.Rmd) | `colour-palettes` |
-| [Colour-Blind-Safe Plots](colour-blind-safe-plots.Rmd) | `colour-blind-safe-plots` |
-| [Contour Plots](contour-plots.Rmd) | `contour-plots` |
-| [Correlation Heatmaps](correlation-heatmaps.Rmd) | `correlation-heatmaps` |
-| [Density Plots](density-plots.Rmd) | `density-plots` |
-| [Dot Plots](dot-plots.Rmd) | `dot-plots` |
-| [Facets and Panels](facets-and-panels.Rmd) | `facets-and-panels` |
-| [Forest Plots (Visualisation)](forest-plots-viz.Rmd) | `forest-plots-viz` |
-| [Funnel Plots (Visualisation)](funnel-plots-viz.Rmd) | `funnel-plots-viz` |
-| [ggplot2 Themes](ggplot-themes.Rmd) | `ggplot-themes` |
-| [Heatmaps](heatmaps.Rmd) | `heatmaps` |
-| [Hexbin Plots](hexbin-plots.Rmd) | `hexbin-plots` |
-| [Histograms](histograms.Rmd) | `histograms` |
-| [Interactive Plots with ggiraph](interactive-ggiraph.Rmd) | `interactive-ggiraph` |
-| [Interactive Plots with plotly](interactive-plotly.Rmd) | `interactive-plotly` |
-| [Line Plots](line-plots.Rmd) | `line-plots` |
-| [Pairs Plots](pairs-plots.Rmd) | `pairs-plots` |
-| [Patchwork: Multi-Plot Composition](patchwork-composition.Rmd) | `patchwork-composition` |
-| [Raincloud Plots](raincloud-plots.Rmd) | `raincloud-plots` |
-| [Ridge Plots](ridge-plots.Rmd) | `ridge-plots` |
-| [ROC Curves](roc-curves-plot.Rmd) | `roc-curves-plot` |
-| [Saving and Exporting Figures](ggsave-and-export.Rmd) | `ggsave-and-export` |
-| [Scales and Coordinates](scales-and-coordinates.Rmd) | `scales-and-coordinates` |
-| [Scatter Plots](scatter-plots.Rmd) | `scatter-plots` |
-| [Stacked and Dodged Bars](stacked-dodged-bars.Rmd) | `stacked-dodged-bars` |
-| [Survival Curves](survival-curves-plot.Rmd) | `survival-curves-plot` |
-| [The Grammar of Graphics](grammar-of-graphics.Rmd) | `grammar-of-graphics` |
-| [Time Series Plots](time-series-plots.Rmd) | `time-series-plots` |
-| [Violin Plots](violin-plots.Rmd) | `violin-plots` |
+| [Aesthetics and Geoms](#sec-chapters-06-visualisation-aesthetics-and-geoms) | `aesthetics-and-geoms` |
+| [Annotations and Labels](#sec-chapters-06-visualisation-annotations-and-labels) | `annotations-and-labels` |
+| [Bar Charts](#sec-chapters-06-visualisation-bar-charts) | `bar-charts` |
+| [Bland-Altman Plots](#sec-chapters-06-visualisation-bland-altman-plots) | `bland-altman-plots` |
+| [Boxplots](#sec-chapters-06-visualisation-boxplots) | `boxplots` |
+| [Bubble Plots](#sec-chapters-06-visualisation-bubble-plots) | `bubble-plots` |
+| [Colour Palettes](#sec-chapters-06-visualisation-colour-palettes) | `colour-palettes` |
+| [Colour-Blind-Safe Plots](#sec-chapters-06-visualisation-colour-blind-safe-plots) | `colour-blind-safe-plots` |
+| [Contour Plots](#sec-chapters-06-visualisation-contour-plots) | `contour-plots` |
+| [Correlation Heatmaps](#sec-chapters-06-visualisation-correlation-heatmaps) | `correlation-heatmaps` |
+| [Density Plots](#sec-chapters-06-visualisation-density-plots) | `density-plots` |
+| [Dot Plots](#sec-chapters-06-visualisation-dot-plots) | `dot-plots` |
+| [Facets and Panels](#sec-chapters-06-visualisation-facets-and-panels) | `facets-and-panels` |
+| [Forest Plots (Visualisation)](#sec-chapters-06-visualisation-forest-plots-viz) | `forest-plots-viz` |
+| [Funnel Plots (Visualisation)](#sec-chapters-06-visualisation-funnel-plots-viz) | `funnel-plots-viz` |
+| [ggplot2 Themes](#sec-chapters-06-visualisation-ggplot-themes) | `ggplot-themes` |
+| [Heatmaps](#sec-chapters-06-visualisation-heatmaps) | `heatmaps` |
+| [Hexbin Plots](#sec-chapters-06-visualisation-hexbin-plots) | `hexbin-plots` |
+| [Histograms](#sec-chapters-06-visualisation-histograms) | `histograms` |
+| [Interactive Plots with ggiraph](#sec-chapters-06-visualisation-interactive-ggiraph) | `interactive-ggiraph` |
+| [Interactive Plots with plotly](#sec-chapters-06-visualisation-interactive-plotly) | `interactive-plotly` |
+| [Line Plots](#sec-chapters-06-visualisation-line-plots) | `line-plots` |
+| [Pairs Plots](#sec-chapters-06-visualisation-pairs-plots) | `pairs-plots` |
+| [Patchwork: Multi-Plot Composition](#sec-chapters-06-visualisation-patchwork-composition) | `patchwork-composition` |
+| [Raincloud Plots](#sec-chapters-06-visualisation-raincloud-plots) | `raincloud-plots` |
+| [Ridge Plots](#sec-chapters-06-visualisation-ridge-plots) | `ridge-plots` |
+| [ROC Curves](#sec-chapters-06-visualisation-roc-curves-plot) | `roc-curves-plot` |
+| [Saving and Exporting Figures](#sec-chapters-06-visualisation-ggsave-and-export) | `ggsave-and-export` |
+| [Scales and Coordinates](#sec-chapters-06-visualisation-scales-and-coordinates) | `scales-and-coordinates` |
+| [Scatter Plots](#sec-chapters-06-visualisation-scatter-plots) | `scatter-plots` |
+| [Stacked and Dodged Bars](#sec-chapters-06-visualisation-stacked-dodged-bars) | `stacked-dodged-bars` |
+| [Survival Curves](#sec-chapters-06-visualisation-survival-curves-plot) | `survival-curves-plot` |
+| [The Grammar of Graphics](#sec-chapters-06-visualisation-grammar-of-graphics) | `grammar-of-graphics` |
+| [Time Series Plots](#sec-chapters-06-visualisation-time-series-plots) | `time-series-plots` |
+| [Violin Plots](#sec-chapters-06-visualisation-violin-plots) | `violin-plots` |
 
-## Labs
+## Labs {#sec-chapters-06-visualisation-index-labs}
 
 | Lab |
 |---|
-| [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd) |
+| [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts) |

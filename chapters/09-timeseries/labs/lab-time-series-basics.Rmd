@@ -1,20 +1,22 @@
+## Week 2, Session 5 — Time series basics {#sec-chapters-09-timeseries-labs-lab-time-series-basics}
+
 <div class="callout callout-note">
 **Inference lab** using the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-09-timeseries-labs-lab-time-series-basics-learning-objectives}
 
 - Decompose a seasonal time series into trend, seasonal, and
   residual components.
 - Fit an ARIMA model automatically with `forecast::auto.arima`.
 - Detect a mean shift using `changepoint::cpt.mean`.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-labs-lab-time-series-basics-prerequisites}
 
 Regression; basic familiarity with the `ts` class.
 
-## Background
+### Background {#sec-chapters-09-timeseries-labs-lab-time-series-basics-background}
 
 A time series differs from cross-sectional data in one crucial way:
 observations close in time are correlated with one another, so
@@ -36,7 +38,7 @@ Seasonal adjustment removes only the regular period; detrending
 removes the slow evolution. Most anomalies you care about (an
 outbreak, an intervention) live in what remains.
 
-## Setup
+### Setup {#sec-chapters-09-timeseries-labs-lab-time-series-basics-setup}
 
 ```r
 library(tidyverse)
@@ -46,15 +48,16 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-09-timeseries-labs-lab-time-series-basics-1-hypothesis}
 
 A simulated monthly series has a linear trend, a yearly seasonal
 cycle, and a mean shift at month 80. Decomposition, ARIMA, and
 change-point detection should each recover an interpretable piece.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-09-timeseries-labs-lab-time-series-basics-2-visualise}
 
 ```r
+months <- 144
 t  <- seq_len(months)
 trend <- 0.08 * t
 season <- 4 * sin(2 * pi * t / 12)
@@ -66,29 +69,33 @@ autoplot(ts_y) +
   labs(x = "Year", y = "Simulated rate")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-09-timeseries-labs-lab-time-series-basics-3-assumptions}
 
 STL decomposition assumes the seasonal period is fixed and known.
 ARIMA assumes a linear, time-invariant generating process after
 differencing. `cpt.mean` assumes the variance is approximately
 constant — change-points in variance would need `cpt.var`.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-09-timeseries-labs-lab-time-series-basics-4-conduct}
 
 ```r
+decomp <- stl(ts_y, s.window = "periodic")
 autoplot(decomp)
 ```
 
 ```r
+fit_arima <- auto.arima(ts_y)
 fit_arima
 ```
 
 ```r
+fc <- forecast(fit_arima, h = 12)
 autoplot(fc) +
   labs(x = "Year", y = "Simulated rate")
 ```
 
 ```r
+cpt <- cpt.mean(as.numeric(ts_y), method = "PELT")
 cpts(cpt)
 ```
 
@@ -101,7 +108,7 @@ tibble(t = t, y = as.numeric(ts_y)) |>
   labs(x = "Month index", y = "Rate")
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-09-timeseries-labs-lab-time-series-basics-5-concluding-statement}
 
 > STL cleanly separated a linear trend, a 12-month seasonal cycle,
 > and a residual containing the simulated mean shift. `auto.arima`
@@ -111,7 +118,7 @@ tibble(t = t, y = as.numeric(ts_y)) |>
 > simulated truth of 80.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-09-timeseries-labs-lab-time-series-basics-common-pitfalls}
 
 - Using daily ARIMA on weekly-seasonal data without telling the
   model the period.
@@ -120,7 +127,7 @@ tibble(t = t, y = as.numeric(ts_y)) |>
 - Forecasting far beyond the observed period without widening the
   intervals in the report.
 
-## Further reading
+### Further reading {#sec-chapters-09-timeseries-labs-lab-time-series-basics-further-reading}
 
 - Hyndman RJ, Athanasopoulos G. *Forecasting: Principles and
   Practice*.
@@ -129,16 +136,17 @@ tibble(t = t, y = as.numeric(ts_y)) |>
 - Box GEP, Jenkins GM. *Time Series Analysis: Forecasting and
   Control*.
 
-## Session info
+### Session info {#sec-chapters-09-timeseries-labs-lab-time-series-basics-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-09-timeseries-labs-lab-time-series-basics-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-09-timeseries)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Time Series: Introduction {#sec-chapters-09-timeseries-time-series-introduction}
+
+### Introduction {#sec-chapters-09-timeseries-time-series-introduction-introduction}
 
 A time series is a sequence of observations indexed by time. Time-series analysis decomposes the series into four interpretable components — trend, seasonality, cyclicality, and noise — and models each. The decomposition framework underpins virtually every classical method: ARIMA models the noise after differencing out trend and seasonality; ETS captures all four components in a state-space form; Bayesian structural time series isolates them as latent processes. Understanding the four-component vocabulary is the foundational step before reaching for any specific model.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-time-series-introduction-prerequisites}
 
 A working understanding of basic statistics, the `ts` class in R, and the difference between cross-sectional and longitudinal data structures.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-time-series-introduction-theory}
 
 The classical additive decomposition is
 
@@ -16,11 +18,11 @@ with components: trend $T$ (long-term level change), seasonal $S$ (regular fixed
 
 In practice, the cycle is often combined with the trend (giving "trend-cycle" as one component), leaving three components in most decomposition implementations: trend-cycle, seasonal, and remainder.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-time-series-introduction-assumptions}
 
 Time order is preserved (no shuffling); regular sampling intervals (irregular sampling requires `zoo` / `xts` or modelling the spacing); the chosen decomposition (additive vs multiplicative) matches the data.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-time-series-introduction-r-implementation}
 
 ```r
 library(forecast)
@@ -37,15 +39,15 @@ stl_dec <- stl(log(AirPassengers), s.window = "periodic")
 plot(stl_dec)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-time-series-introduction-output-results}
 
 `decompose()` returns the classical additive or multiplicative decomposition; `stl()` returns the loess-based seasonal-trend decomposition. The four-panel plot shows observed, trend, seasonal, and remainder components stacked vertically.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-time-series-introduction-interpretation}
 
 A reporting sentence: "The monthly air-passenger series exhibited a clear upward trend (approximately 5 % per year), a stable annual seasonal cycle peaking in summer, and noise that grew with the level (motivating the log transformation). STL decomposition on the log scale produced trend, seasonal, and approximately white-noise remainder components." When introducing a time series, describe each component visible in the data.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-time-series-introduction-practical-tips}
 
 - Log-transform series whose variance grows with the level; the resulting decomposition on the log scale is additive and well-behaved.
 - STL (`stl()`) is more robust than classical `decompose()`; the latter is sensitive to outliers and assumes fixed seasonal patterns.
@@ -54,30 +56,27 @@ A reporting sentence: "The monthly air-passenger series exhibited a clear upward
 - For irregular sampling intervals, use `zoo` or `xts` time series; classical decomposition assumes regular sampling.
 - For multiple seasonalities (e.g. weekly + yearly in retail data), `forecast::mstl()` produces a multi-layer decomposition that single-seasonal STL cannot.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-time-series-introduction-r-packages-used}
 
 Base R `ts()`, `decompose()`, and `stl()`; `forecast` for the broader classical workflow including `auto.arima`, `forecast`, `mstl`; `tsibble`, `feasts`, `fable` for the modern tidyverts ecosystem; `zoo` and `xts` for irregularly-spaced time series.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-time-series-introduction-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-time-series-introduction-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-time-series-introduction-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-time-series-introduction-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

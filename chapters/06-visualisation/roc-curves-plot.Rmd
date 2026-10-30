@@ -1,12 +1,14 @@
-## Introduction
+## ROC Curves {#sec-chapters-06-visualisation-roc-curves-plot}
+
+### Introduction {#sec-chapters-06-visualisation-roc-curves-plot-introduction}
 
 A receiver operating characteristic (ROC) curve traces a binary classifier's sensitivity against $1 -$ specificity as the decision threshold sweeps from one end of the score range to the other. It is the canonical diagnostic-performance figure in medicine and machine learning, summarising the trade-off between true-positive and false-positive rates without committing to a single threshold. The area under the curve (AUC) condenses the curve into one number, equal to the probability that the classifier ranks a randomly chosen positive case higher than a randomly chosen negative one.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-roc-curves-plot-prerequisites}
 
 A working understanding of sensitivity, specificity, decision thresholds, and the difference between calibration and discrimination in classifier evaluation.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-roc-curves-plot-theory}
 
 For a continuous score $s$ and a binary outcome $y$, the ROC curve plots
 
@@ -14,11 +16,11 @@ $$\bigl(\mathrm{FPR}(t), \mathrm{TPR}(t)\bigr) = \bigl(P(s > t \mid y = 0), P(s 
 
 for thresholds $t$. A perfect classifier passes through $(0, 1)$; a random one follows the diagonal. The AUC equals the Mann-Whitney U statistic divided by the sample sizes; it lies in $[0, 1]$ with $0.5$ representing chance and $1$ a perfect rank-ordering. Conventional benchmarks: AUC $> 0.7$ acceptable, $> 0.8$ good, $> 0.9$ excellent. DeLong's test compares two AUCs with correlated samples.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-roc-curves-plot-assumptions}
 
 A binary outcome and a continuous (or ordinal) score. The ROC curve is invariant to monotone transformations of the score, so calibration is irrelevant to the curve itself; thresholding decisions, however, do depend on calibration.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-roc-curves-plot-r-implementation}
 
 ```r
 library(pROC); library(plotROC); library(ggplot2)
@@ -41,15 +43,15 @@ ggplot(df, aes(d = D, m = score)) +
   labs(title = paste0("AUC = ", round(auc(roc_obj), 3)))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-roc-curves-plot-output-results}
 
 A monotone curve rising from $(0, 0)$ toward $(1, 1)$, with optional threshold labels at selected points and the AUC reported either in the title or via `ci.auc()` for its 95 % confidence interval. The `plotROC` package adds `ggplot2`-native styling; `pROC::plot()` produces a fast base-R version.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-roc-curves-plot-interpretation}
 
 A reporting sentence: "The classifier achieved an AUC of 0.85 (95 % CI 0.79 to 0.91), indicating good discrimination; at the Youden-optimal threshold of 0.42, sensitivity was 0.78 and specificity was 0.81." Always pair the AUC with its confidence interval and at least one operating point so readers can judge clinical utility.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-roc-curves-plot-practical-tips}
 
 - Report the AUC with its 95 % CI, not just a point estimate; the bootstrap interval (`ci.auc(roc_obj)`) handles the typical correlated-sample structure.
 - Compare two ROC curves with DeLong's test (`pROC::roc.test`); pairwise AUC differences with $p$-values are the standard way to claim one classifier outperforms another.
@@ -58,30 +60,27 @@ A reporting sentence: "The classifier achieved an AUC of 0.85 (95 % CI 0.79 to 0
 - Always draw the diagonal reference line ($y = x$); without it, readers cannot judge how far above chance the classifier is.
 - For threshold selection, mark the Youden index, the equal-error-rate point, or a clinically motivated sensitivity / specificity target on the curve and quote its threshold.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-roc-curves-plot-r-packages-used}
 
 `pROC` for ROC objects, AUC, confidence intervals, and DeLong's test; `plotROC` for `ggplot2`-native ROC layers (`geom_roc()`, `style_roc()`); `ROCit` for an alternative API with bootstrap CIs; `yardstick` for tidy classifier metrics within the `tidymodels` ecosystem.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-roc-curves-plot-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-roc-curves-plot-assumptions) and
+[practical tips](#sec-chapters-06-visualisation-roc-curves-plot-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-roc-curves-plot-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

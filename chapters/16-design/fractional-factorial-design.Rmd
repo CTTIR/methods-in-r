@@ -1,12 +1,14 @@
-## Introduction
+## Fractional Factorial Designs {#sec-chapters-16-design-fractional-factorial-design}
+
+### Introduction {#sec-chapters-16-design-fractional-factorial-design-introduction}
 
 Fractional factorial designs run only a carefully chosen subset of a full $2^k$ factorial, accepting controlled confounding (also called aliasing) among effects in exchange for dramatic reductions in run count. They are the standard screening tool in industrial DoE: when many candidate factors must be evaluated and only a few are expected to matter, a fractional factorial sifts the active factors from the inert ones at a fraction of the cost of a full factorial. The trade-off is that some pairs (or larger groups) of effects share their estimating contrast and cannot be disentangled from the data alone, so design selection requires careful attention to which aliasing patterns are scientifically tolerable.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-fractional-factorial-design-prerequisites}
 
 A working understanding of full $2^k$ factorial designs, the concept of confounding among effect contrasts, and the Box–Hunter–Hunter sparsity-of-effects principle.
 
-## Theory
+### Theory {#sec-chapters-16-design-fractional-factorial-design-theory}
 
 A $2^{k-p}$ design uses $2^{k-p}$ runs — a $1/2^p$-fraction of the corresponding full $2^k$. The choice of $p$ generators (defining relations among the factor columns) determines which effects are aliased with which. The design's **resolution** is the length of the shortest word in the defining relation:
 
@@ -16,11 +18,11 @@ A $2^{k-p}$ design uses $2^{k-p}$ runs — a $1/2^p$-fraction of the correspondi
 
 Higher resolution generally requires more runs; the design choice is a balance between run economy and inferential cleanliness.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-fractional-factorial-design-assumptions}
 
 The sparsity-of-effects principle holds: lower-order effects (main, two-factor) dominate higher-order interactions, so aliasing among higher-order effects is acceptable. Each run is independent, residual error is approximately Normal with constant variance, and the chosen resolution is appropriate to the scientific question.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-fractional-factorial-design-r-implementation}
 
 ```r
 library(FrF2)
@@ -37,15 +39,15 @@ fit <- lm(y ~ (A + B + C + D + E)^2, data = frac)
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-fractional-factorial-design-output-results}
 
 `FrF2()` constructs the fractional factorial layout with the requested resolution; `design.info()` documents the alias structure explicitly so users see which effects are confounded with which. The regression fit returns coefficients for all main effects and two-factor interactions (the latter representing the joint estimate of any aliased pair), supporting standard $t$-tests on each.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-fractional-factorial-design-interpretation}
 
 A reporting sentence: "The $2^{5-1}$ resolution-V design used 16 runs — half of the full 32-run factorial — with main effects clear of all two-factor interactions and only the highest-order alias chain $ABCDE = I$. Significant effects were A (2.0, $p < 0.001$), B (1.5, $p = 0.001$), C ($-0.8$, $p = 0.02$), and the AB interaction (0.6, $p = 0.04$); factors D and E were inactive. The active subset $\{A, B, C\}$ will be followed up in a full factorial with replicated centre points to characterise curvature." Always document the alias structure.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-fractional-factorial-design-practical-tips}
 
 - Use resolution IV or V for screening whenever enough runs are available; resolution III is acceptable only for very early screening when interactions are confidently negligible and clean main-effect estimates are not essential.
 - Resolution III Plackett–Burman designs are more economical (any number of factors that is a multiple of 4) but confound main effects with two-factor interactions; follow them up with a fold-over fraction or a higher-resolution design before drawing causal conclusions.
@@ -54,42 +56,39 @@ A reporting sentence: "The $2^{5-1}$ resolution-V design used 16 runs — half o
 - Include centre points in fractional factorials whenever feasible; they enable a curvature test against the average of the factorial corners and provide pure-error degrees of freedom for lack-of-fit testing.
 - Always document the alias chain in the methods section; reviewers will check it, and an undocumented aliasing pattern is a recurring source of misinterpreted DoE results.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-fractional-factorial-design-r-packages-used}
 
 `FrF2` for canonical fractional-factorial construction with resolution control, alias-structure documentation, and Daniel-plot diagnostics; `DoE.base` for general orthogonal-array construction including fractional factorials; `BsMD` for Bayesian screening of fractional designs; `unrepx` for unreplicated-design effect identification (Lenth, half-Normal, Box-Meyer); `daewr` for textbook companion datasets.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-fractional-factorial-design-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-fractional-factorial-design-assumptions) and
+[practical tips](#sec-chapters-16-design-fractional-factorial-design-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-fractional-factorial-design-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

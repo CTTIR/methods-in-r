@@ -1,12 +1,14 @@
-## Introduction
+## Conditional Survival {#sec-chapters-11-survival-conditional-survival}
+
+### Introduction {#sec-chapters-11-survival-conditional-survival-introduction}
 
 Conditional survival is the probability of surviving an additional time $t$ given that a patient has already survived to time $s$. It answers the clinically relevant question that absolute survival cannot: a five-year survival probability of 30 % at diagnosis says little to a patient who has already lived three years. The conditional five-year-from-now estimate may be 70 % or higher, dramatically updating the prognosis. Survivorship clinics, oncology long-term follow-up, and patient counselling all rely on conditional rather than unconditional survival.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-conditional-survival-prerequisites}
 
 A working understanding of the survival function $S(t)$, conditional probability, and the Kaplan-Meier estimator.
 
-## Theory
+### Theory {#sec-chapters-11-survival-conditional-survival-theory}
 
 By the definition of conditional probability,
 
@@ -14,11 +16,11 @@ $$\mathrm P(T > t + s \mid T > s) = \frac{\mathrm P(T > t + s)}{\mathrm P(T > s)
 
 A patient who has survived $s$ years is now in the risk set at $s$; their next-$t$-year survival is the ratio of survival probabilities. For Kaplan-Meier estimates, this is computed from $\hat S(s)$ and $\hat S(t + s)$ directly. Confidence intervals require variance propagation through the ratio; the log or log-log transformation gives intervals that respect the $[0, 1]$ bounds.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-conditional-survival-assumptions}
 
 A reliable Kaplan-Meier or parametric survival estimate at both $s$ and $t + s$; in practice this means sufficient follow-up so that $\hat S(t + s)$ is not based on a tiny remaining cohort.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-conditional-survival-r-implementation}
 
 ```r
 library(survival)
@@ -35,15 +37,15 @@ cond_surv <- times$surv[2] / times$surv[1]
 cond_surv
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-conditional-survival-output-results}
 
 The ratio of two KM survival estimates at chosen landmark times. For confidence intervals, transform onto the log-log scale, compute SEs by the delta method, and back-transform. The `condsurv` package automates the computation including bootstrap intervals.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-conditional-survival-interpretation}
 
 A reporting sentence: "Unconditional one-year survival was 48 %; conditional on having survived one year, the probability of surviving an additional year was 66 % (95 % CI 56 % to 75 %); conditional on having survived two years, the next-year survival rose to 78 %." Always report the landmark time $s$ explicitly; conditional survival is meaningless without it.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-conditional-survival-practical-tips}
 
 - Report conditional survival at clinically meaningful landmarks: one-year, five-year, ten-year survivor checkpoints in oncology, post-transplant 90-day survival in transplantation.
 - `condsurv` automates the computation and produces clean tables and plots; it handles confidence intervals via the log-log transformation by default.
@@ -52,34 +54,30 @@ A reporting sentence: "Unconditional one-year survival was 48 %; conditional on 
 - Conditional survival is particularly useful in patient counselling because it answers the question patients actually ask: "Given that I'm still alive, how much longer can I expect to live?" rather than the population-level survival reported at diagnosis.
 - Pair conditional-survival reports with the underlying KM curve so readers can see how the conditional estimate evolves across the cohort's experience.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-conditional-survival-r-packages-used}
 
 `survival` for the Kaplan-Meier baseline; `condsurv` for tabular conditional survival with CIs; `survminer::ggsurvplot()` for KM curves to display alongside conditional summaries; `dynpred` and `JM` for dynamic prediction beyond the simple ratio of survival probabilities.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-conditional-survival-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-conditional-survival-assumptions) and [practical tips](#sec-chapters-11-survival-conditional-survival-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-conditional-survival-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

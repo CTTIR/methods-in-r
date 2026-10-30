@@ -1,12 +1,14 @@
-## Introduction
+## Parallel-Group RCT Design {#sec-chapters-14-clinical-rct-design-parallel}
+
+### Introduction {#sec-chapters-14-clinical-rct-design-parallel-introduction}
 
 The parallel-group randomised controlled trial (RCT) is the gold standard for evaluating interventions. Participants are randomly allocated to one of two (or more) arms -- typically a new intervention vs control -- and followed for a pre-specified outcome. Randomisation balances known and unknown confounders in expectation; blinding further reduces bias.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-rct-design-parallel-prerequisites}
 
 Randomisation; hypothesis testing; sample-size calculation.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-rct-design-parallel-theory}
 
 Essential elements:
 - **Primary outcome** (continuous, binary, time-to-event) with a clinically meaningful effect size.
@@ -17,11 +19,11 @@ Essential elements:
 
 Primary analysis is typically intent-to-treat (ITT), comparing groups as randomised.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-rct-design-parallel-assumptions}
 
 Participants are exchangeable post-randomisation; allocation is fully concealed; outcome assessment is blinded; follow-up is complete or MAR.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-rct-design-parallel-r-implementation}
 
 ```r
 library(pwr)
@@ -45,15 +47,15 @@ covar <- rnorm(2 * n_per_arm)
 summary(lm(y ~ arm + covar))$coefficients
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-rct-design-parallel-output-results}
 
 Sample size ~64 per arm for 80 % power; ITT t-test recovers the effect; ANCOVA-adjusted analysis gives a similar point estimate with smaller SE when the covariate is prognostic.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-rct-design-parallel-interpretation}
 
 "The trial randomised 128 participants 1:1 to intervention vs control; the intervention arm showed a 0.52 SD improvement (95 % CI 0.18-0.86, p = 0.003) on the primary outcome, analysed by ANCOVA adjusting for baseline value."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-rct-design-parallel-practical-tips}
 
 - Register the protocol and SAP **before** enrolment (clinicaltrials.gov, EUDRACT).
 - Pre-specify the primary outcome and analysis; secondary outcomes are exploratory.
@@ -63,27 +65,24 @@ Sample size ~64 per arm for 80 % power; ITT t-test recovers the effect; ANCOVA-a
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-rct-design-parallel-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-rct-design-parallel-assumptions) and
+[practical tips](#sec-chapters-14-clinical-rct-design-parallel-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-rct-design-parallel-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

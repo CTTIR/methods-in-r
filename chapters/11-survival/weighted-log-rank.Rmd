@@ -1,12 +1,14 @@
-## Introduction
+## Weighted Log-Rank Tests {#sec-chapters-11-survival-weighted-log-rank}
+
+### Introduction {#sec-chapters-11-survival-weighted-log-rank-introduction}
 
 The standard log-rank test gives every event time equal weight in the comparison between groups. That is the optimal weighting under proportional hazards but loses power when the difference between groups is concentrated at one end of follow-up — early differences that wane (typical of immunotherapy run-in effects), late differences that emerge after a delay (typical of immune-checkpoint inhibitors), or crossing-curve patterns. Weighted log-rank tests recover power in these settings by emphasising the time region where the difference is expected.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-weighted-log-rank-prerequisites}
 
 A working understanding of the log-rank test, the proportional-hazards assumption, and the relationship between hazard ratios and survival curves at different follow-up times.
 
-## Theory
+### Theory {#sec-chapters-11-survival-weighted-log-rank-theory}
 
 The general form of a weighted log-rank test is
 
@@ -21,11 +23,11 @@ where $O_j - E_j$ is the observed-minus-expected event count at $t_j$ and $V_j$ 
 
 Combination tests (max-combo) compute several weights simultaneously and apply a multiple-testing correction; this preserves Type I control while gaining power across a range of alternative shapes.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-weighted-log-rank-assumptions}
 
 Independent non-informative censoring. The chosen weight reflects the hazard pattern actually expected; post-hoc weight selection inflates Type I error and is statistical malpractice.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-weighted-log-rank-r-implementation}
 
 ```r
 library(survival)
@@ -40,15 +42,15 @@ survdiff(Surv(time, status) ~ sex, data = lung, rho = 1)
 # Fleming-Harrington via nphRCT or similar package (conceptually)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-weighted-log-rank-output-results}
 
 `survdiff()` reports the chi-squared statistic, degrees of freedom, $p$-value, and observed-vs-expected counts under the chosen weight (`rho` argument). The `nph` and `nphRCT` packages add Fleming-Harrington $G^{\rho, \gamma}$ tests and combination tests with formal Type I control.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-weighted-log-rank-interpretation}
 
 A reporting sentence: "The pre-specified Peto-Peto weighted log-rank test rejected the null of equal survival ($\chi^2_1 = 12.8$, $p < 0.001$); the standard log-rank produced a similar conclusion ($\chi^2_1 = 10.3$, $p = 0.001$). The Peto-Peto weighting was chosen a priori based on prior evidence that the treatment effect is concentrated in the first 18 months." Always state the weight in advance and justify it; weight-shopping is the most common abuse of these tests.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-weighted-log-rank-practical-tips}
 
 - Pre-specify the weighting scheme in the protocol; switching weights after seeing the data inflates Type I error far above the nominal level.
 - For trials with expected delayed treatment effects (immunotherapy), Fleming-Harrington $G^{0, 1}$ or a max-combo test is increasingly the standard.
@@ -57,34 +59,30 @@ A reporting sentence: "The pre-specified Peto-Peto weighted log-rank test reject
 - Inspect the Kaplan-Meier curve before choosing a weight; a clearly delayed effect rules out the standard log-rank as the primary test.
 - Modern immuno-oncology trials routinely pre-specify a max-combo or RMST primary analysis; the era of one-size-fits-all log-rank reporting is closing.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-weighted-log-rank-r-packages-used}
 
 `survival` for `survdiff()` with `rho` weighting; `nph` and `nphRCT` for Fleming-Harrington $G^{\rho, \gamma}$ tests and max-combo statistics; `survRM2` for RMST as an alternative summary; `coin` for permutation-based exact weighted log-rank tests.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-weighted-log-rank-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-weighted-log-rank-assumptions) and [practical tips](#sec-chapters-11-survival-weighted-log-rank-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-weighted-log-rank-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

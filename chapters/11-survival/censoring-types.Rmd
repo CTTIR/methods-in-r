@@ -1,12 +1,14 @@
-## Introduction
+## Censoring Types {#sec-chapters-11-survival-censoring-types}
+
+### Introduction {#sec-chapters-11-survival-censoring-types-introduction}
 
 Censoring is the defining feature of survival data: the exact event time is unknown but partially observed, because follow-up ended, the event was screened periodically, or the subject was lost to observation. Handling censoring correctly is what separates survival analysis from ordinary regression on time-to-event endpoints. The wrong censoring assumption is one of the most consequential analytic errors in clinical studies, so identifying the censoring type and choosing methods that respect it is the first step of any time-to-event workflow.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-censoring-types-prerequisites}
 
 A working understanding of time-to-event concepts, follow-up windows, and the difference between an event and an end-of-follow-up timestamp.
 
-## Theory
+### Theory {#sec-chapters-11-survival-censoring-types-theory}
 
 The main censoring categories:
 
@@ -21,11 +23,11 @@ Two design-based subtypes of right censoring:
 
 **Informative censoring** is the most dangerous failure mode: the censoring mechanism is related to the underlying event risk (e.g., subjects drop out because they are doing badly). It violates the independence assumption that nearly every standard method requires and can severely bias estimates without warning.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-censoring-types-assumptions}
 
 Non-informative censoring conditional on covariates included in the model. If censoring depends on prognosis through unobserved variables, sensitivity analyses (informative-censoring bounds, multiple imputation) are needed.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-censoring-types-r-implementation}
 
 ```r
 library(survival)
@@ -41,15 +43,15 @@ Surv(time = c(0, 5, 10), time2 = c(5, 10, 15), event = c(0, 0, 1),
      type = "counting")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-censoring-types-output-results}
 
 `Surv` objects display censoring through a `+` suffix on right-censored times, brackets for interval-censored intervals, and pairs for counting-process intervals. Every downstream survival function (`survfit`, `coxph`, `survreg`) takes a `Surv` object as the response and dispatches on its censoring type.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-censoring-types-interpretation}
 
 A reporting sentence: "Of 228 patients, 165 (72 %) experienced the event and 63 (28 %) were administratively right-censored at study end (median follow-up 310 days, range 5 to 1,022). No interval-censored or left-censored events were present. Censoring is assumed non-informative; a sensitivity analysis under tipping-point assumptions confirmed conclusions are robust to plausible departures." Always quantify censoring and discuss its assumed mechanism.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-censoring-types-practical-tips}
 
 - Right censoring is the default; specifying other types requires the `type` argument to `Surv()`.
 - Interval-censored data require `icenReg` or `survival` with `Surv(L, R, type = "interval2")`; treating intervals as exact event times biases estimates.
@@ -58,34 +60,30 @@ A reporting sentence: "Of 228 patients, 165 (72 %) experienced the event and 63 
 - Plot censoring patterns: a histogram of censoring times alongside event times often reveals administrative cut-offs and dropout clusters that affect interpretation.
 - For competing risks, treating competing events as censoring is itself a censoring choice; cumulative incidence analysis avoids it.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-censoring-types-r-packages-used}
 
 `survival` for `Surv()` with all censoring types and the standard estimators; `icenReg` for interval-censored regression; `cmprsk` and `tidycmprsk` for competing-risks alternatives; `epi` for tools targeted at epidemiological censoring scenarios.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-censoring-types-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-censoring-types-assumptions) and [practical tips](#sec-chapters-11-survival-censoring-types-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-censoring-types-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

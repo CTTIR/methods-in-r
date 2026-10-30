@@ -1,12 +1,14 @@
-## Introduction
+## Gibbs Sampling {#sec-chapters-10-bayesian-gibbs-sampling}
+
+### Introduction {#sec-chapters-10-bayesian-gibbs-sampling-introduction}
 
 Gibbs sampling is one of the oldest practical MCMC algorithms and remains an instructive special case of more general samplers. It exploits a structural property of multidimensional posteriors: even when the joint distribution is intractable, the conditional distribution of one parameter given all others can often be derived in closed form. Cycling through the parameters and updating each from its full conditional generates a Markov chain whose stationary distribution is the joint posterior, with no acceptance step and no tuning of proposals.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-gibbs-sampling-prerequisites}
 
 A working understanding of MCMC, conditional probability, and the conjugate-prior structure that makes full conditionals tractable for canonical models (Normal–Normal, Beta–Binomial, Gamma–Poisson, Dirichlet–Multinomial).
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-gibbs-sampling-theory}
 
 For a joint posterior $p(\theta_1, \dots, \theta_K \mid y)$, the algorithm initialises at some $\theta^{(0)}$ and, at iteration $t$, sweeps through the parameters in order:
 
@@ -14,11 +16,11 @@ $$\theta_k^{(t)} \sim p\bigl(\theta_k \mid \theta_1^{(t)}, \dots, \theta_{k-1}^{
 
 for $k = 1, \dots, K$. Under standard regularity conditions, the chain is irreducible and aperiodic and converges to the joint posterior. Each update is a draw from a one-dimensional or low-dimensional conditional, often via standard distribution libraries; no Metropolis acceptance is needed because the proposal *is* the conditional. When some conditionals are not available analytically, the affected blocks are updated with a Metropolis step embedded inside the Gibbs sweep ("Metropolis-within-Gibbs").
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-gibbs-sampling-assumptions}
 
 Every full conditional must be either a recognisable distribution or a distribution one can sample from with a Metropolis step. Strongly correlated parameters update slowly under a coordinate-wise sweep; this is the central pathology of Gibbs and the reason HMC is now preferred for general continuous models.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-gibbs-sampling-r-implementation}
 
 ```r
 set.seed(2026)
@@ -52,15 +54,15 @@ c(mean_mu = mean(mu_chain[-(1:1000)]),
   mean_sigma = mean(sqrt(sig2_chain[-(1:1000)])))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-gibbs-sampling-output-results}
 
 The chain produces 5,000 draws of $\mu$ and $\sigma^2$. Discarding the first 1,000 as burn-in and summarising the rest gives posterior means for $\mu$ near 3.1 and for $\sigma$ near 2.0 — close to the data-generating parameters and within the expected Monte Carlo error.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-gibbs-sampling-interpretation}
 
 A reporting sentence: "A Gibbs sampler for the conjugate Normal–Inverse-Gamma model produced 4,000 post-burn-in draws with posterior mean $\mu = 3.10$ (95 % credible interval 2.55 to 3.65) and posterior mean $\sigma = 2.01$ (95 % CrI 1.65 to 2.49)." For pedagogical examples, also report the rejection rate (Gibbs has none) and the autocorrelation function so readers can see the per-iteration efficiency.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-gibbs-sampling-practical-tips}
 
 - Block-update correlated parameters jointly when the conditional is available in closed form; this reduces autocorrelation dramatically compared with coordinate-wise updates.
 - For non-conjugate components, embed a Metropolis step (Metropolis-within-Gibbs); JAGS does this automatically when it cannot resolve a node analytically.
@@ -68,31 +70,28 @@ A reporting sentence: "A Gibbs sampler for the conjugate Normal–Inverse-Gamma 
 - For continuous, smooth posteriors of moderate-to-high dimension, HMC (Stan) typically mixes far better than Gibbs because it follows the gradient instead of cycling through coordinates.
 - Gibbs remains the algorithm of choice for discrete-state-space models, latent-allocation samplers, and any setting where conjugacy makes a single sweep almost free.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-gibbs-sampling-r-packages-used}
 
 Base R for hand-coded Gibbs, `rjags` and `nimble` for declarative model specification with automatic Gibbs–Metropolis dispatch, and `coda` for diagnostic plots and convergence statistics on the resulting chains.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-gibbs-sampling-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-gibbs-sampling-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-gibbs-sampling-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-gibbs-sampling-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

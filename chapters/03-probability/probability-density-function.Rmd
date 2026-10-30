@@ -1,12 +1,14 @@
-## Introduction
+## The Probability Density Function {#sec-chapters-03-probability-probability-density-function}
+
+### Introduction {#sec-chapters-03-probability-probability-density-function-introduction}
 
 For a continuous random variable, probability is distributed smoothly across the support rather than concentrated on countable points. The **probability density function (PDF)** encodes this distribution: integrating the PDF over a set gives the probability that the variable lands in that set.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-probability-density-function-prerequisites}
 
 Calculus (integration) and the concept of a continuous random variable.
 
-## Theory
+### Theory {#sec-chapters-03-probability-probability-density-function-theory}
 
 A continuous random variable $X$ has a PDF $f_X$ if, for every measurable set $A$,
 
@@ -28,11 +30,11 @@ Useful relationships:
 
 In R, each standard continuous distribution has a `d*()` function returning its PDF.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-probability-density-function-assumptions}
 
 The variable is continuous (absolutely continuous with respect to Lebesgue measure). Mixed or discrete variables do not have ordinary PDFs (though the mixed case has a generalised density with respect to a mixed measure).
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-probability-density-function-r-implementation}
 
 ```r
 library(ggplot2)
@@ -63,7 +65,7 @@ integrate(function(x) x * dnorm(x), -Inf, Inf)        # E[X]
 integrate(function(x) x^2 * dnorm(x), -Inf, Inf)      # E[X^2]
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-probability-density-function-output-results}
 
 ```
 1 with absolute error < 9.4e-05
@@ -78,11 +80,11 @@ integrate(function(x) x^2 * dnorm(x), -Inf, Inf)      # E[X^2]
 
 Integrating the standard normal PDF over $[-1.96, 1.96]$ gives 0.95 -- the well-known central probability -- and the `pnorm` difference recovers the same value via the CDF.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-probability-density-function-interpretation}
 
 For applied purposes, a PDF is visualised by its curve; probabilities are computed via `p*()` functions in R rather than by explicit integration. When reporting a continuous distribution in a paper, the density plot, mean, SD, and median are the standard summaries.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-probability-density-function-practical-tips}
 
 - Density at a point is not probability; do not compare $f(x_1)$ to $f(x_2)$ as probabilities of outcomes 1 and 2. Compare $P(X \in (x_1 - h, x_1 + h))$ for small $h$ instead.
 - The density can be unbounded (e.g., Gamma with shape $< 1$ near $0$); integrability, not boundedness, is what matters.
@@ -92,26 +94,23 @@ For applied purposes, a PDF is visualised by its curve; probabilities are comput
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-probability-density-function-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-probability-density-function-assumptions) and
+[practical tips](#sec-chapters-03-probability-probability-density-function-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-probability-density-function-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

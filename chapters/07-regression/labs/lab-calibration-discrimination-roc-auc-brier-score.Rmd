@@ -1,9 +1,11 @@
+## Week 3, Session 5 — Calibration, discrimination, ROC/AUC, Brier score {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-learning-objectives}
 
 - Separate discrimination (AUC) from calibration and from overall
   performance (Brier score).
@@ -12,11 +14,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Understand that a high AUC does not imply well-calibrated
   probabilities.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-prerequisites}
 
 Logistic regression.
 
-## Background
+### Background {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-background}
 
 A risk prediction model should do three things well: separate events
 from non-events (discrimination), produce predicted probabilities that
@@ -40,7 +42,7 @@ observed event rate in each bin against the mean predicted
 probability. A 45° reference line is perfect calibration. Smoothed
 (LOESS) calibration curves are an alternative in larger samples.
 
-## Setup
+### Setup {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-setup}
 
 ```r
 library(tidyverse)
@@ -51,15 +53,16 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-1-hypothesis}
 
 Using `MASS::Pima.tr` (train) and `MASS::Pima.te` (test), fit a
 logistic regression and evaluate its discrimination, calibration, and
 Brier score.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-2-visualise}
 
 ```r
+train <- as_tibble(Pima.tr) |> mutate(y = as.integer(type == "Yes"))
 test  <- as_tibble(Pima.te) |> mutate(y = as.integer(type == "Yes"))
 
 fit <- glm(y ~ glu + bmi + age + ped, data = train, family = binomial)
@@ -70,16 +73,17 @@ ggplot(test, aes(p, fill = factor(y))) +
   labs(x = "Predicted probability", y = "Count", fill = "Diabetes")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-3-assumptions}
 
 The usual logistic-regression assumptions for the training fit;
 evaluation is on held-out data.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-4-conduct}
 
 Discrimination:
 
 ```r
+roc_obj <- roc(test$y, test$p, quiet = TRUE)
 auc(roc_obj)
 ci.auc(roc_obj)
 
@@ -89,6 +93,7 @@ plot(roc_obj, main = sprintf("ROC — AUC = %.2f", auc(roc_obj)))
 Calibration (decile binning):
 
 ```r
+cal <- test |>
   mutate(bin = ntile(p, 10)) |>
   group_by(bin) |>
   summarise(predicted = mean(p), observed = mean(y), n = n())
@@ -105,10 +110,11 @@ ggplot(cal, aes(predicted, observed)) +
 Brier score:
 
 ```r
+brier <- mean((test$p - test$y)^2)
 brier
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-5-concluding-statement}
 
 > On the held-out test set (*n* = `nrow(test)`), the four-predictor
 > logistic model achieved AUC =
@@ -118,28 +124,29 @@ brier
 > `round(brier, 3)`. Calibration by decile was close to the 45° line.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-common-pitfalls}
 
 - Reporting AUC on the training set without cross-validation.
 - Using accuracy at a 0.5 threshold when the prevalence is not 0.5.
 - Treating a single deciles-calibration plot as a formal test.
 
-## Further reading
+### Further reading {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-further-reading}
 
 - Steyerberg EW. *Clinical Prediction Models*.
 - Harrell FE. *Regression Modeling Strategies*, ch. 10.
 - Van Calster B et al. (2019), *Calibration: the Achilles heel…*
 
-## Session info
+### Session info {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-07-regression)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

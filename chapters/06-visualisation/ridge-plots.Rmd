@@ -1,20 +1,22 @@
-## Introduction
+## Ridge Plots {#sec-chapters-06-visualisation-ridge-plots}
+
+### Introduction {#sec-chapters-06-visualisation-ridge-plots-introduction}
 
 A ridge plot stacks kernel-density curves for multiple groups vertically with a small overlap, evoking the cover of a 1979 Joy Division album (hence the alternative name "joy plot"). The idiom is particularly effective for comparing the shape of distributions across many ordered groups — months of the year, dose levels, time periods, ranked categories — where a panel of separate density plots would be too sparse and a violin plot would lose detail in the overlap.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-ridge-plots-prerequisites}
 
 A working knowledge of kernel density estimation, grouped distributional comparisons, and `ggplot2`'s aesthetic mappings.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-ridge-plots-theory}
 
 Each group's density curve is computed independently and then offset vertically by the group's position on the y-axis. The `scale` argument controls how much the curves overlap: a `scale` of 1 means the tallest curve in each group exactly reaches the next baseline, while values above 1 produce overlap and values below 1 produce gaps. The fill aesthetic can encode the group itself (categorical fill) or be mapped to the x-value via `after_stat(x)` to produce gradient fills that highlight quantiles or thresholds. The horizontal axis carries the variable of interest; the vertical axis carries group identity, ideally ordered.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-ridge-plots-assumptions}
 
 A continuous outcome variable, a categorical (or ordered) grouping variable, and at least a few dozen observations per group so that the kernel density estimate is meaningful. With fewer than 20–30 observations per group, ridge plots can produce noisy, misleading curves.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-ridge-plots-r-implementation}
 
 ```r
 library(ggplot2); library(ggridges)
@@ -33,15 +35,15 @@ ggplot(diamonds, aes(price, cut, fill = after_stat(x))) +
   theme_ridges()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-ridge-plots-output-results}
 
 Two ridge plots: the iris data showing three species along the sepal-length axis with translucent fills, and the diamonds data showing the price distribution per cut on a log scale with a gradient fill that encodes price itself. The second example is a particularly good use of ridges — five ordered groups, log-transformed x, and a gradient fill that emphasises the right tail.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-ridge-plots-interpretation}
 
 A reporting sentence (figure caption): "Density of log-price per cut for 53,940 diamonds, computed via kernel density estimation with default bandwidth; fill encodes log price to highlight quantile structure across cuts." Mention bandwidth and any transformations because both shape the visible structure.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-ridge-plots-practical-tips}
 
 - Choose `scale` deliberately: 1.5–2 is the typical sweet spot for 6–10 groups; tighter ranges work for fewer groups, wider ranges for many.
 - Order groups meaningfully (`forcats::fct_reorder()`, `fct_relevel()`); alphabetical ordering rarely communicates the structure you want to show.
@@ -50,30 +52,26 @@ A reporting sentence (figure caption): "Density of log-price per cut for 53,940 
 - Ridge plots struggle with very few groups (two or three) where violin plots or paired density plots communicate better; reach for ridges when six or more groups need to be compared simultaneously.
 - For groups with very different sample sizes, consider showing density on a comparable scale (`scale = 0.95`) so a small group does not dominate the figure visually.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-ridge-plots-r-packages-used}
 
 `ggridges` for `geom_density_ridges()`, `stat_density_ridges()`, and `theme_ridges()`; `ggplot2` for the underlying grammar; `viridis` and `RColorBrewer` for sequential and qualitative fill scales appropriate to ordered group comparisons.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-ridge-plots-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-ridge-plots-assumptions) and [practical tips](#sec-chapters-06-visualisation-ridge-plots-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-ridge-plots-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

@@ -1,9 +1,11 @@
+## Week 2, Session 2 — Two-way / factorial ANOVA with interaction {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-learning-objectives}
 
 - Fit a two-factor ANOVA and distinguish main effects from interactions.
 - Visualise an interaction with `emmip()` and read the picture before
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Report a factorial analysis in the correct order: interaction first,
   then conditional main effects.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-prerequisites}
 
 One-way ANOVA.
 
-## Background
+### Background {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-background}
 
 A factorial design crosses two (or more) categorical factors. The
 two-way ANOVA decomposes variability into main effects and the
@@ -37,7 +39,7 @@ interaction plot that shows parallel lines agrees with an insignificant
 interaction term; crossed lines signal an interaction; lines with
 different slopes signal a quantitative interaction.
 
-## Setup
+### Setup {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-setup}
 
 ```r
 library(tidyverse)
@@ -48,16 +50,17 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-1-hypothesis}
 
 Does delivery method alter the effect of dose on tooth length?
 
 Null: no interaction between supp and dose.
 Alternative: the dose effect differs by supp.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-2-visualise}
 
 ```r
+tg <- ToothGrowth |> mutate(dose = factor(dose))
 
 ggplot(tg, aes(dose, len, colour = supp, group = supp)) +
   stat_summary(fun = mean, geom = "point", size = 3) +
@@ -66,17 +69,19 @@ ggplot(tg, aes(dose, len, colour = supp, group = supp)) +
   labs(x = "Dose (mg/day)", y = "Tooth length", colour = "Supp")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-3-assumptions}
 
 ```r
+fit <- aov(len ~ supp * dose, data = tg)
 par(mfrow = c(2, 2))
 plot(fit)
 par(mfrow = c(1, 1))
 ```
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-4-conduct}
 
 ```r
+# Type-II sums of squares for a balanced design
 Anova(lm(len ~ supp * dose, data = tg), type = 2)
 
 emm <- emmeans(fit, ~ supp | dose)
@@ -85,7 +90,7 @@ pairs(emm)
 emmip(fit, supp ~ dose, CIs = TRUE)
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-5-concluding-statement}
 
 > Tooth length responded to dose (large main effect) and to supplement
 > (smaller main effect), with evidence of an interaction (see ANOVA
@@ -93,29 +98,30 @@ emmip(fit, supp ~ dose, CIs = TRUE)
 > largest at the lowest dose and negligible at the highest.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-common-pitfalls}
 
 - Reporting main effects without first checking the interaction.
 - Using Type-III sums of squares with default treatment contrasts in
   unbalanced designs; the output depends on the contrast coding.
 - Ignoring unequal cell sizes when reading an ANOVA table.
 
-## Further reading
+### Further reading {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-further-reading}
 
 - Fox J, Weisberg S. *An R Companion to Applied Regression*, ch. 5.
 - Cochran WG, Cox GM. *Experimental Designs*.
 - Wilkinson L, Rogers CE (1973), *Symbolic description of factorial...*
 
-## Session info
+### Session info {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-07-regression)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Facets and Panels {#sec-chapters-06-visualisation-facets-and-panels}
+
+### Introduction {#sec-chapters-06-visualisation-facets-and-panels-introduction}
 
 Small multiples — a grid of identical plots, one per subgroup — are one of the most powerful visualisation idioms in modern data analysis. They let the reader compare a relationship across many conditions without overlaying everything on a single set of axes, which becomes unreadable beyond three or four series. `ggplot2` calls this faceting and provides two complementary functions: `facet_wrap()` for a one-dimensional set of panels arranged into rows and columns, and `facet_grid()` for a strict row-by-column matrix indexed by two grouping variables.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-facets-and-panels-prerequisites}
 
 A working knowledge of `ggplot2`'s grammar of graphics, layered geoms, and the distinction between aesthetic mappings and faceting variables.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-facets-and-panels-theory}
 
 `facet_wrap(~ var)` partitions the data by `var`, creates one panel per level, and arranges them into a single block whose dimensions can be specified with `nrow` or `ncol`. `facet_grid(rows ~ cols)` produces a matrix of panels indexed by two variables, leaving an empty cell for combinations that have no data. Both functions share a `scales` argument controlling axis behaviour:
 
@@ -15,11 +17,11 @@ A working knowledge of `ggplot2`'s grammar of graphics, layered geoms, and the d
 
 Strip labels (the panel headers) are themed via `labeller`; `label_both` combines variable name and level, `label_parsed` interprets the level as a math expression.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-facets-and-panels-assumptions}
 
 No statistical assumptions; faceting is a display convention. The only practical constraint is that the number of panels remains small enough to be readable at the final print size — usually no more than 9–12 panels per page.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-facets-and-panels-r-implementation}
 
 ```r
 library(ggplot2); library(palmerpenguins)
@@ -44,15 +46,15 @@ ggplot(penguins, aes(flipper_length_mm, body_mass_g)) +
   theme_minimal()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-facets-and-panels-output-results}
 
 Three faceted views: a two-panel split by sex, a 3-by-3 grid by island and sex, and a three-panel split by species with free axes per panel. Each version answers a different question — "how does the relationship differ between sexes", "across both island and sex", or "what does it look like inside each species ignoring scale".
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-facets-and-panels-interpretation}
 
 A reporting sentence (figure caption): "Body mass against flipper length faceted by sex (`facet_wrap(~ sex)`); colour distinguishes the three penguin species." Always describe the faceting variable in the caption — readers should not have to infer the grid axis from strip labels alone.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-facets-and-panels-practical-tips}
 
 - Reach for `facet_wrap()` when there is one grouping variable; use `facet_grid()` only when the row/column structure is meaningful and balanced.
 - Keep `scales = "fixed"` whenever the cross-panel comparison is the inferential focus; switch to free scales only when within-panel magnitudes differ enough to obscure shape.
@@ -61,30 +63,27 @@ A reporting sentence (figure caption): "Body mass against flipper length faceted
 - For aligned axes across `facet_wrap()` panels with very different ranges, fix one axis (`scales = "free_y"`) rather than freeing both — this preserves comparability where it matters.
 - `coord_cartesian(xlim = ..., ylim = ...)` zooms while leaving the underlying data unfiltered; combine with `facet_grid()` when you want fixed-scale comparisons but with a tighter view than the natural data range.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-facets-and-panels-r-packages-used}
 
 `ggplot2` for `facet_wrap()` and `facet_grid()`; `ggh4x` for nested facets and per-panel scale control; `palmerpenguins` as a small dataset rich in faceting structure for examples.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-facets-and-panels-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-facets-and-panels-assumptions) and
+[practical tips](#sec-chapters-06-visualisation-facets-and-panels-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-facets-and-panels-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

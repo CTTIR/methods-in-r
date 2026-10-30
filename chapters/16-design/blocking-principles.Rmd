@@ -1,12 +1,14 @@
-## Introduction
+## Principles of Blocking {#sec-chapters-16-design-blocking-principles}
+
+### Introduction {#sec-chapters-16-design-blocking-principles-introduction}
 
 Blocking is the experimental-design technique that groups experimental units by a known source of nuisance variation — batch of raw material, day of measurement, operator, animal litter, plot location — and then randomises treatment assignments within each block. The result is a design that systematically removes block-to-block variation from the error term, thereby shrinking the residual variance and substantially improving the power to detect genuine treatment effects. Fisher's classical mantra — "block what you can, randomise what you cannot" — captures the principle: when a nuisance source of variation is known and identifiable, controlling it through design is far more efficient than relying on randomisation alone to average it out.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-blocking-principles-prerequisites}
 
 A working understanding of randomisation as the basis of comparative inference, the partition of total variability into systematic and residual components in ANOVA, and the distinction between fixed and random effects in mixed-effects models.
 
-## Theory
+### Theory {#sec-chapters-16-design-blocking-principles-theory}
 
 In its simplest form — the randomised complete block design (RCBD) — the model is
 
@@ -14,11 +16,11 @@ $$y_{ij} = \mu + \rho_i + \tau_j + \varepsilon_{ij}, \qquad \varepsilon_{ij} \si
 
 with block effect $\rho_i$ and treatment effect $\tau_j$. Within-block variance is typically much smaller than between-block variance, so absorbing the latter into the design removes a large component from the residual error. The relative efficiency of an RCBD versus a CRD is roughly the ratio of the residual variances; gains of an order of magnitude are not unusual when blocking is well chosen.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-blocking-principles-assumptions}
 
 Blocks represent exchangeable groupings of units, no block-by-treatment interaction is present (or, if it is, the interaction is modelled — typically as a random effect), and within-block residual variance is homogeneous. Violations of additivity invalidate the standard analysis but can be detected with a Tukey one-degree-of-freedom test for non-additivity.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-blocking-principles-r-implementation}
 
 ```r
 set.seed(2026)
@@ -38,15 +40,15 @@ c(with_block_MSE = summary(fit_b)[[1]]["Residuals", "Mean Sq"],
   without_block_MSE = summary(fit_nb)[[1]]["Residuals", "Mean Sq"])
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-blocking-principles-output-results}
 
 The script reports residual mean-square error with and without blocking. When the block-to-block standard deviation is comparable to or larger than the within-block standard deviation, blocking produces dramatic reductions in residual MSE and correspondingly large increases in the $F$-statistic for the treatment effect. The same point can be visualised by comparing residual diagnostic plots from the two fits.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-blocking-principles-interpretation}
 
 A reporting sentence: "Blocking on production batch reduced residual mean-square error from 3.8 to 0.24, a 16-fold reduction. The treatment $F$-ratio increased from $F_{2, 9} = 1.1$ ($p = 0.37$) without blocking to $F_{2, 6} = 17.3$ ($p = 0.003$) with blocking, demonstrating that batch was the dominant nuisance source and that blocking restored the detection power lost to batch-level drift." Always report residual MSE before and after blocking when justifying the design choice.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-blocking-principles-practical-tips}
 
 - Block first on the largest known source of unwanted variation: temporal (day, week, batch), spatial (plot, shelf, freezer), or operator-related (technician, machine, lot). Unblocked sources contribute to the residual; blocked sources are absorbed into the design.
 - One block per replicate is the standard RCBD; multiple blocking factors call for Latin square (two factors) or Graeco-Latin square (three factors) layouts that retain orthogonality.
@@ -55,42 +57,39 @@ A reporting sentence: "Blocking on production batch reduced residual mean-square
 - Do not block on a variable you actually want to study: if the nuisance factor is itself of interest, treat it as a fixed treatment factor in a factorial design instead. Blocking removes inferential interest in the blocked factor.
 - Incomplete or unbalanced block sizes are increasingly common in clinical trials (centre-stratified randomisation) and call for mixed-effects models rather than classical fixed-effect ANOVA.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-blocking-principles-r-packages-used}
 
 Base R `aov()` for fixed-effect RCBD analysis; `lme4` and `lmerTest` for random-block mixed-effects models with Satterthwaite or Kenward–Roger denominator df; `agricolae` for `design.rcbd()`, `BIB.test()`, and related agricultural design tools; `emmeans` for marginal means and contrasts under blocking; `crossdes` for systematic construction of incomplete-block layouts.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-blocking-principles-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-blocking-principles-assumptions) and
+[practical tips](#sec-chapters-16-design-blocking-principles-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-blocking-principles-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

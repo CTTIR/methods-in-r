@@ -1,12 +1,14 @@
-## Introduction
+## Neural Networks: Introduction {#sec-chapters-13-ml-neural-networks-intro}
+
+### Introduction {#sec-chapters-13-ml-neural-networks-intro-introduction}
 
 Neural networks are compositions of linear maps and non-linear activation functions. A feed-forward network with $L$ layers computes $f(x) = g_L(W_L g_{L-1}(\cdots W_2 g_1(W_1 x + b_1) \cdots) + b_L)$ where $W_l$ are weight matrices, $b_l$ biases, and $g_l$ activation functions. The Universal Approximation Theorem (Cybenko, 1989) shows that even a single hidden layer with enough width can approximate any continuous function. Modern deep learning stacks hundreds of such layers to learn powerful representations for images, text, audio, and tabular data with implicit feature engineering.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-neural-networks-intro-prerequisites}
 
 A working understanding of linear algebra (matrix multiplication), gradient descent, the chain rule for backpropagation, and basic machine-learning concepts (loss functions, train-test evaluation).
 
-## Theory
+### Theory {#sec-chapters-13-ml-neural-networks-intro-theory}
 
 **Perceptron**: $\hat y = \mathrm{sign}(w^\top x + b)$. Linear decision boundary; provably cannot solve XOR.
 
@@ -20,11 +22,11 @@ A working understanding of linear algebra (matrix multiplication), gradient desc
 
 **Training**: minimise loss (MSE for regression, cross-entropy for classification) by gradient descent (or modern variants Adam, AdamW). Backpropagation computes gradients efficiently via the chain rule.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-neural-networks-intro-assumptions}
 
 Sufficient data relative to model capacity (overparameterised models on tiny datasets memorise rather than generalise); features are normalised; loss is differentiable almost everywhere.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-neural-networks-intro-r-implementation}
 
 ```r
 library(nnet)
@@ -44,15 +46,15 @@ pred <- predict(nn, df[-idx, ], type = "class")
 mean(pred == df[-idx, "y"])
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-neural-networks-intro-output-results}
 
 `nnet()` fits a small MLP with one hidden layer of `size` neurons. The test accuracy on the concentric-rings task demonstrates the network's ability to learn a non-linear decision boundary that linear classifiers cannot represent.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-neural-networks-intro-interpretation}
 
 A reporting sentence: "A 5-neuron single-hidden-layer MLP with weight decay 1e-3 trained for 200 iterations achieved 91 % test accuracy on the concentric-rings classification task; logistic regression on the same data managed only 52 %, confirming that the non-linear decision boundary requires non-linear modelling capacity." Always state architecture, regularisation, and a linear baseline.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-neural-networks-intro-practical-tips}
 
 - Always standardise inputs; unscaled features with different units make training unstable and slow.
 - Combine multiple regularisers: weight decay (L2), dropout, early stopping based on validation loss.
@@ -61,37 +63,34 @@ A reporting sentence: "A 5-neuron single-hidden-layer MLP with weight decay 1e-3
 - Modern R neural-network workflows use `torch` or `keras` rather than `nnet`; the latter is fine for shallow nets and pedagogy but lacks the GPU support and modern optimisers needed for production.
 - For very small datasets, regularise heavily (high decay, small networks, dropout) or fall back to linear / tree models; deep nets need data to generalise.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-neural-networks-intro-r-packages-used}
 
 `nnet::nnet()` for shallow MLPs; `torch` and `luz` for modern deep learning with GPU support; `keras` and `tensorflow` as the alternative TensorFlow-based stack; `parsnip::mlp()` for tidymodels integration; `neuralnet` for an alternative implementation with visual graph rendering.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-neural-networks-intro-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-neural-networks-intro-assumptions) and
+[practical tips](#sec-chapters-13-ml-neural-networks-intro-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-neural-networks-intro-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

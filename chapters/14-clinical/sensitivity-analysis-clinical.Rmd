@@ -1,22 +1,24 @@
-## Introduction
+## Sensitivity Analyses in Clinical Trials {#sec-chapters-14-clinical-sensitivity-analysis-clinical}
+
+### Introduction {#sec-chapters-14-clinical-sensitivity-analysis-clinical-introduction}
 
 Sensitivity analyses complement the primary analysis by varying key assumptions -- missing-data mechanism, model form, inclusion criteria -- to assess how robust conclusions are. Tipping-point analyses identify how extreme assumptions must be before the primary conclusion flips, providing a concrete interpretation.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-sensitivity-analysis-clinical-prerequisites}
 
 Primary analysis; missing-data mechanisms; multiple imputation.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-sensitivity-analysis-clinical-theory}
 
 **Tipping-point analysis** under MI: impute missing outcomes in the experimental arm with an increasing shift $\delta$ (less favourable); re-pool. The smallest $\delta$ that makes the treatment effect no longer significant is the "tipping point". A large tipping point means the conclusion is robust.
 
 **Other sensitivity analyses**: different imputation methods, PP vs ITT, different covariate adjustments, varying inclusion criteria, alternative parametric models.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-sensitivity-analysis-clinical-assumptions}
 
 Sensitivity analyses are pre-specified; tipping points are interpreted clinically, not mechanically.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-sensitivity-analysis-clinical-r-implementation}
 
 ```r
 library(mice)
@@ -49,15 +51,15 @@ effs <- sapply(deltas, function(d) {
 data.frame(delta = deltas, trt_effect = round(effs, 3))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-sensitivity-analysis-clinical-output-results}
 
 Treatment effect declines linearly with $\delta$; the tipping point is where the effect crosses zero (or loses significance).
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-sensitivity-analysis-clinical-interpretation}
 
 "A delta shift of 1.6 on the imputed intervention-arm outcomes was required to eliminate significance; clinically this would require intervention dropouts to fare 1.6 SD worse than MAR predicts. The primary conclusion is robust to plausible MNAR mechanisms."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-sensitivity-analysis-clinical-practical-tips}
 
 - Pre-specify all sensitivity analyses in the SAP; post-hoc analyses are exploratory.
 - Tipping points are most informative when expressed on the clinical scale.
@@ -67,27 +69,24 @@ Treatment effect declines linearly with $\delta$; the tipping point is where the
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-sensitivity-analysis-clinical-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-sensitivity-analysis-clinical-assumptions) and
+[practical tips](#sec-chapters-14-clinical-sensitivity-analysis-clinical-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-sensitivity-analysis-clinical-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

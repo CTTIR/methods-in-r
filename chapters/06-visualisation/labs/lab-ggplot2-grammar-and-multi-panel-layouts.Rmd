@@ -1,20 +1,22 @@
+## Week 1, Session 5 — ggplot2 grammar and multi-panel layouts {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-learning-objectives}
 
 - Build a ggplot by naming data, aesthetics, geoms, and scales rather
   than by calling a plot type.
 - Use faceting to display the same relationship across subgroups.
 - Combine several plots into a single figure with patchwork.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-prerequisites}
 
 Labs 1.2 through 1.4.
 
-## Background
+### Background {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-background}
 
 ggplot2 is built on a grammar of graphics. Rather than call a function
 named "scatterplot" or "boxplot", you declare what the plot contains:
@@ -38,7 +40,7 @@ A common beginner mistake is to treat ggplot as a collection of
 aesthetics object to which geoms are added. Changing the underlying
 data is then a substitution, not a rewrite.
 
-## Setup
+### Setup {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-setup}
 
 ```r
 library(tidyverse)
@@ -48,15 +50,16 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-1-goal}
 
 Build a three-panel figure that describes bill morphology and body
 mass in the `penguins` dataset, using a scatter plot, a boxplot, and
 a faceted scatter plot, assembled with patchwork.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-2-approach}
 
 ```r
+p <- penguins |>
   drop_na(bill_length_mm, bill_depth_mm, body_mass_g, species, sex)
 ```
 
@@ -72,7 +75,7 @@ p1 <- p |>
 p1
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-3-execution}
 
 ```r
 p2 <- p |>
@@ -98,7 +101,7 @@ Faceting shows the same relationship in three panels, one per
 species. The within-species slopes are visually separable from the
 between-species differences.
 
-## 4. Check
+### 4. Check {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-4-check}
 
 Assemble the three panels with patchwork.
 
@@ -114,7 +117,7 @@ The layout operators: `|` places side-by-side, `/` stacks, `+` groups.
 `plot_annotation()` adds title and the familiar A/B/C labels used in
 manuscripts.
 
-## 5. Report
+### 5. Report {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-5-report}
 
 > A three-panel figure was assembled from the `palmerpenguins` data
 > (*n* = `nrow(p)` complete cases) using ggplot2 and patchwork.
@@ -128,7 +131,7 @@ Within-group and between-group variation are separate features of the
 data. Faceting is the simplest way to let a reader see both at once.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-common-pitfalls}
 
 - Using colour to encode more than one thing at a time (group *and*
   magnitude — pick one).
@@ -138,22 +141,23 @@ data. Faceting is the simplest way to let a reader see both at once.
 - Defaulting to `theme_grey()`; the in-house convention is
   `theme_minimal(base_size = 12)`.
 
-## Further reading
+### Further reading {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-further-reading}
 
 - Wickham H. *ggplot2: Elegant Graphics for Data Analysis*, chapters
   on the grammar and on faceting.
 - Pedersen T. *patchwork* package documentation.
 
-## Session info
+### Session info {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-06-visualisation)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

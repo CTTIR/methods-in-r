@@ -1,12 +1,14 @@
-## Introduction
+## UMAP and t-SNE: Overview {#sec-chapters-08-multivariate-umap-tsne-overview}
+
+### Introduction {#sec-chapters-08-multivariate-umap-tsne-overview-introduction}
 
 UMAP (uniform manifold approximation and projection) and t-SNE (t-distributed stochastic neighbour embedding) are the dominant non-linear dimensionality-reduction techniques for visualising very high-dimensional data — single-cell RNA sequencing, large image embeddings, language-model representations. They produce striking 2D or 3D scatter plots in which similar observations cluster together, and they are now near-default visualisations in many computational-biology and machine-learning pipelines. They also have well-documented pitfalls, and learning what they do *not* show is as important as learning to apply them.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-umap-tsne-overview-prerequisites}
 
 A working understanding of principal components analysis, distance metrics, and the trade-off between preserving local and global structure in a low-dimensional embedding.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-umap-tsne-overview-theory}
 
 Both methods optimise a 2D or 3D embedding such that pairwise similarities computed in the original high-dimensional space are preserved as well as possible.
 
@@ -15,11 +17,11 @@ Both methods optimise a 2D or 3D embedding such that pairwise similarities compu
 
 Both algorithms are stochastic; setting the random seed is required for reproducible figures.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-umap-tsne-overview-assumptions}
 
 A similarity-preserving 2D / 3D embedding is informative for the inferential question. Both algorithms assume meaningful local structure exists in the data; they do not assume Gaussianity, linearity, or any specific distance metric (UMAP's metric is configurable).
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-umap-tsne-overview-r-implementation}
 
 ```r
 library(umap); library(Rtsne)
@@ -38,15 +40,15 @@ plot(t$Y, col = iris$Species, pch = 16,
      main = "t-SNE of iris")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-umap-tsne-overview-output-results}
 
 Both methods produce 2D coordinates per observation. UMAP and t-SNE both separate the three iris species clearly; differences in the layout (relative cluster positions, cluster sizes) reflect algorithm-specific choices rather than data-driven structure.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-umap-tsne-overview-interpretation}
 
 A reporting sentence: "UMAP and t-SNE embeddings of the four iris measurements both separate the three species, with setosa well-isolated and versicolor / virginica close but distinguishable; UMAP preserves the inter-cluster gap more faithfully than t-SNE, consistent with its better global-structure properties." Always describe the algorithm and key hyperparameters in the figure caption; readers should not have to guess.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-umap-tsne-overview-practical-tips}
 
 - Treat distances in the embedding as relative neighbourhoods only; absolute distances and cluster *sizes* are not meaningful, despite how the visualisation looks.
 - t-SNE's `perplexity` parameter (typically 5–50) sets the effective neighbourhood scale; vary it across at least three values to confirm the structure is robust.
@@ -55,32 +57,29 @@ A reporting sentence: "UMAP and t-SNE embeddings of the four iris measurements b
 - Cluster sizes in the embedding are meaningless; do not interpret a "small cluster" or "large cluster" as biologically real.
 - Reproducibility requires a fixed seed *and* fixed software versions; UMAP results in particular can shift between releases.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-umap-tsne-overview-r-packages-used}
 
 `umap` for the canonical UMAP implementation; `uwot` for a faster UMAP variant with more options; `Rtsne` for the standard t-SNE; `M3C` and `embed` for tidymodels-flavoured wrappers; `dimRed` for a unified interface across UMAP, t-SNE, Isomap, and other non-linear embeddings.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-umap-tsne-overview-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-umap-tsne-overview-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-umap-tsne-overview-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-umap-tsne-overview-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

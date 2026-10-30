@@ -1,12 +1,14 @@
-## Introduction
+## Power for ICC {#sec-chapters-05-power-power-icc}
+
+### Introduction {#sec-chapters-05-power-power-icc-introduction}
 
 The intraclass correlation coefficient (ICC) is the standard reliability statistic for continuous ratings — agreement between raters on quantitative scales, test-retest stability, instrument repeatability across multiple measurements per subject. Sample-size planning for an ICC study depends on the number of subjects, the number of raters or replicate measurements per subject, the target ICC value to detect (or estimate), and whether the goal is hypothesis testing (rejecting a null ICC value) or precision (achieving a target confidence-interval width). Both questions admit closed-form solutions under standard assumptions, and explicit power planning is now expected for any prospective reliability study aiming for FDA, IVDR, or guideline acceptance.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-icc-prerequisites}
 
 A working understanding of ICC variants — one-way random ICC(1,1), two-way random ICC(2,1), two-way mixed ICC(3,1), single-measurement vs average-measurement variants — and the distinction between hypothesis-testing and precision-based sample-size questions.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-icc-theory}
 
 Following Walter, Eliasziw, and Donner (1998), the sample size for testing $H_0: \rho \leq \rho_0$ against $H_1: \rho \geq \rho_1$ with $k$ raters or measurements per subject and target power $1 - \beta$ has a closed-form expression based on the $F$-distribution under the variance-component decomposition. For precision-based planning, the approximate formula
 
@@ -14,11 +16,11 @@ $$n \approx \frac{(1 - \rho^2)^2 \cdot 8 \cdot (k - 1)}{\epsilon^2 \cdot k}$$
 
 gives the number of subjects needed for a 95 % CI half-width of $\epsilon$ around the expected ICC $\rho$ — useful when the goal is a tight reliability estimate rather than rejecting a specific null.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-icc-assumptions}
 
 The outcome is continuous and approximately Normal, subjects are independent, and each subject is rated by the same $k$ raters (or measured at $k$ replicate occasions); the ICC variant assumed in the calculation matches the design (one-way random vs two-way random vs two-way mixed).
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-icc-r-implementation}
 
 ```r
 library(ICC.Sample.Size)
@@ -31,15 +33,15 @@ n_prec <- (1 - rho^2)^2 * 8 * (k - 1) / (eps^2 * k)
 ceiling(n_prec)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-icc-output-results}
 
 `calculateIccSampleSize()` returns the required number of subjects for the hypothesis test. For ICC$_1 = 0.8$ vs ICC$_0 = 0.6$ at $k = 2$ raters, $n \approx 84$. The precision-based calculation gives roughly 19 subjects for a 95 % CI half-width of 0.10 around an expected ICC of 0.75 — a much smaller sample because precision tolerates a wider range than rejecting a specific null.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-icc-interpretation}
 
 A reporting sentence: "Each subject will be rated by two independent raters; $n = 84$ subjects are required for 80 % power to detect an ICC of 0.80 against a null hypothesis of ICC = 0.60 at two-sided $\alpha = 0.05$. The protocol enrols 100 subjects to allow for 15 % missing or unevaluable ratings. Sensitivity analyses show $n = 110$ for the more conservative null of 0.65 and $n = 65$ for $k = 3$ raters; the design report includes both alternatives in the supplement." Always state which ICC form and how many raters.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-icc-practical-tips}
 
 - More raters per subject reduces the required number of subjects, but at linear cost in rater-hours; the trade-off depends on the relative cost and availability of subjects vs raters and is project-specific.
 - Specify which ICC variant matches the design exactly — one-way random (ICC(1,1)) for fully crossed designs without rater identity, two-way random (ICC(2,1)) when raters are sampled from a population, two-way mixed (ICC(3,1)) when raters are fixed and chosen — because the sample-size formula and the analytic ICC differ across variants.
@@ -48,31 +50,28 @@ A reporting sentence: "Each subject will be rated by two independent raters; $n 
 - Published reliability studies historically have small samples and produce poorly characterised ICC estimates; planning conservatively (assuming $\rho$ at the lower end of pilot CIs) protects against under-powered ICC validation.
 - For agreement on categorical ratings, use Cohen's or Fleiss's kappa rather than ICC; the sample-size frameworks differ but the planning principles are analogous.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-05-power-power-icc-r-packages-used}
 
 `ICC.Sample.Size::calculateIccSampleSize()` for canonical hypothesis-test sample-size calculation; `irr::icc()` and `psych::ICC()` for ICC analysis after data collection; `ICC` for advanced ICC inference and CI methods; `simr` for simulation-based ICC power across complex designs; `MBESS::ci.reliability()` for confidence-interval-driven sample-size planning across reliability statistics.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-icc-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-icc-assumptions) and
+[practical tips](#sec-chapters-05-power-power-icc-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-icc-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

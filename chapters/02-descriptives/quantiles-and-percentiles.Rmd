@@ -1,12 +1,14 @@
-## Introduction
+## Quantiles and Percentiles {#sec-chapters-02-descriptives-quantiles-and-percentiles}
+
+### Introduction {#sec-chapters-02-descriptives-quantiles-and-percentiles-introduction}
 
 A quantile is a cut-point that divides a distribution by cumulative probability: the $p$-quantile is the value below which a proportion $p$ of the data lies. The median is the 0.5-quantile; quartiles are the 0.25, 0.50, and 0.75 quantiles; percentiles are quantiles rescaled to the 0-100 range. Quantiles underlie boxplots, five-number summaries, reference ranges in lab medicine, and non-parametric confidence intervals.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-quantiles-and-percentiles-prerequisites}
 
 The reader should know what a cumulative distribution function is and be comfortable with sorted vectors in R.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-quantiles-and-percentiles-theory}
 
 For a sample $x_1, \ldots, x_n$ sorted as $x_{(1)} \leq x_{(2)} \leq \ldots \leq x_{(n)}$, the sample $p$-quantile is not uniquely defined when $p \cdot (n+1)$ is not an integer. R offers nine definitions, selected via the `type` argument of `quantile()`:
 
@@ -18,11 +20,11 @@ For a sample $x_1, \ldots, x_n$ sorted as $x_{(1)} \leq x_{(2)} \leq \ldots \leq
 
 The different types give slightly different numeric values in small samples; they converge as $n$ grows. Type 7 is the default in R's `quantile()`, but reproducibility across software requires specifying the type.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-quantiles-and-percentiles-assumptions}
 
 Quantiles are purely descriptive; they require no distributional assumption.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-quantiles-and-percentiles-r-implementation}
 
 ```r
 library(dplyr)
@@ -53,7 +55,7 @@ diabetes |> group_by(arm) |>
             q75 = quantile(hba1c, 0.75))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-quantiles-and-percentiles-output-results}
 
 ```
 25% 50% 75%
@@ -65,11 +67,11 @@ diabetes |> group_by(arm) |>
 
 The five types differ by less than 2 units at $n = 60$. For `diabetes`, the active arm's quartiles are shifted lower than placebo's, as expected.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-quantiles-and-percentiles-interpretation}
 
 Report quantiles when the distribution is skewed, ordinal, or otherwise not well-summarised by a mean: median with IQR (25th and 75th percentiles) is the standard form. In reference-range contexts (clinical chemistry), the 2.5 and 97.5 percentiles define the central 95% "normal range".
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-quantiles-and-percentiles-practical-tips}
 
 - Always specify `type` in `quantile()` when reproducing results across software.
 - The boxplot uses Type 2 (`fivenum()`) for its hinges; this differs from Type 7 quantiles.
@@ -79,24 +81,21 @@ Report quantiles when the distribution is skewed, ordinal, or otherwise not well
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-quantiles-and-percentiles-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-quantiles-and-percentiles-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-quantiles-and-percentiles-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-quantiles-and-percentiles-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

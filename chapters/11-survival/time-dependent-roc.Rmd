@@ -1,12 +1,14 @@
-## Introduction
+## Time-Dependent ROC {#sec-chapters-11-survival-time-dependent-roc}
+
+### Introduction {#sec-chapters-11-survival-time-dependent-roc-introduction}
 
 Time-dependent ROC extends classical ROC analysis to right-censored survival data. At each chosen evaluation time $t$, the analysis treats subjects observed to fail before $t$ as cases and subjects known to survive past $t$ as controls; subjects censored before $t$ are reweighted via inverse-probability-of-censoring weights. The resulting time-specific AUC summarises how well a continuous risk score (such as a Cox linear predictor) discriminates failures from survivors at $t$. It is the natural extension of the C-index to "what is the AUC at exactly one year" reporting.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-time-dependent-roc-prerequisites}
 
 A working understanding of ROC curves, the C-index, Cox regression linear predictors, and inverse-probability-of-censoring weighting.
 
-## Theory
+### Theory {#sec-chapters-11-survival-time-dependent-roc-theory}
 
 Two definitions of cases and controls compete:
 
@@ -15,11 +17,11 @@ Two definitions of cases and controls compete:
 
 Inverse-probability-of-censoring weights compensate for subjects censored before the comparison can be made; the censoring distribution is typically estimated by Kaplan-Meier on the censoring times. The result is a time-dependent AUC at each requested $t$ with bootstrap or analytical confidence intervals.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-time-dependent-roc-assumptions}
 
 Non-informative censoring (or correctly conditional on covariates if `weighting = "cox"` or `"aalen"` is used) and a continuous risk marker that is meaningful as a ranking score.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-time-dependent-roc-r-implementation}
 
 ```r
 library(timeROC); library(survival)
@@ -35,15 +37,15 @@ tROC
 plot(tROC, time = 365, col = "steelblue")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-time-dependent-roc-output-results}
 
 `timeROC` returns time-specific AUCs with their standard errors at each requested horizon, along with empirical sensitivity-specificity pairs that can be plotted as a ROC curve. The plot shows the ROC curve at one selected time; running over multiple times reveals how discrimination evolves through follow-up.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-time-dependent-roc-interpretation}
 
 A reporting sentence: "The Cox linear predictor's time-dependent AUC was 0.72 (95 % CI 0.65 to 0.79) at one year and 0.69 (95 % CI 0.62 to 0.76) at two years; discrimination remained stable across the two-year window relevant to clinical decision-making." Always report AUCs at clinically meaningful horizons, not just the global C-index, because discrimination can change substantially across follow-up.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-time-dependent-roc-practical-tips}
 
 - Report AUCs at the horizons that drive clinical decisions; a five-year AUC is irrelevant for a six-month treatment decision and vice versa.
 - The cumulative/dynamic definition is more common in clinical reporting; incident/dynamic is more useful when modelling hazards directly.
@@ -52,34 +54,30 @@ A reporting sentence: "The Cox linear predictor's time-dependent AUC was 0.72 (9
 - For external validation, apply the development-cohort risk score to the validation cohort and compute time-dependent AUCs there; in-sample AUCs are optimistic.
 - Use `weighting = "cox"` or `weighting = "aalen"` when censoring depends on covariates; the marginal weighting assumes censoring is uninformative given baseline covariates.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-time-dependent-roc-r-packages-used}
 
 `timeROC` for `timeROC()` with marginal, Cox, and Aalen-based weighting; `risksetROC` for an alternative kernel-smoothed implementation; `pec` for compatible prediction-error curves; `survAUC` for additional AUC variants including Uno's C-statistic.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-time-dependent-roc-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-time-dependent-roc-assumptions) and [practical tips](#sec-chapters-11-survival-time-dependent-roc-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-time-dependent-roc-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Sequence Alignment: Overview {#sec-chapters-12-bioinformatics-sequence-alignment-overview}
+
+### Introduction {#sec-chapters-12-bioinformatics-sequence-alignment-overview-introduction}
 
 Sequence alignment is the foundational operation of bioinformatics: comparing DNA, RNA, or protein sequences to find similarities, detect mutations, identify conserved regions, or annotate functional domains. The two canonical algorithms are Needleman-Wunsch (global, full-length alignment) and Smith-Waterman (local, best-matching subregion). All modern aligners — BWA, Bowtie, BLAST, minimap2 — are heuristic approximations to these dynamic-programming gold standards, optimised for speed at the cost of theoretical optimality.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-sequence-alignment-overview-prerequisites}
 
 A working understanding of DNA and protein sequences, the FASTA format, and basic dynamic programming as the algorithmic technique behind alignment.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-sequence-alignment-overview-theory}
 
 **Global alignment** (Needleman-Wunsch) finds the optimal alignment across the entire length of both sequences. Appropriate when the sequences are believed to be homologous over their full length, e.g. comparing two complete protein sequences from related species.
 
@@ -19,11 +21,11 @@ A working understanding of DNA and protein sequences, the FASTA format, and basi
 
 Affine gap penalties (gap-opening + gap-extension) better model real biological gaps than constant penalties.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-sequence-alignment-overview-assumptions}
 
 Sequences are biologically comparable (same molecule type, similar functional category); the chosen scoring scheme reflects the evolutionary distance involved.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-sequence-alignment-overview-r-implementation}
 
 ```r
 library(Biostrings)
@@ -50,15 +52,15 @@ pairwiseAlignment(p1, p2, substitutionMatrix = BLOSUM62, type = "global",
                   gapOpening = 10, gapExtension = 4)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-sequence-alignment-overview-output-results}
 
 `pairwiseAlignment()` returns an object with the aligned sequences (with gaps inserted), the alignment score, and percent identity. Subset accessors (`pattern()`, `subject()`, `score()`, `pid()`) extract specific components.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-sequence-alignment-overview-interpretation}
 
 A reporting sentence: "Needleman-Wunsch global alignment of two 16-bp DNA sequences scored 6 (13/16 matches, two mismatches and a single-base gap); Smith-Waterman local alignment returned the best-matching 13-character substring with no gaps. The protein alignment with BLOSUM62 highlighted the conserved core (8/9 identity) despite the single deletion." Always state the scoring scheme and gap penalties.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-sequence-alignment-overview-practical-tips}
 
 - Choose the scoring scheme to match the question: BLOSUM for distant protein relatives, PAM for close ones; for nucleotide alignment, simple match/mismatch is usually adequate.
 - For short-read alignment (NGS), use BWA, Bowtie2, or minimap2 — they are heuristic but vastly faster than Needleman-Wunsch on millions of reads.
@@ -67,32 +69,29 @@ A reporting sentence: "Needleman-Wunsch global alignment of two 16-bp DNA sequen
 - For long reads (PacBio, Nanopore), use minimap2 — it is designed for the higher error rates and longer alignment lengths.
 - For sequence search rather than pairwise comparison, BLAST and DIAMOND scale to large databases via heuristic seeding.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-sequence-alignment-overview-r-packages-used}
 
 `Biostrings` for `pairwiseAlignment()`, BLOSUM/PAM matrices, and sequence-handling classes; `msa` for multiple sequence alignment; `Rsamtools` and `GenomicAlignments` for BAM-aware alignment workflows; `Rsubread` for short-read alignment integrated with the broader RNA-seq Bioconductor workflow.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-sequence-alignment-overview-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-sequence-alignment-overview-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-sequence-alignment-overview-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-sequence-alignment-overview-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

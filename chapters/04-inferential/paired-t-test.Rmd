@@ -1,12 +1,14 @@
-## Introduction
+## Paired t-Test {#sec-chapters-04-inferential-paired-t-test}
+
+### Introduction {#sec-chapters-04-inferential-paired-t-test-introduction}
 
 When each unit contributes two measurements (pre and post, left and right, case and matched control), the observations are paired and the usual independent-samples t-test is not valid. The **paired t-test** analyses the within-unit differences, restoring the independence assumption and typically improving power by cancelling between-unit variability.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-paired-t-test-prerequisites}
 
 One-sample t-test, t-distribution.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-paired-t-test-theory}
 
 Let $X_i$ and $Y_i$ be paired measurements on unit $i$ for $i = 1, \ldots, n$. Define differences $D_i = X_i - Y_i$. Under the assumption that $D_i$ are iid from $\mathcal{N}(\mu_D, \sigma_D^2)$,
 
@@ -16,14 +18,14 @@ The paired t-test is the one-sample t-test on the differences. The $n$ is the nu
 
 Effect size: Cohen's $d_z = \bar{D} / s_D$ (standardised mean difference on the difference scores). This is different from the two-group $d$ and should not be conflated.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-paired-t-test-assumptions}
 
 - The differences are approximately normal (via Shapiro-Wilk on $D_i$).
 - Pairs are independent of other pairs.
 
 The raw $X_i$ and $Y_i$ can be non-normal; only the differences need to be.
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-paired-t-test-r-implementation}
 
 ```r
 library(effectsize); library(broom)
@@ -47,7 +49,7 @@ cohens_d(pre, post, paired = TRUE)
 shapiro.test(pre - post)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-paired-t-test-output-results}
 
 ```
 # A tibble: 1 x 8
@@ -62,11 +64,11 @@ Cohen's d (paired) |         95% CI
 
 The post-intervention measurement is 6.0 mmHg lower on average; $t(29) = 6.88$, $p < 0.001$, large paired effect.
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-paired-t-test-interpretation}
 
 In a manuscript: "Blood pressure decreased by 6.0 mmHg on average from baseline to week 12 (paired t(29) = 6.88, p < 0.001, Cohen's d_z = 1.26, 95 % CI 4.3 to 7.8 mmHg)."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-paired-t-test-practical-tips}
 
 - Paired design usually has more power than independent-groups design at the same total sample size.
 - Check normality of the differences, not the raw measurements.
@@ -76,32 +78,29 @@ In a manuscript: "Blood pressure decreased by 6.0 mmHg on average from baseline 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-paired-t-test-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-paired-t-test-assumptions) and
+[practical tips](#sec-chapters-04-inferential-paired-t-test-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-paired-t-test-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

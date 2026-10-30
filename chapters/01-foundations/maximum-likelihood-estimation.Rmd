@@ -1,12 +1,14 @@
-## Introduction
+## Maximum Likelihood Estimation {#sec-chapters-01-foundations-maximum-likelihood-estimation}
+
+### Introduction {#sec-chapters-01-foundations-maximum-likelihood-estimation-introduction}
 
 Maximum likelihood is the dominant estimation technique in modern statistics. The idea: given data and a parametric model, choose the parameter values that make the observed data most probable. This intuition supports a powerful general method with well-understood consistency, efficiency, and distributional properties, and it underpins almost every regression model in a statistician's toolkit.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-maximum-likelihood-estimation-prerequisites}
 
 The reader should know what a probability density is, be comfortable with calculus at the level of derivatives and log transforms, and be able to call `optim()` in R.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-maximum-likelihood-estimation-theory}
 
 For iid data $X_1, \ldots, X_n$ from a density $f(x \mid \theta)$, the **likelihood function** is
 
@@ -27,11 +29,11 @@ Under regularity conditions (smoothness, identifiability, interior optimum, fini
 
 Standard errors for the MLE come from the inverse of the observed Fisher information, $\mathcal{I}(\hat{\theta}) = -\partial^2 \ell / \partial \theta \partial \theta^\top$, evaluated at $\hat{\theta}$. Confidence intervals can be based on the normal approximation or, better, on the likelihood ratio, which is invariant under reparameterisation.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-maximum-likelihood-estimation-assumptions}
 
 The asymptotic theory assumes a well-specified model, finite Fisher information, enough smoothness for the Taylor expansion, and a parameter interior to the parameter space. Boundary parameters (variance at zero, proportion at 0 or 1) and non-identifiable models break the standard theory.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-maximum-likelihood-estimation-r-implementation}
 
 ```r
 set.seed(2026)
@@ -57,7 +59,7 @@ data.frame(parameter = c("mu", "sigma"),
 
 The negative log-likelihood is minimised with `optim()`; standard errors come from the inverse Hessian.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-maximum-likelihood-estimation-output-results}
 
 ```
   parameter estimate    se  ci_low ci_high
@@ -67,11 +69,11 @@ The negative log-likelihood is minimised with `optim()`; standard errors come fr
 
 The MLE recovers the true parameters ($\mu = 5$, $\sigma = 2$) with uncertainty quantified by the observed-information-based standard errors.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-maximum-likelihood-estimation-interpretation}
 
 For a manuscript, the MLE is typically reported as "parameters were estimated by maximum likelihood (Fisher-scoring convergence to 1e-8)", with point estimates, standard errors, and either Wald or profile-likelihood confidence intervals. Information criteria (AIC, BIC) are functions of the maximised likelihood and are reported alongside.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-maximum-likelihood-estimation-practical-tips}
 
 - Always work on the log scale for numerical stability; products of densities underflow quickly.
 - Start the optimiser at sensible initial values -- method-of-moments estimates are a good default.
@@ -81,27 +83,24 @@ For a manuscript, the MLE is typically reported as "parameters were estimated by
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-maximum-likelihood-estimation-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-maximum-likelihood-estimation-assumptions) and
+[practical tips](#sec-chapters-01-foundations-maximum-likelihood-estimation-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-maximum-likelihood-estimation-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

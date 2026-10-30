@@ -1,12 +1,14 @@
-## Introduction
+## Metropolis-Hastings {#sec-chapters-10-bayesian-metropolis-hastings}
+
+### Introduction {#sec-chapters-10-bayesian-metropolis-hastings-introduction}
 
 The Metropolis-Hastings algorithm is the original general-purpose MCMC sampler and remains the conceptual reference against which all subsequent algorithms are explained. Given only an unnormalised target density, it produces a Markov chain whose stationary distribution is that target by repeatedly proposing a candidate value and accepting or rejecting it based on a simple density-ratio rule. The trade-off is universality versus efficiency: MH works for any target one can evaluate, but tuning proposals for high-dimensional or strongly correlated posteriors becomes painful, which is why HMC has displaced random-walk MH for most modern Bayesian software.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-metropolis-hastings-prerequisites}
 
 A working understanding of Markov chains, conditional probability, and the role of the unnormalised posterior in Bayesian inference. Familiarity with R's distribution functions (`rnorm`, `dunif`) is needed for the example.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-metropolis-hastings-theory}
 
 Given the current state $\theta$, one iteration of MH proceeds as:
 
@@ -16,11 +18,11 @@ Given the current state $\theta$, one iteration of MH proceeds as:
 
 For a symmetric proposal (Gaussian random walk centred at the current state) the proposal terms cancel and the acceptance ratio is simply the ratio of target densities. Detailed balance ensures the chain has the target as its invariant distribution; ergodicity (irreducibility plus aperiodicity) ensures convergence regardless of the starting value.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-metropolis-hastings-assumptions}
 
 The unnormalised target density is computable everywhere in the support. The proposal kernel must give the chain a positive probability of reaching every part of the support; otherwise the chain is reducible and never explores the full posterior.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-metropolis-hastings-r-implementation}
 
 ```r
 set.seed(2026)
@@ -53,15 +55,15 @@ par(mfrow = c(1, 1))
 mean(theta[-(1:1000)])     # posterior mean
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-metropolis-hastings-output-results}
 
 A 10,000-step chain whose post-burn-in histogram aligns with the analytic Beta(4, 8) density. The trace plot, the histogram, and the posterior mean (around $4 / (4+8) = 0.33$) confirm convergence; the autocorrelation function tells you how many independent draws the chain is worth.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-metropolis-hastings-interpretation}
 
 A reporting sentence: "A random-walk Metropolis-Hastings sampler with proposal $\mathcal N(\theta^{(t)}, 0.1^2)$ produced 9,000 post-burn-in draws; the histogram tracked the analytic Beta(4, 8) target, and the posterior mean of 0.33 matched the closed-form value to within Monte Carlo error." Quote the acceptance rate so readers can judge whether the proposal was tuned reasonably.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-metropolis-hastings-practical-tips}
 
 - Tune the proposal scale for an acceptance rate near 25–40 % for one-dimensional random walks (Roberts–Gelman–Gilks rule); for higher dimensions, lower rates are optimal.
 - Discard a burn-in of 1,000–5,000 iterations and inspect the trace plot for visible drift before computing summaries.
@@ -69,31 +71,28 @@ A reporting sentence: "A random-walk Metropolis-Hastings sampler with proposal $
 - Use $\hat R$ across multiple chains rather than relying on a single trace; a single chain cannot reveal mode-trapping.
 - For tall posteriors with many parameters, modern HMC samplers (Stan, NUTS) almost always mix dramatically better than basic MH; reach for MH only when the target is hard to differentiate or has discrete components.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-metropolis-hastings-r-packages-used}
 
 Base R is enough for hand-coded MH; `MCMCpack` and `mcmc` provide tuned implementations for canonical models, and `coda` contributes diagnostic plots and convergence statistics applicable to MH chains from any source.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-metropolis-hastings-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-metropolis-hastings-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-metropolis-hastings-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-metropolis-hastings-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

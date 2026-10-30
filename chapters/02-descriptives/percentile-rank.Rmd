@@ -1,12 +1,14 @@
-## Introduction
+## Percentile Ranks {#sec-chapters-02-descriptives-percentile-rank}
+
+### Introduction {#sec-chapters-02-descriptives-percentile-rank-introduction}
 
 A percentile rank answers "what fraction of observations fall at or below this value?" It converts an absolute measurement to a relative position in the sample distribution. In paediatrics, growth charts give a child's weight percentile; in cognitive testing, an IQ score comes with a percentile rank; in bioinformatics, a gene's expression is often reported as a percentile across a reference panel.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-percentile-rank-prerequisites}
 
 The reader should know what a quantile is and be comfortable with sorted vectors in R.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-percentile-rank-theory}
 
 For a sample $x_1, \ldots, x_n$, the percentile rank of a value $y$ is
 
@@ -16,11 +18,11 @@ Several refinements exist: the "mid-rank" form counts half of any ties; the "plo
 
 For a single value, computing the percentile rank is the inverse of computing a quantile: if the 75th percentile is $q_{0.75}$, then $\mathrm{PR}(q_{0.75}) \approx 75$.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-percentile-rank-assumptions}
 
 Purely descriptive; assumes only that the reference distribution is appropriate to the value being ranked.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-percentile-rank-r-implementation}
 
 ```r
 library(dplyr)
@@ -44,7 +46,7 @@ ec <- ecdf(growth_chart)
 100 * ec(patient)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-percentile-rank-output-results}
 
 ```
 [1] 89.4     # 17.8 kg is at the 89th percentile of the reference
@@ -55,11 +57,11 @@ ec <- ecdf(growth_chart)
 3  15.01   11  36.7  35.00
 ```
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-percentile-rank-interpretation}
 
 Report percentile ranks in growth, development, and norming contexts. In a clinical note: "body weight 17.8 kg (89th percentile for age/sex)". The percentile tells the reader how unusual the value is relative to the reference.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-percentile-rank-practical-tips}
 
 - Percentile ranks depend on the reference sample; always state which reference was used (national norms, internal cohort, etc.).
 - Ties are handled by `rank()` via averaging, minimum, or maximum; specify `ties.method` when the convention matters.
@@ -69,24 +71,21 @@ Report percentile ranks in growth, development, and norming contexts. In a clini
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-percentile-rank-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-percentile-rank-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-percentile-rank-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-percentile-rank-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

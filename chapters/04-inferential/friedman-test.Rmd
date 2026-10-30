@@ -1,12 +1,14 @@
-## Introduction
+## Friedman Test {#sec-chapters-04-inferential-friedman-test}
+
+### Introduction {#sec-chapters-04-inferential-friedman-test-introduction}
 
 The Friedman test, introduced by Milton Friedman in 1937, compares three or more paired or repeated measurements without requiring distributional assumptions about the underlying outcomes. It is the rank-based non-parametric analogue of the one-way repeated-measures ANOVA, making it the appropriate choice when the outcome is ordinal, when residuals are markedly non-Normal, or when sample size is too small for the parametric test's distributional assumptions to be defensible. Friedman's test is widely used in sensory-evaluation panels, in within-subject behavioural and clinical studies with small samples, and in agricultural block-design experiments where variance heterogeneity across blocks is a concern.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-friedman-test-prerequisites}
 
 A working understanding of rank-based inference, the one-way repeated-measures ANOVA framework, and the relationship between Friedman's test and the Wilcoxon signed-rank test as its two-condition special case.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-friedman-test-theory}
 
 For $n$ subjects each measured on $k$ conditions, the observations are ranked within each subject (each subject provides a ranking from 1 to $k$ across conditions). Let $R_j$ be the sum of ranks for condition $j$ across subjects. The Friedman statistic is
 
@@ -14,11 +16,11 @@ $$Q = \frac{12}{n k (k + 1)} \sum_{j=1}^k R_j^2 - 3 n (k + 1),$$
 
 which is asymptotically $\chi^2_{k-1}$ under the null hypothesis of no condition effect. Kendall's coefficient of concordance $W = Q / [n (k - 1)]$ in $[0, 1]$ provides an effect-size measure; values near 1 indicate strong agreement among subjects' rank orderings of conditions, and values near 0 indicate no consistent ordering. Pairwise post-hoc comparisons typically use the Wilcoxon signed-rank test with Bonferroni correction.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-friedman-test-assumptions}
 
 There is one group of subjects each measured on $k$ conditions, the observations are at least on an ordinal scale, and the conditions are pre-specified. The test imposes no Normality or sphericity assumptions, which is its main appeal over parametric repeated-measures ANOVA.
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-friedman-test-r-implementation}
 
 ```r
 library(rstatix)
@@ -37,15 +39,15 @@ df |> friedman_effsize(y ~ time | subject)
 df |> wilcox_test(y ~ time, paired = TRUE, p.adjust.method = "bonferroni")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-friedman-test-output-results}
 
 The Friedman test on 20 subjects across four time points yields $Q(3) = 46.74$, $p < 0.001$, indicating strong evidence of a time effect. Kendall's $W = 0.78$ classes this as a large concordance — subjects largely agree on the rank ordering of time points. Bonferroni-adjusted pairwise Wilcoxon signed-rank tests then localise the pattern across consecutive time pairs.
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-friedman-test-interpretation}
 
 A reporting sentence: "The Friedman test showed a significant effect of time on the outcome ($Q_3 = 46.74$, $p < 0.001$), with Kendall's $W = 0.78$ indicating strong concordance among subjects' rank orderings — a large effect. Bonferroni-adjusted pairwise Wilcoxon signed-rank comparisons indicated significant increases between consecutive time points (all adjusted $p < 0.05$). The data are reported on the original scale; the non-parametric test was chosen because residuals from a tentative repeated-measures ANOVA failed the Normality assumption ($p < 0.001$)." Always report effect size.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-friedman-test-practical-tips}
 
 - Friedman's test requires complete data across subjects: any subject missing one or more conditions is excluded by listwise deletion. For designs with non-trivial missingness, a linear mixed model with a rank-based or robust variant (`WRS2::rmmcp`) is generally preferable.
 - Kendall's $W \in [0, 1]$ measures agreement of rank orderings across subjects rather than effect magnitude on the original scale; an $W$ near 0 means subjects disagreed about which condition was best, while an $W$ near 1 means they agreed strongly.
@@ -54,38 +56,35 @@ A reporting sentence: "The Friedman test showed a significant effect of time on 
 - For very small samples ($n < 10$), exact permutation-based $p$-values are preferable to the chi-squared asymptotic approximation; `rstatix::friedman_test()` handles this when an `exact` argument is supplied.
 - Friedman's test is sensitive to differences in the location of conditions but assumes the same shape of distribution at each condition; substantial differences in shape can be flagged by the Anderson–Darling or Kolmogorov–Smirnov tests applied across conditions.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-04-inferential-friedman-test-r-packages-used}
 
 `rstatix::friedman_test()` and `friedman_effsize()` for canonical Friedman analysis with effect size; base R `friedman.test()` for the lightweight implementation; `coin::friedman_test()` for permutation-based exact $p$-values; `ARTool::art()` for aligned-rank transform ANOVA extending Friedman to factorial designs; `WRS2::rmmcp()` for robust repeated-measures comparisons under non-Normality.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-friedman-test-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-friedman-test-assumptions) and
+[practical tips](#sec-chapters-04-inferential-friedman-test-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-friedman-test-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

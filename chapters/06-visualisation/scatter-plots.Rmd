@@ -1,12 +1,14 @@
-## Introduction
+## Scatter Plots {#sec-chapters-06-visualisation-scatter-plots}
+
+### Introduction {#sec-chapters-06-visualisation-scatter-plots-introduction}
 
 A scatter plot is the default visualisation for the relationship between two continuous variables: each observation becomes a point, position encodes the value pair, and the eye reads correlation, clustering, and outliers directly. It is the first graphic to make whenever a regression or correlation is contemplated. The simplicity is also the trap: at modest sample sizes a scatter is informative, but at large $n$ overplotting hides density, and at small $n$ a few points are easy to misread as a strong relationship that disappears under any reasonable significance test.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-scatter-plots-prerequisites}
 
 A working knowledge of `ggplot2`'s aesthetic mappings and an idea of how the bivariate distribution differs from marginal univariate summaries.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-scatter-plots-theory}
 
 The core geom is `geom_point()`, with point size, shape, alpha, and colour as the controllable aesthetics. Overplotting — multiple observations stacking on the same pixel — is the universal challenge once $n$ exceeds a few hundred. Standard remedies:
 
@@ -18,11 +20,11 @@ The core geom is `geom_point()`, with point size, shape, alpha, and colour as th
 
 Trend layers come from `geom_smooth()`, with LOESS as the default for exploratory work and `method = "lm"` (or `"gam"`, `"glm"`) for parametric fits.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-scatter-plots-assumptions}
 
 Both x and y are continuous; one categorical variable should be encoded with colour or shape rather than placed on an axis. No statistical assumptions until a smoother or fitted line is added.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-scatter-plots-r-implementation}
 
 ```r
 library(ggplot2); library(ggpointdensity)
@@ -50,15 +52,15 @@ ggplot(mtcars, aes(wt, mpg)) +
   theme_minimal()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-scatter-plots-output-results}
 
 Four scatter plots showing the same idea at different scales: a small clean scatter for the 32-row `mtcars`, a density-revealing alpha-blended scatter for the 53,940-row `diamonds`, a density-coloured point-by-point view for an intermediate sample, and a small scatter with an OLS smoother and confidence band overlay.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-scatter-plots-interpretation}
 
 A reporting sentence: "Higher carat values are associated with higher price (Spearman $\rho = 0.93$, $n = 53{,}940$); the relationship is approximately linear on a log-log scale and the alpha-blended scatter reveals heteroscedasticity in the right tail." Always inspect a scatter before computing a correlation: non-linearity, subgroup structure, and outliers are visible here but hidden in a single summary number.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-scatter-plots-practical-tips}
 
 - For $n > 1{,}000$ use alpha (0.1–0.3 typical); for $n > 10{,}000$ switch to hexbin or density colouring outright.
 - Always label axes with units; "Weight" is ambiguous, "Weight (1000 lbs)" is informative.
@@ -67,30 +69,27 @@ A reporting sentence: "Higher carat values are associated with higher price (Spe
 - Use `stat_ellipse()` to draw 95 % data ellipses for group boundaries when colour-coded clusters need an extra visual hint.
 - Avoid 3D scatter plots in print; rotation kills depth perception and the third dimension is better encoded as colour, size, or a faceting variable.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-scatter-plots-r-packages-used}
 
 `ggplot2` for `geom_point()`, `geom_smooth()`, `stat_ellipse()`; `ggpointdensity` for density-coloured scatter; `hexbin` for `geom_hex()` with large $n$; `ggrepel` for labelling individual points without overlap.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-scatter-plots-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-scatter-plots-assumptions) and
+[practical tips](#sec-chapters-06-visualisation-scatter-plots-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-scatter-plots-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

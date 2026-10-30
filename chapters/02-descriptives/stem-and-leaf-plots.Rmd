@@ -1,12 +1,14 @@
-## Introduction
+## Stem-and-Leaf Plots {#sec-chapters-02-descriptives-stem-and-leaf-plots}
+
+### Introduction {#sec-chapters-02-descriptives-stem-and-leaf-plots-introduction}
 
 The stem-and-leaf plot, introduced by John Tukey, is a compact display that shows the distribution of a small sample while preserving every data value. Each observation is split into a "stem" (leading digits) and a "leaf" (trailing digit); stems are listed vertically and leaves are written next to each stem in order. For samples up to about 100 observations, the resulting ASCII plot is a poor man's histogram that can be typed into a notebook.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-stem-and-leaf-plots-prerequisites}
 
 The reader should know what a histogram is.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-stem-and-leaf-plots-theory}
 
 Given observations, pick a stem width (10s, 100s, etc.) and list each observation by its stem and leaf. For example, values 12, 15, 18, 22, 25, 29, 34 with tens-digit stems:
 
@@ -18,11 +20,11 @@ Given observations, pick a stem width (10s, 100s, etc.) and list each observatio
 
 The back-to-back variant puts two groups on either side of the stem, permitting visual comparison. Modern software rarely uses stem-and-leaf for publication figures, but it remains a quick inspection tool in R's console.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-stem-and-leaf-plots-assumptions}
 
 Purely descriptive, requires nothing except numeric data.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-stem-and-leaf-plots-r-implementation}
 
 ```r
 set.seed(2026)
@@ -40,7 +42,7 @@ y <- rnorm(30, 110, 12)
 stem.leaf.backback(x, y)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-stem-and-leaf-plots-output-results}
 
 ```
   The decimal point is 1 digit(s) to the right of the |
@@ -55,11 +57,11 @@ stem.leaf.backback(x, y)
 
 Each leaf on the 10-row represents one observation: 101, 101, 101, 103, 104, etc. The display is itself a histogram with the same-height bars rotated 90 degrees.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-stem-and-leaf-plots-interpretation}
 
 Use stem-and-leaf plots for quick eyeballing in R's console; they reveal outliers, skew, and multimodality without generating a figure file.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-stem-and-leaf-plots-practical-tips}
 
 - For samples over 100, the plot becomes cluttered; use a histogram.
 - `scale` in `stem()` adjusts the stem width; experiment to find the right granularity.
@@ -69,24 +71,21 @@ Use stem-and-leaf plots for quick eyeballing in R's console; they reveal outlier
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-stem-and-leaf-plots-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-stem-and-leaf-plots-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-stem-and-leaf-plots-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-stem-and-leaf-plots-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

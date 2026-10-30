@@ -1,12 +1,14 @@
-## Introduction
+## The Probability Mass Function {#sec-chapters-03-probability-probability-mass-function}
+
+### Introduction {#sec-chapters-03-probability-probability-mass-function-introduction}
 
 For a discrete random variable, the probability mass function (PMF) gives the probability that the variable takes each specific value. It is the discrete analogue of the density function, and the probability of any event reduces to summing the PMF over the relevant values.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-probability-mass-function-prerequisites}
 
 Discrete random variables and basic probability.
 
-## Theory
+### Theory {#sec-chapters-03-probability-probability-mass-function-theory}
 
 For a discrete random variable $X$ with countable support $\{x_1, x_2, \ldots\}$, the PMF is
 
@@ -32,11 +34,11 @@ $$E[X] = \sum_x x \, p_X(x), \qquad \mathrm{Var}(X) = \sum_x (x - E[X])^2 \, p_X
 
 Common discrete PMFs in R use the `d<name>()` family: `dbinom`, `dpois`, `dgeom`, `dhyper`, `dnbinom`, `dmultinom`.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-probability-mass-function-assumptions}
 
 The variable must be discrete. Assigning a PMF to a continuous variable produces a degenerate object (zero at every point, failing normalisation).
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-probability-mass-function-r-implementation}
 
 ```r
 library(ggplot2)
@@ -67,7 +69,7 @@ ggplot(data.frame(k, pmf), aes(k, pmf)) +
   theme_minimal()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-probability-mass-function-output-results}
 
 ```
    k         pmf
@@ -90,11 +92,11 @@ ggplot(data.frame(k, pmf), aes(k, pmf)) +
 [1] 2.1          # Var(X) = np(1-p)
 ```
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-probability-mass-function-interpretation}
 
 A PMF table or bar chart is the natural display of a discrete distribution. For a manuscript, reporting "the number of responders out of 10 was binomially distributed with $p = 0.3$" conveys the full PMF implicitly.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-probability-mass-function-practical-tips}
 
 - Make sure the PMF sums to exactly 1 when you define a custom distribution; normalise explicitly.
 - For mixtures of Poissons, Bernoullis, and similar, sums of PMFs computed componentwise give the mixture PMF.
@@ -104,26 +106,23 @@ A PMF table or bar chart is the natural display of a discrete distribution. For 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-probability-mass-function-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-probability-mass-function-assumptions) and
+[practical tips](#sec-chapters-03-probability-probability-mass-function-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-probability-mass-function-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

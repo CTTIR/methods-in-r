@@ -1,9 +1,11 @@
+## Week 1, Session 3 — Data types, tidy data, accuracy and precision {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-learning-objectives}
 
 - Classify a variable as nominal, ordinal, interval, or ratio and
   explain why the distinction dictates what summaries are legal.
@@ -12,11 +14,11 @@ Goal → Approach → Execution → Check → Report.
 - Separate accuracy, precision, and bias by simulation, and say why a
   precise instrument can still be wrong.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-prerequisites}
 
 Lab 1.2 (toolchain).
 
-## Background
+### Background {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-background}
 
 Statistics is largely the study of variation, and variation must be
 measured. Before we calculate anything we need to say what kind of
@@ -41,7 +43,7 @@ systematic offset from truth. An instrument can be precise but biased
 (tight cluster off-target), accurate but imprecise (wide cluster
 centred on truth), or — the goal — both.
 
-## Setup
+### Setup {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-setup}
 
 ```r
 library(tidyverse)
@@ -49,19 +51,20 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-1-goal}
 
 Move a small simulated clinical dataset between wide and long forms
 and quantify accuracy, precision, and bias in a simulated measurement
 process.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-2-approach}
 
 We simulate three repeat measurements of blood pressure on twelve
 patients at two visits. This is a realistic wide-format dataset with
 a within-patient structure.
 
 ```r
+clinic <- tibble(
   id = sprintf("P%02d", 1:12),
   sex = sample(c("F", "M"), 12, replace = TRUE),
   visit1_sbp1 = rnorm(12, 140, 10),
@@ -74,11 +77,12 @@ a within-patient structure.
 clinic |> select(id, starts_with("visit1")) |> head(3)
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-3-execution}
 
 Reshape to a long form where each row is one reading.
 
 ```r
+long <- clinic |>
   pivot_longer(
     cols = starts_with("visit"),
     names_to = c("visit", "reading"),
@@ -102,6 +106,7 @@ by visit-and-patient. The same plot in wide format would require
 custom code for each visit column.
 
 ```r
+# Collapse three readings per visit to a mean.
 by_visit <- long |>
   group_by(id, visit, sex) |>
   summarise(sbp_mean = mean(sbp), .groups = "drop")
@@ -111,13 +116,14 @@ wide <- by_visit |> pivot_wider(names_from = visit, values_from = sbp_mean)
 head(wide)
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-4-check}
 
 Simulate an instrument with a known truth (say, a calibrated reference
 of 120) and compare three candidate devices with different
 accuracy/precision profiles.
 
 ```r
+truth <- 120
 n <- 500
 devices <- tibble(
   device_A = rnorm(n, mean = 120, sd = 1),   # accurate & precise
@@ -143,7 +149,7 @@ devices |>
   labs(x = "Reading", y = "Density")
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-5-report}
 
 > In a simulated calibration experiment (*n* = `n` draws per device),
 > the unbiased precise device had bias = `round(summary_table$bias[1], 2)`
@@ -159,7 +165,7 @@ A device that is consistent is not necessarily correct, and a device
 that is correct on average may still be unusable on a single reading.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-common-pitfalls}
 
 - Treating ordinal codes (1 = mild, 2 = moderate, 3 = severe) as if
   the steps were equal.
@@ -169,21 +175,22 @@ that is correct on average may still be unusable on a single reading.
   is still the wrong number.
 - Using the mean to summarise a nominal variable.
 
-## Further reading
+### Further reading {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-further-reading}
 
 - Wickham H (2014), *Tidy Data*. Journal of Statistical Software.
 - Altman DG, Bland JM (1983), *Measurement in medicine*.
 
-## Session info
+### Session info {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-01-foundations)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

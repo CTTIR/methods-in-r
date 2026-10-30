@@ -1,12 +1,14 @@
-## Introduction
+## Differential Expression with edgeR {#sec-chapters-12-bioinformatics-edger-differential-expression}
+
+### Introduction {#sec-chapters-12-bioinformatics-edger-differential-expression-introduction}
 
 edgeR is one of the three dominant RNA-seq differential-expression frameworks (alongside DESeq2 and limma-voom). It fits a negative-binomial generalised linear model to each gene's counts, with empirical-Bayes shrinkage borrowing information across genes to stabilise per-gene dispersion estimates. The combination of NB likelihood and shrinkage gives edgeR its characteristic strength on small samples and its competitive accuracy on standard RNA-seq experiments.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-edger-differential-expression-prerequisites}
 
 A working understanding of negative-binomial regression, RNA-seq normalisation (TMM), generalised linear models with offsets, and the empirical-Bayes shrinkage approach.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-edger-differential-expression-theory}
 
 Per gene $i$ and sample $j$:
 
@@ -20,11 +22,11 @@ Three test choices:
 - **glmQLFTest**: quasi-likelihood F-test; the recommended default for nearly all designs because it accounts for uncertainty in dispersion estimation.
 - **glmLRT**: classical likelihood-ratio test; more aggressive but anti-conservative when sample sizes are very small.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-edger-differential-expression-assumptions}
 
 Counts approximately negative-binomial conditional on covariates; the design matrix encodes the biological and technical factors correctly; sufficient sample size for stable dispersion estimation (typically $\ge 3$ per group).
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-edger-differential-expression-r-implementation}
 
 ```r
 library(edgeR)
@@ -46,15 +48,15 @@ topTags(qlf)
 summary(decideTests(qlf))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-edger-differential-expression-output-results}
 
 `topTags()` returns the top differentially-expressed genes ordered by FDR-adjusted $p$-value, with $\log_2$ fold change, log-CPM, $F$-statistic, and BH-adjusted $p$-value. `decideTests()` summarises significance calls per direction (up / down / not significant) for cross-method comparison.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-edger-differential-expression-interpretation}
 
 A reporting sentence: "edgeR's quasi-likelihood F-test identified 342 differentially expressed genes at FDR < 0.05 between conditions A and B (n = 6 per group), with 180 upregulated and 162 downregulated in condition B; the median absolute $\log_2$ fold change among significant genes was 1.4. Filtering with `filterByExpr` retained 14{,}500 of 20{,}000 genes for testing." Always state the FDR threshold, sample sizes, and pre-filtering decisions.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-edger-differential-expression-practical-tips}
 
 - Use `glmQLFTest()` as the default for nearly all designs; it has better Type I error control than `glmLRT()` at small sample sizes.
 - Filter low-count genes with `filterByExpr()` before dispersion estimation; testing 20{,}000 mostly-zero genes wastes power and produces unstable shrinkage.
@@ -63,32 +65,29 @@ A reporting sentence: "edgeR's quasi-likelihood F-test identified 342 differenti
 - Visualise with MA plot, volcano plot, and a heatmap of top genes; `Glimma::glimmaMA()` provides interactive versions for exploration.
 - Compare edgeR results with DESeq2 and limma-voom on the same data; concordance across methods is reassuring, while disagreement signals model-sensitive genes that warrant investigation.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-edger-differential-expression-r-packages-used}
 
 `edgeR` for `DGEList`, `calcNormFactors`, `estimateDisp`, `glmQLFit`, `glmQLFTest`, and the canonical NB workflow; `limma` for the voom alternative; `DESeq2` for the third major DE method; `Glimma` for interactive MA and volcano plots; `EnhancedVolcano` for publication-ready volcano plots.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-edger-differential-expression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-edger-differential-expression-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-edger-differential-expression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-edger-differential-expression-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

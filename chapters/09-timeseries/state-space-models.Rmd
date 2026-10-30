@@ -1,12 +1,14 @@
-## Introduction
+## State-Space Models {#sec-chapters-09-timeseries-state-space-models}
+
+### Introduction {#sec-chapters-09-timeseries-state-space-models-introduction}
 
 State-space models describe a time series via a latent state vector that evolves over time, with observations as a noisy function of the state. This general framework encompasses essentially every classical time-series model — ARIMA, exponential smoothing (ETS), structural time series, hidden Markov models, dynamic linear models — as special cases. The unified framework provides a consistent inference machinery (the Kalman filter for linear Gaussian models; particle and extended-Kalman filters for non-linear or non-Gaussian extensions) and a flexible specification language for custom models.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-state-space-models-prerequisites}
 
 A working understanding of linear algebra, Bayesian or likelihood inference, and basic familiarity with classical ARIMA / ETS forecasting.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-state-space-models-theory}
 
 The standard linear Gaussian state-space model has two equations:
 
@@ -18,11 +20,11 @@ The matrices $(F_t, G_t, V_t, W_t)$ specify the model — they are typically con
 
 The Kalman filter computes both filtered and smoothed states by recursive Gaussian updates; non-linear or non-Gaussian extensions use the extended or unscented Kalman filter, the particle filter, or fully Bayesian MCMC.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-state-space-models-assumptions}
 
 For the standard Kalman filter: linear Gaussian observation and state equations. Non-linearity or non-Gaussianity requires extended methods.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-state-space-models-r-implementation}
 
 ```r
 library(dlm)
@@ -44,15 +46,15 @@ plot(y)
 lines(dropFirst(smo$s), col = "red", lwd = 2)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-state-space-models-output-results}
 
 `dlmMLE()` estimates the variance components by maximum likelihood. `dlmFilter()` and `dlmSmooth()` produce filtered and smoothed state estimates. The smoothed latent series captures the gradual level evolution; for the Nile, it shows the famous step-down around 1900 corresponding to the Aswan Low Dam construction.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-state-space-models-interpretation}
 
 A reporting sentence: "A local-level state-space model of Nile river flow fit by maximum likelihood estimated observation variance 15{,}100 and state-transition variance 1{,}470 (signal-to-noise ratio 0.10), favouring gradual state evolution; the smoothed latent series captured a clear level shift in the late 1890s." Always state the model structure (local level, local linear trend, etc.) and the estimated variance components.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-state-space-models-practical-tips}
 
 - ARIMA and ETS have exact state-space representations; `forecast::Arima()` and `ets()` use them internally.
 - Unknown latent states are estimated automatically by the Kalman filter; the user typically only specifies the model structure and estimates variance components by MLE.
@@ -61,30 +63,27 @@ A reporting sentence: "A local-level state-space model of Nile river flow fit by
 - State-space is the general framework; choose a specific model (local level, local linear trend, structural with seasonal, dynamic regression) based on substantive domain knowledge.
 - For diagnostics, examine the standardised innovations (filter residuals); they should be approximately white noise under correct model specification.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-state-space-models-r-packages-used}
 
 `dlm` for the canonical dynamic linear model framework; `KFAS` for fast Kalman filtering / smoothing including non-Gaussian extensions; `bsts` for Bayesian structural time series; `MARSS` for multivariate ARMA state-space models; `fable::SSM()` for tidyverts state-space modelling.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-state-space-models-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-state-space-models-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-state-space-models-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-state-space-models-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

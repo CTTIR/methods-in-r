@@ -1,12 +1,14 @@
-## Introduction
+## Transformers: Overview {#sec-chapters-13-ml-transformer-overview}
+
+### Introduction {#sec-chapters-13-ml-transformer-overview-introduction}
 
 The Transformer architecture (Vaswani et al., 2017) replaced recurrent networks as the dominant sequence model. Its core mechanism is **self-attention**: each token attends to every other token in the sequence with learned weights. Transformers underpin BERT, GPT, T5, and modern LLMs, and have expanded into vision (ViT), audio (wav2vec2), and tabular domains.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-transformer-overview-prerequisites}
 
 Neural networks; attention concept; tokenisation basics.
 
-## Theory
+### Theory {#sec-chapters-13-ml-transformer-overview-theory}
 
 **Scaled dot-product attention**:
 $$\text{Attn}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right) V,$$
@@ -18,11 +20,11 @@ where $Q, K, V$ are query, key, and value projections of the input.
 
 **Positional encoding** injects sequence order (sinusoidal or learned).
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-transformer-overview-assumptions}
 
 Sufficient data (transformers are data-hungry); proper tokenisation (BPE or WordPiece for text); positional encoding matches task.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-transformer-overview-r-implementation}
 
 ```r
 library(torch)
@@ -55,15 +57,15 @@ out <- model(seq)
 out$shape                             # [2, 10, 32]
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-transformer-overview-output-results}
 
 Output sequence of the same shape as the input; the block transforms representations by letting each token attend to the full context.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-transformer-overview-interpretation}
 
 "A single transformer block with 4-head self-attention and feedforward sublayers transformed a (10-token, 32-dim) sequence. Stacking 6-48 such blocks gives modern NLP models; pretrained backbones (BERT, RoBERTa) are the practical starting point."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-transformer-overview-practical-tips}
 
 - Transformers need a lot of data; for small-data tasks, fine-tune a pretrained backbone rather than training from scratch.
 - Use efficient attention variants (FlashAttention, sparse attention) for long sequences.
@@ -73,31 +75,28 @@ Output sequence of the same shape as the input; the block transforms representat
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-transformer-overview-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-transformer-overview-assumptions) and
+[practical tips](#sec-chapters-13-ml-transformer-overview-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-transformer-overview-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

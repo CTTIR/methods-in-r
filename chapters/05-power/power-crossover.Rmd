@@ -1,12 +1,14 @@
-## Introduction
+## Power for Crossover Trials {#sec-chapters-05-power-power-crossover}
+
+### Introduction {#sec-chapters-05-power-power-crossover-introduction}
 
 In a crossover trial, each subject receives multiple treatments in sequence with a washout period between. The paired comparison cancels between-subject variability, often requiring far fewer subjects than parallel-group trials. The classic 2x2 crossover has two treatments and two periods.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-crossover-prerequisites}
 
 Paired t-test, power analysis, crossover design basics.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-crossover-theory}
 
 In a 2x2 crossover, the period-adjusted within-subject difference has variance $\sigma_w^2$, typically estimated from prior crossover data. Sample size is analogous to the paired t-test with $\sigma_d = \sigma_w \sqrt{2}$:
 
@@ -16,13 +18,13 @@ Compared to parallel-group with pooled $\sigma$: approximately half the subjects
 
 Carryover effects invalidate the simple formula; a washout period is planned to eliminate them.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-crossover-assumptions}
 
 - No carryover; washout adequate.
 - Period effects modelled if present.
 - Within-subject variance known or estimable.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-crossover-r-implementation}
 
 ```r
 library(PowerTOST); library(pwr)
@@ -40,15 +42,15 @@ n_pair
 pwr.t.test(d = 5 / 10, type = "paired", power = 0.80)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-crossover-output-results}
 
 Bioequivalence 2x2 at 20 % CV, ratio 0.95: 20 subjects. Therapeutic 5-unit effect with $\sigma_w = 10$: 34 subjects.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-crossover-interpretation}
 
 "The 2x2 crossover trial requires 20 subjects for 80 % power to establish bioequivalence within the 80-125 % range, assuming a 20 % within-subject CV and a true ratio of 0.95."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-crossover-practical-tips}
 
 - Crossover saves subjects but doubles measurement commitment per subject; adherence matters.
 - Washout must be long enough to eliminate pharmacokinetic and physiological carryover.
@@ -58,25 +60,22 @@ Bioequivalence 2x2 at 20 % CV, ratio 0.95: 20 subjects. Therapeutic 5-unit effec
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-crossover-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-crossover-assumptions) and
+[practical tips](#sec-chapters-05-power-power-crossover-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-crossover-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

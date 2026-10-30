@@ -1,9 +1,11 @@
+## Week 3, Session 1 — Bayesian thinking; α control vs decision error {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error}
+
 <div class="callout callout-note">
 **Testing labs** use the main template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-learning-objectives}
 
 - Compute a beta-binomial posterior and interpret its credible
   intervals in terms of a decision.
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
   experiments) with Bayesian decision error for a specific experiment.
 - Show how prior sensitivity translates into decision sensitivity.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-prerequisites}
 
 Probability basics and conjugacy.
 
-## Background
+### Background {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-background}
 
 Frequentist testing controls the long-run rate of falsely rejecting a
 true null across repeated experiments; the α = 0.05 convention is a
@@ -38,7 +40,7 @@ reasonable alternatives is less trustworthy than one that does not,
 and sharing that sensitivity is the Bayesian analogue of transparent
 model-building.
 
-## Setup
+### Setup {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-setup}
 
 ```r
 library(tidyverse)
@@ -46,17 +48,18 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-1-hypothesis}
 
 A small trial observes *k* = 7 successes in *n* = 20 patients of a new
 response-rate biomarker. Is the underlying response rate meaningfully
 above 0.2?
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-2-visualise}
 
 Prior vs posterior for three priors.
 
 ```r
+k <- 7; n <- 20
 theta <- seq(0, 1, length.out = 400)
 priors <- tibble(
   name = c("uniform (Beta(1,1))", "sceptical (Beta(2,8))", "flat informative (Beta(4,4))"),
@@ -78,17 +81,18 @@ ggplot(post, aes(theta, value, colour = density)) +
   labs(x = expression(theta), y = "density")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-3-assumptions}
 
 Bernoulli trials, exchangeable, conjugate beta prior. With no prior
 data on the response rate in this population, we carry all three
 priors through and compare decisions.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-4-conduct}
 
 Posterior summaries.
 
 ```r
+summ <- priors |>
   rowwise() |>
   mutate(
     post_mean = (a0 + k) / (a0 + b0 + n),
@@ -103,11 +107,12 @@ summ
 A frequentist analogue for comparison.
 
 ```r
+bt <- binom.test(k, n, p = 0.2, alternative = "greater")
 c(estimate = bt$estimate, p_value = bt$p.value,
   ci_lo = bt$conf.int[1], ci_hi = bt$conf.int[2])
 ```
 
-## 5. Conclude
+### 5. Conclude {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-5-conclude}
 
 > With 7 responders out of 20, the posterior probability that the
 > response rate exceeds 0.2 is `round(summ$p_gt_0_2[1], 2)` under a
@@ -122,7 +127,7 @@ with its prior-sensitivity — is more decision-relevant than a
 *p*-value.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-common-pitfalls}
 
 - Treating a 95% credible interval as a 95% confidence interval; they
   are calibrated for different inferences.
@@ -131,22 +136,23 @@ with its prior-sensitivity — is more decision-relevant than a
 - Comparing a one-sided Bayesian tail probability to a two-sided
   *p*-value.
 
-## Further reading
+### Further reading {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-further-reading}
 
 - Spiegelhalter DJ, Abrams KR, Myles JP, *Bayesian Approaches to
   Clinical Trials and Health-Care Evaluation*.
 - McElreath R, *Statistical Rethinking*, ch. 2–3.
 
-## Session info
+### Session info {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-10-bayesian)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

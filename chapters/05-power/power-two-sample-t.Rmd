@@ -1,12 +1,14 @@
-## Introduction
+## Sample Size for a Two-Sample t-Test {#sec-chapters-05-power-power-two-sample-t}
+
+### Introduction {#sec-chapters-05-power-power-two-sample-t-introduction}
 
 Before running a two-group comparison, the investigator needs to know how many observations per group will be required to detect a difference of scientific importance with acceptable probability. Power analysis for the two-sample t-test answers this question by linking four quantities: the true effect size, the significance level, the power, and the sample size. Given any three, R can solve for the fourth.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-two-sample-t-prerequisites}
 
 Familiarity with the two-sample t-test and with the concepts of type I and type II error is assumed. The reader should know that "power" means $1 - \beta$, the probability of rejecting $H_0$ when $H_1$ is true.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-two-sample-t-theory}
 
 Under $H_0$, the t statistic follows a central t distribution with $\nu = n_1 + n_2 - 2$ degrees of freedom (Student's test, equal variances). Under $H_1$ where $\mu_1 - \mu_2 = \delta$, the statistic follows a *non-central* t distribution with non-centrality parameter
 
@@ -21,11 +23,11 @@ The four power quantities and their trade-offs:
 - **Power**: conventionally 0.80 for exploratory work, 0.90 for confirmatory or registered trials.
 - **Sample size per group $n$**: what we typically solve for.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-two-sample-t-assumptions}
 
 Power analysis inherits the assumptions of the t-test it plans for: independent groups, approximately normal data (or large enough $n$ for the CLT), and equal variances for Student's test (unequal for Welch's).
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-two-sample-t-r-implementation}
 
 ```r
 library(pwr)
@@ -46,7 +48,7 @@ pwrss.t.2means(mu1 = 110, mu2 = 100, sd1 = 18, sd2 = 15,
 
 The first `pwr.t.test()` call asks: how many subjects per group do I need to detect a medium-sized effect ($d = 0.5$) with 80% power? The second asks: given $n = 30$ per group, what is the minimum detectable effect at 80% power? The third asks: given $n = 30$ and $d = 0.5$, what is my power? The `pwrss::pwrss.t.2means()` call works directly in raw-mean terms, which is often more natural when planning a clinical trial.
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-two-sample-t-output-results}
 
 The first call returns $n \approx 64$ per group -- 128 subjects in total. The second returns a minimum detectable $d \approx 0.735$, corresponding to a raw difference of about 11 points if $\sigma = 15$. The third returns a power of approximately 0.48, showing that 30 per group is badly underpowered for a medium effect.
 
@@ -60,11 +62,11 @@ The first call returns $n \approx 64$ per group -- 128 subjects in total. The se
     alternative = two.sided
 ```
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-two-sample-t-interpretation}
 
 The recommended manuscript phrasing is: "Assuming a between-group standardised mean difference of $d = 0.5$ (a medium effect by Cohen's criteria), a two-sided $\alpha$ of 0.05, and power of 0.80, the required sample size is 64 per group. Allowing for 10% loss to follow-up, we aim to enrol 72 per group (144 total)." The power analysis should be reported in the methods section of the grant or protocol, not buried in an appendix.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-two-sample-t-practical-tips}
 
 - Base your effect size on published data or a pilot, not on a convention like $d = 0.5$. If the published effect is $d = 0.3$, planning for $d = 0.5$ will leave you underpowered.
 - Use Welch's sample size for unequal variances (`pwr.t2n.test()` or `pwrss.t.2means()` with `sd1 != sd2`). It is slightly more conservative, which is what you want at the planning stage.
@@ -74,25 +76,22 @@ The recommended manuscript phrasing is: "Assuming a between-group standardised m
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-two-sample-t-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-two-sample-t-assumptions) and
+[practical tips](#sec-chapters-05-power-power-two-sample-t-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-two-sample-t-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

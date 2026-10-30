@@ -1,9 +1,11 @@
+## Week 3, Session 2 — brms / Stan, LOO, hierarchical models {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-learning-objectives}
 
 - Write a simple multilevel model in `brms` syntax and describe each
   prior.
@@ -11,11 +13,11 @@ Goal → Approach → Execution → Check → Report.
   validation.
 - Perform a prior predictive check and interpret it.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-prerequisites}
 
 Beta-binomial Bayesian intuition; linear mixed-effects models.
 
-## Background
+### Background {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-background}
 
 `brms` is an interface that translates R formulas into Stan programs
 and runs Hamiltonian Monte Carlo to draw from the posterior. It is
@@ -35,7 +37,7 @@ show the `brms` code with `#| eval: false` and walk through prior
 predictive simulation and a small frequentist counterpart that runs
 end-to-end.
 
-## Setup
+### Setup {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-setup}
 
 ```r
 library(tidyverse)
@@ -44,18 +46,19 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-1-goal}
 
 Fit a two-level hierarchical model to simulated clinical data — patient
 outcomes nested within centre — and compare a random-intercept against
 a random-slope model.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-2-approach}
 
 Simulate 20 centres with varying mean outcomes and varying dose
 effects.
 
 ```r
+n_centre <- 20; per_centre <- 15
 centre <- rep(seq_len(n_centre), each = per_centre)
 alpha0 <- rnorm(n_centre, 0, 1)
 beta0  <- rnorm(n_centre, 0.5, 0.3)
@@ -67,12 +70,13 @@ ggplot(d, aes(dose, y, colour = centre)) +
   theme(legend.position = "none")
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-3-execution}
 
 A classical `lmer` random-intercept-and-slope fit as a stand-in we can
 run.
 
 ```r
+fit_lmer_ri  <- lmer(y ~ dose + (1 | centre), data = d)
 fit_lmer_rs  <- lmer(y ~ dose + (dose | centre), data = d)
 summary(fit_lmer_rs)$varcor
 anova(fit_lmer_ri, fit_lmer_rs)
@@ -82,6 +86,7 @@ Prior predictive simulation (frequentist-style) for the Bayesian
 counterpart we are about to sketch.
 
 ```r
+prior_sim <- replicate(20, {
   a <- rnorm(1, 0, 1); b <- rnorm(1, 0, 1); sd_a <- abs(rnorm(1, 0, 1))
   a + b * dose + rnorm(length(dose), 0, sd_a)
 })
@@ -107,15 +112,16 @@ m_rs <- brm(y ~ dose + (dose | centre), data = d,
 loo_compare(loo(m_ri), loo(m_rs))
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-4-check}
 
 Compare to `lmer` and report pooled vs unpooled estimates.
 
 ```r
+fixef_lmer <- fixef(fit_lmer_rs)
 fixef_lmer
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-5-report}
 
 > On simulated hierarchical data (20 centres × 15 patients), a
 > random-slope `lmer` model recovered an average dose effect of
@@ -131,7 +137,7 @@ route adds explicit prior sensitivity and full posterior uncertainty
 for downstream prediction.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-common-pitfalls}
 
 - Fitting a flat prior in a small-sample hierarchical model and getting
   a divergent posterior on variance components.
@@ -140,23 +146,24 @@ for downstream prediction.
 - Forgetting to scale continuous predictors; default priors assume
   normalised inputs.
 
-## Further reading
+### Further reading {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-further-reading}
 
 - Bürkner P-C (2017), *brms: An R package for Bayesian multilevel
   models using Stan*.
 - Vehtari A, Gelman A, Gabry J (2017), *Practical Bayesian model
   evaluation using leave-one-out cross-validation*.
 
-## Session info
+### Session info {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-10-bayesian)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

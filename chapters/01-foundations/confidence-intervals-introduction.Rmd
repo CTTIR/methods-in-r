@@ -1,12 +1,14 @@
-## Introduction
+## Confidence Intervals: Introduction {#sec-chapters-01-foundations-confidence-intervals-introduction}
+
+### Introduction {#sec-chapters-01-foundations-confidence-intervals-introduction-introduction}
 
 A point estimate without an interval is an answer without error bars -- nearly useless for decision-making. A **confidence interval** is a range of values, computed from data, that would contain the true parameter in a specified fraction of hypothetical repeated samples. This "coverage" interpretation is precise and useful but different from what most readers casually assume.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-confidence-intervals-introduction-prerequisites}
 
 The reader should understand the concept of a sampling distribution and of a standard error.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-confidence-intervals-introduction-theory}
 
 A $1 - \alpha$ confidence interval for a parameter $\theta$ is a pair of statistics $(L, U)$ depending on the data such that
 
@@ -26,11 +28,11 @@ where the probability is over repeated sampling. The conventional choice is $\al
 
 4. **Bootstrap intervals**: resample the data, compute the statistic, and use quantiles (percentile method) or bias-corrected variants for the interval. Works when an analytical SE is unavailable.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-confidence-intervals-introduction-assumptions}
 
 Each construction has its own assumptions. The t-interval requires normal data or a large enough sample for CLT. Wald intervals require asymptotic normality of $\hat{\theta}$ and a well-estimated SE. Bootstrap intervals require exchangeable observations and inherit the sampling design.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-confidence-intervals-introduction-r-implementation}
 
 ```r
 library(boot)
@@ -51,7 +53,7 @@ boot.ci(b, type = c("perc", "bca"))
 
 We compute a t-interval, a Wald (normal-approximation) interval, and two bootstrap intervals for the same sample mean.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-confidence-intervals-introduction-output-results}
 
 ```
 95 percent confidence interval:
@@ -65,11 +67,11 @@ BCa:        (71.59, 78.60)
 
 The four intervals agree closely in this well-behaved example; they differ more for heavily skewed statistics or small samples.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-confidence-intervals-introduction-interpretation}
 
 For a manuscript: "The mean was 75.0 (95% CI 71.3 to 78.7, t-interval)." The CI is interpreted as the range of parameter values consistent with the data under the t-sampling model; values outside the interval would be rejected by a 5% level two-sided test.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-confidence-intervals-introduction-practical-tips}
 
 - Prefer CIs over p-values when reporting an effect; they convey both the effect size and its uncertainty.
 - For small samples or skewed distributions, bootstrap BCa intervals usually have better coverage than Wald.
@@ -79,27 +81,24 @@ For a manuscript: "The mean was 75.0 (95% CI 71.3 to 78.7, t-interval)." The CI 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-confidence-intervals-introduction-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-confidence-intervals-introduction-assumptions) and
+[practical tips](#sec-chapters-01-foundations-confidence-intervals-introduction-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-confidence-intervals-introduction-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

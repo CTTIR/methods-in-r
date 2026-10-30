@@ -1,12 +1,14 @@
-## Introduction
+## Alignment with BWA and Bowtie {#sec-chapters-12-bioinformatics-bwa-bowtie-alignment}
+
+### Introduction {#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-introduction}
 
 BWA-MEM and Bowtie2 are the dominant short-read DNA aligners in modern sequencing pipelines. Both use a Burrows-Wheeler-transformed (BWT) index of the reference genome to achieve rapid exact and approximate matching. The BWT compresses the reference while preserving the ability to query for substrings efficiently — the algorithmic insight that brought genome-scale alignment from hours per sample to minutes. Production alignment runs at the command line; R wrappers (`Rbowtie2`, `BWA` via `Rsubread`) integrate with downstream Bioconductor analyses.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-prerequisites}
 
 A working understanding of FASTQ format, reference genomes, and the SAM/BAM alignment format.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-theory}
 
 **BWA-MEM** (Burrows-Wheeler Aligner, Maximal Exact Matches) seeds local alignments by finding maximal exact matches, then extends via banded Smith-Waterman. It is the default aligner for whole-genome DNA sequencing because of its accuracy on long-insert paired-end reads and its handling of indels.
 
@@ -14,11 +16,11 @@ A working understanding of FASTQ format, reference genomes, and the SAM/BAM alig
 
 Both write SAM (text) or BAM (binary) output, including alignment scores, mapping quality, mate-pair information, and tags for soft-clipping, mismatches, and other features. For long reads (PacBio, Nanopore), use minimap2 instead — it is designed for the higher error rates and longer alignment lengths.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-assumptions}
 
 Short reads (typically below ~300 bp; for longer, switch to minimap2); reference genome appropriate to the species and assembly version of the experiment.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-r-implementation}
 
 ```r
 library(Rbowtie2); library(Rsamtools)
@@ -38,15 +40,15 @@ library(Rbowtie2); library(Rsamtools)
 # scanBam("aln_sorted.bam", param = ScanBamParam(which = GRanges("chr1", IRanges(1, 1000))))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-output-results}
 
 The primary output is a BAM file containing aligned reads with mapping quality, CIGAR string, and tags. `samtools flagstat` (or `Rsamtools::quickBamFlagSummary()`) reports alignment statistics: total reads, reads aligned, properly paired, duplicates, secondary alignments. A 95–98 % alignment rate is typical for high-quality WGS data.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-interpretation}
 
 A reporting sentence: "BWA-MEM (v0.7.17) alignment to GRCh38 achieved 97 % overall alignment rate on a 30× whole-genome library, with <1 % ambiguously mapped reads (multi-mappers); after Picard MarkDuplicates, the duplicate rate was 8 %, consistent with a well-optimised PCR-based library prep." Always state the aligner version, reference assembly, and alignment / duplicate rates.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-practical-tips}
 
 - Use minimap2 for long reads (PacBio HiFi, Oxford Nanopore); BWA-MEM and Bowtie2 are short-read tools and lose accuracy beyond about 300 bp.
 - Report alignment statistics (`flagstat`) after alignment as a routine QC step; declines in alignment rate signal contamination, library-prep problems, or reference mismatch.
@@ -55,32 +57,29 @@ A reporting sentence: "BWA-MEM (v0.7.17) alignment to GRCh38 achieved 97 % overa
 - For paired-end reads, specify both mate files; the aligner uses insert-size constraints to improve mapping accuracy near repeats.
 - For ChIP-seq and ATAC-seq, Bowtie2 with `--very-sensitive` is the standard; for WGS variant calling, BWA-MEM is preferred.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-r-packages-used}
 
 `Rbowtie2` for `bowtie2()` and `bowtie2_build()`; `Rsubread::align()` for BWA-style alignment; `Rsamtools` for BAM manipulation, indexing, and flagstat-style statistics; `GenomicAlignments` for downstream alignment-aware analysis.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

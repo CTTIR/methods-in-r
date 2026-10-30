@@ -1,12 +1,14 @@
-## Introduction
+## Seasonal ARIMA (SARIMA) {#sec-chapters-09-timeseries-seasonal-arima}
+
+### Introduction {#sec-chapters-09-timeseries-seasonal-arima-introduction}
 
 Seasonal ARIMA (SARIMA) extends the standard ARIMA framework to series with periodic seasonality. The standard notation is $\mathrm{ARIMA}(p, d, q)(P, D, Q)_s$ where the lower-case letters are non-seasonal orders, the upper-case are seasonal orders, and $s$ is the seasonal period (12 for monthly with annual seasonality, 4 for quarterly, 24 for hourly with daily seasonality). SARIMA is the workhorse parametric forecasting tool for economic, financial, and many biomedical time series with stable seasonal patterns.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-seasonal-arima-prerequisites}
 
 A working understanding of ARIMA models, differencing, the backshift operator, and seasonal decomposition.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-seasonal-arima-theory}
 
 The full SARIMA equation is
 
@@ -16,11 +18,11 @@ where $B$ is the backshift operator ($B y_t = y_{t-1}$). The non-seasonal AR, di
 
 The famous "airline model" $(0, 1, 1)(0, 1, 1)_{12}$ for monthly airline passengers — Box and Jenkins's headline example — demonstrates that even highly trending and strongly seasonal series can fit into the SARIMA family with modest order.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-seasonal-arima-assumptions}
 
 The series is stationary after regular and seasonal differencing; residuals are white noise; the seasonal period $s$ is correctly specified by the `frequency()` of the input `ts` object.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-seasonal-arima-r-implementation}
 
 ```r
 library(forecast)
@@ -36,15 +38,15 @@ autoplot(fc)
 checkresiduals(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-seasonal-arima-output-results}
 
 `auto.arima()` searches over candidate orders using AICc and returns the chosen SARIMA model with its coefficients and standard errors. `forecast()` produces point forecasts and 80 % / 95 % prediction intervals. `checkresiduals()` reports the Ljung-Box test, ACF, and time-series plot of residuals.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-seasonal-arima-interpretation}
 
 A reporting sentence: "`auto.arima` on log-transformed AirPassengers selected an ARIMA$(0,1,1)(0,1,1)_{12}$ structure (AICc = $-483$, $\sigma^2 = 0.0014$); residuals passed Ljung-Box at lag 24 ($p = 0.61$). Forecasts for the next 24 months show continued multiplicative growth and stable seasonal pattern, with 95 % prediction intervals widening from $\pm 5 \%$ at 1 month to $\pm 18 \%$ at 24 months." Always check residual diagnostics before reporting forecasts.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-seasonal-arima-practical-tips}
 
 - Use `auto.arima()` for automatic order selection; double-check the result against ACF/PACF inspection of the differenced series.
 - Log-transform for multiplicative seasonality (where seasonal amplitude grows with the level); SARIMA on the log scale is then additive and well-behaved.
@@ -53,30 +55,27 @@ A reporting sentence: "`auto.arima` on log-transformed AirPassengers selected an
 - Box-Jenkins residual diagnostics (Ljung-Box, ACF, PACF, normality plot) are essential after fitting; `checkresiduals()` aggregates them.
 - For multiple seasonalities (weekly + yearly), use TBATS (`forecast::tbats`) or `mstl()` decomposition with non-seasonal forecasting on the adjusted series.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-seasonal-arima-r-packages-used}
 
 `forecast::auto.arima()` and `Arima()` for canonical SARIMA fitting and forecasting; `fable::ARIMA()` for the modern tidyverts interface; `feasts::ACF()` and `PACF()` for diagnostic visualisations; `seasonal::seas()` for X-13ARIMA-SEATS as the official-statistics alternative.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-seasonal-arima-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-seasonal-arima-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-seasonal-arima-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-seasonal-arima-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Forest Plots (Visualisation) {#sec-chapters-06-visualisation-forest-plots-viz}
+
+### Introduction {#sec-chapters-06-visualisation-forest-plots-viz-introduction}
 
 The forest plot is the signature visualisation of meta-analysis and of subgroup analyses in clinical trials. Each row shows one study (or one subgroup) as a point estimate and a horizontal confidence interval, with study name and sample size in a margin column and a pooled summary as a diamond at the bottom. The compact layout invites direct visual comparison: heterogeneity reads as horizontal scatter across rows, while consistency reads as alignment near the same vertical position. Done well, a forest plot communicates more about a meta-analysis than the accompanying numerical table.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-forest-plots-viz-prerequisites}
 
 A working knowledge of point estimates, confidence intervals, the difference between fixed-effect and random-effects pooling, and basic `ggplot2`.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-forest-plots-viz-theory}
 
 A forest plot encodes three quantities per study: the point estimate (a marker, with size optionally proportional to inverse-variance weight), the lower and upper confidence-interval limits (a horizontal segment), and a study label. Conventional additions:
 
@@ -16,11 +18,11 @@ A forest plot encodes three quantities per study: the point estimate (a marker, 
 
 Ratios (HR, OR, RR) belong on a log axis so that the visual width of a CI corresponds to its multiplicative width and so that intervals symmetric on the log scale appear symmetric.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-forest-plots-viz-assumptions}
 
 Effect estimates and confidence intervals are available and on a comparable scale across studies; weighting (if any) is computed appropriately for the meta-analytic model.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-forest-plots-viz-r-implementation}
 
 ```r
 library(ggplot2)
@@ -44,15 +46,15 @@ ggplot(studies, aes(x = estimate, y = factor(study, levels = rev(study)))) +
   theme_minimal()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-forest-plots-viz-output-results}
 
 A five-row forest plot: four trials displayed as circles with horizontal error bars, a pooled summary as a larger diamond at the bottom, and a vertical null line at HR = 1 on a log-x axis. The dispersion of the four trial estimates around the pooled diamond communicates between-study heterogeneity at a glance.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-forest-plots-viz-interpretation}
 
 A reporting sentence (figure caption): "Forest plot of hazard ratios from four trials and the random-effects pooled estimate (REML, $I^2 = 23 \%$); horizontal error bars show 95 % confidence intervals on a log scale, the diamond marks the pooled estimate, and the dashed vertical line corresponds to no effect (HR = 1)." Always state the pooling model and a heterogeneity statistic.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-forest-plots-viz-practical-tips}
 
 - Log-transform ratios on the x-axis so confidence-interval widths correspond to multiplicative width; otherwise small effects look disproportionately large.
 - Make marker size proportional to inverse-variance weight in meta-analysis (`size = 1/SE^2`); this is the convention readers expect.
@@ -61,30 +63,27 @@ A reporting sentence (figure caption): "Forest plot of hazard ratios from four t
 - Add a right-margin column with numerical effect estimates and CIs (`geom_text()` at fixed x, mapped y); readers expect both visual and numeric information.
 - For automated meta-analysis output, `metafor::forest.rma()` and `forestplot` produce publication-ready figures with weighted markers, columns, and heterogeneity annotations without hand-coding the `ggplot`.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-forest-plots-viz-r-packages-used}
 
 `ggplot2` for hand-built forest plots; `forestplot` for two-column publication-style forests; `metafor::forest.rma()` for meta-analysis output forests; `meta::forest()` for random-effects forests with prediction intervals; `ggforestplot` for tidy hazard-ratio displays from regression models.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-forest-plots-viz-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-forest-plots-viz-assumptions) and
+[practical tips](#sec-chapters-06-visualisation-forest-plots-viz-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-forest-plots-viz-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

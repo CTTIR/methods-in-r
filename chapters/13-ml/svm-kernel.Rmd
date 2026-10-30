@@ -1,12 +1,14 @@
-## Introduction
+## Kernel SVMs {#sec-chapters-13-ml-svm-kernel}
+
+### Introduction {#sec-chapters-13-ml-svm-kernel-introduction}
 
 Kernel SVMs extend the linear SVM framework to non-linear decision boundaries via the kernel trick: replace every inner product $x_i^\top x_j$ in the dual formulation with a kernel function $K(x_i, x_j)$ that corresponds to an inner product in a high-dimensional (often infinite-dimensional) implicit feature space. The Radial Basis Function (RBF) kernel is the workhorse, capable of representing essentially any smooth decision boundary given enough training data and appropriate hyperparameter tuning.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-svm-kernel-prerequisites}
 
 A working understanding of linear SVMs, inner-product spaces, the dual formulation of constrained optimisation, and Mercer's theorem (the conditions a function must satisfy to be a valid kernel).
 
-## Theory
+### Theory {#sec-chapters-13-ml-svm-kernel-theory}
 
 Common kernels:
 
@@ -17,11 +19,11 @@ Common kernels:
 
 Two hyperparameters dominate: the cost parameter $C$ (margin tightness, inherited from linear SVM) and a kernel-specific parameter ($\gamma$ for RBF, $d$ and $c$ for polynomial). RBF $\gamma$ trades bias for variance: small $\gamma$ produces a smoother decision boundary, large $\gamma$ produces a wigglier one with high variance.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-svm-kernel-assumptions}
 
 Features are appropriately scaled; sufficient data to support the kernel's implicit dimensionality (RBF in particular grows in effective complexity with $\gamma$); $C$ and $\gamma$ are tuned jointly because they are correlated.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-svm-kernel-r-implementation}
 
 ```r
 library(e1071)
@@ -46,15 +48,15 @@ tune_out <- tune(svm, y ~ ., data = df, kernel = "radial",
 tune_out$best.parameters
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-svm-kernel-output-results}
 
 The RBF-kernel SVM separates the two concentric classes — a non-linear pattern that no linear classifier can solve. `tune()` performs grid-search cross-validation over $C$ and $\gamma$ and returns the best combination by CV accuracy.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-svm-kernel-interpretation}
 
 A reporting sentence: "The RBF-kernel SVM correctly separated the concentric-rings classes with grid-CV-selected $C = 1$ and $\gamma = 0.5$ (CV accuracy 0.96, test accuracy 0.94); the linear-kernel baseline managed only 0.51, confirming the non-linear structure cannot be captured without the kernel trick." Always state both hyperparameters and how they were tuned.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-svm-kernel-practical-tips}
 
 - Always standardise features; kernel distances are scale-sensitive and unscaled features bias the geometry.
 - For RBF, $\gamma$ trades bias (small $\gamma$, smoother boundary) for variance (large $\gamma$, wigglier boundary); tune jointly with $C$ on a logarithmic 2D grid.
@@ -63,37 +65,34 @@ A reporting sentence: "The RBF-kernel SVM correctly separated the concentric-rin
 - For large $n$ ($> 100{,}000$), kernel SVMs become computationally expensive ($O(n^2)$ to $O(n^3)$ training); consider Nyström approximation (`kernlab::kha`) or fall back to primal linear SVM on engineered features.
 - For probability output, set `probability = TRUE` in `e1071::svm()`; it fits a Platt-scaling layer on top of the SVM decision values.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-svm-kernel-r-packages-used}
 
 `e1071::svm()` for the canonical kernel SVM with RBF, polynomial, and sigmoid options; `kernlab::ksvm()` for an alternative with richer kernel customisation; `LiblineaR` for the primal linear-only fast variant; `parsnip::svm_rbf()` and `svm_poly()` for tidymodels integration; `caret` for cross-validated joint tuning.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-svm-kernel-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-svm-kernel-assumptions) and
+[practical tips](#sec-chapters-13-ml-svm-kernel-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-svm-kernel-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

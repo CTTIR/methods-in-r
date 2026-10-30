@@ -1,12 +1,14 @@
-## Introduction
+## Pooling Risk Ratios {#sec-chapters-15-metaanalysis-risk-ratio-pooling}
+
+### Introduction {#sec-chapters-15-metaanalysis-risk-ratio-pooling-introduction}
 
 Risk ratios (RR) — also called relative risks — are more interpretable than odds ratios for common outcomes; they directly express the ratio of event probabilities between two arms. RR approximates OR only when events are rare (probability below ~10 %); for common outcomes, the two diverge substantially. Meta-analytic pooling of binary outcomes from cohort studies and randomised trials therefore typically proceeds on the log-RR scale, analogously to log-OR pooling.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-15-metaanalysis-risk-ratio-pooling-prerequisites}
 
 A working understanding of risk ratios, log transformations for ratio measures, and inverse-variance meta-analysis under random effects.
 
-## Theory
+### Theory {#sec-chapters-15-metaanalysis-risk-ratio-pooling-theory}
 
 For a study with $a_i$ events in $a_i + b_i = n_{1i}$ exposed and $c_i$ events in $c_i + d_i = n_{2i}$ unexposed:
 
@@ -14,11 +16,11 @@ $$\log \mathrm{RR}_i = \log \frac{a_i / n_{1i}}{c_i / n_{2i}}, \qquad \mathrm{Va
 
 Inverse-variance pooling on the log-RR scale follows the same fixed-effect or random-effects distinction as any other meta-analysis. Back-transformation to the natural RR scale via $\exp$ produces interpretable summaries with confidence intervals that respect the multiplicative scale.
 
-## Assumptions
+### Assumptions {#sec-chapters-15-metaanalysis-risk-ratio-pooling-assumptions}
 
 Studies are independent; log-RR is approximately Normal (typically a good approximation when each study has at least 5 events per arm); the population RR is the same across studies (fixed-effect) or distributed around a mean with between-study variance $\tau^2$ (random-effects).
 
-## R Implementation
+### R Implementation {#sec-chapters-15-metaanalysis-risk-ratio-pooling-r-implementation}
 
 ```r
 library(metafor)
@@ -40,15 +42,15 @@ cat("Pooled RR:", round(exp(re$b), 2),
 cat("tau^2:", round(re$tau2, 3), "  I^2:", round(re$I2, 1), "%\n")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-15-metaanalysis-risk-ratio-pooling-output-results}
 
 `escalc(measure = "RR")` computes per-study log-RR and its variance. `rma()` fits the random-effects model on the log scale; back-transformation gives the pooled RR with confidence intervals on the natural scale, plus $\tau^2$ and $I^2$ for heterogeneity.
 
-## Interpretation
+### Interpretation {#sec-chapters-15-metaanalysis-risk-ratio-pooling-interpretation}
 
 A reporting sentence: "Random-effects meta-analysis of 10 studies (REML, $n$ total = 2{,}000) gave a pooled risk ratio of 1.48 (95 % CI 1.24 to 1.77) with moderate heterogeneity ($I^2 = 35 \%$, $\tau^2 = 0.02$); the intervention is associated with a 48 % higher event rate, with the 95 % CI excluding the null." Always report the heterogeneity statistics alongside the pooled estimate.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-15-metaanalysis-risk-ratio-pooling-practical-tips}
 
 - Use RR for cohort studies and randomised controlled trials, where baseline risk is meaningful; use OR for case-control studies, where RR is not estimable from the design.
 - For rare events (event rate below 10 %), RR ≈ OR; for common events, the two diverge and the choice matters substantively.
@@ -57,32 +59,29 @@ A reporting sentence: "Random-effects meta-analysis of 10 studies (REML, $n$ tot
 - Mantel-Haenszel pooling (`metafor::rma.mh()`) is a common alternative for sparse-data settings; it does not require log-transformation and handles zero events more gracefully.
 - For individual-participant-data meta-analysis, fit a logistic regression with study as a random effect; this is more powerful than aggregate-data pooling when the IPD are available.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-15-metaanalysis-risk-ratio-pooling-r-packages-used}
 
 `metafor::escalc()` with `measure = "RR"` and `rma()` for the canonical workflow; `meta::metabin()` as an alternative interface with cleaner forest-plot output; `metafor::rma.mh()` for Mantel-Haenszel pooling; `metafor::rma.peto()` for the Peto method on rare events.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-15-metaanalysis-risk-ratio-pooling-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-15-metaanalysis-risk-ratio-pooling-assumptions) and
+[practical tips](#sec-chapters-15-metaanalysis-risk-ratio-pooling-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-15-metaanalysis-risk-ratio-pooling-see-also-labs-in-this-chapter}
 
-- [Systematic reviews and PRISMA](labs/lab-systematic-reviews-and-prisma.Rmd)
-- [Meta-analysis basics](labs/lab-meta-analysis-basics.Rmd)
-- [Network meta-analysis](labs/lab-network-meta-analysis.Rmd)
+- [Systematic reviews and PRISMA](#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma)
+- [Meta-analysis basics](#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics)
+- [Network meta-analysis](#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis)
 
 <!-- END see-also -->

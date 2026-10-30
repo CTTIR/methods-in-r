@@ -1,9 +1,11 @@
+## Week 3, Session 2 — Bootstrap and permutation tests {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-learning-objectives}
 
 - Compute a bootstrap confidence interval for a statistic whose
   sampling distribution is not easily derived.
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
   null hypothesis it tests.
 - Explain when bootstrap and permutation answer different questions.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-prerequisites}
 
 Lab 3.1.
 
-## Background
+### Background {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-background}
 
 Classical inference writes down the sampling distribution of an
 estimator analytically, usually by invoking the central limit theorem
@@ -39,7 +41,7 @@ The two techniques look similar — both involve a loop and a `replicate()`
 the observed data-generating process; permutation tests a sharp null
 of no association.
 
-## Setup
+### Setup {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-setup}
 
 ```r
 library(tidyverse)
@@ -47,7 +49,7 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-1-hypothesis}
 
 Two hypotheses in this lab:
 
@@ -57,11 +59,12 @@ Two hypotheses in this lab:
    null that the distributions are exchangeable against the
    two-sided alternative.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-2-visualise}
 
 Use `palmerpenguins`.
 
 ```r
+library(palmerpenguins)
 dat <- penguins |>
   filter(species %in% c("Gentoo", "Adelie")) |>
   drop_na(body_mass_g, flipper_length_mm)
@@ -75,7 +78,7 @@ dat |>
   theme(legend.position = "none")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-3-assumptions}
 
 Bootstrap: the observed sample is representative of the population we
 wish to generalise to. Resampling with replacement preserves the
@@ -85,11 +88,12 @@ Permutation: under H0, group labels can be reshuffled without changing
 the joint distribution. The test does not assume normality or equal
 variances.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-4-conduct}
 
-### Bootstrap CI for the median body mass of Gentoo
+#### Bootstrap CI for the median body mass of Gentoo {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-bootstrap-ci-for-the-median-body-mass-of-gentoo}
 
 ```r
+gen <- dat |> filter(species == "Gentoo") |> pull(body_mass_g)
 B <- 2000
 boot_meds <- replicate(B, median(sample(gen, replace = TRUE)))
 ci_med <- quantile(boot_meds, c(0.025, 0.975))
@@ -109,9 +113,10 @@ tibble(boot = boot_meds) |>
   labs(x = "Bootstrap median", y = "Count")
 ```
 
-### Permutation test for flipper length Gentoo vs Adelie
+#### Permutation test for flipper length Gentoo vs Adelie {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-permutation-test-for-flipper-length-gentoo-vs-adelie}
 
 ```r
+g <- dat$species
 x <- dat$flipper_length_mm
 observed_diff <- mean(x[g == "Gentoo"]) - mean(x[g == "Adelie"])
 
@@ -131,7 +136,7 @@ tibble(perm = perm_diff) |>
   labs(x = "Permuted mean difference", y = "Count")
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-5-concluding-statement}
 
 > Based on *B* = 2000 bootstrap resamples, the median body mass in
 > Gentoo penguins (*n* = `length(gen)`) was `round(obs_med, 0)` g
@@ -147,7 +152,7 @@ estimation and testing respectively. Neither rescues you from a
 biased sample; both depend on the data at hand being representative.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-common-pitfalls}
 
 - Using bootstrap SEs for a statistic with heavy tails (eg the
   maximum) — it does not have a well-defined bootstrap distribution.
@@ -156,22 +161,23 @@ biased sample; both depend on the data at hand being representative.
 - Reading a bootstrap CI as a confidence interval for the population
   parameter when the sample is biased.
 
-## Further reading
+### Further reading {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-further-reading}
 
 - Efron B, Tibshirani RJ. *An Introduction to the Bootstrap*.
 - Good PI. *Permutation, Parametric, and Bootstrap Tests of
   Hypotheses*.
 
-## Session info
+### Session info {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-04-inferential)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Kruskal-Wallis Test {#sec-chapters-04-inferential-kruskal-wallis}
+
+### Introduction {#sec-chapters-04-inferential-kruskal-wallis-introduction}
 
 The Kruskal-Wallis test extends the Mann-Whitney U to three or more independent groups. It tests whether the distributions differ across groups, without assuming normality or equal variances. Post-hoc pairwise comparisons use Dunn's test with a multiple-testing correction.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-kruskal-wallis-prerequisites}
 
 Mann-Whitney U, ranks.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-kruskal-wallis-theory}
 
 Pool all observations and rank them across groups. Let $R_i$ be the sum of ranks in group $i$ with size $n_i$, and $N = \sum n_i$. The Kruskal-Wallis statistic is
 
@@ -18,13 +20,13 @@ Effect size: $\varepsilon^2 = H / (N - 1)$ or $\eta^2_H = (H - k + 1)/(N - k)$.
 
 Post-hoc: Dunn's test compares each pair of groups using z-statistics with Bonferroni or Benjamini-Hochberg correction.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-kruskal-wallis-assumptions}
 
 - Independent observations within and across groups.
 - Observations at least ordinal.
 - Similar distribution shapes (for a median-difference interpretation); otherwise tests distributional equality.
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-kruskal-wallis-r-implementation}
 
 ```r
 library(rstatix); library(dunn.test)
@@ -47,7 +49,7 @@ df |> kruskal_effsize(y ~ group)
 dunn.test(df$y, df$group, method = "bh")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-kruskal-wallis-output-results}
 
 ```
         Kruskal-Wallis rank sum test
@@ -67,11 +69,11 @@ Dunn's test with Benjamini-Hochberg adjustment:
      C - D         0.015
 ```
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-kruskal-wallis-interpretation}
 
 "Group differed significantly across the four groups (Kruskal-Wallis $H(3) = 15.22$, $p = 0.002$, $\eta^2_H = 0.14$). Dunn post-hoc tests identified group C as significantly higher than groups A and D (BH-adjusted $p < 0.05$)."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-kruskal-wallis-practical-tips}
 
 - Report medians and IQRs per group.
 - Dunn's test is the standard post-hoc procedure; pairwise Wilcoxon with adjustment is an alternative.
@@ -81,32 +83,29 @@ Dunn's test with Benjamini-Hochberg adjustment:
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-kruskal-wallis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-kruskal-wallis-assumptions) and
+[practical tips](#sec-chapters-04-inferential-kruskal-wallis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-kruskal-wallis-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

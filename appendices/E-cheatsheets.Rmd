@@ -1,19 +1,21 @@
 ---
 toc: true
 ---
-# Cheatsheets
+# Cheatsheets {#sec-appendices-e-cheatsheets}
 
 One-page topical summaries, aggregated here as a printable reference. Each is a self-contained reminder of the syntax, the assumptions, and the diagnostics that go with the methods it covers.
 
-## Foundations
+## Foundations {#sec-appendices-e-cheatsheets-foundations}
 
-### Toolchain, tidy data, and `ggplot2`## The research workflow
+### Toolchain, tidy data, and `ggplot2` {#sec-appendices-e-cheatsheets-toolchain-tidy-data-and-ggplot2-the-research-workflow}
+
+#### The research workflow
 
 `Question → Measurements → Design → Acquisition → Description → Analysis → Interpretation → Validation → Knowledge`
 
 Biological vs statistical significance: "*p* < 0.05" ≠ "effect matters".
 
-## R / RStudio / Quarto / renv
+## R / RStudio / Quarto / renv {#sec-appendices-e-cheatsheets-r-rstudio-quarto-renv}
 
 | Task | Command |
 |---|---|
@@ -23,7 +25,7 @@ Biological vs statistical significance: "*p* < 0.05" ≠ "effect matters".
 | Preview with live reload | `quarto preview` |
 | Render only slides | `quarto render file.qmd --to revealjs` |
 
-## Data types and scales
+## Data types and scales {#sec-appendices-e-cheatsheets-data-types-and-scales}
 
 | Scale | Example | Statistic |
 |---|---|---|
@@ -34,13 +36,13 @@ Biological vs statistical significance: "*p* < 0.05" ≠ "effect matters".
 
 Accuracy ≠ precision. Bias shifts the target; variance spreads the shots.
 
-## Tidy data
+## Tidy data {#sec-appendices-e-cheatsheets-tidy-data}
 
 1. One variable per column.
 2. One observation per row.
 3. One observational unit per table.
 
-## `dplyr` verbs
+## `dplyr` verbs {#sec-appendices-e-cheatsheets-dplyr-verbs}
 
 ```r
 df |>
@@ -55,7 +57,7 @@ Joins: `left_join`, `inner_join`, `anti_join` by a key.
 
 Missingness: `is.na()`, `drop_na()`, `tidyr::complete()`.
 
-## `ggplot2` grammar
+## `ggplot2` grammar {#sec-appendices-e-cheatsheets-ggplot2-grammar}
 
 ```r
 ggplot(data, aes(x, y, colour = group)) +
@@ -67,32 +69,34 @@ ggplot(data, aes(x, y, colour = group)) +
 
 Layer order: `data → aes → geom → facet → scales → labels → theme`.
 
-## Plot families
+## Plot families {#sec-appendices-e-cheatsheets-plot-families}
 
 - One variable continuous → **histogram**, **density**.
 - Two continuous → **scatter**, sometimes binned / smoothed.
 - One categorical + one continuous → **boxplot**, **violin**, **strip**.
 - Two categorical → **bar with fill**, **mosaic**.
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule}
 
 - Cannot read the data into a tibble → fix data entry first.
 - Tibble reads but has missing or mixed types → clean before modelling.
 - Plot is ugly or cluttered → trust the plot, not the summary statistic.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls}
 
 - Running statistics on untyped / partially-missing data.
 - Adjusting colour scales instead of simplifying the chart.
 - Reporting mean + SD for a skewed variable.
 - Forgetting `set.seed()` in any simulation chunk.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading}
 
 - Wickham, *R for Data Science* (2e).
 - Posit ggplot2 and dplyr cheatsheets.
 
-### Descriptive statistics, Bayes, and distributions## Descriptive statistics
+### Descriptive statistics, Bayes, and distributions {#sec-appendices-e-cheatsheets-descriptive-statistics-bayes-and-distributions-descriptive-statistics}
+
+#### Descriptive statistics
 
 | Situation | Summary |
 |---|---|
@@ -101,20 +105,20 @@ Layer order: `data → aes → geom → facet → scales → labels → theme`.
 | Categorical | counts and proportions |
 | Grouped | Table 1 via `gtsummary::tbl_summary()` |
 
-## Contingency tables
+## Contingency tables {#sec-appendices-e-cheatsheets-contingency-tables}
 
 ```r
 table(df$x, df$y)
 prop.table(table(df$x, df$y), margin = 1)
 ```
 
-## Bayes' theorem
+## Bayes' theorem {#sec-appendices-e-cheatsheets-bayes-theorem}
 
 $P(A \mid B) = \dfrac{P(B \mid A) P(A)}{P(B)}$
 
 In odds form: **posterior odds = prior odds × likelihood ratio.**
 
-## Diagnostic testing
+## Diagnostic testing {#sec-appendices-e-cheatsheets-diagnostic-testing}
 
 | Metric | Formula |
 |---|---|
@@ -127,7 +131,7 @@ In odds form: **posterior odds = prior odds × likelihood ratio.**
 
 PPV collapses at low prevalence — even a 95%-accurate test is mostly false positives.
 
-## Discrete distributions
+## Discrete distributions {#sec-appendices-e-cheatsheets-discrete-distributions}
 
 | Distribution | Use | R |
 |---|---|---|
@@ -138,7 +142,7 @@ PPV collapses at low prevalence — even a 95%-accurate test is mostly false pos
 
 Binomial → Poisson as *n* grows and *p* shrinks with *np = λ*.
 
-## Continuous distributions
+## Continuous distributions {#sec-appendices-e-cheatsheets-continuous-distributions}
 
 | Distribution | Use |
 |---|---|
@@ -150,7 +154,7 @@ Binomial → Poisson as *n* grows and *p* shrinks with *np = λ*.
 
 R uses the `d / p / q / r` prefix: density, CDF, quantile, random.
 
-## Q-Q plot
+## Q-Q plot {#sec-appendices-e-cheatsheets-q-q-plot}
 
 ```r
 ggplot(df, aes(sample = x)) + stat_qq() + stat_qq_line()
@@ -158,41 +162,43 @@ ggplot(df, aes(sample = x)) + stat_qq() + stat_qq_line()
 
 S-shape → heavy tails. U-shape → skew. Plot before the test.
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-2}
 
 - Reporting a mean? First check a histogram.
 - Testing a proportion? First sketch a 2×2 table.
 - Choosing a distribution? Simulate before believing.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-2}
 
 - Quoting PPV without disclosing prevalence.
 - Assuming normality because *n* > 30.
 - Using mean ± SD on skewed data.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-2}
 
 - Altman, *Practical Statistics for Medical Research*.
 - Gelman et al., *Bayesian Data Analysis*, ch. 1.
 
-### Sampling, estimation, and one-sample tests## Populations vs samples
+### Sampling, estimation, and one-sample tests {#sec-appendices-e-cheatsheets-sampling-estimation-and-one-sample-tests-populations-vs-samples}
+
+#### Populations vs samples
 
 - **Parameter** = truth about the population ($\mu$, $\sigma$, $\pi$).
 - **Estimator** = statistic computed on a sample ($\bar x$, $s$, $\hat p$).
 - **Bias** = $E[\hat\theta] - \theta$. **MSE** = bias² + variance.
 
-## Central limit theorem
+## Central limit theorem {#sec-appendices-e-cheatsheets-central-limit-theorem}
 
 For iid samples with finite variance, as $n \to \infty$:
 $\bar X \sim N\!\left(\mu, \sigma / \sqrt n\right)$
 
 Holds roughly by $n \approx 30$ for most non-pathological distributions.
 
-## Standard error
+## Standard error {#sec-appendices-e-cheatsheets-standard-error}
 
 $\mathrm{SE}(\bar X) = \sigma / \sqrt n$, estimated by $s / \sqrt n$.
 
-## Bootstrap
+## Bootstrap {#sec-appendices-e-cheatsheets-bootstrap}
 
 ```r
 B <- 2000
@@ -201,7 +207,7 @@ quantile(boot_mean, c(0.025, 0.975))   # 95% percentile CI
 sd(boot_mean)                           # bootstrap SE
 ```
 
-## Permutation test
+## Permutation test {#sec-appendices-e-cheatsheets-permutation-test}
 
 ```r
 obs  <- mean(a) - mean(b)
@@ -213,7 +219,7 @@ null <- replicate(5000, {
 mean(abs(null) >= abs(obs))   # two-sided p
 ```
 
-## Maximum likelihood
+## Maximum likelihood {#sec-appendices-e-cheatsheets-maximum-likelihood}
 
 Given data $x$ and model $f(x; \theta)$:
 
@@ -221,7 +227,7 @@ Given data $x$ and model $f(x; \theta)$:
 - $\hat\theta_{\text{MLE}} = \arg\max_\theta \ell(\theta)$.
 - Fisher information $I(\theta)$; asymptotic SE = $1/\sqrt{I(\hat\theta)}$.
 
-## One-sample tests (five-step template)
+## One-sample tests (five-step template) {#sec-appendices-e-cheatsheets-one-sample-tests-five-step-template}
 
 **Hypothesis → Visualise → Assumptions → Conduct → Conclude.**
 
@@ -230,31 +236,33 @@ Given data $x$ and model $f(x; \theta)$:
 | One-sample *t* | `t.test(x, mu = 0)` | roughly normal or large *n* |
 | One-proportion | `prop.test(k, n, p = 0.5)` or `binom.test` | $np, n(1-p) \geq 5$ for `prop.test` |
 
-## Hypothesis-testing vocabulary
+## Hypothesis-testing vocabulary {#sec-appendices-e-cheatsheets-hypothesis-testing-vocabulary}
 
 - **Type I**: reject true H₀ (probability $\alpha$).
 - **Type II**: accept false H₀ (probability $\beta$).
 - **Power** = $1 - \beta$.
 - A *p*-value is **not** the probability that H₀ is true.
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-3}
 
 - Want a CI? Bootstrap first, then ask whether a formula applies.
 - Want a test? State H₀ and α in writing before running it.
 - Want to know if *n* is big enough? Simulate the CLT for your outcome.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-3}
 
 - Reporting SE when you meant SD (or vice versa).
 - Using the 95% CI to "prove" there is no effect.
 - Running many tests and quoting the smallest *p*-value.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-3}
 
 - Harrell, *Biostatistics for Biomedical Research*, ch. 3–5.
 - Efron & Tibshirani, *An Introduction to the Bootstrap*.
 
-### Two-group comparisons, effect sizes, and power## Choosing a comparison
+### Two-group comparisons, effect sizes, and power {#sec-appendices-e-cheatsheets-two-group-comparisons-effect-sizes-and-power-choosing-a-comparison}
+
+#### Choosing a comparison
 
 | Design | Continuous outcome | Binary outcome |
 |---|---|---|
@@ -262,7 +270,7 @@ Given data $x$ and model $f(x; \theta)$:
 | Paired / pre-post       | `t.test(pre, post, paired = TRUE)`; Wilcoxon signed-rank | McNemar |
 | > 2 groups, continuous  | `aov(y ~ g)`; Kruskal-Wallis | chi-square |
 
-## Effect sizes
+## Effect sizes {#sec-appendices-e-cheatsheets-effect-sizes}
 
 | Statistic | What it reports |
 |---|---|
@@ -276,7 +284,7 @@ Given data $x$ and model $f(x; \theta)$:
 effectsize::cohens_d(y ~ g)
 ```
 
-## Two proportions
+## Two proportions {#sec-appendices-e-cheatsheets-two-proportions}
 
 ```r
 prop.test(c(tA, tB), c(nA, nB))         # asymptotic
@@ -286,7 +294,7 @@ fisher.test(matrix(c(tA, nA - tA,
 
 Report RR (or OR) with 95% CI, not just the *p*-value.
 
-## Correlation
+## Correlation {#sec-appendices-e-cheatsheets-correlation}
 
 | Method | Captures | Assumptions |
 |---|---|---|
@@ -298,7 +306,7 @@ Report RR (or OR) with 95% CI, not just the *p*-value.
 cor.test(x, y, method = "spearman")
 ```
 
-## Non-parametric tests
+## Non-parametric tests {#sec-appendices-e-cheatsheets-non-parametric-tests}
 
 | Test | Replaces |
 |---|---|
@@ -307,7 +315,7 @@ cor.test(x, y, method = "spearman")
 | Kruskal-Wallis                   | one-way ANOVA |
 | Sign test                        | paired *t*, when even ranks fail |
 
-## Power and sample size
+## Power and sample size {#sec-appendices-e-cheatsheets-power-and-sample-size}
 
 ```r
 pwr::pwr.t.test(d = 0.5, power = 0.80, sig.level = 0.05,
@@ -323,7 +331,7 @@ one-way ANOVA    | `pwr.anova.test`
 
 Simulation-based power for anything the textbooks skip: `simr::powerSim`.
 
-## Reporting with `gtsummary`
+## Reporting with `gtsummary` {#sec-appendices-e-cheatsheets-reporting-with-gtsummary}
 
 ```r
 library(gtsummary)
@@ -333,33 +341,35 @@ trial |>
   add_overall()
 ```
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-4}
 
 - Ask: one-group, two-group, paired, or many-group?
 - Check: normal-ish, or should I use a rank-based test?
 - Report: point estimate + 95% CI + effect size; *p*-value last, not first.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-4}
 
 - Equal-variance *t*-test (default in some languages) when variances differ.
 - Reporting OR when the audience expects RR (or vice versa).
 - Forgetting that the *p*-value of a paired test depends on the pairing.
 - Chaining correlations until one is "significant".
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-4}
 
 - Altman, Machin et al., *Statistics with Confidence*.
 - [`gtsummary` docs](https://www.danieldsjoberg.com/gtsummary/).
 
-## Regression
+## Regression {#sec-appendices-e-cheatsheets-regression}
 
-### Linear regression and diagnostics## Correlation vs regression
+### Linear regression and diagnostics {#sec-appendices-e-cheatsheets-linear-regression-and-diagnostics-correlation-vs-regression}
+
+#### Correlation vs regression
 
 - Correlation: symmetric; both variables random (**Model II**).
 - Regression: asymmetric; predictor fixed, outcome random (**Model I**).
 - Use Model II (e.g. `smatr::sma`) when both variables have error.
 
-## Simple linear regression
+## Simple linear regression {#sec-appendices-e-cheatsheets-simple-linear-regression}
 
 $y_i = \beta_0 + \beta_1 x_i + \varepsilon_i, \quad \varepsilon_i \sim N(0, \sigma^2)$
 
@@ -369,7 +379,7 @@ broom::tidy(fit, conf.int = TRUE)
 broom::glance(fit)
 ```
 
-## Multiple regression
+## Multiple regression {#sec-appendices-e-cheatsheets-multiple-regression}
 
 ```r
 fit <- lm(y ~ x1 + x2 + x1:x2, data = df)
@@ -382,7 +392,7 @@ fit <- lm(y ~ x1 + x2 + x1:x2, data = df)
 | Non-linearity | `splines::ns(x, 4)` or `I(x^2)` |
 | Scale sensitivity | centre / standardise predictors |
 
-## Diagnostics
+## Diagnostics {#sec-appendices-e-cheatsheets-diagnostics}
 
 ```r
 plot(fit)                   # base: 4 diagnostic plots
@@ -399,7 +409,7 @@ car::vif(fit)               # multicollinearity
 
 VIF > 5 → investigate collinearity; > 10 → fix it.
 
-## Robust / weighted
+## Robust / weighted {#sec-appendices-e-cheatsheets-robust-weighted}
 
 ```r
 MASS::rlm(y ~ x, data = df)          # robust to outliers
@@ -410,26 +420,28 @@ library(sandwich); library(lmtest)
 coeftest(fit, vcov = vcovHC(fit, type = "HC3"))
 ```
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-5}
 
 - Residual plot ugly? Transform, add terms, or switch link.
 - VIF explodes? Drop one of the collinear predictors or combine them.
 - Outlier with high Cook's distance? Investigate before deleting.
 - Variance depends on X? HC3 SEs or weighted LS.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-5}
 
 - Interpreting $\beta_1$ as "effect of X" under confounding.
 - Reporting $R^2$ on in-sample data as if it were generalisable.
 - Including an interaction but only reporting main effects.
 - Centring categorical predictors (don't — use reference coding).
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-5}
 
 - Harrell, *Regression Modeling Strategies*, ch. 4–5.
 - Fox, *Applied Regression Analysis*.
 
-### ANOVA, mixed models, and non-linear regression## One-way ANOVA
+### ANOVA, mixed models, and non-linear regression {#sec-appendices-e-cheatsheets-anova-mixed-models-and-non-linear-regression-one-way-anova}
+
+#### One-way ANOVA
 
 ```r
 aov(y ~ group, data = df) |> summary()
@@ -438,7 +450,7 @@ aov(y ~ group, data = df) |> summary()
 ANOVA is a linear model with a categorical predictor. The F-test
 compares between-group to within-group variance.
 
-## Contrasts with `emmeans`
+## Contrasts with `emmeans` {#sec-appendices-e-cheatsheets-contrasts-with-emmeans}
 
 ```r
 library(emmeans)
@@ -450,7 +462,7 @@ contrast(emm, list(TrtVsCtrl = c(-1, 1, 1, 1) / 3))
 Pre-specify contrasts before looking at the data; correct for
 multiplicity.
 
-## Two-way / factorial ANOVA
+## Two-way / factorial ANOVA {#sec-appendices-e-cheatsheets-two-way-factorial-anova}
 
 ```r
 aov(y ~ A * B, data = df) |> summary()
@@ -460,7 +472,7 @@ emmip(fit, A ~ B)   # interaction plot
 Interaction means "effect of A differs by level of B". Report the
 interaction first; main effects are conditional.
 
-## Repeated measures / blocking
+## Repeated measures / blocking {#sec-appendices-e-cheatsheets-repeated-measures-blocking}
 
 - RCBD: `aov(y ~ treatment + Error(block))`.
 - Repeated measures: move to a mixed model.
@@ -470,7 +482,7 @@ library(lme4); library(lmerTest)
 lmer(y ~ treatment + time + (1 | subject), data = df)
 ```
 
-## GAMs — smooth non-linear terms
+## GAMs — smooth non-linear terms {#sec-appendices-e-cheatsheets-gams-smooth-non-linear-terms}
 
 ```r
 library(mgcv); library(gratia)
@@ -481,7 +493,7 @@ draw(fit)         # smooth + CI
 
 edf ≈ 1 → nearly linear; > 4 → clearly non-linear.
 
-## Non-linear regression (`nls`)
+## Non-linear regression (`nls`) {#sec-appendices-e-cheatsheets-non-linear-regression-nls}
 
 ```r
 # Michaelis-Menten: y = Vmax * x / (K + x)
@@ -491,26 +503,28 @@ fit <- nls(y ~ Vmax * x / (K + x),
 
 Start values matter. If it fails, plot first to guess reasonable starts.
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-6}
 
 - Categorical predictor, > 2 levels → ANOVA + contrasts.
 - Factorial design → include interaction, report it first.
 - Effect obviously curved → GAM with spline; else try `nls`.
 - Repeated measures → mixed model, not repeated-measures ANOVA.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-6}
 
 - Tukey HSD without pre-specified contrasts of interest.
 - ANOVA p < 0.05 reported alone — without naming *which* groups differ.
 - Forcing a GAM onto monotonic data that `nls` fits cleanly.
 - Ignoring the random effect in clustered designs (pseudoreplication).
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-6}
 
 - Wood, *Generalized Additive Models*, 2e.
 - [`emmeans` vignette](https://cran.r-project.org/package=emmeans).
 
-### Generalised linear models and prediction evaluation## GLM link functions
+### Generalised linear models and prediction evaluation {#sec-appendices-e-cheatsheets-generalised-linear-models-and-prediction-evaluation-glm-link-functions}
+
+#### GLM link functions
 
 | Outcome | Family | Link | R |
 |---|---|---|---|
@@ -521,7 +535,7 @@ Start values matter. If it fails, plot first to guess reasonable starts.
 | Ordinal       | cumulative        | logit    | `MASS::polr` |
 | Nominal       | multinomial       | logit    | `nnet::multinom` |
 
-## Logistic regression
+## Logistic regression {#sec-appendices-e-cheatsheets-logistic-regression}
 
 ```r
 fit <- glm(y ~ x1 + x2, data = df, family = binomial)
@@ -533,7 +547,7 @@ predict(fit, newdata = nd, type = "response")
 - Check for perfect separation (huge SEs).
 - Interpret ORs cautiously; RR is more intuitive for the audience.
 
-## ANCOVA in an RCT
+## ANCOVA in an RCT {#sec-appendices-e-cheatsheets-ancova-in-an-rct}
 
 Adjust for baseline; **do not** analyse the change score.
 
@@ -544,7 +558,7 @@ lm(y_followup ~ arm + y_baseline, data = trial)
 More efficient than simple t-test on change scores when baseline and
 follow-up are correlated.
 
-## Poisson / negative binomial
+## Poisson / negative binomial {#sec-appendices-e-cheatsheets-poisson-negative-binomial}
 
 ```r
 glm(cases ~ x + offset(log(person_years)),
@@ -555,7 +569,7 @@ MASS::glm.nb(cases ~ x + offset(log(person_years)), data = df)
 Check dispersion: `sum(residuals(fit, type = "pearson")^2) / df.residual`.
 If > 1.5, switch to NB.
 
-## Evaluation — calibration + discrimination
+## Evaluation — calibration + discrimination {#sec-appendices-e-cheatsheets-evaluation-calibration-discrimination}
 
 | Metric | Means | R |
 |---|---|---|
@@ -571,14 +585,14 @@ auc(roc_obj); ci.auc(roc_obj)
 plot(roc_obj)
 ```
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-7}
 
 - Binary outcome → logistic; report OR + 95% CI.
 - Count outcome → Poisson; check overdispersion; NB if needed.
 - Trial analysis → ANCOVA, not change score.
 - Prediction model → calibration curve first, ROC second, decision curves third.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-7}
 
 - Quoting AUC without calibration (a discriminating but miscalibrated
   model is dangerous).
@@ -586,25 +600,27 @@ plot(roc_obj)
 - Using ordinal logit when the proportional-odds assumption fails.
 - Presenting logistic regression coefficients on the log-odds scale without OR.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-7}
 
 - Harrell, *RMS*, ch. 10–12.
 - Steyerberg, *Clinical Prediction Models*.
 
-### Agreement, survival primer, and reporting## Don't dichotomise
+### Agreement, survival primer, and reporting {#sec-appendices-e-cheatsheets-agreement-survival-primer-and-reporting-don-t-dichotomise}
+
+#### Don't dichotomise
 
 Cutting a continuous variable at the median loses ≈ 37% of the
 information for a linear association. Keep predictors continuous;
 model non-linearity with a spline if needed.
 
-## Change scores vs ANCOVA
+## Change scores vs ANCOVA {#sec-appendices-e-cheatsheets-change-scores-vs-ancova}
 
 - Change scores suffer from **regression to the mean**.
 - ANCOVA (adjust for baseline) is the efficient analysis in an RCT.
 - In observational studies with unequal baselines, both approaches
   answer subtly different questions — state which.
 
-## Agreement & reliability
+## Agreement & reliability {#sec-appendices-e-cheatsheets-agreement-reliability}
 
 | Statistic | Use | R |
 |---|---|---|
@@ -620,7 +636,7 @@ ggplot(df, aes((x + y)/2, y - x)) + geom_point() +
   geom_hline(yintercept = c(mean_diff, loa), linetype = 2)
 ```
 
-## Survival primer
+## Survival primer {#sec-appendices-e-cheatsheets-survival-primer}
 
 | Concept | R |
 |---|---|
@@ -633,7 +649,7 @@ ggplot(df, aes((x + y)/2, y - x)) + geom_point() +
 - PH violated? → time-varying coefficient or stratify.
 - Interpret HR only after checking for non-informative censoring.
 
-## Decision curves, NRI, IDI
+## Decision curves, NRI, IDI {#sec-appendices-e-cheatsheets-decision-curves-nri-idi}
 
 - **Decision curve**: net benefit vs threshold probability — dominates
   "treat all" and "treat none" when useful.
@@ -641,7 +657,7 @@ ggplot(df, aes((x + y)/2, y - x)) + geom_point() +
 - **IDI**: mean change in predicted probability by class.
 - Report decision curve first; NRI/IDI as secondary.
 
-## Explanation vs prediction (Shmueli)
+## Explanation vs prediction (Shmueli) {#sec-appendices-e-cheatsheets-explanation-vs-prediction-shmueli}
 
 | Explanatory | Predictive |
 |---|---|
@@ -649,7 +665,7 @@ ggplot(df, aes((x + y)/2, y - x)) + geom_point() +
 | Tools: ANOVA, diagnostics, intervals | Tools: CV, regularisation, ensembles |
 | Metric: interval coverage, bias | Metric: RMSE, AUC, Brier on hold-out |
 
-## Reporting guidelines
+## Reporting guidelines {#sec-appendices-e-cheatsheets-reporting-guidelines}
 
 | Design | Guideline |
 |---|---|
@@ -660,7 +676,7 @@ ggplot(df, aes((x + y)/2, y - x)) + geom_point() +
 | Systematic review | PRISMA |
 | Animal research | ARRIVE |
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-8}
 
 - Continuous predictor + continuous outcome → no median splits.
 - Two-group with repeated measurement → ANCOVA.
@@ -668,21 +684,23 @@ ggplot(df, aes((x + y)/2, y - x)) + geom_point() +
 - Time-to-event → KM + Cox, always check PH.
 - Prediction model → TRIPOD checklist at submission.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-8}
 
 - Reporting κ on near-constant outcomes (high % agreement, low κ).
 - Quoting median survival that is never reached.
 - Forgetting to mention PH assumption checking.
 - Claiming a "prediction model" built on the same data used for evaluation.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-8}
 
 - Harrell, *BBR*, ch. 17–18.
 - Royston & Altman, *Prognosis research*.
 
-## Design & Causal Inference
+## Design & Causal Inference {#sec-appendices-e-cheatsheets-design-causal-inference}
 
-### Study designs and power## Observational designs
+### Study designs and power {#sec-appendices-e-cheatsheets-study-designs-and-power-observational-designs}
+
+#### Observational designs
 
 | Design | Strengths | Weaknesses |
 |---|---|---|
@@ -693,7 +711,7 @@ ggplot(df, aes((x + y)/2, y - x)) + geom_point() +
 
 STROBE checklist: <https://www.strobe-statement.org/>
 
-## Trial designs
+## Trial designs {#sec-appendices-e-cheatsheets-trial-designs}
 
 | Type | When |
 |---|---|
@@ -707,14 +725,14 @@ STROBE checklist: <https://www.strobe-statement.org/>
 
 CONSORT for RCTs: <https://www.consort-statement.org/>
 
-## Bench / translational
+## Bench / translational {#sec-appendices-e-cheatsheets-bench-translational}
 
 - **Blocking** reduces nuisance variation (plate, day, operator).
 - **Factorial** tests interactions efficiently.
 - **Split-plot** handles two levels of randomisation.
 - **Pseudoreplication**: technical replicates ≠ biological replicates.
 
-## Power — closed form
+## Power — closed form {#sec-appendices-e-cheatsheets-power-closed-form}
 
 ```r
 library(pwr)
@@ -727,7 +745,7 @@ pwr.anova.test(k = 4, f = 0.25, power = 0.80)
 
 Effect-size conventions (Cohen): small $d$ = 0.2, medium 0.5, large 0.8.
 
-## Power — simulation
+## Power — simulation {#sec-appendices-e-cheatsheets-power-simulation}
 
 ```r
 library(simr)
@@ -739,26 +757,28 @@ ps
 Simulation wins for any design the textbook skips: mixed models,
 adaptive rules, non-standard outcomes.
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-9}
 
 - Randomise if you can. If not, draw a DAG and name the biases.
 - Power calculation before the protocol freeze, not after data collection.
 - Cluster randomisation → design effect $1 + (\bar m - 1)\rho$; inflate N.
 - Bench experiments → treat batch, plate, and operator as random effects.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-9}
 
 - Planning a cluster RCT without inflating N for design effect.
 - Borrowing a pilot effect size without acknowledging noise.
 - Running a non-inferiority trial as if it were superiority.
 - Treating technical replicates as if they were biological.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-9}
 
 - Matthews, *Introduction to Randomized Controlled Clinical Trials*.
 - Chow & Liu, *Design and Analysis of Clinical Trials*.
 
-### Missing data, mixed models, and longitudinal## Missingness mechanisms
+### Missing data, mixed models, and longitudinal {#sec-appendices-e-cheatsheets-missing-data-mixed-models-and-longitudinal-missingness-mechanisms}
+
+#### Missingness mechanisms
 
 | Mechanism | Definition | Complete-case analysis? |
 |---|---|---|
@@ -768,7 +788,7 @@ adaptive rules, non-standard outcomes.
 
 Test is impossible without assumptions — reason about the mechanism.
 
-## Multiple imputation with `mice`
+## Multiple imputation with `mice` {#sec-appendices-e-cheatsheets-multiple-imputation-with-mice}
 
 ```r
 library(mice)
@@ -781,7 +801,7 @@ summary(pooled, conf.int = TRUE)
 Rule of thumb: *m* ≥ 100 × fraction of missing information, but 20 is a
 fine starting point.
 
-## Linear mixed models
+## Linear mixed models {#sec-appendices-e-cheatsheets-linear-mixed-models}
 
 ```r
 library(lme4); library(lmerTest)
@@ -796,7 +816,7 @@ lmer(y ~ treatment * time + (time | subject), data = df)  # random slope
 REML for variance components; ML only for likelihood-ratio tests on
 fixed effects.
 
-## GLMMs & GEE
+## GLMMs & GEE {#sec-appendices-e-cheatsheets-glmms-gee}
 
 ```r
 library(lme4)
@@ -811,7 +831,7 @@ geeglm(y ~ x, id = cluster, data = df,
 - GEE: population-average effects, robust to working-correlation
   misspecification (when combined with robust SEs).
 
-## Time series basics
+## Time series basics {#sec-appendices-e-cheatsheets-time-series-basics}
 
 ```r
 library(forecast)
@@ -823,7 +843,7 @@ library(changepoint)
 cpt.mean(x, method = "PELT") |> plot()
 ```
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-10}
 
 - Missing data > 5% → at least sensitivity analysis; prefer MI.
 - Repeated measurements → mixed model, not repeated-measures ANOVA.
@@ -831,7 +851,7 @@ cpt.mean(x, method = "PELT") |> plot()
   (if marginal effect is the estimand).
 - Time series with trend / seasonality → decompose before modelling.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-10}
 
 - Last-observation-carried-forward; usually biased.
 - Imputing after transformation rather than in the right scale.
@@ -839,12 +859,14 @@ cpt.mean(x, method = "PELT") |> plot()
   of freedom correction).
 - Quoting GEE coefficients as if they were subject-specific.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-10}
 
 - van Buuren, *Flexible Imputation of Missing Data*.
 - Fitzmaurice, Laird, Ware, *Applied Longitudinal Analysis*.
 
-### Causal inference methods## Time-varying covariates / landmarking
+### Causal inference methods {#sec-appendices-e-cheatsheets-causal-inference-methods-time-varying-covariates-landmarking}
+
+#### Time-varying covariates / landmarking
 
 - Counting-process data: split follow-up into intervals.
 - Landmark analysis: define a landmark time $t^*$, condition on
@@ -858,7 +880,7 @@ coxph(Surv(tstart, tstop, event) ~ x, data = long)
 - Immortal-time bias: exposed group can only be exposed if they live
   long enough to be exposed → spurious survival benefit.
 
-## Competing risks
+## Competing risks {#sec-appendices-e-cheatsheets-competing-risks}
 
 ```r
 library(tidycmprsk); library(ggsurvfit)
@@ -874,7 +896,7 @@ crr(Surv(time, event_f) ~ x, data = df, failcode = "event1")
 - Subdistribution HR answers "what is the hazard for event *k* in the
   whole cohort, treating competing events as obstacles?"
 
-## DAGs
+## DAGs {#sec-appendices-e-cheatsheets-dags}
 
 ```r
 library(dagitty); library(ggdag)
@@ -886,7 +908,7 @@ impliedConditionalIndependencies(dag)
 - Adjust for confounders, **not** colliders.
 - Adjusting for a mediator estimates the direct effect only.
 
-## Propensity scores / IPTW
+## Propensity scores / IPTW {#sec-appendices-e-cheatsheets-propensity-scores-iptw}
 
 ```r
 library(MatchIt); library(cobalt)
@@ -898,7 +920,7 @@ fit <- lm(y ~ treat, data = match.data(m))
 IPTW: weight by $1/\hat{e}_i$ for treated, $1/(1-\hat{e}_i)$ for untreated.
 Stabilised weights stay closer to 1; trim extremes to avoid outliers.
 
-## G-methods, IV, DiD, RDD
+## G-methods, IV, DiD, RDD {#sec-appendices-e-cheatsheets-g-methods-iv-did-rdd}
 
 | Method | Identifying assumption |
 |---|---|
@@ -907,13 +929,13 @@ Stabilised weights stay closer to 1; trim extremes to avoid outliers.
 | Difference-in-differences | parallel trends |
 | Regression discontinuity | continuity at the cutoff |
 
-## Heterogeneous treatment effects
+## Heterogeneous treatment effects {#sec-appendices-e-cheatsheets-heterogeneous-treatment-effects}
 
 - Causal forest (`grf::causal_forest`) or meta-learners (S-, T-, X-).
 - Report conditional ATEs with adjusted intervals; avoid spurious
   subgroup p-values.
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-11}
 
 - Treatment assigned over time → time-varying Cox.
 - Multiple competing events → cumulative incidence, Fine-Gray.
@@ -921,19 +943,21 @@ Stabilised weights stay closer to 1; trim extremes to avoid outliers.
   strategy second.
 - Want the whole distribution of treatment effect? → causal forest.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-11}
 
 - Adjusting for a post-treatment variable (induces collider bias).
 - Quoting HR from a Cox model that violates PH.
 - Matching but never checking balance.
 - Calling IV estimates "generalisable" when they are local to compliers.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-11}
 
 - Hernán & Robins, *Causal Inference: What If*.
 - Therneau & Grambsch, *Modeling Survival Data*.
 
-### Synthesis and pre-registration## Systematic review workflow
+### Synthesis and pre-registration {#sec-appendices-e-cheatsheets-synthesis-and-pre-registration-systematic-review-workflow}
+
+#### Systematic review workflow
 
 1. PICO: Population, Intervention, Comparator, Outcome.
 2. Register protocol on PROSPERO.
@@ -942,7 +966,7 @@ Stabilised weights stay closer to 1; trim extremes to avoid outliers.
 5. Extract, appraise (RoB 2 / ROBINS-I), synthesise.
 6. Report with the PRISMA 2020 checklist and flow diagram.
 
-## Meta-analysis
+## Meta-analysis {#sec-appendices-e-cheatsheets-meta-analysis}
 
 ```r
 library(metafor)
@@ -964,7 +988,7 @@ funnel(fit); regtest(fit)
 Fixed-effect only when heterogeneity is effectively zero. Default to
 random effects.
 
-## Network meta-analysis
+## Network meta-analysis {#sec-appendices-e-cheatsheets-network-meta-analysis}
 
 ```r
 library(netmeta)
@@ -977,7 +1001,7 @@ decomp.design(net)                     # inconsistency
 
 Transitivity + consistency are the core assumptions.
 
-## Infectious disease — SIR / SEIR
+## Infectious disease — SIR / SEIR {#sec-appendices-e-cheatsheets-infectious-disease-sir-seir}
 
 ```r
 library(deSolve)
@@ -995,7 +1019,7 @@ out <- ode(c(S = 999, I = 1, R = 0),
 
 $R_0 = \beta / \gamma$. Herd-immunity threshold $\approx 1 - 1/R_0$.
 
-## Pre-registration and SAP
+## Pre-registration and SAP {#sec-appendices-e-cheatsheets-pre-registration-and-sap}
 
 A pre-registration specifies, before data analysis:
 
@@ -1007,7 +1031,7 @@ A pre-registration specifies, before data analysis:
 
 OSF and ClinicalTrials.gov are the two common registries.
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-12}
 
 - More than a handful of studies on a question → plan a systematic review.
 - Multiple comparators of interest → network meta-analysis.
@@ -1015,22 +1039,24 @@ OSF and ClinicalTrials.gov are the two common registries.
 - Confirmatory analysis → pre-registered; exploratory analyses are
   labelled as such in the manuscript.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-12}
 
 - Declaring a review "systematic" without a pre-registered protocol.
 - Pooling studies with fundamentally different populations / outcomes.
 - Interpreting SUCRA rankings as if they were certain.
 - Calling a compartmental model a "forecast" without uncertainty.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-12}
 
 - Higgins et al., *Cochrane Handbook for Systematic Reviews*.
 - Keeling & Rohani, *Modeling Infectious Diseases in Humans and Animals*.
 - Nosek et al. (2018), *The preregistration revolution*.
 
-## Machine Learning & High-Dimensional Data
+## Machine Learning & High-Dimensional Data {#sec-appendices-e-cheatsheets-machine-learning-high-dimensional-data}
 
-### Cross-validation, regularisation, and unsupervised## Cross-validation
+### Cross-validation, regularisation, and unsupervised {#sec-appendices-e-cheatsheets-cross-validation-regularisation-and-unsupervised-cross-validation}
+
+#### Cross-validation
 
 | Scheme | Use |
 |---|---|
@@ -1044,7 +1070,7 @@ OSF and ClinicalTrials.gov are the two common registries.
 Nested CV is the only defensible way to estimate generalisation error
 when you are also tuning hyperparameters.
 
-## Regularisation
+## Regularisation {#sec-appendices-e-cheatsheets-regularisation}
 
 ```r
 library(glmnet)
@@ -1058,7 +1084,7 @@ plot(fit)                              # CV curve
 - `lambda.1se`: more regularised, simpler, within 1 SE of min.
 - Elastic net: `alpha` between 0 and 1 blends ridge and lasso.
 
-## Multivariate workhorses
+## Multivariate workhorses {#sec-appendices-e-cheatsheets-multivariate-workhorses}
 
 | Method | Purpose |
 |---|---|
@@ -1074,7 +1100,7 @@ summary(pc)   # proportion of variance per PC
 
 Scale before PCA when variables are on different units.
 
-## Clustering
+## Clustering {#sec-appendices-e-cheatsheets-clustering}
 
 ```r
 km <- kmeans(scale(x), centers = 4, nstart = 25)
@@ -1085,7 +1111,7 @@ library(mclust); bic <- mclustBIC(x)      # model-based, BIC-selected
 - Choose k by silhouette, gap statistic, or BIC.
 - Scale first. K-means assumes round clusters of similar size.
 
-## Non-linear embeddings
+## Non-linear embeddings {#sec-appendices-e-cheatsheets-non-linear-embeddings}
 
 ```r
 library(uwot)
@@ -1098,26 +1124,28 @@ ts <- Rtsne(scale(x), perplexity = 30)$Y
 Embeddings are *visualisations*, not distances you should input into
 downstream stats. Global geometry is often distorted.
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-13}
 
 - Lots of predictors, small n → lasso; report `lambda.1se`.
 - Exploring structure → PCA + UMAP on scaled data.
 - Clustering for biology → model-based + sensitivity to k.
 - Tuning anything → nested CV.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-13}
 
 - Selecting features on full data, then estimating error by k-fold.
 - PCA before scaling when features are on different units.
 - Interpreting UMAP distances as real distances.
 - Using AUC on rank-ordered hold-out error as if it were CV error.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-13}
 
 - Hastie, Tibshirani, Friedman, *The Elements of Statistical Learning*.
 - James et al., *ISLR2*.
 
-### Trees, boosting, and interpretability## Tree-based models
+### Trees, boosting, and interpretability {#sec-appendices-e-cheatsheets-trees-boosting-and-interpretability-tree-based-models}
+
+#### Tree-based models
 
 | Model | R | Strengths |
 |---|---|---|
@@ -1133,7 +1161,7 @@ fit <- ranger(y ~ ., data = df, importance = "permutation",
 fit$prediction.error   # OOB error
 ```
 
-## Interpretability
+## Interpretability {#sec-appendices-e-cheatsheets-interpretability}
 
 ```r
 library(DALEX); library(iml)
@@ -1148,7 +1176,7 @@ sh  <- Shapley$new(Predictor$new(fit, data = df, y = df$y),
 PDP assumes feature independence; if features are correlated, use ALE
 plots.
 
-## Tabular neural networks with `torch`
+## Tabular neural networks with `torch` {#sec-appendices-e-cheatsheets-tabular-neural-networks-with-torch}
 
 ```r
 # sketch only — typically in a loop on GPU
@@ -1163,7 +1191,7 @@ opt <- optim_adam(nn$parameters)
 On small biomedical tabular data, boosted trees usually beat NN. Use
 NN when you need end-to-end training with images, sequences, or text.
 
-## tidymodels pipeline
+## tidymodels pipeline {#sec-appendices-e-cheatsheets-tidymodels-pipeline}
 
 ```r
 library(tidymodels)
@@ -1180,26 +1208,28 @@ tuned <- tune_grid(wf, cv, grid = 20)
 collect_metrics(tuned)
 ```
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-14}
 
 - Tabular, < 100k rows → gradient-boosted trees.
 - Need explanations → SHAP + PDP, validate with held-out.
 - Images / sequences → CNN / transformer, use `torch`.
 - Reproducibility → `tidymodels` pipeline + fixed seed + locked recipe.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-14}
 
 - Reporting feature importance from a model trained on the full data.
 - Interpreting PDPs when features are strongly correlated.
 - Claiming NN superiority without CV on the same split as a tree model.
 - Forgetting to set a seed for any tune / split operation.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-14}
 
 - Biecek & Burzykowski, *Explanatory Model Analysis*.
 - Molnar, *Interpretable Machine Learning*.
 
-### Bayesian and survival ML## Bayesian thinking
+### Bayesian and survival ML {#sec-appendices-e-cheatsheets-bayesian-and-survival-ml-bayesian-thinking}
+
+#### Bayesian thinking
 
 $\underbrace{p(\theta \mid y)}_{\text{posterior}} \propto
  \underbrace{p(y \mid \theta)}_{\text{likelihood}}
@@ -1210,7 +1240,7 @@ $\underbrace{p(\theta \mid y)}_{\text{posterior}} \propto
 - No *p*-values; use posterior probability of direction,
   Bayes factors, or LOO.
 
-## `brms` / Stan
+## `brms` / Stan {#sec-appendices-e-cheatsheets-brms-stan}
 
 ```r
 library(brms)
@@ -1227,7 +1257,7 @@ pp_check(fit)           # posterior predictive checks
 Prior predictive check before fitting: simulate $y$ from the prior and
 confirm the implications are plausible.
 
-## Biomarker statistics
+## Biomarker statistics {#sec-appendices-e-cheatsheets-biomarker-statistics}
 
 | Question | Statistic |
 |---|---|
@@ -1241,7 +1271,7 @@ pROC::roc(y, biomarker) |>
   pROC::coords("best", best.method = "youden")
 ```
 
-## Survival ML
+## Survival ML {#sec-appendices-e-cheatsheets-survival-ml}
 
 | Model | R |
 |---|---|
@@ -1258,7 +1288,7 @@ r <- timeROC(T = df$time, delta = df$event,
              marker = pred, cause = 1, times = c(365, 730))
 ```
 
-## External validation
+## External validation {#sec-appendices-e-cheatsheets-external-validation}
 
 - Never trust the apparent performance on training data.
 - Minimum: split-sample or CV on internal data.
@@ -1266,14 +1296,14 @@ r <- timeROC(T = df$time, delta = df$event,
 - Report calibration slope / intercept, discrimination, and decision
   curves.
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-15}
 
 - Rare outcome with need for uncertainty → Bayesian, not bootstrap of MLE.
 - New biomarker → NRI + decision curve, not just ΔAUC.
 - Survival prediction → time-dependent Brier / IPA, not global AUC.
 - Any clinical claim → external validation before publication.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-15}
 
 - Reporting a posterior with default flat priors on unscaled predictors.
 - Selecting the Youden cut-off on the full data and using the same data
@@ -1281,12 +1311,14 @@ r <- timeROC(T = df$time, delta = df$event,
 - Quoting C-statistic at a single time point and calling it survival ML.
 - Publishing a prediction model without TRIPOD-compliant reporting.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-15}
 
 - Gelman et al., *Bayesian Data Analysis*, 3e.
 - Royston & Altman, *External validation of a Cox prognostic model*.
 
-### Omics, FDR, and TRIPOD-AI## Bulk RNA-seq
+### Omics, FDR, and TRIPOD-AI {#sec-appendices-e-cheatsheets-omics-fdr-and-tripod-ai-bulk-rna-seq}
+
+#### Bulk RNA-seq
 
 ```r
 library(DESeq2)
@@ -1311,7 +1343,7 @@ topTags(qlf)
 | edgeR  | negative binomial | QL-F test has good type-I control |
 | limma-voom | mean-variance weights | fast on very large studies |
 
-## Enrichment
+## Enrichment {#sec-appendices-e-cheatsheets-enrichment}
 
 ```r
 library(fgsea)
@@ -1325,7 +1357,7 @@ phyper(k - 1, K, N - K, n, lower.tail = FALSE)
 Always pre-rank by a *signed* statistic (log-FC × -log10 p), not by
 raw p alone.
 
-## Single-cell RNA-seq (Seurat pattern)
+## Single-cell RNA-seq (Seurat pattern) {#sec-appendices-e-cheatsheets-single-cell-rna-seq-seurat-pattern}
 
 ```r
 library(Seurat)
@@ -1340,7 +1372,7 @@ so <- CreateSeuratObject(counts) |>
 DimPlot(so)
 ```
 
-## FDR, knockoffs, replication
+## FDR, knockoffs, replication {#sec-appendices-e-cheatsheets-fdr-knockoffs-replication}
 
 | Correction | When |
 |---|---|
@@ -1356,7 +1388,7 @@ p.adjust(pvals, method = "BH")
 Replication crisis shorthand: pre-register + report effect sizes +
 share data. Power, not p-values.
 
-## TRIPOD-AI + fairness
+## TRIPOD-AI + fairness {#sec-appendices-e-cheatsheets-tripod-ai-fairness}
 
 - TRIPOD-AI extends TRIPOD for prediction models built with ML.
 - Report: data provenance, training/evaluation splits, subgroup
@@ -1364,7 +1396,7 @@ share data. Power, not p-values.
 - Fairness: stratify AUC / calibration by sex, ancestry, age bands.
   Disparities in calibration are often larger than in AUC.
 
-## Reproducibility at scale with `targets`
+## Reproducibility at scale with `targets` {#sec-appendices-e-cheatsheets-reproducibility-at-scale-with-targets}
 
 ```r
 # _targets.R
@@ -1382,7 +1414,7 @@ list(
 Rscript -e 'targets::tar_make()'
 ```
 
-## Decision rule
+## Decision rule {#sec-appendices-e-cheatsheets-decision-rule-16}
 
 - Bulk DE → DESeq2 for small samples, edgeR/limma for large.
 - Many hypotheses → BH by default; knockoffs for variable selection.
@@ -1391,7 +1423,7 @@ Rscript -e 'targets::tar_make()'
 - ML prediction model → TRIPOD-AI + subgroup analysis.
 - Any multi-step analysis → `targets` pipeline.
 
-## Common pitfalls
+## Common pitfalls {#sec-appendices-e-cheatsheets-common-pitfalls-16}
 
 - Running DE on a pathway-level aggregate rather than gene-level.
 - Cherry-picking a pathway database post-hoc.
@@ -1399,7 +1431,7 @@ Rscript -e 'targets::tar_make()'
 - Calling an ML model "fair" after checking only overall AUC.
 - Submitting a paper without a `sessionInfo()` or a lock file.
 
-## Further reading
+## Further reading {#sec-appendices-e-cheatsheets-further-reading-16}
 
 - Love, Huber, Anders (2014), *Moderated estimation of fold change...*
 - Collins et al. (2024), *TRIPOD-AI*.

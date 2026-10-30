@@ -1,12 +1,14 @@
-## Introduction
+## Stationarity Tests {#sec-chapters-09-timeseries-stationarity-tests}
+
+### Introduction {#sec-chapters-09-timeseries-stationarity-tests-introduction}
 
 Stationarity — constant mean, variance, and autocovariance over time — is a fundamental prerequisite for most classical time-series models (ARIMA, VAR, spectral analysis). Non-stationary series typically need to be made stationary by differencing, detrending, or transformation before model fitting; forgetting this step produces nonsense estimates and invalid forecasts. Formal stationarity testing combines several tests with complementary nulls to give a robust verdict.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-stationarity-tests-prerequisites}
 
 A working understanding of time-series basics, autocorrelation, the difference between strict and weak stationarity, and the role of differencing in inducing stationarity.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-stationarity-tests-theory}
 
 The standard test battery comprises:
 
@@ -18,11 +20,11 @@ Pair them: stationary if ADF rejects *and* KPSS does not; non-stationary if ADF 
 
 For series with structural breaks, standard tests are invalid; use Zivot-Andrews (`urca::ur.za()`) which extends the framework to allow one endogenous break.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-stationarity-tests-assumptions}
 
 Choice of test depends on the alternative — level vs trend stationarity for KPSS, drift vs trend specification for ADF. Adequate sample size for asymptotic critical values.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-stationarity-tests-r-implementation}
 
 ```r
 library(tseries); library(urca)
@@ -42,15 +44,15 @@ pp.test(log(x))
 ndiffs(log(x))   # forecast::ndiffs
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-stationarity-tests-output-results}
 
 Each test returns a statistic and $p$-value. `forecast::ndiffs()` and `nsdiffs()` automate the differencing decision by running KPSS or other tests at each candidate differencing order until stationarity is supported.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-stationarity-tests-interpretation}
 
 A reporting sentence: "On the log-transformed AirPassengers series, ADF failed to reject the unit-root null ($p = 0.99$) and KPSS rejected level stationarity ($p < 0.05$); both agree the series is non-stationary. After first-differencing plus seasonal differencing (order $(0, 1, 0)(0, 1, 0)_{12}$), all three tests supported stationarity, justifying ARIMA modelling on the doubly-differenced series." Always pair ADF with KPSS and report both verdicts.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-stationarity-tests-practical-tips}
 
 - Run ADF and KPSS together; their conclusions should agree, and disagreement is itself diagnostic information.
 - For series with a clear trend, test trend-stationarity explicitly (`kpss.test(x, null = "Trend")` and `adf.test` with trend specification).
@@ -59,30 +61,27 @@ A reporting sentence: "On the log-transformed AirPassengers series, ADF failed t
 - Visual inspection of the series — plotting it and looking for trends, level shifts, or changing variance — usually suggests the right transformation before any test is run.
 - For panel data (multiple time series), use Im-Pesaran-Shin or Levin-Lin-Chu panel unit-root tests; running univariate tests on each series ignores the panel structure.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-stationarity-tests-r-packages-used}
 
 `tseries::adf.test()`, `kpss.test()`, `pp.test()` for the standard battery; `urca::ur.df()`, `ur.kpss()`, `ur.pp()`, `ur.za()` for richer output and structural-break extensions; `forecast::ndiffs()` and `nsdiffs()` for automated differencing decisions; `feasts::unitroot_kpss()` and `unitroot_ndiffs()` for the modern tidyverts interface.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-stationarity-tests-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-stationarity-tests-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-stationarity-tests-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-stationarity-tests-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

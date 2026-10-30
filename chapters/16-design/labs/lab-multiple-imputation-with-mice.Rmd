@@ -1,20 +1,22 @@
+## Week 2, Session 2 — Multiple imputation with mice {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice}
+
 <div class="callout callout-note">
 **Inference lab** using the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-learning-objectives}
 
 - Run multiple imputation by chained equations with `mice`.
 - Diagnose convergence with trace and density plots.
 - Pool regression coefficients across imputations using Rubin's
   rules.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-prerequisites}
 
 The MCAR/MAR/MNAR lab.
 
-## Background
+### Background {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-background}
 
 Multiple imputation (MI) replaces each missing value with several
 plausible values drawn from a predictive distribution, producing *m*
@@ -36,7 +38,7 @@ The inclusion of the outcome in the imputation model is not
 optional. Omitting it biases the imputations toward the null and
 attenuates the estimated effect in the pooled analysis.
 
-## Setup
+### Setup {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-setup}
 
 ```r
 library(tidyverse)
@@ -45,35 +47,38 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-1-hypothesis}
 
 In the `mice::nhanes` teaching dataset, the cholesterol outcome
 (`chl`) is related to age and BMI (`bmi`). We will estimate that
 relationship under MI.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-2-visualise}
 
 ```r
+data(nhanes, package = "mice")
 md.pattern(nhanes, plot = FALSE)
 ```
 
 ```r
+nhanes |>
   mutate(missing_chl = is.na(chl)) |>
   ggplot(aes(bmi, chl, colour = missing_chl)) +
   geom_point(size = 2) +
   labs(x = "BMI", y = "Cholesterol", colour = "chl missing?")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-3-assumptions}
 
 MAR conditional on the variables in the imputation model; a
 compatible imputation model (predictive mean matching by default);
 enough imputations (here *m* = 10) to stabilise the pooled
 standard errors.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-4-conduct}
 
 ```r
+imp <- mice(nhanes, m = 10, method = "pmm",
             printFlag = FALSE, seed = 42)
 imp
 ```
@@ -87,11 +92,12 @@ densityplot(imp)
 ```
 
 ```r
+fit   <- with(imp, lm(chl ~ age + bmi))
 pooled <- pool(fit)
 summary(pooled, conf.int = TRUE)
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-5-concluding-statement}
 
 > Multiple imputation of the `nhanes` dataset (*m* = 10, predictive
 > mean matching) gave a pooled coefficient for BMI on cholesterol of
@@ -100,7 +106,7 @@ summary(pooled, conf.int = TRUE)
 > within- and between-imputation uncertainty through Rubin's rules.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-common-pitfalls}
 
 - Imputing the outcome separately from the covariates with
   incompatible models.
@@ -109,7 +115,7 @@ summary(pooled, conf.int = TRUE)
 - Dropping the outcome from the imputation model because it "feels
   like cheating".
 
-## Further reading
+### Further reading {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-further-reading}
 
 - van Buuren S, Groothuis-Oudshoorn K (2011), *mice: Multivariate
   Imputation by Chained Equations in R*.
@@ -118,16 +124,17 @@ summary(pooled, conf.int = TRUE)
 - White IR, Royston P, Wood AM (2011), *Multiple imputation using
   chained equations: issues and guidance for practice*.
 
-## Session info
+### Session info {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-16-design)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

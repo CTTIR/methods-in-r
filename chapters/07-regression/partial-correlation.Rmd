@@ -1,12 +1,14 @@
-## Introduction
+## Partial Correlation {#sec-chapters-07-regression-partial-correlation}
+
+### Introduction {#sec-chapters-07-regression-partial-correlation-introduction}
 
 Partial correlation measures the linear association between two variables after removing the linear influence of one or more covariates from each. Where ordinary correlation captures bivariate association including any indirect effect through confounders, partial correlation isolates the direct linear relationship. It is the bivariate analogue of an adjusted regression coefficient and one of the simplest tools for thinking about confounding in observational data.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-partial-correlation-prerequisites}
 
 A working understanding of Pearson correlation, multiple linear regression, and the concept of confounding.
 
-## Theory
+### Theory {#sec-chapters-07-regression-partial-correlation-theory}
 
 For three variables $X, Y, Z$, the partial correlation of $X$ and $Y$ adjusted for $Z$ is
 
@@ -16,11 +18,11 @@ It equals the Pearson correlation of the residuals from regressing $X$ on $Z$ an
 
 The semi-partial (or part) correlation removes the influence of $Z$ from $X$ only, retaining $Y$'s association with $Z$. In multiple regression, the partial $r$ of predictor $j$ equals $\mathrm{sign}(\hat\beta_j) \sqrt{t_j^2 / (t_j^2 + \mathrm{df}_{\mathrm{res}})}$.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-partial-correlation-assumptions}
 
 Linearity in each pairwise relationship; multivariate Normality (for the standard inference test); accurately measured covariates; the partial-correlation interpretation is causal only under additional assumptions about the covariate set.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-partial-correlation-r-implementation}
 
 ```r
 library(ppcor)
@@ -37,15 +39,15 @@ res_mpg <- resid(lm(mpg ~ hp, data = mtcars))
 cor(res_wt, res_mpg)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-partial-correlation-output-results}
 
 `pcor.test()` returns the partial correlation estimate, its $t$-statistic, and a $p$-value. `pcor()` returns the full partial-correlation matrix, useful when many adjustments are simultaneously of interest. The manual residual-based computation confirms the algebraic identity.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-partial-correlation-interpretation}
 
 A reporting sentence: "After adjusting for horsepower, weight and miles-per-gallon had a partial correlation of $-0.66$ ($p < 0.001$, $n = 32$); the negative association persists strongly even after controlling for the engine's power output, suggesting an independent role for vehicle weight beyond its correlation with engine size." Distinguish partial from semi-partial correlation in reports; readers often confuse them.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-partial-correlation-practical-tips}
 
 - Partial correlation is the bivariate analogue of an adjusted regression coefficient; if you have already fitted a multiple regression, the corresponding partial $r$ comes for free from the $t$-statistic.
 - Semi-partial correlations describe "unique variance contribution" in multiple regression; often what is reported as $\Delta R^2$ when adding one predictor to an existing model.
@@ -54,46 +56,43 @@ A reporting sentence: "After adjusting for horsepower, weight and miles-per-gall
 - Causal interpretation of partial correlations requires that the conditioning set blocks all confounding paths; statistical independence after conditioning does not by itself imply causation.
 - For high-dimensional data ($p$ near $n$), partial correlations from the inverse covariance matrix are unstable; use regularised graphical-lasso estimators (`glasso`).
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-partial-correlation-r-packages-used}
 
 `ppcor` for `pcor()` and `pcor.test()`; `psych::partial.r()` for an alternative interface; `qgraph` and `huge` for partial-correlation networks; `glasso` for regularised inverse-covariance estimation in high dimensions.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-partial-correlation-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-partial-correlation-assumptions) and
+[practical tips](#sec-chapters-07-regression-partial-correlation-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-partial-correlation-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

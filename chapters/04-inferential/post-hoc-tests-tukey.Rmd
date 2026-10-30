@@ -1,12 +1,14 @@
-## Introduction
+## Post-Hoc Tests with Tukey HSD {#sec-chapters-04-inferential-post-hoc-tests-tukey}
+
+### Introduction {#sec-chapters-04-inferential-post-hoc-tests-tukey-introduction}
 
 When a one-way ANOVA rejects equality of means across groups, post-hoc tests identify which specific pairs differ. Tukey's HSD (honestly significant difference) is the default pairwise comparison test after ANOVA with equal sample sizes, controlling the family-wise error rate at the nominal $\alpha$.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-post-hoc-tests-tukey-prerequisites}
 
 One-way ANOVA, multiple-comparisons problem.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-post-hoc-tests-tukey-theory}
 
 For $k$ groups with sample size $n$ each and common residual MS = MSE, the Tukey critical value for pairwise differences is
 
@@ -21,11 +23,11 @@ Tukey's HSD is equivalent to a simultaneous test based on the maximum pairwise $
 - **Holm**: sequential, uniformly more powerful than Bonferroni.
 - **Scheffe**: most conservative; valid for arbitrary contrasts, not just pairwise.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-post-hoc-tests-tukey-assumptions}
 
 Same as ANOVA: independence, normal residuals, homogeneous variances. For unequal sample sizes, the Tukey-Kramer variant is used.
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-post-hoc-tests-tukey-r-implementation}
 
 ```r
 library(emmeans); library(multcomp)
@@ -52,7 +54,7 @@ pairs(emm, adjust = "tukey")
 summary(glht(fit, linfct = mcp(group = "Dunnett")))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-post-hoc-tests-tukey-output-results}
 
 ```
             diff    lwr    upr   p adj
@@ -66,11 +68,11 @@ D-C    -4.922   -10.32   0.48    0.090
 
 Three of six pairwise comparisons are significant at family-wise $\alpha = 0.05$.
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-post-hoc-tests-tukey-interpretation}
 
 Report adjusted p-values and family-wise confidence intervals. "Tukey HSD post-hoc comparisons following a significant one-way ANOVA indicated that groups B and C each differed significantly from group A (both adjusted p < 0.01), while D did not differ significantly from A (adjusted p = 0.09)."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-post-hoc-tests-tukey-practical-tips}
 
 - Only perform post-hoc tests after a significant omnibus F; otherwise you are fishing.
 - For unequal sample sizes use Tukey-Kramer (R's `TukeyHSD` and `emmeans` handle this automatically).
@@ -80,32 +82,29 @@ Report adjusted p-values and family-wise confidence intervals. "Tukey HSD post-h
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-post-hoc-tests-tukey-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-post-hoc-tests-tukey-assumptions) and
+[practical tips](#sec-chapters-04-inferential-post-hoc-tests-tukey-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-post-hoc-tests-tukey-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Single-Cell with Seurat {#sec-chapters-12-bioinformatics-single-cell-seurat-intro}
+
+### Introduction {#sec-chapters-12-bioinformatics-single-cell-seurat-intro-introduction}
 
 Seurat is the most widely used R framework for single-cell RNA-seq (scRNA-seq) analysis. A standard Seurat workflow loads a count matrix from Cell Ranger or a similar source, performs quality control on per-cell metrics, normalises expression, selects variable features, scales, runs dimensionality reduction (PCA + UMAP/t-SNE), clusters cells, and identifies marker genes. The framework's strength is its end-to-end coverage and large user community; the alternative Bioconductor stack (`SingleCellExperiment` + `scran`) offers comparable functionality with tighter integration into the broader Bioconductor ecosystem.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-single-cell-seurat-intro-prerequisites}
 
 A working understanding of single-cell RNA-seq experimental design, count matrices from droplet-based protocols (10x Chromium), and basic clustering and dimensionality-reduction concepts.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-single-cell-seurat-intro-theory}
 
 Seurat stores cells × genes counts and derived matrices in a `Seurat` object with structured slots for raw counts, normalised data, variable features, scaled data, dimensional reductions, and per-cell metadata. The standard pipeline:
 
@@ -18,11 +20,11 @@ Seurat stores cells × genes counts and derived matrices in a `Seurat` object wi
 6. **Graph-based clustering**: shared-nearest-neighbour graph + Louvain or Leiden community detection.
 7. **UMAP / t-SNE**: non-linear visualisation only — not used for clustering decisions.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-single-cell-seurat-intro-assumptions}
 
 Each droplet is mostly single-cell (low doublet rate, typically below 5 %); per-cell library size correlates with mRNA content; variable genes capture biological signal rather than technical noise.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-single-cell-seurat-intro-r-implementation}
 
 ```r
 library(Seurat)
@@ -46,15 +48,15 @@ table(Idents(so))
 DimPlot(so, reduction = "umap", label = TRUE)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-single-cell-seurat-intro-output-results}
 
 A `Seurat` object containing per-cell cluster assignments, dimensional-reduction coordinates (PCA, UMAP), and gene-level statistics. `DimPlot()` produces the canonical UMAP visualisation with cluster boundaries; `FeaturePlot()` overlays gene expression on the UMAP.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-single-cell-seurat-intro-interpretation}
 
 A reporting sentence: "Standard Seurat processing of the 300-cell dataset (`NormalizeData`, `FindVariableFeatures`, `ScaleData`, `RunPCA`, Louvain clustering at resolution 0.5) produced 5 clusters; cluster 3 uniquely expressed CD8A and CD8B, consistent with cytotoxic T cells, and cluster 1 expressed CD79A and MS4A1, consistent with B cells." Always describe the QC thresholds, normalisation method, number of PCs, and clustering resolution.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-single-cell-seurat-intro-practical-tips}
 
 - Run QC before normalisation; low-quality cells dominate variable-feature selection and contaminate downstream clustering.
 - Use `SCTransform` instead of `NormalizeData + FindVariableFeatures + ScaleData` for a more principled variance-stabilising approach; SCTransform is the modern default for new analyses.
@@ -63,32 +65,29 @@ A reporting sentence: "Standard Seurat processing of the 300-cell dataset (`Norm
 - For very large datasets ($> 100{,}000$ cells), use Seurat v5's sketch-based subsampling or switch to the Bioconductor stack (`SingleCellExperiment`, `scran`) for memory efficiency.
 - Pair clustering results with marker-gene analysis (`FindAllMarkers`) and biological annotation (SingleR, scType) before reporting cluster identities.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-single-cell-seurat-intro-r-packages-used}
 
 `Seurat` for the canonical end-to-end scRNA-seq workflow; `SingleCellExperiment` for the Bioconductor data structure; `scran` and `scater` for Bioconductor-style normalisation and clustering; `harmony` for batch correction; `SingleR` for automatic cell-type annotation; `DoubletFinder` for doublet detection.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-single-cell-seurat-intro-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-single-cell-seurat-intro-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-single-cell-seurat-intro-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-single-cell-seurat-intro-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

@@ -1,19 +1,21 @@
+## Week 1, Session 3 — Multiple regression: confounding, interaction, centring {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-learning-objectives}
 
 - Distinguish confounding from mediation and from effect modification.
 - Read a multiple regression coefficient as an *adjusted* effect.
 - Centre predictors before fitting interactions and explain why.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-prerequisites}
 
 Sessions 1 and 2 of this week.
 
-## Background
+### Background {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-background}
 
 Multiple regression is the standard way to estimate the effect of one
 predictor while holding others constant. The word *holding* is doing a
@@ -37,7 +39,7 @@ reduce *real* collinearity between X and Z, but it does reduce the
 algebraic collinearity between X and X·Z that otherwise makes the
 coefficients hard to interpret and inflates their standard errors.
 
-## Setup
+### Setup {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-setup}
 
 ```r
 library(tidyverse)
@@ -46,14 +48,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-1-hypothesis}
 
 Simulate a scenario in which a confounder masks the effect of interest,
 then add an interaction to show effect modification.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-2-visualise}
 
 ```r
+n <- 300
 age <- rnorm(n, 55, 10)
 # smoker more common among older people in this simulation (confounding)
 smoker <- rbinom(n, 1, plogis(-3 + 0.05 * age))
@@ -71,22 +74,24 @@ ggplot(dat, aes(age, y, colour = smoker)) +
 Both lines climb with age; the smoker line sits higher and may slope
 more steeply.
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-3-assumptions}
 
 The usual linear-model assumptions, plus an implicit assumption that
 all relevant confounders are in the model.
 
 ```r
+fit_full <- lm(y ~ age * smoker, data = dat)
 par(mfrow = c(2, 2))
 plot(fit_full)
 par(mfrow = c(1, 1))
 ```
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-4-conduct}
 
 Crude smoker effect, then adjusted for age, then with interaction:
 
 ```r
+crude    <- lm(y ~ smoker, data = dat)
 adjusted <- lm(y ~ smoker + age, data = dat)
 inter    <- lm(y ~ smoker * age, data = dat)
 
@@ -103,11 +108,12 @@ Now with centred age, which makes the `smokeryes` coefficient the
 smoker effect *at mean age*:
 
 ```r
+dat_c <- dat |> mutate(age_c = age - mean(age))
 inter_c <- lm(y ~ smoker * age_c, data = dat_c)
 tidy(inter_c, conf.int = TRUE)
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-5-concluding-statement}
 
 > After adjusting for age, the estimated smoker-effect at the sample
 > mean age was
@@ -118,7 +124,7 @@ tidy(inter_c, conf.int = TRUE)
 > `round(coef(inter_c)["smokeryes:age_c"], 2)`).
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-common-pitfalls}
 
 - Reading an adjusted coefficient as a population-level causal effect
   without thinking about what the adjustment set represents.
@@ -126,22 +132,23 @@ tidy(inter_c, conf.int = TRUE)
   the main effects.
 - Dropping covariates that look non-significant one at a time.
 
-## Further reading
+### Further reading {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-further-reading}
 
 - Greenland S (1998), *Confounding and collapsibility in causal inference*.
 - VanderWeele TJ. *Explanation in Causal Inference*.
 - Fox J. *Applied Regression Analysis and Generalized Linear Models*.
 
-## Session info
+### Session info {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-07-regression)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

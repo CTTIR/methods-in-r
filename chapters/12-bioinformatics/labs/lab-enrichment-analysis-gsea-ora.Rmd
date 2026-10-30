@@ -1,9 +1,11 @@
+## Week 4, Session 2 — Enrichment analysis (GSEA / ORA) {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-learning-objectives}
 
 - Perform an over-representation analysis (ORA) by the hypergeometric
   test on a simulated example.
@@ -12,11 +14,11 @@ Goal → Approach → Execution → Check → Report.
 - Recognise the hazards of gene-set overlap and of using different
   background universes.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-prerequisites}
 
 Multiple testing; bulk RNA-seq DE results.
 
-## Background
+### Background {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-background}
 
 Pathway or gene-set enrichment analyses take a list of candidate genes
 — from a differential-expression analysis, say — and ask whether any
@@ -37,7 +39,7 @@ is "all human genes" but the measurement technology only detects half
 of them, the *p*-values are wrong. The correct universe is the set of
 genes actually tested in the upstream analysis.
 
-## Setup
+### Setup {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-setup}
 
 ```r
 library(tidyverse)
@@ -45,17 +47,18 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-1-goal}
 
 Demonstrate a hypergeometric ORA by hand, then sketch the `fgsea`
 call pattern for a running-sum GSEA.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-2-approach}
 
 Simulate a universe of 5 000 genes; a pathway of 80 members is
 enriched for differentially expressed (DE) genes.
 
 ```r
+N <- 5000
 pathway <- sample(seq_len(N), 80)
 true_de <- unique(c(sample(pathway, 40), sample(setdiff(seq_len(N), pathway), 60)))
 
@@ -67,11 +70,12 @@ tibble(in_pathway = seq_len(N) %in% pathway,
   labs(x = "gene in pathway?", y = "count")
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-3-execution}
 
 Hypergeometric test by hand.
 
 ```r
+n_de <- length(true_de)
 k_in <- sum(true_de %in% pathway)
 p_hyper <- phyper(k_in - 1, 80, N - 80, n_de, lower.tail = FALSE)
 c(overlap = k_in, expected = n_de * 80 / N, p = p_hyper)
@@ -80,6 +84,7 @@ c(overlap = k_in, expected = n_de * 80 / N, p = p_hyper)
 Make a ranked gene list (as if from DE) and sketch `fgsea`.
 
 ```r
+stat <- rnorm(N)
 stat[pathway] <- stat[pathway] + 1.2    # shift pathway genes up
 names(stat) <- paste0("g", seq_len(N))
 stat <- sort(stat, decreasing = TRUE)
@@ -105,11 +110,12 @@ fgsea_res <- fgsea(pathways = gene_sets, stats = stat,
                    minSize = 15, maxSize = 500)
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-4-check}
 
 Compare the ORA result for different shortlist sizes.
 
 ```r
+sweep_ora <- sapply(c(50, 100, 200, 500), function(top) {
   short <- names(stat)[seq_len(top)]
   k <- sum(short %in% paste0("g", pathway))
   phyper(k - 1, 80, N - 80, top, lower.tail = FALSE)
@@ -117,7 +123,7 @@ Compare the ORA result for different shortlist sizes.
 tibble(top = c(50, 100, 200, 500), p = sweep_ora)
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-5-report}
 
 > In a simulated universe of 5 000 genes with a pathway of 80
 > members enriched for DE, the hypergeometric ORA for the full DE
@@ -130,14 +136,14 @@ effect is diffuse. The two answer different questions and sometimes
 disagree; both are worth showing when the result matters.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-common-pitfalls}
 
 - Using the full genome as the ORA universe when only a subset was
   assayed.
 - Double-counting overlapping pathways as independent discoveries.
 - Reporting a GSEA *p*-value without the normalised enrichment score.
 
-## Further reading
+### Further reading {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-further-reading}
 
 - Subramanian A et al. (2005), *Gene set enrichment analysis: A
   knowledge-based approach for interpreting genome-wide expression
@@ -146,16 +152,17 @@ disagree; both are worth showing when the result matters.
   tools: paths toward the comprehensive functional analysis of large
   gene lists*.
 
-## Session info
+### Session info {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-12-bioinformatics)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

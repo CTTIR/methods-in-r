@@ -1,12 +1,14 @@
-## Introduction
+## The Grammar of Graphics {#sec-chapters-06-visualisation-grammar-of-graphics}
+
+### Introduction {#sec-chapters-06-visualisation-grammar-of-graphics-introduction}
 
 `ggplot2` is the dominant plotting system in R because it is built on a principled grammar rather than an ad-hoc collection of plot types. Every plot is constructed from the same seven building blocks: data, aesthetic mappings, geometric objects (geoms), statistical transformations, scales, coordinate systems, and faceting. Once the grammar is internalised, the vast library of plot types reduces to a small set of decisions in a common vocabulary.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-grammar-of-graphics-prerequisites}
 
 The reader should know R vectors, data frames, and the `%>%` or `|>` pipe. No prior `ggplot2` knowledge is assumed.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-grammar-of-graphics-theory}
 
 The layered grammar expresses every plot as a stack of layers added to a base specification. Each layer may override or inherit data and mappings from the base. The seven components:
 
@@ -20,7 +22,7 @@ The layered grammar expresses every plot as a stack of layers added to a base sp
 
 A plot is rendered by evaluating the stats on the data, mapping the results through the scales to aesthetic values, drawing the geoms in the chosen coordinate system, and replicating the whole thing across facets.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-grammar-of-graphics-r-implementation}
 
 The `palmerpenguins` package provides a tidy biological dataset for demonstration:
 
@@ -46,11 +48,11 @@ ggplot(data = penguins,
 
 This single plot uses all seven grammar components: the data is `penguins`, the mappings send `flipper_length_mm` to x, `body_mass_g` to y, and `species` to colour; two geoms (point and smooth) are layered; the `lm` stat fits a linear trend within each species; the Brewer scale converts the species factor to colours; the Cartesian coordinate system is implicit; faceting by sex produces a panel per level.
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-grammar-of-graphics-output-results}
 
 The plot shows three colour-coded point clouds in each of two panels (one per sex). Linear trends are drawn within each species, and the Brewer "Set2" palette is colour-blind-safe. Axis labels and a title provide context; the legend is placed at the bottom to give maximum plot area to the data.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-grammar-of-graphics-interpretation}
 
 The layered-grammar view turns plot design into a checklist:
 
@@ -64,7 +66,7 @@ The layered-grammar view turns plot design into a checklist:
 
 Going through these questions in order produces plots that are intentional rather than stumbled into.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-grammar-of-graphics-practical-tips}
 
 - Start with `geom_point()` and add layers; do not try to build the final plot in one shot.
 - Map aesthetics inside `aes()` when they depend on data; set them outside `aes()` (e.g. `colour = "steelblue"`) when they are constant.
@@ -74,24 +76,20 @@ Going through these questions in order produces plots that are intentional rathe
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-grammar-of-graphics-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [theory](#sec-chapters-06-visualisation-grammar-of-graphics-theory) and [practical tips](#sec-chapters-06-visualisation-grammar-of-graphics-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-grammar-of-graphics-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Spearman Rank Correlation Test {#sec-chapters-04-inferential-spearman-correlation-test}
+
+### Introduction {#sec-chapters-04-inferential-spearman-correlation-test-introduction}
 
 Spearman's $\rho$ (rho) is the Pearson correlation of the ranks of two variables. It detects monotonic associations that need not be linear, and is robust to outliers and heavy tails. It is the default correlation measure for ordinal data or strongly skewed continuous data.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-spearman-correlation-test-prerequisites}
 
 Pearson correlation, ranks.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-spearman-correlation-test-theory}
 
 Replace each $X_i$ by its rank $R_i$, and each $Y_i$ by its rank $S_i$. Spearman's $\rho$ is
 
@@ -20,13 +22,13 @@ applies.
 
 Under $H_0: \rho = 0$, an asymptotic normal approximation holds; for small $n$ exact or permutation distributions are used. Confidence intervals for Spearman's $\rho$ can be obtained by Fisher's z applied to the ranks.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-spearman-correlation-test-assumptions}
 
 - Ordinal or continuous data; the ranks must be well-defined.
 - Monotonic association (linear or non-linear).
 - Independent pairs.
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-spearman-correlation-test-r-implementation}
 
 ```r
 set.seed(2026)
@@ -49,7 +51,7 @@ rho_boot <- boot(data = data.frame(x, y),
 boot.ci(rho_boot, type = "perc")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-spearman-correlation-test-output-results}
 
 ```
         Pearson's product-moment correlation
@@ -65,11 +67,11 @@ Bootstrap 95% CI (percentile): (0.988, 0.999)
 
 Spearman recovers the strong monotonic relationship ($\rho \approx 1$) that Pearson underestimates because of the non-linearity.
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-spearman-correlation-test-interpretation}
 
 "There was a strong monotonic association between $x$ and $y$ (Spearman's $\rho = 0.99$, bootstrap 95 % CI 0.99 to 1.00; $p < 0.001$)."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-spearman-correlation-test-practical-tips}
 
 - Use Spearman for ordinal data, heavy-tailed or skewed continuous data, or suspected non-linear monotonic relationships.
 - For very small $n$, use exact methods (`cor.test(..., exact = TRUE)`; only valid without ties).
@@ -79,32 +81,29 @@ Spearman recovers the strong monotonic relationship ($\rho \approx 1$) that Pear
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-spearman-correlation-test-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-spearman-correlation-test-assumptions) and
+[practical tips](#sec-chapters-04-inferential-spearman-correlation-test-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-spearman-correlation-test-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

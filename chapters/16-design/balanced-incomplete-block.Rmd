@@ -1,12 +1,14 @@
-## Introduction
+## Balanced Incomplete Block Designs {#sec-chapters-16-design-balanced-incomplete-block}
+
+### Introduction {#sec-chapters-16-design-balanced-incomplete-block-introduction}
 
 Balanced incomplete block designs (BIBDs) allocate treatments to blocks when each block can hold fewer experimental units than the total number of treatments to be compared. The constraint arises constantly in practice — a litter of animals contains fewer pups than treatments, a panel of taste-testers has limited capacity per session, a microscopy slide accommodates only a few specimens, an oven processes a limited number of samples per run. The "balanced" property requires that every pair of treatments appears together in the same number $\lambda$ of blocks, ensuring that every pairwise treatment contrast is estimated with equal precision despite the block-level incompleteness. BIBDs are classical constructions in agricultural experimentation, sensory evaluation, and any setting where complete randomised blocks are physically impossible.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-balanced-incomplete-block-prerequisites}
 
 A working understanding of randomised complete block designs, combinatorial design parameters, and basic mixed-effects modelling for the recovery of inter-block information.
 
-## Theory
+### Theory {#sec-chapters-16-design-balanced-incomplete-block-theory}
 
 A BIBD is specified by parameters $(v, b, r, k, \lambda)$:
 
@@ -18,11 +20,11 @@ A BIBD is specified by parameters $(v, b, r, k, \lambda)$:
 
 These parameters satisfy two necessary identities: $bk = vr$ and $\lambda(v - 1) = r(k - 1)$. Not every parameter combination corresponds to an existing BIBD; Fisher's inequality requires $b \geq v$, and the Bruck–Ryser–Chowla theorem provides further necessary conditions. The classical analysis fits blocks as either fixed or random effects; treating blocks as random recovers inter-block information and is generally more efficient.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-balanced-incomplete-block-assumptions}
 
 Treatment pairs are exchangeable via the balance property, within-block residuals are exchangeable and approximately Normal with constant variance, and block effects are additive (no block × treatment interaction). The design is implemented as planned — running fewer or more units than specified destroys the balance and requires reanalysis as a partially balanced or unbalanced incomplete block design.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-balanced-incomplete-block-r-implementation}
 
 ```r
 library(crossdes)
@@ -42,15 +44,15 @@ fit <- aov(y ~ factor(block) + treatment, data = df)
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-balanced-incomplete-block-output-results}
 
 `find.BIB()` constructs a BIBD with the specified parameters when one exists. The fitted ANOVA partitions variability into block, treatment, and residual components, with the treatment $F$-test computed using the intra-block error. Reporting the proportion of variance absorbed by blocks alongside the treatment effect characterises the gain from incomplete blocking.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-balanced-incomplete-block-interpretation}
 
 A reporting sentence: "The $(v, b, r, k, \lambda) = (7, 7, 3, 3, 1)$ BIBD — equivalent to the Fano plane in projective geometry — tested seven treatments in seven blocks of size three. ANOVA showed a significant treatment effect ($F_{6, 8} = 8.2$, $p = 0.002$) with block-level variance absorbed by the block factor (block sum of squares 12.4, residual sum of squares 4.7). All 21 pairwise treatment contrasts were estimated with equal precision because of the balance property." Always report the BIBD parameters explicitly.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-balanced-incomplete-block-practical-tips}
 
 - Use a BIBD whenever block size is smaller than the treatment count and balanced pairwise comparisons are required; the balance property ensures every contrast has the same standard error, which simplifies interpretation and multiple-comparison adjustment.
 - Analyse with blocks as **random effects** (`(1 | block)` in `lme4`) to recover inter-block information; the random-effects analysis is generally more efficient than the fixed-effect intra-block analysis, especially when the number of blocks is large.
@@ -59,42 +61,39 @@ A reporting sentence: "The $(v, b, r, k, \lambda) = (7, 7, 3, 3, 1)$ BIBD — eq
 - Pre-specify the block allocation in the protocol; changing mid-experiment — adding a unit, dropping a block — destroys the balance property and forces reanalysis as a general unbalanced design.
 - Visualise the incidence matrix (treatment × block) before running the experiment; an inadvertent imbalance (a treatment missing from a block, a duplicated treatment within a block) is far easier to spot at the design stage than after data collection.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-balanced-incomplete-block-r-packages-used}
 
 `crossdes::find.BIB()` and `crossdes::isGYD()` for BIBD construction and verification; `agricolae::design.bib()` for an alternative interface integrated with the agricultural-DoE toolkit; `lme4::lmer()` for random-block analysis recovering inter-block information; `ibd` for advanced incomplete-block constructions including PBIBDs; `daewr` for textbook companion datasets.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-balanced-incomplete-block-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-balanced-incomplete-block-assumptions) and
+[practical tips](#sec-chapters-16-design-balanced-incomplete-block-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-balanced-incomplete-block-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

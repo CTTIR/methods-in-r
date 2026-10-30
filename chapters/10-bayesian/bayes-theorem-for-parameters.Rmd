@@ -1,12 +1,14 @@
-## Introduction
+## Bayes' Theorem for Parameters {#sec-chapters-10-bayesian-bayes-theorem-for-parameters}
+
+### Introduction {#sec-chapters-10-bayesian-bayes-theorem-for-parameters-introduction}
 
 Bayesian inference is, mechanically, the application of Bayes' theorem to a parameter rather than to an event. The prior encodes whatever was believed before the data arrived, the likelihood is the data-generating model evaluated at the observed data, and the posterior is the updated belief. The conceptual leap from frequentist statistics is small but consequential: parameters are themselves random quantities whose posterior distribution can be summarised, predicted from, and acted upon, without invoking long-run sampling thought experiments.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-bayes-theorem-for-parameters-prerequisites}
 
 A working understanding of Bayes' theorem for events, the concept of a likelihood function, and the difference between probability density and probability mass.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-bayes-theorem-for-parameters-theory}
 
 For a parameter $\theta$ and data $y$, Bayes' theorem reads
 
@@ -14,11 +16,11 @@ $$p(\theta \mid y) = \frac{p(y \mid \theta) p(\theta)}{p(y)} \propto p(y \mid \t
 
 where the four quantities are the posterior, the likelihood, the prior, and the marginal likelihood $p(y) = \int p(y \mid \theta) p(\theta) \, \mathrm d \theta$. The marginal likelihood appears as a normalisation constant from a single-model perspective but plays the central role in Bayes-factor-based model comparison. For closed-form (conjugate) priors, the posterior comes out in the same family as the prior with updated hyperparameters; otherwise MCMC produces draws from the un-normalised right-hand side.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-bayes-theorem-for-parameters-assumptions}
 
 The prior reflects genuine pre-data information or a defensible weak-regularisation choice, the likelihood correctly captures the data-generating process, and posterior integrability is established (proper priors guarantee this; improper priors must be checked).
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-bayes-theorem-for-parameters-r-implementation}
 
 ```r
 # Beta-Binomial: prior Beta(2, 2), 8 successes in 10 trials
@@ -40,15 +42,15 @@ c(mean = post_a / (post_a + post_b),
   ci95 = qbeta(c(0.025, 0.975), post_a, post_b))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-bayes-theorem-for-parameters-output-results}
 
 A three-curve plot showing the flat-ish prior, the peaked likelihood, and the posterior between them, plus a summary giving the posterior mean (0.71) and the 95 % equal-tailed credible interval ($\approx 0.47$ to $0.89$). The posterior is closer to the likelihood than to the prior because the data ($n=10$) carry more precision than the prior ($a + b = 4$ pseudo-observations).
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-bayes-theorem-for-parameters-interpretation}
 
 A reporting sentence: "Combining a Beta(2, 2) prior with 8 successes in 10 trials yielded a Beta(10, 4) posterior with mean 0.71 (95 % credible interval 0.47 to 0.89); the prior contributed the equivalent of about four pseudo-observations and the data dominated the posterior shape." Always disclose the prior; the same data with a different prior would lead to a slightly different posterior.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-bayes-theorem-for-parameters-practical-tips}
 
 - For conjugate setups (Beta–Binomial, Normal–Normal, Gamma–Poisson, Dirichlet–Multinomial), the posterior is closed-form and arithmetic alone suffices; reach for MCMC only when conjugacy fails.
 - Always report a posterior summary that includes both a central tendency and an uncertainty measure; a posterior mean alone is no more informative than a frequentist point estimate.
@@ -56,31 +58,28 @@ A reporting sentence: "Combining a Beta(2, 2) prior with 8 successes in 10 trial
 - Posterior predictive draws (`rbeta(M, post_a, post_b)` followed by `rbinom(M, n_new, theta)`) deliver direct uncertainty intervals for future outcomes.
 - Visualising prior, likelihood, and posterior on the same plot is the single most useful pedagogical artefact when explaining Bayesian inference to non-statistical readers.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-bayes-theorem-for-parameters-r-packages-used}
 
 Base R for the conjugate update and plotting, `bayestestR` for tidy posterior summaries, and `brms` or `rstanarm` for non-conjugate problems where MCMC is required to obtain posterior draws.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-bayes-theorem-for-parameters-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-bayes-theorem-for-parameters-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-bayes-theorem-for-parameters-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-bayes-theorem-for-parameters-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

@@ -1,11 +1,12 @@
 ---
 toc: true
 ---
+# Common errors {#sec-appendices-c-common-errors}
+
 <div class="hero">
 <div class="kicker">
 APPENDIX · COMMON ERRORS
 </div>
-# Common errors
 <div class="lead">
 A field guide to the R, Quarto, and `renv` errors that will bite you
 first.
@@ -15,7 +16,7 @@ first.
 Each entry lists the error message, the usual cause, and the fix that
 works most of the time.
 
-## R
+## R {#sec-appendices-c-common-errors-r}
 
 **Error:**
 `there is no package called 'xyz'`
@@ -66,7 +67,7 @@ e.g. `predict(fit, newdata = nd)`.
 
 *Fix:* `install.packages("foo", dependencies = TRUE)`.
 
-## Quarto
+## Quarto {#sec-appendices-c-common-errors-quarto}
 
 **Error:**
 `quarto: command not found`
@@ -108,7 +109,7 @@ wedged `.quarto/`, delete that cache directory and try again.
 *Fix:* in the repo Settings → Pages, select the `gh-pages` branch and
 the `/ (root)` folder. Our workflow deploys to `gh-pages` by default.
 
-## `renv`
+## `renv` {#sec-appendices-c-common-errors-renv}
 
 **Error:**
 `renv::restore() failed with: cannot install package 'xyz' from source`
@@ -132,7 +133,7 @@ Homebrew package on macOS, or Rtools on Windows. Common culprits:
 
 *Fix:* `renv::status()` to see what, then `renv::restore()` to synchronise.
 
-## knitr / rmarkdown
+## knitr / rmarkdown {#sec-appendices-c-common-errors-knitr-rmarkdown}
 
 **Error:**
 `pandoc document conversion failed with error 2`
@@ -150,7 +151,7 @@ title.
 *Fix:* clear the knitr cache (`knitr::clean_cache()`) and re-render;
 check chunk evaluation with `eval = TRUE`.
 
-## Git
+## Git {#sec-appendices-c-common-errors-git}
 
 **Error:**
 `fatal: refusing to merge unrelated histories`

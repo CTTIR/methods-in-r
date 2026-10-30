@@ -1,22 +1,24 @@
-## Introduction
+## Log-Rank Test: Details {#sec-chapters-11-survival-log-rank-test-details}
+
+### Introduction {#sec-chapters-11-survival-log-rank-test-details-introduction}
 
 The log-rank test is the standard non-parametric test for comparing survival across two or more groups in randomised trials and observational studies. It accumulates differences between observed and expected event counts at each event time across the follow-up window and reports a chi-squared statistic. The test is most powerful under proportional hazards — the alternative for which it was designed — but variants (weighted log-rank, stratified log-rank) extend its applicability to non-proportional or covariate-adjusted settings.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-log-rank-test-details-prerequisites}
 
 A working understanding of Kaplan-Meier estimation, censoring, and the proportional-hazards alternative as the natural target for the log-rank test.
 
-## Theory
+### Theory {#sec-chapters-11-survival-log-rank-test-details-theory}
 
 At each unique event time $t_j$ across all groups, the test compares the observed number of events in group $k$ to the expected number under the null of equal hazards: $E_{kj} = d_j \cdot n_{kj} / n_j$, with $d_j$ the total events at $t_j$ and $n_{kj}, n_j$ the numbers at risk. The standardised cumulative deviation across all event times forms a chi-squared statistic with $k - 1$ degrees of freedom, where $k$ is the number of groups.
 
 Weighted variants (Wilcoxon, Tarone-Ware, Fleming-Harrington $G^{\rho, \gamma}$) give more weight to early or late differences and recover power when hazards are non-proportional. The stratified log-rank applies the test within strata defined by a categorical covariate and pools the contributions, controlling for that covariate while testing the main effect.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-log-rank-test-details-assumptions}
 
 Proportional hazards across groups (for the standard log-rank), independent and non-informative censoring, and accurate event-time recording.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-log-rank-test-details-r-implementation}
 
 ```r
 library(survival)
@@ -29,15 +31,15 @@ fit
 survdiff(Surv(time, status) ~ sex + strata(ph.ecog), data = lung)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-log-rank-test-details-output-results}
 
 `survdiff()` returns observed and expected events per group, the chi-squared test statistic, degrees of freedom, and the asymptotic $p$-value. The stratified version partitions the comparison within levels of the strata variable, producing the same output structure but with the stratification controlled for.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-log-rank-test-details-interpretation}
 
 A reporting sentence: "The log-rank test rejected the null of equal survival between sexes ($\chi^2_1 = 10.3$, $p = 0.001$); the female arm had 53 observed events compared with 86 expected under the null, while the male arm had 112 observed compared with 79 expected." Always pair the test with a hazard-ratio estimate (from Cox) and Kaplan-Meier curves; the test alone gives no effect size.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-log-rank-test-details-practical-tips}
 
 - Use stratification (`+ strata(var)`) when controlling for a covariate without testing it; stratified log-rank tests within strata and pools.
 - When hazards cross, the standard log-rank can fail to detect a real difference; use the Fleming-Harrington $G^{1, 0}$ test for late differences or $G^{0, 1}$ for early ones.
@@ -46,34 +48,30 @@ A reporting sentence: "The log-rank test rejected the null of equal survival bet
 - Non-informative censoring is the assumption that fails most often in observational studies; if censoring depends on prognosis, the log-rank test is biased.
 - For severely non-proportional hazards (clearly crossing curves), consider RMST as the primary summary instead of relying on the log-rank.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-log-rank-test-details-r-packages-used}
 
 `survival` for `survdiff()` with stratification; `survminer::pairwise_survdiff()` for pairwise log-rank tests with multiple-comparison correction; `nph` and `coin` for weighted-log-rank variants and exact tests; `FHtest` for Fleming-Harrington $G^{\rho, \gamma}$ tests.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-log-rank-test-details-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-log-rank-test-details-assumptions) and [practical tips](#sec-chapters-11-survival-log-rank-test-details-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-log-rank-test-details-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

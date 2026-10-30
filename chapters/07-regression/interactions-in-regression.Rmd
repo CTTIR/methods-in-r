@@ -1,12 +1,14 @@
-## Introduction
+## Interactions in Regression {#sec-chapters-07-regression-interactions-in-regression}
+
+### Introduction {#sec-chapters-07-regression-interactions-in-regression-introduction}
 
 An interaction term — a product of two predictors entered alongside the main effects — expresses the substantive idea that the effect of one predictor depends on the value of another. Without interactions, a linear model assumes purely additive effects: a unit increase in $X_1$ produces the same change in $Y$ regardless of $X_2$. Interactions relax this assumption and often capture the actual scientific hypothesis (treatment effect varies by age, biomarker effect varies by sex, dose-response curve depends on baseline severity). Reporting interactions correctly requires moving beyond main-effect coefficients to conditional effects at specific covariate values.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-interactions-in-regression-prerequisites}
 
 A working understanding of multiple linear regression, the geometric meaning of regression coefficients, and centring continuous predictors as a tool for reducing collinearity.
 
-## Theory
+### Theory {#sec-chapters-07-regression-interactions-in-regression-theory}
 
 For two continuous predictors $X_1, X_2$ and an interaction:
 
@@ -18,11 +20,11 @@ The conditional effect of $X_1$ is $\beta_1 + \beta_3 X_2$ — a function of $X_
 
 For categorical-by-continuous interactions, the continuous coefficient is the effect within the reference category and the interaction is the difference for the non-reference category.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-interactions-in-regression-assumptions}
 
 Same as the underlying regression: linearity in the linear predictor (after the interaction is included), independent observations, etc. The interaction itself is a model choice, not an assumption.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-interactions-in-regression-r-implementation}
 
 ```r
 library(emmeans); library(ggeffects)
@@ -42,15 +44,15 @@ emtrends(fit, ~ hp_c, var = "wt_c",
 ggpredict(fit, terms = c("wt_c", "hp_c [-50, 0, 50]")) |> plot()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-interactions-in-regression-output-results}
 
 The interaction coefficient is on the product scale. `emtrends()` returns the conditional slope of one variable at chosen values of the other. `ggpredict()` plots predicted $Y$ against $X_1$ at multiple levels of $X_2$, the canonical visualisation of an interaction.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-interactions-in-regression-interpretation}
 
 A reporting sentence: "The effect of weight on mpg was more negative at high horsepower than at low (interaction coefficient 0.030, 95 % CI 0.007 to 0.053, $p = 0.01$); at the mean horsepower, each 1000-lb increase in weight reduced mpg by 3.5 (95 % CI $-4.6$ to $-2.4$); at horsepower 50 above the mean, the slope was $-4.9$, and at 50 below it was $-2.0$." Always report simple slopes at meaningful covariate values, not just the interaction coefficient.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-interactions-in-regression-practical-tips}
 
 - Centre continuous predictors before adding interactions; this gives interpretable main effects ("effect at the mean of the other") and reduces collinearity between main and interaction terms.
 - Never interpret "main effects" when a significant interaction is present without specifying the reference value of the moderator; the main effect alone is incomplete.
@@ -59,46 +61,43 @@ A reporting sentence: "The effect of weight on mpg was more negative at high hor
 - For categorical-by-categorical interactions, an interaction plot with separate lines per group is the standard display; for categorical-by-continuous, use facets or colour groups.
 - Higher-order interactions (three-way and beyond) require much larger samples and careful interpretation; usually best avoided in confirmatory analyses.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-interactions-in-regression-r-packages-used}
 
 `emmeans` for marginal means, simple slopes, and contrast-stable post-hoc inference; `ggeffects` for ggplot-style predicted-effect plots; `marginaleffects` for unified marginal-effect computation across many model classes; `interactions` for purpose-built interaction probing tools.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-interactions-in-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-interactions-in-regression-assumptions) and
+[practical tips](#sec-chapters-07-regression-interactions-in-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-interactions-in-regression-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

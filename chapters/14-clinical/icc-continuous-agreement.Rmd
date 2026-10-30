@@ -1,12 +1,14 @@
-## Introduction
+## Intraclass Correlation Coefficient (ICC) {#sec-chapters-14-clinical-icc-continuous-agreement}
+
+### Introduction {#sec-chapters-14-clinical-icc-continuous-agreement-introduction}
 
 The Intraclass Correlation Coefficient (ICC) quantifies inter-rater reliability on continuous measurements. Unlike Pearson's correlation, it penalises systematic rater bias (two raters who differ by a constant still have Pearson = 1 but ICC < 1). Several ICC forms reflect different study designs and questions.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-icc-continuous-agreement-prerequisites}
 
 Variance components; random vs fixed effects.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-icc-continuous-agreement-theory}
 
 Shrout-Fleiss (1979) forms:
 - **ICC(1, 1)**: one-way random effects; each subject rated by a different random rater.
@@ -15,11 +17,11 @@ Shrout-Fleiss (1979) forms:
 
 Single rater vs average of $k$ raters: ICC(x, 1) vs ICC(x, k).
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-icc-continuous-agreement-assumptions}
 
 Subjects and raters are drawn from appropriate populations; ratings are independent given subject; ICC form matches the intended use.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-icc-continuous-agreement-r-implementation}
 
 ```r
 library(psych)
@@ -39,15 +41,15 @@ icc_res <- ICC(df, lmer = FALSE)
 icc_res$results[, c("type", "ICC", "lower bound", "upper bound")]
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-icc-continuous-agreement-output-results}
 
 Six ICC forms with 95 % CIs. Agreement ICC (2, 1) is lower than consistency ICC (3, 1) when raters have systematic biases.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-icc-continuous-agreement-interpretation}
 
 "Single-rater absolute-agreement ICC(2, 1) = 0.78 (95 % CI 0.63-0.88); consistency ICC(3, 1) = 0.83. Systematic rater differences moderately lowered absolute agreement."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-icc-continuous-agreement-practical-tips}
 
 - Choose ICC form by study question:
   - **ICC(2, 1)** if you want to quantify agreement including systematic rater differences.
@@ -59,27 +61,24 @@ Six ICC forms with 95 % CIs. Agreement ICC (2, 1) is lower than consistency ICC 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-icc-continuous-agreement-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-icc-continuous-agreement-assumptions) and
+[practical tips](#sec-chapters-14-clinical-icc-continuous-agreement-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-icc-continuous-agreement-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

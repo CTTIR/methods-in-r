@@ -1,12 +1,14 @@
-## Introduction
+## Power for Logistic Regression {#sec-chapters-05-power-power-logistic-regression}
+
+### Introduction {#sec-chapters-05-power-power-logistic-regression-introduction}
 
 Power analysis for logistic regression is less standardised than for linear models. Three approaches: (1) events-per-variable rule of thumb, (2) closed-form formulas for a single predictor, (3) simulation for complex models.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-logistic-regression-prerequisites}
 
 Logistic regression, odds ratio, events-per-variable (EPV).
 
-## Theory
+### Theory {#sec-chapters-05-power-power-logistic-regression-theory}
 
 **EPV rule** (Peduzzi et al.): at least 10 events per predictor coefficient is a working minimum. Harrell's 20 EPV is safer.
 
@@ -18,13 +20,13 @@ with simplifications for dichotomous $X$.
 
 **Simulation**: specify the full data-generating process, fit the intended model, compute power across many replicates. More reliable than formulas for multiple predictors.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-logistic-regression-assumptions}
 
 - Binary outcome.
 - Logit-linear predictors.
 - Sufficient separation of groups.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-logistic-regression-r-implementation}
 
 ```r
 library(WebPower)
@@ -45,15 +47,15 @@ wp.logistic(n = NULL, p0 = 0.2, p1 = 0.2,
 # If baseline event rate is 0.20: n = 150 / 0.20 = 750
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-logistic-regression-output-results}
 
 Detecting a modest OR of 1.5 typically requires hundreds of observations; continuous predictors need somewhat less $n$ than dichotomous, given comparable effect magnitude.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-logistic-regression-interpretation}
 
 "To detect an OR of 1.5 per unit of the standardised predictor at 80 % power and two-sided $\alpha = 0.05$, 250 participants are required (assuming 20 % baseline event rate)."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-logistic-regression-practical-tips}
 
 - Prefer simulation over formulas when predictors are correlated or the model is complex.
 - Rare-event outcomes dramatically inflate required $n$; power is approximately symmetric around $p_0 = 0.5$.
@@ -63,25 +65,22 @@ Detecting a modest OR of 1.5 typically requires hundreds of observations; contin
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-logistic-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-logistic-regression-assumptions) and
+[practical tips](#sec-chapters-05-power-power-logistic-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-logistic-regression-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

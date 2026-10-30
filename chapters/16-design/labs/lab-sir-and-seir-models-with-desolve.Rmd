@@ -1,20 +1,22 @@
+## Week 4, Session 4 — SIR and SEIR models with deSolve {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve}
+
 <div class="callout callout-note">
 **Workflow lab:** Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-learning-objectives}
 
 - Write a compartmental SIR / SEIR model as a system of ODEs.
 - Solve it with `deSolve::ode` and plot the trajectories.
 - Compute the basic reproduction number R₀ from model parameters and
   illustrate its effect.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-prerequisites}
 
 Basic calculus intuition and comfort with differential-equation
 notation.
 
-## Background
+### Background {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-background}
 
 Compartmental models partition a population into states — *Susceptible*,
 *Exposed*, *Infectious*, *Recovered* — and describe flows between them
@@ -31,7 +33,7 @@ population on day zero, or *what if* the infectious period were a day
 shorter? Tuning β and γ to reflect interventions is the bread and
 butter of public-health modelling.
 
-## Setup
+### Setup {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-setup}
 
 ```r
 library(tidyverse)
@@ -40,14 +42,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-1-goal}
 
 Simulate an SIR outbreak in a population of 1 million, for R₀ values
 1.5, 2.5, and 4.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-2-approach}
 
 ```r
+sir <- function(time, state, params) {
   with(as.list(c(state, params)), {
     N  <- S + I + R
     dS <- -beta * S * I / N
@@ -58,9 +61,10 @@ Simulate an SIR outbreak in a population of 1 million, for R₀ values
 }
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-3-execution}
 
 ```r
+run_sir <- function(R0, gamma = 1/7, days = 180, N = 1e6, I0 = 10) {
   params <- c(beta = R0 * gamma, gamma = gamma)
   state  <- c(S = N - I0, I = I0, R = 0)
   times  <- seq(0, days, by = 1)
@@ -82,18 +86,19 @@ ggplot(trajectories, aes(time, n, colour = compartment)) +
   labs(x = "Day", y = "People")
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-4-check}
 
 Peak prevalence and attack rate should rise with R₀.
 
 ```r
+trajectories |>
   filter(compartment == "I") |>
   group_by(R0) |>
   summarise(peak_I = max(n), peak_day = time[which.max(n)]) |>
   arrange(R0)
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-5-report}
 
 > An SIR compartmental model was simulated for a population of one
 > million with a 7-day mean infectious period across three basic
@@ -104,29 +109,30 @@ Peak prevalence and attack rate should rise with R₀.
 > outbreak forecasting.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-common-pitfalls}
 
 - Interpreting SIR trajectories as forecasts rather than scenarios.
 - Forgetting that a constant β across time ignores interventions.
 - Comparing peak prevalence across parameter settings without holding
   N and I₀ constant.
 
-## Further reading
+### Further reading {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-further-reading}
 
 - Keeling MJ, Rohani P. *Modeling Infectious Diseases in Humans and
   Animals.*
 - Soetaert K et al. *Solving Differential Equations in R.*
 
-## Session info
+### Session info {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-16-design)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Simulating Survival Data {#sec-chapters-11-survival-survival-simulation}
+
+### Introduction {#sec-chapters-11-survival-survival-simulation-introduction}
 
 Simulating censored time-to-event data is essential for three classes of work: power and sample-size calculations for trials with non-standard designs, validation of new statistical methods (does the estimator recover the truth?), and pedagogy. The inverse-hazard method generates event times from any specified hazard function and lets you build realistic datasets that match a target survival pattern, censoring distribution, and covariate-effect structure.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-survival-simulation-prerequisites}
 
 A working understanding of hazard and cumulative hazard functions, the inverse-CDF method for random-number generation, and the relationship between proportional-hazards models and exponentiated covariate effects.
 
-## Theory
+### Theory {#sec-chapters-11-survival-survival-simulation-theory}
 
 For a hazard $h(t \mid x)$ with cumulative hazard $H(t \mid x)$ and a uniform variate $U \sim \mathrm{Uniform}(0, 1)$,
 
@@ -18,11 +20,11 @@ $$T_i = H_0^{-1}\!\left(-\log U_i / \exp(x_i^\top \beta)\right).$$
 
 Censoring is added by drawing an independent censoring time $C_i$ from a chosen distribution (administrative, exponential, or empirical from a real cohort) and recording $\min(T_i, C_i)$ as the observation time and $\mathbf 1\{T_i \le C_i\}$ as the event indicator.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-survival-simulation-assumptions}
 
 The specified baseline hazard and covariate-effect structure are the truth being simulated; the censoring distribution is independent of $T_i$ unless the simulation explicitly handles informative censoring.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-survival-simulation-r-implementation}
 
 ```r
 library(simsurv)
@@ -47,15 +49,15 @@ fit_km <- survfit(Surv(eventtime, status) ~ arm, data = d)
 plot(fit_km)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-survival-simulation-output-results}
 
 `simsurv()` returns a tibble with one row per subject containing the simulated event time, the censoring indicator (here taken at `maxt = 10`), and the subject id. Merging back with the covariate frame gives a complete simulated dataset ready for analysis. The Kaplan-Meier plot shows the two arms separating with the designed effect size.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-survival-simulation-interpretation}
 
 A reporting sentence: "Simulated Weibull data with shape 1.2, baseline scale 0.1, and a treatment hazard ratio of $\exp(-0.5) = 0.61$; a Cox model on the simulated data recovered an HR of 0.59 (95 % CI 0.46 to 0.76), confirming the simulation is correctly calibrated." Always confirm that the analysis pipeline recovers the simulation parameters before using the simulator for power calculations.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-survival-simulation-practical-tips}
 
 - `simsurv` supports Weibull and Gompertz baselines plus user-defined hazard functions; for arbitrary parametric shapes, supply `hazard` or `loghazard` directly.
 - For competing risks, simulate each cause's event time independently and record the cause that occurred first; the resulting data have the correct cumulative incidence functions.
@@ -64,34 +66,30 @@ A reporting sentence: "Simulated Weibull data with shape 1.2, baseline scale 0.1
 - For time-varying covariates, simulate via piecewise-constant hazards across pre-specified intervals; `simsurv` supports `tdefunction` for time-dependent covariate effects.
 - For validation of new methods, re-simulate under several scenarios (PH violation, heavy censoring, sparse events) and check robustness; a method that works only on its design assumptions is brittle.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-survival-simulation-r-packages-used}
 
 `simsurv` for the canonical inverse-hazard simulator with Weibull, Gompertz, and user-defined baselines; `flexsurv` for `rflexsurv()` simulation from fitted flexible models; `coxed` for Cox-model-based simulations; `survSim` for additional simulation extensions including frailty and time-dependent effects.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-survival-simulation-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-survival-simulation-assumptions) and [practical tips](#sec-chapters-11-survival-survival-simulation-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-survival-simulation-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

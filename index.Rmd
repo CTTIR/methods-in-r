@@ -16,7 +16,7 @@ description: "A bench reference for biomedical authors and peer reviewers — ev
 cover-image: "images/cover.png"
 ---
 
-# Welcome! {-}
+# Welcome! {#sec-index .unnumbered}
 
 ---
 
@@ -30,19 +30,19 @@ The book is not a textbook of statistics. It assumes you can read an R session a
 
 <br></br>
 
-## Open Source Repository {-}
+## Open Source Repository {#sec-index-open-source-repository .unnumbered}
 
 ---
 
-This book has been built using [**{rmarkdown}**](https://rmarkdown.rstudio.com/docs/) and [**{bookdown}**](https://bookdown.org/). Formulas are rendered using [MathJax](http://docs.mathjax.org/en/latest/index.html). All source files are available on **GitHub**: <https://github.com/r-heller/methods-in-r>. You are free to fork, share, and reuse the contents under the [CC BY 4.0 license](LICENSE-CONTENT).
+This book has been built using [**{rmarkdown}**](https://rmarkdown.rstudio.com/docs/) and [**{bookdown}**](https://bookdown.org/). Formulas are rendered using [MathJax](http://docs.mathjax.org/en/latest/index.html). All source files are available on **GitHub**: <https://github.com/r-heller/methods-in-r>. You are free to fork, share, and reuse the contents under the [CC BY 4.0 license](https://github.com/r-heller/methods-in-r/blob/main/LICENSE-CONTENT).
 
 <br></br>
 
-## How To Use The Guide {-}
+## How To Use The Guide {#sec-index-how-to-use-the-guide .unnumbered}
 
 ---
 
-- **Linear vs. lookup.** If you already know the method, jump to its chapter. If not, start at Chapter \@ref(sec-find-your-method) and follow the decision tree.
+- **Linear vs. lookup.** If you already know the method, jump to its chapter. If not, start at [Find your method](#sec-find-your-method) and follow the decision tree.
 - **Where the code lives.** Code in each method page and lab is display-only in the rendered book; copy it into an R session with the packages cited in that section attached. Reusable helpers are kept in `R/helpers.R` in the source repository.
 - **Per-chapter PDFs.** Every chapter has a *Download this chapter (PDF)* button at the top of its page; the full set is also available at `pdf-chapters/`.
 - **Whole-book PDF and EPUB.** Use the navbar *Download* menu for a single-file PDF or EPUB.
@@ -50,7 +50,7 @@ This book has been built using [**{rmarkdown}**](https://rmarkdown.rstudio.com/d
 
 <br></br>
 
-## Contributing {-}
+## Contributing {#sec-index-contributing .unnumbered}
 
 ---
 
@@ -59,7 +59,7 @@ Issues and pull requests are welcome — see [CONTRIBUTING.md](https://github.co
 
 <br></br>
 
-## Citation {-}
+## Citation {#sec-index-citation .unnumbered}
 
 ---
 

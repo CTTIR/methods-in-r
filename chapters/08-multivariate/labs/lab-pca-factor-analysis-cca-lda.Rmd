@@ -1,9 +1,11 @@
+## Week 1, Session 3 — PCA, factor analysis, CCA, LDA {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-learning-objectives}
 
 - Compute a PCA, read a biplot, and explain loadings and scores without
   resorting to magical reasoning about "directions of variance".
@@ -11,12 +13,12 @@ Goal → Approach → Execution → Check → Report.
   and linear discriminant analysis by the question each answers.
 - Fit an LDA classifier and interpret the discriminant coefficients.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-prerequisites}
 
 Matrix algebra (eigendecomposition); basic multivariate
 intuition.
 
-## Background
+### Background {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-background}
 
 Dimension reduction is often described as "finding structure", but each
 of these methods has a concrete question behind it. PCA asks which
@@ -40,7 +42,7 @@ When you report an LDA, report the classification accuracy on held-out
 data and the direction of each discriminant, not just the confusion
 matrix.
 
-## Setup
+### Setup {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-setup}
 
 ```r
 library(tidyverse)
@@ -49,17 +51,18 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-1-goal}
 
 Use `iris` to illustrate PCA and LDA on the same data, compare their
 projections, and classify species with LDA.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-2-approach}
 
 Four morphometric variables, three species. PCA ignores the label;
 LDA uses it.
 
 ```r
+iris |>
   pivot_longer(-Species) |>
   ggplot(aes(value, fill = Species)) +
   geom_density(alpha = 0.5) +
@@ -67,11 +70,12 @@ LDA uses it.
   labs(x = NULL, y = "density")
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-3-execution}
 
 PCA on the four numeric features, then LDA.
 
 ```r
+pca <- prcomp(iris[, 1:4], scale. = TRUE)
 summary(pca)$importance[, 1:3]
 
 lda_fit <- lda(Species ~ ., data = iris)
@@ -88,17 +92,18 @@ p2 <- ggplot(scores_lda, aes(LD1, LD2, colour = Species)) +
 gridExtra::grid.arrange(p1, p2, ncol = 2)
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-4-check}
 
 Hold-out accuracy for LDA (simple 70/30 split).
 
 ```r
+idx <- sample(nrow(iris), 0.7 * nrow(iris))
 fit2 <- lda(Species ~ ., data = iris[idx, ])
 pred <- predict(fit2, iris[-idx, ])$class
 mean(pred == iris$Species[-idx])
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-5-report}
 
 > On the *iris* data, the first two principal components explained
 > `round(sum(summary(pca)$importance[2, 1:2]) * 100, 1)`% of the
@@ -113,7 +118,7 @@ supervised projection (LDA, or a classifier's decision function) is
 usually sharper.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-common-pitfalls}
 
 - Reporting "PC1 is age" because age happens to correlate with it.
 - Running LDA when classes are hugely imbalanced; use QDA or a proper
@@ -121,21 +126,22 @@ usually sharper.
 - Comparing variance-explained across datasets as if it were a quality
   score.
 
-## Further reading
+### Further reading {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-further-reading}
 
 - Jolliffe IT (2002), *Principal Component Analysis*, 2nd ed.
 - Mardia, Kent, Bibby, *Multivariate Analysis*, chapters on LDA/CCA.
 
-## Session info
+### Session info {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-08-multivariate)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

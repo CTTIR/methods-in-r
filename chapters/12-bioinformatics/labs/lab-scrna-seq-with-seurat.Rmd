@@ -1,9 +1,11 @@
+## Week 4, Session 3 — scRNA-seq with Seurat {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-learning-objectives}
 
 - Walk through the Seurat pipeline: QC, normalisation, feature
   selection, PCA, neighbour graph, clustering, UMAP.
@@ -12,11 +14,11 @@ Goal → Approach → Execution → Check → Report.
 - Produce a small analogous pipeline in base R with simulated cells
   and the `uwot` UMAP.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-prerequisites}
 
 UMAP; bulk RNA-seq differential expression.
 
-## Background
+### Background {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-background}
 
 Single-cell RNA-seq measures gene expression in thousands of cells
 simultaneously, producing a sparse, noisy, zero-inflated matrix.
@@ -37,7 +39,7 @@ rendering environment. We sketch the pipeline with `#| eval: false`
 and run an analogous, tiny base-R + `uwot` pipeline on a simulated
 cell × gene matrix so the reasoning is visible in every render.
 
-## Setup
+### Setup {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-setup}
 
 ```r
 library(tidyverse)
@@ -46,17 +48,18 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-1-goal}
 
 Walk through an scRNA-seq analysis conceptually with a small simulated
 cell × gene matrix, ending at a 2-D embedding with cluster labels.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-2-approach}
 
 300 cells, 500 genes, three cell types with partly overlapping
 expression programmes.
 
 ```r
+n_cell <- 300; n_gene <- 500
 cell_type <- rep(c("T", "B", "myeloid"), each = n_cell / 3)
 mu_base <- exp(rnorm(n_gene, 1, 1))
 X <- matrix(0, n_cell, n_gene)
@@ -72,11 +75,12 @@ tibble(lib = rowSums(X), ct = cell_type) |>
   labs(x = NULL, y = "total counts per cell")
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-3-execution}
 
 Log-normalise, select variable genes, PCA, UMAP, cluster.
 
 ```r
+logX <- log1p(sweep(X, 1, rowSums(X), FUN = "/") * 1e4)
 gene_var <- apply(logX, 2, var)
 keep <- order(gene_var, decreasing = TRUE)[1:100]
 pcs <- prcomp(logX[, keep])$x[, 1:10]
@@ -106,14 +110,15 @@ obj <- RunUMAP(obj, dims = 1:10)
 DimPlot(obj, label = TRUE)
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-4-check}
 
 Contingency of cluster vs true cell type.
 
 ```r
+table(cluster = km$cluster, truth = cell_type)
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-5-report}
 
 > On a simulated 300-cell × 500-gene dataset with three cell types, a
 > small pipeline (log normalisation, top-100 variable genes, 10 PCs,
@@ -127,7 +132,7 @@ On a real dataset the critical choices are the normalisation
 that the biological conclusions do not.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-common-pitfalls}
 
 - Clustering before QC; apoptotic cells and empty droplets cluster
   together.
@@ -135,23 +140,24 @@ that the biological conclusions do not.
 - Using marker genes from a tutorial on a different tissue for
   cell-type annotation.
 
-## Further reading
+### Further reading {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-further-reading}
 
 - Stuart T et al. (2019), *Comprehensive integration of single-cell
   data*.
 - Luecken MD, Theis FJ (2019), *Current best practices in single-cell
   RNA-seq analysis: a tutorial*.
 
-## Session info
+### Session info {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-12-bioinformatics)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

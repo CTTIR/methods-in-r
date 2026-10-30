@@ -1,20 +1,22 @@
-## Introduction
+## Hexbin Plots {#sec-chapters-06-visualisation-hexbin-plots}
+
+### Introduction {#sec-chapters-06-visualisation-hexbin-plots-introduction}
 
 A scatterplot of a few hundred points is informative; a scatterplot of a few hundred thousand points is mostly black ink. Once $n$ exceeds a few thousand, individual points overplot to the point of hiding density structure: ridges, modes, and non-linear boundaries vanish under the cloud. Hexbin plots solve this by dividing the plane into hexagonal cells, counting points per cell, and colour-encoding the count. The result preserves the joint distribution at any sample size and renders quickly even for millions of observations.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-hexbin-plots-prerequisites}
 
 A working knowledge of scatterplots, basic 2D density estimation, and `ggplot2`'s aesthetic mappings.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-hexbin-plots-theory}
 
 Hexagonal bins tile the plane more efficiently than squares because every hexagon has six equidistant neighbours; this isotropy reduces the visual aliasing that affects rectangular bins along diagonal density boundaries. `ggplot2::geom_hex()` calls the `hexbin` package internally to construct the bins and aggregate counts. The `bins` argument sets the resolution along each axis; `binwidth` is an alternative that fixes the cell size in data units. The colour scale should respect the count distribution: linear scales for roughly uniform counts, logarithmic scales (`scale_fill_viridis_c(trans = "log")`) for highly skewed counts that span orders of magnitude.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-hexbin-plots-assumptions}
 
 Both x and y are continuous; categorical variables need a different geom (heatmap, mosaic, or jitter). The plot assumes the joint distribution is the inferential target, not individual points — for one-off outliers, overlay a labelled `geom_point()`.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-hexbin-plots-r-implementation}
 
 ```r
 library(ggplot2); library(hexbin)
@@ -34,15 +36,15 @@ ggplot(diamonds, aes(carat, price)) +
   theme_minimal()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-hexbin-plots-output-results}
 
 A 40-by-40 hexbin grid showing the joint distribution of carat and price across 54,000 diamonds. The linear-scale version emphasises the dense middle of the distribution; the log-log version with log-scaled fill reveals the sparse tails — small low-priced diamonds and large high-priced ones — that are invisible at the original scale.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-hexbin-plots-interpretation}
 
 A reporting sentence (figure caption): "Hexbin density of diamond carat versus price (n = 53,940), 40 bins per axis, fill on a log-count scale; both axes are log-transformed to expose the price-vs-carat relationship across the full range." Always state the bin count and any transformations, since both shape the visual conclusion.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-hexbin-plots-practical-tips}
 
 - `bins = 30` to `bins = 60` is a sensible default for tens of thousands of observations; finer grids reveal more detail at the cost of noisier counts per cell.
 - Log-transform the fill scale when counts span orders of magnitude; otherwise the dense centre saturates the palette and the tails vanish.
@@ -51,30 +53,27 @@ A reporting sentence (figure caption): "Hexbin density of diamond carat versus p
 - For extremely large $n$ (millions of points), hexbin remains fast and effective where individual scatter would crash the renderer; the underlying counts are stored as a small array regardless of input size.
 - Below a few thousand points, prefer alpha-blended scatter or 2D density contours; hexbin is overkill for small samples and reads as cluttered.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-hexbin-plots-r-packages-used}
 
 `ggplot2` for `geom_hex()` and `geom_bin2d()`, `hexbin` for the underlying hexagonal binning, `viridis` for perceptually uniform fill scales, and `ggdensity` if you want to combine binning with model-based density contours.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-hexbin-plots-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-hexbin-plots-assumptions) and
+[practical tips](#sec-chapters-06-visualisation-hexbin-plots-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-hexbin-plots-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

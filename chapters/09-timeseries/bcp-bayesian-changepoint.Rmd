@@ -1,22 +1,24 @@
-## Introduction
+## Bayesian Changepoint Detection {#sec-chapters-09-timeseries-bcp-bayesian-changepoint}
+
+### Introduction {#sec-chapters-09-timeseries-bcp-bayesian-changepoint-introduction}
 
 Bayesian changepoint detection returns a posterior probability of a changepoint at each time, rather than a hard list of detected change times. The richer output quantifies uncertainty about both the existence and the location of changes, making it preferable to classical methods (PELT, binary segmentation) when the analyst wants to communicate "the signal probably shifted near time 200, with some uncertainty about the exact time" rather than committing to an arbitrary threshold. Bayesian approaches also support online detection as data stream in.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-bcp-bayesian-changepoint-prerequisites}
 
 A working understanding of Bayesian inference, classical changepoint detection, and the difference between offline (batch) and online (streaming) analysis.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-bcp-bayesian-changepoint-theory}
 
 **Offline Bayesian changepoint detection** (Barry-Hartigan 1993, Fearnhead 2006) places a prior on the number and locations of changepoints plus segment parameters and samples from the joint posterior via Gibbs sampling, particle filters, or recursive forward-backward algorithms. The output is a marginal posterior probability of changepoint at each time and posterior summaries of segment parameters.
 
 **Online Bayesian changepoint detection (BOCD)** (Adams & MacKay 2007) computes the run-length distribution — the posterior probability that the time since the last changepoint equals $r$ — recursively as each new data point arrives. The run-length distribution updates in $O(t)$ per step, making the method viable for streaming applications.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-bcp-bayesian-changepoint-assumptions}
 
 Segment-parameter priors are chosen appropriately for the data; conditional independence between segments given the changepoint structure; the chosen segment model (Normal mean, regression coefficients) matches the underlying signal.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-bcp-bayesian-changepoint-r-implementation}
 
 ```r
 library(bcp)
@@ -29,15 +31,15 @@ plot(fit)
 fit$posterior.prob   # per-time changepoint probability
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-bcp-bayesian-changepoint-output-results}
 
 `bcp()` returns the posterior changepoint probability at each time and the posterior mean of the segmented signal. The plot displays both — the smooth signal estimate above and the posterior probability below — making it easy to identify clearly supported changepoints (probability spikes near 1) versus uncertain candidates.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-bcp-bayesian-changepoint-interpretation}
 
 A reporting sentence: "Bayesian changepoint detection returned posterior changepoint probabilities exceeding 0.95 at times 100 and 200, recovering the simulated three-segment structure; the second changepoint had a slightly tighter posterior distribution (probability mass concentrated within $\pm 1$ time step) than the first, reflecting the larger between-segment mean difference at that point." Communicate posterior probabilities, not hard threshold-based detections.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-bcp-bayesian-changepoint-practical-tips}
 
 - Tune the hyperparameter `w0` (prior on between-changepoint variance) for stability; larger values favour fewer, sharper changepoints.
 - Online variants (`ocp` package) implement BOCD for real-time detection; useful in monitoring applications where decisions must be made as data arrive.
@@ -46,30 +48,27 @@ A reporting sentence: "Bayesian changepoint detection returned posterior changep
 - For multivariate changepoint detection, `MultiBNPRiver` and `mbcp` extend the framework to vector-valued series, at substantially higher computational cost.
 - Compare against classical methods (PELT) on the same data; Bayesian methods are richer in output but classical methods are typically much faster.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-bcp-bayesian-changepoint-r-packages-used}
 
 `bcp` for the canonical offline Barry-Hartigan implementation; `ocp` for online Bayesian changepoint detection; `mcp` for Bayesian changepoint regression with explicit segment models; `bnpa` for Bayesian non-parametric changepoint detection; `Rbeast` for Bayesian time-series decomposition with changepoint awareness.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-bcp-bayesian-changepoint-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-bcp-bayesian-changepoint-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-bcp-bayesian-changepoint-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-bcp-bayesian-changepoint-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

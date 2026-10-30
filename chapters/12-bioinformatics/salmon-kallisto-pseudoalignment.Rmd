@@ -1,22 +1,24 @@
-## Introduction
+## Pseudoalignment with Salmon and Kallisto {#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment}
+
+### Introduction {#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-introduction}
 
 Pseudo-alignment tools — Salmon, Kallisto, and the related selective-alignment variant in newer Salmon versions — quantify transcript-level expression without producing full BAM-file alignments. They match read $k$-mers to transcript fingerprints in an indexed reference and resolve multi-mappers via expectation-maximisation. The result is a 10-to-100-fold speedup over STAR or HISAT2 with comparable accuracy at the gene level, making pseudo-alignment the standard fast-path for RNA-seq quantification when isoform-level alignment is not the goal.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-prerequisites}
 
 A working understanding of RNA-seq, the difference between transcript-level and gene-level quantification, and basic familiarity with FASTQ inputs and gene-annotation formats.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-theory}
 
 Pseudo-aligners build an index of all transcripts in the reference, splitting them into $k$-mers (typically $k = 31$). At quantification time, each read is broken into $k$-mers, the compatible transcripts are identified, and an expectation-maximisation algorithm distributes ambiguous reads across compatible transcripts in proportion to expected expression. The output is per-transcript counts and TPM; gene-level aggregation uses a transcript-to-gene map via `tximport` or `tximeta`.
 
 Salmon adds bias-correction flags (`--gcBias`, `--seqBias`, `--posBias`) that calibrate counts for GC content, hexamer priming bias, and positional sequencing bias. Decoy-aware indexing (using the genome as a decoy alongside the transcriptome) reduces spurious alignment to paralogues and improves accuracy for difficult regions.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-assumptions}
 
 A transcript annotation matched to the genome; polyA-selected or otherwise enriched mRNA library; reads predominantly map to known transcripts (pseudo-alignment cannot detect novel transcripts or junctions).
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-r-implementation}
 
 ```r
 library(tximport); library(tximeta)
@@ -32,15 +34,15 @@ library(tximport); library(tximeta)
 # dds <- DESeqDataSetFromTximport(txi, colData = coldata, design = ~ condition)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-output-results}
 
 Salmon and Kallisto produce per-sample `quant.sf` (Salmon) or `abundance.tsv` (Kallisto) files containing transcript-level counts, TPM, and effective length. `tximport()` aggregates these to gene level with optional length-scaled TPM correction; the resulting matrix flows directly into DESeq2, edgeR, or limma-voom.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-interpretation}
 
 A reporting sentence: "Salmon (v1.10) with selective alignment, decoy-aware indexing, and `--gcBias --seqBias` flags quantified 45{,}000 transcripts per sample in approximately 3 minutes per sample (vs. 30 minutes for STAR); tximport aggregation yielded 22{,}000 protein-coding genes for DESeq2 analysis." Always state the bias-correction flags and the decoy strategy.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-practical-tips}
 
 - Use decoy-aware indexing (Salmon) by including the genome as a decoy alongside the transcriptome; this reduces spurious mapping to paralogous regions.
 - Enable bias-correction flags (`--gcBias`, `--seqBias`) routinely; they improve accuracy without meaningful runtime cost.
@@ -49,32 +51,29 @@ A reporting sentence: "Salmon (v1.10) with selective alignment, decoy-aware inde
 - Pseudo-alignment is unsuitable for variant calling, novel-junction detection, or splicing analysis; use STAR with the genome reference for these tasks.
 - For single-cell RNA-seq, use alevin (in Salmon) or kallisto-bustools; they extend pseudo-alignment to the cell-barcode and UMI structure of droplet-based single-cell data.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-r-packages-used}
 
 `tximport` for transcript-to-gene aggregation; `tximeta` for metadata-aware aggregation; `fishpond::swish()` for transcript-level DTE with bootstrap inferential replicates; `DRIMSeq` and `DEXSeq` for differential transcript usage. Salmon and Kallisto are command-line tools; their output integrates with all standard Bioconductor RNA-seq workflows.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

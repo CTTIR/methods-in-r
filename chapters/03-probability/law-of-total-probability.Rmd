@@ -1,12 +1,14 @@
-## Introduction
+## Law of Total Probability {#sec-chapters-03-probability-law-of-total-probability}
+
+### Introduction {#sec-chapters-03-probability-law-of-total-probability-introduction}
 
 The law of total probability (LTP) expresses the unconditional probability of an event as a weighted sum of conditional probabilities. It is the bookkeeping rule for "conditioning on every possibility and adding them up", and it appears as the denominator in Bayes' theorem, as the marginalisation step in mixture models, and whenever a probability computation is easier after splitting on a latent variable.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-law-of-total-probability-prerequisites}
 
 Conditional probability and set partitions.
 
-## Theory
+### Theory {#sec-chapters-03-probability-law-of-total-probability-theory}
 
 Let $\{B_1, B_2, \ldots, B_n\}$ be a **partition** of the sample space: the events are pairwise disjoint and their union is $\Omega$. Then for any event $A$,
 
@@ -20,12 +22,12 @@ $$P(A) = \int P(A \mid X = x) f_X(x) \, dx,$$
 
 which is the marginalisation used to compute the probability of an event under a mixture or hierarchical model.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-law-of-total-probability-assumptions}
 
 - The $B_i$ form a partition: disjoint, exhaustive, positive probability each.
 - Otherwise standard probability-space assumptions.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-law-of-total-probability-r-implementation}
 
 ```r
 # Population of patients divided by three risk strata with different event rates
@@ -47,7 +49,7 @@ p_low_given_event <- event_rates["low"] * strata_prop["low"] / p_event
 p_low_given_event
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-law-of-total-probability-output-results}
 
 ```
 [1] 0.061         # P(event) = 0.02*0.6 + 0.08*0.3 + 0.25*0.1 = 0.061
@@ -59,11 +61,11 @@ p_low_given_event
 
 The marginal event rate of 6.1% masks substantial heterogeneity across strata. Given that an event occurred, the probability that the patient is in the low-risk stratum is 19.7% -- higher than some intuitions suggest, because low-risk patients outnumber high-risk by a factor of six.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-law-of-total-probability-interpretation}
 
 Most population-level quantities in epidemiology and public health are weighted sums of stratum-specific rates. Reporting the weighted sum without the underlying decomposition hides heterogeneity; reporting the decomposition clarifies what drives the pooled rate.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-law-of-total-probability-practical-tips}
 
 - Verify the partition: probabilities of the $B_i$ must sum to 1; the events must not overlap.
 - Conditioning on the "right" variable simplifies otherwise intractable probabilities -- choose a latent with clean conditional structure.
@@ -73,26 +75,23 @@ Most population-level quantities in epidemiology and public health are weighted 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-law-of-total-probability-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-law-of-total-probability-assumptions) and
+[practical tips](#sec-chapters-03-probability-law-of-total-probability-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-law-of-total-probability-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## The Ljung-Box Test {#sec-chapters-09-timeseries-ljung-box}
+
+### Introduction {#sec-chapters-09-timeseries-ljung-box-introduction}
 
 The Ljung-Box test is the standard portmanteau test for residual autocorrelation in time-series models. After fitting an ARIMA, ETS, or other time-series model, the question is whether the residuals are white noise; the Ljung-Box test pools sample autocorrelations over the first several lags into a single chi-squared statistic. A non-significant result supports model adequacy; a significant result indicates missed dynamics that should motivate refining the model.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-ljung-box-prerequisites}
 
 A working understanding of autocorrelation functions, ARIMA models, and the white-noise assumption on time-series residuals.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-ljung-box-theory}
 
 $$Q = n(n + 2) \sum_{k=1}^h \frac{\hat\rho_k^2}{n - k} \sim \chi^2_{h - p - q} \text{ under white noise},$$
 
@@ -14,11 +16,11 @@ where $\hat\rho_k$ is the sample ACF at lag $k$, $h$ is the maximum lag, and $p 
 
 The Ljung-Box improves on the older Box-Pierce statistic by introducing the small-sample correction $n(n+2)$ that prevents under-rejection at small $n$. For seasonal models, the maximum lag should span at least one seasonal period.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-ljung-box-assumptions}
 
 Residuals are iid under the null; the maximum lag $h$ is small relative to the series length $n$.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-ljung-box-r-implementation}
 
 ```r
 set.seed(2026)
@@ -33,15 +35,15 @@ Box.test(e, lag = 20, type = "Ljung-Box", fitdf = 1)
 Box.test(x, lag = 20, type = "Ljung-Box")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-ljung-box-output-results}
 
 `Box.test()` returns the chi-squared statistic and the $p$-value at the chosen lag. Pair with the ACF and PACF plots of residuals for a visual confirmation; isolated significant autocorrelations may not move the omnibus test but are still substantively meaningful.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-ljung-box-interpretation}
 
 A reporting sentence: "Residuals from the AR(1) fit gave a Ljung-Box statistic at lag 20 of $Q = 18.9$ on 19 degrees of freedom ($p = 0.45$), consistent with white noise. The ACF and PACF of residuals showed no isolated significant lags, supporting model adequacy." Always pair the test result with the lag chosen and the parameters subtracted.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-ljung-box-practical-tips}
 
 - Choose the maximum lag $h$ around $\min(10, n/5)$ or based on domain knowledge; for monthly data with annual seasonality, $h \ge 24$ is sensible.
 - Use `fitdf = p + q` for ARMA($p$, $q$) fitted models; the test ignores the parameter cost otherwise and is anti-conservative.
@@ -50,30 +52,27 @@ A reporting sentence: "Residuals from the AR(1) fit gave a Ljung-Box statistic a
 - `forecast::checkresiduals()` shows the Ljung-Box result alongside ACF and time-series plots, integrating numerical and visual diagnostics.
 - The Ljung-Box is sensitive to autocorrelation but not to non-stationarity or distributional assumptions; complement with KPSS / ADF and a residual normality plot.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-ljung-box-r-packages-used}
 
 Base R `Box.test()` for the canonical implementation; `forecast::checkresiduals()` for an integrated diagnostic with time-series and ACF plots; `feasts::ljung_box()` for the modern tidyverts interface; `astsa::sarima()` provides automatic Ljung-Box reporting in its diagnostic output.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-ljung-box-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-ljung-box-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-ljung-box-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-ljung-box-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

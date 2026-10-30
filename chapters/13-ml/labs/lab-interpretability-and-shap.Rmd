@@ -1,9 +1,11 @@
+## Week 2, Session 2 — Interpretability and SHAP {#sec-chapters-13-ml-labs-lab-interpretability-and-shap}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-learning-objectives}
 
 - Produce permutation importance, partial-dependence, and Shapley
   values for a fitted black-box model, and interpret each plot.
@@ -12,11 +14,11 @@ Goal → Approach → Execution → Check → Report.
 - Wrap a model with `DALEX` and `iml` for a standardised explanation
   pipeline.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-prerequisites}
 
 Trees and forests.
 
-## Background
+### Background {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-background}
 
 Interpretability is not a single method; it is a cluster of tools that
 answer different questions. *Permutation importance* answers: how much
@@ -40,7 +42,7 @@ downstream of the outcome, a proxy for a confounder, or a leakage
 artefact. The explanation tells you what the model uses; whether that
 is what the world uses is a separate, harder question.
 
-## Setup
+### Setup {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-setup}
 
 ```r
 library(tidyverse)
@@ -51,23 +53,25 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-1-goal}
 
 Fit a random forest on the `palmerpenguins` dataset and produce three
 complementary interpretability artefacts.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-2-approach}
 
 ```r
+d <- palmerpenguins::penguins |>
   tidyr::drop_na() |>
   mutate(species = factor(species))
 ggplot(d, aes(bill_length_mm, body_mass_g, colour = species)) +
   geom_point(alpha = 0.7)
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-3-execution}
 
 ```r
+rf <- ranger(species ~ bill_length_mm + bill_depth_mm +
                flipper_length_mm + body_mass_g,
              data = d, probability = TRUE, num.trees = 500)
 
@@ -85,14 +89,16 @@ plot(vi)
 ```
 
 ```r
+pdp <- DALEX::model_profile(explainer, variables = "bill_length_mm")
 plot(pdp)
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-4-check}
 
 A Shapley value for one instance.
 
 ```r
+pred_fun <- function(model, newdata) predict(model, newdata)$predictions[, "Adelie"]
 predictor <- iml::Predictor$new(rf, data = d[, 3:6],
                                 y = as.integer(d$species == "Adelie"),
                                 predict.function = pred_fun)
@@ -100,7 +106,7 @@ sh <- iml::Shapley$new(predictor, x.interest = d[1, 3:6])
 plot(sh)
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-5-report}
 
 > On the penguins dataset, a random forest predicting the probability
 > of *Adelie* species had permutation-importance values dominated by
@@ -113,29 +119,30 @@ Report all three artefacts together, and note the correlation structure
 among the features when you do.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-common-pitfalls}
 
 - Treating SHAP values as causal effects.
 - Running permutation importance on correlated features without a
   conditional variant.
 - Presenting partial-dependence plots outside the data's support.
 
-## Further reading
+### Further reading {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-further-reading}
 
 - Lundberg SM, Lee S-I (2017), *A unified approach to interpreting
   model predictions*.
 - Molnar C, *Interpretable Machine Learning* (online book).
 
-## Session info
+### Session info {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-13-ml-labs-lab-interpretability-and-shap-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-13-ml)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

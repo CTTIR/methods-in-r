@@ -1,12 +1,14 @@
-## Introduction
+## Expectation of a Random Variable {#sec-chapters-03-probability-expectation}
+
+### Introduction {#sec-chapters-03-probability-expectation-introduction}
 
 The **expectation** $E[X]$ is the probability-weighted average of the values a random variable can take. It is the centre of gravity of the distribution, the long-run average of repeated independent draws, and the first moment in the moment hierarchy. Along with variance, it is the single most commonly reported summary of a distribution.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-expectation-prerequisites}
 
 Random variables, PMF or PDF, basic summation and integration.
 
-## Theory
+### Theory {#sec-chapters-03-probability-expectation-theory}
 
 For a discrete random variable with PMF $p_X$:
 
@@ -32,12 +34,12 @@ $$E[aX + bY] = a E[X] + b E[Y], \qquad E\!\left[\sum_i X_i\right] = \sum_i E[X_i
 
 Expectation need not exist. The Cauchy distribution has no finite mean because the integral diverges. Existence requires $E[|X|] < \infty$.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-expectation-assumptions}
 
 - $E[|X|] < \infty$ for the expectation to be well-defined.
 - Fubini/Tonelli conditions for interchanging integration and summation when needed (automatic for non-negative variables and for integrable ones).
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-expectation-r-implementation}
 
 ```r
 set.seed(2026)
@@ -67,7 +69,7 @@ c(direct = mean(2 * X + 3 * Y),
   sum_of_parts = 2 * mean(X) + 3 * mean(Y))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-expectation-output-results}
 
 ```
    formula  closed_form
@@ -84,11 +86,11 @@ c(direct = mean(2 * X + 3 * Y),
 
 Closed-form, numerical integration, and Monte Carlo all agree, and linearity of expectation holds despite dependence between X and Y.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-expectation-interpretation}
 
 When a paper reports a mean, it is (implicitly) reporting an estimate of the expectation of a random variable. The sample mean converges to the expectation as $n$ grows (law of large numbers), so inferences about population-level expectations derive their validity from this convergence.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-expectation-practical-tips}
 
 - Linearity is unconditional on dependence; this is the single most useful fact about expectation. It underlies the unbiasedness of the sample mean regardless of the correlation structure.
 - The product rule requires independence: $E[XY] = E[X] E[Y]$ fails when $X, Y$ are dependent.
@@ -98,26 +100,23 @@ When a paper reports a mean, it is (implicitly) reporting an estimate of the exp
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-expectation-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-expectation-assumptions) and
+[practical tips](#sec-chapters-03-probability-expectation-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-expectation-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

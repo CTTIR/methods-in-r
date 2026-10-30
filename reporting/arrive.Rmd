@@ -1,10 +1,10 @@
-# ARRIVE — animal research
+# ARRIVE — animal research {#sec-reporting-arrive}
 
 ARRIVE — *Animal Research: Reporting of In Vivo Experiments* — covers preclinical animal research. The 21-item checklist is at <https://arriveguidelines.org/>. The templates below cover the statistical analyses most commonly required.
 
 This page contains **50 method-specific templates**. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.
 
-### Alignment with BWA and Bowtie
+### Alignment with BWA and Bowtie {#sec-reporting-arrive-alignment-with-bwa-and-bowtie}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -14,11 +14,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Alignment with BWA and Bowtie yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`bwa-bowtie-alignment` — For Reviewers](../chapters/12-bioinformatics/bwa-bowtie-alignment.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`bwa-bowtie-alignment` — For Reviewers](#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### ATAC-Seq Analysis
+### ATAC-Seq Analysis {#sec-reporting-arrive-atac-seq-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -28,11 +28,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > ATAC-Seq Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`atac-seq-analysis` — For Reviewers](../chapters/12-bioinformatics/atac-seq-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`atac-seq-analysis` — For Reviewers](#sec-chapters-12-bioinformatics-atac-seq-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Batch Correction with ComBat
+### Batch Correction with ComBat {#sec-reporting-arrive-batch-correction-with-combat}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -42,11 +42,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Batch Correction with ComBat yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`batch-correction-combat` — For Reviewers](../chapters/12-bioinformatics/batch-correction-combat.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`batch-correction-combat` — For Reviewers](#sec-chapters-12-bioinformatics-batch-correction-combat-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Bulk RNA-seq Differential Expression with DESeq2
+### Bulk RNA-seq Differential Expression with DESeq2 {#sec-reporting-arrive-bulk-rna-seq-differential-expression-with-deseq2}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -56,11 +56,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Bulk RNA-seq Differential Expression with DESeq2 yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`bulk-rnaseq-differential-expression` — For Reviewers](../chapters/12-bioinformatics/bulk-rnaseq-differential-expression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`bulk-rnaseq-differential-expression` — For Reviewers](#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cell-Type Annotation
+### Cell-Type Annotation {#sec-reporting-arrive-cell-type-annotation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -70,11 +70,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Cell-Type Annotation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`scrna-cell-type-annotation` — For Reviewers](../chapters/12-bioinformatics/scrna-cell-type-annotation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`scrna-cell-type-annotation` — For Reviewers](#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### ChIP-Seq Analysis
+### ChIP-Seq Analysis {#sec-reporting-arrive-chip-seq-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -84,11 +84,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > ChIP-Seq Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`chip-seq-analysis` — For Reviewers](../chapters/12-bioinformatics/chip-seq-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`chip-seq-analysis` — For Reviewers](#sec-chapters-12-bioinformatics-chip-seq-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Copy Number Variation Analysis
+### Copy Number Variation Analysis {#sec-reporting-arrive-copy-number-variation-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -98,11 +98,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Copy Number Variation Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cnv-analysis` — For Reviewers](../chapters/12-bioinformatics/cnv-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cnv-analysis` — For Reviewers](#sec-chapters-12-bioinformatics-cnv-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Counting Reads with featureCounts
+### Counting Reads with featureCounts {#sec-reporting-arrive-counting-reads-with-featurecounts}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -112,11 +112,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Counting Reads with featureCounts yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`counting-reads-feature-counts` — For Reviewers](../chapters/12-bioinformatics/counting-reads-feature-counts.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`counting-reads-feature-counts` — For Reviewers](#sec-chapters-12-bioinformatics-counting-reads-feature-counts-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Differential Expression with edgeR
+### Differential Expression with edgeR {#sec-reporting-arrive-differential-expression-with-edger}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -126,11 +126,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Differential Expression with edgeR yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`edger-differential-expression` — For Reviewers](../chapters/12-bioinformatics/edger-differential-expression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`edger-differential-expression` — For Reviewers](#sec-chapters-12-bioinformatics-edger-differential-expression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Differential Expression with limma-voom
+### Differential Expression with limma-voom {#sec-reporting-arrive-differential-expression-with-limma-voom}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -140,11 +140,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Differential Expression with limma-voom yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`limma-voom` — For Reviewers](../chapters/12-bioinformatics/limma-voom.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`limma-voom` — For Reviewers](#sec-chapters-12-bioinformatics-limma-voom-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### DNA Methylation Analysis
+### DNA Methylation Analysis {#sec-reporting-arrive-dna-methylation-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -154,11 +154,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > DNA Methylation Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`methylation-analysis` — For Reviewers](../chapters/12-bioinformatics/methylation-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`methylation-analysis` — For Reviewers](#sec-chapters-12-bioinformatics-methylation-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Drug-Target Interaction Mining
+### Drug-Target Interaction Mining {#sec-reporting-arrive-drug-target-interaction-mining}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -168,11 +168,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Drug-Target Interaction Mining yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`drug-target-interaction` — For Reviewers](../chapters/12-bioinformatics/drug-target-interaction.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`drug-target-interaction` — For Reviewers](#sec-chapters-12-bioinformatics-drug-target-interaction-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### FASTQ Quality Control
+### FASTQ Quality Control {#sec-reporting-arrive-fastq-quality-control}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -182,11 +182,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > FASTQ Quality Control yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`fastq-quality-control` — For Reviewers](../chapters/12-bioinformatics/fastq-quality-control.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`fastq-quality-control` — For Reviewers](#sec-chapters-12-bioinformatics-fastq-quality-control-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Finding Marker Genes
+### Finding Marker Genes {#sec-reporting-arrive-finding-marker-genes}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -196,11 +196,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Finding Marker Genes yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`scrna-marker-genes` — For Reviewers](../chapters/12-bioinformatics/scrna-marker-genes.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`scrna-marker-genes` — For Reviewers](#sec-chapters-12-bioinformatics-scrna-marker-genes-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Gene Annotation with biomaRt
+### Gene Annotation with biomaRt {#sec-reporting-arrive-gene-annotation-with-biomart}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -210,11 +210,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Gene Annotation with biomaRt yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`biomart-annotation` — For Reviewers](../chapters/12-bioinformatics/biomart-annotation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`biomart-annotation` — For Reviewers](#sec-chapters-12-bioinformatics-biomart-annotation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Gene Ontology Enrichment
+### Gene Ontology Enrichment {#sec-reporting-arrive-gene-ontology-enrichment}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -224,11 +224,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Gene Ontology Enrichment yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`gene-ontology-enrichment` — For Reviewers](../chapters/12-bioinformatics/gene-ontology-enrichment.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`gene-ontology-enrichment` — For Reviewers](#sec-chapters-12-bioinformatics-gene-ontology-enrichment-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### GSEA Preranked Analysis
+### GSEA Preranked Analysis {#sec-reporting-arrive-gsea-preranked-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -238,11 +238,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > GSEA Preranked Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`gsea-preranked` — For Reviewers](../chapters/12-bioinformatics/gsea-preranked.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`gsea-preranked` — For Reviewers](#sec-chapters-12-bioinformatics-gsea-preranked-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### GSVA Single-Sample Enrichment
+### GSVA Single-Sample Enrichment {#sec-reporting-arrive-gsva-single-sample-enrichment}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -252,11 +252,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > GSVA Single-Sample Enrichment yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`gsva-single-sample` — For Reviewers](../chapters/12-bioinformatics/gsva-single-sample.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`gsva-single-sample` — For Reviewers](#sec-chapters-12-bioinformatics-gsva-single-sample-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Heatmaps for RNA-seq
+### Heatmaps for RNA-seq {#sec-reporting-arrive-heatmaps-for-rna-seq}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -266,11 +266,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Heatmaps for RNA-seq yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`heatmaps-rnaseq` — For Reviewers](../chapters/12-bioinformatics/heatmaps-rnaseq.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`heatmaps-rnaseq` — For Reviewers](#sec-chapters-12-bioinformatics-heatmaps-rnaseq-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Integration with Harmony
+### Integration with Harmony {#sec-reporting-arrive-integration-with-harmony}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -280,11 +280,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Integration with Harmony yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`scrna-integration-harmony` — For Reviewers](../chapters/12-bioinformatics/scrna-integration-harmony.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`scrna-integration-harmony` — For Reviewers](#sec-chapters-12-bioinformatics-scrna-integration-harmony-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### KEGG Pathway Enrichment
+### KEGG Pathway Enrichment {#sec-reporting-arrive-kegg-pathway-enrichment}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -294,11 +294,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > KEGG Pathway Enrichment yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`pathway-enrichment-kegg` — For Reviewers](../chapters/12-bioinformatics/pathway-enrichment-kegg.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`pathway-enrichment-kegg` — For Reviewers](#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### MA Plots
+### MA Plots {#sec-reporting-arrive-ma-plots}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -308,11 +308,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > MA Plots yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`ma-plots` — For Reviewers](../chapters/12-bioinformatics/ma-plots.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`ma-plots` — For Reviewers](#sec-chapters-12-bioinformatics-ma-plots-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Metagenomic Profiling
+### Metagenomic Profiling {#sec-reporting-arrive-metagenomic-profiling}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -322,11 +322,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Metagenomic Profiling yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`metagenomic-profiling` — For Reviewers](../chapters/12-bioinformatics/metagenomic-profiling.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`metagenomic-profiling` — For Reviewers](#sec-chapters-12-bioinformatics-metagenomic-profiling-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Microbiome Analysis with DADA2
+### Microbiome Analysis with DADA2 {#sec-reporting-arrive-microbiome-analysis-with-dada2}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -336,11 +336,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Microbiome Analysis with DADA2 yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`microbiome-dada2` — For Reviewers](../chapters/12-bioinformatics/microbiome-dada2.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`microbiome-dada2` — For Reviewers](#sec-chapters-12-bioinformatics-microbiome-dada2-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Microbiome Diversity Metrics
+### Microbiome Diversity Metrics {#sec-reporting-arrive-microbiome-diversity-metrics}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -350,11 +350,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Microbiome Diversity Metrics yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`microbiome-diversity` — For Reviewers](../chapters/12-bioinformatics/microbiome-diversity.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`microbiome-diversity` — For Reviewers](#sec-chapters-12-bioinformatics-microbiome-diversity-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Multi-Omics Integration
+### Multi-Omics Integration {#sec-reporting-arrive-multi-omics-integration}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -364,11 +364,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Multi-Omics Integration yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`multiomics-integration` — For Reviewers](../chapters/12-bioinformatics/multiomics-integration.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`multiomics-integration` — For Reviewers](#sec-chapters-12-bioinformatics-multiomics-integration-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Multiple Sequence Alignment
+### Multiple Sequence Alignment {#sec-reporting-arrive-multiple-sequence-alignment}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -378,11 +378,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Multiple Sequence Alignment yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`msa-biostrings` — For Reviewers](../chapters/12-bioinformatics/msa-biostrings.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`msa-biostrings` — For Reviewers](#sec-chapters-12-bioinformatics-msa-biostrings-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### PCA of RNA-seq Samples
+### PCA of RNA-seq Samples {#sec-reporting-arrive-pca-of-rna-seq-samples}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -392,11 +392,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > PCA of RNA-seq Samples yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`pca-of-rnaseq` — For Reviewers](../chapters/12-bioinformatics/pca-of-rnaseq.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`pca-of-rnaseq` — For Reviewers](#sec-chapters-12-bioinformatics-pca-of-rnaseq-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Phylogenetic Trees with ape
+### Phylogenetic Trees with ape {#sec-reporting-arrive-phylogenetic-trees-with-ape}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -406,11 +406,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Phylogenetic Trees with ape yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`phylogenetic-trees-ape` — For Reviewers](../chapters/12-bioinformatics/phylogenetic-trees-ape.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`phylogenetic-trees-ape` — For Reviewers](#sec-chapters-12-bioinformatics-phylogenetic-trees-ape-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Population Genetics Basics
+### Population Genetics Basics {#sec-reporting-arrive-population-genetics-basics}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -420,11 +420,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Population Genetics Basics yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`population-genetics-basics` — For Reviewers](../chapters/12-bioinformatics/population-genetics-basics.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`population-genetics-basics` — For Reviewers](#sec-chapters-12-bioinformatics-population-genetics-basics-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Protein Structure Prediction
+### Protein Structure Prediction {#sec-reporting-arrive-protein-structure-prediction}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -434,11 +434,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Protein Structure Prediction yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`protein-structure-prediction` — For Reviewers](../chapters/12-bioinformatics/protein-structure-prediction.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`protein-structure-prediction` — For Reviewers](#sec-chapters-12-bioinformatics-protein-structure-prediction-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Proteomics with MSstats
+### Proteomics with MSstats {#sec-reporting-arrive-proteomics-with-msstats}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -448,11 +448,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Proteomics with MSstats yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`proteomics-msstats` — For Reviewers](../chapters/12-bioinformatics/proteomics-msstats.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`proteomics-msstats` — For Reviewers](#sec-chapters-12-bioinformatics-proteomics-msstats-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Pseudoalignment with Salmon and Kallisto
+### Pseudoalignment with Salmon and Kallisto {#sec-reporting-arrive-pseudoalignment-with-salmon-and-kallisto}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -462,11 +462,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Pseudoalignment with Salmon and Kallisto yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`salmon-kallisto-pseudoalignment` — For Reviewers](../chapters/12-bioinformatics/salmon-kallisto-pseudoalignment.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`salmon-kallisto-pseudoalignment` — For Reviewers](#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Read Trimming and Adapter Removal
+### Read Trimming and Adapter Removal {#sec-reporting-arrive-read-trimming-and-adapter-removal}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -476,11 +476,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Read Trimming and Adapter Removal yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`read-trimming-adapters` — For Reviewers](../chapters/12-bioinformatics/read-trimming-adapters.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`read-trimming-adapters` — For Reviewers](#sec-chapters-12-bioinformatics-read-trimming-adapters-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### RNA-seq Normalisation
+### RNA-seq Normalisation {#sec-reporting-arrive-rna-seq-normalisation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -490,11 +490,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > RNA-seq Normalisation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`rnaseq-normalization` — For Reviewers](../chapters/12-bioinformatics/rnaseq-normalization.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`rnaseq-normalization` — For Reviewers](#sec-chapters-12-bioinformatics-rnaseq-normalization-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### scRNA Clustering
+### scRNA Clustering {#sec-reporting-arrive-scrna-clustering}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -504,11 +504,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > scRNA Clustering yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`scrna-clustering` — For Reviewers](../chapters/12-bioinformatics/scrna-clustering.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`scrna-clustering` — For Reviewers](#sec-chapters-12-bioinformatics-scrna-clustering-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### scRNA Normalisation
+### scRNA Normalisation {#sec-reporting-arrive-scrna-normalisation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -518,11 +518,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > scRNA Normalisation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`scrna-normalization` — For Reviewers](../chapters/12-bioinformatics/scrna-normalization.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`scrna-normalization` — For Reviewers](#sec-chapters-12-bioinformatics-scrna-normalization-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### scRNA QC and Filtering
+### scRNA QC and Filtering {#sec-reporting-arrive-scrna-qc-and-filtering}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -532,11 +532,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > scRNA QC and Filtering yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`scrna-qc-filtering` — For Reviewers](../chapters/12-bioinformatics/scrna-qc-filtering.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`scrna-qc-filtering` — For Reviewers](#sec-chapters-12-bioinformatics-scrna-qc-filtering-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Sequence Alignment: Overview
+### Sequence Alignment: Overview {#sec-reporting-arrive-sequence-alignment-overview}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -546,11 +546,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Sequence Alignment: Overview yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`sequence-alignment-overview` — For Reviewers](../chapters/12-bioinformatics/sequence-alignment-overview.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`sequence-alignment-overview` — For Reviewers](#sec-chapters-12-bioinformatics-sequence-alignment-overview-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Single-Cell with Seurat
+### Single-Cell with Seurat {#sec-reporting-arrive-single-cell-with-seurat}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -560,11 +560,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Single-Cell with Seurat yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`single-cell-seurat-intro` — For Reviewers](../chapters/12-bioinformatics/single-cell-seurat-intro.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`single-cell-seurat-intro` — For Reviewers](#sec-chapters-12-bioinformatics-single-cell-seurat-intro-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Spatial Transcriptomics
+### Spatial Transcriptomics {#sec-reporting-arrive-spatial-transcriptomics}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -574,11 +574,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Spatial Transcriptomics yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`spatial-transcriptomics` — For Reviewers](../chapters/12-bioinformatics/spatial-transcriptomics.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`spatial-transcriptomics` — For Reviewers](#sec-chapters-12-bioinformatics-spatial-transcriptomics-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### STAR: Spliced Alignment
+### STAR: Spliced Alignment {#sec-reporting-arrive-star-spliced-alignment}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -588,11 +588,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > STAR: Spliced Alignment yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`star-spliced-alignment` — For Reviewers](../chapters/12-bioinformatics/star-spliced-alignment.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`star-spliced-alignment` — For Reviewers](#sec-chapters-12-bioinformatics-star-spliced-alignment-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Structural Variant Detection
+### Structural Variant Detection {#sec-reporting-arrive-structural-variant-detection}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -602,11 +602,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Structural Variant Detection yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`structural-variant-detection` — For Reviewers](../chapters/12-bioinformatics/structural-variant-detection.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`structural-variant-detection` — For Reviewers](#sec-chapters-12-bioinformatics-structural-variant-detection-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Surrogate Variable Analysis (SVA)
+### Surrogate Variable Analysis (SVA) {#sec-reporting-arrive-surrogate-variable-analysis-sva}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -616,11 +616,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Surrogate Variable Analysis (SVA) yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`surrogate-variable-analysis-sva` — For Reviewers](../chapters/12-bioinformatics/surrogate-variable-analysis-sva.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`surrogate-variable-analysis-sva` — For Reviewers](#sec-chapters-12-bioinformatics-surrogate-variable-analysis-sva-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Trajectory Analysis
+### Trajectory Analysis {#sec-reporting-arrive-trajectory-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -630,11 +630,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Trajectory Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`scrna-trajectory-analysis` — For Reviewers](../chapters/12-bioinformatics/scrna-trajectory-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`scrna-trajectory-analysis` — For Reviewers](#sec-chapters-12-bioinformatics-scrna-trajectory-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Transcript-to-Gene Summarisation
+### Transcript-to-Gene Summarisation {#sec-reporting-arrive-transcript-to-gene-summarisation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -644,11 +644,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Transcript-to-Gene Summarisation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`tx-to-gene-summarization` — For Reviewers](../chapters/12-bioinformatics/tx-to-gene-summarization.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`tx-to-gene-summarization` — For Reviewers](#sec-chapters-12-bioinformatics-tx-to-gene-summarization-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Variant Annotation with VEP
+### Variant Annotation with VEP {#sec-reporting-arrive-variant-annotation-with-vep}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -658,11 +658,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Variant Annotation with VEP yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`annotation-variant-vep` — For Reviewers](../chapters/12-bioinformatics/annotation-variant-vep.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`annotation-variant-vep` — For Reviewers](#sec-chapters-12-bioinformatics-annotation-variant-vep-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Variant Calling with GATK
+### Variant Calling with GATK {#sec-reporting-arrive-variant-calling-with-gatk}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -672,11 +672,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Variant Calling with GATK yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`variant-calling-gatk` — For Reviewers](../chapters/12-bioinformatics/variant-calling-gatk.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`variant-calling-gatk` — For Reviewers](#sec-chapters-12-bioinformatics-variant-calling-gatk-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### VCF Manipulation
+### VCF Manipulation {#sec-reporting-arrive-vcf-manipulation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -686,11 +686,11 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > VCF Manipulation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`vcf-manipulation` — For Reviewers](../chapters/12-bioinformatics/vcf-manipulation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`vcf-manipulation` — For Reviewers](#sec-chapters-12-bioinformatics-vcf-manipulation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Volcano Plots
+### Volcano Plots {#sec-reporting-arrive-volcano-plots}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -700,6 +700,6 @@ This page contains **50 method-specific templates**. Each is a skeleton with pla
 
 > Volcano Plots yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`volcano-plots` — For Reviewers](../chapters/12-bioinformatics/volcano-plots.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`volcano-plots` — For Reviewers](#sec-chapters-12-bioinformatics-volcano-plots-for-reviewers)
 
 <!-- TODO:reporting-template -->

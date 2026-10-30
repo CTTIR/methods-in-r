@@ -1,12 +1,14 @@
-## Introduction
+## Stepped-Wedge Trial {#sec-chapters-14-clinical-stepped-wedge-trial}
+
+### Introduction {#sec-chapters-14-clinical-stepped-wedge-trial-introduction}
 
 Stepped-wedge cluster-randomised trials (SW-CRTs) randomise not whether each cluster receives the intervention but the time at which each cluster transitions from control to intervention. By the end of the trial all clusters have received the intervention, which gives the design particular ethical and pragmatic appeal: it is well suited to settings where investigators believe the intervention is likely beneficial (so withholding it from some clusters indefinitely would be ethically uncomfortable), where logistical constraints prevent simultaneous rollout across all clusters, or where a programme rollout is happening anyway and the trial is exploiting the staggered implementation to learn the effect. Analysis must carefully separate the secular time trend that affects all clusters from the treatment effect that is realised at different calendar times in different clusters.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-stepped-wedge-trial-prerequisites}
 
 A working understanding of cluster-randomised trials, time-trend modelling, and mixed-effects models with cluster random intercepts and (optionally) cluster-time random effects.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-stepped-wedge-trial-theory}
 
 Clusters are randomised to sequence rather than to arm; at each step (period) a new subset of clusters crosses over from control to intervention. The resulting data structure provides two complementary contrasts: a between-cluster comparison at each period (like a parallel-arm CRT at that period) and a within-cluster before-after comparison around each cluster's switch-point. The standard analysis is a mixed-effects model with fixed effects for time period and treatment status and a random intercept for cluster:
 
@@ -14,11 +16,11 @@ $$y_{ijk} = \mu + \tau_t + \beta \cdot X_{jk} + u_j + \varepsilon_{ijk},$$
 
 with $\tau_t$ the period effect, $X_{jk}$ the treatment indicator for cluster $j$ at time $k$, and $u_j \sim N(0, \sigma_c^2)$ the cluster random effect. Including the period fixed effects is mandatory because secular trends confound the treatment estimate.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-stepped-wedge-trial-assumptions}
 
 Secular time trends are common across clusters (any cluster-specific time trend should be modelled explicitly), the treatment effect is immediate and stable after switch (or any fade-in/fade-out is explicitly modelled), and the within-cluster correlation structure is correctly specified.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-stepped-wedge-trial-r-implementation}
 
 ```r
 library(lme4); library(lmerTest)
@@ -45,15 +47,15 @@ fit <- lmer(y ~ trt + period + (1 | cluster), data = df)
 summary(fit)$coefficients["trt", ]
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-stepped-wedge-trial-output-results}
 
 The mixed-effects model returns the treatment effect estimate with a standard error that reflects both the within-cluster and between-cluster information available in the staggered design. Including the period fixed effects absorbs the secular time trend; the random cluster intercept absorbs the between-cluster baseline variation; the residual captures within-cluster, within-period noise.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-stepped-wedge-trial-interpretation}
 
 A reporting sentence: "The stepped-wedge mixed-effects analysis estimated a treatment effect of 0.38 SD (95 % CI 0.19 to 0.57, $p < 0.001$), adjusting for the calendar-period secular trend (which itself was significant, $\hat\tau_5 - \hat\tau_1 = 0.41$) and the cluster random intercepts (cluster ICC 0.20). Reporting follows the CONSORT extension for stepped-wedge CRTs." Always report both the secular trend and the treatment effect.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-stepped-wedge-trial-practical-tips}
 
 - Always adjust for time period in the analysis; an unadjusted analysis confounds treatment with secular trend, and the bias can be substantial in any health-system setting where outcomes are improving (or worsening) over time independent of the intervention.
 - Report per the CONSORT extension for stepped-wedge cluster-randomised trials (Hemming et al., 2018), which specifies the trial design figure, time-by-cluster matrix, and standard reporting requirements.
@@ -62,33 +64,30 @@ A reporting sentence: "The stepped-wedge mixed-effects analysis estimated a trea
 - The ethical advantage — all clusters eventually receive the intervention — is real but does not eliminate the need for equipoise; if investigators are confident the intervention works, the trial is arguably unnecessary regardless of design.
 - Sensitivity analyses to the assumed correlation structure (compound symmetry vs Hooper-Girling vs more complex) are increasingly required by reviewers; report several specifications and check that conclusions are robust.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-14-clinical-stepped-wedge-trial-r-packages-used}
 
 `lme4::lmer()` and `lmerTest` for canonical stepped-wedge mixed-effects analysis; `swCRTdesign::swPwr()` and `swCRTdesign::swSummary()` for design and power calculation; `clusterPower` for general cluster-trial power including stepped wedge; `geepack::geeglm()` for GEE-based marginal-model analysis as an alternative; `glmmTMB` for stepped-wedge analyses with non-Normal outcomes (count, binary).
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-stepped-wedge-trial-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-stepped-wedge-trial-assumptions) and
+[practical tips](#sec-chapters-14-clinical-stepped-wedge-trial-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-stepped-wedge-trial-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

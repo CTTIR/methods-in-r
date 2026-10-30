@@ -1,12 +1,14 @@
-## Introduction
+## DBSCAN as an ML Tool {#sec-chapters-13-ml-clustering-dbscan-ml}
+
+### Introduction {#sec-chapters-13-ml-clustering-dbscan-ml-introduction}
 
 DBSCAN (Density-Based Spatial Clustering of Applications with Noise) groups points that are densely packed together and flags isolated points as noise. Unlike $k$-means it does not require specifying the number of clusters, handles non-convex cluster shapes, and produces an outlier-detection signal as a side effect — every point flagged as noise is a candidate anomaly. For machine-learning workflows where natural cluster discovery and outlier flagging are both useful, DBSCAN is the right starting point.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-clustering-dbscan-ml-prerequisites}
 
 A working understanding of distance metrics, density-based reasoning, and the limitations of partitioning algorithms ($k$-means) for non-convex cluster shapes.
 
-## Theory
+### Theory {#sec-chapters-13-ml-clustering-dbscan-ml-theory}
 
 DBSCAN has two hyperparameters: `eps` (the neighbourhood radius) and `minPts` (the minimum number of points required for a dense region). Three categories of point emerge from the algorithm:
 
@@ -16,11 +18,11 @@ DBSCAN has two hyperparameters: `eps` (the neighbourhood radius) and `minPts` (t
 
 Clusters are formed as maximally connected sets of core points (with their associated border points). Choosing `eps` is the practical challenge; the standard heuristic is the $k$-distance plot, which shows the distance to the $k$-th nearest neighbour for each point sorted ascending — a knee in the curve marks a sensible `eps`.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-clustering-dbscan-ml-assumptions}
 
 Cluster density is roughly uniform; the chosen `eps` matches the natural scale of the data; Euclidean distance is meaningful (or another distance has been substituted).
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-clustering-dbscan-ml-r-implementation}
 
 ```r
 library(dbscan)
@@ -45,15 +47,15 @@ plot(df, col = db$cluster + 1, pch = 16, asp = 1,
      xlab = "x1", ylab = "x2")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-clustering-dbscan-ml-output-results}
 
 `dbscan()` returns a vector of cluster labels with `0` indicating noise. The $k$-distance plot guides `eps` selection; the cluster scatter shows densely-packed groups separated by noise points.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-clustering-dbscan-ml-interpretation}
 
 A reporting sentence: "DBSCAN with `eps = 0.5` and `minPts = 5` recovered the two natural clusters injected in the simulation (96 of 100 cluster-1 points and 98 of 100 cluster-2 points correctly assigned) and flagged 10 of the 10 injected outliers as noise (cluster 0); the remaining noise calls were 6 boundary points where the local density is genuinely lower." Always state `eps`, `minPts`, and the noise count.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-clustering-dbscan-ml-practical-tips}
 
 - Set `eps` via the $k$-distance plot's knee; it is the most sensitive hyperparameter and a poor choice fails the algorithm completely.
 - `minPts = 2 \times d$ (dimensions) is a sensible starting heuristic; inspect cluster counts and adjust if they are unreasonably few or many.
@@ -62,37 +64,34 @@ A reporting sentence: "DBSCAN with `eps = 0.5` and `minPts = 5` recovered the tw
 - Scale features before clustering (`scale()` or `recipes::step_normalize()`); DBSCAN's Euclidean distance is sensitive to feature scales.
 - For high-dimensional data, distance concentration weakens DBSCAN; reduce dimensionality with PCA or UMAP first.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-clustering-dbscan-ml-r-packages-used}
 
 `dbscan` for `dbscan()`, `hdbscan()`, `optics()`, and the $k$-distance heuristic; `fpc::dbscan()` for an alternative implementation; `cluster` for related clustering algorithms; `factoextra::fviz_cluster()` for ggplot-style visualisation of DBSCAN output.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-clustering-dbscan-ml-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-clustering-dbscan-ml-assumptions) and
+[practical tips](#sec-chapters-13-ml-clustering-dbscan-ml-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-clustering-dbscan-ml-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

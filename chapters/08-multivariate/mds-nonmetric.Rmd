@@ -1,12 +1,14 @@
-## Introduction
+## Non-Metric Multidimensional Scaling {#sec-chapters-08-multivariate-mds-nonmetric}
+
+### Introduction {#sec-chapters-08-multivariate-mds-nonmetric-introduction}
 
 Non-metric multidimensional scaling (NMDS) preserves the *rank order* of pairwise dissimilarities rather than their absolute magnitudes. This robustness makes it the standard ordination method for ecological community data, where Bray-Curtis and Jaccard dissimilarities are not Euclidean and where distance values themselves carry less meaning than the ordering of similarities. Where classical MDS works on the squared distances directly, NMDS minimises a stress function that depends only on whether the configuration's distances respect the input ranking.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-mds-nonmetric-prerequisites}
 
 A working understanding of metric MDS (classical / PCoA), rank-based statistics, and the distinction between metric and ordinal distance information.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-mds-nonmetric-theory}
 
 NMDS finds a configuration $Y$ in $k$ dimensions whose pairwise Euclidean distances $d(Y_i, Y_j)$ are monotonically related to the input dissimilarities $\delta_{ij}$. The optimisation minimises Kruskal stress:
 
@@ -16,11 +18,11 @@ where $\hat d_{ij}$ are *disparities* — values fitted via isotonic regression 
 
 Stress interpretation (Kruskal): below 0.05 is excellent, 0.05–0.10 good, 0.10–0.20 fair, above 0.20 poor and the configuration should not be trusted.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-mds-nonmetric-assumptions}
 
 Dissimilarity ranks are meaningful; sufficient observations for a stable configuration; the chosen number of dimensions ($k$) is large enough to accommodate the rank structure.
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-mds-nonmetric-r-implementation}
 
 ```r
 library(MASS); library(vegan)
@@ -37,15 +39,15 @@ nmds$stress
 plot(nmds, type = "t")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-mds-nonmetric-output-results}
 
 `isoMDS()` and `metaMDS()` return a 2D configuration plus the stress value. `metaMDS()` also runs multiple random starts (`trymax`) and returns the best solution; this is essential because NMDS is non-convex and prone to local minima.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-mds-nonmetric-interpretation}
 
 A reporting sentence: "NMDS of the vegetation community (Bray-Curtis dissimilarity, two dimensions, 50 random starts) achieved a stress of 0.18 — fair fit — and the configuration revealed two dominant environmental gradients corresponding to moisture and nutrient availability when site-level covariates were overlaid via `envfit()`." Always report the stress value and the number of starts; a single-start fit can land in a poor local minimum.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-mds-nonmetric-practical-tips}
 
 - Always check stress; values above 0.2 indicate the configuration is unreliable and a higher-dimensional solution may be needed.
 - Use multiple random starts (`trymax = 50` or more in `metaMDS`); NMDS is non-convex and a single start often lands in a local minimum.
@@ -54,32 +56,29 @@ A reporting sentence: "NMDS of the vegetation community (Bray-Curtis dissimilari
 - Pair NMDS with `vegan::envfit()` or `ordisurf()` to overlay environmental covariates as arrows or contours, exposing the gradients the ordination has captured.
 - Interpret relative positions only; absolute distances in the NMDS plot do not have a single fixed scale.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-mds-nonmetric-r-packages-used}
 
 `MASS::isoMDS()` for the classical Kruskal NMDS implementation; `vegan::metaMDS()` for the ecology-flavoured workflow with multiple starts and stress reporting; `smacof::smacofSym()` for advanced NMDS variants with weights and constraints; `ade4::nmds` for an alternative interface integrated with the dudi family of multivariate methods.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-mds-nonmetric-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-mds-nonmetric-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-mds-nonmetric-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-mds-nonmetric-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

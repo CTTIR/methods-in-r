@@ -1,12 +1,14 @@
-## Introduction
+## Random Variables {#sec-chapters-03-probability-random-variables}
+
+### Introduction {#sec-chapters-03-probability-random-variables-introduction}
 
 A **random variable** is a function that assigns a real number to each outcome of a random experiment. The concept packages probabilistic thinking into the language of numbers -- means, variances, correlations -- and is the abstraction on which every statistical method rests.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-random-variables-prerequisites}
 
 Sample spaces, events, and the probability measure.
 
-## Theory
+### Theory {#sec-chapters-03-probability-random-variables-theory}
 
 Given a probability space $(\Omega, \mathcal{F}, P)$, a **random variable** is a measurable function
 
@@ -28,11 +30,11 @@ Random variables are classified as:
 
 Transformations of random variables give new random variables: if $X$ is a random variable and $g: \mathbb{R} \to \mathbb{R}$ is measurable, then $Y = g(X)$ is a random variable with distribution determined by $X$ and $g$.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-random-variables-assumptions}
 
 A random variable is well-defined provided the underlying probability space exists and the function is measurable. Measurability is automatic for every function that arises in practice (continuous or piecewise-continuous).
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-random-variables-r-implementation}
 
 In R, we usually work with random variables via their distributions.
 
@@ -59,7 +61,7 @@ mean(X_mixed == 0)
 mean(X_mixed)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-random-variables-output-results}
 
 ```
 X_discrete       0       1       2       3       4
@@ -78,11 +80,11 @@ empirical  0.0306  0.1195  0.2314  0.2643  0.2059
 
 Each quantity (PMF, quantile, variance of a transformation, mixed distribution's atom) is a statistic of the corresponding random variable.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-random-variables-interpretation}
 
 Random variables let us move from "outcome space" thinking to "number space" thinking. A methods section typically declares the random variable implicitly: "Let $X$ be the systolic blood pressure of a randomly selected patient" specifies the random variable without bothering with the underlying $\Omega$.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-random-variables-practical-tips}
 
 - For most applied work, think of random variables as "generators of data" with a specified distribution; the measurability formalism is background.
 - A random variable is distinct from its realisation. "$X$" is the variable; "$x_i$" is the observed value for unit $i$.
@@ -92,26 +94,23 @@ Random variables let us move from "outcome space" thinking to "number space" thi
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-random-variables-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-random-variables-assumptions) and
+[practical tips](#sec-chapters-03-probability-random-variables-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-random-variables-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

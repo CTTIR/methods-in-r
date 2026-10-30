@@ -1,12 +1,14 @@
-## Introduction
+## ATAC-Seq Analysis {#sec-chapters-12-bioinformatics-atac-seq-analysis}
+
+### Introduction {#sec-chapters-12-bioinformatics-atac-seq-analysis-introduction}
 
 ATAC-seq (Assay for Transposase-Accessible Chromatin using sequencing) measures genome-wide chromatin accessibility by tagging accessible DNA regions with a hyperactive Tn5 transposase. Peaks in the resulting alignment density correspond to open chromatin — regulatory elements such as promoters and enhancers — and differential accessibility analysis between conditions reveals cell-state-specific regulatory changes. ATAC-seq has largely replaced DNase-seq for accessibility profiling because of its lower input requirement (10{,}000 cells vs millions) and simpler protocol.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-atac-seq-analysis-prerequisites}
 
 A working understanding of read alignment, BAM files, peak-calling concepts (typically MACS2), and regulatory genomics (promoters, enhancers, transcription factor binding).
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-atac-seq-analysis-theory}
 
 The standard ATAC-seq pipeline:
 
@@ -17,11 +19,11 @@ The standard ATAC-seq pipeline:
 5. **Differential accessibility**: DiffBind, edgeR, or DESeq2 on peak-level read counts.
 6. **Peak annotation**: ChIPseeker assigns peaks to nearest gene and annotates promoter vs distal categories.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-atac-seq-analysis-assumptions}
 
 Tn5 tagmentation is approximately uniform across accessible regions; sequencing depth is sufficient ($> 50$ million reads per sample is typical); mitochondrial reads have been removed before peak calling.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-atac-seq-analysis-r-implementation}
 
 ```r
 library(ATACseqQC); library(ChIPseeker)
@@ -45,15 +47,15 @@ anno <- annotatePeak(peaks,
 as.data.frame(anno)[1:5, c("seqnames", "start", "annotation", "geneId")]
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-atac-seq-analysis-output-results}
 
 `ATACseqQC::fragSizeDist()` produces the diagnostic fragment-size distribution; visible peaks at the nucleosomal lengths confirm successful tagmentation. `ChIPseeker::annotatePeak()` assigns each peak to the nearest gene and categorises it as promoter, intronic, intergenic, etc.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-atac-seq-analysis-interpretation}
 
 A reporting sentence: "ATAC-seq on CD8 and regulatory T cells (n = 4 per group) identified 25{,}412 reproducible peaks at IDR < 0.05; ChIPseeker annotation showed 35 % promoter-proximal and 65 % distal-regulatory locations. Differential accessibility analysis identified 1{,}240 peaks at FDR < 0.05, enriched for AP-1 family motifs (Jun, Fos)." Always report TSS enrichment, peak counts, and the consensus peak strategy.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-atac-seq-analysis-practical-tips}
 
 - Remove duplicates and mitochondrial reads with `samtools markdup` and chromosome filtering before peak calling; mitochondrial reads dominate ATAC libraries and confound peak calling if retained.
 - Check TSS enrichment score (computed by `ATACseqQC` or by `chrom.sizes`-aware tools); scores above 7 are typical for fresh tissue, scores above 4 are acceptable for frozen samples.
@@ -62,32 +64,29 @@ A reporting sentence: "ATAC-seq on CD8 and regulatory T cells (n = 4 per group) 
 - For single-cell ATAC-seq (scATAC-seq), use `Signac` (Seurat-flavoured) or `ArchR`; the workflow differs substantially from bulk ATAC.
 - Use BlackList regions (ENCODE) to exclude artefact-prone genomic regions before downstream analysis.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-atac-seq-analysis-r-packages-used}
 
 `ATACseqQC` for fragment-size distribution and TSS enrichment QC; `ChIPseeker` for peak annotation; `DiffBind` for differential-binding analysis; `chromVAR` for motif accessibility scores; `Signac` and `ArchR` for single-cell ATAC-seq; `Rsubread` and `GenomicAlignments` for upstream alignment and quantification.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-atac-seq-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-atac-seq-analysis-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-atac-seq-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-atac-seq-analysis-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

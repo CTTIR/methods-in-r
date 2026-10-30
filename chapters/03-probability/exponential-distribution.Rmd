@@ -1,12 +1,14 @@
-## Introduction
+## The Exponential Distribution {#sec-chapters-03-probability-exponential-distribution}
+
+### Introduction {#sec-chapters-03-probability-exponential-distribution-introduction}
 
 The exponential distribution models waiting times between events in a Poisson process with constant rate. It is the only continuous distribution with the memoryless property, and it is the simplest parametric model in survival and reliability analysis.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-exponential-distribution-prerequisites}
 
 Continuous random variables and the Poisson process.
 
-## Theory
+### Theory {#sec-chapters-03-probability-exponential-distribution-theory}
 
 A non-negative random variable $X$ is **exponential with rate $\lambda > 0$** if
 
@@ -27,11 +29,11 @@ Moments:
 
 **Scale vs rate**: some R functions use rate ($\lambda$), others use scale ($1/\lambda$). Check the documentation.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-exponential-distribution-assumptions}
 
 Constant hazard (no ageing / no improvement). Violations motivate the Weibull or log-normal distributions.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-exponential-distribution-r-implementation}
 
 ```r
 lambda <- 0.5
@@ -55,7 +57,7 @@ hazards <- sapply(seq_len(length(breaks) - 1), function(i) {
 round(hazards, 3)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-exponential-distribution-output-results}
 
 ```
     mean theoretical      var  theoretical_var
@@ -69,11 +71,11 @@ round(hazards, 3)
 
 Empirical mean and variance match theoretical; memoryless property holds; empirical hazard is constant at $\approx 1 - e^{-\lambda}$ per unit interval.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-exponential-distribution-interpretation}
 
 Exponential survival is the simplest hypothesis one can test in reliability and survival. When observed hazard is non-constant, report the Weibull or a flexible parametric model instead.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-exponential-distribution-practical-tips}
 
 - `rexp(n, rate)` in R uses the rate parameterisation; `scale = 1/rate`.
 - Log-transform to compress the heavy right tail for visualisation.
@@ -83,26 +85,23 @@ Exponential survival is the simplest hypothesis one can test in reliability and 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-exponential-distribution-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-exponential-distribution-assumptions) and
+[practical tips](#sec-chapters-03-probability-exponential-distribution-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-exponential-distribution-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

@@ -61,3 +61,6 @@ desktop.ini
 *~
 *.bak
 *.orig
+
+# Merged render intermediates
+/*.knit.md

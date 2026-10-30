@@ -1,22 +1,24 @@
-## Introduction
+## Calibration Plots {#sec-chapters-13-ml-calibration-plots}
+
+### Introduction {#sec-chapters-13-ml-calibration-plots-introduction}
 
 A calibration plot (reliability diagram) plots predicted probability against observed frequency. A well-calibrated classifier's curve lies on the diagonal: when it predicts 0.7, events occur 70 % of the time. Poor calibration means probabilities cannot be trusted for decision thresholds or risk communication.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-calibration-plots-prerequisites}
 
 Classification; predicted probabilities; binning.
 
-## Theory
+### Theory {#sec-chapters-13-ml-calibration-plots-theory}
 
 Bin predictions by predicted probability; compute the observed frequency in each bin. Plot bin midpoints vs observed frequencies. A perfect classifier follows $y = x$; curves below indicate over-confidence, curves above indicate under-confidence.
 
 Summary metrics: **Brier score** $= \mathbb{E}[(p - y)^2]$, **Expected Calibration Error (ECE)** $= \sum_k w_k |\text{acc}_k - \text{conf}_k|$.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-calibration-plots-assumptions}
 
 Predictions are valid probabilities in $[0, 1]$; sufficient data per bin (10-20 bins for $n > 1000$).
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-calibration-plots-r-implementation}
 
 ```r
 library(probably); library(yardstick); library(dplyr); library(tibble); library(ggplot2)
@@ -54,15 +56,15 @@ ggplot(reliability, aes(mean_pred, obs_freq)) +
 mean((df$pred - as.integer(df$truth == "1"))^2)   # Brier score
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-calibration-plots-output-results}
 
 A reliability diagram (scatter of bin-means) and the Brier score. The simulated over-confident model lies above the diagonal at low predicted probabilities.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-calibration-plots-interpretation}
 
 "The classifier over-predicts at low probabilities and under-predicts at high probabilities; Brier score 0.22 indicates moderate calibration error. Platt or isotonic recalibration on a validation set would flatten the curve toward the diagonal."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-calibration-plots-practical-tips}
 
 - Tree ensembles (RF, XGBoost) are usually mis-calibrated; apply Platt scaling or isotonic regression on a validation set.
 - Neural networks with modern training (high-capacity, low label smoothing) often over-confident; temperature scaling fixes it.
@@ -72,31 +74,28 @@ A reliability diagram (scatter of bin-means) and the Brier score. The simulated 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-calibration-plots-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-calibration-plots-assumptions) and
+[practical tips](#sec-chapters-13-ml-calibration-plots-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-calibration-plots-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

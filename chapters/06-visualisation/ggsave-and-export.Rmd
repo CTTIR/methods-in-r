@@ -1,12 +1,14 @@
-## Introduction
+## Saving and Exporting Figures {#sec-chapters-06-visualisation-ggsave-and-export}
+
+### Introduction {#sec-chapters-06-visualisation-ggsave-and-export-introduction}
 
 The final step of any figure pipeline is exporting the plot at the right dimensions and resolution. It is also the step where most figures go wrong: a plot designed and previewed at 1024 × 768 pixels on screen looks fine until it is dropped into a manuscript and reprinted at journal column width, where the fonts have shrunk to illegibility and the raster edges have blurred. `ggsave()` is `ggplot2`'s export function, and the discipline to invoke it with explicit dimensions and an explicit DPI early in the workflow is what separates publication-ready figures from ones that have to be re-made the night before submission.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-ggsave-and-export-prerequisites}
 
 A working knowledge of `ggplot2`, an idea of what the final figure will be used for (print, web, slide), and basic familiarity with vector vs raster graphics.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-ggsave-and-export-theory}
 
 File-format choice depends on the destination:
 
@@ -18,11 +20,11 @@ File-format choice depends on the destination:
 
 Dimensions are specified through `width` and `height` with units (`"in"`, `"cm"`, `"mm"`); DPI applies only to raster formats. Font sizes scale with `base_size` in the theme; setting `base_size = 12` against a 6 × 4 inch figure produces fonts that print legibly at journal column width.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-ggsave-and-export-assumptions}
 
 The graphics device for the chosen format is available (Cairo for PNG with anti-aliasing, `ragg` for high-quality raster output, `svglite` for compact SVG); modern R installations include all of these but verify if a specific format fails.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-ggsave-and-export-r-implementation}
 
 ```r
 library(ggplot2)
@@ -45,15 +47,15 @@ ggsave("figure1.tiff", p, width = 85, height = 60, units = "mm",
 ggsave("figure1.svg", p, width = 6, height = 4)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-ggsave-and-export-output-results}
 
 Four export variants of the same `ggplot` object: a PDF for journal submission, a 300-dpi PNG for web embedding, an LZW-compressed TIFF at 85 mm single-column width, and an SVG for downstream editing. Each file is identical in content but differs in format-specific properties.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-ggsave-and-export-interpretation}
 
 A reporting sentence (methods or figure-preparation note): "All figures were rendered with `ggplot2` 3.5 (`base_size = 12`) and exported to PDF (vector) and TIFF (LZW-compressed, 300 dpi) at single-column width (85 mm); raster previews use the `ragg` device for anti-aliased text." Documenting the export pipeline aids reproducibility and pre-empts reviewer questions about figure resolution.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-ggsave-and-export-practical-tips}
 
 - Always export at the final publication size; resizing a saved figure in a word processor distorts fonts and produces blurry raster edges.
 - For multi-panel figures composed with `patchwork`, export the composed object directly; do not save panels separately and stitch them in an editor.
@@ -62,30 +64,26 @@ A reporting sentence (methods or figure-preparation note): "All figures were ren
 - Save a small reproducible script next to every published figure (`figure1.R`); regenerating a figure six months later is otherwise an exercise in archaeology.
 - For vector figures with thousands of overlapping elements (large hexbins, dense scatter), file sizes balloon; rasterise the busy layer with `ggrastr::rasterise()` while keeping axes and text vector for a hybrid output that prints cleanly.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-ggsave-and-export-r-packages-used}
 
 `ggplot2` for `ggsave()`; `ragg` for fast, high-quality raster devices; `svglite` for compact SVG; `Cairo` for legacy anti-aliased rendering; `ggrastr` for selectively rasterising vector layers in otherwise vector exports.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-ggsave-and-export-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-ggsave-and-export-assumptions) and [practical tips](#sec-chapters-06-visualisation-ggsave-and-export-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-ggsave-and-export-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

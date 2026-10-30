@@ -1,12 +1,14 @@
-## Introduction
+## Cell-Type Annotation {#sec-chapters-12-bioinformatics-scrna-cell-type-annotation}
+
+### Introduction {#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-introduction}
 
 After clustering, each cluster must be labelled with a biological identity: T cell, B cell, macrophage, tumour epithelial cell, neuron subtype. Cell-type annotation is the bridge between unsupervised clustering and biological interpretation. Two main approaches compete: reference-based methods (SingleR, Azimuth, scType) that score each cell or cluster against curated reference profiles, and manual annotation that inspects marker genes against literature and reference atlases.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-prerequisites}
 
 A working understanding of clustered scRNA-seq output, marker-gene analysis, and the available cell-type reference atlases (Human Cell Atlas, Tabula Muris, Monaco Immune, ENCODE).
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-theory}
 
 **SingleR** computes per-cell Spearman correlations against each reference profile over reference-defined marker genes; cells are labelled with the highest-scoring reference label. A pruning step removes calls below a confidence threshold. The method is fast, automated, and produces both per-cell and per-cluster summaries.
 
@@ -14,11 +16,11 @@ A working understanding of clustered scRNA-seq output, marker-gene analysis, and
 
 **Manual annotation** inspects each cluster's top marker genes against curated marker lists (canonical T-cell markers: CD3D, CD3E; B cells: CD19, MS4A1; macrophages: CD68, CD163). Cluster-by-cluster manual annotation is essential when references are missing or the tissue is non-standard.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-assumptions}
 
 The reference atlas matches the tissue and species of interest; cell types present in the data are represented in the reference (rare or unusual states may be absent and require manual annotation).
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-r-implementation}
 
 ```r
 library(SingleR); library(celldex)
@@ -40,15 +42,15 @@ table(pred$labels)
 head(pred[, c("labels", "pruned.labels")])
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-output-results}
 
 `SingleR()` returns per-cell predicted labels, pruned labels (high-confidence subset), and the underlying per-reference-label scores. Summary tables show predicted cell-type counts; `pruneScores()` allows fine-tuning of the confidence threshold.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-interpretation}
 
 A reporting sentence: "SingleR with the Monaco Immune reference assigned 62 % of cells to canonical PBMC types (T cells, B cells, NK cells, monocytes, dendritic cells); pruning removed 8 % low-confidence calls. The remaining 30 % unannotated cells were tumour-associated stromal cells confirmed manually using ACTA2, COL1A1, and CD90 markers." Always report the reference, pruning rate, and manual validation of automated calls.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-practical-tips}
 
 - Use a reference matching the tissue source — never annotate skin cells against a blood reference; the cell types simply do not match.
 - Report pruned labels rather than raw labels; pruned labels exclude low-confidence calls that often reflect intermediate or unusual states.
@@ -57,32 +59,29 @@ A reporting sentence: "SingleR with the Monaco Immune reference assigned 62 % of
 - Cross-validate automated cluster labels against marker gene expression; a cluster labelled "T cell" by SingleR but without CD3D/CD3E expression is suspect and warrants investigation.
 - For very granular reference atlases (Human Cell Atlas with 100+ cell types), use cluster-level SingleR rather than per-cell to reduce noise.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-r-packages-used}
 
 `SingleR` for the canonical reference-based annotation; `celldex` for built-in reference datasets (Monaco, Encode, Hematopoietic Cell Atlas, etc.); `Azimuth` for Seurat-flavoured transfer learning; `scType` for marker-database-based annotation; `clustifyr` for an alternative reference-based approach.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

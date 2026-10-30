@@ -1,20 +1,22 @@
+## Week 1, Session 1 — Scientific process and research workflow {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-learning-objectives}
 
 - Name the nine stages of the research workflow and say what goes wrong
   if each is skipped.
 - Distinguish biological from statistical significance with an example.
 - Frame a research question that can survive a methods section.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-prerequisites}
 
-R, RStudio, and Quarto installed (see [Get started](../../get_started.Rmd)).
+R, RStudio, and Quarto installed (see [Get started](#sec-how-to-use)).
 
-## Background
+### Background {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-background}
 
 Statistics is a thread running through a longer process that begins
 before a dataset exists. The research workflow — Question → Measurements
@@ -33,7 +35,7 @@ Discussion interprets. When you plan an analysis in this order, the
 paper nearly writes itself. When you skip a stage, reviewers notice
 exactly which one.
 
-## Setup
+### Setup {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-setup}
 
 ```r
 library(tidyverse)
@@ -41,12 +43,12 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-1-goal}
 
 Make the research workflow concrete by simulating a small clinical
 scenario and mapping each stage to a specific decision.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-2-approach}
 
 Imagine a new blood-pressure drug. Our simulated question: *does drug X
 reduce systolic blood pressure compared with placebo in adults with
@@ -54,6 +56,7 @@ hypertension?* We will generate data that reflect a realistic effect and
 walk through the workflow.
 
 ```r
+n <- 120
 df <- tibble(
   id    = seq_len(n),
   arm   = rep(c("placebo", "drug"), each = n / 2),
@@ -62,7 +65,7 @@ df <- tibble(
 )
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-3-execution}
 
 ```r
 df |>
@@ -77,16 +80,17 @@ The plot is the Description stage. Without it, we would skip straight
 from raw numbers to a test. With it, the direction and spread of the
 change are visible before a single calculation.
 
-## 4. Check
+### 4. Check {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-4-check}
 
 ```r
+fit <- t.test(sbp_1 - sbp_0 ~ arm, data = df)
 fit
 ```
 
 The drug arm has a lower change-in-SBP on average; the interval is
 compatible with a clinically meaningful effect.
 
-## 5. Report
+### 5. Report {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-5-report}
 
 > In a simulated two-arm trial (*n* = 120), mean change in systolic
 > blood pressure was `round(diff(tapply(df$sbp_1 - df$sbp_0, df$arm, mean)), 1)` mmHg lower in the drug arm than in
@@ -97,7 +101,7 @@ Note the three pieces every report needs: direction and magnitude, an
 interval, and a *p*-value reported alongside — never instead of — the
 effect.
 
-### Biological vs statistical significance
+#### Biological vs statistical significance {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-biological-vs-statistical-significance}
 
 A *p*-value below 0.05 does not, on its own, mean the effect matters
 clinically. A reduction of 0.1 mmHg in SBP would be statistically
@@ -106,7 +110,7 @@ discipline of asking *how large is the effect?* — not *is there any
 effect?* — is the single most important habit to form early on.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-common-pitfalls}
 
 - Skipping the description stage and running a test on data you have
   never plotted.
@@ -114,22 +118,23 @@ effect?* — is the single most important habit to form early on.
 - Conflating biological and statistical significance.
 - Treating the research workflow as optional once data are in hand.
 
-## Further reading
+### Further reading {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-further-reading}
 
-- [Research workflow appendix](../../appendices/A-research-workflow.Rmd).
+- [Research workflow appendix](#sec-appendices-a-research-workflow).
 - Altman DG. *Practical Statistics for Medical Research*, ch. 1.
 - Wasserstein RL & Lazar NA (2016), *The ASA's Statement on p-Values*.
 
-## Session info
+### Session info {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-01-foundations)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

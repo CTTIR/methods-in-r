@@ -1,18 +1,20 @@
+## Week 4, Session 3 — Network meta-analysis {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis}
+
 <div class="callout callout-note">
 **Inference lab:** Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-learning-objectives}
 
 - Fit a network meta-analysis (NMA) using `netmeta`.
 - Draw and read the network graph.
 - Derive SUCRA rankings and interpret them cautiously.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-prerequisites}
 
 Pairwise meta-analysis (W4 S2).
 
-## Background
+### Background {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-background}
 
 Network meta-analysis extends pairwise meta-analysis to more than two
 treatments by combining direct comparisons (from head-to-head trials)
@@ -28,7 +30,7 @@ values compress a lot of uncertainty into a single number; they are
 useful for signalling but should be reported with interval estimates
 for every pairwise comparison.
 
-## Setup
+### Setup {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-setup}
 
 ```r
 library(tidyverse)
@@ -37,14 +39,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-1-hypothesis}
 
 H₀: all treatments in the network have equal efficacy. H₁: at least two
 differ.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-2-visualise}
 
 ```r
+data(Senn2013)
 head(Senn2013)
 
 net <- netmeta(TE, seTE, treat1, treat2, studlab,
@@ -58,22 +61,24 @@ netgraph(net, plastic = FALSE, thickness = "number.of.studies",
          points = TRUE, cex.points = 2, cex = 0.8)
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-3-assumptions}
 
 ```r
+decomp.design(net)
 ```
 
 The within-design heterogeneity and between-design inconsistency
 variances are the key diagnostics.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-4-conduct}
 
 ```r
+summary(net)
 rank_df <- netrank(net, small.values = "good")
 rank_df
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-5-concluding-statement}
 
 ```r
 ranked <- as_tibble(rank_df$ranking.random, rownames = "treatment") |>
@@ -91,28 +96,29 @@ top <- head(ranked, 1)
 > intervals, not as a standalone conclusion.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-common-pitfalls}
 
 - Treating SUCRA as if it were the effect size.
 - Ignoring the transitivity assumption because the output compiled.
 - Mixing direct and indirect evidence without quantifying inconsistency.
 
-## Further reading
+### Further reading {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-further-reading}
 
 - Rücker G, Schwarzer G. (2015). *Ranking treatments in frequentist
   network meta-analysis.*
 - Salanti G. (2012). *Indirect and mixed-treatment comparison...*
 
-## Session info
+### Session info {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-15-metaanalysis)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

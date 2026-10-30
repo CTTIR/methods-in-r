@@ -1,12 +1,14 @@
-## Introduction
+## Power for Chi-Squared Tests {#sec-chapters-05-power-power-chi-squared}
+
+### Introduction {#sec-chapters-05-power-power-chi-squared-introduction}
 
 Power analysis for chi-squared tests — goodness-of-fit against a hypothesised distribution and independence in a two-way contingency table — uses the non-central chi-squared distribution under the alternative hypothesis. The standardised effect size for these tests is Cohen's $w$, which combines the difference between hypothesised and expected cell proportions into a single number that maps directly to the non-centrality parameter of the test statistic. Power calculations are essential in the design of survey research, epidemiological category-association studies, market-segmentation analyses, and any setting where the central question is whether categorical proportions differ from a reference or vary across rows of a contingency table.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-chi-squared-prerequisites}
 
 A working understanding of chi-squared goodness-of-fit and contingency-table tests, the chi-squared distribution and its non-central generalisation, and Cohen's $w$ as the standardised effect-size measure.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-chi-squared-theory}
 
 Cohen's $w$ is
 
@@ -14,11 +16,11 @@ $$w = \sqrt{\sum_i \frac{(p_{1i} - p_{0i})^2}{p_{0i}}},$$
 
 where $p_{0i}$ are the cell proportions expected under the null hypothesis and $p_{1i}$ under the alternative. Equivalently, $w = \sqrt{\chi^2 / n}$ at the expected effect. Under the alternative, the test statistic follows a non-central chi-squared with the test's standard degrees of freedom and non-centrality parameter $\lambda = n w^2$. Conventional benchmarks for $w$ are 0.10 (small), 0.30 (medium), and 0.50 (large).
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-chi-squared-assumptions}
 
 Observations are independent, expected cell counts are large enough that the chi-squared approximation is valid (typically $\geq 5$ per cell, though stricter thresholds apply for small tables), and the cell proportions under the alternative hypothesis are pre-specified.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-chi-squared-r-implementation}
 
 ```r
 library(pwr)
@@ -34,15 +36,15 @@ w
 pwr.chisq.test(w = w, df = 3, power = 0.80)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-chi-squared-output-results}
 
 `pwr.chisq.test()` returns the required sample size to achieve target power against a specified $w$, $\alpha$, and df. For a medium effect $w = 0.3$ with 3 df (4-category goodness-of-fit), $n = 122$; with 4 df (a 3×3 contingency table), $n = 133$. Computing $w$ directly from hypothesised cell proportions is the recommended workflow because it ties the calculation to substantive distributional assumptions.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-chi-squared-interpretation}
 
 A reporting sentence: "To detect a deviation from equal proportions across four categories of medium magnitude (Cohen's $w = 0.30$, equivalent to expected proportions $(0.40, 0.30, 0.20, 0.10)$ vs. uniform null) at 80 % power and $\alpha = 0.05$, $n = 122$ observations are required. With 5 % attrition, the protocol enrols 130 participants. Sensitivity analyses across $w \in [0.20, 0.40]$ are reported in the supplement to bracket uncertainty about the true effect size." Always state both $w$ and the underlying proportional hypothesis.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-chi-squared-practical-tips}
 
 - Convert real-world quantities — relative risks, odds ratios, differences in proportions — to Cohen's $w$ via the contingency-table formula rather than guessing; using a generic "medium" benchmark when the underlying scientific question implies a different magnitude is a recurring source of mis-powered studies.
 - Required sample size grows roughly linearly with degrees of freedom at fixed $w$; spreading effects across more cells (e.g., 5×5 vs 2×2) reduces the per-cell signal and inflates the sample-size requirement.
@@ -51,31 +53,28 @@ A reporting sentence: "To detect a deviation from equal proportions across four 
 - Chi-squared power calculations are approximate (the non-central chi-squared assumes large samples); simulation-based power is safer for complex designs, sparse-data scenarios, or when the test statistic deviates from the standard Pearson form.
 - For one-way exact-binomial tests of a single proportion, use specialised tools like `pwr.p.test()` or `binom::power.binom()` rather than the chi-squared approximation; the exact methods are more accurate at small samples.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-05-power-power-chi-squared-r-packages-used}
 
 `pwr::pwr.chisq.test()` for the canonical Cohen's $w$ chi-squared power calculation; `WebPower::wp.chisq()` for an alternative interface; `MESS::power_prop_test()` for two-proportion specific power; `binom` for exact-binomial sample-size tools; `Mediana` for trial-design simulation including chi-squared-test power across more complex designs.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-chi-squared-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-chi-squared-assumptions) and
+[practical tips](#sec-chapters-05-power-power-chi-squared-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-chi-squared-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Unbiasedness, Consistency, Efficiency {#sec-chapters-01-foundations-unbiasedness-consistency-efficiency}
+
+### Introduction {#sec-chapters-01-foundations-unbiasedness-consistency-efficiency-introduction}
 
 When multiple estimators are available for the same parameter, we need criteria to choose among them. Three classical criteria -- unbiasedness, consistency, and efficiency -- cover the most important properties: whether the estimator is correct on average (unbiasedness), whether it approaches the truth as more data arrive (consistency), and whether it uses the data as effectively as possible (efficiency).
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-unbiasedness-consistency-efficiency-prerequisites}
 
 The reader should be comfortable with the notions of expectation, variance, and convergence in probability.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-unbiasedness-consistency-efficiency-theory}
 
 **Unbiasedness.** An estimator $\hat{\theta}$ is unbiased for $\theta$ if $E[\hat{\theta}] = \theta$ for every value of $\theta$ in the parameter space. Examples: the sample mean is unbiased for the population mean; the sample variance with divisor $n - 1$ is unbiased for $\sigma^2$; the plug-in variance with divisor $n$ is biased.
 
@@ -24,11 +26,11 @@ where $I(\theta)$ is the Fisher information for $\theta$. An estimator that atta
 
 These three properties can be in tension. A biased estimator with tiny variance can have lower MSE than an unbiased estimator with large variance; a consistent estimator may converge slowly or may not exist in closed form.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-unbiasedness-consistency-efficiency-assumptions}
 
 These properties are defined within a model. Change the model, and an estimator that was unbiased, consistent, and efficient for one parameter may be none of the three for another.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-unbiasedness-consistency-efficiency-r-implementation}
 
 ```r
 library(ggplot2)
@@ -51,7 +53,7 @@ res
 
 We compare the sample mean and the sample median as estimators of the population mean $\mu$ (under a symmetric normal, so both target the same quantity). The mean is efficient; the median is less efficient but is also consistent.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-unbiasedness-consistency-efficiency-output-results}
 
 ```
      n    est         bias         var
@@ -67,11 +69,11 @@ We compare the sample mean and the sample median as estimators of the population
 
 Both estimators have bias near zero; variance shrinks at rate $1/n$ (the mean hits $\sigma^2/n = 9/n$; the median is higher by the factor $\pi/2 \approx 1.57$). The mean is thus more efficient by roughly 1.57.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-unbiasedness-consistency-efficiency-interpretation}
 
 For normally distributed data, the sample mean is both unbiased and efficient; choosing it over the median costs nothing and gains precision. For heavy-tailed data or data with outliers, the median is more robust, and the efficiency gap can reverse in the opposite direction. These are trade-offs that the three criteria make explicit.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-unbiasedness-consistency-efficiency-practical-tips}
 
 - Consistency is usually the bare minimum requirement; without it, more data does not help.
 - Unbiasedness is a mathematical convenience that can be sacrificed for a smaller variance (lower MSE).
@@ -81,27 +83,24 @@ For normally distributed data, the sample mean is both unbiased and efficient; c
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-unbiasedness-consistency-efficiency-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-unbiasedness-consistency-efficiency-assumptions) and
+[practical tips](#sec-chapters-01-foundations-unbiasedness-consistency-efficiency-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-unbiasedness-consistency-efficiency-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

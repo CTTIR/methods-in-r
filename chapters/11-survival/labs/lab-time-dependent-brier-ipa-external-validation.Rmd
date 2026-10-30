@@ -1,9 +1,11 @@
+## Week 3, Session 5 — Time-dependent Brier, IPA, external validation {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation}
+
 <div class="callout callout-note">
 **Testing labs** use the main template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-learning-objectives}
 
 - Compute a time-dependent Brier score and the Index of Prediction
   Accuracy (IPA).
@@ -12,11 +14,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Describe why a model can have a high internal AUC and a bad
   external IPA.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-prerequisites}
 
 Survival ML; calibration.
 
-## Background
+### Background {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-background}
 
 Validation is the point at which a prediction model either earns its
 keep or does not. Internal validation — CV or the bootstrap on the
@@ -38,7 +40,7 @@ clinical utility — on both internal and external data, and to disclose
 the shift between them. A reader who only sees AUC on internal data
 has no basis for deploying the model.
 
-## Setup
+### Setup {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-setup}
 
 ```r
 library(tidyverse)
@@ -48,15 +50,16 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-1-hypothesis}
 
 A Cox model fit on a development cohort retains its calibration and
 discrimination on an external cohort with shifted covariate
 distribution.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-2-visualise}
 
 ```r
+make_cohort <- function(n, mu_x = 0, beta = 0.6) {
   x <- rnorm(n, mu_x)
   lp <- beta * x
   t <- rexp(n, rate = exp(lp - 1))
@@ -73,16 +76,17 @@ bind_rows(dev |> mutate(cohort = "dev"),
   geom_histogram(bins = 30, alpha = 0.7, position = "identity")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-3-assumptions}
 
 Independent right censoring; Cox proportional hazards in the
 development cohort; no time-varying covariates.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-4-conduct}
 
 Fit on dev; predict survival at a fixed horizon on both cohorts.
 
 ```r
+fit <- coxph(Surv(time, event) ~ x, data = dev)
 horizon <- 3
 
 predict_surv <- function(fit, newdata, t) {
@@ -118,6 +122,7 @@ tibble(cohort = c("dev", "ext"),
 A calibration plot at the horizon.
 
 ```r
+mk_cal <- function(p, y, lab) {
   tibble(p = p, y = y, cohort = lab) |>
     mutate(bin = cut(p, quantile(p, seq(0, 1, by = 0.1)),
                      include.lowest = TRUE)) |>
@@ -133,7 +138,7 @@ bind_rows(mk_cal(1 - s_dev, obs_dev, "dev"),
        y = "observed event proportion")
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-5-concluding-statement}
 
 > On a simulated external cohort with shifted covariate distribution,
 > a Cox model fit on the development cohort retained discrimination
@@ -147,7 +152,7 @@ first in calibration. Reporting Brier/IPA alongside AUC catches this
 failure mode.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-common-pitfalls}
 
 - Reporting AUC as the only discrimination metric on an external
   cohort.
@@ -156,22 +161,23 @@ failure mode.
 - Recalibrating on external data and then reporting the resulting
   performance as external validation.
 
-## Further reading
+### Further reading {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-further-reading}
 
 - Kattan MW, Gerds TA (2018), *The index of prediction accuracy: an
   intuitive measure useful for evaluating risk prediction models*.
 - Steyerberg EW, *Clinical Prediction Models*, ch. 15–17.
 
-## Session info
+### Session info {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-11-survival)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

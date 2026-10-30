@@ -1,12 +1,14 @@
-## Introduction
+## Class Weights for Imbalanced Data {#sec-chapters-13-ml-class-weights-imbalanced}
+
+### Introduction {#sec-chapters-13-ml-class-weights-imbalanced-introduction}
 
 Class weighting addresses imbalanced classification by scaling each observation's loss contribution inversely to its class frequency, giving the minority class more influence on the gradient or split decision. It achieves similar effects to SMOTE-style oversampling but without synthesising new data: simpler, deterministic, easier to reproduce, and natively supported by most classifiers (logistic regression, random forest, XGBoost, neural networks). For most imbalanced problems, class weights are the right starting point before reaching for resampling.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-class-weights-imbalanced-prerequisites}
 
 A working understanding of classification loss functions, the accuracy paradox in imbalanced classification, and basic familiarity with resampling alternatives (oversampling, undersampling, SMOTE).
 
-## Theory
+### Theory {#sec-chapters-13-ml-class-weights-imbalanced-theory}
 
 The weighted loss is
 
@@ -16,11 +18,11 @@ where $w_k$ is the weight for class $k$. Typical balanced weights use the invers
 
 In tree-based methods, class weights enter the split-impurity computation; in gradient-boosted methods, they enter the gradient and Hessian; in neural networks, they multiply the per-example loss before summing.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-class-weights-imbalanced-assumptions}
 
 The problem is genuinely a classification task with imbalanced classes; the imbalance reflects the population (not just an artefact of training-data collection that will not transfer to deployment).
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-class-weights-imbalanced-r-implementation}
 
 ```r
 library(ranger)
@@ -51,15 +53,15 @@ table(truth = test$y, unweighted = pred_unw)
 table(truth = test$y, weighted   = pred_w)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-class-weights-imbalanced-output-results}
 
 Two confusion matrices: the unweighted random forest predicts almost exclusively the majority class (the rational behaviour given 95:5 imbalance and accuracy-maximising training); the weighted RF recovers more minority-class examples at the cost of a few additional false positives.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-class-weights-imbalanced-interpretation}
 
 A reporting sentence: "Inverse-frequency class weighting on the 95:5 imbalanced dataset improved minority-class recall from 0.12 to 0.56 with a modest decrease in majority precision (0.97 to 0.93); the weighted classifier is more useful for screening applications where missing minority cases is more costly than false positives." Always state the weighting scheme and the trade-off in terms of the application's cost structure.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-class-weights-imbalanced-practical-tips}
 
 - Always try class weights before SMOTE-style oversampling; they are deterministic, faster, and produce reproducible results.
 - Tune weights by cross-validation; inverse-frequency is a sensible default but not necessarily optimal for the cost structure of every application.
@@ -68,37 +70,34 @@ A reporting sentence: "Inverse-frequency class weighting on the 95:5 imbalanced 
 - For severely imbalanced problems (below 1 %), combine class weights with threshold tuning on a validation set; the default 0.5 cutoff is rarely optimal under heavy imbalance.
 - For problems where the cost of errors is asymmetric and known, build a cost-sensitive classifier directly (`mlr3::msr("classif.costs")`) rather than tuning weights heuristically.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-class-weights-imbalanced-r-packages-used}
 
 `ranger` for random forest with native class weights; `glmnet` for penalised logistic regression with `weights = ...`; `xgboost::xgboost(scale_pos_weight = ...)` for gradient-boosted trees; `themis` for SMOTE-style alternatives within tidymodels; `parsnip::set_args(class_weights = ...)` for class-weight support across multiple engines.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-class-weights-imbalanced-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-class-weights-imbalanced-assumptions) and
+[practical tips](#sec-chapters-13-ml-class-weights-imbalanced-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-class-weights-imbalanced-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

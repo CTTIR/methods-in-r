@@ -1,20 +1,22 @@
-## Introduction
+## Minimum Detectable Effect {#sec-chapters-05-power-minimum-detectable-effect}
+
+### Introduction {#sec-chapters-05-power-minimum-detectable-effect-introduction}
 
 When the sample size for a study is constrained by budget, time, or availability of participants, the natural planning question is no longer "what $n$ achieves target power?" but instead "given my fixed $n$, what is the smallest effect I can reasonably hope to detect?" The minimum detectable effect (MDE) reverses the usual sample-size calculation, solving for the effect size at which power equals the target — typically 80 % — given the fixed $n$, $\alpha$, and analysis. Reporting an MDE is increasingly required for grant applications with constrained sample sizes, for pilot and exploratory studies, and for honest power-analysis reporting where a study cannot afford to enrol enough participants for the original target.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-minimum-detectable-effect-prerequisites}
 
 A working understanding of statistical power, the relationship between $\alpha$, effect size, sample size, and power, and the standard test-specific effect-size measures (Cohen's $d$, $r$, $f^2$, $w$).
 
-## Theory
+### Theory {#sec-chapters-05-power-minimum-detectable-effect-theory}
 
 Power, effect size, significance level, and sample size are linked by the non-central distribution of the test statistic, and solving for any one of these quantities given the other three is the standard inversion in any power-analysis framework. The MDE is defined as the effect size at which the planned test achieves a specified power (usually 0.80) under the planned $\alpha$ and the available sample size. Plotted as a curve of MDE vs. $n$, this gives a clear picture of the design's sensitivity across resource scenarios.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-minimum-detectable-effect-assumptions}
 
 The same assumptions as the underlying test apply (Normality for $t$-tests, bivariate Normality for correlation, large expected counts for chi-squared, etc.); the MDE is a property of the planned analysis under the design, not a property of the observed data after the fact.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-minimum-detectable-effect-r-implementation}
 
 ```r
 library(pwr)
@@ -33,15 +35,15 @@ plot(n_grid, d_grid, type = "l", lwd = 2, col = "#2A9D8F",
      main = "Minimum detectable effect at power = 0.80")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-minimum-detectable-effect-output-results}
 
 For a two-sample $t$-test with $n = 40$ per group, the MDE at 80 % power is $d = 0.64$ (medium-to-large); doubling to $n = 200$ per group reduces the MDE to $d = 0.28$ (small-to-medium). For a correlation test with $n = 100$, the MDE is $r = 0.28$. Plotting the MDE-vs-$n$ curve shows the diminishing-returns relationship that planners should understand when negotiating sample-size constraints.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-minimum-detectable-effect-interpretation}
 
 A reporting sentence: "With the available sample of 40 participants per arm, the minimum detectable standardised effect (Cohen's $d$) at 80 % power and two-sided $\alpha = 0.05$ is 0.64 — a medium-to-large effect by Cohen's conventions. Effects smaller than this magnitude would likely remain undetected. The smallest clinically meaningful effect for the primary outcome is $d = 0.40$, so the planned study is underpowered for the clinical target; we report the MDE explicitly to clarify the inferential limits and propose a larger follow-up trial." Always discuss MDE relative to the clinically meaningful effect.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-minimum-detectable-effect-practical-tips}
 
 - Report the minimum detectable effect explicitly when sample size is constrained; this prevents inflated claims of null effects ("no significant difference") when the study was simply too small to detect a clinically meaningful effect, a recurring problem in the literature.
 - Couple MDE reporting with explicit discussion of whether the MDE is clinically or scientifically meaningful; an MDE that exceeds the smallest meaningful effect tells readers the study could not have detected the truth even if it were present.
@@ -50,31 +52,28 @@ A reporting sentence: "With the available sample of 40 participants per arm, the
 - Simulation-based MDE estimation is recommended for complex designs (mixed-effects models, longitudinal data with informative dropout, generalised linear models with heavy-tailed outcomes) where the standard non-central-distribution formulas do not apply directly.
 - Pre-register the MDE in the protocol or analysis plan; reporting MDE only after the fact when results turn out non-significant is methodologically suspect, while a pre-registered MDE protects against that interpretation.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-05-power-minimum-detectable-effect-r-packages-used}
 
 `pwr` family of functions with the effect-size argument set to `NULL` to solve for MDE; `pwrss` for extended MDE calculations across many test types; `WebPower` for an alternative interface; `simr::powerSim()` for simulation-based MDE in mixed-effects designs; `Superpower` for ANOVA-based MDE simulations.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-minimum-detectable-effect-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-minimum-detectable-effect-assumptions) and
+[practical tips](#sec-chapters-05-power-minimum-detectable-effect-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-minimum-detectable-effect-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

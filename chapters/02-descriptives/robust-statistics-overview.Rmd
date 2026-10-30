@@ -1,12 +1,14 @@
-## Introduction
+## Robust Statistics: An Overview {#sec-chapters-02-descriptives-robust-statistics-overview}
+
+### Introduction {#sec-chapters-02-descriptives-robust-statistics-overview-introduction}
 
 A robust statistic is one that remains useful when the data deviate from the idealised model -- heavy tails, outliers, skewed contamination. Classical estimators like the mean and SD are efficient under normality but break down under even modest contamination. Robust alternatives sacrifice a little efficiency for dramatic stability, and are the default in many applied fields where data quality cannot be guaranteed.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-robust-statistics-overview-prerequisites}
 
 The reader should know the mean, median, SD, and MAD. Familiarity with outlier concepts helps.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-robust-statistics-overview-theory}
 
 Two key concepts from robustness theory:
 
@@ -27,11 +29,11 @@ Robust estimators aim for high breakdown point and bounded influence function, t
 | SD | Qn, Sn | 0.5 | ~82% |
 | OLS | Robust regression (`rlm`, `lmrob`) | 0 to 0.5 | 95% |
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-robust-statistics-overview-assumptions}
 
 Robustness is an explicit relaxation of distributional assumptions; it asks how the estimator behaves under deviation, not whether deviation is present.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-robust-statistics-overview-r-implementation}
 
 ```r
 library(robustbase)
@@ -60,7 +62,7 @@ coef(rlm(y ~ x))          # M-estimator
 coef(lmrob(y ~ x))        # MM-estimator with high breakdown
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-robust-statistics-overview-output-results}
 
 ```
        mean   sd   median  mad    Qn    Sn
@@ -71,11 +73,11 @@ Classical mean is pulled to 57.8 by the five extreme values; every robust estima
 
 For the regression: OLS slope is 1.23 (pulled by outliers); `rlm` gives 1.47 (close to truth of 1.5); `lmrob` gives 1.48.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-robust-statistics-overview-interpretation}
 
 Use robust statistics as the default in biomedical work where outliers or heavy tails are typical. A robust summary plus a classical one can be reported side by side; divergence between them signals contamination that warrants investigation.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-robust-statistics-overview-practical-tips}
 
 - MM-estimators (`lmrob`) combine high breakdown with high efficiency and are the modern robust-regression default.
 - Robust methods are not a license to ignore outliers; always investigate before reporting.
@@ -85,24 +87,21 @@ Use robust statistics as the default in biomedical work where outliers or heavy 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-robust-statistics-overview-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-robust-statistics-overview-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-robust-statistics-overview-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-robust-statistics-overview-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

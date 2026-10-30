@@ -1,12 +1,14 @@
-## Introduction
+## Desirability Functions {#sec-chapters-16-design-desirability-function}
+
+### Introduction {#sec-chapters-16-design-desirability-function-introduction}
 
 Many experiments produce more than one response that must be optimised jointly: maximise yield while minimising impurity, hit a target dissolution time while keeping particle size within spec, maximise tensile strength while minimising weight. Desirability functions, introduced by Harrington in 1965 and refined by Derringer and Suich in 1980, are the standard tool for combining multiple responses into a single overall optimisation criterion. Each response is converted to a $[0, 1]$ desirability scale via a transformation specific to that response's goal (maximise, minimise, or hit a target), and the individual desirabilities are combined into an overall desirability via the geometric mean. The compound score is then maximised over the factor space, often using the response surfaces fit during the second-order RSM phase.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-desirability-function-prerequisites}
 
 A working understanding of response-surface methodology, multi-objective optimisation concepts, and the difference between geometric and arithmetic aggregation of normalised scores.
 
-## Theory
+### Theory {#sec-chapters-16-design-desirability-function-theory}
 
 For each response $y_i$, define a desirability function $d_i(y_i) \in [0, 1]$ — larger values are more desirable, irrespective of which direction is "good" on the original scale. The standard forms (Derringer–Suich) are:
 
@@ -16,11 +18,11 @@ For each response $y_i$, define a desirability function $d_i(y_i) \in [0, 1]$ �
 
 The overall desirability is $D = \left(\prod_i d_i\right)^{1/n}$, the geometric mean. Crucially, if any single $d_i = 0$ then $D = 0$ — the geometric mean is "non-compensatory", meaning no amount of excellence on one response can rescue an unacceptable value on another.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-desirability-function-assumptions}
 
 Each $d_i$ is appropriately parameterised with realistic limits and target values, the geometric-mean aggregation is acceptable to the decision-maker (alternative weighted-power means exist for differential weighting), and the underlying response surfaces are reasonably well estimated.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-desirability-function-r-implementation}
 
 ```r
 library(desirability)
@@ -40,15 +42,15 @@ df$d_overall <- predict(dOverall, with(df,
 head(df[order(-df$d_overall), ], 5)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-desirability-function-output-results}
 
 The `desirability` package returns per-response and overall desirability for each observation or grid point. Combined with a fitted response-surface model, the workflow is to predict each response over a dense grid of factor settings, compute the overall desirability at each grid point, and identify the factor combination that maximises $D$. Reporting the achieved desirability for each individual response alongside the overall $D$ communicates both the compromise and its quality.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-desirability-function-interpretation}
 
 A reporting sentence: "The best factor combination achieved yield 82 (90 % of the maximum desirability range) and cost 13 (85 % of the minimum desirability range), with overall $D = 0.87$. Pure yield optimisation would have driven yield to 88 but at cost 19 ($D = 0.42$); pure cost optimisation would have minimised cost to 11 but at yield 65 ($D = 0.31$). The desirability-balanced optimum is therefore meaningfully different from either single-objective optimum and is recommended for production." Always report the per-response desirabilities alongside $D$.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-desirability-function-practical-tips}
 
 - Use the geometric mean rather than the arithmetic mean to combine individual desirabilities; the geometric mean penalises low-desirability responses heavily and prevents one response from dominating the aggregate, while the arithmetic mean allows compensation that the decision-maker may not actually accept.
 - Set realistic lower and upper limits for each desirability function; unrealistic limits flatten the function (everything inside is fully desirable, everything outside is zero) and the optimisation becomes uninformative.
@@ -57,42 +59,39 @@ A reporting sentence: "The best factor combination achieved yield 82 (90 % of th
 - Desirability functions are a heuristic for combining responses; for high-stakes decisions, complement them with formal multi-objective Pareto analysis to expose the trade-off curve and let the decision-maker choose explicitly.
 - Document the desirability-function specifications (limits, targets, exponents) in the protocol; reviewers and downstream users cannot reproduce the optimisation without them, and the choices materially affect the recommended factor settings.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-desirability-function-r-packages-used}
 
 `desirability` for canonical Derringer–Suich functions (`dMax`, `dMin`, `dTarget`) and combined-desirability prediction (`dOverall`); `qualityTools::desirability()` for an alternative interface integrated with RSM workflow; `mco` for formal multi-objective Pareto-front analysis as a complement to desirability heuristics; `rsm` for fitting the response surfaces that feed into the desirability optimisation.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-desirability-function-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-desirability-function-assumptions) and
+[practical tips](#sec-chapters-16-design-desirability-function-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-desirability-function-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

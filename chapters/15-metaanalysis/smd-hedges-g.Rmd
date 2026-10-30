@@ -1,12 +1,14 @@
-## Introduction
+## Standardised Mean Difference: Hedges' g {#sec-chapters-15-metaanalysis-smd-hedges-g}
+
+### Introduction {#sec-chapters-15-metaanalysis-smd-hedges-g-introduction}
 
 Hedges' $g$ is the small-sample-corrected standardised mean difference (SMD), the preferred effect-size metric for meta-analysis of continuous outcomes. Cohen's $d$ — the unstandardised SMD — over-estimates the population effect in small samples; Hedges' correction factor $J$ de-biases it. The two are nearly identical for studies with combined sample size above 20 or so, but $g$ should be used routinely whenever any included study is small.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-15-metaanalysis-smd-hedges-g-prerequisites}
 
 A working understanding of standardised effect sizes (Cohen's $d$), pooled standard deviation, and the bias of $d$ in small samples.
 
-## Theory
+### Theory {#sec-chapters-15-metaanalysis-smd-hedges-g-theory}
 
 Cohen's $d$ is
 
@@ -16,11 +18,11 @@ Hedges' correction is $J = 1 - 3 / (4 \, \mathrm{df} - 1)$ (with $\mathrm{df} = 
 
 $$\mathrm{Var}(g) = J^2 \!\left[\frac{n_1 + n_2}{n_1 n_2} + \frac{d^2}{2(n_1 + n_2)}\right].$$
 
-## Assumptions
+### Assumptions {#sec-chapters-15-metaanalysis-smd-hedges-g-assumptions}
 
 Outcomes are approximately Normal within groups; group variances are approximately equal (use `SMDH` for unequal-variance variants); independent observations.
 
-## R Implementation
+### R Implementation {#sec-chapters-15-metaanalysis-smd-hedges-g-r-implementation}
 
 ```r
 library(metafor)
@@ -43,15 +45,15 @@ J <- 1 - 3 / (4 * (2 * n - 2) - 1)
 c(d = d, g = d * J)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-15-metaanalysis-smd-hedges-g-output-results}
 
 `escalc(measure = "SMD")` returns Hedges' $g$ (in the `yi` column) and its variance (`vi`) per study, ready for inverse-variance meta-analysis. The manual calculation confirms the $J$-correction; for $n_1 = n_2 = 10$, $J \approx 0.92$, reducing $d \approx 1.04$ to $g \approx 0.96$.
 
-## Interpretation
+### Interpretation {#sec-chapters-15-metaanalysis-smd-hedges-g-interpretation}
 
 A reporting sentence: "Hedges' $g$ for the simulated small study was 0.92 (95 % CI 0.01 to 1.83), corresponding to a large effect by Cohen's benchmarks ($d = 0.5$ medium, $d = 0.8$ large); the small-sample correction reduced the raw SMD from 1.04 to 0.92, reflecting the upward bias inherent in $d$ for small studies." Always state the use of $g$ vs $d$, especially when sample sizes are small.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-15-metaanalysis-smd-hedges-g-practical-tips}
 
 - Always use Hedges' $g$ rather than Cohen's $d$ for meta-analysis when any included study has $n_1 + n_2 < 20$; the bias correction is meaningful in that range.
 - `metafor::escalc(measure = "SMD")` computes $g$ and its variance in a single call; this is the standard workflow.
@@ -60,32 +62,29 @@ A reporting sentence: "Hedges' $g$ for the simulated small study was 0.92 (95 % 
 - For pre-post or within-subject designs, use SMCR or SMCC variants in `metafor::escalc()`; they account for the within-subject correlation that ordinary SMD ignores.
 - For binary outcomes, switch to log-odds ratio or risk ratio; SMD is for continuous outcomes only.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-15-metaanalysis-smd-hedges-g-r-packages-used}
 
 `metafor::escalc()` and `rma()` for the canonical effect-size and meta-analysis workflow; `meta::metacont()` for an alternative interface with continuous-outcome conventions; `metan` for a tidymodels-flavoured wrapper; `dmetar` for additional meta-analysis tools and visualisations.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-15-metaanalysis-smd-hedges-g-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-15-metaanalysis-smd-hedges-g-assumptions) and
+[practical tips](#sec-chapters-15-metaanalysis-smd-hedges-g-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-15-metaanalysis-smd-hedges-g-see-also-labs-in-this-chapter}
 
-- [Systematic reviews and PRISMA](labs/lab-systematic-reviews-and-prisma.Rmd)
-- [Meta-analysis basics](labs/lab-meta-analysis-basics.Rmd)
-- [Network meta-analysis](labs/lab-network-meta-analysis.Rmd)
+- [Systematic reviews and PRISMA](#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma)
+- [Meta-analysis basics](#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics)
+- [Network meta-analysis](#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis)
 
 <!-- END see-also -->

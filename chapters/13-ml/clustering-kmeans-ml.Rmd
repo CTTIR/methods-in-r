@@ -1,12 +1,14 @@
-## Introduction
+## k-Means as an ML Tool {#sec-chapters-13-ml-clustering-kmeans-ml}
+
+### Introduction {#sec-chapters-13-ml-clustering-kmeans-ml-introduction}
 
 $k$-means is usually taught as a stand-alone unsupervised clustering method, but in ML pipelines it is also a versatile feature-engineering primitive. Pre-clustering observations and using cluster membership (or distance-to-centroid) as new features can substantially improve downstream supervised models, especially when the underlying signal is non-linear and a clustering captures local structure that linear models miss. $k$-means is also the workhorse for vector quantisation, image segmentation, and customer-segmentation tasks.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-clustering-kmeans-ml-prerequisites}
 
 A working understanding of Euclidean distances, centroids, the within-cluster sum-of-squares objective, and the bias-variance trade-off in feature engineering.
 
-## Theory
+### Theory {#sec-chapters-13-ml-clustering-kmeans-ml-theory}
 
 $k$-means minimises the within-cluster sum of squares (WCSS):
 
@@ -18,11 +20,11 @@ For feature engineering, two derived quantities from a $k$-means fit are useful:
 - **Cluster membership** (one-hot or label): a categorical feature indicating which cluster each observation belongs to.
 - **Distance to each centroid**: $K$ continuous features that often carry more predictive information than the cluster label alone.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-clustering-kmeans-ml-assumptions}
 
 Clusters are roughly spherical and equal-sized (the implicit Voronoi-cell geometry); features are scaled to comparable units; the chosen $K$ matches a meaningful structure in the data.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-clustering-kmeans-ml-r-implementation}
 
 ```r
 set.seed(2026)
@@ -45,15 +47,15 @@ head(cbind(df, dist_features))
 km$tot.withinss
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-clustering-kmeans-ml-output-results}
 
 The augmented data frame contains cluster membership plus four distance-to-centroid features. The model's WCSS quantifies clustering tightness; lower values indicate more compact clusters.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-clustering-kmeans-ml-interpretation}
 
 A reporting sentence: "$k$-means with $K = 4$ on the standardised features reduced WCSS from 900 (one cluster, equivalent to total variance) to 620 (four clusters); using cluster membership and distance-to-centroid as additional features in the downstream XGBoost classifier improved cross-validated RMSE by 3 %." Always state $K$, the scaling, and the number of random starts.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-clustering-kmeans-ml-practical-tips}
 
 - Scale features before $k$-means; unscaled features with different units dominate the Euclidean distance and bias the partition.
 - Use `nstart = 20` or higher to escape local minima; $k$-means is non-convex and a single start often produces sub-optimal solutions.
@@ -62,37 +64,34 @@ A reporting sentence: "$k$-means with $K = 4$ on the standardised features reduc
 - For high-dimensional data, reduce dimensionality with PCA before $k$-means; Euclidean distances concentrate and clusters lose meaning in high dimensions.
 - For categorical or mixed data, $k$-means does not apply directly; use $k$-modes or PAM with Gower distance instead.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-clustering-kmeans-ml-r-packages-used}
 
 Base R `kmeans()` for the canonical implementation; `factoextra::fviz_cluster()` for ggplot-style cluster visualisation; `klaR::kmodes()` for categorical alternatives; `recipes::step_kmeans_features()` (via `embed`) for tidymodels-flavoured pipeline integration; `cluster::clara()` for $k$-medoids alternatives that scale to large datasets.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-clustering-kmeans-ml-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-clustering-kmeans-ml-assumptions) and
+[practical tips](#sec-chapters-13-ml-clustering-kmeans-ml-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-clustering-kmeans-ml-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

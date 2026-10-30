@@ -1,12 +1,14 @@
-## Introduction
+## Repeated-Measures Designs {#sec-chapters-16-design-repeated-measures-design}
+
+### Introduction {#sec-chapters-16-design-repeated-measures-design-introduction}
 
 Repeated-measures designs measure the same experimental unit at multiple time points or under multiple conditions. They gain statistical power relative to between-subject designs by removing the between-subject component of variance from the within-subject contrasts of interest, but they introduce a within-subject correlation structure that must be modelled correctly. The classical repeated-measures ANOVA requires sphericity and is restricted to balanced complete designs; the modern alternative is mixed-effects modelling with subject as a random effect, which accommodates unbalanced data, missing time points, and richer covariance structures while remaining valid under broader assumptions.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-repeated-measures-design-prerequisites}
 
 A working understanding of one-way and factorial ANOVA, the concept of correlated data, and the essentials of mixed-effects modelling with random intercepts and (optionally) random slopes.
 
-## Theory
+### Theory {#sec-chapters-16-design-repeated-measures-design-theory}
 
 The standard mixed-effects model for repeated measures is
 
@@ -20,11 +22,11 @@ with within-subject factor effect $\tau_j$, subject random intercept $s_i$, and 
 
 For classical repeated-measures ANOVA, sphericity is the relevant assumption, and Greenhouse–Geisser or Huynh–Feldt corrections are applied when Mauchly's test detects a violation.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-repeated-measures-design-assumptions}
 
 The within-subject correlation structure is correctly specified, residuals are approximately Normal, and missing data are missing at random (MAR) — a standard assumption that mixed-effects models can accommodate without listwise deletion.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-repeated-measures-design-r-implementation}
 
 ```r
 library(lme4); library(lmerTest)
@@ -44,15 +46,15 @@ fit_rs <- lmer(y ~ time + (time | subject), data = df)
 summary(fit_rs)$coefficients
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-repeated-measures-design-output-results}
 
 `lmer()` with a random intercept gives the within-subject contrast for time, and `anova()` from `lmerTest` provides $F$-tests with Satterthwaite-adjusted denominator df. Adding a random slope (`(time | subject)`) lets the within-subject trend itself vary across subjects, which is appropriate when there is reason to believe individuals differ in their response trajectories.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-repeated-measures-design-interpretation}
 
 A reporting sentence: "Repeated-measures analysis with subject as a random intercept showed a significant time effect ($F_{3, 87} = 18.2$, $p < 0.001$). The subject random effect absorbed substantial between-subject variance ($\sigma_s^2 = 1.04$, $\sigma^2 = 0.27$, intra-class correlation 0.79), markedly improving precision relative to a between-subject analysis. A random-slope model that allowed subject-specific time trends did not improve fit ($\Delta \mathrm{AIC} = +1.4$), so the random-intercept specification is reported as primary." Always report variance components.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-repeated-measures-design-practical-tips}
 
 - Use mixed-effects models (`lmer` from `lme4`, `lme` from `nlme`, or generalised-mixed via `glmmTMB`) rather than classical repeated-measures ANOVA whenever possible; they handle unbalanced data, missing time points, irregular timing, and richer covariance structures naturally.
 - For irregular or continuous timing, specify time as a continuous covariate with random slopes; this is far more efficient than treating each time point as a separate factor level when the response is genuinely a smooth function of time.
@@ -61,42 +63,39 @@ A reporting sentence: "Repeated-measures analysis with subject as a random inter
 - Report both the fixed-effect estimates (the substantive scientific output) and the random-effect variance components (which describe how much within-subject correlation is present); the latter is essential for judging whether the design is well chosen.
 - For binary or count outcomes measured repeatedly, use generalised mixed-effects models (`glmer`, `glmmTMB`) or generalised estimating equations (GEE via the `geepack` package) — the latter trade efficiency for robust marginal inference.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-repeated-measures-design-r-packages-used}
 
 `lme4::lmer()` and `lmerTest` for mixed-effects analysis with denominator-df adjustment; `nlme::lme()` for richer covariance-structure specification (AR1, unstructured) on the residuals; `glmmTMB` for generalised and complex-covariance mixed models; `geepack::geeglm()` for population-averaged GEE analyses; `afex::aov_car()` for classical repeated-measures ANOVA with built-in sphericity correction.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-repeated-measures-design-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-repeated-measures-design-assumptions) and
+[practical tips](#sec-chapters-16-design-repeated-measures-design-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-repeated-measures-design-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

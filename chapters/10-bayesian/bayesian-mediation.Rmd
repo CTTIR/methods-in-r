@@ -1,12 +1,14 @@
-## Introduction
+## Bayesian Mediation Analysis {#sec-chapters-10-bayesian-bayesian-mediation}
+
+### Introduction {#sec-chapters-10-bayesian-bayesian-mediation-introduction}
 
 Mediation analysis decomposes a treatment effect into the part that flows through an intermediate variable (the mediator) and the part that does not. Frequentist approaches build confidence intervals around the product $a_1 b_2$ via Sobel tests or non-parametric bootstrapping; both have to compensate for the fact that the product of two normally distributed estimates is itself non-normal. A Bayesian formulation sidesteps the issue: the joint posterior of $(a_1, b_2)$ is sampled directly, the indirect effect is computed draw-by-draw as the product, and any quantile of the resulting posterior is a valid credible interval without distributional assumptions.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-bayesian-mediation-prerequisites}
 
 A working understanding of multiple regression, the concept of mediation in causal inference, and Bayesian regression. Familiarity with multivariate `brms` formulas accelerates the implementation step.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-bayesian-mediation-theory}
 
 The classical Baron-Kenny system has two regressions
 
@@ -14,11 +16,11 @@ $$M = a_0 + a_1 X + \varepsilon_M, \qquad Y = b_0 + b_1 X + b_2 M + \varepsilon_
 
 with errors that are typically taken Normal. The direct effect of $X$ on $Y$ is $b_1$, the indirect effect through $M$ is $a_1 b_2$, and the total effect is $b_1 + a_1 b_2$. In the Bayesian formulation, the two equations are fitted jointly so that the posterior carries the joint uncertainty in $(a_1, b_2)$. The indirect-effect posterior is the empirical distribution of $\{a_1^{(s)} b_2^{(s)}\}_{s=1}^S$; the credible interval comes from its quantiles. No symmetry assumption is needed and the posterior captures any skew induced by the product.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-bayesian-mediation-assumptions}
 
 Linearity of both equations, Normal residuals (or whatever family you specify), no unmeasured confounders of the $M \to Y$ relation, and correctly ordered causal direction $X \to M \to Y$. Mediation analysis is a causal claim; the Bayesian machinery does not make weak design choices stronger.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-bayesian-mediation-r-implementation}
 
 ```r
 library(brms)
@@ -42,15 +44,15 @@ indirect <- post$b_M_X * post$b_Y_M
 quantile(indirect, c(0.025, 0.5, 0.975))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-bayesian-mediation-output-results}
 
 A multivariate `brms` fit jointly estimates the two regressions and stores draws for both. Computing the elementwise product of posterior draws of $a_1$ and $b_2$ produces the indirect-effect posterior; quantiles of that posterior give the credible interval directly. The total effect, the direct effect, and the proportion mediated all come from the same draw matrix without re-fitting.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-bayesian-mediation-interpretation}
 
 A reporting sentence: "Bayesian mediation estimated the indirect effect of $X$ on $Y$ through $M$ at 0.30 (95 % credible interval 0.18 to 0.45) and the direct effect at 0.28 (95 % CrI 0.14 to 0.42); the indirect path explained approximately 52 % of the total effect (95 % CrI 35 % to 68 %)." Always report both direct and indirect effects with credible intervals; reporting only the indirect product hides whether the direct path remains substantive.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-bayesian-mediation-practical-tips}
 
 - Use multivariate `brms` formulas (`bf(M ~ X) + bf(Y ~ X + M) + set_rescor(FALSE)`) so that the two regressions are fitted jointly and the joint posterior is preserved; running them separately throws away the cross-equation correlation needed for honest indirect-effect intervals.
 - Place priors on each regression's coefficients individually; weakly informative defaults ($\mathcal N(0, 2.5)$ on standardised scales) are usually appropriate.
@@ -58,31 +60,28 @@ A reporting sentence: "Bayesian mediation estimated the indirect effect of $X$ o
 - For binary or count mediators / outcomes, change the family in the corresponding `bf()` and the indirect-effect computation generalises; just use `posterior_epred()` to translate to the natural-effects scale.
 - Reporting the proportion mediated ($a_1 b_2 / (b_1 + a_1 b_2)$) requires care because the denominator can be small or change sign across draws; truncate or report the indirect and total effects separately when the proportion is unstable.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-bayesian-mediation-r-packages-used}
 
 `brms` for joint multivariate regressions and direct posterior products of coefficients, `bmlm` for purpose-built Bayesian mediation with multilevel structure, `tidybayes` for tidy posterior draws of the indirect effect, and `bayestestR` for credible intervals and ROPE summaries on the derived quantities.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-bayesian-mediation-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-bayesian-mediation-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-bayesian-mediation-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-bayesian-mediation-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

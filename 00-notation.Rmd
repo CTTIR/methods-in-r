@@ -1,10 +1,10 @@
-# Notation {-}
+# Notation {#sec-00-notation .unnumbered}
 
 This page lists the symbols, conventions, and abbreviations used
 throughout the book. Where a chapter departs from these conventions
 locally, the chapter says so explicitly.
 
-## Greek symbols {-}
+## Greek symbols {#sec-00-notation-greek-symbols .unnumbered}
 
 | Symbol            | Meaning                                                       |
 |-------------------|---------------------------------------------------------------|
@@ -18,7 +18,7 @@ locally, the chapter says so explicitly.
 | $\rho$            | Population correlation; intra-class correlation (ICC).        |
 | $\lambda$         | Rate parameter; eigenvalue (context).                         |
 
-## Latin symbols {-}
+## Latin symbols {#sec-00-notation-latin-symbols .unnumbered}
 
 | Symbol            | Meaning                                                       |
 |-------------------|---------------------------------------------------------------|
@@ -32,7 +32,7 @@ locally, the chapter says so explicitly.
 | $L$, $\ell$       | Likelihood and log-likelihood.                                |
 | $I^2$             | Heterogeneity statistic in meta-analysis.                     |
 
-## Operators and notation {-}
+## Operators and notation {#sec-00-notation-operators-and-notation .unnumbered}
 
 - $\sim$ — "is distributed as".
 - $\hat{\theta}$ — an estimator of the parameter $\theta$.
@@ -40,7 +40,7 @@ locally, the chapter says so explicitly.
 - $E[\cdot]$, $\mathrm{Var}[\cdot]$ — expectation and variance.
 - $X \mid Y$ — $X$ given $Y$ (conditional).
 
-## Abbreviations {-}
+## Abbreviations {#sec-00-notation-abbreviations .unnumbered}
 
 | Abbrev.  | Expansion                                                     |
 |----------|---------------------------------------------------------------|
@@ -68,7 +68,7 @@ locally, the chapter says so explicitly.
 | ARRIVE   | Animal Research: Reporting of In Vivo Experiments.            |
 | STARD    | Standards for Reporting of Diagnostic Accuracy.               |
 
-## Code conventions {-}
+## Code conventions {#sec-00-notation-code-conventions .unnumbered}
 
 - The base R pipe `|>` is used throughout. Files mixing `%>%` and `|>` are
   flagged in `GENERATION_LOG.md`.

@@ -16,8 +16,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-CHUNK_RE = re.compile(r"^```\{([a-zA-Z][a-zA-Z0-9_]*)[^}]*\}\s*$", re.M)
-INLINE_RE = re.compile(r"`(r|python|julia)\s+([^`]+?)`")
+CHUNK_RE = re.compile(r"^```\{([a-zA-Z][a-zA-Z0-9_]*)[^}\n]*\}[ \t]*$", re.M)
+INLINE_RE = re.compile(r"(?<!`)`(r|python|julia)[ \t]+([^`\n]+?)`(?!`)")
 
 
 def transform(text: str) -> str:

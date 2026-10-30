@@ -1,9 +1,11 @@
+## Week 1, Session 4 — Import, joins, and missingness with dplyr {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-learning-objectives}
 
 - Use `filter()`, `select()`, `mutate()`, `arrange()`, `group_by()`,
   and `summarise()` to carry out routine data management with
@@ -13,11 +15,11 @@ Goal → Approach → Execution → Check → Report.
 - Spot, quantify, and respond to missing data without letting NAs
   propagate silently into a summary.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-prerequisites}
 
 Labs 1.2 and 1.3.
 
-## Background
+### Background {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-background}
 
 The bulk of analytic time is spent moving data from the shape it
 arrived in to the shape an analysis requires. dplyr names the five
@@ -40,7 +42,7 @@ is missing, and where?* The second is *why?* Missing-completely-at-
 random, missing-at-random, and missing-not-at-random are three distinct
 problems with different consequences for the analysis.
 
-## Setup
+### Setup {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-setup}
 
 ```r
 library(tidyverse)
@@ -49,17 +51,19 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-1-goal}
 
 Reshape the `penguins` dataset with the standard dplyr verbs, join a
 derived table back on, and describe the pattern of missingness.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-2-approach}
 
 ```r
+glimpse(penguins)
 ```
 
 ```r
+# Standard five verbs.
 penguins |>
   filter(!is.na(body_mass_g)) |>
   select(species, sex, bill_length_mm, body_mass_g) |>
@@ -69,6 +73,7 @@ penguins |>
 ```
 
 ```r
+# group_by + summarise: the grammar of a Table 1 row.
 species_summary <- penguins |>
   group_by(species, sex) |>
   summarise(
@@ -80,12 +85,13 @@ species_summary <- penguins |>
 species_summary
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-3-execution}
 
 Simulate a small "islands" table with information not in `penguins`,
 and join it back.
 
 ```r
+islands <- tibble(
   island = c("Biscoe", "Dream", "Torgersen"),
   lat    = c(-65.43, -64.73, -64.77),
   researcher = c("Anna", "Ben", "Carla")
@@ -100,20 +106,23 @@ penguins_aug |>
 ```
 
 ```r
+# anti_join finds rows in penguins with no matching island row.
 penguins |>
   anti_join(islands, by = "island")
 ```
 
 ```r
+# inner_join keeps only matches on both sides.
 inner_join(penguins, islands, by = "island") |>
   nrow()
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-4-check}
 
 Quantify missingness at a glance.
 
 ```r
+missingness <- penguins |>
   summarise(across(everything(), ~ mean(is.na(.)))) |>
   pivot_longer(everything(),
                names_to = "variable",
@@ -132,13 +141,14 @@ missingness |>
 Now inject missingness to show how NAs move through a pipeline.
 
 ```r
+n <- nrow(penguins)
 inj <- penguins |>
   mutate(body_mass_g = if_else(runif(n) < 0.1, NA_real_, body_mass_g))
 mean(inj$body_mass_g)            # NA — propagates
 mean(inj$body_mass_g, na.rm = TRUE)
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-5-report}
 
 > Of the 344 rows in `palmerpenguins::penguins`, sex was missing in
 > `sum(is.na(penguins$sex))` rows (`round(100 * mean(is.na(penguins$sex)), 1)`%)
@@ -153,29 +163,30 @@ If NAs cluster in one group, a list-wise delete changes the comparison
 you thought you were making.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-common-pitfalls}
 
 - Forgetting `na.rm = TRUE` in a `mean()` and getting back an NA.
 - Confusing inner and left join and silently dropping rows.
 - Using row numbers as join keys after a reshape (they will not match).
 - Imputing missingness by hand and forgetting to flag the imputed rows.
 
-## Further reading
+### Further reading {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-further-reading}
 
 - Wickham H, Grolemund G. *R for Data Science*, chapter on data
   transformation.
 - Little RJA, Rubin DB. *Statistical Analysis with Missing Data*.
 
-## Session info
+### Session info {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-01-foundations)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

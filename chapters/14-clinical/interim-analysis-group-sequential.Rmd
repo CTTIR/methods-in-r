@@ -1,12 +1,14 @@
-## Introduction
+## Interim Analyses and Group Sequential Designs {#sec-chapters-14-clinical-interim-analysis-group-sequential}
+
+### Introduction {#sec-chapters-14-clinical-interim-analysis-group-sequential-introduction}
 
 Group-sequential designs schedule a sequence of interim analyses at pre-specified information fractions, each with efficacy and/or futility boundaries. Trials can stop early for benefit, harm, or futility while preserving overall Type I error. They are the standard for confirmatory trials with ethical imperatives for early stopping.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-interim-analysis-group-sequential-prerequisites}
 
 Type I error; sample-size calculation; information fraction.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-interim-analysis-group-sequential-theory}
 
 With $K$ analyses and overall two-sided alpha $\alpha$, boundaries are chosen so the union of rejection events has probability $\alpha$ under the null.
 
@@ -15,11 +17,11 @@ Common families:
 - **Pocock**: constant boundary across looks -- more early stopping but harder to reach final.
 - **Alpha-spending** (Lan-DeMets): flexible timing; spending function $f(t)$ at information fraction $t$.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-interim-analysis-group-sequential-assumptions}
 
 Analyses occur at pre-specified information fractions; test statistic is approximately normal at each look.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-interim-analysis-group-sequential-r-implementation}
 
 ```r
 library(rpact)
@@ -38,15 +40,15 @@ ss <- getSampleSizeMeans(design = design,
 print(ss)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-interim-analysis-group-sequential-output-results}
 
 Three-stage design with cumulative alpha budgets per stage summing to 0.025; stage sample sizes scale with the chosen information fractions.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-interim-analysis-group-sequential-interpretation}
 
 "The group-sequential design with O'Brien-Fleming boundary allocated very little alpha to the first two interims (< 0.001 each), preserving nearly the full alpha for the final analysis. Early stopping is extremely unlikely unless the effect is large."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-interim-analysis-group-sequential-practical-tips}
 
 - OF boundaries are standard for confirmatory trials; Pocock may suit exploratory ones or single-arm phase II.
 - Alpha-spending (Lan-DeMets) is more flexible -- timing does not need to be exact, only pre-specified.
@@ -56,27 +58,24 @@ Three-stage design with cumulative alpha budgets per stage summing to 0.025; sta
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-interim-analysis-group-sequential-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-interim-analysis-group-sequential-assumptions) and
+[practical tips](#sec-chapters-14-clinical-interim-analysis-group-sequential-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-interim-analysis-group-sequential-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

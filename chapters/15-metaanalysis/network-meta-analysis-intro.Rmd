@@ -1,23 +1,25 @@
-## Introduction
+## Network Meta-Analysis: Introduction {#sec-chapters-15-metaanalysis-network-meta-analysis-intro}
+
+### Introduction {#sec-chapters-15-metaanalysis-network-meta-analysis-intro-introduction}
 
 Network meta-analysis (NMA), or mixed-treatment comparison (MTC), pools evidence across studies comparing different pairs of treatments to estimate a coherent set of relative effects. It enables comparisons for which no direct head-to-head trials exist, provided indirect paths in the evidence network connect the treatments.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-15-metaanalysis-network-meta-analysis-intro-prerequisites}
 
 Pairwise meta-analysis; graph structure; consistency concept.
 
-## Theory
+### Theory {#sec-chapters-15-metaanalysis-network-meta-analysis-intro-theory}
 
 A network has nodes (treatments) and edges (pairwise comparisons with at least one study). Direct evidence = studies comparing treatments directly; indirect evidence = inferred via a common comparator. The pooled estimate combines both under an assumption of **consistency** (direct = indirect estimates).
 
 Implementation: frequentist (`netmeta`) or Bayesian (`gemtc`, `BUGSnet`).
 
-## Assumptions
+### Assumptions {#sec-chapters-15-metaanalysis-network-meta-analysis-intro-assumptions}
 
 **Transitivity**: studies in the network are sufficiently similar that indirect comparisons are valid.
 **Consistency**: direct and indirect estimates of the same contrast agree within sampling error.
 
-## R Implementation
+### R Implementation {#sec-chapters-15-metaanalysis-network-meta-analysis-intro-r-implementation}
 
 ```r
 library(netmeta)
@@ -39,15 +41,15 @@ summary(net)
 netgraph(net)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-15-metaanalysis-network-meta-analysis-intro-output-results}
 
 A network graph, pooled treatment effects relative to the reference, and overall I^2.
 
-## Interpretation
+### Interpretation {#sec-chapters-15-metaanalysis-network-meta-analysis-intro-interpretation}
 
 "Network meta-analysis of 5 studies covering 4 treatments (A reference, B, C, D) yielded pooled SMDs: B vs A -0.22 (-0.41, -0.03); C vs A -0.35 (-0.58, -0.12); D vs A 0.05 (-0.15, 0.25). Transitivity was plausible; consistency was not violated."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-15-metaanalysis-network-meta-analysis-intro-practical-tips}
 
 - Always produce a network graph first; disconnected components cannot be compared.
 - Check transitivity via study characteristics (populations, doses, outcomes).
@@ -57,26 +59,23 @@ A network graph, pooled treatment effects relative to the reference, and overall
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-15-metaanalysis-network-meta-analysis-intro-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-15-metaanalysis-network-meta-analysis-intro-assumptions) and
+[practical tips](#sec-chapters-15-metaanalysis-network-meta-analysis-intro-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-15-metaanalysis-network-meta-analysis-intro-see-also-labs-in-this-chapter}
 
-- [Systematic reviews and PRISMA](labs/lab-systematic-reviews-and-prisma.Rmd)
-- [Meta-analysis basics](labs/lab-meta-analysis-basics.Rmd)
-- [Network meta-analysis](labs/lab-network-meta-analysis.Rmd)
+- [Systematic reviews and PRISMA](#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma)
+- [Meta-analysis basics](#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics)
+- [Network meta-analysis](#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis)
 
 <!-- END see-also -->

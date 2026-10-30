@@ -1,12 +1,14 @@
-## Introduction
+## Added-Variable Plots {#sec-chapters-07-regression-added-variable-plots}
+
+### Introduction {#sec-chapters-07-regression-added-variable-plots-introduction}
 
 An added-variable plot (AVP), also called a partial regression plot, displays the relationship between a single predictor and the outcome after adjusting both for all other predictors in the model. It is the geometric expression of a regression coefficient: the slope of the OLS line in the AVP equals the coefficient in the full multiple regression. AVPs are the standard tool for diagnosing whether a partial linear effect is well-supported, whether non-linearity has been missed, and whether one or two observations are driving a particular coefficient.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-added-variable-plots-prerequisites}
 
 A working understanding of multiple regression, partial correlation, and the residualisation interpretation of partial effects.
 
-## Theory
+### Theory {#sec-chapters-07-regression-added-variable-plots-theory}
 
 For predictor $X_j$ in a model with other predictors $X_{-j}$:
 
@@ -16,11 +18,11 @@ For predictor $X_j$ in a model with other predictors $X_{-j}$:
 
 The OLS slope of this plot equals the coefficient on $X_j$ in the full multiple regression — the famous Frisch-Waugh-Lovell theorem. Patterns in the AVP reveal partial-effect non-linearity, leverage, and outliers specific to $X_j$ that bivariate scatter plots cannot show.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-added-variable-plots-assumptions}
 
 Standard multiple regression assumptions; the residualisation interpretation requires that the other predictors are themselves correctly specified.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-added-variable-plots-r-implementation}
 
 ```r
 library(car)
@@ -32,15 +34,15 @@ avPlots(fit)
 avPlot(fit, variable = "hp")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-added-variable-plots-output-results}
 
 `avPlots()` draws one scatter plot per predictor, each with the fitted partial regression line. The slope of each line equals the corresponding multiple-regression coefficient. Outlier and leverage diagnostics specific to each predictor become visible.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-added-variable-plots-interpretation}
 
 A reporting sentence: "The added-variable plot for horsepower showed a clear negative slope after adjusting for weight, displacement, and rear-axle ratio, with no evidence of non-linearity or individual influential observations; the AVP slope of $-0.030$ matches the multiple-regression coefficient ($p = 0.005$). Diagnostic plots support reporting the linear partial effect of horsepower." Use AVPs to check both the shape of a partial relationship and to flag observations driving specific coefficients.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-added-variable-plots-practical-tips}
 
 - AVPs are more informative than raw bivariate scatter plots for checking partial effects; bivariate plots ignore the other predictors and can mislead.
 - Non-linear patterns in an AVP suggest a transformation, polynomial term, or spline for that specific predictor.
@@ -49,46 +51,43 @@ A reporting sentence: "The added-variable plot for horsepower showed a clear neg
 - Distinguish from component-plus-residual plots (`crPlots`), which add the predictor's full effect rather than partialling out other predictors; the two answer related but different diagnostic questions.
 - For GLMs and mixed models, AVP analogues exist; see `car::avPlots()` and `effects::predictorEffects()`.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-added-variable-plots-r-packages-used}
 
 `car::avPlots()` for the canonical implementation; `car::crPlots()` for component-plus-residual plots; `effects::predictorEffects()` for marginal-effect plots; `ggeffects::ggpredict()` for ggplot-style predicted-effect plots that complement AVP diagnostics.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-added-variable-plots-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-added-variable-plots-assumptions) and
+[practical tips](#sec-chapters-07-regression-added-variable-plots-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-added-variable-plots-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

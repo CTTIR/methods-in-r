@@ -1,18 +1,20 @@
+## Week 4, Session 1 — Systematic reviews and PRISMA {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma}
+
 <div class="callout callout-note">
 **Workflow lab:** Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-learning-objectives}
 
 - Frame a systematic-review question using PICO.
 - Draft a reproducible search strategy across at least two databases.
 - Produce a PRISMA flow diagram from counts at each screening stage.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-prerequisites}
 
 None beyond reading a paper.
 
-## Background
+### Background {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-background}
 
 A systematic review is itself a study: it has a protocol, a pre-specified
 search strategy, explicit inclusion and exclusion criteria, and a plan
@@ -29,7 +31,7 @@ typically outperforms a DIY one by a wide margin in recall; co-authoring
 with a health-sciences librarian is the single best investment in review
 quality.
 
-## Setup
+### Setup {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-setup}
 
 ```r
 library(tidyverse)
@@ -37,12 +39,12 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-1-goal}
 
 Illustrate a PICO-framed question, sketch a search strategy, and
 simulate screening counts to generate a PRISMA flow diagram.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-2-approach}
 
 A fictional question in PICO form:
 
@@ -58,9 +60,10 @@ AND (metformin[MeSH] OR metformin[tiab])
 AND (randomised[tiab] OR randomized[tiab] OR trial[tiab] OR RCT[tiab])
 ```
 
-## 3. Execution — simulated screening counts
+### 3. Execution — simulated screening counts {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-3-execution-simulated-screening-counts}
 
 ```r
+prisma <- tibble(
   stage = c("Identified (PubMed)", "Identified (Embase)",
             "After deduplication",
             "Title/abstract screened", "Full-text assessed",
@@ -81,7 +84,7 @@ prisma |>
   labs(x = "n", y = NULL)
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-4-check}
 
 PRISMA 2020 checklist pointer (items most often missed):
 
@@ -91,7 +94,7 @@ PRISMA 2020 checklist pointer (items most often missed):
   limits.
 - Item 16a: reasons for excluding full-text articles.
 
-## 5. Report
+### 5. Report {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-5-report}
 
 > A systematic review of the effect of metformin on all-cause mortality
 > in adults with type 2 diabetes was conducted following PRISMA 2020.
@@ -102,27 +105,28 @@ PRISMA 2020 checklist pointer (items most often missed):
 > meta-analysis.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-common-pitfalls}
 
 - Ad-hoc searches that cannot be re-run.
 - Failing to double-screen at each stage (reviewer drift).
 - Reporting included-study counts without the flow that produced them.
 
-## Further reading
+### Further reading {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-further-reading}
 
 - Page MJ et al. (2021). *The PRISMA 2020 statement.* BMJ.
 - Cochrane Handbook for Systematic Reviews of Interventions.
 
-## Session info
+### Session info {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-15-metaanalysis)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

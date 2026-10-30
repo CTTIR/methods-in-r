@@ -1,9 +1,11 @@
+## Week 4, Session 2 — Kappa, ICC, Bland–Altman {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-learning-objectives}
 
 - Compute Cohen's kappa for categorical agreement and explain its
   chance-correction.
@@ -11,11 +13,11 @@ Goal → Approach → Execution → Check → Report.
   agreement and distinguish consistency from absolute agreement.
 - Draw a Bland–Altman plot and report limits of agreement.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-prerequisites}
 
 Basic R and ggplot2.
 
-## Background
+### Background {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-background}
 
 Measurement-agreement studies ask whether two raters, two methods, or
 two instruments give the same answer on the same units. The choice of
@@ -38,7 +40,7 @@ Reliability is not the same as agreement. Two raters can be highly
 correlated (one is always twice the other) and have a terrible
 agreement. Always report both and let the picture tell the pattern.
 
-## Setup
+### Setup {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-setup}
 
 ```r
 library(tidyverse)
@@ -49,12 +51,12 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-1-goal}
 
 Build two small rater datasets — one categorical, one continuous — and
 compute the matching agreement statistics.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-2-approach}
 
 For the categorical example, simulate 100 radiograph classifications
 (3 categories) by two readers with substantial but not perfect
@@ -62,6 +64,7 @@ agreement. For the continuous example, simulate 60 measurements by
 two instruments, one with a small constant bias.
 
 ```r
+# categorical
 cats <- c("normal", "mild", "severe")
 truth <- sample(cats, 100, replace = TRUE, prob = c(0.5, 0.3, 0.2))
 r1 <- ifelse(runif(100) < 0.2, sample(cats, 100, replace = TRUE), truth)
@@ -77,21 +80,24 @@ inst2 <- true_val + 2 + rnorm(n, 0, 3)    # small positive bias
 meas <- tibble(inst1, inst2)
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-3-execution}
 
 Cohen's kappa:
 
 ```r
+kappa2(kap_tbl[, c("r1", "r2")])
 ```
 
 ICC via `psych`:
 
 ```r
+ICC(as.matrix(meas))
 ```
 
 Bland–Altman:
 
 ```r
+ba <- meas |>
   mutate(mean_val = (inst1 + inst2) / 2,
          diff_val = inst2 - inst1)
 loa <- mean(ba$diff_val) + c(-1.96, 0, 1.96) * sd(ba$diff_val)
@@ -105,13 +111,13 @@ ggplot(ba, aes(mean_val, diff_val)) +
        y = "Difference (inst2 − inst1)")
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-4-check}
 
 The ICC should be high (> 0.9) because the raters are well correlated,
 but the Bland–Altman plot shows a small positive bias (inst2 reads
 about 2 units higher on average).
 
-## 5. Report
+### 5. Report {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-5-report}
 
 > Cohen's kappa for the two radiograph readers was
 > `round(kappa2(kap_tbl[, c("r1","r2")])$value, 2)`. For the two
@@ -122,28 +128,29 @@ about 2 units higher on average).
 > from `round(loa[1], 1)` to `round(loa[3], 1)`.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-common-pitfalls}
 
 - Reporting percent agreement instead of kappa.
 - Using Pearson *r* on two raters and calling it agreement.
 - Omitting the limits of agreement from a Bland–Altman plot.
 
-## Further reading
+### Further reading {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-further-reading}
 
 - Bland JM, Altman DG (1986), *Statistical methods for assessing agreement…*
 - Shrout PE, Fleiss JL (1979), *Intraclass correlations...*
 - McGraw KO, Wong SP (1996), *Forming inferences about some ICCs*.
 
-## Session info
+### Session info {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-14-clinical)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

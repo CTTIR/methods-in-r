@@ -1,12 +1,14 @@
-## Introduction
+## Type I and Type II Errors {#sec-chapters-04-inferential-type-i-type-ii-errors}
+
+### Introduction {#sec-chapters-04-inferential-type-i-type-ii-errors-introduction}
 
 Two kinds of error arise in hypothesis testing: rejecting a true null (Type I) and failing to reject a false null (Type II). Their probabilities -- $\alpha$ and $\beta$ -- are the core quantities of statistical decision theory. Power $1 - \beta$ is one minus the Type II rate, and the rate at which sample size and effect size trade against $\alpha$ is the currency of study design.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-type-i-type-ii-errors-prerequisites}
 
 Hypothesis testing, p-values, sampling distributions.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-type-i-type-ii-errors-theory}
 
 The 2x2 decision table:
 
@@ -23,11 +25,11 @@ For a given test, power depends on: the true effect size (larger $\Rightarrow$ h
 
 **Trade-off**: tightening $\alpha$ (to 0.01, say) reduces Type I errors but increases Type II errors for a fixed sample size. Only increasing $n$ reduces both.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-type-i-type-ii-errors-assumptions}
 
 The test is correctly specified; the distributional model holds under $H_0$ and $H_1$.
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-type-i-type-ii-errors-r-implementation}
 
 ```r
 library(ggplot2)
@@ -58,7 +60,7 @@ ggplot(data.frame(d = d_grid, power = pw), aes(d, power)) +
   theme_minimal()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-type-i-type-ii-errors-output-results}
 
 ```
 [1] 0.0510    # empirical Type I rate
@@ -67,11 +69,11 @@ ggplot(data.frame(d = d_grid, power = pw), aes(d, power)) +
 
 Empirical Type I error is close to the nominal 0.05; empirical power at $d = 0.5$ matches the theoretical calculation.
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-type-i-type-ii-errors-interpretation}
 
 In study design, sample size is chosen to achieve a pre-specified power at the minimum effect size of interest. Reporting post-hoc power based on observed effects is misleading and discouraged.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-type-i-type-ii-errors-practical-tips}
 
 - Power at 80 % is the conventional minimum; 90 % for confirmatory trials.
 - Type I and II errors are fixed by the design, not by the data; a significant p-value does not "justify" the design after the fact.
@@ -81,32 +83,29 @@ In study design, sample size is chosen to achieve a pre-specified power at the m
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-type-i-type-ii-errors-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-type-i-type-ii-errors-assumptions) and
+[practical tips](#sec-chapters-04-inferential-type-i-type-ii-errors-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-type-i-type-ii-errors-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

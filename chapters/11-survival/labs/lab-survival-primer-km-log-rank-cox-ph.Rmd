@@ -1,8 +1,10 @@
+## Week 4, Session 3 — Survival primer: KM, log-rank, Cox PH {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph}
+
 <div class="callout callout-note">
 **Inference lab:** Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-learning-objectives}
 
 - Estimate and plot a Kaplan-Meier survival curve for a two-group
   comparison.
@@ -10,11 +12,11 @@
 - Fit a Cox proportional-hazards model, check the PH assumption, and
   read a hazard ratio honestly.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-prerequisites}
 
 Comfort with GLMs and with reading a regression table.
 
-## Background
+### Background {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-background}
 
 Survival analysis handles outcomes that are times to an event, where
 some subjects have not yet had the event when observation ends — the
@@ -32,7 +34,7 @@ hazard ratio is constant over time — deserves explicit checking; when
 it fails, a time-varying coefficient or a stratified model is usually
 the right fix.
 
-## Setup
+### Setup {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-setup}
 
 ```r
 library(tidyverse)
@@ -43,12 +45,12 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-1-hypothesis}
 
 Using `survival::lung`, compare survival between male and female
 patients. H₀: hazard ratio = 1. H₁: hazard ratio ≠ 1. α = 0.05.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-2-visualise}
 
 ```r
 lung2 <- lung |>
@@ -63,13 +65,14 @@ km |>
   labs(x = "Days", y = "Survival probability")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-3-assumptions}
 
 Two assumptions are worth checking: non-informative censoring (patients
 censored at a given time are representative of those still at risk) and
 proportional hazards.
 
 ```r
+cox_fit <- coxph(Surv(time, status) ~ sex + age, data = lung2)
 cox.zph(cox_fit)
 ```
 
@@ -77,15 +80,16 @@ A large *p*-value on each row and a non-systematic Schoenfeld residual
 plot support the PH assumption; a small *p* calls for a time-varying
 coefficient or stratification.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-4-conduct}
 
 ```r
+lr <- survdiff(Surv(time, status) ~ sex, data = lung2)
 lr
 
 tidy(cox_fit, exponentiate = TRUE, conf.int = TRUE)
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-5-concluding-statement}
 
 ```r
 hr_row <- tidy(cox_fit, exponentiate = TRUE, conf.int = TRUE) |>
@@ -100,7 +104,7 @@ hr_row <- tidy(cox_fit, exponentiate = TRUE, conf.int = TRUE) |>
 > (Schoenfeld test, all *p* > 0.05).
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-common-pitfalls}
 
 - Reporting a median survival that is not reached and calling it
   "undefined" in the results. Say so explicitly.
@@ -110,21 +114,22 @@ hr_row <- tidy(cox_fit, exponentiate = TRUE, conf.int = TRUE) |>
 - Collapsing a competing event (e.g. death from another cause) into
   censoring without justification.
 
-## Further reading
+### Further reading {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-further-reading}
 
 - Harrell FE. *Regression Modeling Strategies*, ch. 20.
 - Therneau TM & Grambsch PM. *Modeling Survival Data.*
 
-## Session info
+### Session info {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-11-survival)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

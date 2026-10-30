@@ -1,12 +1,14 @@
-## Introduction
+## Trimmed and Winsorised Means {#sec-chapters-02-descriptives-trimmed-winsorized-mean}
+
+### Introduction {#sec-chapters-02-descriptives-trimmed-winsorized-mean-introduction}
 
 A trimmed mean drops a proportion of observations from each tail before computing the mean. A Winsorised mean replaces those observations with the nearest non-trimmed values and then averages. Both estimators compromise between the arithmetic mean (efficient but sensitive to outliers) and the median (robust but inefficient). They are useful when the data are heavy-tailed but you want to retain most of the sample's information.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-trimmed-winsorized-mean-prerequisites}
 
 The reader should know what the arithmetic mean and the median are.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-trimmed-winsorized-mean-theory}
 
 For a sample of size $n$ and a trim proportion $\alpha \in [0, 0.5)$:
 
@@ -17,11 +19,11 @@ Special cases: $\alpha = 0$ gives the arithmetic mean; $\alpha = 0.5$ gives the 
 
 Trimmed means have a positive breakdown point (proportional to $\alpha$): a trim of 20% tolerates up to 20% contamination without being affected. Winsorised means have the same breakdown but retain the influence of the replaced values through their "pinning" behaviour.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-trimmed-winsorized-mean-assumptions}
 
 These estimators are descriptive; no distributional assumption. Their *efficiency* depends on the distribution: the 20% trimmed mean is nearly as efficient as the arithmetic mean under normality but much more robust under heavy tails.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-trimmed-winsorized-mean-r-implementation}
 
 ```r
 library(psych)
@@ -37,7 +39,7 @@ mean(x, trim = 0.20)
 DescTools::Winsorize(x, probs = c(0.10, 0.90)) |> mean()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-trimmed-winsorized-mean-output-results}
 
 ```
 [1] 56.62       # arithmetic mean (pulled up by outliers)
@@ -49,11 +51,11 @@ DescTools::Winsorize(x, probs = c(0.10, 0.90)) |> mean()
 
 The trimmed and Winsorised means align closely with the median, demonstrating their robustness. The arithmetic mean is dragged up by the two extreme points.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-trimmed-winsorized-mean-interpretation}
 
 Report a trimmed or Winsorised mean when outliers are present, their exclusion is justified, and you want a more efficient summary than the median. Explicitly state the trim proportion.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-trimmed-winsorized-mean-practical-tips}
 
 - The 10% trim is a useful default; 20% is stronger but loses efficiency.
 - Don't let the trim serve as a clean-up for genuine heterogeneity; investigate the outliers first.
@@ -63,24 +65,21 @@ Report a trimmed or Winsorised mean when outliers are present, their exclusion i
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-trimmed-winsorized-mean-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-trimmed-winsorized-mean-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-trimmed-winsorized-mean-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-trimmed-winsorized-mean-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

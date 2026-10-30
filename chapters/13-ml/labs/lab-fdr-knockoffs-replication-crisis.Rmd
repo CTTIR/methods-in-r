@@ -1,9 +1,11 @@
+## Week 4, Session 4 — FDR, knockoffs, replication crisis {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-learning-objectives}
 
 - Simulate *p*-values under a mixture of null and alternative
   hypotheses and apply Benjamini–Hochberg FDR control.
@@ -11,11 +13,11 @@ Goal → Approach → Execution → Check → Report.
   means in that context.
 - Connect FDR discipline to the replication crisis in biomedicine.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-prerequisites}
 
 Multiple-testing basics.
 
-## Background
+### Background {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-background}
 
 Multiple-testing corrections come in two families: family-wise error
 rate (Bonferroni, Holm) control the probability of *any* false
@@ -43,7 +45,7 @@ Pre-registration, code availability, and transparent reporting
 discipline the part of the pipeline that FDR cannot. They are not
 optional extras.
 
-## Setup
+### Setup {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-setup}
 
 ```r
 library(tidyverse)
@@ -51,14 +53,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-1-goal}
 
 Simulate 1 000 tests, most null and a few alternative, and compare
 uncorrected, Bonferroni, and BH discovery sets.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-2-approach}
 
 ```r
+m <- 1000
 m1 <- 50
 is_alt <- c(rep(TRUE, m1), rep(FALSE, m - m1))
 mu <- ifelse(is_alt, 3, 0)
@@ -71,9 +74,10 @@ tibble(p = p, is_alt = is_alt) |>
   labs(x = "p-value", y = "count")
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-3-execution}
 
 ```r
+bonf <- p.adjust(p, method = "bonferroni")
 bh   <- p.adjust(p, method = "BH")
 
 res <- tibble(
@@ -89,7 +93,7 @@ res <- tibble(
 res
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-4-check}
 
 Knockoff discussion — the idea, in words.
 
@@ -104,7 +108,7 @@ ko <- knockoff.filter(X, y, fdr = 0.1)
 ko$selected
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-5-report}
 
 > On 1 000 simulated tests (50 alternative, 950 null), raw *p*-value
 > cut-off at 0.05 produced `res$discovered[1]` discoveries with a
@@ -118,7 +122,7 @@ and would remain valid under correlation between features provided
 the joint distribution can be modelled.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-common-pitfalls}
 
 - Reporting nominal *p* < 0.05 cut-offs in a high-dimensional screen.
 - Applying BH to a set of tests that are not approximately independent
@@ -126,7 +130,7 @@ the joint distribution can be modelled.
 - Treating knockoffs as a drop-in for *p*-values without checking the
   exchangeability assumption.
 
-## Further reading
+### Further reading {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-further-reading}
 
 - Benjamini Y, Hochberg Y (1995), *Controlling the false discovery
   rate: A practical and powerful approach to multiple testing*.
@@ -135,16 +139,17 @@ the joint distribution can be modelled.
 - Ioannidis JPA (2005), *Why most published research findings are
   false*.
 
-## Session info
+### Session info {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-13-ml)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

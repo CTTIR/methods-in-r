@@ -1,12 +1,14 @@
-## Introduction
+## Royston-Parmar Flexible Parametric Models {#sec-chapters-11-survival-flexible-parametric-royston-parmar}
+
+### Introduction {#sec-chapters-11-survival-flexible-parametric-royston-parmar-introduction}
 
 Royston-Parmar models bridge the gap between rigid parametric survival families (exponential, Weibull, log-normal) and the assumption-light Cox semi-parametric model. They place restricted cubic splines on the log cumulative hazard (or on related transforms) so the baseline can take essentially any shape the data demand, while keeping the full parametric likelihood that delivers smooth survival, hazard, and quantile predictions for any covariate pattern. In epidemiological work — particularly population-based cancer studies — they have become the preferred default because they combine Cox-like flexibility with parametric extrapolation.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-flexible-parametric-royston-parmar-prerequisites}
 
 A working understanding of Cox regression, parametric survival families, and restricted cubic splines for smooth functional forms.
 
-## Theory
+### Theory {#sec-chapters-11-survival-flexible-parametric-royston-parmar-theory}
 
 The Royston-Parmar model writes
 
@@ -16,11 +18,11 @@ where $s$ is a restricted cubic spline in $\log t$ with knots placed at quantile
 
 Predictions on the natural time scale are smooth and available at any horizon, including extrapolation beyond the maximum observed event time, where Cox predictions are undefined.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-flexible-parametric-royston-parmar-assumptions}
 
 The chosen scale (PH, PO, or probit) is appropriate; the number of knots is not so large that the baseline is overfitted nor so small that the underlying shape is missed. AIC is the conventional knot-selection criterion.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-flexible-parametric-royston-parmar-r-implementation}
 
 ```r
 library(flexsurv)
@@ -35,15 +37,15 @@ plot(fit, type = "hazard")
 plot(fit, type = "survival")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-flexible-parametric-royston-parmar-output-results}
 
 `flexsurvspline()` returns spline coefficients $\gamma_0, \gamma_1, \dots$, covariate effects $\hat\beta$ on the log-hazard scale (under PH), and a fully smooth model object. `plot(fit, type = "hazard")` overlays the model-implied hazard on a non-parametric reference, and `plot(fit, type = "survival")` does the same for the survival function. The smoothness is the headline visual difference from a Cox-based survfit step function.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-flexible-parametric-royston-parmar-interpretation}
 
 A reporting sentence: "A Royston-Parmar PH model with two internal knots estimated the hazard ratio for female sex at 0.60 (95 % CI 0.42 to 0.85), close to the Cox estimate of 0.59 (0.42 to 0.83); the spline baseline captured a hazard peak around 9 months that the Weibull model missed entirely (AIC: Royston-Parmar 1{,}890, Weibull 1{,}908)." Reporting AIC across knots and against simpler parametric alternatives makes the choice transparent.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-flexible-parametric-royston-parmar-practical-tips}
 
 - Start with 2–3 knots and compare AIC across 1–4; more than 4 internal knots tends to overfit small datasets.
 - Use `scale = "hazard"` (PH) when the goal matches a Cox interpretation; `"odds"` for a proportional-odds analogue; `"normal"` for a probit / log-normal-like fit.
@@ -52,34 +54,30 @@ A reporting sentence: "A Royston-Parmar PH model with two internal knots estimat
 - For predictions on a fine time grid, `summary(fit, type = "survival", t = seq(0, 1000, 10))` produces smooth survival probabilities ready for plotting.
 - In population-based cancer epidemiology, Royston-Parmar models have largely replaced Cox for relative-survival and excess-mortality work; the parametric baseline gives interpretable hazard shapes and clean extrapolation.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-flexible-parametric-royston-parmar-r-packages-used}
 
 `flexsurv` for `flexsurvspline()` with PH, PO, and probit scales; `rstpm2` for the related Stata-compatible Royston-Parmar implementation with extended time-dependent effects; `survival` for the Cox baseline against which to compare; `ggflexsurv` for ggplot-style plotting of `flexsurvspline` objects.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-flexible-parametric-royston-parmar-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-flexible-parametric-royston-parmar-assumptions) and [practical tips](#sec-chapters-11-survival-flexible-parametric-royston-parmar-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-flexible-parametric-royston-parmar-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Logistic Regression {#sec-chapters-07-regression-logistic-regression}
+
+### Introduction {#sec-chapters-07-regression-logistic-regression-introduction}
 
 Logistic regression models binary outcomes via the logit link, mapping the probability of "event" to the entire real line so that linear regression machinery applies on the log-odds scale. It is the most widely used GLM in clinical, epidemiological, and behavioural research, producing odds ratios that directly answer the question "how does the odds of the outcome change with this covariate?" The fit is by iteratively reweighted least squares (IRLS), maximising the binomial likelihood.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-logistic-regression-prerequisites}
 
 A working understanding of the binomial distribution, maximum likelihood estimation, the logit link, and the distinction between odds ratios and relative risks.
 
-## Theory
+### Theory {#sec-chapters-07-regression-logistic-regression-theory}
 
 The model is
 
@@ -14,11 +16,11 @@ $$Y \sim \mathrm{Bernoulli}(p), \qquad \mathrm{logit}(p) = \log\frac{p}{1-p} = \
 
 IRLS produces $\hat\beta$ on the log-odds scale; exponentiating gives odds ratios, which are interpretable as the multiplicative change in the odds of the outcome per unit increase in the covariate, all else equal. For rare events (prevalence below ~10 %), the odds ratio approximates the relative risk; for common events the two diverge and odds ratios overstate the relative risk.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-logistic-regression-assumptions}
 
 Binary outcome, independent observations, linearity on the logit scale (the log-odds is a linear function of the covariates), absence of severe multicollinearity, and adequate events per variable (EPV $\ge 10$ as a working rule for stable estimation).
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-logistic-regression-r-implementation}
 
 ```r
 library(broom); library(pROC); library(performance)
@@ -37,15 +39,15 @@ roc(d$am, pred, quiet = TRUE) |> auc()
 check_model(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-logistic-regression-output-results}
 
 `tidy(fit, exponentiate = TRUE)` returns odds ratios with confidence intervals; `glance()` provides AIC, deviance, and pseudo-$R^2$ summaries. The AUC quantifies discrimination on the same data; for honest assessment, cross-validate or hold out a test set.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-logistic-regression-interpretation}
 
 A reporting sentence: "A multivariable logistic regression of transmission type on weight and horsepower estimated that each additional 1000 lbs of weight reduced the odds of manual transmission by a factor of 0.10 (95 % CI 0.02 to 0.43, $p = 0.003$), adjusted for horsepower; the model's in-sample AUC was 0.93 (95 % CI 0.84 to 1.00)." Always report odds ratios, not raw coefficients on the log-odds scale.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-logistic-regression-practical-tips}
 
 - Report odds ratios with confidence intervals; coefficients on the log-odds scale are rarely the most communicative summary for clinical readers.
 - For rare events (prevalence < 10 %), OR ≈ RR; for common events, OR overstates RR. Switch to `logbin` or modified Poisson for direct relative-risk regression when needed.
@@ -54,46 +56,43 @@ A reporting sentence: "A multivariable logistic regression of transmission type 
 - For matched case-control data, use conditional logistic regression (`survival::clogit`) which preserves the matched-pair structure.
 - For high-dimensional or correlated predictors, switch to penalised logistic regression via `glmnet(family = "binomial")`.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-logistic-regression-r-packages-used}
 
 Base R `glm()` with `family = binomial`; `broom::tidy()` and `glance()` for tidy summaries; `pROC` for ROC and AUC; `performance::check_model()` for diagnostic plots; `logistf` for Firth-penalised logistic regression; `glmnet` for elastic-net logistic regression; `survival::clogit` for matched designs.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-logistic-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-logistic-regression-assumptions) and
+[practical tips](#sec-chapters-07-regression-logistic-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-logistic-regression-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

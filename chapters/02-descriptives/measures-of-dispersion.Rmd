@@ -1,12 +1,14 @@
-## Introduction
+## Measures of Dispersion {#sec-chapters-02-descriptives-measures-of-dispersion}
+
+### Introduction {#sec-chapters-02-descriptives-measures-of-dispersion-introduction}
 
 A measure of central tendency tells you where the data are centred; a measure of dispersion tells you how far they spread around that centre. Two samples can share the same mean yet behave differently in every downstream calculation because their variability is different. This tutorial covers the five dispersion measures used routinely in applied work, explains when each is appropriate, and shows how to compute them in R.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-measures-of-dispersion-prerequisites}
 
 The reader should know what the mean and median are, and should be comfortable computing them on an R vector.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-measures-of-dispersion-theory}
 
 For a sample $x_1, \ldots, x_n$:
 
@@ -18,11 +20,11 @@ For a sample $x_1, \ldots, x_n$:
 
 The SD is the default for approximately normal data. For skewed or contaminated data, the MAD and IQR are far more stable. Reporting the range is informative only for small, clean samples or for summarising audit ranges.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-measures-of-dispersion-assumptions}
 
 All dispersion measures are purely descriptive; they do not require any distributional assumption. Their *interpretation*, however, depends on the distribution: an SD of 10 on a normal distribution implies 68% of values within $\pm 10$ of the mean, while an SD of 10 on a heavy-tailed distribution does not.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-measures-of-dispersion-r-implementation}
 
 ```r
 library(dplyr)
@@ -64,7 +66,7 @@ c(Qn = Qn_scale, Sn = Sn_scale)
 
 The `mad()` function defaults to a scaling constant of 1.4826, which makes it consistent with the SD for normal data. `robustbase::Qn()` and `Sn()` are alternative robust scale estimators with higher efficiency than MAD.
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-measures-of-dispersion-output-results}
 
 Typical output:
 
@@ -75,7 +77,7 @@ Typical output:
 
 For the symmetric normal sample, SD and MAD are nearly identical as expected under normality. For the right-skewed log-normal sample, the SD (33.8) is larger than the MAD (23.7), because the SD is pulled up by the right tail.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-measures-of-dispersion-interpretation}
 
 Report dispersion appropriate to the distribution shape:
 
@@ -83,7 +85,7 @@ Report dispersion appropriate to the distribution shape:
 - **Skewed or contaminated data**: median (IQR) or median (MAD).
 - Never report mean (SD) for a distribution whose histogram is obviously asymmetric; the summary gives a misleading impression of typicality.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-measures-of-dispersion-practical-tips}
 
 - Plot the histogram before choosing the summary; numerical dispersion alone can disguise bimodality or heavy tails.
 - For small samples, IQR is preferred over range: a single extreme value dominates the range.
@@ -93,24 +95,21 @@ Report dispersion appropriate to the distribution shape:
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-measures-of-dispersion-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-measures-of-dispersion-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-measures-of-dispersion-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-measures-of-dispersion-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Effect Size: Cohen's d {#sec-chapters-05-power-effect-size-cohens-d}
+
+### Introduction {#sec-chapters-05-power-effect-size-cohens-d-introduction}
 
 Cohen's $d$ is the ratio of a mean difference to a standard deviation. It standardises effects for cross-study comparison and power analysis. Although simple in idea, several variants differ in which SD is used as the denominator.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-effect-size-cohens-d-prerequisites}
 
 Means and standard deviations, two-sample t-test.
 
-## Theory
+### Theory {#sec-chapters-05-power-effect-size-cohens-d-theory}
 
 Classical definitions:
 
@@ -18,12 +20,12 @@ Classical definitions:
 
 Cohen's thresholds: 0.20 / 0.50 / 0.80 small / medium / large. These are starting points; clinical context should override conventions.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-effect-size-cohens-d-assumptions}
 
 - Approximately normal data (for the SD to be meaningful).
 - Equal variances for classical Cohen's $d$; use Glass or Welch-style for unequal.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-effect-size-cohens-d-r-implementation}
 
 ```r
 library(effectsize)
@@ -48,15 +50,15 @@ cohens_d(g1_big, g2_big)
 glass_delta(g1_big, g2_big)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-effect-size-cohens-d-output-results}
 
 For two-sample example: Cohen's $d \approx -0.47$, Hedges' $g \approx -0.47$, Glass's $\Delta \approx -0.50$.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-effect-size-cohens-d-interpretation}
 
 "The intervention reduced anxiety by 5.1 points (SE 2.0, Cohen's $d = 0.51$, 95 % CI 0.11 to 0.90), a medium-sized effect."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-effect-size-cohens-d-practical-tips}
 
 - Use Hedges' $g$ in meta-analysis; it's the small-sample-corrected version that combines across studies fairly.
 - Paired designs should use $d_z$, not two-sample $d$; the two are not interchangeable.
@@ -66,25 +68,22 @@ For two-sample example: Cohen's $d \approx -0.47$, Hedges' $g \approx -0.47$, Gl
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-effect-size-cohens-d-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-effect-size-cohens-d-assumptions) and
+[practical tips](#sec-chapters-05-power-effect-size-cohens-d-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-effect-size-cohens-d-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

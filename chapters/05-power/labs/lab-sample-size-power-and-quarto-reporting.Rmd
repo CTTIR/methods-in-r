@@ -1,8 +1,10 @@
+## Week 4, Session 5 — Sample size, power, and Quarto reporting {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting}
+
 <div class="callout callout-note">
 **Workflow lab:** Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-learning-objectives}
 
 - Compute analytic sample size for the core inferential designs.
 - Produce the same answer by simulation and understand when each
@@ -10,12 +12,12 @@
 - Assemble a short Quarto report whose numbers, tables, and figures all
   regenerate from a single render.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-prerequisites}
 
 Courses 1 Weeks 1–4 up to this lab; `pwr`, `gtsummary`, and `broom`
 installed.
 
-## Background
+### Background {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-background}
 
 Sample size is one of the few places where applied statistics is
 consulted *before* the data exist. A study that is too small cannot
@@ -42,7 +44,7 @@ report should trace back to the code that produced it. Quarto, with
 `gtsummary` for tables and `broom::tidy()` for model output, makes this
 nearly automatic.
 
-## Setup
+### Setup {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-setup}
 
 ```r
 library(tidyverse)
@@ -53,19 +55,20 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-1-goal}
 
 Plan a hypothetical two-arm trial comparing a new antihypertensive with
 placebo, choose a sample size with 80% power to detect a 5 mmHg
 difference at α = 0.05, verify by simulation, and produce a reporting
 table we can paste into the protocol.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-2-approach}
 
 Closed-form first. Cohen's *d* for a 5 mmHg effect on a scale with SD
 10 mmHg is *d* = 0.5 — a medium effect by convention.
 
 ```r
+pwr_calc <- pwr.t.test(
   d = 0.5, power = 0.80, sig.level = 0.05,
   type = "two.sample", alternative = "two.sided"
 )
@@ -88,12 +91,13 @@ tibble(n_per_arm = ns, power = powers) |>
        title = "Power curve for d = 0.5, α = 0.05")
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-3-execution}
 
 Verify by simulation. A function that runs the trial once and returns
 the p-value:
 
 ```r
+sim_trial <- function(n_per_arm, delta = 5, sd = 10) {
   placebo <- rnorm(n_per_arm, 0, sd)
   drug    <- rnorm(n_per_arm, -delta, sd)
   t.test(drug, placebo, var.equal = FALSE)$p.value
@@ -109,12 +113,13 @@ sim_power(n_try, reps = 1000)
 
 Within Monte-Carlo error of the analytic 0.80, as expected.
 
-## 4. Check
+### 4. Check {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-4-check}
 
 Now imagine the data have been collected. We simulate one realisation and
 fit the planned analysis.
 
 ```r
+n <- ceiling(pwr_calc$n)
 trial <- tibble(
   arm = rep(c("placebo", "drug"), each = n),
   sbp_change = c(rnorm(n, 0, 10), rnorm(n, -5, 10))
@@ -124,7 +129,7 @@ fit <- t.test(sbp_change ~ arm, data = trial, var.equal = FALSE)
 broom::tidy(fit)
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-5-report}
 
 ```r
 trial |>
@@ -145,7 +150,7 @@ trial |>
 > *p* = `signif(fit$p.value, 2)`).
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-common-pitfalls}
 
 - Plugging a standardised effect size into a sample-size calculator
   without stopping to think whether it is plausible in your field.
@@ -156,22 +161,23 @@ trial |>
 - Pasting numbers into the manuscript by hand — anything that breaks
   the render trail will eventually break the numbers.
 
-## Further reading
+### Further reading {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-further-reading}
 
-- [Writing a report](../../appendices/D-writing-a-report.Rmd).
+- [Writing a report](#sec-appendices-d-writing-a-report).
 - Champely S. (2024). *pwr: Basic functions for power analysis.*
 - Cohen J. (1988). *Statistical Power Analysis for the Behavioral Sciences.*
 
-## Session info
+### Session info {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-05-power)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

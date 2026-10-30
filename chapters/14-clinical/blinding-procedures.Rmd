@@ -1,12 +1,14 @@
-## Introduction
+## Blinding Procedures {#sec-chapters-14-clinical-blinding-procedures}
+
+### Introduction {#sec-chapters-14-clinical-blinding-procedures-introduction}
 
 Blinding (masking) keeps trial participants and personnel unaware of treatment assignments to minimise performance, assessment, and analyst biases. Single, double, triple, and quadruple blinding refer to which stakeholder groups are masked; each layer blocks a specific bias pathway.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-blinding-procedures-prerequisites}
 
 RCT design; sources of bias in clinical research.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-blinding-procedures-theory}
 
 - **Single blinding**: participant unaware; investigator aware.
 - **Double blinding**: participant and investigator both unaware. Standard for drug vs placebo.
@@ -15,11 +17,11 @@ RCT design; sources of bias in clinical research.
 
 Each additional layer addresses bias but also increases operational complexity.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-blinding-procedures-assumptions}
 
 Identical appearance, taste, and packaging of active and placebo; emergency unblinding procedures are in place.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-blinding-procedures-r-implementation}
 
 Blinding is operational -- not a statistical analysis per se -- but the **success of blinding** should be audited.
 
@@ -40,15 +42,15 @@ correct <- sum(guess == true)
 binom.test(correct, length(guess), p = 0.5)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-blinding-procedures-output-results}
 
 Binomial test of whether the correct-guess rate exceeds chance; p > 0.05 consistent with effective blinding.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-blinding-procedures-interpretation}
 
 "End-of-study unblinding revealed 56 % correct guesses (95 % CI 49-62 %, p = 0.12 vs chance), consistent with successful blinding. The study reports the result per CONSORT recommendations."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-blinding-procedures-practical-tips}
 
 - Match active and placebo precisely (taste, colour, packaging, schedule); any difference leaks information.
 - For difficult-to-blind interventions (surgery, behavioural), blind at least outcome assessment.
@@ -58,27 +60,24 @@ Binomial test of whether the correct-guess rate exceeds chance; p > 0.05 consist
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-blinding-procedures-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-blinding-procedures-assumptions) and
+[practical tips](#sec-chapters-14-clinical-blinding-procedures-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-blinding-procedures-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

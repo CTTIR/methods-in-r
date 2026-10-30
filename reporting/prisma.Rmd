@@ -1,10 +1,10 @@
-# PRISMA — systematic reviews & meta-analyses
+# PRISMA — systematic reviews & meta-analyses {#sec-reporting-prisma}
 
 PRISMA — *Preferred Reporting Items for Systematic reviews and Meta-Analyses* — covers systematic reviews and meta-analyses. The 27-item checklist and flow diagram are at <https://www.prisma-statement.org/>. The templates below cover pairwise and network meta-analysis methods.
 
 This page contains **25 method-specific templates**. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.
 
-### Bivariate SROC Curves
+### Bivariate SROC Curves {#sec-reporting-prisma-bivariate-sroc-curves}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -14,11 +14,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Bivariate SROC Curves yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`bivariate-sroc` — For Reviewers](../chapters/15-metaanalysis/bivariate-sroc.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`bivariate-sroc` — For Reviewers](#sec-chapters-15-metaanalysis-bivariate-sroc-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Converting Between Effect Sizes
+### Converting Between Effect Sizes {#sec-reporting-prisma-converting-between-effect-sizes}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -28,11 +28,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Converting Between Effect Sizes yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`effect-size-conversion` — For Reviewers](../chapters/15-metaanalysis/effect-size-conversion.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`effect-size-conversion` — For Reviewers](#sec-chapters-15-metaanalysis-effect-size-conversion-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cumulative Meta-Analysis
+### Cumulative Meta-Analysis {#sec-reporting-prisma-cumulative-meta-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -42,11 +42,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Cumulative Meta-Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cumulative-meta-analysis` — For Reviewers](../chapters/15-metaanalysis/cumulative-meta-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cumulative-meta-analysis` — For Reviewers](#sec-chapters-15-metaanalysis-cumulative-meta-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Egger's Test for Funnel Asymmetry
+### Egger's Test for Funnel Asymmetry {#sec-reporting-prisma-egger-s-test-for-funnel-asymmetry}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -56,11 +56,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Egger's Test for Funnel Asymmetry yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`egger-test` — For Reviewers](../chapters/15-metaanalysis/egger-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`egger-test` — For Reviewers](#sec-chapters-15-metaanalysis-egger-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Fixed-Effect vs. Random-Effects Meta-Analysis
+### Fixed-Effect vs. Random-Effects Meta-Analysis {#sec-reporting-prisma-fixed-effect-vs-random-effects-meta-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -70,11 +70,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Fixed-Effect vs. Random-Effects Meta-Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`fixed-vs-random-effects` — For Reviewers](../chapters/15-metaanalysis/fixed-vs-random-effects.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`fixed-vs-random-effects` — For Reviewers](#sec-chapters-15-metaanalysis-fixed-vs-random-effects-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Forest Plots in Meta-Analysis
+### Forest Plots in Meta-Analysis {#sec-reporting-prisma-forest-plots-in-meta-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -84,11 +84,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Forest Plots in Meta-Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`forest-plot-meta` — For Reviewers](../chapters/15-metaanalysis/forest-plot-meta.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`forest-plot-meta` — For Reviewers](#sec-chapters-15-metaanalysis-forest-plot-meta-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Funnel Plots
+### Funnel Plots {#sec-reporting-prisma-funnel-plots}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -98,11 +98,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Funnel Plots yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`funnel-plot-meta` — For Reviewers](../chapters/15-metaanalysis/funnel-plot-meta.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`funnel-plot-meta` — For Reviewers](#sec-chapters-15-metaanalysis-funnel-plot-meta-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Individual Participant Data Meta-Analysis
+### Individual Participant Data Meta-Analysis {#sec-reporting-prisma-individual-participant-data-meta-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -112,11 +112,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Individual Participant Data Meta-Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`ipd-meta-analysis` — For Reviewers](../chapters/15-metaanalysis/ipd-meta-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`ipd-meta-analysis` — For Reviewers](#sec-chapters-15-metaanalysis-ipd-meta-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Leave-One-Out Meta-Analysis
+### Leave-One-Out Meta-Analysis {#sec-reporting-prisma-leave-one-out-meta-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -126,11 +126,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Leave-One-Out Meta-Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`leave-one-out` — For Reviewers](../chapters/15-metaanalysis/leave-one-out.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`leave-one-out` — For Reviewers](#sec-chapters-15-metaanalysis-leave-one-out-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Meta-Analysis of Diagnostic Accuracy
+### Meta-Analysis of Diagnostic Accuracy {#sec-reporting-prisma-meta-analysis-of-diagnostic-accuracy}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -140,11 +140,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Meta-Analysis of Diagnostic Accuracy yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`diagnostic-test-meta` — For Reviewers](../chapters/15-metaanalysis/diagnostic-test-meta.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`diagnostic-test-meta` — For Reviewers](#sec-chapters-15-metaanalysis-diagnostic-test-meta-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Meta-Regression
+### Meta-Regression {#sec-reporting-prisma-meta-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -154,11 +154,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Meta-Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`meta-regression` — For Reviewers](../chapters/15-metaanalysis/meta-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`meta-regression` — For Reviewers](#sec-chapters-15-metaanalysis-meta-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Network Meta-Analysis: Introduction
+### Network Meta-Analysis: Introduction {#sec-reporting-prisma-network-meta-analysis-introduction}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -168,11 +168,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Network Meta-Analysis: Introduction yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`network-meta-analysis-intro` — For Reviewers](../chapters/15-metaanalysis/network-meta-analysis-intro.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`network-meta-analysis-intro` — For Reviewers](#sec-chapters-15-metaanalysis-network-meta-analysis-intro-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### NMA Consistency and Inconsistency
+### NMA Consistency and Inconsistency {#sec-reporting-prisma-nma-consistency-and-inconsistency}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -182,11 +182,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > NMA Consistency and Inconsistency yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`nma-consistency` — For Reviewers](../chapters/15-metaanalysis/nma-consistency.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`nma-consistency` — For Reviewers](#sec-chapters-15-metaanalysis-nma-consistency-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### NMA League Tables
+### NMA League Tables {#sec-reporting-prisma-nma-league-tables}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -196,11 +196,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > NMA League Tables yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`nma-league-tables` — For Reviewers](../chapters/15-metaanalysis/nma-league-tables.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`nma-league-tables` — For Reviewers](#sec-chapters-15-metaanalysis-nma-league-tables-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Pooling Correlation Coefficients
+### Pooling Correlation Coefficients {#sec-reporting-prisma-pooling-correlation-coefficients}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -210,11 +210,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Pooling Correlation Coefficients yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`correlation-pooling` — For Reviewers](../chapters/15-metaanalysis/correlation-pooling.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`correlation-pooling` — For Reviewers](#sec-chapters-15-metaanalysis-correlation-pooling-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Pooling Log-Odds Ratios
+### Pooling Log-Odds Ratios {#sec-reporting-prisma-pooling-log-odds-ratios}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -224,11 +224,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Pooling Log-Odds Ratios yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`log-odds-ratio-pooling` — For Reviewers](../chapters/15-metaanalysis/log-odds-ratio-pooling.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`log-odds-ratio-pooling` — For Reviewers](#sec-chapters-15-metaanalysis-log-odds-ratio-pooling-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Pooling Risk Ratios
+### Pooling Risk Ratios {#sec-reporting-prisma-pooling-risk-ratios}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -238,11 +238,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Pooling Risk Ratios yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`risk-ratio-pooling` — For Reviewers](../chapters/15-metaanalysis/risk-ratio-pooling.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`risk-ratio-pooling` — For Reviewers](#sec-chapters-15-metaanalysis-risk-ratio-pooling-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Prediction Intervals in Meta-Analysis
+### Prediction Intervals in Meta-Analysis {#sec-reporting-prisma-prediction-intervals-in-meta-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -252,11 +252,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Prediction Intervals in Meta-Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`prediction-interval-meta` — For Reviewers](../chapters/15-metaanalysis/prediction-interval-meta.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`prediction-interval-meta` — For Reviewers](#sec-chapters-15-metaanalysis-prediction-interval-meta-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Quantifying Heterogeneity: Q and I^2
+### Quantifying Heterogeneity: Q and I^2 {#sec-reporting-prisma-quantifying-heterogeneity-q-and-i-2}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -266,11 +266,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Quantifying Heterogeneity: Q and I^2 yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`heterogeneity-q-i2` — For Reviewers](../chapters/15-metaanalysis/heterogeneity-q-i2.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`heterogeneity-q-i2` — For Reviewers](#sec-chapters-15-metaanalysis-heterogeneity-q-i2-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Selection Models for Publication Bias
+### Selection Models for Publication Bias {#sec-reporting-prisma-selection-models-for-publication-bias}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -280,11 +280,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Selection Models for Publication Bias yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`selection-models-bias` — For Reviewers](../chapters/15-metaanalysis/selection-models-bias.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`selection-models-bias` — For Reviewers](#sec-chapters-15-metaanalysis-selection-models-bias-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Standardised Mean Difference: Hedges' g
+### Standardised Mean Difference: Hedges' g {#sec-reporting-prisma-standardised-mean-difference-hedges-g}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -294,11 +294,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Standardised Mean Difference: Hedges' g yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`smd-hedges-g` — For Reviewers](../chapters/15-metaanalysis/smd-hedges-g.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`smd-hedges-g` — For Reviewers](#sec-chapters-15-metaanalysis-smd-hedges-g-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Subgroup Meta-Analysis
+### Subgroup Meta-Analysis {#sec-reporting-prisma-subgroup-meta-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -308,11 +308,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Subgroup Meta-Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`subgroup-meta-analysis` — For Reviewers](../chapters/15-metaanalysis/subgroup-meta-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`subgroup-meta-analysis` — For Reviewers](#sec-chapters-15-metaanalysis-subgroup-meta-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### SUCRA Rankings
+### SUCRA Rankings {#sec-reporting-prisma-sucra-rankings}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -322,11 +322,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > SUCRA Rankings yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`nma-sucra` — For Reviewers](../chapters/15-metaanalysis/nma-sucra.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`nma-sucra` — For Reviewers](#sec-chapters-15-metaanalysis-nma-sucra-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Tau-Squared Estimation
+### Tau-Squared Estimation {#sec-reporting-prisma-tau-squared-estimation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -336,11 +336,11 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Tau-Squared Estimation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`tau-squared-estimation` — For Reviewers](../chapters/15-metaanalysis/tau-squared-estimation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`tau-squared-estimation` — For Reviewers](#sec-chapters-15-metaanalysis-tau-squared-estimation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Trim-and-Fill
+### Trim-and-Fill {#sec-reporting-prisma-trim-and-fill}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -350,6 +350,6 @@ This page contains **25 method-specific templates**. Each is a skeleton with pla
 
 > Trim-and-Fill yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`trim-and-fill` — For Reviewers](../chapters/15-metaanalysis/trim-and-fill.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`trim-and-fill` — For Reviewers](#sec-chapters-15-metaanalysis-trim-and-fill-for-reviewers)
 
 <!-- TODO:reporting-template -->

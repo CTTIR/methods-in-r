@@ -1,12 +1,14 @@
-## Introduction
+## Stacked and Dodged Bars {#sec-chapters-06-visualisation-stacked-dodged-bars}
+
+### Introduction {#sec-chapters-06-visualisation-stacked-dodged-bars-introduction}
 
 When a bar chart needs to display two categorical variables at once, three layout options compete: stacking the sub-bars within each main bar (showing totals and composition), placing them side by side (showing within-category comparison), or normalising to 100 % (showing proportions independent of total). Each layout answers a different question, and choosing the right one is more important than tweaking colours or fonts. The `position` argument of `geom_bar()` and `geom_col()` selects between the three.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-stacked-dodged-bars-prerequisites}
 
 A working knowledge of bar charts, the distinction between `geom_bar()` (counts) and `geom_col()` (pre-computed values), and `ggplot2` aesthetic mappings.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-stacked-dodged-bars-theory}
 
 `position = "stack"` is the default for bar geoms with a fill aesthetic: sub-bars stack vertically inside each main bar, the bar's total height equals the sum of the sub-counts, and segments encode composition.
 
@@ -16,11 +18,11 @@ A working knowledge of bar charts, the distinction between `geom_bar()` (counts)
 
 The choice maps directly onto the analytical question: "How big is each group?" → stack; "How does subgroup A compare to subgroup B within each main category?" → dodge; "How does the proportion of subgroup A shift across main categories?" → fill.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-stacked-dodged-bars-assumptions}
 
 Two categorical variables (or one categorical and one ordered) and a count or summary that makes sense to add across sub-bars.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-stacked-dodged-bars-r-implementation}
 
 ```r
 library(ggplot2)
@@ -51,15 +53,15 @@ ggplot(d, aes(stage, count, fill = sex)) +
   theme_minimal()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-stacked-dodged-bars-output-results}
 
 Three views of the same disease-stage-by-sex data: a stacked bar showing the total cases per stage decomposed by sex, a dodged bar enabling direct sex-vs-sex comparison within stage, and a filled bar showing the female-to-male proportion balance across stages with the y-axis as a percentage.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-stacked-dodged-bars-interpretation}
 
 A reporting sentence (figure caption): "Stacked bars show total case counts per stage decomposed by sex; dodged bars display male and female counts side by side for direct comparison within each stage; filled bars normalise to 100 % to expose the sex proportion across stages." Always describe which layout was chosen and why; it is the most common source of bar-chart misreading.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-stacked-dodged-bars-practical-tips}
 
 - Stacked bars communicate totals cleanly but obscure within-stage comparisons because the segments above the first sub-bar do not start at zero — readers cannot judge their lengths accurately.
 - Dodged bars need adequate bar width and stage spacing; with three or more fill levels, the figure widens quickly and benefits from `coord_flip()` for horizontal layouts.
@@ -68,30 +70,27 @@ A reporting sentence (figure caption): "Stacked bars show total case counts per 
 - Order fill levels deliberately (`forcats::fct_relevel()`); the legend reads top-to-bottom and the bar reads bottom-to-top, so the visual flow depends on factor order.
 - Use `geom_text(aes(label = count), position = position_stack(vjust = 0.5))` to label segments with their counts when the total alone is not enough.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-stacked-dodged-bars-r-packages-used}
 
 `ggplot2` for `geom_bar()`, `geom_col()`, and the `position_*` family; `forcats` for factor reordering of the fill levels; `scales` for percent and comma label formatters; `ggalluvial` for flow-style alternatives when stacked bars at three or more levels become confusing.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-stacked-dodged-bars-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-stacked-dodged-bars-assumptions) and
+[practical tips](#sec-chapters-06-visualisation-stacked-dodged-bars-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-stacked-dodged-bars-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

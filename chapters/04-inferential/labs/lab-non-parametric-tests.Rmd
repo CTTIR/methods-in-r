@@ -1,9 +1,11 @@
+## Week 4, Session 4 — Non-parametric tests {#sec-chapters-04-inferential-labs-lab-non-parametric-tests}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-learning-objectives}
 
 - Choose the right rank-based test for a given design — Wilcoxon
   signed-rank, Mann-Whitney *U*, Kruskal-Wallis, sign test.
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - State what null hypothesis each test is really addressing (not
   always "medians are equal").
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-prerequisites}
 
 Labs 3.4, 4.1.
 
-## Background
+### Background {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-background}
 
 Non-parametric tests make weaker distributional assumptions than the
 parametric tests that dominate the preceding labs. They tend to test
@@ -36,7 +38,7 @@ the two groups' distributions differ only by a location shift — the
 Mann-Whitney *U* test does estimate a location shift, but that is a
 stronger assumption than the test itself requires.
 
-## Setup
+### Setup {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-setup}
 
 ```r
 library(tidyverse)
@@ -44,7 +46,7 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-1-hypothesis}
 
 Three scenarios:
 
@@ -54,9 +56,10 @@ B. Independent two-sample: outcome in two arms, skewed. H0: same
 C. Three-group comparison: outcome across three centres. H0: same
    distribution across all three.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-2-visualise}
 
 ```r
+# Scenario A: paired, lognormal-ish
 n_a <- 25
 pre <- exp(rnorm(n_a, 3, 0.3))
 post <- pre * exp(rnorm(n_a, -0.2, 0.3))
@@ -87,7 +90,7 @@ df_b |>
   theme(legend.position = "none")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-3-assumptions}
 
 Wilcoxon signed-rank: paired observations; differences symmetric
 around the null. Mann-Whitney *U*: independent observations within and
@@ -95,9 +98,10 @@ between groups; if you want a location-shift interpretation, the two
 distributions should have the same shape. Kruskal-Wallis: independent
 observations; same-shape assumption extends to all *k* groups.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-4-conduct}
 
 ```r
+# A: Wilcoxon signed-rank
 wt_a <- wilcox.test(df_a$post, df_a$pre, paired = TRUE,
                     conf.int = TRUE)
 # Sign test: a simple binomial test on positive differences
@@ -119,9 +123,10 @@ list(wilcox_paired = wt_a,
 Follow-up pairwise comparisons with Holm correction for C:
 
 ```r
+pairwise.wilcox.test(df_c$y, df_c$centre, p.adjust.method = "holm")
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-5-concluding-statement}
 
 > **Paired comparison (A).** 25 patients, median change =
 > `round(median(df_a$delta), 2)`; Wilcoxon signed-rank *p* =
@@ -145,7 +150,7 @@ of power (about 5% vs a *t*-test when the *t*-test's assumptions
 hold) for robustness to distributional misspecification.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-common-pitfalls}
 
 - Reading a Wilcoxon as a test of medians. It is a test of
   distributional shift.
@@ -153,21 +158,22 @@ hold) for robustness to distributional misspecification.
   sacrificing power unnecessarily.
 - Forgetting to adjust for multiplicity after a Kruskal-Wallis.
 
-## Further reading
+### Further reading {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-further-reading}
 
 - Hollander M, Wolfe DA. *Nonparametric Statistical Methods*.
 - Conover WJ. *Practical Nonparametric Statistics*.
 
-## Session info
+### Session info {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-04-inferential-labs-lab-non-parametric-tests-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-04-inferential)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

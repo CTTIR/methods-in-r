@@ -1,12 +1,14 @@
-## Introduction
+## Confirmatory Factor Analysis {#sec-chapters-08-multivariate-factor-analysis-confirmatory}
+
+### Introduction {#sec-chapters-08-multivariate-factor-analysis-confirmatory-introduction}
 
 Confirmatory factor analysis (CFA) tests a pre-specified factor structure against data: which items load on which factors, which loadings are constrained to zero, and how factors correlate with each other. It is the measurement-model portion of structural equation modelling and the standard tool for validating questionnaire structures, latent-trait models in psychometrics, and multi-indicator latent constructs in clinical and behavioural research. Unlike exploratory factor analysis, CFA does not estimate which items belong to which factor — that decision is in the model — and instead estimates only the strength of the predetermined relationships and tests model-data fit.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-factor-analysis-confirmatory-prerequisites}
 
 A working understanding of exploratory factor analysis, regression, and the `lavaan` model-syntax conventions for specifying latent variables.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-factor-analysis-confirmatory-theory}
 
 CFA specifies a complete pattern matrix in advance: each item either loads freely on its assigned factor or is constrained to zero on every other factor. Fit is assessed via:
 
@@ -17,11 +19,11 @@ CFA specifies a complete pattern matrix in advance: each item either loads freel
 
 A well-fitting model satisfies multiple criteria simultaneously — no single index is sufficient.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-factor-analysis-confirmatory-assumptions}
 
 A correctly specified factor structure, multivariate Normal continuous indicators (or robust / WLSMV estimators for non-Normal or ordinal data), and sufficient sample size (rule of thumb: at least 10 observations per estimated parameter, or $n \ge 200$).
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-factor-analysis-confirmatory-r-implementation}
 
 ```r
 library(lavaan); library(semTools)
@@ -39,15 +41,15 @@ summary(fit, fit.measures = TRUE, standardized = TRUE)
 head(modificationIndices(fit, sort = TRUE), 10)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-factor-analysis-confirmatory-output-results}
 
 `summary(fit, fit.measures = TRUE, standardized = TRUE)` reports unstandardised and standardised loadings, factor correlations, residual variances, and the full panel of fit indices (chi-squared, CFI, TLI, RMSEA with CI, SRMR). `modificationIndices()` lists potential parameter additions ordered by expected chi-squared improvement.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-factor-analysis-confirmatory-interpretation}
 
 A reporting sentence: "The three-factor CFA fit the data adequately ($\chi^2(24) = 85.3$, $p < 0.001$; CFI 0.93; RMSEA 0.092 [90 % CI 0.071 to 0.114]; SRMR 0.065); all standardised loadings exceeded 0.50 and were statistically significant ($p < 0.001$). RMSEA exceeded the conventional 0.06 threshold, suggesting modest local misspecification — modification indices indicated a residual correlation between $x_7$ and $x_9$ that would improve fit if substantively justified." Always report multiple fit indices; no single one is decisive.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-factor-analysis-confirmatory-practical-tips}
 
 - Do not follow modification indices blindly; each unconstrained parameter moves the analysis from confirmatory to exploratory and inflates Type I error if not pre-specified.
 - For ordinal Likert items, use diagonally-weighted least squares (`cfa(..., estimator = "DWLS")` or `"WLSMV"`); ordinary ML on Likert items violates Normality assumptions.
@@ -56,32 +58,29 @@ A reporting sentence: "The three-factor CFA fit the data adequately ($\chi^2(24)
 - Report chi-squared with degrees of freedom and the full set of fit indices; never report a single index alone.
 - Standardised loadings (factor-loading correlations) communicate effect size more clearly than unstandardised; always include them.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-factor-analysis-confirmatory-r-packages-used}
 
 `lavaan` for `cfa()` and `sem()` with multiple estimators; `semTools` for measurement-invariance testing, reliability coefficients, and modification heuristics; `lavaanPlot` and `semPlot` for path-diagram visualisation; `blavaan` for Bayesian CFA when small samples or complex priors require it.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-factor-analysis-confirmatory-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-factor-analysis-confirmatory-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-factor-analysis-confirmatory-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-factor-analysis-confirmatory-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

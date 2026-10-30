@@ -1,22 +1,24 @@
-## Introduction
+## GAMMs: Additive Mixed Models {#sec-chapters-07-regression-gamm-additive-mixed}
+
+### Introduction {#sec-chapters-07-regression-gamm-additive-mixed-introduction}
 
 Generalised additive mixed models (GAMMs) bring together two powerful regression frameworks: smooth non-linear effects from generalised additive models (GAMs) and random effects from linear / generalised linear mixed models. The `mgcv::gam()` interface handles both in a single unified framework by treating random effects as a specific type of penalised smooth, making the combined model no harder to fit than a plain GAM. The result is the natural choice when clustered data also exhibit non-linear effects of continuous covariates — longitudinal trajectories, growth curves, ecological time series with site-level structure.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-gamm-additive-mixed-prerequisites}
 
 A working understanding of generalised additive models (smooth effects, basis functions, penalised regression splines), linear mixed models, and the role of random effects in clustered data.
 
-## Theory
+### Theory {#sec-chapters-07-regression-gamm-additive-mixed-theory}
 
 In `mgcv`, random effects are smooths with the basis specification `bs = "re"`. A smooth of a grouping factor with this basis is mathematically equivalent to a random intercept; the smoothing penalty plays the role of the random-effect variance, and REML estimation of the smoothing parameter recovers the variance estimate. More complex random structures — random slopes, factor-by-smooth interactions — are constructed via tensor-product smooths or `s(group, bs = "re")` combined with appropriate factor coding.
 
 For non-Gaussian outcomes, change the `family` argument; the random-effect basis trick generalises to GLMM territory automatically.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-gamm-additive-mixed-assumptions}
 
 Smooth-function assumptions (the true relationship is reasonably represented by penalised splines), random-effect Normality, conditional independence given random effects, and the appropriate family for the outcome.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-gamm-additive-mixed-r-implementation}
 
 ```r
 library(mgcv)
@@ -35,15 +37,15 @@ summary(fit)
 plot(fit, pages = 1)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-gamm-additive-mixed-output-results}
 
 `summary(fit)` reports the effective degrees of freedom (edf) for each smooth, parametric coefficients, and an approximate $F$-test for each smooth term. The random-effect smooth contributes a single variance component summarised in the model summary; `plot(fit, pages = 1)` displays each smooth on a single page.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-gamm-additive-mixed-interpretation}
 
 A reporting sentence: "A GAMM with a smooth of time (edf 7.2, $F = 24.5$, $p < 0.001$) and a subject-level random intercept (variance 2.18) explained 72 % of the deviance; the smooth recovered the simulated sine-plus-linear trend faithfully and the random-intercept SD matched the simulation parameter to within Monte Carlo error." Always report edf for smooths and the random-effect variance.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-gamm-additive-mixed-practical-tips}
 
 - `bs = "re"` turns a smooth into a random effect; `s(group, bs = "re")` is a random intercept; `s(group, x, bs = "re")` is a random slope on $x$.
 - Tensor product smooths (`te(x, z)`) model smooth interactions between two continuous predictors; `ti(x, z)` builds the pure interaction without the main effects, useful for ANOVA-like decomposition.
@@ -52,46 +54,43 @@ A reporting sentence: "A GAMM with a smooth of time (edf 7.2, $F = 24.5$, $p < 0
 - `gratia::draw(fit)` produces ggplot-style visualisations of all model components, far cleaner than base `plot.gam()` for publications.
 - For very large datasets ($n > 10{,}000$), use `mgcv::bam()` with `discrete = TRUE` for substantial speed-ups; the API is otherwise identical.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-gamm-additive-mixed-r-packages-used}
 
 `mgcv` for `gam()`, `bam()`, smooth bases, and REML smoothing-parameter selection; `gratia` for ggplot-style GAM diagnostics and component plots; `lme4` for comparative LMM fits; `gamm4` for GAMMs implemented via `lme4` for very large random-effect structures.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-gamm-additive-mixed-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-gamm-additive-mixed-assumptions) and
+[practical tips](#sec-chapters-07-regression-gamm-additive-mixed-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-gamm-additive-mixed-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

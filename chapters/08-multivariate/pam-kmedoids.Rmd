@@ -1,12 +1,14 @@
-## Introduction
+## Partitioning Around Medoids {#sec-chapters-08-multivariate-pam-kmedoids}
+
+### Introduction {#sec-chapters-08-multivariate-pam-kmedoids-introduction}
 
 Partitioning around medoids (PAM) is the canonical $k$-medoids clustering algorithm. Like $k$-means, it partitions $n$ observations into $k$ clusters; unlike $k$-means, the cluster centres are actual observations (medoids) rather than coordinate means. This single change makes PAM robust to outliers (a single extreme value cannot drag a medoid away from the cluster bulk), enables clustering on arbitrary dissimilarity matrices including those derived from non-Euclidean distances or mixed numeric-categorical data, and produces interpretable centre observations that can be quoted in clinical or biological contexts ("the typical patient in cluster 2 is patient 47").
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-pam-kmedoids-prerequisites}
 
 A working understanding of $k$-means, distance and dissimilarity matrices, and the difference between mean-based and median-like cluster centres.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-pam-kmedoids-theory}
 
 PAM alternates two steps:
 
@@ -15,11 +17,11 @@ PAM alternates two steps:
 
 The objective is the sum of dissimilarities to the assigned medoid, summed over all observations. The algorithm converges to a local minimum; multiple random initialisations help find a better local optimum. Because PAM consumes a dissimilarity matrix, it works with Gower distance for mixed numeric-categorical data, Manhattan distance for outlier-robust clustering, correlation-based distances for gene-expression patterns, and any custom dissimilarity that the analyst can define.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-pam-kmedoids-assumptions}
 
 A meaningful dissimilarity (or distance) on the input space. Approximately equal cluster sizes are preferable; PAM does not handle very imbalanced clusters as gracefully as model-based methods (Gaussian mixtures).
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-pam-kmedoids-r-implementation}
 
 ```r
 library(cluster)
@@ -39,15 +41,15 @@ table(pam_fit$clustering, iris$Species)
 summary(silhouette(pam_fit))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-pam-kmedoids-output-results}
 
 `pam()` returns medoid identifiers (actual case indices), cluster assignments, and within-cluster summaries. `silhouette()` returns per-observation silhouette widths and an average — a primary internal validation metric.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-pam-kmedoids-interpretation}
 
 A reporting sentence: "Partitioning around medoids on Gower-distance dissimilarities produced three clusters that closely match the iris species (Cluster 1: setosa; Cluster 2: 92 % versicolor; Cluster 3: 86 % virginica) with average silhouette width 0.45 (range $-0.10$ to $0.78$)." Always pair PAM with a silhouette analysis to verify that the chosen $k$ produces well-separated clusters.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-pam-kmedoids-practical-tips}
 
 - Choose PAM over $k$-means when outliers are likely or when the data are mixed-type or genuinely non-Euclidean; the medoid is robust where the mean is not.
 - `cluster::pam()` accepts either a data matrix (computing Euclidean distance internally) or a pre-computed `dist` object via the `diss = TRUE` argument.
@@ -56,32 +58,29 @@ A reporting sentence: "Partitioning around medoids on Gower-distance dissimilari
 - For Gower distances on mixed numeric and categorical data, `cluster::daisy(metric = "gower")` is the standard input; categorical variables become indicator distances, numeric ones become Manhattan after range normalisation.
 - For very large $n$, alternatives such as CLARANS, BIRCH, or mini-batch $k$-means scale better; the price is reduced robustness or interpretability.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-pam-kmedoids-r-packages-used}
 
 `cluster` for `pam()`, `clara()`, `daisy()`, and `silhouette()`; `fpc` for `pamk()` automatic $k$ selection; `factoextra` for `fviz_cluster()` ggplot-style cluster visualisation; `klaR::kmodes()` for an analogous categorical-only $k$-modes algorithm.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-pam-kmedoids-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-pam-kmedoids-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-pam-kmedoids-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-pam-kmedoids-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

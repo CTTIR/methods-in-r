@@ -1,9 +1,11 @@
+## Week 2, Session 3 — Linear mixed models with lme4 {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4}
+
 <div class="callout callout-note">
 **Inference lab** using the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-learning-objectives}
 
 - Fit random-intercept and random-slope linear mixed models to
   longitudinal data.
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
   test with ML).
 - Interpret REML estimates of variance components.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-prerequisites}
 
 Linear regression; familiarity with `lm()`.
 
-## Background
+### Background {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-background}
 
 Longitudinal data have two sources of variation: differences between
 people and differences over time within a person. A random-intercept
@@ -39,7 +41,7 @@ subject variance of the intercept. The within-subject variance is
 the residual variance, σ², once the random effects are accounted
 for.
 
-## Setup
+### Setup {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-setup}
 
 ```r
 library(tidyverse)
@@ -49,14 +51,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-1-hypothesis}
 
 In the `sleepstudy` data, reaction time increases with days of
 sleep deprivation, and the *rate* of increase varies by subject.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-2-visualise}
 
 ```r
+data(sleepstudy, package = "lme4")
 
 sleepstudy |>
   ggplot(aes(Days, Reaction, group = Subject)) +
@@ -66,7 +69,7 @@ sleepstudy |>
   labs(x = "Days of deprivation", y = "Reaction time (ms)")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-3-assumptions}
 
 Linear relationship between Days and Reaction for each subject;
 normally distributed random intercepts and slopes (if included);
@@ -74,9 +77,10 @@ residuals independent within and across subjects after random
 effects account for clustering; approximately constant residual
 variance.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-4-conduct}
 
 ```r
+ri <- lmer(Reaction ~ Days + (1 | Subject),
            data = sleepstudy, REML = TRUE)
 rs <- lmer(Reaction ~ Days + (Days | Subject),
            data = sleepstudy, REML = TRUE)
@@ -84,11 +88,13 @@ summary(rs)
 ```
 
 ```r
+# LRT on REML OK here because only random-effects structure differs,
 # but we use REFIT = TRUE in anova() to get correct comparison.
 anova(ri, rs, refit = FALSE)
 ```
 
 ```r
+# Fit with ML if the fixed effects changed
 fm_ml <- lmer(Reaction ~ Days + (Days | Subject),
               data = sleepstudy, REML = FALSE)
 fm_ml
@@ -104,7 +110,7 @@ sleepstudy |>
   theme(strip.text = element_text(size = 7))
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-5-concluding-statement}
 
 > In the sleepstudy data, reaction time increased by about
 > `round(fixef(rs)["Days"], 1)` ms per day of deprivation, with
@@ -114,14 +120,14 @@ sleepstudy |>
 > model (likelihood-ratio test *p* < 0.001).
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-common-pitfalls}
 
 - Testing random-effects with REML-based LRTs without refitting.
 - Ignoring the random slope when slopes clearly vary.
 - Treating the `Intercept` variance as the within-subject error.
 - Using *p*-values from the Wald *z* on small samples.
 
-## Further reading
+### Further reading {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-further-reading}
 
 - Bates D et al. (2015), *Fitting linear mixed-effects models
   using lme4*.
@@ -129,16 +135,17 @@ sleepstudy |>
 - Gelman A, Hill J. *Data Analysis Using Regression and
   Multilevel/Hierarchical Models*.
 
-## Session info
+### Session info {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-16-design)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

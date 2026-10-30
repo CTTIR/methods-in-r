@@ -1,12 +1,14 @@
-## Introduction
+## R-Squared and Adjusted R-Squared {#sec-chapters-07-regression-r-squared-adjusted}
+
+### Introduction {#sec-chapters-07-regression-r-squared-adjusted-introduction}
 
 $R^2$ is the proportion of variance in the outcome explained by the regression — the most commonly reported summary of regression fit. Its weakness is well known: $R^2$ never decreases when predictors are added, so it cannot distinguish a useful predictor from a noise variable, and high $R^2$ alone does not imply a useful model. Adjusted $R^2$ penalises for the number of predictors and decreases when an added predictor does not earn its complexity. For predictive purposes, cross-validated $R^2$ is more honest still.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-r-squared-adjusted-prerequisites}
 
 A working understanding of multiple regression, residual sum of squares, and the bias-variance trade-off in model selection.
 
-## Theory
+### Theory {#sec-chapters-07-regression-r-squared-adjusted-theory}
 
 $$R^2 = 1 - \frac{\mathrm{SS}_{\mathrm{res}}}{\mathrm{SS}_{\mathrm{tot}}}.$$
 
@@ -20,11 +22,11 @@ with $p$ the number of predictors. Adjusted $R^2$ can decrease when an added pre
 
 For prediction, both are in-sample summaries; cross-validated $R^2$ (`1 - SSE_{CV} / SS_{tot}`) replaces the residual sum with a CV-based estimate of out-of-sample error and corrects for the optimism of in-sample fit.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-r-squared-adjusted-assumptions}
 
 Standard regression assumptions for the underlying linear model. $R^2$ is well-defined for any model with an intercept; without an intercept, definitions differ across software.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-r-squared-adjusted-r-implementation}
 
 ```r
 fit <- lm(mpg ~ wt + hp + disp, data = mtcars)
@@ -40,15 +42,15 @@ cv <- train(mpg ~ wt + hp + disp, data = mtcars,
 cv$results
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-r-squared-adjusted-output-results}
 
 `summary(fit)$r.squared` and `$adj.r.squared` give in-sample values; `caret::train()` returns cross-validated $R^2$ and RMSE under 10-fold CV. The gap between in-sample and CV $R^2$ quantifies optimism — large gaps indicate overfitting.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-r-squared-adjusted-interpretation}
 
 A reporting sentence: "The model explained 83 % of the variance in mpg ($R^2 = 0.83$, adjusted $R^2 = 0.81$); 10-fold cross-validated $R^2$ was 0.79, indicating modest optimism in the in-sample estimate. Adjusted $R^2$ confirmed that all three predictors contributed beyond their penalty." Always report adjusted $R^2$ alongside $R^2$ for multi-predictor models, and CV $R^2$ when prediction is the goal.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-r-squared-adjusted-practical-tips}
 
 - Report adjusted $R^2$, not just $R^2$, whenever predictors number more than one; the unadjusted version misleads about model parsimony.
 - Adjusted $R^2$ can be negative for very poorly fitting models; this is informative, not a bug.
@@ -57,46 +59,43 @@ A reporting sentence: "The model explained 83 % of the variance in mpg ($R^2 = 0
 - Avoid causal language: "the model explains 83 % of the variance" is correct; "the model predicts 83 % of the outcome" is not.
 - For GLMs, pseudo-$R^2$ measures (Cox-Snell, Nagelkerke, McFadden) generalise the concept; report the specific variant used because they give different numerical answers.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-r-squared-adjusted-r-packages-used}
 
 Base R `summary.lm()` and `summary.glm()`; `performance::r2()` for tidy $R^2$ across model classes; `caret` and `tidymodels` for cross-validated $R^2$; `MuMIn::r.squaredGLMM()` for marginal and conditional $R^2$ in mixed models.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-r-squared-adjusted-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-r-squared-adjusted-assumptions) and
+[practical tips](#sec-chapters-07-regression-r-squared-adjusted-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-r-squared-adjusted-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Line Plots {#sec-chapters-06-visualisation-line-plots}
+
+### Introduction {#sec-chapters-06-visualisation-line-plots-introduction}
 
 Line plots connect ordered observations and exploit a powerful perceptual cue: the human eye reads slope as rate of change effortlessly. They are the default geom for time-series, dose-response curves, individual-trajectory ("spaghetti") displays, cumulative distributions, and any context where the x-axis carries a meaningful sequence. The same simplicity that makes them effective also makes them dangerous when the x-axis lacks order — connecting unordered categories with a line implies a trajectory that does not exist and misleads readers into seeing trends in noise.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-line-plots-prerequisites}
 
 A working knowledge of `ggplot2`'s aesthetic mappings, a clear distinction between continuous, ordered, and unordered variables, and an understanding of how `group` aesthetics control which points get joined.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-line-plots-theory}
 
 `geom_line()` joins points in the order they appear within each group defined by the `group` aesthetic; default groups come from any discrete colour, fill, or linetype mapping. For paired or repeated-measures data, the `group` aesthetic must be set explicitly to the subject identifier so that individual trajectories are connected, not all observations across subjects. Variants include:
 
@@ -16,11 +18,11 @@ A working knowledge of `ggplot2`'s aesthetic mappings, a clear distinction betwe
 
 For many overlapping lines, alpha-blending or faceting prevents the "spaghetti pile" that hides individual trajectories.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-line-plots-assumptions}
 
 The x-axis values are ordered meaningfully — by time, dose, position, or rank. Connecting nominal categories with a line is a presentation error, not a stylistic choice.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-line-plots-r-implementation}
 
 ```r
 library(ggplot2)
@@ -53,15 +55,15 @@ ggplot(mtcars, aes(wt)) +
   theme_minimal()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-line-plots-output-results}
 
 Four illustrative line plots: a long-running unemployment series, monthly ozone levels coloured by month, individual subject trajectories from pre to post, and the empirical cumulative distribution function of car weights as a step line. Each shows a different idiomatic use of the line geom.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-line-plots-interpretation}
 
 A reporting sentence: "Individual subject responses from pre to post are connected by grey lines, with overlaid points indicating measurement times; group-mean changes (not shown) are reported in Table 1." Always describe the unit of analysis a line represents (subject, country, replicate); a line plot without that context is ambiguous.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-line-plots-practical-tips}
 
 - Set the `group` aesthetic explicitly for paired or repeated-measures data; the default group inferred from colour or linetype rarely matches the intended unit.
 - Add `geom_point()` on top of `geom_line()` when x-values are sparse so individual observations remain visible; pure lines hide irregular sampling.
@@ -70,30 +72,26 @@ A reporting sentence: "Individual subject responses from pre to post are connect
 - For dozens of overlapping trajectories, lower `alpha` (0.2–0.4) and add a single bold line for the group mean or median; pure spaghetti loses readability above 30–40 trajectories.
 - When the y-axis spans orders of magnitude with multiplicative growth, use `scale_y_log10()` so constant-rate growth reads as a straight line.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-line-plots-r-packages-used}
 
 `ggplot2` for `geom_line()`, `geom_step()`, `geom_path()`, `geom_ribbon()`, and `stat_ecdf()`; `ggrepel` for non-overlapping line-end labels; `directlabels` for legend-free per-series labelling that scales better than colour-and-legend in print.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-line-plots-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-line-plots-assumptions) and [practical tips](#sec-chapters-06-visualisation-line-plots-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-line-plots-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

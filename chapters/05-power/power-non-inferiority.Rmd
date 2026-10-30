@@ -1,12 +1,14 @@
-## Introduction
+## Power for Non-Inferiority Trials {#sec-chapters-05-power-power-non-inferiority}
+
+### Introduction {#sec-chapters-05-power-power-non-inferiority-introduction}
 
 Non-inferiority trials aim to establish that a new treatment is "not meaningfully worse" than an active comparator. The non-inferiority margin is a pre-specified loss that defines the boundary. Power calculations use a one-sided test at the margin.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-non-inferiority-prerequisites}
 
 Equivalence testing, confidence intervals.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-non-inferiority-theory}
 
 For continuous outcomes with true difference $\delta$ (new minus reference), margin $-\Delta$ (loss), and pooled SD $\sigma$, the non-inferiority null is $\mu_{\text{new}} - \mu_{\text{ref}} \leq -\Delta$. Power at $\alpha$ one-sided is
 
@@ -16,13 +18,13 @@ For binary outcomes (proportions), analogous formulas using Cohen's $h$ or risk-
 
 Sample size increases with tighter margin, larger allowed effect, or reduced power.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-non-inferiority-assumptions}
 
 - Pre-specified non-inferiority margin based on regulatory or clinical guidance.
 - Assumed true $\delta$ (often zero, assuming equivalence).
 - Normal or large-sample approximations.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-non-inferiority-r-implementation}
 
 ```r
 library(gsDesign)
@@ -47,15 +49,15 @@ ni <- gsDesign(k = 2, test.type = 1, alpha = 0.025, beta = 0.20,
 gsBoundSummary(ni)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-non-inferiority-output-results}
 
 Continuous: $n \approx 140$ per arm. Binary: $n \approx 196$ per arm.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-non-inferiority-interpretation}
 
 "To establish non-inferiority with a 5-unit margin, assuming a true zero difference and SD 15, at 80 % power and one-sided $\alpha = 0.025$, 140 patients per arm are required."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-non-inferiority-practical-tips}
 
 - Margin selection is the most important decision in non-inferiority design; regulators require explicit justification.
 - Use one-sided $\alpha = 0.025$ to keep consistency with two-sided 0.05 superiority conventions.
@@ -65,25 +67,22 @@ Continuous: $n \approx 140$ per arm. Binary: $n \approx 196$ per arm.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-non-inferiority-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-non-inferiority-assumptions) and
+[practical tips](#sec-chapters-05-power-power-non-inferiority-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-non-inferiority-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

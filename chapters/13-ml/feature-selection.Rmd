@@ -1,12 +1,14 @@
-## Introduction
+## Feature Selection {#sec-chapters-13-ml-feature-selection}
+
+### Introduction {#sec-chapters-13-ml-feature-selection-introduction}
 
 Feature selection retains the predictors most relevant to the target while discarding the rest. The benefits are simpler models, reduced over-fitting, faster inference, improved interpretability, and reduced annotation cost in some applications. Three families of methods coexist: filter (univariate tests, cheap and fast), wrapper (fit-and-evaluate, slow but thorough), and embedded (selection happens during fitting, balancing speed and quality). Modern ML pipelines almost always use embedded methods (lasso, tree importance, Boruta) because they integrate naturally with cross-validation.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-feature-selection-prerequisites}
 
 A working understanding of regression and classification basics, regularisation (L1/lasso), and the bias-variance trade-off.
 
-## Theory
+### Theory {#sec-chapters-13-ml-feature-selection-theory}
 
 **Filter methods** rank features by univariate statistics — Pearson or Spearman correlation, mutual information, chi-squared, ANOVA F-statistic — and select the top $k$. Fast but ignore feature interactions and joint information.
 
@@ -14,11 +16,11 @@ A working understanding of regression and classification basics, regularisation 
 
 **Embedded methods** integrate selection with fitting. Lasso drives some coefficients to exactly zero (selection); tree-based methods (random forest, XGBoost) provide importance scores; Boruta compares each feature against random permuted shadows in many resamples to test for genuinely predictive features. Stability selection runs lasso on many subsamples and ranks features by selection frequency.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-feature-selection-assumptions}
 
 Selected features generalise from training to deployment data; selection is done within CV folds to prevent leakage of test-fold information into the chosen feature set.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-feature-selection-r-implementation}
 
 ```r
 library(Boruta); library(glmnet)
@@ -42,15 +44,15 @@ confirmed <- getSelectedAttributes(bor, withTentative = FALSE)
 cat("Boruta confirmed:", length(confirmed), "\n")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-feature-selection-output-results}
 
 Lasso retains the features whose coefficients survive the L1 penalty at the cross-validation-optimal $\lambda$. Boruta confirms or rejects features based on whether their importance exceeds that of randomly permuted shadow features across many resampling runs. On the sparse-signal dataset (5 true features, 15 noise), both methods typically recover 4–5 true features with near-zero false positives.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-feature-selection-interpretation}
 
 A reporting sentence: "Lasso (cross-validated $\lambda = 0.08$) and Boruta (50 runs, BH-adjusted importance against shadow features) independently identified the same 5 predictive features matching the data-generating model, with no false positives in either; correlation-based filter selection (top 5 by absolute correlation with $y$) missed one feature because its marginal correlation was masked by noise from collinear predictors." Always describe the selection method and any cross-validation embedding.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-feature-selection-practical-tips}
 
 - Perform feature selection *inside* cross-validation folds; selection on the full dataset before CV leaks information from test folds into the chosen feature set.
 - Lasso is fast and principled for linear or near-linear relationships; random forest importance handles non-linear effects better.
@@ -59,37 +61,34 @@ A reporting sentence: "Lasso (cross-validated $\lambda = 0.08$) and Boruta (50 r
 - Stability selection (`stabs::stabsel`) fits many lassos on data subsamples and ranks features by their selection frequency; this is a robust alternative when a single CV run is unstable.
 - Pre-screen with cheap filter methods (variance, correlation) when $p$ is in the millions; this reduces the candidate set before applying the more expensive wrapper or embedded methods.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-feature-selection-r-packages-used}
 
 `glmnet` for lasso and elastic-net embedded selection; `Boruta` for shadow-feature-based confirmation; `stabs` for stability selection; `caret::rfe()` for recursive feature elimination; `vip` for permutation-based variable importance from any model; `recipes::step_select_*` for tidymodels-flavoured selection within preprocessing pipelines.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-feature-selection-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-feature-selection-assumptions) and
+[practical tips](#sec-chapters-13-ml-feature-selection-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-feature-selection-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

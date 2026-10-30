@@ -1,12 +1,14 @@
-## Introduction
+## Correlation Heatmaps {#sec-chapters-06-visualisation-correlation-heatmaps}
+
+### Introduction {#sec-chapters-06-visualisation-correlation-heatmaps-introduction}
 
 A correlation heatmap renders a correlation matrix as a grid of colour-encoded cells, with the cell colour mapping the correlation coefficient on a diverging palette centred at zero. It is the natural overview figure for a multivariate dataset: dozens of pairwise correlations that would be impossible to read as a numeric table become a single image where blocks of similarly correlated variables stand out by colour. Hierarchical reordering of rows and columns brings related variables together and reveals cluster structure, often suggesting candidate factors for downstream analysis.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-correlation-heatmaps-prerequisites}
 
 A working understanding of correlation coefficients (Pearson, Spearman, Kendall), basic familiarity with hierarchical clustering, and `ggplot2` colour scales.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-correlation-heatmaps-theory}
 
 A correlation heatmap displays $r_{ij}$ in cell $(i, j)$. Standard variants:
 
@@ -17,11 +19,11 @@ A correlation heatmap displays $r_{ij}$ in cell $(i, j)$. Standard variants:
 
 The colour scale must be diverging (typically red–white–blue or the Brewer `RdBu`) and centred at zero so positive and negative correlations are visually symmetric. Sequential or qualitative palettes destroy the sign information and are wrong for correlations.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-correlation-heatmaps-assumptions}
 
 A valid correlation matrix (any kind: Pearson for linear, Spearman for monotone, polychoric for ordinal). The matrix should be positive-semi-definite if it will feed downstream methods; this is automatic when computed from raw data with `cor()`.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-correlation-heatmaps-r-implementation}
 
 ```r
 library(corrplot); library(ggcorrplot)
@@ -39,15 +41,15 @@ ggcorrplot(corr_mat, hc.order = TRUE, type = "lower",
            lab = TRUE, lab_size = 3)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-correlation-heatmaps-output-results}
 
 Two correlation heatmaps for the 11-variable `mtcars` dataset: a full symmetric heatmap with hierarchical reordering and numeric cell labels, and a lower-triangle version with non-significant cells masked. The first emphasises the full structure; the second is a cleaner publication figure.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-correlation-heatmaps-interpretation}
 
 A reporting sentence (figure caption): "Pearson correlation matrix for 11 vehicle attributes (n = 32), reordered hierarchically using $1 - |r|$ as the distance; cells with $p > 0.05$ are blanked. The two visible blocks correspond to size-related variables (weight, displacement, horsepower) and efficiency-related variables (mpg, quarter-mile time)." Always state the correlation type and the reordering method.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-correlation-heatmaps-practical-tips}
 
 - Use a diverging palette centred at zero; the Brewer `RdBu` or `viridis::cividis` (with the centre stretched) work well in print.
 - Hierarchical reordering (`hc.order = TRUE` in `ggcorrplot`, `order = "hclust"` in `corrplot`) brings related variables together and is almost always preferable to alphabetical order.
@@ -56,30 +58,26 @@ A reporting sentence (figure caption): "Pearson correlation matrix for 11 vehicl
 - State the correlation type (Pearson, Spearman, Kendall) and the test correction (if any) in the caption; readers should not have to guess.
 - For partial correlations, use `ppcor::pcor()` and feed the resulting matrix into the same heatmap geom; partial correlations often reveal structure that pairwise correlations obscure.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-correlation-heatmaps-r-packages-used}
 
 `corrplot` for the canonical correlation heatmap with reordering and significance overlays; `ggcorrplot` for a `ggplot2`-native interface; `Hmisc::rcorr()` for correlation matrices with associated $p$-values; `psych::corPlot()` for an alternative with rich cell formatting.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-correlation-heatmaps-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-correlation-heatmaps-assumptions) and [practical tips](#sec-chapters-06-visualisation-correlation-heatmaps-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-correlation-heatmaps-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

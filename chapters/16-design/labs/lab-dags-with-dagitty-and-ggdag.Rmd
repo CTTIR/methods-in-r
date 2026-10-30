@@ -1,20 +1,22 @@
+## Week 3, Session 3 — DAGs with dagitty and ggdag {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag}
+
 <div class="callout callout-note">
 **Workflow lab** using the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-learning-objectives}
 
 - Express a causal scenario as a directed acyclic graph (DAG).
 - Identify confounders, mediators, and colliders from a DAG.
 - Use `dagitty::adjustmentSets()` to find sufficient adjustment
   sets.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-prerequisites}
 
 Conceptual knowledge of confounding.
 
-## Background
+### Background {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-background}
 
 A DAG is a set of variables joined by arrows that encode assumed
 causal directions. The graph distinguishes three kinds of third
@@ -39,7 +41,7 @@ on a variable that is a common effect of an unmeasured cause of X
 and an unmeasured cause of Y opens a path and biases the estimate.
 This is why "adjust for everything" is bad advice.
 
-## Setup
+### Setup {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-setup}
 
 ```r
 library(tidyverse)
@@ -49,14 +51,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-1-goal}
 
 Write a confounder, mediator, and collider scenario as DAGs; ask
 `dagitty` which variables to adjust for.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-2-approach}
 
 ```r
+dag1 <- dagitty('dag {
   X -> Y
   C -> X
   C -> Y
@@ -84,13 +87,15 @@ ggdag(dag2) + theme_dag()
 ggdag(dag3) + theme_dag()
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-3-execution}
 
 ```r
+adjustmentSets(dag1, exposure = "X", outcome = "Y",
                effect = "total")
 ```
 
 ```r
+# Total vs direct effect when a mediator exists
 adjustmentSets(dag2, exposure = "X", outcome = "Y",
                effect = "total")
 adjustmentSets(dag2, exposure = "X", outcome = "Y",
@@ -98,15 +103,17 @@ adjustmentSets(dag2, exposure = "X", outcome = "Y",
 ```
 
 ```r
+# Collider: do not adjust for Z
 adjustmentSets(dag3, exposure = "X", outcome = "Y")
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-4-check}
 
 Simulate dag1 and verify that adjusting for C recovers the true
 effect while failing to adjust biases it.
 
 ```r
+n  <- 2000
 c_ <- rnorm(n)
 x  <- 0.6 * c_ + rnorm(n)
 y  <- 0.4 * x + 0.7 * c_ + rnorm(n)
@@ -119,7 +126,7 @@ coef(lm(y ~ x + c_,   data = df))["x"]
 The unadjusted coefficient is inflated; the adjusted one is close
 to 0.4 as simulated.
 
-## 5. Report
+### 5. Report {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-5-report}
 
 > A directed acyclic graph is a compact, testable statement of
 > causal assumptions. Dagitty identified the confounder C as the
@@ -128,7 +135,7 @@ to 0.4 as simulated.
 > conditioning on it would introduce selection bias.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-common-pitfalls}
 
 - Listing "every variable we measured" as the adjustment set.
 - Adjusting for a mediator and calling the result a total effect.
@@ -136,7 +143,7 @@ to 0.4 as simulated.
   a DAG.
 - Drawing the DAG after the analysis.
 
-## Further reading
+### Further reading {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-further-reading}
 
 - Textor J et al. (2016), *Robust causal inference using directed
   acyclic graphs: the R package 'dagitty'*.
@@ -144,16 +151,17 @@ to 0.4 as simulated.
 - Greenland S, Pearl J, Robins JM (1999), *Causal diagrams for
   epidemiologic research*.
 
-## Session info
+### Session info {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-16-design)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## 3^k Factorial Designs {#sec-chapters-16-design-factorial-3k}
+
+### Introduction {#sec-chapters-16-design-factorial-3k-introduction}
 
 The $3^k$ factorial design uses three coded levels per factor — low ($-1$), middle ($0$), and high ($+1$) — and runs all $3^k$ combinations. The third level is what distinguishes the $3^k$ family from the simpler $2^k$ family: with three levels the design supports estimation of pure quadratic terms in each factor, and therefore the second-order polynomial approximation to a smooth response surface. The $3^k$ factorial is the simplest full-factorial construction that captures curvature and is the conceptual ancestor of the modern response-surface designs (central composite, Box-Behnken) that economise on the run count by replacing the dense $3^k$ grid with sparser alternatives carrying the same second-order information.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-factorial-3k-prerequisites}
 
 Familiarity with $2^k$ factorial designs, the concept of an interaction effect, and quadratic regression for capturing curvature in a response.
 
-## Theory
+### Theory {#sec-chapters-16-design-factorial-3k-theory}
 
 For $k$ three-level factors a full factorial has $3^k$ runs. With coded levels $\{-1, 0, +1\}$ the standard analysis model is the second-order polynomial
 
@@ -14,11 +16,11 @@ $$y = \beta_0 + \sum_i \beta_i x_i + \sum_i \beta_{ii} x_i^2 + \sum_{i<j} \beta_
 
 with linear, pure-quadratic, and two-factor-interaction terms. The design grows quickly: $3^3 = 27$, $3^4 = 81$, $3^5 = 243$. For screening purposes the $3^k$ becomes impractical at $k = 4$ or beyond, and fractional $3^k$ designs or central composite / Box-Behnken layouts are far more economical for the same second-order information.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-factorial-3k-assumptions}
 
 The response is well approximated by a second-order polynomial within the design region (no strong cubic or higher curvature), residuals are approximately Normal with constant variance, and the three levels span a range over which the polynomial approximation is plausible.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-factorial-3k-r-implementation}
 
 ```r
 library(rsm)
@@ -32,15 +34,15 @@ fit <- rsm(y ~ SO(A, B), data = df)
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-factorial-3k-output-results}
 
 `rsm()` with the second-order specification returns coefficients for linear, pure-quadratic, and two-factor-interaction terms together with a stationary-point analysis (eigenvalue classification of the quadratic-form matrix as maximum, minimum, or saddle) and a lack-of-fit test against centre replicates when present. Reporting all components of the canonical analysis is the standard summary.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-factorial-3k-interpretation}
 
 A reporting sentence: "The $3^2$ full factorial estimated linear effects of A (2.0, $p < 0.001$) and B (1.5, $p = 0.002$), a significant quadratic term in A ($-0.9$, $p = 0.004$), and a mild interaction (0.7, $p = 0.07$). The stationary point of the fitted surface lay inside the design region and was a maximum, consistent with the expected concave behaviour. Predicted optimum was 12.4 at $(A, B) = (0.9, 0.8)$." Always pair the coefficient table with the canonical-analysis classification.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-factorial-3k-practical-tips}
 
 - For $k \geq 3$, prefer central composite or Box-Behnken designs over full $3^k$ factorials; both deliver the same second-order information with far fewer runs and are the modern industrial-DoE default for response-surface modelling.
 - Replicate the centre point ($x = 0$ for all factors) several times in any three-level design; the centre replicates supply pure-error degrees of freedom and a lack-of-fit test that diagnoses inadequacy of the second-order model.
@@ -49,42 +51,39 @@ A reporting sentence: "The $3^2$ full factorial estimated linear effects of A (2
 - A $3^k$ full factorial is often a precursor to formal response-surface methodology; once the second-order surface is mapped, sequential experimentation along the path of steepest ascent or descent locates the optimum.
 - For mixed-level designs (some factors at three levels, others at two) use orthogonal-array layouts via `DoE.base`; full crossed factorials become quickly unwieldy in mixed-level cases.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-factorial-3k-r-packages-used}
 
 `rsm` for second-order polynomial fitting with stationary-point and canonical analysis; `FrF2.mix` for fractional three-level and mixed-level designs; `DoE.base` for general orthogonal-array construction including $3^k$ as a special case; `agricolae` for textbook three-level layouts; `Vdgraph` for variance-dispersion comparisons across $3^k$, CCD, and BBD alternatives.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-factorial-3k-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-factorial-3k-assumptions) and
+[practical tips](#sec-chapters-16-design-factorial-3k-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-factorial-3k-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

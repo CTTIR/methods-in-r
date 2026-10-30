@@ -1,9 +1,11 @@
+## Week 4, Session 2 — Two proportions, chi-square, risk and odds {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-learning-objectives}
 
 - Compare two proportions with `prop.test()` and `fisher.test()` and
   say when each is preferred.
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
   confidence intervals.
 - Run a chi-square goodness-of-fit test against a named distribution.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-prerequisites}
 
 Labs 2.4, 3.4.
 
-## Background
+### Background {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-background}
 
 Two-proportion tests ask whether the rate of an event differs between
 two groups. In a 2x2 table, two exposure groups (say, treatment and
@@ -39,7 +41,7 @@ whether arrivals over an hour are Poisson. The test statistic is the
 same chi-square; the interpretation is "is the distribution consistent
 with a named model?"
 
-## Setup
+### Setup {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-setup}
 
 ```r
 library(tidyverse)
@@ -47,7 +49,7 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-1-hypothesis}
 
 Two-by-two: `treatment` vs `control`, outcome `event` vs `none`.
 
@@ -55,11 +57,12 @@ Two-by-two: `treatment` vs `control`, outcome `event` vs `none`.
 - H1: rates differ.
 - α = 0.05.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-2-visualise}
 
 Simulate: 200 per arm, event rate 0.25 in control, 0.15 in treatment.
 
 ```r
+n_per <- 200
 sim <- tibble(
   arm = rep(c("control", "treatment"), each = n_per),
   event = c(rbinom(n_per, 1, 0.25),
@@ -78,7 +81,7 @@ as_tibble(tab) |>
   labs(x = NULL, y = "Proportion", fill = NULL)
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-3-assumptions}
 
 Chi-square requires expected cell counts ≥ 5. Fisher has no such
 constraint and is exact at any size. Random assignment or
@@ -86,21 +89,24 @@ representative sampling is assumed. Independence of observations is
 essential.
 
 ```r
+chisq.test(tab)$expected
 ```
 
 All expected counts large; chi-square is appropriate.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-4-conduct}
 
 ```r
+ct <- chisq.test(tab, correct = FALSE)
 ft <- fisher.test(tab)
 pt <- prop.test(x = tab[, "1"], n = rowSums(tab), correct = FALSE)
 list(chisq = ct, fisher = ft, prop = pt)
 ```
 
-### Effect sizes: RD, RR, OR
+#### Effect sizes: RD, RR, OR {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-effect-sizes-rd-rr-or}
 
 ```r
+p_ctrl <- tab["control",   "1"] / sum(tab["control", ])
 p_trt  <- tab["treatment", "1"] / sum(tab["treatment", ])
 
 rd <- p_trt - p_ctrl
@@ -124,19 +130,20 @@ tibble(effect = c("RD", "RR", "OR"),
        ci_high = c(pt$conf.int[2], ci_rr[2], ci_or[2]))
 ```
 
-### Goodness-of-fit example
+#### Goodness-of-fit example {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-goodness-of-fit-example}
 
 Test whether 600 simulated genotype counts match Hardy-Weinberg
 proportions at allele frequency 0.3.
 
 ```r
+obs <- c(AA = 260, Aa = 290, aa = 50)
 pAA <- 0.7^2; paa <- 0.3^2; pAa <- 2 * 0.7 * 0.3
 exp_probs <- c(AA = pAA, Aa = pAa, aa = paa)
 gof <- chisq.test(obs, p = exp_probs)
 gof
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-5-concluding-statement}
 
 > Event rates were `round(p_ctrl, 3)` in control and
 > `round(p_trt, 3)` in treatment (RD
@@ -154,7 +161,7 @@ Report RR or OR alongside the *p*-value. In a cohort design prefer
 RR, which is the quantity clinicians translate directly to practice.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-common-pitfalls}
 
 - Reporting an OR when a RR is meaningful and more interpretable.
 - Using the continuity correction (the default in `prop.test` and
@@ -162,22 +169,23 @@ RR, which is the quantity clinicians translate directly to practice.
 - Running a chi-square when expected counts are small; use Fisher.
 - Treating independent observations as if repeated measures weren't.
 
-## Further reading
+### Further reading {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-further-reading}
 
 - Altman DG. *Practical Statistics for Medical Research*, chapter
   10–11.
 - Agresti A. *Categorical Data Analysis*.
 
-## Session info
+### Session info {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-04-inferential)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

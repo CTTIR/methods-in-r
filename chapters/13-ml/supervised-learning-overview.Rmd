@@ -1,12 +1,14 @@
-## Introduction
+## Supervised Learning: Overview {#sec-chapters-13-ml-supervised-learning-overview}
+
+### Introduction {#sec-chapters-13-ml-supervised-learning-overview-introduction}
 
 Supervised learning uses labelled data $(x_i, y_i)_{i=1}^{n}$ to learn a function $f$ that predicts $y$ from new $x$. The enterprise is defined by three choices: a **hypothesis class** (tree, linear model, neural net), a **loss function** (squared error, cross-entropy), and an **optimisation** procedure. Generalisation -- performance on unseen data -- is the goal, and the bias-variance decomposition is the classical lens for understanding why models fail.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-supervised-learning-overview-prerequisites}
 
 Probability, linear algebra, basic statistics.
 
-## Theory
+### Theory {#sec-chapters-13-ml-supervised-learning-overview-theory}
 
 **Empirical risk minimisation (ERM)**: $\hat{f} = \arg\min_{f \in \mathcal{F}} \frac{1}{n}\sum_i L(y_i, f(x_i))$.
 
@@ -19,11 +21,11 @@ $$\mathbb{E}[(y - \hat{f}(x))^2] = \text{Bias}^2 + \text{Variance} + \sigma^2_{\
 
 Flexible models have low bias, high variance; rigid models the reverse. Regularisation trades one for the other.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-supervised-learning-overview-assumptions}
 
 $(x, y)$ pairs are drawn iid from some joint distribution; the deployment distribution matches the training distribution (no distribution shift).
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-supervised-learning-overview-r-implementation}
 
 ```r
 library(tidymodels)
@@ -46,15 +48,15 @@ rmse(predict(m_rigid, test), test$y)
 rmse(predict(m_flex,  test), test$y)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-supervised-learning-overview-output-results}
 
 The flexible loess model has lower test RMSE on this non-linear signal; the rigid linear model under-fits.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-supervised-learning-overview-interpretation}
 
 "The sinusoidal signal is captured by loess (test RMSE 0.31) but missed by linear regression (test RMSE 0.68), illustrating how bias dominates when the hypothesis class is too restrictive."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-supervised-learning-overview-practical-tips}
 
 - Always report test performance, never training performance, as a generalisation estimate.
 - The no-free-lunch theorem: no single model wins everywhere; match model to the data-generating process.
@@ -64,31 +66,28 @@ The flexible loess model has lower test RMSE on this non-linear signal; the rigi
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-supervised-learning-overview-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-supervised-learning-overview-assumptions) and
+[practical tips](#sec-chapters-13-ml-supervised-learning-overview-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-supervised-learning-overview-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

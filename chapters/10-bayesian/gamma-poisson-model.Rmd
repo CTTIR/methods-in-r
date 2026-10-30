@@ -1,12 +1,14 @@
-## Introduction
+## The Gamma-Poisson Model {#sec-chapters-10-bayesian-gamma-poisson-model}
+
+### Introduction {#sec-chapters-10-bayesian-gamma-poisson-model-introduction}
 
 The Gamma–Poisson conjugate pair is the count-data analogue of the Beta–Binomial model: a Gamma prior on a Poisson rate yields a Gamma posterior whose parameters are obtained by adding the observed event count and the observed exposure to the prior shape and rate respectively. It is the natural starting point whenever you are inferring an event rate per unit time, area, or population, and it generalises directly to Poisson regression once predictors enter the linear predictor.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-gamma-poisson-model-prerequisites}
 
 A working understanding of the Poisson distribution, the Gamma distribution, and the concept of conjugacy.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-gamma-poisson-model-theory}
 
 With prior $\lambda \sim \mathrm{Gamma}(\alpha_0, \beta_0)$ and likelihood $y_i \sim \mathrm{Poisson}(\lambda t_i)$ where $t_i$ is the exposure for observation $i$, the posterior is
 
@@ -14,11 +16,11 @@ $$\lambda \mid y \sim \mathrm{Gamma}\!\left(\alpha_0 + \sum_{i} y_i, \, \beta_0 
 
 The prior shape $\alpha_0$ behaves like a pseudo-count of events and the prior rate $\beta_0$ like a pseudo-exposure, so a $\mathrm{Gamma}(2, 1)$ prior is equivalent to two prior events observed in one unit of exposure. The posterior mean is $(\alpha_0 + \sum y_i) / (\beta_0 + \sum t_i)$ and the posterior variance is the posterior mean divided by the posterior rate. The Poisson–Gamma compound distribution is a Negative-Binomial, which gives the posterior predictive distribution in closed form.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-gamma-poisson-model-assumptions}
 
 Independent Poisson counts conditional on the rate, an exposure $t_i$ that is known and not estimated from the same data, and a constant rate over each observation window (after conditioning on any covariates). Overdispersion relative to Poisson — variance exceeding the mean — motivates a Negative-Binomial likelihood instead.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-gamma-poisson-model-r-implementation}
 
 ```r
 # Prior Gamma(2, 1) -- 2 events per 1 unit of exposure
@@ -35,15 +37,15 @@ c(posterior_mean = alpha_n / beta_n,
   ci95 = qgamma(c(0.025, 0.975), alpha_n, beta_n))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-gamma-poisson-model-output-results}
 
 Closed-form summaries: posterior mean approximately 1.55 events per unit exposure, posterior SD approximately 0.38, and 95 % equal-tailed credible interval roughly $(0.94, 2.28)$. The posterior is right-skewed because Gamma densities have a heavier right tail than left, so report the median or HPD when the asymmetry matters.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-gamma-poisson-model-interpretation}
 
 A reporting sentence: "A $\mathrm{Gamma}(2, 1)$ prior combined with 15 events in 10 units of exposure yielded a $\mathrm{Gamma}(17, 11)$ posterior with mean 1.55 events per unit exposure (95 % credible interval 0.94 to 2.28); the prior contributed the equivalent of two pseudo-events and one pseudo-unit of exposure, which the data overwhelmed." Quote both the posterior mean and the credible interval, and note any skew.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-gamma-poisson-model-practical-tips}
 
 - Weakly informative defaults: $\mathrm{Gamma}(0.5, 0.5)$ or $\mathrm{Gamma}(1, 1)$; the latter has prior mean 1 and prior variance 1.
 - For Poisson regression, place priors on regression coefficients on the log-rate scale (typically $\mathcal N(0, 1)$ or $\mathcal N(0, 2.5)$) rather than on the rate itself; the linear predictor is more naturally constrained.
@@ -51,31 +53,28 @@ A reporting sentence: "A $\mathrm{Gamma}(2, 1)$ prior combined with 15 events in
 - Persistent overdispersion after fitting motivates a Negative-Binomial likelihood with a separate dispersion parameter; the Gamma–Poisson is its conjugate root.
 - For zero-inflation (more zeros than the Poisson predicts), augment with a zero-inflation component rather than tightening the prior.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-gamma-poisson-model-r-packages-used}
 
 Base R suffices for the conjugate update (`dgamma`, `qgamma`); `bayestestR` for tidy summaries; `brms` with `family = poisson()` (or `negbinomial()`) when covariate-dependent rates are needed; `rstanarm::stan_glm` with `family = poisson` for a quick GLM-style alternative.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-gamma-poisson-model-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-gamma-poisson-model-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-gamma-poisson-model-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-gamma-poisson-model-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

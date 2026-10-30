@@ -1,12 +1,14 @@
-## Introduction
+## Boxplots {#sec-chapters-06-visualisation-boxplots}
+
+### Introduction {#sec-chapters-06-visualisation-boxplots-introduction}
 
 A boxplot — also called a box-and-whisker plot — compresses a continuous distribution into a five-number summary: minimum, first quartile, median, third quartile, maximum, with Tukey's fences at $\pm 1.5 \times \mathrm{IQR}$ defining the whiskers and flagging anything beyond as an outlier. Boxplots are the workhorse for compact group-by-group comparisons because they put many groups side by side without ink overload. They are also the geom most often misused: they hide bimodality, hide sample size, and hide the raw observations behind a tidy rectangle, all of which can mislead readers who do not realise what the box actually summarises.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-boxplots-prerequisites}
 
 A working understanding of quartiles, the interquartile range, and the standard $\pm 1.5 \cdot \mathrm{IQR}$ outlier convention.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-boxplots-theory}
 
 The standard Tukey boxplot has the following components per group:
 
@@ -21,11 +23,11 @@ Variants:
 - **Variable-width boxplot**: box width proportional to $\sqrt n$, encoding group size visually.
 - **Letter-value plot**: replaces the single box with nested boxes of decreasing depth, suitable for very large $n$ where a single Tukey box hides tail structure.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-boxplots-assumptions}
 
 For descriptive use, none. For the notched-boxplot CI interpretation, the approximation assumes approximately symmetric within-group distributions; under heavy skew the notches mislead.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-boxplots-r-implementation}
 
 ```r
 library(ggplot2)
@@ -49,15 +51,15 @@ ggplot(mtcars, aes(factor(cyl), mpg)) +
   theme_minimal()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-boxplots-output-results}
 
 Three views: a standard side-by-side boxplot of mpg by cylinder count, a notched boxplot of iris sepal length per species (notches show approximate median CIs), and a hybrid plot that hides the default outlier dots and overlays jittered raw points so the boxplot's summary and the underlying data are both visible.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-boxplots-interpretation}
 
 A reporting sentence (figure caption): "Boxplots of fuel efficiency by cylinder count (n = 11, 7, 14 for 4, 6, 8 cylinders); boxes span Q1 to Q3, the line marks the median, whiskers extend to the most extreme observation within $1.5 \cdot \mathrm{IQR}$, and dots are outliers." Always describe the whisker definition; some software uses 5 %/95 % quantiles or min/max instead of the Tukey rule.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-boxplots-practical-tips}
 
 - Hide default outliers (`outlier.shape = NA`) whenever you overlay `geom_jitter()`; otherwise extreme points appear twice.
 - Notches can overshoot the box for very small samples; R prints a warning when this happens, and the plot becomes uninterpretable.
@@ -66,30 +68,27 @@ A reporting sentence (figure caption): "Boxplots of fuel efficiency by cylinder 
 - Boxplots hide multi-modality; always inspect a density or histogram alongside before concluding that a group is unimodal.
 - For very large samples, a letter-value plot (`lvplot::geom_lv()`) preserves more of the tail structure than a single Tukey box.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-boxplots-r-packages-used}
 
 `ggplot2` for `geom_boxplot()` and the `varwidth` / `notch` parameters; `lvplot` for letter-value plots at very large $n$; `ggbeeswarm` and `ggdist` for richer alternatives that combine boxplot summaries with raw points and distributional shape.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-boxplots-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-boxplots-assumptions) and
+[practical tips](#sec-chapters-06-visualisation-boxplots-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-boxplots-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

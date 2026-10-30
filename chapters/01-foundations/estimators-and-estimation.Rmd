@@ -1,12 +1,14 @@
-## Introduction
+## Estimators and Estimation {#sec-chapters-01-foundations-estimators-and-estimation}
+
+### Introduction {#sec-chapters-01-foundations-estimators-and-estimation-introduction}
 
 An **estimator** is a rule -- a function of the data -- that produces a guess about an unknown parameter of the population. An **estimate** is the value that rule returns on a specific sample. The sample mean is an estimator of the population mean; on the sample $\{3.1, 2.7, 3.4\}$ it returns the estimate $3.07$. Every inferential procedure begins with an estimator.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-estimators-and-estimation-prerequisites}
 
 The reader should know what a sample is, what a parameter is, and should be comfortable calling R functions on a numeric vector.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-estimators-and-estimation-theory}
 
 Given iid observations $X_1, \ldots, X_n$ from a distribution $F$ with parameter $\theta$, an estimator is any function $\hat{\theta} = T(X_1, \ldots, X_n)$. Common examples:
 
@@ -27,11 +29,11 @@ Properties by which estimators are judged:
 
 General-purpose construction methods -- method of moments, maximum likelihood, least squares, Bayesian posterior summaries -- each yield estimators with characteristic properties under the model they assume.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-estimators-and-estimation-assumptions}
 
 The plug-in principle is model-free in spirit but model-dependent in application: the estimator inherits any bias from the mismatch between the assumed model and reality. When the sample does not represent the target population, no estimator can rescue the inference.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-estimators-and-estimation-r-implementation}
 
 ```r
 set.seed(2026)
@@ -46,7 +48,7 @@ cor(x, x + rnorm(length(x), sd = 5))
 
 Each call is a plug-in estimator: `mean()` for $\mu$, `var()` for $\sigma^2$, `quantile()` for population quantiles, `mean(x > 70)` for $P(X > 70)$, `cor()` for $\rho$.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-estimators-and-estimation-output-results}
 
 ```
 [1] 73.80       # sample mean
@@ -61,11 +63,11 @@ Each call is a plug-in estimator: `mean()` for $\mu$, `var()` for $\sigma^2$, `q
 
 Each of these is a point estimate of the corresponding population quantity; none tells us how uncertain that estimate is.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-estimators-and-estimation-interpretation}
 
 A point estimate is not enough. Every estimate reported in a paper should be accompanied by a measure of its uncertainty -- a standard error, a confidence interval, or a credible interval. "Mean systolic blood pressure 128 mmHg" is a statement; "128 mmHg (95% CI 125--131)" is inference.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-estimators-and-estimation-practical-tips}
 
 - The plug-in principle gives a good default estimator for most quantities; check for bias only when you have reason to suspect it.
 - For small samples, unbiased-looking estimators may still be biased because of non-linear transformations (e.g., SD from variance).
@@ -75,27 +77,24 @@ A point estimate is not enough. Every estimate reported in a paper should be acc
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-estimators-and-estimation-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-estimators-and-estimation-assumptions) and
+[practical tips](#sec-chapters-01-foundations-estimators-and-estimation-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-estimators-and-estimation-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

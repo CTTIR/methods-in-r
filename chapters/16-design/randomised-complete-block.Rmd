@@ -1,12 +1,14 @@
-## Introduction
+## Randomised Complete Block Design {#sec-chapters-16-design-randomised-complete-block}
+
+### Introduction {#sec-chapters-16-design-randomised-complete-block-introduction}
 
 A randomised complete block design (RCBD) is one of the most useful experimental designs in applied research. When a known source of variation -- day of measurement, animal cage, plate, subject -- is likely to influence the outcome, RCBD groups experimental units into homogeneous blocks and randomises treatments *within* each block. The block effect is thereby separated from the treatment effect, and the residual error is the within-block variability, which is typically much smaller than the pooled unblocked error.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-randomised-complete-block-prerequisites}
 
 The reader should have met the one-way ANOVA and the principle of randomisation. Familiarity with R's formula syntax is assumed.
 
-## Theory
+### Theory {#sec-chapters-16-design-randomised-complete-block-theory}
 
 Let $y_{ij}$ be the response of the experimental unit receiving treatment $i$ in block $j$, for $i = 1, \ldots, t$ treatments and $j = 1, \ldots, b$ blocks. The additive RCBD model is
 
@@ -18,14 +20,14 @@ The ANOVA decomposes the total sum of squares into treatment, block, and residua
 
 The design assumes **no treatment-by-block interaction**. If an interaction exists (a treatment works better in some blocks than others), the additive model is misspecified. The Tukey one-degree-of-freedom test for non-additivity provides a partial check.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-randomised-complete-block-assumptions}
 
 1. **Additivity**: no treatment-by-block interaction.
 2. **Independence**: residuals are mutually independent.
 3. **Homoscedasticity**: residuals have constant variance across treatments and blocks.
 4. **Normality**: residuals are approximately normal.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-randomised-complete-block-r-implementation}
 
 ```r
 library(agricolae)
@@ -54,7 +56,7 @@ pairs(emm, adjust = "tukey")
 
 `design.rcbd()` produces a randomised plan with each treatment appearing once per block. The simulated response includes a block effect and a treatment effect with the lowest for A, highest for C. `aov()` fits the additive RCBD model; `emmeans::pairs()` performs pairwise comparisons with Tukey adjustment.
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-randomised-complete-block-output-results}
 
 The ANOVA table:
 
@@ -67,11 +69,11 @@ Residuals   12  4.242   0.353
 
 The block effect accounts for a substantial fraction of the variability -- confirming that blocking was worthwhile -- and the treatment effect is significant at $p = 0.0014$. Pairwise comparisons show C significantly higher than A ($p < 0.001$) and B ($p = 0.03$), and D not significantly different from A.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-randomised-complete-block-interpretation}
 
 For a manuscript: "Treatments were compared in a randomised complete block design with four treatments and five blocks. An additive ANOVA showed a significant treatment effect, F(3, 12) = 8.92, $p = 0.001$, after accounting for block variation (which itself was substantial, F(4, 12) = 12.82, $p < 0.001$). Tukey-adjusted pairwise comparisons indicated that treatment C produced significantly higher responses than treatments A and B (see Table X)."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-randomised-complete-block-practical-tips}
 
 - Block on variables that you expect to influence the outcome and that you cannot randomise out. Common choices: day of measurement, microtitre plate, cage, field plot, subject.
 - Do not include the block as a "predictor of interest" -- its role is to remove nuisance variation. Reporting its effect is informative but rarely the headline.
@@ -81,36 +83,33 @@ For a manuscript: "Treatments were compared in a randomised complete block desig
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-randomised-complete-block-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-randomised-complete-block-assumptions) and
+[practical tips](#sec-chapters-16-design-randomised-complete-block-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-randomised-complete-block-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

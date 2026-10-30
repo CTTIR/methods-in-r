@@ -1,9 +1,11 @@
+## Week 2, Session 5 — tidymodels pipelines {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-learning-objectives}
 
 - Build a `tidymodels` recipe, workflow, and tuning grid for a binary
   classification task.
@@ -11,11 +13,11 @@ Goal → Approach → Execution → Check → Report.
 - Finalise a model on the full training data and evaluate on a test
   split.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-prerequisites}
 
 Cross-validation and regularisation.
 
-## Background
+### Background {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-background}
 
 `tidymodels` organises the modelling workflow into composable objects:
 a *recipe* describes preprocessing, a *model specification* describes
@@ -34,7 +36,7 @@ metrics, finalise with the best parameters, fit once to all of the
 training data, then evaluate once on the test set. The test set is
 touched exactly once.
 
-## Setup
+### Setup {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-setup}
 
 ```r
 library(tidyverse)
@@ -44,22 +46,24 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-1-goal}
 
 Fit an elastic-net logistic regression to predict diabetes status on
 `Pima.tr`, using a proper tidymodels pipeline.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-2-approach}
 
 ```r
+d <- as_tibble(MASS::Pima.tr)
 ggplot(d, aes(glu, bmi, colour = type)) + geom_point(alpha = 0.7)
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-3-execution}
 
 Split, recipe, model, workflow, tune.
 
 ```r
+d_split <- initial_split(d, prop = 0.75, strata = type)
 d_train <- training(d_split); d_test <- testing(d_split)
 folds <- vfold_cv(d_train, v = 5, strata = type)
 
@@ -80,11 +84,12 @@ collect_metrics(res) |>
   head(5)
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-4-check}
 
 Select best, finalise, evaluate on the test set.
 
 ```r
+best <- select_best(res, metric = "roc_auc")
 wf_final <- finalize_workflow(wf, best)
 fit_final <- fit(wf_final, data = d_train)
 preds <- predict(fit_final, d_test, type = "prob") |>
@@ -94,10 +99,11 @@ accuracy(preds, truth = type, estimate = .pred_class)
 ```
 
 ```r
+roc_curve(preds, truth = type, .pred_Yes, event_level = "second") |>
   autoplot()
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-5-report}
 
 > An elastic-net logistic regression tuned on 5-fold CV, using a
 > 5×5 grid over `penalty` and `mixture`, achieved a test ROC-AUC of
@@ -108,27 +114,28 @@ The pipeline pattern — recipe + workflow + tune + finalise — is the
 template we will reuse for every predictive-model lab hereafter.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-common-pitfalls}
 
 - Normalising the entire dataset before splitting; leakage is then
   baked in.
 - Reporting the mean CV metric as if it were a test-set metric.
 - Tuning without stratifying folds on an imbalanced outcome.
 
-## Further reading
+### Further reading {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-further-reading}
 
 - Kuhn M, Silge J, *Tidy Modeling with R* (online book).
 
-## Session info
+### Session info {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-13-ml-labs-lab-tidymodels-pipelines-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-13-ml)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Cox Proportional Hazards Regression {#sec-chapters-11-survival-cox-proportional-hazards}
+
+### Introduction {#sec-chapters-11-survival-cox-proportional-hazards-introduction}
 
 Cox proportional hazards regression is the most widely used survival regression model in clinical and epidemiological research. Its central insight is that hazard *ratios* between subjects can be estimated without specifying or estimating the baseline hazard $h_0(t)$. The partial likelihood, introduced by D. R. Cox in 1972, conditions on the risk set at each event time and depends only on the regression coefficients, leaving the baseline hazard unspecified. The result is a semi-parametric model that combines the interpretability of regression with the flexibility of non-parametric survival analysis.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-cox-proportional-hazards-prerequisites}
 
 A working understanding of hazard functions, the proportional-hazards assumption, and the partial-likelihood concept.
 
-## Theory
+### Theory {#sec-chapters-11-survival-cox-proportional-hazards-theory}
 
 The Cox model is
 
@@ -20,11 +22,11 @@ where $R(t_i)$ is the risk set just before $t_i$. Maximising $L_p$ produces $\ha
 
 The model assumes the hazard ratio between any two covariate patterns is constant over time — proportional hazards. When this fails, options include stratification, time-varying coefficients, or switching to a parametric AFT model.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-cox-proportional-hazards-assumptions}
 
 Proportional hazards across covariate levels, independent non-informative censoring, and the absence of unmodelled time-varying covariate effects. Adequate events-per-variable (EPV) ratios — at least 10–15 events per regression coefficient — for stable inference.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-cox-proportional-hazards-r-implementation}
 
 ```r
 library(survival); library(broom)
@@ -37,15 +39,15 @@ tidy(fit, conf.int = TRUE, exponentiate = TRUE)
 cox.zph(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-cox-proportional-hazards-output-results}
 
 `tidy(fit, exponentiate = TRUE)` returns a tibble of hazard ratios, confidence intervals, and Wald $p$-values for each covariate. `summary(fit)` adds the likelihood-ratio test, score test, and Wald global tests for the joint null. `cox.zph()` reports the proportional-hazards diagnostic for each covariate and globally.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-cox-proportional-hazards-interpretation}
 
 A reporting sentence: "A multivariable Cox proportional-hazards model adjusted for age, sex, and ECOG performance status estimated that each additional year of age increased the hazard of death by 2 % (HR 1.02, 95 % CI 1.00 to 1.04, $p = 0.04$); female sex was associated with a 40 % lower hazard (HR 0.60, 95 % CI 0.42 to 0.85, $p = 0.004$). The proportional-hazards assumption was supported (global Schoenfeld test $p = 0.55$)." Always pair coefficient reporting with PH diagnostics.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-cox-proportional-hazards-practical-tips}
 
 - Always check proportional hazards via `cox.zph()` after fitting; reporting Cox HRs without PH diagnostics is no longer acceptable in clinical-trial publications.
 - Use Efron's tie-handling method (`ties = "efron"`) for tied event times; the default in older software is Breslow, which is less accurate.
@@ -54,34 +56,30 @@ A reporting sentence: "A multivariable Cox proportional-hazards model adjusted f
 - For continuous covariates, check linearity in the log-hazard via martingale residuals or restricted cubic splines; categorising a continuous covariate to "fix" non-linearity discards information.
 - For non-PH covariates, choose between stratification (if the stratifier is not of interest) and time-varying coefficients (if the time-varying effect is itself the question).
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-cox-proportional-hazards-r-packages-used}
 
 `survival` for `coxph()`, `cox.zph()`, and `Surv()`; `broom` for `tidy()` and `glance()` summaries; `survminer` for ggplot-style diagnostic plots; `rms` for `cph()` with built-in spline and bootstrap-validation tools.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-cox-proportional-hazards-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-cox-proportional-hazards-assumptions) and [practical tips](#sec-chapters-11-survival-cox-proportional-hazards-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-cox-proportional-hazards-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

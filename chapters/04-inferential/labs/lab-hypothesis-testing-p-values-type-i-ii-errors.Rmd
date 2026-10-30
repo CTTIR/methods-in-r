@@ -1,9 +1,11 @@
+## Week 3, Session 5 — Hypothesis testing, p-values, type I/II errors {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-learning-objectives}
 
 - State what a *p*-value is, and — just as importantly — what it is
   not.
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Quantify type I error, type II error, and power, and show their
   relationship.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-prerequisites}
 
 Lab 3.4.
 
-## Background
+### Background {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-background}
 
 A *p*-value is the probability of observing a test statistic at least
 as extreme as the one computed, under the null hypothesis. It is not
@@ -36,7 +38,7 @@ detecting a true effect. Power depends on the effect size, the
 variability, the sample size, and α. Increasing *n* buys you power;
 increasing α buys you power at the cost of more false positives.
 
-## Setup
+### Setup {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-setup}
 
 ```r
 library(tidyverse)
@@ -44,7 +46,7 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-1-hypothesis}
 
 The lab has two claims to verify:
 
@@ -53,12 +55,13 @@ The lab has two claims to verify:
 2. Under H1 (effect present), the probability of rejecting H0 depends
    on sample size and effect size.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-2-visualise}
 
 Generate many datasets with no effect, run a *t*-test on each, and
 plot the distribution of *p*-values.
 
 ```r
+simulate_pvals <- function(n_per_group = 30, delta = 0, B = 5000) {
   replicate(B, {
     a <- rnorm(n_per_group, 0, 1)
     b <- rnorm(n_per_group, delta, 1)
@@ -79,7 +82,7 @@ tibble(p = p_h0) |>
 
 Flat histogram. Any other shape is a sign the test is misspecified.
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-3-assumptions}
 
 The claim that *p*-values are uniform under H0 requires that H0 be
 *correctly specified* — the distributional assumptions of the test
@@ -87,26 +90,29 @@ must hold. If the *t*-test is applied to strongly skewed data at small
 *n*, the histogram will not be flat, and the type I error will depart
 from α.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-4-conduct}
 
-### Type I error rate
+#### Type I error rate {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-type-i-error-rate}
 
 ```r
+type_I <- mean(p_h0 < 0.05)
 type_I
 ```
 
 Close to the nominal 0.05.
 
-### Power under H1 (effect size 0.5, *n* per group 30)
+#### Power under H1 (effect size 0.5, *n* per group 30) {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-power-under-h1-effect-size-0-5-n-per-group-30}
 
 ```r
+p_h1 <- simulate_pvals(30, delta = 0.5)
 power_obs <- mean(p_h1 < 0.05)
 power_obs
 ```
 
-### Power by effect size and sample size
+#### Power by effect size and sample size {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-power-by-effect-size-and-sample-size}
 
 ```r
+grid <- expand_grid(
   n = c(10, 20, 50, 100),
   delta = seq(0, 1.2, by = 0.2)
 )
@@ -125,7 +131,7 @@ grid |>
        colour = "n per group")
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-5-concluding-statement}
 
 > In 5000 simulated datasets with no true effect, the empirical type
 > I error rate of the two-sample *t*-test was
@@ -141,7 +147,7 @@ results above it is a statement about rates of evidence in a long run
 of studies — not about the truth of any single study.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-common-pitfalls}
 
 - Reporting *p* = 0.051 as "not significant" and *p* = 0.049 as
   "significant" as if the dichotomy were informative.
@@ -151,22 +157,23 @@ of studies — not about the truth of any single study.
 - Declaring "no effect" when a non-significant *p*-value comes from an
   underpowered study.
 
-## Further reading
+### Further reading {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-further-reading}
 
 - Wasserstein RL, Lazar NA (2016). *The ASA's Statement on p-Values*.
 - Greenland S et al. (2016). *Statistical tests, P values,
   confidence intervals, and power: a guide to misinterpretations*.
 
-## Session info
+### Session info {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-04-inferential)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

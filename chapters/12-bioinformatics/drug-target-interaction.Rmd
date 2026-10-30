@@ -1,12 +1,14 @@
-## Introduction
+## Drug-Target Interaction Mining {#sec-chapters-12-bioinformatics-drug-target-interaction}
+
+### Introduction {#sec-chapters-12-bioinformatics-drug-target-interaction-introduction}
 
 Drug-target interaction data -- which compounds bind which proteins at what affinity -- underpins target discovery and drug repositioning. Public databases (ChEMBL, DrugBank, PubChem, BindingDB, PharmGKB) archive millions of bioassay measurements; programmatic access lets users assemble custom interaction tables.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-drug-target-interaction-prerequisites}
 
 Familiarity with compound identifiers (SMILES, InChI, ChEMBL ID) and protein identifiers (UniProt).
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-drug-target-interaction-theory}
 
 Key bioassay quantities:
 - **IC50** -- inhibitor concentration halving a biological response.
@@ -16,11 +18,11 @@ Key bioassay quantities:
 
 Lower = more potent. Values are typically reported in nM or uM; low-nM and sub-nM bindings are considered high-affinity drug-like hits.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-drug-target-interaction-assumptions}
 
 Assays are comparable across studies (unreliable in practice -- format, conditions, species differ); target and compound annotations are correct.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-drug-target-interaction-r-implementation}
 
 ```r
 library(httr); library(jsonlite); library(dplyr)
@@ -54,15 +56,15 @@ df %>%
   head(5)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-drug-target-interaction-output-results}
 
 A ranked table of potent drug-target interactions per target and per compound. In practice this replaces the simulated data with a ChEMBL pull of > 10,000 measurements.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-drug-target-interaction-interpretation}
 
 "ChEMBL mining identified 26 HER2 inhibitors with IC50 < 10 nM across independent assays; the most potent (CMP_X, median IC50 = 2 nM) was selected for in-silico docking."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-drug-target-interaction-practical-tips}
 
 - Aggregate across assays using median or geometric mean to smooth inter-lab variance.
 - Convert IC50 to pIC50 ($-\log_{10}$) for symmetric, Gaussian-like distributions.
@@ -70,32 +72,29 @@ A ranked table of potent drug-target interactions per target and per compound. I
 - Use `BindingDB` for affinity-focused data; `DrugBank` for approved-drug information.
 - Cross-reference compounds via InChIKey to merge records across databases (SMILES is not unique).
 
-## Reporting
+### Reporting {#sec-chapters-12-bioinformatics-drug-target-interaction-reporting}
 
 A reproducible drug-target-interaction analysis names the database snapshot, the date of access, the activity types retained, and the confidence or quality filter applied to the raw assay records. State whether replicate measurements on the same compound-target pair were aggregated by median, mean of pIC50, or geometric mean, since these choices materially shift downstream rankings. When potency thresholds such as the conventional sub-100-nanomolar cutoff are used to define hits, justify the threshold in terms of the assay distribution rather than treating it as a universal constant, and report how compounds with mixed agonist or antagonist annotations were resolved before the ranking step.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-drug-target-interaction-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-drug-target-interaction-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-drug-target-interaction-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-drug-target-interaction-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

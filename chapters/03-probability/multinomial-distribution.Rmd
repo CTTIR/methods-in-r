@@ -1,12 +1,14 @@
-## Introduction
+## The Multinomial Distribution {#sec-chapters-03-probability-multinomial-distribution}
+
+### Introduction {#sec-chapters-03-probability-multinomial-distribution-introduction}
 
 The multinomial distribution generalises the binomial from two categories to $k$: the counts of outcomes falling into each of several categories across $n$ independent trials. It underlies the analysis of categorical variables with more than two levels -- disease stages, treatment responses, species counts -- and sits at the heart of chi-squared goodness-of-fit tests.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-multinomial-distribution-prerequisites}
 
 Binomial distribution.
 
-## Theory
+### Theory {#sec-chapters-03-probability-multinomial-distribution-theory}
 
 Let $(X_1, \ldots, X_k)$ count outcomes across $k$ categories in $n$ independent trials, where the probability of outcome $j$ on any trial is $p_j$, and $\sum p_j = 1$.
 
@@ -26,13 +28,13 @@ Marginals: $X_j \sim \mathrm{Binomial}(n, p_j)$. Pairwise joint for $(X_j, X_\el
 
 MLE of $(p_1, \ldots, p_k)$ is the vector of observed proportions $\hat{p}_j = x_j / n$.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-multinomial-distribution-assumptions}
 
 - Fixed total $n$ trials.
 - Independent trials.
 - Constant category probabilities across trials.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-multinomial-distribution-r-implementation}
 
 ```r
 set.seed(2026)
@@ -60,7 +62,7 @@ chisq.test(obs, p = p)
 dmultinom(obs, size = sum(obs), prob = p)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-multinomial-distribution-output-results}
 
 ```
   category count expected
@@ -83,11 +85,11 @@ X-squared = 3.2, df = 3, p-value = 0.363
 
 The empirical means and variances match the theoretical values. The chi-squared test does not reject the specified category probabilities.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-multinomial-distribution-interpretation}
 
 Reporting multinomial fits usually focuses on category proportions with uncertainty. For large samples, the chi-squared goodness-of-fit test is the standard tool for comparing observed multinomial counts to hypothesised probabilities.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-multinomial-distribution-practical-tips}
 
 - For small expected counts (<5), use Fisher's exact test or Monte Carlo chi-squared (`chisq.test(..., simulate.p.value = TRUE)`).
 - Multinomial categories are mutually exclusive by definition; overlapping classifications require a different framework (multilabel models).
@@ -97,26 +99,23 @@ Reporting multinomial fits usually focuses on category proportions with uncertai
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-multinomial-distribution-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-multinomial-distribution-assumptions) and
+[practical tips](#sec-chapters-03-probability-multinomial-distribution-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-multinomial-distribution-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Split-Plot Designs {#sec-chapters-16-design-split-plot-design}
+
+### Introduction {#sec-chapters-16-design-split-plot-design-introduction}
 
 Split-plot designs arise whenever some experimental factors are hard to change between runs while others are easy to change within a run. Oven temperature, pasture treatment, baking time, batch-level chemical additive, or instrument calibration are typically hard to change — they can be set once per batch but not freely between samples. By contrast, additive level within a batch, fertiliser sub-plot within a paddock, or sample-level annotation can be randomised within the larger group. Restricted randomisation of the hard-to-change factor at the whole-plot level and unrestricted randomisation of the easy-to-change factor within whole plots produces a design with two error strata, each requiring its own appropriate $F$-test denominator. Recognising the split-plot structure rather than ignoring it is essential to valid inference.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-split-plot-design-prerequisites}
 
 A working understanding of factorial designs, mixed-effects models with crossed and nested random effects, and the concept of multiple error strata in restricted-randomisation experiments.
 
-## Theory
+### Theory {#sec-chapters-16-design-split-plot-design-theory}
 
 The standard split-plot model is
 
@@ -14,11 +16,11 @@ $$y_{ijk} = \mu + \alpha_i + \delta_{ij} + \beta_k + (\alpha\beta)_{ik} + \varep
 
 with whole-plot effect $\alpha_i$, whole-plot error $\delta_{ij} \sim N(0, \sigma_W^2)$, sub-plot effect $\beta_k$, interaction $(\alpha\beta)_{ik}$, and sub-plot error $\varepsilon_{ijk} \sim N(0, \sigma_S^2)$. The whole-plot factor $\alpha$ is tested against the whole-plot error, while the sub-plot factor $\beta$ and the interaction $\alpha\beta$ are tested against the (typically smaller) sub-plot error. As a result, the sub-plot factor and the interaction usually have more power than the whole-plot factor — a structural asymmetry that should inform which factor is assigned to which stratum.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-split-plot-design-assumptions}
 
 Whole-plot errors are independent across whole plots; sub-plot errors are independent within and across whole plots; both error components are Normal with constant variance; the random-effects structure is correctly specified in the analysis.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-split-plot-design-r-implementation}
 
 ```r
 library(lme4); library(lmerTest)
@@ -37,15 +39,15 @@ fit <- lmer(y ~ temp * form + (1 | batch), data = df)
 anova(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-split-plot-design-output-results}
 
 `lmer()` with a `(1 | batch)` random effect captures the whole-plot stratum (each batch corresponds to one whole-plot setting of temperature), and the residual captures the sub-plot stratum. `anova()` from `lmerTest` returns $F$-tests with Satterthwaite or Kenward-Roger denominator df, automatically routing each effect against its appropriate stratum.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-split-plot-design-interpretation}
 
 A reporting sentence: "The split-plot mixed model showed a significant whole-plot effect of oven temperature ($F_{2, 4} = 5.2$, $p = 0.04$, against batch-level error) and a highly significant sub-plot effect of formulation ($F_{3, 18} = 14.8$, $p < 0.001$, against residual error). The temperature × formulation interaction was non-significant ($F_{6, 18} = 1.1$, $p = 0.40$). Sub-plot effects were tested with substantially more power because the sub-plot error was much smaller than the whole-plot error ($\sigma_S^2 = 0.25$ vs $\sigma_W^2 = 0.36$)." Always identify which stratum each $F$-test uses.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-split-plot-design-practical-tips}
 
 - Always match the error term to the effect's level in the design; analysing a split-plot as if it were a CRD treats whole-plot and sub-plot effects with the wrong denominator and inflates or deflates significance for the wrong factor.
 - Mixed-effects models (`lmer` from `lme4`) give correct standard errors and $F$-tests when the random-effect structure is specified correctly; explicit attention to the random-effect formula is the single most common source of split-plot analysis errors.
@@ -54,42 +56,39 @@ A reporting sentence: "The split-plot mixed model showed a significant whole-plo
 - Strip-plot designs extend the split-plot idea to two hard-to-change factors applied in perpendicular directions; they have three error strata and require correspondingly more careful random-effects specification.
 - Assigning a factor to the whole-plot stratum reduces its detection power; if a factor is scientifically critical, assign it to the sub-plot stratum if possible — even at the cost of some operational inconvenience.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-split-plot-design-r-packages-used}
 
 `lme4::lmer()` and `lmerTest` for mixed-effects analysis with denominator-df adjustment; `agricolae::design.split()` for canonical split-plot layout construction; `daewr` for textbook companion datasets and analysis helpers; `emmeans` for marginal means and contrasts at each stratum; `nlme::lme()` for an alternative interface with explicit fixed/random specification.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-split-plot-design-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-split-plot-design-assumptions) and
+[practical tips](#sec-chapters-16-design-split-plot-design-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-split-plot-design-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

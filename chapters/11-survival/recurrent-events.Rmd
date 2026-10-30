@@ -1,12 +1,14 @@
-## Introduction
+## Recurrent Events {#sec-chapters-11-survival-recurrent-events}
+
+### Introduction {#sec-chapters-11-survival-recurrent-events-introduction}
 
 Recurrent-event analysis applies whenever a single subject can experience the event of interest multiple times during follow-up — hospital admissions, seizures, infections, asthma exacerbations, recurrent tumours. Treating only the first event collapses information and wastes power; treating all events as independent inflates effective sample size and produces invalid standard errors. Several modelling frameworks balance these extremes, each suited to a different scientific question.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-recurrent-events-prerequisites}
 
 A working understanding of Cox regression, counting-process data formats, and within-subject correlation as a source of dependent observations.
 
-## Theory
+### Theory {#sec-chapters-11-survival-recurrent-events-theory}
 
 The main approaches:
 
@@ -15,11 +17,11 @@ The main approaches:
 - **Wei-Lin-Weissfeld (WLW)**: fits a separate marginal Cox model for each event order, using only the first event for $K=1$, the first two for $K=2$, etc. Conceptually cleaner but increasingly out of favour because it conditions on having survived enough events to be at risk.
 - **Shared-frailty**: a Cox model with a subject-level random effect $u_i$ that captures unmeasured individual heterogeneity. Combine with AG when frailty is the natural interpretation of within-subject correlation.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-recurrent-events-assumptions}
 
 The chosen correlation structure matches the data, the hazard specification (PH within strata or marginally) is appropriate, and counting-process intervals are correctly constructed (no overlaps, no gaps).
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-recurrent-events-r-implementation}
 
 ```r
 library(survival)
@@ -39,15 +41,15 @@ pwp <- coxph(Surv(tstart, tstop, status) ~ treat + inherit + strata(event.num),
 summary(pwp)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-recurrent-events-output-results}
 
 Both fits return hazard-ratio estimates with cluster-robust standard errors. AG produces a single HR per covariate covering the full recurrent-event process; PWP produces strata-specific baselines while sharing covariate effects across strata, allowing different baseline hazards per event order.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-recurrent-events-interpretation}
 
 A reporting sentence: "An Andersen-Gill counting-process Cox model estimated that prophylactic treatment reduced the recurrent-infection hazard by 60 % (HR 0.40, 95 % CI 0.25 to 0.63), with cluster-robust SEs accounting for within-subject correlation; the PWP model stratified by event order produced a consistent estimate (HR 0.43, 95 % CI 0.26 to 0.70), suggesting the treatment effect does not vary materially across event order." Compare AG and PWP whenever the data structure permits.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-recurrent-events-practical-tips}
 
 - AG is the default starting point for most applications and the easiest to interpret.
 - PWP (gap-time) is appropriate when the hazard depends on time since the previous event; PWP (total time) when it depends on time since study start.
@@ -56,34 +58,30 @@ A reporting sentence: "An Andersen-Gill counting-process Cox model estimated tha
 - Always use cluster-robust SEs (`cluster = id`); ignoring within-subject correlation produces SEs that are too small and Type I error inflated.
 - Pair hazard ratios with absolute counts of events, expected rates, and cumulative mean functions; recurrent-event audiences typically reason in absolute frequencies rather than hazard ratios.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-recurrent-events-r-packages-used}
 
 `survival` for `coxph()` with `cluster()` and `strata()`; `frailtypack` for joint frailty models with terminal events and recurrent events fitted simultaneously; `reReg` for additional recurrent-event methods including marginal mean models; `mets` for clustered survival data with flexible dependence structures.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-recurrent-events-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-recurrent-events-assumptions) and [practical tips](#sec-chapters-11-survival-recurrent-events-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-recurrent-events-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

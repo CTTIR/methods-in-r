@@ -1,12 +1,14 @@
-## Introduction
+## Marginal Distributions {#sec-chapters-03-probability-marginal-distributions}
+
+### Introduction {#sec-chapters-03-probability-marginal-distributions-introduction}
 
 Given a joint distribution of several random variables, the marginal distribution of any one of them is obtained by integrating (or summing) out the others. Marginalisation is the probability-theoretic version of "don't care": collapsing multi-dimensional information into a single dimension.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-marginal-distributions-prerequisites}
 
 Joint distributions, integration/summation over probability densities.
 
-## Theory
+### Theory {#sec-chapters-03-probability-marginal-distributions-theory}
 
 For a joint density $f_{X,Y}(x, y)$:
 
@@ -20,11 +22,11 @@ The joint CDF gives marginals by pushing the other argument to infinity: $F_X(x)
 
 For a multivariate normal, the marginal of each component is univariate normal with the corresponding mean and variance; more generally, any subset of a multivariate normal is multivariate normal.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-marginal-distributions-assumptions}
 
 Integrability of the joint density; otherwise standard probability-space assumptions.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-marginal-distributions-r-implementation}
 
 ```r
 library(mvtnorm)
@@ -51,7 +53,7 @@ cov(XY)
 cov(cbind(X1, Y1))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-marginal-distributions-output-results}
 
 ```
    mean_X      sd_X    mean_Y      sd_Y
@@ -74,11 +76,11 @@ Y1       1.00     1.00
 
 Same marginals (both standard normal), very different joint distributions: correlation 0.6 versus perfect dependence.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-marginal-distributions-interpretation}
 
 In reporting, marginal summaries (marginal mean, SD) are usually what Table 1 presents. When dependence matters -- pair-of-eyes measurements, twin pairs, repeated measures -- a marginal analysis is incomplete and must be complemented with joint or conditional reporting.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-marginal-distributions-practical-tips}
 
 - Always report marginals alongside any joint analysis; they provide basic sanity checks.
 - Marginalisation is trivial for multivariate normals: take the relevant subvector of the mean and the submatrix of the covariance.
@@ -88,26 +90,23 @@ In reporting, marginal summaries (marginal mean, SD) are usually what Table 1 pr
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-marginal-distributions-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-marginal-distributions-assumptions) and
+[practical tips](#sec-chapters-03-probability-marginal-distributions-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-marginal-distributions-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

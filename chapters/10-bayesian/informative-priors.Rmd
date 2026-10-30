@@ -1,12 +1,14 @@
-## Introduction
+## Informative Priors {#sec-chapters-10-bayesian-informative-priors}
+
+### Introduction {#sec-chapters-10-bayesian-informative-priors-introduction}
 
 An informative prior encodes genuine pre-data knowledge: a quantitative summary of previous studies, a mechanistic constraint that any plausible parameter must respect, or a structured elicitation from domain experts. Done well, informative priors stabilise inference in small samples, integrate evidence across studies, and let a single analysis quantify how new data update what was already known. Done badly, they paper over weak data and make conclusions look more certain than they should. The discipline is to be explicit about the source, justify the choice quantitatively, and run a sensitivity analysis whenever the prior is doing meaningful work.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-informative-priors-prerequisites}
 
 A working understanding of Bayesian inference, the role of weakly informative priors as a default, and basic familiarity with meta-analytic summaries on the relevant effect scale.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-informative-priors-theory}
 
 Three classical sources of informative priors:
 
@@ -16,11 +18,11 @@ Three classical sources of informative priors:
 
 A power prior or commensurate prior down-weights the prior contribution when it conflicts with current data — a principled way to guard against unverified historical assumptions.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-informative-priors-assumptions}
 
 The prior information is relevant to the current analysis (same population, same outcome definition, same scale) and is not derived from the same data being analysed (no double-counting). Mechanistic constraints must be physically defensible, not stylistic.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-informative-priors-r-implementation}
 
 ```r
 library(brms)
@@ -43,15 +45,15 @@ fit_weak <- brm(y ~ x, data = d, family = bernoulli,
 fixef(fit_inf); fixef(fit_weak)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-informative-priors-output-results}
 
 `fixef(fit_inf)` returns the posterior mean and credible interval under the meta-analytic prior; `fixef(fit_weak)` does the same under a weakly informative prior. The two posteriors differ in proportion to the relative precision of the prior and the data: with $\mathcal N(-0.223, 0.05)$ the prior carries the weight of roughly $1 / 0.05^2 = 400$ "pseudo-observations" on the log-odds scale, dominating the small simulated dataset.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-informative-priors-interpretation}
 
 A reporting sentence: "Using a meta-analytic prior on the log-odds ratio derived from three previous trials ($\mathcal N(-0.223, 0.05^2)$, equivalent to roughly 400 pseudo-observations), the posterior estimate was $-0.19$ (95 % credible interval $-0.28$ to $-0.10$); under a weakly informative $\mathcal N(0, 2.5)$ prior, the posterior was $-0.04$ (95 % CrI $-0.43$ to $0.34$)." Reporting both posteriors lets readers see exactly how much of the conclusion is driven by the prior.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-informative-priors-practical-tips}
 
 - Document the source of every informative prior in the methods section: cite the meta-analysis, describe the elicitation protocol, or state the mechanistic constraint and its justification.
 - Sensitivity analyses are mandatory whenever an informative prior is used; report the posterior under at least one weakly informative alternative.
@@ -60,31 +62,28 @@ A reporting sentence: "Using a meta-analytic prior on the log-odds ratio derived
 - For elicited priors, use formal tools such as the SHELF protocol; ad-hoc elicitation tends to underestimate uncertainty and overstate consensus.
 - In regulatory contexts (FDA, EMA), prior choice often requires pre-specification and agency agreement; budget time for that conversation before running the analysis.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-informative-priors-r-packages-used}
 
 `brms` and `rstanarm` for placing arbitrary priors on regression parameters; `RBesT` for meta-analytic predictive priors and effective sample size calculations; `SHELF` for expert elicitation; `BayesPPD` for power-prior workflows in regulatory settings.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-informative-priors-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-informative-priors-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-informative-priors-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-informative-priors-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## The Harmonic Mean {#sec-chapters-02-descriptives-harmonic-mean}
+
+### Introduction {#sec-chapters-02-descriptives-harmonic-mean-introduction}
 
 The harmonic mean is the reciprocal of the arithmetic mean of reciprocals. It is appropriate when averaging rates, speeds, or ratios where the denominator is fixed -- for example, when a traveller covers equal distances at different speeds and you want the average speed. In machine learning, the harmonic mean of precision and recall gives the F1 score.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-harmonic-mean-prerequisites}
 
 The reader should know the arithmetic mean and be comfortable taking reciprocals in R.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-harmonic-mean-theory}
 
 For positive values $x_1, \ldots, x_n$,
 
@@ -18,11 +20,11 @@ The F1 score in binary classification is the harmonic mean of precision and reca
 
 $$F_1 = \frac{2 \cdot P \cdot R}{P + R} = \frac{1}{\frac{1}{2}\left(\frac{1}{P} + \frac{1}{R}\right)} \cdot \text{(rescaled)}.$$
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-harmonic-mean-assumptions}
 
 All values must be strictly positive. Negative values or zeros make the harmonic mean undefined or infinite.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-harmonic-mean-r-implementation}
 
 ```r
 library(psych)
@@ -43,7 +45,7 @@ hm_speed <- n / sum(1 / speeds)
 hm_speed
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-harmonic-mean-output-results}
 
 ```
 [1] 55.38       # harmonic mean of speeds
@@ -53,11 +55,11 @@ hm_speed
 
 Travelling equal distances at 40, 60, 80 km/h gives an average speed of 55.4 km/h, not 60 km/h. The F1 of 0.69 splits the difference between P and R, penalising the lower value more than the arithmetic mean would.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-harmonic-mean-interpretation}
 
 Use the harmonic mean when averaging rates with a fixed numerator or denominator (e.g., average speed when distance is constant). Use the F1 form when balancing two normalised scores where both values matter.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-harmonic-mean-practical-tips}
 
 - Zero or negative inputs break the harmonic mean; guard against them.
 - The harmonic mean weights small values more heavily; a single small observation drives the result down.
@@ -67,24 +69,21 @@ Use the harmonic mean when averaging rates with a fixed numerator or denominator
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-harmonic-mean-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-harmonic-mean-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-harmonic-mean-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-harmonic-mean-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

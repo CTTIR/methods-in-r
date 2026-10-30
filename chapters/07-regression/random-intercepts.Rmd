@@ -1,12 +1,14 @@
-## Introduction
+## Random-Intercept Models {#sec-chapters-07-regression-random-intercepts}
+
+### Introduction {#sec-chapters-07-regression-random-intercepts-introduction}
 
 A random-intercept model allows each cluster (subject, hospital, school) its own baseline intercept while constraining all clusters to share the same regression slope. It is the simplest mixed-effects model and the natural starting point for repeated-measures, longitudinal, or clustered data. The single new parameter beyond ordinary regression — the variance of the random intercept — captures between-cluster heterogeneity in baseline level and is the primary handle for partial pooling and intraclass correlation.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-random-intercepts-prerequisites}
 
 A working understanding of mixed-effects models, the difference between fixed and random effects, and basic familiarity with `lme4` formula syntax.
 
-## Theory
+### Theory {#sec-chapters-07-regression-random-intercepts-theory}
 
 The random-intercept model is
 
@@ -18,11 +20,11 @@ $$\rho = \frac{\sigma_u^2}{\sigma_u^2 + \sigma^2},$$
 
 interpretable as the proportion of total variance attributable to between-cluster differences. A high ICC ($> 0.30$) indicates substantial cluster-level structure; a low ICC ($< 0.05$) suggests the random effect is unnecessary and ordinary regression suffices.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-random-intercepts-assumptions}
 
 Random intercepts are independent and Normally distributed across clusters; residuals are independent and Normal conditional on random effects; all clusters share a common slope (relax via random slopes when this fails).
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-random-intercepts-r-implementation}
 
 ```r
 library(lme4); library(lmerTest)
@@ -37,15 +39,15 @@ icc <- vc$vcov[1] / sum(vc$vcov)
 icc
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-random-intercepts-output-results}
 
 `summary(fit)` reports the fixed effects (common slope and population intercept) with `lmerTest`-supplied $p$-values, plus the random-intercept SD and residual SD. The ICC is computed from the variance components and is the primary single-number summary of cluster-level structure.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-random-intercepts-interpretation}
 
 A reporting sentence: "A random-intercept model estimated the population-level slope at 10.47 ms per day of sleep deprivation (95 % CI 8.92 to 12.02, $p < 0.001$); between-subject variation in baseline reaction time was substantial ($\hat\sigma_u = 37$ ms), with intraclass correlation 0.39 indicating that 39 % of total variance is attributable to between-subject differences." Always report the ICC alongside fixed effects.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-random-intercepts-practical-tips}
 
 - Always report the ICC; it is the headline measure of cluster-level structure and tells readers whether the random-intercept model was warranted.
 - For small numbers of clusters ($< 5$), random-effect variance estimates are unstable; consider a simpler model with fixed effects per cluster, or move to Bayesian estimation with weakly informative priors.
@@ -54,46 +56,43 @@ A reporting sentence: "A random-intercept model estimated the population-level s
 - If slopes clearly vary across clusters (visible in spaghetti plots), add random slopes via `(1 + X | cluster)`; reporting only random intercepts when slopes vary biases inference.
 - For non-Gaussian outcomes, the same syntax extends via `glmer()` with the appropriate family.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-random-intercepts-r-packages-used}
 
 `lme4` for `lmer()`, `glmer()`, and `VarCorr()`; `lmerTest` for Satterthwaite or Kenward-Roger $p$-values; `performance::icc()` for tidy ICC computation; `pbkrtest::PBmodcomp()` for parametric-bootstrap LRTs; `glmmTMB` for an alternative implementation that handles complex error structures.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-random-intercepts-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-random-intercepts-assumptions) and
+[practical tips](#sec-chapters-07-regression-random-intercepts-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-random-intercepts-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

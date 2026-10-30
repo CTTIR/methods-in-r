@@ -1,12 +1,14 @@
-## Introduction
+## Five-Number Summary {#sec-chapters-02-descriptives-five-number-summary}
+
+### Introduction {#sec-chapters-02-descriptives-five-number-summary-introduction}
 
 The five-number summary is a compact description of a univariate distribution in five values: minimum, first quartile, median, third quartile, and maximum. It was popularised by John Tukey in his exploratory data analysis tradition and is the numeric backbone of the boxplot. For skewed or non-normal data it conveys more than the mean and SD in the same space.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-five-number-summary-prerequisites}
 
 The reader should know what quantiles are and how to sort a vector in R.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-five-number-summary-theory}
 
 Given a sorted sample $x_{(1)} \leq \ldots \leq x_{(n)}$, the five-number summary is
 
@@ -16,11 +18,11 @@ where $Q_1, Q_2, Q_3$ are the 0.25, 0.50, and 0.75 quantiles. Tukey's **hinges**
 
 The **interquartile range** $\mathrm{IQR} = Q_3 - Q_1$ measures the width of the central 50% of the data. The **Tukey fences** at $Q_1 - 1.5 \cdot \mathrm{IQR}$ and $Q_3 + 1.5 \cdot \mathrm{IQR}$ define the whiskers of a boxplot; points beyond them are flagged as outliers.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-five-number-summary-assumptions}
 
 The five-number summary is purely descriptive and assumes nothing about the distribution.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-five-number-summary-r-implementation}
 
 ```r
 library(dplyr)
@@ -56,7 +58,7 @@ trial |>
             max = max(fpg))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-five-number-summary-output-results}
 
 Typical output of `fivenum(x)`:
 
@@ -66,11 +68,11 @@ Typical output of `fivenum(x)`:
 
 The boxplot displays each of these five numbers: the whiskers at min and max (or the Tukey fence if outliers are flagged), the hinges at Q1 and Q3, and the thick line at the median.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-five-number-summary-interpretation}
 
 Use the five-number summary for skewed or small-sample data. Reporting mean and SD for such data misrepresents typicality; the median and IQR are more informative.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-five-number-summary-practical-tips}
 
 - The boxplot is the default graphical display of the five-number summary; use it early in exploratory analysis.
 - When comparing groups, put boxplots side by side and notice whether the boxes overlap and how the medians align.
@@ -80,24 +82,21 @@ Use the five-number summary for skewed or small-sample data. Reporting mean and 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-five-number-summary-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-five-number-summary-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-five-number-summary-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-five-number-summary-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

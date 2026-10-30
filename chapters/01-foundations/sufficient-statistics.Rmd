@@ -1,12 +1,14 @@
-## Introduction
+## Sufficient Statistics {#sec-chapters-01-foundations-sufficient-statistics}
+
+### Introduction {#sec-chapters-01-foundations-sufficient-statistics-introduction}
 
 A statistic is **sufficient** for a parameter if it captures all the information in the data that is relevant to that parameter. Once a sufficient statistic is computed, the raw data have nothing left to add about the parameter. Sufficiency organises the theory of estimation: it explains why the sample mean is a complete summary for the normal mean, why the sum of successes suffices for the binomial proportion, and why the exponential family of distributions is central to modern statistical modelling.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-sufficient-statistics-prerequisites}
 
 The reader should be comfortable with the likelihood function, conditional probability, and a little abstract notation.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-sufficient-statistics-theory}
 
 Formally, $T(X_1, \ldots, X_n)$ is **sufficient for $\theta$** if the conditional distribution of the data given $T = t$ does not depend on $\theta$. Equivalently (Fisher-Neyman factorisation theorem), $T$ is sufficient iff the joint density factorises as
 
@@ -28,11 +30,11 @@ The **exponential family** has density $f(x \mid \theta) = h(x) \exp[\eta(\theta
 
 **Rao-Blackwell theorem**: given any unbiased estimator $\hat{\theta}$ and a sufficient statistic $T$, the conditional expectation $E[\hat{\theta} \mid T]$ is also unbiased and has variance no larger than $\hat{\theta}$. Conditioning on sufficient statistics never hurts and may help.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-sufficient-statistics-assumptions}
 
 The factorisation theorem applies to proper densities on a common support. In non-regular families (uniform with an unknown upper endpoint) sufficiency still applies, but the resulting estimators inherit the non-standard behaviour of the family.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-sufficient-statistics-r-implementation}
 
 ```r
 set.seed(2026)
@@ -61,7 +63,7 @@ c(mle_from_data_mean = mean(x),
 
 Computing the MLE from only the two sufficient statistics $(T_1, T_2) = (\sum x, \sum x^2)$ yields the same point estimates as computing it from the full data vector.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-sufficient-statistics-output-results}
 
 ```
     mu_hat sigma2_hat
@@ -73,11 +75,11 @@ mle_from_data_mean  mle_from_data_var
 
 The two are numerically identical, confirming that $(T_1, T_2)$ contains all the information about the parameters that the data can provide.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-sufficient-statistics-interpretation}
 
 In practice, sufficiency is used under the hood. When a software package reports a confidence interval for a normal mean using `t.test()`, it relies on the fact that $\bar{X}$ and $s^2$ are sufficient for $(\mu, \sigma^2)$. For a manuscript, sufficiency is rarely mentioned explicitly but justifies the use of summary statistics as complete descriptions of the data in the parametric model assumed.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-sufficient-statistics-practical-tips}
 
 - Sufficient statistics let you store compressed summaries (counts, sums) without losing information for inference -- useful for distributed computation.
 - The exponential family is the most important family to understand, because almost every GLM assumes it.
@@ -87,27 +89,24 @@ In practice, sufficiency is used under the hood. When a software package reports
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-sufficient-statistics-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-sufficient-statistics-assumptions) and
+[practical tips](#sec-chapters-01-foundations-sufficient-statistics-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-sufficient-statistics-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

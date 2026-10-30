@@ -1,9 +1,11 @@
+## Week 1, Session 4 — Clustering: k-means, hierarchical, model-based {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-learning-objectives}
 
 - Fit k-means and hierarchical clusterings, and choose k by elbow and
   silhouette.
@@ -11,11 +13,11 @@ Goal → Approach → Execution → Check → Report.
   components by BIC.
 - Explain why "number of clusters" is often not the right question.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-prerequisites}
 
 PCA; distance and linkage.
 
-## Background
+### Background {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-background}
 
 Clustering is a search for structure in unlabelled data, and unlike
 classification it has no gold standard. Any algorithm will return a
@@ -38,7 +40,7 @@ criterion used to select it, a visualisation in a 2-D projection
 report p-values for cluster labels against the data that produced the
 labels; that circularity is a classic error.
 
-## Setup
+### Setup {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-setup}
 
 ```r
 library(tidyverse)
@@ -48,16 +50,17 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-1-goal}
 
 Cluster a simulated dataset with three known groups using three
 algorithms, and see which recovers the structure.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-2-approach}
 
 Three Gaussian blobs in 5 dimensions with different sizes.
 
 ```r
+make_blob <- function(n, mu, sd = 1) matrix(rnorm(n * 5, 0, sd), n, 5) +
   rep(mu, each = n)
 X <- rbind(
   make_blob(60, c(0, 0, 0, 0, 0)),
@@ -71,11 +74,12 @@ tibble(PC1 = pc[, 1], PC2 = pc[, 2], group = true_lbl) |>
   ggplot(aes(PC1, PC2, colour = group)) + geom_point(alpha = 0.7)
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-3-execution}
 
 K-means with k sweep; silhouette.
 
 ```r
+wss <- sapply(2:8, function(k) kmeans(X, centers = k, nstart = 10)$tot.withinss)
 sil <- sapply(2:8, function(k) {
   km <- kmeans(X, centers = k, nstart = 10)
   mean(silhouette(km$cluster, dist(X))[, 3])
@@ -89,18 +93,20 @@ tibble(k = 2:8, wss = wss, sil = sil) |>
 Hierarchical with Ward linkage.
 
 ```r
+hc <- hclust(dist(X), method = "ward.D2")
 plot(hc, labels = FALSE, main = "Ward hierarchical clustering")
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-4-check}
 
 Model-based clustering by BIC.
 
 ```r
+mc <- Mclust(X, G = 1:6)
 summary(mc)
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-5-report}
 
 > On three simulated Gaussian blobs (n = 130 in R⁵), model-based
 > clustering selected G = `mc$G` by BIC; k-means with
@@ -114,7 +120,7 @@ partition is stable under resampling and interpretable in terms of the
 features.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-common-pitfalls}
 
 - Treating k-means output as ground truth; it is an optimisation answer
   given k.
@@ -123,22 +129,23 @@ features.
 - Testing post-hoc differences between clusters with the same data
   that produced them.
 
-## Further reading
+### Further reading {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-further-reading}
 
 - Fraley C, Raftery AE (2002), *Model-based clustering, discriminant
   analysis, and density estimation*.
 - Hastie, Tibshirani, Friedman, *ESL*, §14.3.
 
-## Session info
+### Session info {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-08-multivariate)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

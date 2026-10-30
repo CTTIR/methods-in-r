@@ -1,22 +1,24 @@
-## Introduction
+## Spline Regression {#sec-chapters-07-regression-spline-regression}
+
+### Introduction {#sec-chapters-07-regression-spline-regression-introduction}
 
 Splines are piecewise polynomials joined smoothly at points called knots. They give flexible non-linear fits without the wild extrapolation behaviour of high-degree polynomials, which makes them the canonical tool for modelling non-linear continuous predictor effects in regression. Natural cubic splines and restricted cubic splines are the workhorses in clinical and epidemiological work; their constraint of linear behaviour beyond the boundary knots prevents the implausible curls that ordinary polynomials produce in the tails.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-spline-regression-prerequisites}
 
 A working understanding of polynomial regression, the limitations of high-degree polynomials at the extremes of the data, and the concept of basis functions in regression.
 
-## Theory
+### Theory {#sec-chapters-07-regression-spline-regression-theory}
 
 A natural cubic spline with $k$ internal knots is a piecewise cubic polynomial that is continuous together with its first and second derivatives at each knot, and linear beyond the boundary knots. It uses $k + 1$ degrees of freedom for the non-linear effect. Knot placement is typically at quantiles of $X$ (3 knots: 10/50/90; 4 knots: 5/35/65/95; 5 knots: 5/27.5/50/72.5/95 percentiles). Three to five knots are adequate for most biomedical applications; more invites over-fitting.
 
 Restricted cubic splines (RCS) impose linearity beyond the outer knots, preventing the polynomial from curling away in the tails — useful for clinical reporting where extrapolation into low-data regions is a real concern.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-spline-regression-assumptions}
 
 Standard regression assumptions on residuals; residuals vs. fitted should show no remaining structure after the spline is included; the chosen number and placement of knots are adequate for the underlying functional form.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-spline-regression-r-implementation}
 
 ```r
 library(splines); library(rms)
@@ -41,15 +43,15 @@ fit_rcs <- ols(y ~ rcs(x, 4))
 plot(Predict(fit_rcs, x = seq(0, 10, 0.2)))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-spline-regression-output-results}
 
 `splines::ns()` and `rms::rcs()` produce basis matrices that enter `lm()` like any other predictor. The resulting fit object has the usual summary, coefficients (which are not individually interpretable), and predictions. Visualising the partial effect of $X$ on $Y$ via `predict()` or `rms::Predict()` is the primary inferential output.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-spline-regression-interpretation}
 
 A reporting sentence: "A natural cubic spline with 4 degrees of freedom captured the underlying sinusoidal pattern of $y$ on $x$ ($R^2 = 0.92$); a likelihood-ratio test against the linear-only model strongly rejected linearity ($\chi^2_3 = 287$, $p < 0.001$)." Always test for non-linearity formally and report the test result; a smooth curve in a plot is not enough.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-spline-regression-practical-tips}
 
 - Use 3–5 knots for most applications; more risks overfitting and hard-to-interpret partial effects.
 - Restricted cubic splines (`rms::rcs`) constrain the tails to be linear, avoiding the wild extrapolation that natural cubic splines can produce when knots are sparse.
@@ -58,46 +60,43 @@ A reporting sentence: "A natural cubic spline with 4 degrees of freedom captured
 - For multiple continuous predictors with potential non-linear effects, consider GAMs (`mgcv::gam`) which automate smoothness selection.
 - For survival or logistic regression, the same `rcs()` syntax inside `cph()` or `lrm()` extends the spline machinery to the relevant likelihood.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-spline-regression-r-packages-used}
 
 `splines` for `ns()` and `bs()` basis functions; `rms` for `rcs()`, `Predict()`, and `datadist`-aware regression workflows; `mgcv` for GAMs as the more general alternative; `ggeffects` for predicted-effect visualisation; `Hmisc::rcspline.eval()` for low-level RCS basis construction.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-spline-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-spline-regression-assumptions) and
+[practical tips](#sec-chapters-07-regression-spline-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-spline-regression-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

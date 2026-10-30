@@ -1,12 +1,14 @@
-## Introduction
+## Benjamini-Hochberg FDR {#sec-chapters-04-inferential-benjamini-hochberg-fdr}
+
+### Introduction {#sec-chapters-04-inferential-benjamini-hochberg-fdr-introduction}
 
 Controlling the family-wise error rate becomes impractical when the number of tests runs into the thousands or millions (genomics, imaging). Benjamini and Hochberg (1995) introduced the **false discovery rate** (FDR) as a less stringent alternative: the expected proportion of false positives among rejected hypotheses. Their procedure is the default multiple-testing correction in high-throughput biology.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-benjamini-hochberg-fdr-prerequisites}
 
 Hypothesis testing, multiple-testing problem.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-benjamini-hochberg-fdr-theory}
 
 Let $V$ be the number of false rejections and $R$ the total number of rejections. The **FDR** is
 
@@ -24,12 +26,12 @@ $$p_{(j)}^{\text{adj}} = \min\!\left[1, \min_{i \geq j}\left(\frac{m p_{(i)}}{i}
 
 BH controls FDR at $q$ under independence or positive dependence. For arbitrary dependence, use Benjamini-Yekutieli (BY), which is more conservative.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-benjamini-hochberg-fdr-assumptions}
 
 - Either independent p-values or positive regression dependence (PRDS).
 - Each p-value is valid (uniform under its null).
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-benjamini-hochberg-fdr-r-implementation}
 
 ```r
 set.seed(2026)
@@ -57,7 +59,7 @@ true_signal <- c(rep(FALSE, n_tests - n_true), rep(TRUE, n_true))[match(sort(pva
 sum(adj_bh[true_signal] < q_target) / n_true   # TPR among true signals
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-benjamini-hochberg-fdr-output-results}
 
 ```
 bonferroni_rejections  holm_rejections  BH_rejections  BY_rejections
@@ -66,11 +68,11 @@ bonferroni_rejections  holm_rejections  BH_rejections  BY_rejections
 
 BH recovers 99 true signals (highest), Bonferroni/Holm recover 82, BY 83. The FDR among BH rejections is below 0.05 on average.
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-benjamini-hochberg-fdr-interpretation}
 
 Report which correction was applied and the target FDR level. "Differentially expressed genes were identified at FDR $q < 0.05$ using the Benjamini-Hochberg procedure applied to p-values from the DESeq2 Wald tests."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-benjamini-hochberg-fdr-practical-tips}
 
 - BH is the default FDR procedure in genomics, transcriptomics, imaging, and other high-dimensional settings.
 - FDR q = 0.05 is much less stringent than FWER = 0.05; results should be qualified accordingly.
@@ -80,32 +82,29 @@ Report which correction was applied and the target FDR level. "Differentially ex
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-benjamini-hochberg-fdr-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-benjamini-hochberg-fdr-assumptions) and
+[practical tips](#sec-chapters-04-inferential-benjamini-hochberg-fdr-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-benjamini-hochberg-fdr-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Linear Discriminant as ML {#sec-chapters-13-ml-linear-discriminant-ml}
+
+### Introduction {#sec-chapters-13-ml-linear-discriminant-ml-introduction}
 
 Linear Discriminant Analysis (LDA), introduced by Ronald Fisher in 1936, is one of the oldest classification methods and remains a strong baseline. It models each class as a multivariate Gaussian with a class-specific mean but a *shared* covariance matrix, and assigns each observation to the class with the highest posterior probability under those Gaussians. The resulting decision boundary is linear in the predictors. LDA is simple, well-calibrated by construction, and often competitive with logistic regression on small to moderate-sized datasets where class-conditional Gaussianity approximately holds.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-linear-discriminant-ml-prerequisites}
 
 A working understanding of multivariate Gaussian distributions, Bayes' rule for posterior class probabilities, and basic linear algebra (matrix inversion).
 
-## Theory
+### Theory {#sec-chapters-13-ml-linear-discriminant-ml-theory}
 
 Under class-conditional multivariate Normality with shared covariance $\Sigma$ and class priors $\pi_k$, the posterior is
 
@@ -20,11 +22,11 @@ which is linear in $x$. The decision boundary between any two classes is thus a 
 
 Fisher's geometric derivation arrives at the same linear projection by maximising the ratio of between-class to within-class scatter; this connection makes LDA both a classifier and a supervised dimensionality-reduction tool.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-linear-discriminant-ml-assumptions}
 
 Class-conditional features are multivariate Normal with a shared covariance; $n > p$ for stable covariance estimation (use shrinkage LDA when $p$ approaches $n$).
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-linear-discriminant-ml-r-implementation}
 
 ```r
 library(MASS)
@@ -45,15 +47,15 @@ mean(pred == df[-idx, "y"])
 lda_fit$scaling
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-linear-discriminant-ml-output-results}
 
 `lda()` returns the prior probabilities, class means, scaling matrix (linear discriminant coefficients), and proportion of trace each axis explains. `predict()` provides class assignments and posterior probabilities. The linear coefficients, when interpreted geometrically, point in the direction of greatest between-class separation after within-class whitening.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-linear-discriminant-ml-interpretation}
 
 A reporting sentence: "LDA achieved 89 % test accuracy on the two-class Gaussian problem with shared covariance ($n_{\mathrm{train}} = 210$, $n_{\mathrm{test}} = 90$); the linear-discriminant direction (0.82, 0.57) corresponds to the between-class mean difference after within-class scatter whitening; logistic regression gave 87 %, indicating LDA's Gaussian assumption is well-supported." Compare LDA with logistic regression as a sanity check on the Gaussian assumption.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-linear-discriminant-ml-practical-tips}
 
 - When classes are clearly Gaussian with similar covariances, LDA is nearly Bayes-optimal and outperforms logistic regression in finite samples because of its stronger model.
 - For $p$ approaching $n$, use shrinkage LDA (`klaR::rda()` or the `sda` package); unregularised LDA has unstable covariance estimates with poor predictions.
@@ -62,37 +64,34 @@ A reporting sentence: "LDA achieved 89 % test accuracy on the two-class Gaussian
 - LDA also serves as a supervised dimensionality-reduction tool: project onto the top $K - 1$ discriminants for a low-dimensional class-aware visualisation.
 - For high-dimensional sparse data (text, genomics), regularised LDA (`sparseLDA`, `penalizedLDA`) handles $p \gg n$ via L1 or grouped penalties.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-linear-discriminant-ml-r-packages-used}
 
 `MASS::lda()` and `qda()` for the canonical implementations; `klaR::rda()` for regularised discriminant analysis; `sda` for shrinkage LDA; `penalizedLDA` for high-dimensional sparse extensions; `caret` and `tidymodels::discrim_linear()` for cross-validated LDA within ML pipelines.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-linear-discriminant-ml-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-linear-discriminant-ml-assumptions) and
+[practical tips](#sec-chapters-13-ml-linear-discriminant-ml-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-linear-discriminant-ml-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

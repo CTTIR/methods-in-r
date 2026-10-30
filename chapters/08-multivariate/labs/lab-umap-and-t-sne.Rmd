@@ -1,9 +1,11 @@
+## Week 1, Session 5 — UMAP and t-SNE {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-learning-objectives}
 
 - Compute UMAP and t-SNE embeddings and describe what each optimisation
   is doing.
@@ -11,11 +13,11 @@ Goal → Approach → Execution → Check → Report.
   over-reading cluster distances.
 - Tune `n_neighbors` / `perplexity` and see the visual effect.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-prerequisites}
 
 PCA; basic notion of neighbour graphs.
 
-## Background
+### Background {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-background}
 
 UMAP and t-SNE are nonlinear embedding methods widely used in
 single-cell and imaging biomedicine. Both build a neighbour graph in
@@ -37,7 +39,7 @@ Treat UMAP/t-SNE as a visualisation of neighbourhood structure, not as
 a geometric truth. Do not run statistical tests on the coordinates. Do
 not claim a trajectory unless you used a trajectory method.
 
-## Setup
+### Setup {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-setup}
 
 ```r
 library(tidyverse)
@@ -47,14 +49,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-1-goal}
 
 Embed a simulated high-dimensional dataset with three blobs into two
 dimensions using UMAP and t-SNE, and compare against PCA.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-2-approach}
 
 ```r
+make_blob <- function(n, mu, sd = 1, d = 20) matrix(rnorm(n * d, 0, sd), n, d) +
   rep(mu, each = n)
 X <- rbind(
   make_blob(100, c(0, 0, rep(0, 18))),
@@ -64,7 +67,7 @@ X <- rbind(
 lbl <- rep(c("A", "B", "C"), each = 100)
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-3-execution}
 
 ```r
 emb_pca  <- prcomp(X)$x[, 1:2]
@@ -82,7 +85,7 @@ ggplot(df, aes(x, y, colour = lbl)) +
   labs(x = NULL, y = NULL)
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-4-check}
 
 Sensitivity to `n_neighbors`.
 
@@ -96,7 +99,7 @@ bind_rows(do_umap(5), do_umap(15), do_umap(50)) |>
   facet_wrap(~ k, scales = "free")
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-5-report}
 
 > Both UMAP and t-SNE recovered the three simulated blobs as distinct
 > visual clusters; PCA separated them more weakly because the signal
@@ -109,7 +112,7 @@ best used as a visual companion, with another method — clustering,
 classification, or differential analysis — doing the statistical work.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-common-pitfalls}
 
 - Reading distances between clusters off a UMAP as if they were
   biological distances.
@@ -117,23 +120,24 @@ classification, or differential analysis — doing the statistical work.
   data.
 - Using UMAP coordinates as features in a downstream supervised model.
 
-## Further reading
+### Further reading {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-further-reading}
 
 - McInnes L, Healy J, Melville J (2018), *UMAP: Uniform manifold
   approximation and projection*.
 - Kobak D, Berens P (2019), *The art of using t-SNE for single-cell
   transcriptomics*.
 
-## Session info
+### Session info {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-08-multivariate)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Bayes Factors {#sec-chapters-10-bayesian-bayes-factors}
+
+### Introduction {#sec-chapters-10-bayesian-bayes-factors-introduction}
 
 A Bayes factor compares two models by the ratio of how plausible the observed data are under each, after integrating over the parameters of each model with respect to its prior. It is the Bayesian counterpart of a likelihood-ratio test, but it carries a richer interpretation: rather than rejecting or failing to reject a null, it returns a continuous strength-of-evidence measure that can equally support the null model when the data are inconsistent with the alternative. This symmetry — quantifying support for either side — is one of the main reasons Bayes factors recur in applied work where "no effect" is itself a substantively interesting conclusion.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-bayes-factors-prerequisites}
 
 A working understanding of Bayes' theorem, the role of the marginal likelihood (evidence) in Bayesian inference, and the difference between point-null and composite hypotheses.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-bayes-factors-theory}
 
 For two models $M_0$ and $M_1$ with parameter vectors $\theta_0$ and $\theta_1$ and priors $p(\theta_0 \mid M_0)$ and $p(\theta_1 \mid M_1)$, the Bayes factor in favour of $M_1$ is
 
@@ -14,11 +16,11 @@ $$\mathrm{BF}_{10} = \frac{p(y \mid M_1)}{p(y \mid M_0)} = \frac{\int p(y \mid \
 
 Posterior odds equal the Bayes factor times the prior odds; under equal prior odds, the posterior probability of $M_1$ is $\mathrm{BF}_{10} / (\mathrm{BF}_{10} + 1)$. Jeffreys' interpretive scale calls $\mathrm{BF} > 3$ substantial, $> 10$ strong, $> 30$ very strong, and $> 100$ decisive evidence; the same thresholds apply, mirrored, for evidence in favour of $M_0$.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-bayes-factors-assumptions}
 
 Both models are well-specified and proper priors are assigned to all parameters that differ between the two; improper priors leave the marginal likelihoods undefined up to an arbitrary constant and the Bayes factor inherits that indeterminacy. Numerical estimation must be stable — bridge sampling, Chib's method, or Savage-Dickey ratios for nested models.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-bayes-factors-r-implementation}
 
 ```r
 library(BayesFactor)
@@ -34,15 +36,15 @@ reduced <- lmBF(mpg ~ wt, data = mtcars)
 full / reduced
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-bayes-factors-output-results}
 
 The `BayesFactor` package returns a Bayes factor with an estimated error percentage. For regression-type models the output also includes the implied posterior model probabilities; ratios of `BFBayesFactor` objects deliver pairwise comparisons directly.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-bayes-factors-interpretation}
 
 A reporting sentence: "A default-prior $t$-test Bayes factor was $\mathrm{BF}_{10} = 4.7$ ($\pm 0.001 \%$), interpreted as substantial evidence that the population mean differs from zero." When reporting, always include the prior and (for `BayesFactor`) the prior scale parameter `rscale`; readers cannot otherwise judge how much of the evidence is data-driven versus prior-driven.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-bayes-factors-practical-tips}
 
 - Wider priors mechanically shift Bayes factors toward the null (Lindley–Bartlett paradox); a sensitivity analysis across at least two prior scales is mandatory for any Bayes-factor conclusion.
 - `bridgesampling::bridge_sampler()` works directly with `brms` and Stan fits; it is the most general way to compute marginal likelihoods for non-trivial models.
@@ -50,31 +52,28 @@ A reporting sentence: "A default-prior $t$-test Bayes factor was $\mathrm{BF}_{1
 - Bayes factors near 1 are genuinely inconclusive; resist the temptation to declare evidence with $\mathrm{BF} = 1.5$ in either direction.
 - Bayes factors are not a substitute for predictive performance; pair them with `loo()` when comparing models for prediction, since the two answer different questions.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-bayes-factors-r-packages-used}
 
 `BayesFactor` for default-prior tests and ANOVA / regression Bayes factors, `bridgesampling` for general marginal-likelihood estimation, `bayestestR` for tidy summaries that work with `brms` and `rstanarm` fits, and `polspline` for Savage-Dickey density estimation when the null is nested.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-bayes-factors-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-bayes-factors-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-bayes-factors-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-bayes-factors-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

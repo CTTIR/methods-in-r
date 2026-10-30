@@ -1,12 +1,14 @@
-## Introduction
+## ROC and AUC for Logistic Models {#sec-chapters-07-regression-roc-auc-for-logistic}
+
+### Introduction {#sec-chapters-07-regression-roc-auc-for-logistic-introduction}
 
 The receiver operating characteristic (ROC) curve and its area-under-curve (AUC) summary quantify how well a logistic regression's predicted probabilities rank observed events above non-events. AUC ranges from 0.5 (chance) to 1.0 (perfect ranking) and is the conventional discrimination metric for binary classifiers in clinical and epidemiological work. It is invariant to the threshold chosen for class assignment, making it a property of the model's ranking ability rather than any specific cut-off.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-roc-auc-for-logistic-prerequisites}
 
 A working understanding of logistic regression, classification thresholds, sensitivity, and specificity.
 
-## Theory
+### Theory {#sec-chapters-07-regression-roc-auc-for-logistic-theory}
 
 For a binary outcome $Y \in \{0, 1\}$ and a continuous score (predicted probability) $\hat p$, the AUC equals the probability that a randomly chosen positive case has a higher predicted probability than a randomly chosen negative case:
 
@@ -14,11 +16,11 @@ $$\mathrm{AUC} = \mathrm P(\hat p_i > \hat p_j \mid Y_i = 1, Y_j = 0).$$
 
 It is mathematically equivalent to the Mann-Whitney U statistic divided by the sample sizes. Rough conventional benchmarks: 0.5–0.7 poor, 0.7–0.8 acceptable, 0.8–0.9 excellent, above 0.9 outstanding (and worth scrutinising for over-fitting in small samples). DeLong's test compares two correlated AUCs from models fit on the same data.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-roc-auc-for-logistic-assumptions}
 
 A binary outcome and a continuous score (predicted probability or any monotone transformation thereof). AUC is invariant to monotone transformations of the score, so calibration is irrelevant to AUC; thresholding decisions, however, do depend on calibration.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-roc-auc-for-logistic-r-implementation}
 
 ```r
 library(pROC)
@@ -38,15 +40,15 @@ roc2 <- roc(d$am, predict(fit2, type = "response"), quiet = TRUE)
 roc.test(roc_obj, roc2)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-roc-auc-for-logistic-output-results}
 
 `auc(roc_obj)` returns the point estimate, `ci.auc()` the bootstrap confidence interval. The plot displays the ROC curve with a diagonal reference for chance. `roc.test()` performs DeLong's test for the AUC difference between two correlated ROC curves.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-roc-auc-for-logistic-interpretation}
 
 A reporting sentence: "The full logistic regression had an in-sample AUC of 0.93 (95 % CI 0.84 to 1.00); a reduced model with weight only had AUC 0.89, and DeLong's test for the difference yielded $\Delta\mathrm{AUC} = 0.04$ ($p = 0.12$), suggesting horsepower contributes little additional discrimination beyond weight." Report AUC with confidence interval and pair with at least one operating-point summary (sensitivity / specificity at a clinically chosen threshold).
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-roc-auc-for-logistic-practical-tips}
 
 - Always report AUC with its 95 % confidence interval; the point estimate alone is uninterpretable for assessing precision.
 - For honest internal validation, use bootstrap with the `0.632+` correction for optimism; the package `rms::validate` automates this.
@@ -55,46 +57,43 @@ A reporting sentence: "The full logistic regression had an in-sample AUC of 0.93
 - For survival outcomes, use time-dependent ROC (`timeROC::timeROC`) and time-specific AUCs at clinically meaningful horizons.
 - Compare nested models via DeLong's test (`pROC::roc.test`); for non-nested models, treat the comparison as exploratory and avoid hypothesis-test framing.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-roc-auc-for-logistic-r-packages-used}
 
 `pROC` for ROC objects, AUC, confidence intervals, and DeLong's test; `ROCit` for an alternative API with bootstrap CIs and Hand's M-statistic; `yardstick` for tidy classifier metrics in `tidymodels`; `rms::validate` for bootstrap-based optimism correction.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-roc-auc-for-logistic-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-roc-auc-for-logistic-assumptions) and
+[practical tips](#sec-chapters-07-regression-roc-auc-for-logistic-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-roc-auc-for-logistic-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

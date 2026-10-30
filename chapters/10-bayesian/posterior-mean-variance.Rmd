@@ -1,12 +1,14 @@
-## Introduction
+## Posterior Mean and Variance {#sec-chapters-10-bayesian-posterior-mean-variance}
+
+### Introduction {#sec-chapters-10-bayesian-posterior-mean-variance-introduction}
 
 A Bayesian analysis returns a full posterior distribution, but applied work eventually demands a number to put in a sentence: a coefficient, a probability, an effect size. The posterior mean, median, and mode are the three most common point summaries, each motivated by a different decision-theoretic loss. The posterior variance and standard deviation quantify the uncertainty around the chosen point. Treating the posterior as the headline and the point estimate as a one-line summary derived from it is a more honest reporting style than collapsing the posterior to a single number first and worrying about uncertainty later.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-posterior-mean-variance-prerequisites}
 
 A working understanding of Bayes' theorem and the difference between a posterior distribution and a frequentist sampling distribution; basic familiarity with MCMC draws or a closed-form posterior.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-posterior-mean-variance-theory}
 
 For a posterior $p(\theta \mid y)$, the standard summaries are:
 
@@ -17,11 +19,11 @@ For a posterior $p(\theta \mid y)$, the standard summaries are:
 
 The mean and variance always exist for proper integrable posteriors; the mode may not be unique under multimodal posteriors and the median is unique only for continuous distributions.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-posterior-mean-variance-assumptions}
 
 A proper posterior with finite mean and variance, and either closed-form expressions or sufficient MCMC draws. For heavy-tailed posteriors, the mean and variance can be unstable estimators even when they exist mathematically, so report effective sample sizes alongside the summaries.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-posterior-mean-variance-r-implementation}
 
 ```r
 set.seed(2026)
@@ -39,15 +41,15 @@ c(mean = mean(theta),
 quantile(theta, c(0.025, 0.975))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-posterior-mean-variance-output-results}
 
 Five scalar summaries and a 95 % equal-tailed credible interval. For a Beta(10, 4) posterior the mean is approximately $10/14 \approx 0.71$, the standard deviation is around $0.11$, and the 95 % interval excludes the lower decile of the distribution, communicating both the central tendency and the spread.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-posterior-mean-variance-interpretation}
 
 A reporting sentence: "The posterior probability had mean 0.71 (posterior $\mathrm{SD} = 0.11$, 95 % credible interval 0.47 to 0.89), placing high credibility on values above 0.5 and effectively excluding the prior-favoured region near 0.3." When the posterior is roughly symmetric the choice of mean versus median rarely matters; when it is skewed, report both and let readers see the asymmetry.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-posterior-mean-variance-practical-tips}
 
 - For symmetric posteriors, mean and median are essentially equal; choose whichever is conventional in your field.
 - For posteriors over bounded parameters (probabilities, variances, $r$-coefficients), the mode can fall on the boundary; the mean stays in the interior and is a safer default.
@@ -55,31 +57,28 @@ A reporting sentence: "The posterior probability had mean 0.71 (posterior $\math
 - Avoid reporting a "Bayesian point estimate" without specifying which one; default conventions differ across software and journals.
 - For predictions, summarise the posterior predictive distribution rather than transforming a point estimate of $\theta$; only the former propagates parameter uncertainty.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-posterior-mean-variance-r-packages-used}
 
 Base R suffices for raw summaries (`mean`, `median`, `var`, `sd`, `quantile`), `posterior::summarise_draws()` provides tidy tibbles with Monte Carlo standard errors, and `bayestestR::point_estimate()` exposes mean / median / MAP through one consistent interface for `brms` and `rstanarm` model objects.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-posterior-mean-variance-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-posterior-mean-variance-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-posterior-mean-variance-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-posterior-mean-variance-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

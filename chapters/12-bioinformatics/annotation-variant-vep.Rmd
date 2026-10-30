@@ -1,20 +1,22 @@
-## Introduction
+## Variant Annotation with VEP {#sec-chapters-12-bioinformatics-annotation-variant-vep}
+
+### Introduction {#sec-chapters-12-bioinformatics-annotation-variant-vep-introduction}
 
 Ensembl's Variant Effect Predictor (VEP) assigns each variant a predicted consequence (missense, synonymous, splice-donor, intronic, etc.), gene and transcript IDs, and pathogenicity scores from predictors (SIFT, PolyPhen, CADD, REVEL). It is the standard annotator for variant interpretation in clinical genetics and population genomics.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-annotation-variant-vep-prerequisites}
 
 VCF file; Ensembl or RefSeq transcript database.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-annotation-variant-vep-theory}
 
 VEP traverses each variant, intersects it with transcript structures, and emits one record per overlapping transcript with the predicted functional consequence. Gene-level summaries pick the most severe consequence across transcripts (MANE-select or canonical transcript is standard for clinical use).
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-annotation-variant-vep-assumptions}
 
 Reference build matches the VCF (GRCh37 vs GRCh38); transcript database is current.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-annotation-variant-vep-r-implementation}
 
 VEP runs on the command line (Perl). For programmatic annotation in R, use `VariantAnnotation::locateVariants()` against a `TxDb` plus `predictCoding()` for protein consequences.
 
@@ -41,15 +43,15 @@ A representative VEP command (not run here):
 vep -i input.vcf -o output.vcf --cache --sift p --polyphen p --canonical
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-annotation-variant-vep-output-results}
 
 Per-variant, per-transcript annotation with consequence (missense_variant, synonymous_variant, etc.) and amino-acid substitution information.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-annotation-variant-vep-interpretation}
 
 "VEP annotation identified 12 missense variants predicted deleterious by SIFT and PolyPhen; one nonsense variant in BRCA1 was classified as likely pathogenic."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-annotation-variant-vep-practical-tips}
 
 - Always check assembly/transcript version match between caller and annotator.
 - For clinical work, use VEP's `--pick` or `--flag_pick_allele_gene` to obtain a single canonical annotation per variant.
@@ -59,26 +61,23 @@ Per-variant, per-transcript annotation with consequence (missense_variant, synon
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-annotation-variant-vep-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-annotation-variant-vep-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-annotation-variant-vep-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-annotation-variant-vep-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

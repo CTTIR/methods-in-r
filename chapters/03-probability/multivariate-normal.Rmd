@@ -1,12 +1,14 @@
-## Introduction
+## The Multivariate Normal Distribution {#sec-chapters-03-probability-multivariate-normal}
+
+### Introduction {#sec-chapters-03-probability-multivariate-normal-introduction}
 
 The multivariate normal (MVN) is the joint distribution that plays the same role for random vectors that the normal plays for random scalars. It is parameterised by a mean vector and a covariance matrix, and it underlies linear discriminant analysis, principal component analysis, Gaussian graphical models, and most of multivariate inference.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-multivariate-normal-prerequisites}
 
 Normal distribution, linear algebra (vectors, matrices, positive-definite matrices).
 
-## Theory
+### Theory {#sec-chapters-03-probability-multivariate-normal-theory}
 
 A random vector $\mathbf{X} \in \mathbb{R}^p$ is MVN with mean $\boldsymbol{\mu} \in \mathbb{R}^p$ and positive definite covariance $\Sigma \in \mathbb{R}^{p \times p}$ if its density is
 
@@ -22,11 +24,11 @@ Key properties:
 - **Zero correlation implies independence** in the MVN family (unlike general distributions).
 - **Mahalanobis distance squared** $\sim \chi^2_p$ for $\mathbf{X} \sim \mathcal{N}_p(\boldsymbol{\mu}, \Sigma)$.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-multivariate-normal-assumptions}
 
 $\Sigma$ must be symmetric positive-definite. Degenerate cases (singular $\Sigma$) give a distribution supported on a lower-dimensional affine subspace.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-multivariate-normal-r-implementation}
 
 ```r
 library(mvtnorm); library(ggplot2)
@@ -58,7 +60,7 @@ md2 <- mahalanobis(X, center = mu, cov = Sigma)
 c(mean_md2 = mean(md2), expected = 2)   # chi^2_2 mean = 2
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-multivariate-normal-output-results}
 
 ```
  [1]  0.003 1.012
@@ -76,11 +78,11 @@ mean_md2 expected
 
 Empirical mean and covariance closely match the theoretical values, and the Mahalanobis distance squared has the expected chi-squared mean.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-multivariate-normal-interpretation}
 
 MVN assumptions underlie multiple regression (normal errors), linear discriminant analysis (normal class densities), and most factor-analytic and SEM approaches. Violations of joint normality invalidate ellipsoidal confidence regions and some likelihood-based tests.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-multivariate-normal-practical-tips}
 
 - Check joint normality with chi-squared Q-Q plots of Mahalanobis distance squared, not just marginal Q-Q plots.
 - Near-singular $\Sigma$ (high collinearity) causes numerical instability; regularise with `Sigma + k I` or use generalised inverses.
@@ -90,26 +92,23 @@ MVN assumptions underlie multiple regression (normal errors), linear discriminan
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-multivariate-normal-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-multivariate-normal-assumptions) and
+[practical tips](#sec-chapters-03-probability-multivariate-normal-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-multivariate-normal-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

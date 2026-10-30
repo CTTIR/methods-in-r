@@ -1,12 +1,14 @@
-## Introduction
+## Probit Regression {#sec-chapters-07-regression-probit-regression}
+
+### Introduction {#sec-chapters-07-regression-probit-regression-introduction}
 
 Probit regression models a binary outcome through the inverse of the standard Normal cumulative distribution function — the same idea as logistic regression but with a Normal-tailed link instead of a logistic-tailed one. The two methods produce essentially identical predicted probabilities; their coefficients differ by a fixed scaling factor of about 1.6. Probit is the natural choice when a latent Normal-variable interpretation matches the substantive theory; logistic is more common in clinical reporting because odds ratios are easier to communicate.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-probit-regression-prerequisites}
 
 A working understanding of logistic regression, the standard Normal CDF, and the latent-variable interpretation of binary regression.
 
-## Theory
+### Theory {#sec-chapters-07-regression-probit-regression-theory}
 
 The probit model is
 
@@ -16,11 +18,11 @@ where $\Phi$ is the standard Normal CDF. Coefficients are interpretable on the p
 
 Probit coefficients are approximately logistic coefficients divided by 1.6 ($\sigma_{\mathrm{logistic}} = \pi / \sqrt 3 \approx 1.81$ vs. $\sigma_{\mathrm{Normal}} = 1$). The link functions agree near $p = 0.5$ but diverge slightly in the tails — logistic has heavier tails — so coefficient comparisons across the two scales require the rescaling.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-probit-regression-assumptions}
 
 Binary outcome, independent observations, latent linear relationship on the probit scale, and adequate sample size relative to predictors (events-per-variable $\ge 10$).
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-probit-regression-r-implementation}
 
 ```r
 d <- mtcars
@@ -39,15 +41,15 @@ pred_l <- predict(fit_logit, type = "response")
 cor(pred_p, pred_l)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-probit-regression-output-results}
 
 `summary(fit_probit)` returns coefficients on the probit scale with Wald $z$-tests. The correlation between probit and logit predicted probabilities is typically above 0.999, confirming that the two methods are interchangeable for prediction purposes.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-probit-regression-interpretation}
 
 A reporting sentence: "Probit regression estimated that each 1000-lb increase in vehicle weight reduced the latent propensity for manual transmission by 1.8 SDs (probit coefficient $-1.8$, 95 % CI $-3.0$ to $-0.7$, $p = 0.002$); the average marginal effect on the probability scale was $-0.27$ per 1000 lbs (95 % CI $-0.42$ to $-0.13$, computed via `margins`)." Always pair probit coefficients with average marginal effects when communicating to non-statistical audiences.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-probit-regression-practical-tips}
 
 - Probit and logistic give essentially identical predicted probabilities; choose based on convention or latent-variable interpretation, not on prediction accuracy.
 - Probit coefficients lack the clean odds-ratio interpretation of logistic; report average marginal effects (`margins::margins`, `marginaleffects::avg_predictions`) for clinical communication.
@@ -56,46 +58,43 @@ A reporting sentence: "Probit regression estimated that each 1000-lb increase in
 - For ordinal extensions, probit gives the cumulative-probit (or threshold) model; for survival analysis, the probit link appears in some accelerated-failure-time formulations.
 - Predictions from both models should agree to within 1–2 percentage points across the full range of fitted probabilities; large discrepancies signal model misspecification.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-probit-regression-r-packages-used}
 
 Base R `glm()` with `family = binomial(link = "probit")`; `margins::margins()` and `marginaleffects::avg_predictions()` for average marginal effects; `mfx::probitmfx()` for direct marginal-effect output; `mvProbit` for multivariate probit when multiple binary outcomes are jointly modelled.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-probit-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-probit-regression-assumptions) and
+[practical tips](#sec-chapters-07-regression-probit-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-probit-regression-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

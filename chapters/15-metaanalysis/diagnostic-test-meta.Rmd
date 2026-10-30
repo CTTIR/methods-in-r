@@ -1,20 +1,22 @@
-## Introduction
+## Meta-Analysis of Diagnostic Accuracy {#sec-chapters-15-metaanalysis-diagnostic-test-meta}
+
+### Introduction {#sec-chapters-15-metaanalysis-diagnostic-test-meta-introduction}
 
 Meta-analysis of diagnostic test accuracy pools per-study sensitivity and specificity to summarise how well a test discriminates disease from non-disease across multiple primary studies. Unlike meta-analysis of treatment effects, the two paired outcomes are intrinsically correlated: sensitivity and specificity are determined jointly by the test threshold, so a study choosing a stricter cut-off will trade higher specificity for lower sensitivity. Naively pooling each metric separately ignores this trade-off and produces estimates that misrepresent the test's underlying performance. The modern approach is bivariate random-effects modelling (Reitsma et al., 2005) or hierarchical summary ROC modelling (Rutter and Gatsonis, 2001), both of which respect the correlation structure and yield interpretable summary points and curves.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-15-metaanalysis-diagnostic-test-meta-prerequisites}
 
 A working understanding of sensitivity, specificity, and the receiver-operating characteristic (ROC) curve; familiarity with the logit transformation; and basic mixed-effects modelling concepts.
 
-## Theory
+### Theory {#sec-chapters-15-metaanalysis-diagnostic-test-meta-theory}
 
 The bivariate random-effects model jointly fits logit-sensitivity and logit-specificity using a bivariate Normal random effect across studies, estimating pooled sensitivity, pooled specificity, between-study variances for each, and the correlation between them. The HSROC model parameterises the underlying ROC curve directly with random study-specific thresholds and accuracy parameters, producing a summary curve that explicitly accommodates threshold variation. Reitsma's bivariate model and the HSROC model are mathematically equivalent under standard parameterisation; the choice between them is mainly one of presentation — pooled point with confidence ellipse versus summary curve.
 
-## Assumptions
+### Assumptions {#sec-chapters-15-metaanalysis-diagnostic-test-meta-assumptions}
 
 Each study contributes a $2 \times 2$ table of true positives, false negatives, false positives, and true negatives. Random effects on the logit scale are bivariate Normal; threshold variation across studies is captured implicitly by the random-effects structure; case ascertainment and reference-standard verification are comparable across studies (otherwise applicability concerns enter, captured by the QUADAS-2 framework).
 
-## R Implementation
+### R Implementation {#sec-chapters-15-metaanalysis-diagnostic-test-meta-r-implementation}
 
 ```r
 library(mada)
@@ -34,15 +36,15 @@ plot(fit, sroclty = 1, sroclwd = 2,
      main = "Summary ROC curve")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-15-metaanalysis-diagnostic-test-meta-output-results}
 
 `reitsma()` returns pooled logit-sensitivity and logit-specificity with their variances and the between-study correlation; back-transformation gives the pooled point estimates with confidence intervals and a confidence ellipse on the ROC plane. The summary ROC curve traces the implied trade-off across thresholds, and a summary AUC quantifies discrimination across the full operating range.
 
-## Interpretation
+### Interpretation {#sec-chapters-15-metaanalysis-diagnostic-test-meta-interpretation}
 
 A reporting sentence: "Bivariate meta-analysis of six diagnostic-accuracy studies (Reitsma model, REML) pooled sensitivity 0.84 (95 % CI 0.78 to 0.89) and specificity 0.91 (95 % CI 0.87 to 0.94) on the logit scale; the summary ROC area under the curve was 0.94. The between-study correlation $-0.3$ indicates threshold variation contributes meaningfully to between-study heterogeneity, which the bivariate model accommodates explicitly. Reporting follows PRISMA-DTA." Always report both summary points and the SROC curve, plus the between-study correlation.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-15-metaanalysis-diagnostic-test-meta-practical-tips}
 
 - Always use bivariate or HSROC models; separate univariate pooling of sensitivity and specificity is statistically incorrect because it ignores the threshold-induced correlation between the two.
 - Report the pooled point estimate, the 95 % confidence ellipse on the ROC plane, and the summary curve — together they convey both central performance and uncertainty.
@@ -51,32 +53,29 @@ A reporting sentence: "Bivariate meta-analysis of six diagnostic-accuracy studie
 - PRISMA-DTA is the reporting standard for diagnostic-accuracy systematic reviews; QUADAS-2 is the standard risk-of-bias assessment tool for individual primary studies.
 - For diagnostic-accuracy NMA — comparing multiple competing tests on the same disease — `BUGSnet`, `bamdit`, and recent extensions in `multinma` provide the appropriate framework.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-15-metaanalysis-diagnostic-test-meta-r-packages-used}
 
 `mada::reitsma()` for the canonical bivariate random-effects model and `mada` for SROC plotting and AUC; `mada::HSROC()` for the equivalent HSROC parameterisation; `bamdit` for Bayesian DTA meta-analysis with rich diagnostics; `meta::metaprop()` for univariate proportion pooling when only one of sensitivity or specificity is of interest; `multinma` for Bayesian DTA-NMA across multiple competing tests.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-15-metaanalysis-diagnostic-test-meta-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-15-metaanalysis-diagnostic-test-meta-assumptions) and
+[practical tips](#sec-chapters-15-metaanalysis-diagnostic-test-meta-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-15-metaanalysis-diagnostic-test-meta-see-also-labs-in-this-chapter}
 
-- [Systematic reviews and PRISMA](labs/lab-systematic-reviews-and-prisma.Rmd)
-- [Meta-analysis basics](labs/lab-meta-analysis-basics.Rmd)
-- [Network meta-analysis](labs/lab-network-meta-analysis.Rmd)
+- [Systematic reviews and PRISMA](#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma)
+- [Meta-analysis basics](#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics)
+- [Network meta-analysis](#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis)
 
 <!-- END see-also -->

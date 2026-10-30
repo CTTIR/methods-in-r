@@ -1,12 +1,14 @@
-## Introduction
+## ggplot2 Themes {#sec-chapters-06-visualisation-ggplot-themes}
+
+### Introduction {#sec-chapters-06-visualisation-ggplot-themes-introduction}
 
 A `ggplot2` theme controls everything in a plot that is not the data itself — panel background, axis ticks, gridlines, font sizes, legend placement, plot margins. Two layers of control coexist: a **complete theme** (`theme_minimal()`, `theme_bw()`, `theme_classic()`, etc.) sets every non-data element at once and is usually the right starting point, while individual `theme()` calls override specific elements for publication polish. Mastering both layers is what turns a default plot into one that looks at home in a journal article or a polished report.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-ggplot-themes-prerequisites}
 
 A working knowledge of `ggplot2`'s grammar of graphics, layered geoms, and aesthetic mappings.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-ggplot-themes-theory}
 
 **Complete themes** are functions that return a fully populated `theme` object. Built-in choices include `theme_minimal()` (white background, light gridlines, the de facto modern default), `theme_bw()` (white panel with thin black border), `theme_classic()` (axes only, no gridlines, mimicking print journals), and `theme_void()` (no axes or gridlines, useful for maps and decorative composites). The `ggthemes` package adds journal-flavoured options (`theme_tufte()`, `theme_economist()`, `theme_few()`).
 
@@ -14,11 +16,11 @@ A working knowledge of `ggplot2`'s grammar of graphics, layered geoms, and aesth
 
 `theme_set()` applies a theme globally to every subsequent plot in the session, useful for enforcing house style across a multi-figure report.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-ggplot-themes-assumptions}
 
 No statistical assumptions; the only practical constraint is that font sizes, line widths, and margins must remain legible at the final print size, which is best verified by saving the plot at the target dimensions before judging it on screen.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-ggplot-themes-r-implementation}
 
 ```r
 library(ggplot2); library(ggthemes)
@@ -48,15 +50,15 @@ p +
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-ggplot-themes-output-results}
 
 Side-by-side comparisons of the same scatterplot under four complete themes plus a fully customised version. The custom variant combines `theme_minimal()` as the base with overrides for title weight, axis title size, legend position, and gridline visibility — a typical recipe for a publication-ready figure.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-ggplot-themes-interpretation}
 
 A reporting sentence (figure caption): "All figures use `theme_minimal(base_size = 12)` with custom title and axis label sizes; legend position was moved to the bottom for horizontal compositions." Mention the theme only when it affects interpretation (e.g. removing gridlines deliberately to emphasise a contrast); otherwise it can be left to a methods section "figure preparation" line.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-ggplot-themes-practical-tips}
 
 - Set a global theme once at the top of your analysis script via `theme_set()`; the rest of the figures inherit it automatically and stay consistent.
 - For biomedical publications, `theme_minimal(base_size = 12)` with `panel.grid.minor = element_blank()` is a sensible default; it reads well in print and on screen.
@@ -65,30 +67,26 @@ A reporting sentence (figure caption): "All figures use `theme_minimal(base_size
 - Always export with `ggsave()` at the final intended `width`, `height`, and `dpi` (300 for raster, 600+ for line art); judging a plot on a screen at the wrong dimensions hides legibility problems.
 - For bespoke journal styles, build a wrapper function that returns a fully configured theme and use it instead of repeating the same `theme()` overrides in every script.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-ggplot-themes-r-packages-used}
 
 `ggplot2` for the base theme system, `ggthemes` for journal- and Tufte-flavoured presets, `cowplot` for `theme_cowplot()` (a publication-oriented variant), and `extrafont` if you need access to non-default system fonts in PDF output.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-ggplot-themes-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-ggplot-themes-assumptions) and [practical tips](#sec-chapters-06-visualisation-ggplot-themes-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-ggplot-themes-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

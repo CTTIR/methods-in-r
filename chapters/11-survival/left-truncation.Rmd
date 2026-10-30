@@ -1,22 +1,24 @@
-## Introduction
+## Left Truncation {#sec-chapters-11-survival-left-truncation}
+
+### Introduction {#sec-chapters-11-survival-left-truncation-introduction}
 
 Left truncation, also called delayed entry, occurs when subjects become observable only after surviving to a certain age or calendar time. Recruiting middle-aged adults into a cohort study means anyone who died as a child or young adult is structurally absent — they could not contribute. Treating delayed-entry data as if every subject had been followed from time zero overestimates survival, because the early period is observed only for the survivors. The counting-process formulation in `survival::Surv(tstart, tstop, event)` handles this naturally by restricting risk sets at each event time to subjects actually under observation then.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-left-truncation-prerequisites}
 
 A working understanding of survival analysis, the difference between censoring (subject leaves before event) and truncation (subject only enters under specific conditions), and the counting-process formulation of survival data.
 
-## Theory
+### Theory {#sec-chapters-11-survival-left-truncation-theory}
 
 For a left-truncated subject who enters at time $\tau_i$ and exits at time $T_i$ (with event indicator $\delta_i$), the contribution to the partial likelihood at event time $t$ should appear only when $\tau_i < t \le T_i$. The standard $\mathrm{Surv}(\mathrm{time}, \mathrm{event})$ object does not encode the entry time $\tau_i$ and silently sets it to zero, biasing estimates upward. The two-argument form $\mathrm{Surv}(\tau, T, \mathrm{event})$ (counting-process style) carries both endpoints; `survfit()` and `coxph()` use them to construct correct risk sets.
 
 In age-as-timescale analyses (the natural framing in chronic-disease epidemiology), every subject is left-truncated at their age at enrolment.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-left-truncation-assumptions}
 
 The truncation mechanism is independent of the event of interest given covariates: subjects do not become observable for reasons related to their underlying risk profile.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-left-truncation-r-implementation}
 
 ```r
 library(survival)
@@ -38,15 +40,15 @@ km <- survfit(Surv(age_enroll, end_age, status) ~ 1)
 plot(km)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-left-truncation-output-results}
 
 `survfit()` returns a Kaplan-Meier curve on the chosen time scale (age, calendar year, or time-since-event) that conditions on each subject's entry time. The Cox model with the counting-process `Surv` object produces unbiased hazard-ratio estimates even when entry times are heavily truncated.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-left-truncation-interpretation}
 
 A reporting sentence: "Using age as the time scale with left truncation at enrolment, the conditional survival from age 40 was 0.75 at age 60 (95 % CI 0.68 to 0.82); ignoring delayed entry inflates this estimate to 0.84 by treating mid-life enrolees as if they had been followed since age 0." Always state the time scale and the truncation mechanism in the methods section.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-left-truncation-practical-tips}
 
 - Always specify both `tstart` and `tstop` arguments to `Surv()` when entry times vary across subjects; the single-argument form silently assumes all subjects entered at zero.
 - Age-as-timescale cohort studies are always left-truncated; this is the most common scenario in chronic-disease epidemiology and ageing research.
@@ -55,34 +57,30 @@ A reporting sentence: "Using age as the time scale with left truncation at enrol
 - `survfit()` with delayed entry produces correct conditional survival curves; check that the reported time scale starts at the minimum entry time, not zero.
 - For competing risks with delayed entry, `cmprsk::cuminc` and `tidycmprsk::cuminc` accept counting-process input via `entry` arguments.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-left-truncation-r-packages-used}
 
 `survival` for `Surv(tstart, tstop, event)` and `survfit()` / `coxph()` with counting-process input; `Epi` for left-truncation-aware tools targeted at epidemiology; `etm` for non-parametric multi-state estimation with delayed entry; `tidycmprsk` for left-truncation-aware competing-risks analysis.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-left-truncation-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-left-truncation-assumptions) and [practical tips](#sec-chapters-11-survival-left-truncation-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-left-truncation-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

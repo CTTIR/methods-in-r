@@ -1,12 +1,14 @@
-## Introduction
+## Crossover Designs {#sec-chapters-16-design-crossover-designs}
+
+### Introduction {#sec-chapters-16-design-crossover-designs-introduction}
 
 Crossover designs apply two or more treatments to each subject in sequence, separated by washout periods, so that every subject acts as their own control. The within-subject comparison gains substantial efficiency over parallel-group designs because between-subject variability — typically the largest component of variance in clinical-pharmacology studies — is removed from the treatment contrast. The simplest and most widely used crossover is the two-period two-treatment AB/BA design, in which half of the subjects receive treatment A in period 1 and B in period 2, and the other half receive the reverse sequence. Crossovers are standard in bioequivalence studies, in early-phase clinical pharmacology, and in many sensory and ergonomic experiments where conditions can be evaluated repeatedly on the same subject.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-crossover-designs-prerequisites}
 
 A working understanding of repeated-measures analysis, mixed-effects models with subject as a random effect, and the concept of carryover (residual treatment effect from one period influencing the next).
 
-## Theory
+### Theory {#sec-chapters-16-design-crossover-designs-theory}
 
 In an AB/BA crossover, the standard mixed-effects analysis model is
 
@@ -14,11 +16,11 @@ $$y_{ijk} = \mu + \pi_j + \tau_k + s_i + \varepsilon_{ijk},$$
 
 with period effect $\pi_j$, treatment effect $\tau_k$, subject random effect $s_i \sim N(0, \sigma_s^2)$, and residual error $\varepsilon_{ijk}$. The treatment effect is estimated as the within-subject difference, eliminating the between-subject variance. **Carryover** — a residual treatment effect from period 1 affecting period 2 — manifests as a sequence-by-period interaction; if present, it biases the simple within-subject treatment estimate and requires either an adequate washout, a more complex Williams design, or a model that includes carryover terms.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-crossover-designs-assumptions}
 
 Carryover is absent or has been controlled by an adequate washout period (pharmacologically, at least five half-lives of the active compound), the underlying condition is stable across periods (no progressive disease or natural recovery), and treatment effects are independent of order. Subjects are exchangeable between sequences.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-crossover-designs-r-implementation}
 
 ```r
 library(nlme)
@@ -44,15 +46,15 @@ fit <- lme(y ~ treatment + period, random = ~ 1 | subject, data = df)
 summary(fit)$tTable
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-crossover-designs-output-results}
 
 The mixed-effects fit returns the treatment effect with within-subject standard error and the period effect as a separate fixed term. The random-intercept structure absorbs between-subject variance, dramatically tightening the treatment estimate compared with a parallel-group design of the same total sample size.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-crossover-designs-interpretation}
 
 A reporting sentence: "The two-period AB/BA crossover analysis estimated the B–A treatment difference as 0.56 (95 % CI 0.32 to 0.80, $p < 0.001$), achieving roughly three-fold precision relative to a parallel-group design with the same number of subjects. The period effect was not significant ($p = 0.41$), and the sequence × period interaction (a marker of carryover) was also non-significant ($p = 0.62$), supporting the no-carryover assumption. The mandated washout of seven half-lives was sufficient." Always report period and carryover diagnostics.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-crossover-designs-practical-tips}
 
 - Adequate washout — at least five half-lives of the active compound, often more for compounds with long-lived metabolites — is the best defence against carryover; designing in conservative washouts is far cheaper than dealing with biased results post hoc.
 - Avoid crossover designs for conditions that evolve naturally during the study (progressive disease, healing wounds, post-surgical recovery) or for interventions whose effects are short-lived and wash out rapidly without further dosing; both violate the stability assumption.
@@ -61,42 +63,39 @@ A reporting sentence: "The two-period AB/BA crossover analysis estimated the B�
 - Report the period effect separately from the treatment effect; a strong period effect (e.g., a drift in measurement instrument) can bias the treatment estimate if the design is imbalanced across sequences.
 - Pre-specify the carryover diagnostic and what will be done if carryover is detected; reactive analysis decisions after seeing the data inflate type-I error and are increasingly flagged by regulators.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-crossover-designs-r-packages-used}
 
 `nlme::lme()` for mixed-effects analysis with explicit random-effect specification; `lme4::lmer()` and `lmerTest` as alternatives with Satterthwaite or Kenward-Roger denominator df; `Crossover` for canonical crossover-design construction including Williams squares; `crossdes` for systematic generation of balanced crossover layouts; `daewr` for textbook companion datasets including pharmacology examples.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-crossover-designs-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-crossover-designs-assumptions) and
+[practical tips](#sec-chapters-16-design-crossover-designs-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-crossover-designs-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

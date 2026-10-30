@@ -1,12 +1,14 @@
-## Introduction
+## Order Statistics {#sec-chapters-01-foundations-order-statistics}
+
+### Introduction {#sec-chapters-01-foundations-order-statistics-introduction}
 
 Given a sample $X_1, \ldots, X_n$, the **order statistics** are the sorted values $X_{(1)} \leq X_{(2)} \leq \ldots \leq X_{(n)}$. They are the raw material for the median, the quantiles, the range, the IQR, and many non-parametric and robust methods. Their distributional theory provides exact confidence intervals for quantiles and limiting distributions for extremes -- tools that analytical approaches to the mean cannot reach.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-order-statistics-prerequisites}
 
 The reader should know what a CDF and a PDF are, and should be comfortable with `sort()` and `quantile()` in R.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-order-statistics-theory}
 
 For iid $X_i$ with CDF $F$, the CDF of the $k$-th order statistic is
 
@@ -26,11 +28,11 @@ The joint density of $X_{(i)}$ and $X_{(j)}$ for $i < j$ has a similar combinato
 
 **Confidence intervals for quantiles.** Because of the combinatorial form of the CDF of an order statistic, exact distribution-free CIs for a population quantile can be constructed: the interval $[X_{(i)}, X_{(j)}]$ has a known coverage probability for the $p$-quantile, regardless of $F$.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-order-statistics-assumptions}
 
 The classical theory assumes iid observations; most of the formulas extend directly to exchangeable data. For dependent data, the distribution of order statistics is much more complicated.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-order-statistics-r-implementation}
 
 ```r
 library(ggplot2)
@@ -60,7 +62,7 @@ c(lower = sorted_x[k_lo], upper = sorted_x[min(k_hi, n)])
 
 The first block simulates the sampling distribution of the 75th-percentile estimate. The second constructs a distribution-free CI for the population 75th percentile from binomial probabilities applied to ranks.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-order-statistics-output-results}
 
 ```
 empirical_mean            true   empirical_SE
@@ -72,11 +74,11 @@ lower  upper
 
 The sample quantile is slightly biased in small samples (a known feature for definitions like `type = 7`); the distribution-free CI for the true quantile is wide but valid for any continuous distribution.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-order-statistics-interpretation}
 
 Order-statistic-based CIs are useful when the distribution of the data is unknown or clearly non-normal. Reporting "median survival 27 months (distribution-free 95% CI 22 to 31)" is an appropriate summary in survival analysis when the parametric form is in doubt.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-order-statistics-practical-tips}
 
 - R's `quantile()` default is `type = 7`; specify it explicitly if exact reproducibility across software is important.
 - For extreme-value inference (maxima, minima), do not rely on asymptotic normality; use extreme-value theory and the `evd` or `extRemes` packages.
@@ -86,27 +88,24 @@ Order-statistic-based CIs are useful when the distribution of the data is unknow
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-order-statistics-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-order-statistics-assumptions) and
+[practical tips](#sec-chapters-01-foundations-order-statistics-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-order-statistics-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

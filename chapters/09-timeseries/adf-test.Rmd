@@ -1,12 +1,14 @@
-## Introduction
+## Augmented Dickey-Fuller Test {#sec-chapters-09-timeseries-adf-test}
+
+### Introduction {#sec-chapters-09-timeseries-adf-test-introduction}
 
 The augmented Dickey-Fuller (ADF) test is the canonical test for unit roots in time series. A unit root corresponds to random-walk-like non-stationarity in which shocks have permanent effects on the level of the series; standard regression and ARIMA(p, 0, q) models give nonsense results when applied to such data. The ADF test asks whether a unit root is present and, if rejected, supports modelling the series as stationary (or trend-stationary). Pairing ADF with KPSS gives complementary information: the two tests have flipped null hypotheses, and agreement strengthens the verdict.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-adf-test-prerequisites}
 
 A working understanding of stationarity, autoregressive models, the difference between mean-reverting and random-walk processes, and the role of differencing in inducing stationarity.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-adf-test-theory}
 
 The ADF test fits the regression
 
@@ -16,11 +18,11 @@ and tests $\gamma = 0$ (unit root) against $\gamma < 0$ (stationary). The "augme
 
 Three deterministic specifications are common: no intercept (rare), intercept only ("drift"), and intercept plus linear trend. The choice should reflect the visible behaviour of the series.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-adf-test-assumptions}
 
 A linear autoregressive structure; no structural breaks (which invalidate the test); the lag order $p$ is large enough to whiten the residuals.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-adf-test-r-implementation}
 
 ```r
 library(tseries); library(urca)
@@ -34,15 +36,15 @@ adf.test(diff(x))          # stationary after differencing
 summary(ur.df(x, type = "drift", selectlags = "AIC"))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-adf-test-output-results}
 
 `adf.test()` returns the ADF statistic and a $p$-value computed from the Dickey-Fuller distribution. `urca::ur.df()` provides richer output with critical values at multiple significance levels and automatic lag selection by AIC or BIC.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-adf-test-interpretation}
 
 A reporting sentence: "The ADF test on the random-walk series gave a statistic of $-1.50$ ($p = 0.52$, fail to reject unit root); after first-differencing, ADF gave $-9.83$ ($p < 0.01$, reject unit root in favour of stationarity), confirming the series is integrated of order 1." Always state the deterministic specification (drift, trend, none) and the lag order chosen.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-adf-test-practical-tips}
 
 - Include an intercept (`type = "drift"`) for series that fluctuate around a non-zero mean; add a trend (`type = "trend"`) for series with a visible linear trend.
 - Use `selectlags = "AIC"` or `"BIC"` in `urca::ur.df()` for automatic lag selection; the default in `tseries::adf.test()` is `trunc(...)` which is sometimes too small.
@@ -51,30 +53,27 @@ A reporting sentence: "The ADF test on the random-walk series gave a statistic o
 - Results are sensitive to specification; try several deterministic options and lag orders, and report a robust summary if conclusions hold across them.
 - For multi-series unit-root testing on panel data, use Im-Pesaran-Shin (`plm::purtest`) or Levin-Lin-Chu.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-adf-test-r-packages-used}
 
 `tseries::adf.test()` for the canonical ADF; `urca::ur.df()` for richer output and lag-selection tools; `urca::ur.za()` for the Zivot-Andrews test with structural breaks; `forecast::ndiffs()` for an integrated workflow that determines the required differencing order from KPSS / ADF / Phillips-Perron.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-adf-test-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-adf-test-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-adf-test-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-adf-test-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

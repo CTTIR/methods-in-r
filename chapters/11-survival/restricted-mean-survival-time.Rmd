@@ -1,12 +1,14 @@
-## Introduction
+## Restricted Mean Survival Time (RMST) {#sec-chapters-11-survival-restricted-mean-survival-time}
+
+### Introduction {#sec-chapters-11-survival-restricted-mean-survival-time-introduction}
 
 The restricted mean survival time (RMST) is the expected survival time truncated at a clinically meaningful horizon $\tau$. Where the hazard ratio from a Cox model summarises a relative effect that requires proportional hazards to be interpretable, RMST quantifies an absolute time difference (in days, months, or years) and remains valid even when the hazard ratio is not constant. It has become an increasingly standard endpoint in oncology trials and immunotherapy studies, where crossing or delayed survival curves are common and where regulators and clinicians want a number expressed on the natural time scale.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-restricted-mean-survival-time-prerequisites}
 
 A working understanding of survival functions, the Kaplan-Meier estimator, and the issues with proportional-hazards assumptions in modern clinical trials.
 
-## Theory
+### Theory {#sec-chapters-11-survival-restricted-mean-survival-time-theory}
 
 For a survival function $S(t)$ and a horizon $\tau$, the RMST is
 
@@ -14,11 +16,11 @@ $$\mathrm{RMST}(\tau) = \mathbb E[\min(T, \tau)] = \int_0^\tau S(t) \, \mathrm d
 
 Geometrically it is the area under the KM curve from time zero to $\tau$. Group differences are summarised by the difference $\mathrm{RMST}_1(\tau) - \mathrm{RMST}_0(\tau)$ or by the ratio. Standard errors come from the asymptotic theory developed by Royston and Parmar; bootstrap confidence intervals are an alternative when the asymptotic approximation is suspect. Crucially, the construction makes no assumption about the relationship between hazards in the two groups — non-proportionality, treatment-effect waning, and crossing curves are all handled gracefully.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-restricted-mean-survival-time-assumptions}
 
 Sufficient follow-up to estimate $S(t)$ reliably up to $\tau$; an explicit choice of $\tau$ that is clinically meaningful and within the support of the data; non-informative censoring up to $\tau$.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-restricted-mean-survival-time-r-implementation}
 
 ```r
 library(survRM2)
@@ -30,15 +32,15 @@ rmst2(time = lung$time, status = lung$status,
       arm = lung$sex - 1, tau = 600)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-restricted-mean-survival-time-output-results}
 
 `rmst2()` returns the RMST for each arm, the difference and ratio between arms, and 95 % confidence intervals derived from the asymptotic theory. The output is structured for direct inclusion in clinical-trial reports.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-restricted-mean-survival-time-interpretation}
 
 A reporting sentence: "Through 600 days of follow-up, female patients accumulated an average of 380 days alive vs 310 days for male patients; the RMST difference was 70 days (95 % CI 20 to 120, $p = 0.005$). Because the hazards were not proportional (Schoenfeld test $p = 0.04$), RMST is the preferred summary." Always state $\tau$ and justify it on clinical grounds; the same data can yield different RMST conclusions at different horizons.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-restricted-mean-survival-time-practical-tips}
 
 - Choose $\tau$ based on clinical relevance *and* on data adequacy: $\tau$ should be smaller than the longest follow-up time across both arms so the KM estimate is stable.
 - RMST handles non-proportional hazards, treatment-effect waning, and crossing curves where Cox HR fails; for any trial with these features, RMST is preferable.
@@ -47,34 +49,30 @@ A reporting sentence: "Through 600 days of follow-up, female patients accumulate
 - Pair RMST with KM curves and a hazard-ratio sensitivity analysis; reviewers expect to see all three when proportional-hazards assumptions are in question.
 - For very small samples or sparse late-time data, switch to bootstrap confidence intervals via `bootRMST` or hand-coded `boot::boot()` resampling on the patient-level data.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-restricted-mean-survival-time-r-packages-used}
 
 `survRM2` for `rmst2()` and the canonical RMST workflow; `survival` for the underlying Kaplan-Meier estimation; `pseudo` for pseudo-observation-based RMST regression with covariates; `flexsurv` for parametric models that integrate analytically over $S(t)$; `survminer::ggsurvplot()` for KM curves that complement the RMST report.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-restricted-mean-survival-time-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-restricted-mean-survival-time-assumptions) and [practical tips](#sec-chapters-11-survival-restricted-mean-survival-time-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-restricted-mean-survival-time-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

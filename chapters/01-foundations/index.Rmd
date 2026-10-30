@@ -2,49 +2,49 @@
 
 This chapter covers the prerequisites that every later chapter assumes: the scientific process, tidy data, the R/Quarto/`renv` toolchain, measurement quality, missingness, and reproducibility. If you have never built a project with `renv` or written a pre-registration, start here.
 
-This chapter contains **31 method pages** and **4 labs**. If you are not sure which method to read, return to [Chapter 0](../../ch00-find-your-method.Rmd) and follow the decision tree to the right node.
+This chapter contains **31 method pages** and **4 labs**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.
 
-## Method pages
+## Method pages {#sec-chapters-01-foundations-index-method-pages}
 
 | Method | Source slug |
 |---|---|
-| [Bias and Variance of Estimators](bias-and-variance.Rmd) | `bias-and-variance` |
-| [Big-Op and Little-op Notation](big-op-little-op.Rmd) | `big-op-little-op` |
-| [Characteristic Functions](characteristic-functions.Rmd) | `characteristic-functions` |
-| [Confidence Intervals: Introduction](confidence-intervals-introduction.Rmd) | `confidence-intervals-introduction` |
-| [Convergence in Distribution](convergence-in-distribution.Rmd) | `convergence-in-distribution` |
-| [Convergence in Probability](convergence-in-probability.Rmd) | `convergence-in-probability` |
-| [Estimators and Estimation](estimators-and-estimation.Rmd) | `estimators-and-estimation` |
-| [Fisher Information](fisher-information.Rmd) | `fisher-information` |
-| [Jensen's Inequality](jensens-inequality.Rmd) | `jensens-inequality` |
-| [Likelihood Ratio Tests](likelihood-ratio-tests.Rmd) | `likelihood-ratio-tests` |
-| [Markov and Chebyshev Inequalities](chebyshev-markov.Rmd) | `chebyshev-markov` |
-| [Maximum Likelihood Estimation](maximum-likelihood-estimation.Rmd) | `maximum-likelihood-estimation` |
-| [Moments and Moment Generating Functions](moments-and-mgfs.Rmd) | `moments-and-mgfs` |
-| [Order Statistics](order-statistics.Rmd) | `order-statistics` |
-| [Pivotal Quantities](pivotal-quantities.Rmd) | `pivotal-quantities` |
-| [Population vs. Sample](population-vs-sample.Rmd) | `population-vs-sample` |
-| [Sampling Distributions](sampling-distributions.Rmd) | `sampling-distributions` |
-| [Sampling Methods](sampling-methods.Rmd) | `sampling-methods` |
-| [Scales of Measurement](scales-of-measurement.Rmd) | `scales-of-measurement` |
-| [Slutsky's Theorem](slutsky-theorem.Rmd) | `slutsky-theorem` |
-| [Sufficient Statistics](sufficient-statistics.Rmd) | `sufficient-statistics` |
-| [The Cauchy-Schwarz Inequality](cauchy-schwarz.Rmd) | `cauchy-schwarz` |
-| [The Central Limit Theorem](central-limit-theorem.Rmd) | `central-limit-theorem` |
-| [The Cramer-Rao Lower Bound](cramer-rao-lower-bound.Rmd) | `cramer-rao-lower-bound` |
-| [The Delta Method](delta-method.Rmd) | `delta-method` |
-| [The Empirical Distribution Function](empirical-distribution-function.Rmd) | `empirical-distribution-function` |
-| [The Glivenko-Cantelli Theorem](glivenko-cantelli.Rmd) | `glivenko-cantelli` |
-| [The Law of Large Numbers](law-of-large-numbers.Rmd) | `law-of-large-numbers` |
-| [The Method of Moments](method-of-moments.Rmd) | `method-of-moments` |
-| [The Standard Error](standard-error.Rmd) | `standard-error` |
-| [Unbiasedness, Consistency, Efficiency](unbiasedness-consistency-efficiency.Rmd) | `unbiasedness-consistency-efficiency` |
+| [Bias and Variance of Estimators](#sec-chapters-01-foundations-bias-and-variance) | `bias-and-variance` |
+| [Big-Op and Little-op Notation](#sec-chapters-01-foundations-big-op-little-op) | `big-op-little-op` |
+| [Characteristic Functions](#sec-chapters-01-foundations-characteristic-functions) | `characteristic-functions` |
+| [Confidence Intervals: Introduction](#sec-chapters-01-foundations-confidence-intervals-introduction) | `confidence-intervals-introduction` |
+| [Convergence in Distribution](#sec-chapters-01-foundations-convergence-in-distribution) | `convergence-in-distribution` |
+| [Convergence in Probability](#sec-chapters-01-foundations-convergence-in-probability) | `convergence-in-probability` |
+| [Estimators and Estimation](#sec-chapters-01-foundations-estimators-and-estimation) | `estimators-and-estimation` |
+| [Fisher Information](#sec-chapters-01-foundations-fisher-information) | `fisher-information` |
+| [Jensen's Inequality](#sec-chapters-01-foundations-jensens-inequality) | `jensens-inequality` |
+| [Likelihood Ratio Tests](#sec-chapters-01-foundations-likelihood-ratio-tests) | `likelihood-ratio-tests` |
+| [Markov and Chebyshev Inequalities](#sec-chapters-01-foundations-chebyshev-markov) | `chebyshev-markov` |
+| [Maximum Likelihood Estimation](#sec-chapters-01-foundations-maximum-likelihood-estimation) | `maximum-likelihood-estimation` |
+| [Moments and Moment Generating Functions](#sec-chapters-01-foundations-moments-and-mgfs) | `moments-and-mgfs` |
+| [Order Statistics](#sec-chapters-01-foundations-order-statistics) | `order-statistics` |
+| [Pivotal Quantities](#sec-chapters-01-foundations-pivotal-quantities) | `pivotal-quantities` |
+| [Population vs. Sample](#sec-chapters-01-foundations-population-vs-sample) | `population-vs-sample` |
+| [Sampling Distributions](#sec-chapters-01-foundations-sampling-distributions) | `sampling-distributions` |
+| [Sampling Methods](#sec-chapters-01-foundations-sampling-methods) | `sampling-methods` |
+| [Scales of Measurement](#sec-chapters-01-foundations-scales-of-measurement) | `scales-of-measurement` |
+| [Slutsky's Theorem](#sec-chapters-01-foundations-slutsky-theorem) | `slutsky-theorem` |
+| [Sufficient Statistics](#sec-chapters-01-foundations-sufficient-statistics) | `sufficient-statistics` |
+| [The Cauchy-Schwarz Inequality](#sec-chapters-01-foundations-cauchy-schwarz) | `cauchy-schwarz` |
+| [The Central Limit Theorem](#sec-chapters-01-foundations-central-limit-theorem) | `central-limit-theorem` |
+| [The Cramer-Rao Lower Bound](#sec-chapters-01-foundations-cramer-rao-lower-bound) | `cramer-rao-lower-bound` |
+| [The Delta Method](#sec-chapters-01-foundations-delta-method) | `delta-method` |
+| [The Empirical Distribution Function](#sec-chapters-01-foundations-empirical-distribution-function) | `empirical-distribution-function` |
+| [The Glivenko-Cantelli Theorem](#sec-chapters-01-foundations-glivenko-cantelli) | `glivenko-cantelli` |
+| [The Law of Large Numbers](#sec-chapters-01-foundations-law-of-large-numbers) | `law-of-large-numbers` |
+| [The Method of Moments](#sec-chapters-01-foundations-method-of-moments) | `method-of-moments` |
+| [The Standard Error](#sec-chapters-01-foundations-standard-error) | `standard-error` |
+| [Unbiasedness, Consistency, Efficiency](#sec-chapters-01-foundations-unbiasedness-consistency-efficiency) | `unbiasedness-consistency-efficiency` |
 
-## Labs
+## Labs {#sec-chapters-01-foundations-index-labs}
 
 | Lab |
 |---|
-| [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd) |
-| [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd) |
-| [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd) |
-| [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd) |
+| [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow) |
+| [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain) |
+| [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision) |
+| [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr) |

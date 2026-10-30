@@ -1,12 +1,14 @@
-## Introduction
+## The Geometric Distribution {#sec-chapters-03-probability-geometric-distribution}
+
+### Introduction {#sec-chapters-03-probability-geometric-distribution-introduction}
 
 The geometric distribution counts the number of Bernoulli trials required to obtain the first success. It is the discrete analogue of the exponential waiting-time distribution and shares the memoryless property: the probability of further trials to success does not depend on how many have already been tried.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-geometric-distribution-prerequisites}
 
 Bernoulli trials.
 
-## Theory
+### Theory {#sec-chapters-03-probability-geometric-distribution-theory}
 
 Two conventions exist. Let $X$ be the number of Bernoulli$(p)$ trials *up to and including* the first success:
 
@@ -26,11 +28,11 @@ For $Y$ (R's convention): $E[Y] = (1 - p)/p$, $\mathrm{Var}(Y) = (1 - p)/p^2$.
 
 **Memoryless property**: $P(X > m + n \mid X > m) = P(X > n)$. Having waited $m$ trials without success does not change the distribution of further waiting time.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-geometric-distribution-assumptions}
 
 Independent Bernoulli trials with constant probability $p$.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-geometric-distribution-r-implementation}
 
 ```r
 p <- 0.3
@@ -53,7 +55,7 @@ c(conditional = mean(Y_past_5 > 5 + 3),
   unconditional = mean(Y > 3))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-geometric-distribution-output-results}
 
 ```
    mean_Y theoretical
@@ -74,11 +76,11 @@ conditional  unconditional
 
 The memoryless property holds empirically: conditional probability of further 3 failures, given already 5 failures, equals the unconditional probability of at least 3 failures.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-geometric-distribution-interpretation}
 
 The geometric distribution is the baseline model for "time to event" in the discrete case: cycles to pregnancy in IVF, attempts before a successful procedure, trials before a rare positive test. Memorylessness is a strong assumption that often fails in real data where fatigue or learning changes $p$ over time.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-geometric-distribution-practical-tips}
 
 - Check which convention (trials vs. failures) is expected when comparing to textbook formulas.
 - Memorylessness is testable empirically: compare the distribution of residual trials given survival to each time.
@@ -88,26 +90,23 @@ The geometric distribution is the baseline model for "time to event" in the disc
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-geometric-distribution-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-geometric-distribution-assumptions) and
+[practical tips](#sec-chapters-03-probability-geometric-distribution-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-geometric-distribution-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

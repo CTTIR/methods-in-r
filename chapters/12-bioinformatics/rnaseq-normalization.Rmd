@@ -1,12 +1,14 @@
-## Introduction
+## RNA-seq Normalisation {#sec-chapters-12-bioinformatics-rnaseq-normalization}
+
+### Introduction {#sec-chapters-12-bioinformatics-rnaseq-normalization-introduction}
 
 Raw RNA-seq read counts depend on library size and library composition; normalisation removes these technical sources of variation so that samples can be compared on equal footing. The standard methods — TMM (edgeR), RLE (DESeq2), upper-quartile, and CPM — differ in how aggressively they handle compositional differences and which assumption they make about the bulk of genes. Choosing the right normalisation is foundational; downstream differential-expression tools incorporate the normalisation factors as offsets in their GLM, so a poor choice undermines every conclusion that follows.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-rnaseq-normalization-prerequisites}
 
 A working understanding of count data, library size, and the difference between technical (sequencing depth) and biological (true expression) variation between samples.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-rnaseq-normalization-theory}
 
 The four standard methods:
 
@@ -17,11 +19,11 @@ The four standard methods:
 
 TMM and RLE are the de facto standards; CPM is appropriate only for visualisation, not for statistical comparison.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-rnaseq-normalization-assumptions}
 
 Most genes are not differentially expressed (the "majority is unchanged" assumption that motivates trimmed-mean and median-based normalisation); samples are technical replicates of comparable biological material.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-rnaseq-normalization-r-implementation}
 
 ```r
 library(edgeR); library(DESeq2)
@@ -41,15 +43,15 @@ dds <- estimateSizeFactors(dds)
 sizeFactors(dds)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-rnaseq-normalization-output-results}
 
 `calcNormFactors()` returns per-sample TMM normalisation factors (centred near 1, with deviations indicating compositional differences); `estimateSizeFactors()` returns DESeq2 size factors with similar interpretation. Both are used as offsets in downstream GLMs by edgeR, DESeq2, and limma-voom.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-rnaseq-normalization-interpretation}
 
 A reporting sentence: "TMM normalisation factors ranged from 0.85 to 1.18 across the 10 samples, with no factor exceeding the conventional ±20 % concern threshold; the corresponding DESeq2 RLE size factors agreed within 5 %, confirming the normalisation is robust to method choice." Quote the range of normalisation factors; extreme values signal compositional anomalies.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-rnaseq-normalization-practical-tips}
 
 - TMM and RLE adjust for compositional differences; CPM does not. For statistical comparison, always use TMM or RLE; CPM is only appropriate for visualisation.
 - Extreme normalisation factors (above 2 or below 0.5) warrant investigation; they often indicate a few very highly expressed genes dominating a sample.
@@ -58,32 +60,29 @@ A reporting sentence: "TMM normalisation factors ranged from 0.85 to 1.18 across
 - TMM with `refColumn` set to a specific reference sample is useful when one sample is known to be representative; the default chooses an automatic reference.
 - For mixed-tissue or very heterogeneous experiments, the "majority unchanged" assumption can fail; consider quantile normalisation (`limma::normalizeQuantiles`) or condition-aware alternatives.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-rnaseq-normalization-r-packages-used}
 
 `edgeR::calcNormFactors()` for TMM, upper-quartile, and RLE alternatives; `DESeq2::estimateSizeFactors()` for the canonical RLE; `limma::cpm()` and `voom()` for normalisation in the limma framework; `scran` and `sctransform` for single-cell normalisation.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-rnaseq-normalization-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-rnaseq-normalization-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-rnaseq-normalization-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-rnaseq-normalization-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

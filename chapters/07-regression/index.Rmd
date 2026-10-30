@@ -2,82 +2,82 @@
 
 Linear models, GLMs, GAMs, non-linear least squares, the ANOVA family, ANCOVA, robust regression, residual diagnostics, calibration, and decision-curve analysis. The chapter treats regression as a single object viewed from different angles.
 
-This chapter contains **51 method pages** and **17 labs**. If you are not sure which method to read, return to [Chapter 0](../../ch00-find-your-method.Rmd) and follow the decision tree to the right node.
+This chapter contains **51 method pages** and **17 labs**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.
 
-## Method pages
+## Method pages {#sec-chapters-07-regression-index-method-pages}
 
 | Method | Source slug |
 |---|---|
-| [Added-Variable Plots](added-variable-plots.Rmd) | `added-variable-plots` |
-| [Best Subset Selection](best-subset-selection.Rmd) | `best-subset-selection` |
-| [Beta Regression](beta-regression.Rmd) | `beta-regression` |
-| [Centring and Scaling Predictors](centered-scaled-predictors.Rmd) | `centered-scaled-predictors` |
-| [Contrasts in R](contrasts-in-r.Rmd) | `contrasts-in-r` |
-| [Cook's Distance](cooks-distance.Rmd) | `cooks-distance` |
-| [Cox Regression as Regression](survival-regression-cox.Rmd) | `survival-regression-cox` |
-| [Dirichlet Regression](dirichlet-regression.Rmd) | `dirichlet-regression` |
-| [Dummy Coding](dummy-coding.Rmd) | `dummy-coding` |
-| [Effect (Deviation) Coding](effect-coding.Rmd) | `effect-coding` |
-| [Elastic Net](elastic-net.Rmd) | `elastic-net` |
-| [GAMMs: Additive Mixed Models](gamm-additive-mixed.Rmd) | `gamm-additive-mixed` |
-| [GAMs: Introduction](gam-introduction.Rmd) | `gam-introduction` |
-| [Generalised Estimating Equations](generalized-estimating-equations.Rmd) | `generalized-estimating-equations` |
-| [glmer: Generalised Mixed Models](glmer-generalized-mixed.Rmd) | `glmer-generalized-mixed` |
-| [Hurdle Models](hurdle-models.Rmd) | `hurdle-models` |
-| [Interactions in Regression](interactions-in-regression.Rmd) | `interactions-in-regression` |
-| [Lasso Regression](lasso-regression.Rmd) | `lasso-regression` |
-| [Leverage and Influence](leverage-influence.Rmd) | `leverage-influence` |
-| [Linear Regression Assumptions](regression-assumptions.Rmd) | `regression-assumptions` |
-| [Logistic Regression](logistic-regression.Rmd) | `logistic-regression` |
-| [Logistic Regression Diagnostics](logistic-regression-diagnostics.Rmd) | `logistic-regression-diagnostics` |
-| [Mixed-Effects Models: Introduction](mixed-models-intro.Rmd) | `mixed-models-intro` |
-| [Model Selection with AIC and BIC](model-selection-aic-bic.Rmd) | `model-selection-aic-bic` |
-| [Multicollinearity and VIF](multicollinearity-vif.Rmd) | `multicollinearity-vif` |
-| [Multinomial Logistic Regression](multinomial-logistic.Rmd) | `multinomial-logistic` |
-| [Multiple Linear Regression](multiple-linear-regression.Rmd) | `multiple-linear-regression` |
-| [Negative Binomial Regression](negative-binomial-regression.Rmd) | `negative-binomial-regression` |
-| [Nested vs Crossed Random Effects](nested-crossed-random-effects.Rmd) | `nested-crossed-random-effects` |
-| [Offsets in Regression](offsets-in-regression.Rmd) | `offsets-in-regression` |
-| [Ordinal Logistic Regression](ordinal-logistic.Rmd) | `ordinal-logistic` |
-| [Partial Correlation](partial-correlation.Rmd) | `partial-correlation` |
-| [Poisson Regression](poisson-regression.Rmd) | `poisson-regression` |
-| [Polynomial Regression](polynomial-regression.Rmd) | `polynomial-regression` |
-| [Probit Regression](probit-regression.Rmd) | `probit-regression` |
-| [Quantile Regression](quantile-regression.Rmd) | `quantile-regression` |
-| [Quasi-Poisson Regression](quasi-poisson.Rmd) | `quasi-poisson` |
-| [R-Squared and Adjusted R-Squared](r-squared-adjusted.Rmd) | `r-squared-adjusted` |
-| [Random-Intercept Models](random-intercepts.Rmd) | `random-intercepts` |
-| [Random-Slope Models](random-slopes.Rmd) | `random-slopes` |
-| [Residual Diagnostics](residual-diagnostics.Rmd) | `residual-diagnostics` |
-| [Ridge Regression](ridge-regression.Rmd) | `ridge-regression` |
-| [Robust Regression](robust-regression.Rmd) | `robust-regression` |
-| [ROC and AUC for Logistic Models](roc-auc-for-logistic.Rmd) | `roc-auc-for-logistic` |
-| [Simple Linear Regression](simple-linear-regression.Rmd) | `simple-linear-regression` |
-| [Spline Regression](spline-regression.Rmd) | `spline-regression` |
-| [Stepwise Regression: Pitfalls](stepwise-regression-pitfalls.Rmd) | `stepwise-regression-pitfalls` |
-| [Tobit Regression](tobit-regression.Rmd) | `tobit-regression` |
-| [Truncated Regression](truncated-regression.Rmd) | `truncated-regression` |
-| [Worked lme4::lmer Examples](lme4-lmer-examples.Rmd) | `lme4-lmer-examples` |
-| [Zero-Inflated Models](zero-inflated-models.Rmd) | `zero-inflated-models` |
+| [Added-Variable Plots](#sec-chapters-07-regression-added-variable-plots) | `added-variable-plots` |
+| [Best Subset Selection](#sec-chapters-07-regression-best-subset-selection) | `best-subset-selection` |
+| [Beta Regression](#sec-chapters-07-regression-beta-regression) | `beta-regression` |
+| [Centring and Scaling Predictors](#sec-chapters-07-regression-centered-scaled-predictors) | `centered-scaled-predictors` |
+| [Contrasts in R](#sec-chapters-07-regression-contrasts-in-r) | `contrasts-in-r` |
+| [Cook's Distance](#sec-chapters-07-regression-cooks-distance) | `cooks-distance` |
+| [Cox Regression as Regression](#sec-chapters-07-regression-survival-regression-cox) | `survival-regression-cox` |
+| [Dirichlet Regression](#sec-chapters-07-regression-dirichlet-regression) | `dirichlet-regression` |
+| [Dummy Coding](#sec-chapters-07-regression-dummy-coding) | `dummy-coding` |
+| [Effect (Deviation) Coding](#sec-chapters-07-regression-effect-coding) | `effect-coding` |
+| [Elastic Net](#sec-chapters-07-regression-elastic-net) | `elastic-net` |
+| [GAMMs: Additive Mixed Models](#sec-chapters-07-regression-gamm-additive-mixed) | `gamm-additive-mixed` |
+| [GAMs: Introduction](#sec-chapters-07-regression-gam-introduction) | `gam-introduction` |
+| [Generalised Estimating Equations](#sec-chapters-07-regression-generalized-estimating-equations) | `generalized-estimating-equations` |
+| [glmer: Generalised Mixed Models](#sec-chapters-07-regression-glmer-generalized-mixed) | `glmer-generalized-mixed` |
+| [Hurdle Models](#sec-chapters-07-regression-hurdle-models) | `hurdle-models` |
+| [Interactions in Regression](#sec-chapters-07-regression-interactions-in-regression) | `interactions-in-regression` |
+| [Lasso Regression](#sec-chapters-07-regression-lasso-regression) | `lasso-regression` |
+| [Leverage and Influence](#sec-chapters-07-regression-leverage-influence) | `leverage-influence` |
+| [Linear Regression Assumptions](#sec-chapters-07-regression-regression-assumptions) | `regression-assumptions` |
+| [Logistic Regression](#sec-chapters-07-regression-logistic-regression) | `logistic-regression` |
+| [Logistic Regression Diagnostics](#sec-chapters-07-regression-logistic-regression-diagnostics) | `logistic-regression-diagnostics` |
+| [Mixed-Effects Models: Introduction](#sec-chapters-07-regression-mixed-models-intro) | `mixed-models-intro` |
+| [Model Selection with AIC and BIC](#sec-chapters-07-regression-model-selection-aic-bic) | `model-selection-aic-bic` |
+| [Multicollinearity and VIF](#sec-chapters-07-regression-multicollinearity-vif) | `multicollinearity-vif` |
+| [Multinomial Logistic Regression](#sec-chapters-07-regression-multinomial-logistic) | `multinomial-logistic` |
+| [Multiple Linear Regression](#sec-chapters-07-regression-multiple-linear-regression) | `multiple-linear-regression` |
+| [Negative Binomial Regression](#sec-chapters-07-regression-negative-binomial-regression) | `negative-binomial-regression` |
+| [Nested vs Crossed Random Effects](#sec-chapters-07-regression-nested-crossed-random-effects) | `nested-crossed-random-effects` |
+| [Offsets in Regression](#sec-chapters-07-regression-offsets-in-regression) | `offsets-in-regression` |
+| [Ordinal Logistic Regression](#sec-chapters-07-regression-ordinal-logistic) | `ordinal-logistic` |
+| [Partial Correlation](#sec-chapters-07-regression-partial-correlation) | `partial-correlation` |
+| [Poisson Regression](#sec-chapters-07-regression-poisson-regression) | `poisson-regression` |
+| [Polynomial Regression](#sec-chapters-07-regression-polynomial-regression) | `polynomial-regression` |
+| [Probit Regression](#sec-chapters-07-regression-probit-regression) | `probit-regression` |
+| [Quantile Regression](#sec-chapters-07-regression-quantile-regression) | `quantile-regression` |
+| [Quasi-Poisson Regression](#sec-chapters-07-regression-quasi-poisson) | `quasi-poisson` |
+| [R-Squared and Adjusted R-Squared](#sec-chapters-07-regression-r-squared-adjusted) | `r-squared-adjusted` |
+| [Random-Intercept Models](#sec-chapters-07-regression-random-intercepts) | `random-intercepts` |
+| [Random-Slope Models](#sec-chapters-07-regression-random-slopes) | `random-slopes` |
+| [Residual Diagnostics](#sec-chapters-07-regression-residual-diagnostics) | `residual-diagnostics` |
+| [Ridge Regression](#sec-chapters-07-regression-ridge-regression) | `ridge-regression` |
+| [Robust Regression](#sec-chapters-07-regression-robust-regression) | `robust-regression` |
+| [ROC and AUC for Logistic Models](#sec-chapters-07-regression-roc-auc-for-logistic) | `roc-auc-for-logistic` |
+| [Simple Linear Regression](#sec-chapters-07-regression-simple-linear-regression) | `simple-linear-regression` |
+| [Spline Regression](#sec-chapters-07-regression-spline-regression) | `spline-regression` |
+| [Stepwise Regression: Pitfalls](#sec-chapters-07-regression-stepwise-regression-pitfalls) | `stepwise-regression-pitfalls` |
+| [Tobit Regression](#sec-chapters-07-regression-tobit-regression) | `tobit-regression` |
+| [Truncated Regression](#sec-chapters-07-regression-truncated-regression) | `truncated-regression` |
+| [Worked lme4::lmer Examples](#sec-chapters-07-regression-lme4-lmer-examples) | `lme4-lmer-examples` |
+| [Zero-Inflated Models](#sec-chapters-07-regression-zero-inflated-models) | `zero-inflated-models` |
 
-## Labs
+## Labs {#sec-chapters-07-regression-index-labs}
 
 | Lab |
 |---|
-| [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd) |
-| [Simple linear regression](labs/lab-simple-linear-regression.Rmd) |
-| [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd) |
-| [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd) |
-| [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd) |
-| [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd) |
-| [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd) |
-| [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd) |
-| [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd) |
-| [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd) |
-| [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd) |
-| [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd) |
-| [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd) |
-| [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd) |
-| [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd) |
-| [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd) |
-| [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd) |
+| [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression) |
+| [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression) |
+| [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring) |
+| [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif) |
+| [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors) |
+| [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans) |
+| [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction) |
+| [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models) |
+| [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv) |
+| [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls) |
+| [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm) |
+| [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment) |
+| [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression) |
+| [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression) |
+| [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score) |
+| [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean) |
+| [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi) |

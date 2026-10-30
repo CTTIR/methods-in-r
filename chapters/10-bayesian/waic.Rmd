@@ -1,12 +1,14 @@
-## Introduction
+## WAIC {#sec-chapters-10-bayesian-waic}
+
+### Introduction {#sec-chapters-10-bayesian-waic-introduction}
 
 The widely applicable information criterion (WAIC), introduced by Watanabe, estimates the expected out-of-sample prediction score from posterior samples without holding out data. It is the Bayesian successor to AIC and DIC: AIC requires a single point estimate (and assumes regularity that fails for hierarchical models); DIC plug-ins a posterior mean of the deviance and is unstable in mixed models. WAIC instead averages the pointwise log-posterior predictive density across posterior draws and penalises by an effective-parameter term, making it directly applicable to any model with a well-defined pointwise likelihood.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-waic-prerequisites}
 
 A working understanding of information criteria, posterior predictive distributions, and the relationship between in-sample fit and out-of-sample prediction.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-waic-theory}
 
 For data $y_1, \dots, y_n$ and posterior draws $\theta^{(s)}$, the log pointwise predictive density is
 
@@ -18,11 +20,11 @@ $$\mathrm{WAIC} = -2\bigl(\widehat{\mathrm{lpd}} - p_{\text{waic}}\bigr).$$
 
 Lower is better. Watanabe's asymptotic theory shows that for regular models WAIC is asymptotically equivalent to leave-one-out cross-validation. The standard error of a WAIC difference between two models comes from the sample standard deviation of the pointwise differences scaled by $\sqrt n$, providing a principled threshold for "meaningful" differences.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-waic-assumptions}
 
 A pointwise likelihood is well-defined (so each observation contributes one term to the sum) and the posterior is well-mixed. WAIC inherits the exchangeability assumption of standard cross-validation — for clustered or temporal data, replace it with leave-one-cluster-out or leave-future-out variants.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-waic-r-implementation}
 
 ```r
 library(brms); library(loo)
@@ -37,15 +39,15 @@ w2 <- waic(fit2)
 loo_compare(w1, w2)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-waic-output-results}
 
 `waic()` returns the WAIC value, $p_{\text{waic}}$, and a vector of pointwise contributions. `loo_compare()` aligns two WAIC objects, reports their differences and standard errors, and orders models from best (top) to worst (bottom).
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-waic-interpretation}
 
 A reporting sentence: "WAIC favoured the two-predictor model with $\Delta\mathrm{WAIC} = -12 \pm 4$ (standard error of the difference); under the rule-of-thumb that differences exceeding $2 \times \mathrm{SE}$ are meaningful, the data clearly support including horsepower in addition to weight." Always quote both the difference and its standard error — a "12-point improvement" without context is uninformative.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-waic-practical-tips}
 
 - Use PSIS-LOO from the `loo` package whenever possible; it is more numerically stable than WAIC and provides Pareto-$k$ diagnostics that flag influential observations one at a time.
 - WAIC can be unstable when a single observation contributes a large fraction of the variance of the log-likelihood; if you see $p_{\text{waic}}$ comparable to the number of observations, do not trust the criterion and switch to LOO.
@@ -53,31 +55,28 @@ A reporting sentence: "WAIC favoured the two-predictor model with $\Delta\mathrm
 - WAIC is well-defined for non-nested models, unlike the likelihood-ratio test, which makes it natural for comparing models with different families or link functions.
 - For hierarchical models, choose the leave-out unit deliberately: leaving out a single observation may understate predictive uncertainty if all other observations from the same cluster remain in the training fold.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-waic-r-packages-used}
 
 `loo` for the canonical `waic()` and `loo()` implementations and `loo_compare()`, `brms` and `rstanarm` for fits that expose pointwise log-likelihoods automatically, and `posterior` for the underlying draw arrays.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-waic-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-waic-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-waic-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-waic-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

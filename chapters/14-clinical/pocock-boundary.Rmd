@@ -1,20 +1,22 @@
-## Introduction
+## Pocock Boundary {#sec-chapters-14-clinical-pocock-boundary}
+
+### Introduction {#sec-chapters-14-clinical-pocock-boundary-introduction}
 
 The Pocock boundary, introduced by Stuart Pocock in 1977, was the first systematic group-sequential efficacy stopping rule for clinical trials. It uses the same nominal type-I error level at every interim and final analysis, distributing the type-I error budget approximately uniformly across looks. The result is a design that makes early stopping for efficacy comparatively easy — a constant relatively-low nominal threshold across all looks — at the cost of requiring an unusually stringent nominal $p$-value at the final analysis if no earlier look has stopped the trial. Pocock boundaries are conceptually simple, ethically attractive when early stopping is a priority, but somewhat costly in terms of maximum sample size compared with the more conservative O'Brien-Fleming alternative.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-pocock-boundary-prerequisites}
 
 A working understanding of group-sequential trial designs, the alpha-spending framework, and the trade-off between early-stopping ease and final-analysis stringency in repeated-look hypothesis testing.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-pocock-boundary-theory}
 
 With $K$ planned analyses and overall two-sided type-I error $\alpha$, the Pocock boundary uses a constant nominal alpha $\alpha^*$ at every look such that the probability of any rejection event under the null exactly equals $\alpha$. For $K = 5$ and $\alpha = 0.05$ (two-sided), $\alpha^* \approx 0.0158$ at every look — substantially below the unadjusted 0.05 because of the multiplicity correction. Compared with O'Brien-Fleming, Pocock rejects more easily at early interim analyses (where O'Brien-Fleming demands extreme test statistics) but less easily at the final analysis (where O'Brien-Fleming approaches the unadjusted threshold).
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-pocock-boundary-assumptions}
 
 Information accrues as planned (regular interim spacing or alpha-spending implementation that handles irregular timing), the test statistic is approximately Normal at each look, and the multiplicity correction is pre-specified before any data are unblinded.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-pocock-boundary-r-implementation}
 
 ```r
 library(rpact)
@@ -45,15 +47,15 @@ c(pocock_max_n = ss_pocock$maxNumberOfSubjects,
   of_max_n    = ss_of   $maxNumberOfSubjects)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-pocock-boundary-output-results}
 
 `rpact` returns the constant nominal alpha at each stage, the corresponding critical values on the test-statistic scale, and the maximum sample size needed to maintain the targeted overall power. Comparing Pocock and O'Brien-Fleming sample-size calculations side by side quantifies the cost of the more aggressive early-stopping property.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-pocock-boundary-interpretation}
 
 A reporting sentence: "The five-stage group-sequential design with Pocock boundaries required nominal $p < 0.0158$ at every interim and final analysis to maintain overall one-sided $\alpha = 0.025$. This design enables earlier efficacy stopping than the equivalent O'Brien-Fleming design, but requires approximately 15 % more maximum sample size if no early stop is triggered. The choice was justified by the ethical imperative to halt enrolment as soon as a clinically meaningful benefit is established, given the trial's seriously-ill population." Always justify the boundary choice ethically.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-pocock-boundary-practical-tips}
 
 - Pocock boundaries favour early stopping for efficacy; O'Brien-Fleming favours late stopping with high final-analysis power. The choice should reflect whether the trial prioritises ethical termination of clearly beneficial interventions (Pocock) or efficient final-analysis confirmation (O'Brien-Fleming).
 - The maximum sample size is larger under Pocock than under O'Brien-Fleming for the same overall power; O'Brien-Fleming is usually preferred when a meaningful effect is expected only at the final analysis and ethics permit waiting.
@@ -62,33 +64,30 @@ A reporting sentence: "The five-stage group-sequential design with Pocock bounda
 - A hybrid Hwang-Shih-DeCani family interpolates between Pocock and O'Brien-Fleming behaviour via a single shape parameter $\gamma$, allowing trial designers to dial the trade-off explicitly.
 - Pre-specify the boundary type, the spending function, and any contingency for unscheduled interims in the protocol; ad hoc adjustments after data inspection inflate type-I error and are increasingly flagged by regulators.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-14-clinical-pocock-boundary-r-packages-used}
 
 `rpact` for canonical group-sequential design with Pocock, O'Brien-Fleming, Hwang-Shih-DeCani, and custom alpha-spending boundaries; `gsDesign` for an alternative comprehensive group-sequential framework; `ldbounds` for Lan-DeMets alpha-spending implementation; `gsbDesign` for Bayesian group-sequential alternatives; `Mediana` for trial-design simulation including Pocock and O'Brien-Fleming boundary comparisons.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-pocock-boundary-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-pocock-boundary-assumptions) and
+[practical tips](#sec-chapters-14-clinical-pocock-boundary-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-pocock-boundary-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Pearson Correlation Test {#sec-chapters-04-inferential-pearson-correlation-test}
+
+### Introduction {#sec-chapters-04-inferential-pearson-correlation-test-introduction}
 
 The Pearson correlation test assesses whether two continuous variables are linearly related. It returns a correlation coefficient $r$ and a p-value for the null that the population correlation $\rho = 0$, along with a confidence interval computed via Fisher's z transformation.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-pearson-correlation-test-prerequisites}
 
 Pearson correlation coefficient, sampling distributions.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-pearson-correlation-test-theory}
 
 Given iid pairs $(X_i, Y_i)$ from a bivariate distribution with marginal SDs $\sigma_X, \sigma_Y$, the sample correlation is
 
@@ -22,13 +24,13 @@ $$z = \frac{1}{2} \log\!\frac{1 + r}{1 - r}, \quad \mathrm{SE}(z) = \frac{1}{\sq
 
 Construct a CI in the z scale, then back-transform with $r = \tanh(z)$.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-pearson-correlation-test-assumptions}
 
 - Continuous $X$ and $Y$, approximately bivariate normal.
 - Linear relationship; no extreme outliers.
 - Independent pairs.
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-pearson-correlation-test-r-implementation}
 
 ```r
 library(broom)
@@ -53,7 +55,7 @@ ci_z <- z + c(-1, 1) * 1.96 * se_z
 tanh(ci_z)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-pearson-correlation-test-output-results}
 
 ```
 # A tibble: 1 x 8
@@ -64,11 +66,11 @@ tanh(ci_z)
 
 Sample $r = 0.43$ (95 % CI 0.23 to 0.60), $t(78) = 4.19$, $p < 0.001$. Strong evidence of a positive correlation.
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-pearson-correlation-test-interpretation}
 
 "There was a significant positive correlation between $x$ and $y$ ($r = 0.43$, 95 % CI 0.23 to 0.60; $t(78) = 4.19$, $p < 0.001$). The two variables shared 18.5 % of their variance linearly."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-pearson-correlation-test-practical-tips}
 
 - Scatter plot first; $r$ can be misleading if the relationship is non-linear.
 - Robust alternatives for heavy tails or outliers: Spearman, Kendall.
@@ -78,32 +80,29 @@ Sample $r = 0.43$ (95 % CI 0.23 to 0.60), $t(78) = 4.19$, $p < 0.001$. Strong ev
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-pearson-correlation-test-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-pearson-correlation-test-assumptions) and
+[practical tips](#sec-chapters-04-inferential-pearson-correlation-test-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-pearson-correlation-test-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

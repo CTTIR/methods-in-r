@@ -1,20 +1,22 @@
-## Introduction
+## The Elbow Method {#sec-chapters-08-multivariate-elbow-method}
+
+### Introduction {#sec-chapters-08-multivariate-elbow-method-introduction}
 
 The elbow method is the simplest heuristic for choosing the number of clusters in $k$-means or any partitioning algorithm. The within-cluster sum of squares (WSS) decreases monotonically with $k$, but the rate of decrease slows once the natural cluster structure has been captured. Plotting WSS against $k$ reveals a "bend" — the elbow — at the point where additional clusters bring diminishing returns. The method is unavoidably subjective but widely used because it is fast, intuitive, and works well when the data have well-separated clusters.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-elbow-method-prerequisites}
 
 A working understanding of $k$-means clustering, the within-cluster sum of squares as a quality criterion, and the relationship between $k$ and within-cluster compactness.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-elbow-method-theory}
 
 For partition $C = \{C_1, \dots, C_k\}$ of the data, $\mathrm{WSS}(k) = \sum_{j=1}^k \sum_{x \in C_j} \|x - \bar x_j\|^2$ is the total within-cluster sum of squared distances to centroids. As $k$ grows, WSS necessarily decreases — at $k = n$ it reaches zero. A genuine cluster structure produces a sharp bend at the true number of clusters, after which adding more $k$ subdivides homogeneous regions and yields only modest reductions. The bend is identified visually or, more reproducibly, by algorithms such as Kneedle that compute a normalised distance from each point on the curve to a chord between the endpoints.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-elbow-method-assumptions}
 
 A genuine cluster structure exists in the data; if no clusters are present, no clear elbow appears. Variables are standardised so distances along each axis are comparable.
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-elbow-method-r-implementation}
 
 ```r
 library(factoextra)
@@ -32,15 +34,15 @@ plot(1:10, wss, type = "b",
      ylab = "Within-cluster sum of squares")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-elbow-method-output-results}
 
 A monotone decreasing WSS curve. For the standardised iris data, the bend appears at $k = 3$, consistent with the three species. `fviz_nbclust()` automates the standard elbow plot with `ggplot2` styling and works with $k$-means, PAM, and CLARA via the `FUNcluster` argument.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-elbow-method-interpretation}
 
 A reporting sentence: "The elbow plot showed a clear bend at $k = 3$ (within-cluster sum of squares dropped from 681 at $k = 1$ to 140 at $k = 3$ and only marginally further to 96 at $k = 10$); we chose $k = 3$, consistent with the silhouette method's optimum and with the known species structure." Always couple the elbow visual with at least one quantitative criterion (silhouette, gap statistic).
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-elbow-method-practical-tips}
 
 - Pair the elbow with the silhouette method (`fviz_nbclust(..., method = "silhouette")`) and the gap statistic (`method = "gap_stat"`); concordance across all three increases confidence in the chosen $k$.
 - If no clear elbow appears, the data may not have a natural cluster structure; do not force a $k$ where the WSS curve is smooth.
@@ -49,32 +51,29 @@ A reporting sentence: "The elbow plot showed a clear bend at $k = 3$ (within-clu
 - The Kneedle algorithm (R package `kneedle`) automates elbow detection by finding the point of maximum curvature; useful for batch processing many datasets.
 - Elbow alone is insufficient justification for a chosen $k$ in publications; report it alongside silhouette and gap-statistic results.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-elbow-method-r-packages-used}
 
 `factoextra` for `fviz_nbclust()` ggplot-style elbow, silhouette, and gap-statistic plots; `cluster` for the underlying clustering algorithms; `NbClust` for 30+ cluster-validation indices in one call; `kneedle` for automated elbow detection.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-elbow-method-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-elbow-method-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-elbow-method-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-elbow-method-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

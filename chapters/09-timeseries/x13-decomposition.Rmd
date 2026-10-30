@@ -1,12 +1,14 @@
-## Introduction
+## X-13ARIMA-SEATS Decomposition {#sec-chapters-09-timeseries-x13-decomposition}
+
+### Introduction {#sec-chapters-09-timeseries-x13-decomposition-introduction}
 
 X-13ARIMA-SEATS is the seasonal-adjustment workhorse of official statistics. It is the Census Bureau standard, used by Eurostat, the Bank of England, and most national statistical agencies for producing officially published seasonally adjusted economic time series. The combination of RegARIMA-based pre-adjustment (handling outliers, trading-day effects, Easter effects) with either X-11 filter-based or SEATS model-based decomposition makes it the most sophisticated decomposition tool routinely available — and the standard against which simpler methods (STL, classical decomposition) are benchmarked.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-x13-decomposition-prerequisites}
 
 A working understanding of seasonal decomposition, SARIMA models, and the role of calendar effects (trading days, leap years, moving holidays) in economic time series.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-x13-decomposition-theory}
 
 X-13 has two main computational stages:
 
@@ -16,11 +18,11 @@ X-13 has two main computational stages:
 
 The output includes the seasonally adjusted series, the trend-cycle, the seasonal component, and the irregular component, plus diagnostics for stability, residual autocorrelation, and seasonal-adjustment quality.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-x13-decomposition-assumptions}
 
 Monthly or quarterly data with several years of history (typically at least 3–5 years for stable seasonal-factor estimation); the RegARIMA pre-adjustment captures the calendar effects that matter for the series.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-x13-decomposition-r-implementation}
 
 ```r
 library(seasonal)
@@ -35,15 +37,15 @@ series(m, "s12")   # seasonally adjusted
 series(m, "s11")   # trend-cycle
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-x13-decomposition-output-results}
 
 `seas()` runs the X-13 binary in the background and returns a `seas` object with the RegARIMA model summary, the various decomposed series accessible via `series()`, and a panel of diagnostics. `view(m)` (or `inspect(m)`) opens an interactive dashboard for diagnostic exploration.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-x13-decomposition-interpretation}
 
 A reporting sentence: "X-13ARIMA-SEATS seasonal adjustment of monthly air-passenger counts identified a $(0,1,1)(0,1,1)_{12}$ RegARIMA structure with no significant outliers; the SEATS-based decomposition produced a smooth seasonally adjusted trend with stable seasonal factors that gradually amplified across the series, consistent with the multiplicative seasonality." Always state the chosen ARIMA structure and the decomposition method (SEATS or X-11).
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-x13-decomposition-practical-tips}
 
 - The `seasonal` package automatically installs the X-13 binary on first use; verify with `seasonal::checkX13()`.
 - X-13 is the official standard for seasonal adjustment of economic series; required by some regulators and statistical agencies.
@@ -52,30 +54,27 @@ A reporting sentence: "X-13ARIMA-SEATS seasonal adjustment of monthly air-passen
 - For non-economic series or series with non-standard seasonal periods, STL (`stl()` or `mstl()`) is a simpler alternative without the calendar-effect machinery.
 - Compare X-13 against STL and classical decomposition; large discrepancies signal calendar or outlier effects that one method handles better than another.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-x13-decomposition-r-packages-used}
 
 `seasonal` for `seas()`, `series()`, and the X-13 interface; `seasonalview` for the interactive HTML dashboard; `forecast::stl()` and `mstl()` for simpler decomposition alternatives; `feasts::X_13ARIMA_SEATS()` for the modern tidyverts wrapper.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-x13-decomposition-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-x13-decomposition-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-x13-decomposition-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-x13-decomposition-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

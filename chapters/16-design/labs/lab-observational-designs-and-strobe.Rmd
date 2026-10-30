@@ -1,9 +1,11 @@
+## Week 1, Session 1 — Observational designs and STROBE {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe}
+
 <div class="callout callout-note">
 **Workflow lab** using the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-learning-objectives}
 
 - Distinguish cohort, case-control, and cross-sectional designs and
   say when each is the right tool.
@@ -11,12 +13,12 @@ Goal → Approach → Execution → Check → Report.
   nested case-control sample from it.
 - Map a study report to the STROBE checklist.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-prerequisites}
 
 Inferential statistics and regression. Familiarity with
 tibbles and `glm()`.
 
-## Background
+### Background {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-background}
 
 Observational designs differ primarily in how participants enter the
 study and when the outcome is measured relative to the exposure. In a
@@ -40,7 +42,7 @@ large pharmacoepidemiology studies: a full-cohort analysis is
 wasteful when measurement on every unexposed person is expensive, so
 analysts sample controls from the risk set instead.
 
-## Setup
+### Setup {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-setup}
 
 ```r
 library(tidyverse)
@@ -48,13 +50,13 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-1-goal}
 
 Simulate a source population, carve a cohort study and a nested
 case-control study out of it, and compare the exposure–outcome
 association recovered by each.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-2-approach}
 
 We generate a population of 5000 people with a binary exposure and a
 binary outcome whose probability depends on exposure and a confounder
@@ -62,6 +64,7 @@ binary outcome whose probability depends on exposure and a confounder
 case-control sample with four controls per case.
 
 ```r
+n_pop <- 5000
 pop <- tibble(
   id       = seq_len(n_pop),
   age      = rnorm(n_pop, 55, 10),
@@ -84,15 +87,17 @@ pop |>
   labs(x = NULL, y = "Count", fill = "Outcome")
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-3-execution}
 
 ```r
+# Cohort analysis on full population
 fit_cohort <- glm(outcome ~ exposure + age, data = pop, family = binomial)
 coef_cohort <- broom::tidy(fit_cohort, conf.int = TRUE, exponentiate = TRUE)
 coef_cohort
 ```
 
 ```r
+# Nested case-control: all cases, 4 controls per case
 cases    <- pop |> filter(outcome == 1)
 controls <- pop |>
   filter(outcome == 0) |>
@@ -103,7 +108,7 @@ coef_ncc <- broom::tidy(fit_ncc, conf.int = TRUE, exponentiate = TRUE)
 coef_ncc
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-4-check}
 
 The exposure odds ratio from the nested case-control should be close
 to that from the cohort, because the outcome is uncommon. Precision
@@ -111,6 +116,7 @@ is worse in the case-control sample but the point estimate is not
 biased by the sampling scheme.
 
 ```r
+bind_rows(
   cohort = coef_cohort |> filter(term == "exposure"),
   ncc    = coef_ncc    |> filter(term == "exposure"),
   .id = "design"
@@ -118,7 +124,7 @@ biased by the sampling scheme.
   select(design, estimate, conf.low, conf.high)
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-5-report}
 
 > In a simulated source population of 5000 adults, exposure was
 > associated with the outcome with an adjusted odds ratio of
@@ -130,7 +136,7 @@ biased by the sampling scheme.
 > `round(coef_ncc$conf.high[2], 2)`) in a 1:4 nested case-control
 > sample.
 
-### STROBE in one paragraph
+#### STROBE in one paragraph {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-strobe-in-one-paragraph}
 
 Report the sampling frame, the eligibility criteria, the exposure and
 outcome definitions, how confounders were chosen and handled,
@@ -139,7 +145,7 @@ included, excluded, and lost. If you can do those six things clearly,
 you have answered most of the STROBE items for free.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-common-pitfalls}
 
 - Treating a cross-sectional association as evidence of a causal
   effect when temporality is unknown.
@@ -148,22 +154,23 @@ you have answered most of the STROBE items for free.
 - Drawing controls from a different population than the cases.
 - Skipping a flow diagram in an observational paper.
 
-## Further reading
+### Further reading {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-further-reading}
 
 - von Elm E et al. (2007), *The STROBE Statement*.
 - Rothman KJ, Greenland S, Lash TL. *Modern Epidemiology*, ch. 6–8.
 - Pearce N (2016), *Analysis of matched case-control studies*, BMJ.
 
-## Session info
+### Session info {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-16-design-labs-lab-observational-designs-and-strobe-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-16-design)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

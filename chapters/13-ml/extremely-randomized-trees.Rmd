@@ -1,12 +1,14 @@
-## Introduction
+## Extremely Randomised Trees {#sec-chapters-13-ml-extremely-randomized-trees}
+
+### Introduction {#sec-chapters-13-ml-extremely-randomized-trees-introduction}
 
 Extremely Randomised Trees — usually shortened to "Extra Trees" — are a variant of random forests introduced by Geurts, Ernst, and Wehenkel in 2006. The defining innovation: instead of optimising the split threshold at each node, Extra Trees draws the threshold *at random* from the feature's range. The additional source of randomness increases bias slightly but reduces variance further, often producing models with accuracy competitive to random forests at a fraction of the training time.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-extremely-randomized-trees-prerequisites}
 
 A working understanding of random forests, decision-tree splitting criteria (Gini, variance), and the bias-variance trade-off in ensemble methods.
 
-## Theory
+### Theory {#sec-chapters-13-ml-extremely-randomized-trees-theory}
 
 At each node, Extra Trees:
 
@@ -16,11 +18,11 @@ At each node, Extra Trees:
 
 Trees are typically fit to the entire training data without bootstrap sampling (`replace = FALSE`); variance reduction comes from the random thresholds instead of the bootstrap. The combination of feature subsampling and threshold randomisation produces highly decorrelated trees, and averaging over many of them produces a low-variance ensemble.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-extremely-randomized-trees-assumptions}
 
 Feature importance is approximately diffuse — random thresholds work poorly when a few dominant informative features need precise split points; in those settings, optimising thresholds (random forest) outperforms.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-extremely-randomized-trees-r-implementation}
 
 ```r
 library(ranger)
@@ -46,15 +48,15 @@ c(rf_oob_rmse = sqrt(rf$prediction.error),
   et_oob_rmse = sqrt(et$prediction.error))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-extremely-randomized-trees-output-results}
 
 OOB-based RMSE for both random forest and Extra Trees on the same data. Extra Trees typically produces slightly lower RMSE on noisy datasets where variance reduction dominates; random forest typically wins on structured signals where threshold optimisation captures sharper boundaries.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-extremely-randomized-trees-interpretation}
 
 A reporting sentence: "Extra Trees with `num.random.splits = 5` produced marginally lower OOB RMSE (0.38) than random forest (0.41) on this noisy regression task; the variance reduction from random thresholds outweighed the small bias cost. Training was approximately 3 × faster than random forest." Always state the number of random splits and compare against random forest baseline.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-extremely-randomized-trees-practical-tips}
 
 - Extra Trees can skip bootstrapping (`replace = FALSE`) for tighter variance; random forest keeps the bootstrap as its primary variance-reduction mechanism.
 - With many informative features, tune `num.random.splits` upward (10–20) so the random-threshold candidates include the optimum more often; this approaches random forest behaviour.
@@ -63,37 +65,34 @@ A reporting sentence: "Extra Trees with `num.random.splits = 5` produced margina
 - For variable importance, use permutation importance (`importance = "permutation"`); impurity-based importance is biased in Extra Trees just as in random forests.
 - For very large datasets, Extra Trees' speed advantage compounds; consider it as the default ensemble when training time matters.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-extremely-randomized-trees-r-packages-used}
 
 `ranger` with `splitrule = "extratrees"` for the canonical implementation; `extraTrees` package for the Python-compatible reference implementation; `parsnip::rand_forest()` (with engine selection) for tidymodels integration; `caret` for cross-validated tuning of `num.random.splits`.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-extremely-randomized-trees-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-extremely-randomized-trees-assumptions) and
+[practical tips](#sec-chapters-13-ml-extremely-randomized-trees-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-extremely-randomized-trees-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

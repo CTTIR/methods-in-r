@@ -1,10 +1,10 @@
-# CONSORT — randomised trials
+# CONSORT — randomised trials {#sec-reporting-consort}
 
 CONSORT — *Consolidated Standards of Reporting Trials* — covers randomised controlled trials. The 25-item checklist and flow diagram are at <https://www.consort-statement.org/>. The templates below cover the analytic methods most often used for primary and secondary endpoints in a trial.
 
 This page contains **141 method-specific templates**. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.
 
-### 2^k Factorial Designs
+### 2^k Factorial Designs {#sec-reporting-consort-2-k-factorial-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -14,11 +14,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > 2^k Factorial Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`factorial-2k` — For Reviewers](../chapters/16-design/factorial-2k.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`factorial-2k` — For Reviewers](#sec-chapters-16-design-factorial-2k-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### 3^k Factorial Designs
+### 3^k Factorial Designs {#sec-reporting-consort-3-k-factorial-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -28,11 +28,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > 3^k Factorial Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`factorial-3k` — For Reviewers](../chapters/16-design/factorial-3k.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`factorial-3k` — For Reviewers](#sec-chapters-16-design-factorial-3k-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Adaptive Trial Designs
+### Adaptive Trial Designs {#sec-reporting-consort-adaptive-trial-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -42,11 +42,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Adaptive Trial Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`adaptive-design` — For Reviewers](../chapters/14-clinical/adaptive-design.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`adaptive-design` — For Reviewers](#sec-chapters-14-clinical-adaptive-design-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Alpha-Spending Functions
+### Alpha-Spending Functions {#sec-reporting-consort-alpha-spending-functions}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -56,11 +56,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Alpha-Spending Functions yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`alpha-spending` — For Reviewers](../chapters/14-clinical/alpha-spending.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`alpha-spending` — For Reviewers](#sec-chapters-14-clinical-alpha-spending-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Anderson-Darling Test
+### Anderson-Darling Test {#sec-reporting-consort-anderson-darling-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -70,11 +70,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Anderson-Darling Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`anderson-darling-test` — For Reviewers](../chapters/04-inferential/anderson-darling-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`anderson-darling-test` — For Reviewers](#sec-chapters-04-inferential-anderson-darling-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Balanced Incomplete Block Designs
+### Balanced Incomplete Block Designs {#sec-reporting-consort-balanced-incomplete-block-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -84,11 +84,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Balanced Incomplete Block Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`balanced-incomplete-block` — For Reviewers](../chapters/16-design/balanced-incomplete-block.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`balanced-incomplete-block` — For Reviewers](#sec-chapters-16-design-balanced-incomplete-block-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Bartlett's Test
+### Bartlett's Test {#sec-reporting-consort-bartlett-s-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -98,11 +98,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Bartlett's Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`bartlett-test` — For Reviewers](../chapters/04-inferential/bartlett-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`bartlett-test` — For Reviewers](#sec-chapters-04-inferential-bartlett-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Baseline Adjustment with ANCOVA
+### Baseline Adjustment with ANCOVA {#sec-reporting-consort-baseline-adjustment-with-ancova}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -112,11 +112,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Baseline Adjustment with ANCOVA yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`baseline-adjustment-ancova` — For Reviewers](../chapters/14-clinical/baseline-adjustment-ancova.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`baseline-adjustment-ancova` — For Reviewers](#sec-chapters-14-clinical-baseline-adjustment-ancova-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Benjamini-Hochberg FDR
+### Benjamini-Hochberg FDR {#sec-reporting-consort-benjamini-hochberg-fdr}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -126,11 +126,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Benjamini-Hochberg FDR yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`benjamini-hochberg-fdr` — For Reviewers](../chapters/04-inferential/benjamini-hochberg-fdr.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`benjamini-hochberg-fdr` — For Reviewers](#sec-chapters-04-inferential-benjamini-hochberg-fdr-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Benjamini-Yekutieli FDR
+### Benjamini-Yekutieli FDR {#sec-reporting-consort-benjamini-yekutieli-fdr}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -140,11 +140,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Benjamini-Yekutieli FDR yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`benjamini-yekutieli` — For Reviewers](../chapters/04-inferential/benjamini-yekutieli.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`benjamini-yekutieli` — For Reviewers](#sec-chapters-04-inferential-benjamini-yekutieli-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Bland-Altman Limits of Agreement
+### Bland-Altman Limits of Agreement {#sec-reporting-consort-bland-altman-limits-of-agreement}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -154,11 +154,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Bland-Altman Limits of Agreement yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`bland-altman-analysis` — For Reviewers](../chapters/14-clinical/bland-altman-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`bland-altman-analysis` — For Reviewers](#sec-chapters-14-clinical-bland-altman-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Blinding Procedures
+### Blinding Procedures {#sec-reporting-consort-blinding-procedures}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -168,11 +168,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Blinding Procedures yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`blinding-procedures` — For Reviewers](../chapters/14-clinical/blinding-procedures.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`blinding-procedures` — For Reviewers](#sec-chapters-14-clinical-blinding-procedures-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Block Randomisation
+### Block Randomisation {#sec-reporting-consort-block-randomisation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -182,11 +182,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Block Randomisation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`block-randomization` — For Reviewers](../chapters/14-clinical/block-randomization.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`block-randomization` — For Reviewers](#sec-chapters-14-clinical-block-randomization-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Bonferroni Correction
+### Bonferroni Correction {#sec-reporting-consort-bonferroni-correction}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -196,11 +196,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Bonferroni Correction yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`bonferroni-correction` — For Reviewers](../chapters/04-inferential/bonferroni-correction.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`bonferroni-correction` — For Reviewers](#sec-chapters-04-inferential-bonferroni-correction-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Bootstrap Confidence Intervals
+### Bootstrap Confidence Intervals {#sec-reporting-consort-bootstrap-confidence-intervals}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -210,11 +210,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Bootstrap Confidence Intervals yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`bootstrap-confidence-intervals` — For Reviewers](../chapters/04-inferential/bootstrap-confidence-intervals.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`bootstrap-confidence-intervals` — For Reviewers](#sec-chapters-04-inferential-bootstrap-confidence-intervals-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Box-Behnken Designs
+### Box-Behnken Designs {#sec-reporting-consort-box-behnken-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -224,11 +224,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Box-Behnken Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`box-behnken-design` — For Reviewers](../chapters/16-design/box-behnken-design.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`box-behnken-design` — For Reviewers](#sec-chapters-16-design-box-behnken-design-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Central Composite Designs
+### Central Composite Designs {#sec-reporting-consort-central-composite-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -238,11 +238,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Central Composite Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`central-composite-design` — For Reviewers](../chapters/16-design/central-composite-design.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`central-composite-design` — For Reviewers](#sec-chapters-16-design-central-composite-design-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Chi-Squared Goodness-of-Fit Test
+### Chi-Squared Goodness-of-Fit Test {#sec-reporting-consort-chi-squared-goodness-of-fit-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -252,11 +252,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Chi-Squared Goodness-of-Fit Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`chi-squared-goodness-of-fit` — For Reviewers](../chapters/04-inferential/chi-squared-goodness-of-fit.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`chi-squared-goodness-of-fit` — For Reviewers](#sec-chapters-04-inferential-chi-squared-goodness-of-fit-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Chi-Squared Test of Independence
+### Chi-Squared Test of Independence {#sec-reporting-consort-chi-squared-test-of-independence}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -266,11 +266,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Chi-Squared Test of Independence yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`chi-squared-independence` — For Reviewers](../chapters/04-inferential/chi-squared-independence.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`chi-squared-independence` — For Reviewers](#sec-chapters-04-inferential-chi-squared-independence-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Clinical Equivalence Trials
+### Clinical Equivalence Trials {#sec-reporting-consort-clinical-equivalence-trials}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -280,11 +280,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Clinical Equivalence Trials yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`equivalence-clinical` — For Reviewers](../chapters/14-clinical/equivalence-clinical.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`equivalence-clinical` — For Reviewers](#sec-chapters-14-clinical-equivalence-clinical-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cluster-Randomised Trials
+### Cluster-Randomised Trials {#sec-reporting-consort-cluster-randomised-trials}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -294,11 +294,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Cluster-Randomised Trials yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cluster-rct` — For Reviewers](../chapters/14-clinical/cluster-rct.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cluster-rct` — For Reviewers](#sec-chapters-14-clinical-cluster-rct-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cochran-Mantel-Haenszel Test
+### Cochran-Mantel-Haenszel Test {#sec-reporting-consort-cochran-mantel-haenszel-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -308,11 +308,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Cochran-Mantel-Haenszel Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cochran-mantel-haenszel` — For Reviewers](../chapters/04-inferential/cochran-mantel-haenszel.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cochran-mantel-haenszel` — For Reviewers](#sec-chapters-04-inferential-cochran-mantel-haenszel-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cohen's Kappa
+### Cohen's Kappa {#sec-reporting-consort-cohen-s-kappa}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -322,11 +322,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Cohen's Kappa yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cohens-kappa` — For Reviewers](../chapters/14-clinical/cohens-kappa.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cohens-kappa` — For Reviewers](#sec-chapters-14-clinical-cohens-kappa-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Completely Randomised Design
+### Completely Randomised Design {#sec-reporting-consort-completely-randomised-design}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -336,11 +336,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Completely Randomised Design yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`completely-randomized-design` — For Reviewers](../chapters/16-design/completely-randomized-design.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`completely-randomized-design` — For Reviewers](#sec-chapters-16-design-completely-randomized-design-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Conditional Power
+### Conditional Power {#sec-reporting-consort-conditional-power}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -350,11 +350,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Conditional Power yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`conditional-power` — For Reviewers](../chapters/14-clinical/conditional-power.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`conditional-power` — For Reviewers](#sec-chapters-14-clinical-conditional-power-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Constrained Mixture Designs
+### Constrained Mixture Designs {#sec-reporting-consort-constrained-mixture-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -364,11 +364,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Constrained Mixture Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`constrained-mixture` — For Reviewers](../chapters/16-design/constrained-mixture.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`constrained-mixture` — For Reviewers](#sec-chapters-16-design-constrained-mixture-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Crossover Designs
+### Crossover Designs {#sec-reporting-consort-crossover-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -378,11 +378,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Crossover Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`crossover-designs` — For Reviewers](../chapters/16-design/crossover-designs.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`crossover-designs` — For Reviewers](#sec-chapters-16-design-crossover-designs-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Crossover RCT Design
+### Crossover RCT Design {#sec-reporting-consort-crossover-rct-design}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -392,11 +392,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Crossover RCT Design yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`rct-design-crossover` — For Reviewers](../chapters/14-clinical/rct-design-crossover.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`rct-design-crossover` — For Reviewers](#sec-chapters-14-clinical-rct-design-crossover-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cutpoint Selection
+### Cutpoint Selection {#sec-reporting-consort-cutpoint-selection}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -406,11 +406,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Cutpoint Selection yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cutpoint-selection` — For Reviewers](../chapters/14-clinical/cutpoint-selection.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cutpoint-selection` — For Reviewers](#sec-chapters-14-clinical-cutpoint-selection-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Desirability Functions
+### Desirability Functions {#sec-reporting-consort-desirability-functions}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -420,11 +420,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Desirability Functions yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`desirability-function` — For Reviewers](../chapters/16-design/desirability-function.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`desirability-function` — For Reviewers](#sec-chapters-16-design-desirability-function-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Diagnostic Test Accuracy
+### Diagnostic Test Accuracy {#sec-reporting-consort-diagnostic-test-accuracy}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -434,11 +434,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Diagnostic Test Accuracy yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`diagnostic-accuracy` — For Reviewers](../chapters/14-clinical/diagnostic-accuracy.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`diagnostic-accuracy` — For Reviewers](#sec-chapters-14-clinical-diagnostic-accuracy-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Effect Size: Cohen's d
+### Effect Size: Cohen's d {#sec-reporting-consort-effect-size-cohen-s-d}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -448,11 +448,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Effect Size: Cohen's d yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`effect-size-cohens-d` — For Reviewers](../chapters/05-power/effect-size-cohens-d.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`effect-size-cohens-d` — For Reviewers](#sec-chapters-05-power-effect-size-cohens-d-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Effect Size: Cohen's h
+### Effect Size: Cohen's h {#sec-reporting-consort-effect-size-cohen-s-h}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -462,11 +462,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Effect Size: Cohen's h yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`effect-size-cohens-h` — For Reviewers](../chapters/05-power/effect-size-cohens-h.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`effect-size-cohens-h` — For Reviewers](#sec-chapters-05-power-effect-size-cohens-h-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Effect Size: Eta-Squared
+### Effect Size: Eta-Squared {#sec-reporting-consort-effect-size-eta-squared}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -476,11 +476,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Effect Size: Eta-Squared yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`effect-size-eta-squared` — For Reviewers](../chapters/05-power/effect-size-eta-squared.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`effect-size-eta-squared` — For Reviewers](#sec-chapters-05-power-effect-size-eta-squared-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Effect Sizes: Overview
+### Effect Sizes: Overview {#sec-reporting-consort-effect-sizes-overview}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -490,11 +490,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Effect Sizes: Overview yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`effect-sizes-overview` — For Reviewers](../chapters/04-inferential/effect-sizes-overview.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`effect-sizes-overview` — For Reviewers](#sec-chapters-04-inferential-effect-sizes-overview-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Equivalence Testing with TOST
+### Equivalence Testing with TOST {#sec-reporting-consort-equivalence-testing-with-tost}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -504,11 +504,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Equivalence Testing with TOST yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`equivalence-tost` — For Reviewers](../chapters/04-inferential/equivalence-tost.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`equivalence-tost` — For Reviewers](#sec-chapters-04-inferential-equivalence-tost-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Factorial Trials
+### Factorial Trials {#sec-reporting-consort-factorial-trials}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -518,11 +518,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Factorial Trials yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`factorial-trial` — For Reviewers](../chapters/14-clinical/factorial-trial.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`factorial-trial` — For Reviewers](#sec-chapters-14-clinical-factorial-trial-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Fisher's Exact Test
+### Fisher's Exact Test {#sec-reporting-consort-fisher-s-exact-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -532,11 +532,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Fisher's Exact Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`fisher-exact-test` — For Reviewers](../chapters/04-inferential/fisher-exact-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`fisher-exact-test` — For Reviewers](#sec-chapters-04-inferential-fisher-exact-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Fractional Factorial Designs
+### Fractional Factorial Designs {#sec-reporting-consort-fractional-factorial-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -546,11 +546,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Fractional Factorial Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`fractional-factorial-design` — For Reviewers](../chapters/16-design/fractional-factorial-design.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`fractional-factorial-design` — For Reviewers](#sec-chapters-16-design-fractional-factorial-design-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Friedman Test
+### Friedman Test {#sec-reporting-consort-friedman-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -560,11 +560,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Friedman Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`friedman-test` — For Reviewers](../chapters/04-inferential/friedman-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`friedman-test` — For Reviewers](#sec-chapters-04-inferential-friedman-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Graeco-Latin Square Designs
+### Graeco-Latin Square Designs {#sec-reporting-consort-graeco-latin-square-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -574,11 +574,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Graeco-Latin Square Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`graeco-latin-square` — For Reviewers](../chapters/16-design/graeco-latin-square.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`graeco-latin-square` — For Reviewers](#sec-chapters-16-design-graeco-latin-square-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Holm's Step-Down Correction
+### Holm's Step-Down Correction {#sec-reporting-consort-holm-s-step-down-correction}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -588,11 +588,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Holm's Step-Down Correction yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`holm-correction` — For Reviewers](../chapters/04-inferential/holm-correction.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`holm-correction` — For Reviewers](#sec-chapters-04-inferential-holm-correction-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Interim Analyses and Group Sequential Designs
+### Interim Analyses and Group Sequential Designs {#sec-reporting-consort-interim-analyses-and-group-sequential-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -602,11 +602,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Interim Analyses and Group Sequential Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`interim-analysis-group-sequential` — For Reviewers](../chapters/14-clinical/interim-analysis-group-sequential.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`interim-analysis-group-sequential` — For Reviewers](#sec-chapters-14-clinical-interim-analysis-group-sequential-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Intraclass Correlation Coefficient (ICC)
+### Intraclass Correlation Coefficient (ICC) {#sec-reporting-consort-intraclass-correlation-coefficient-icc}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -616,11 +616,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Intraclass Correlation Coefficient (ICC) yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`icc-continuous-agreement` — For Reviewers](../chapters/14-clinical/icc-continuous-agreement.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`icc-continuous-agreement` — For Reviewers](#sec-chapters-14-clinical-icc-continuous-agreement-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### ITT vs Per-Protocol Analysis
+### ITT vs Per-Protocol Analysis {#sec-reporting-consort-itt-vs-per-protocol-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -630,11 +630,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > ITT vs Per-Protocol Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`itt-vs-pp-analysis` — For Reviewers](../chapters/14-clinical/itt-vs-pp-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`itt-vs-pp-analysis` — For Reviewers](#sec-chapters-14-clinical-itt-vs-pp-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Kendall's Tau
+### Kendall's Tau {#sec-reporting-consort-kendall-s-tau}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -644,11 +644,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Kendall's Tau yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`kendall-tau` — For Reviewers](../chapters/04-inferential/kendall-tau.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`kendall-tau` — For Reviewers](#sec-chapters-04-inferential-kendall-tau-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Kolmogorov-Smirnov Test
+### Kolmogorov-Smirnov Test {#sec-reporting-consort-kolmogorov-smirnov-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -658,11 +658,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Kolmogorov-Smirnov Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`kolmogorov-smirnov-test` — For Reviewers](../chapters/04-inferential/kolmogorov-smirnov-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`kolmogorov-smirnov-test` — For Reviewers](#sec-chapters-04-inferential-kolmogorov-smirnov-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Kruskal-Wallis Test
+### Kruskal-Wallis Test {#sec-reporting-consort-kruskal-wallis-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -672,11 +672,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Kruskal-Wallis Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`kruskal-wallis` — For Reviewers](../chapters/04-inferential/kruskal-wallis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`kruskal-wallis` — For Reviewers](#sec-chapters-04-inferential-kruskal-wallis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Latin Square Designs
+### Latin Square Designs {#sec-reporting-consort-latin-square-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -686,11 +686,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Latin Square Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`latin-square` — For Reviewers](../chapters/16-design/latin-square.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`latin-square` — For Reviewers](#sec-chapters-16-design-latin-square-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Levene's Test of Variances
+### Levene's Test of Variances {#sec-reporting-consort-levene-s-test-of-variances}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -700,11 +700,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Levene's Test of Variances yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`levene-test` — For Reviewers](../chapters/04-inferential/levene-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`levene-test` — For Reviewers](#sec-chapters-04-inferential-levene-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Likelihood Ratios
+### Likelihood Ratios {#sec-reporting-consort-likelihood-ratios}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -714,11 +714,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Likelihood Ratios yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`likelihood-ratios` — For Reviewers](../chapters/14-clinical/likelihood-ratios.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`likelihood-ratios` — For Reviewers](#sec-chapters-14-clinical-likelihood-ratios-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Mann-Whitney U Test
+### Mann-Whitney U Test {#sec-reporting-consort-mann-whitney-u-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -728,11 +728,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Mann-Whitney U Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`mann-whitney-u` — For Reviewers](../chapters/04-inferential/mann-whitney-u.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`mann-whitney-u` — For Reviewers](#sec-chapters-04-inferential-mann-whitney-u-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### McNemar's Test
+### McNemar's Test {#sec-reporting-consort-mcnemar-s-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -742,11 +742,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > McNemar's Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`mcnemar-test` — For Reviewers](../chapters/04-inferential/mcnemar-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`mcnemar-test` — For Reviewers](#sec-chapters-04-inferential-mcnemar-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Method of Steepest Ascent
+### Method of Steepest Ascent {#sec-reporting-consort-method-of-steepest-ascent}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -756,11 +756,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Method of Steepest Ascent yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`steepest-ascent` — For Reviewers](../chapters/16-design/steepest-ascent.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`steepest-ascent` — For Reviewers](#sec-chapters-16-design-steepest-ascent-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Minimisation Algorithm
+### Minimisation Algorithm {#sec-reporting-consort-minimisation-algorithm}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -770,11 +770,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Minimisation Algorithm yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`minimization-algorithm` — For Reviewers](../chapters/14-clinical/minimization-algorithm.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`minimization-algorithm` — For Reviewers](#sec-chapters-14-clinical-minimization-algorithm-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Minimum Detectable Effect
+### Minimum Detectable Effect {#sec-reporting-consort-minimum-detectable-effect}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -784,11 +784,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Minimum Detectable Effect yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`minimum-detectable-effect` — For Reviewers](../chapters/05-power/minimum-detectable-effect.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`minimum-detectable-effect` — For Reviewers](#sec-chapters-05-power-minimum-detectable-effect-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Missing Data in RCTs
+### Missing Data in RCTs {#sec-reporting-consort-missing-data-in-rcts}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -798,11 +798,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Missing Data in RCTs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`missing-data-rct` — For Reviewers](../chapters/14-clinical/missing-data-rct.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`missing-data-rct` — For Reviewers](#sec-chapters-14-clinical-missing-data-rct-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Mixed ANOVA
+### Mixed ANOVA {#sec-reporting-consort-mixed-anova}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -812,11 +812,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Mixed ANOVA yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`mixed-anova` — For Reviewers](../chapters/04-inferential/mixed-anova.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`mixed-anova` — For Reviewers](#sec-chapters-04-inferential-mixed-anova-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Multiple Comparisons: Overview
+### Multiple Comparisons: Overview {#sec-reporting-consort-multiple-comparisons-overview}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -826,11 +826,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Multiple Comparisons: Overview yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`multiple-comparisons-overview` — For Reviewers](../chapters/04-inferential/multiple-comparisons-overview.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`multiple-comparisons-overview` — For Reviewers](#sec-chapters-04-inferential-multiple-comparisons-overview-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Multiple Imputation
+### Multiple Imputation {#sec-reporting-consort-multiple-imputation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -840,11 +840,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Multiple Imputation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`multiple-imputation` — For Reviewers](../chapters/14-clinical/multiple-imputation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`multiple-imputation` — For Reviewers](#sec-chapters-14-clinical-multiple-imputation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Non-Inferiority Margin Selection
+### Non-Inferiority Margin Selection {#sec-reporting-consort-non-inferiority-margin-selection}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -854,11 +854,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Non-Inferiority Margin Selection yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`non-inferiority-margin` — For Reviewers](../chapters/14-clinical/non-inferiority-margin.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`non-inferiority-margin` — For Reviewers](#sec-chapters-14-clinical-non-inferiority-margin-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Null and Alternative Hypotheses
+### Null and Alternative Hypotheses {#sec-reporting-consort-null-and-alternative-hypotheses}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -868,11 +868,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Null and Alternative Hypotheses yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`null-alternative-hypotheses` — For Reviewers](../chapters/04-inferential/null-alternative-hypotheses.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`null-alternative-hypotheses` — For Reviewers](#sec-chapters-04-inferential-null-alternative-hypotheses-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### O'Brien-Fleming Boundary
+### O'Brien-Fleming Boundary {#sec-reporting-consort-o-brien-fleming-boundary}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -882,11 +882,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > O'Brien-Fleming Boundary yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`obrien-fleming-boundary` — For Reviewers](../chapters/14-clinical/obrien-fleming-boundary.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`obrien-fleming-boundary` — For Reviewers](#sec-chapters-14-clinical-obrien-fleming-boundary-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### One-Proportion Test
+### One-Proportion Test {#sec-reporting-consort-one-proportion-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -896,11 +896,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > One-Proportion Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`one-proportion-test` — For Reviewers](../chapters/04-inferential/one-proportion-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`one-proportion-test` — For Reviewers](#sec-chapters-04-inferential-one-proportion-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### One-Sample t-Test
+### One-Sample t-Test {#sec-reporting-consort-one-sample-t-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -910,11 +910,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > One-Sample t-Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`one-sample-t-test` — For Reviewers](../chapters/04-inferential/one-sample-t-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`one-sample-t-test` — For Reviewers](#sec-chapters-04-inferential-one-sample-t-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### One-Sample z-Test
+### One-Sample z-Test {#sec-reporting-consort-one-sample-z-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -924,11 +924,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > One-Sample z-Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`one-sample-z-test` — For Reviewers](../chapters/04-inferential/one-sample-z-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`one-sample-z-test` — For Reviewers](#sec-chapters-04-inferential-one-sample-z-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### One-Way ANOVA
+### One-Way ANOVA {#sec-reporting-consort-one-way-anova}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -938,11 +938,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > One-Way ANOVA yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`one-way-anova` — For Reviewers](../chapters/04-inferential/one-way-anova.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`one-way-anova` — For Reviewers](#sec-chapters-04-inferential-one-way-anova-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Optimal Designs: D, A, I
+### Optimal Designs: D, A, I {#sec-reporting-consort-optimal-designs-d-a-i}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -952,11 +952,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Optimal Designs: D, A, I yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`optimal-design-d-a-i` — For Reviewers](../chapters/16-design/optimal-design-d-a-i.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`optimal-design-d-a-i` — For Reviewers](#sec-chapters-16-design-optimal-design-d-a-i-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Orthogonal Arrays
+### Orthogonal Arrays {#sec-reporting-consort-orthogonal-arrays}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -966,11 +966,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Orthogonal Arrays yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`orthogonal-arrays` — For Reviewers](../chapters/16-design/orthogonal-arrays.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`orthogonal-arrays` — For Reviewers](#sec-chapters-16-design-orthogonal-arrays-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### P-Values Explained
+### P-Values Explained {#sec-reporting-consort-p-values-explained}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -980,11 +980,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > P-Values Explained yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`p-values-explained` — For Reviewers](../chapters/04-inferential/p-values-explained.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`p-values-explained` — For Reviewers](#sec-chapters-04-inferential-p-values-explained-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Paired t-Test
+### Paired t-Test {#sec-reporting-consort-paired-t-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -994,11 +994,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Paired t-Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`paired-t-test` — For Reviewers](../chapters/04-inferential/paired-t-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`paired-t-test` — For Reviewers](#sec-chapters-04-inferential-paired-t-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Parallel-Group RCT Design
+### Parallel-Group RCT Design {#sec-reporting-consort-parallel-group-rct-design}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1008,11 +1008,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Parallel-Group RCT Design yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`rct-design-parallel` — For Reviewers](../chapters/14-clinical/rct-design-parallel.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`rct-design-parallel` — For Reviewers](#sec-chapters-14-clinical-rct-design-parallel-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Pearson Correlation Test
+### Pearson Correlation Test {#sec-reporting-consort-pearson-correlation-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1022,11 +1022,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Pearson Correlation Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`pearson-correlation-test` — For Reviewers](../chapters/04-inferential/pearson-correlation-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`pearson-correlation-test` — For Reviewers](#sec-chapters-04-inferential-pearson-correlation-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Permutation Tests
+### Permutation Tests {#sec-reporting-consort-permutation-tests}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1036,11 +1036,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Permutation Tests yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`permutation-tests` — For Reviewers](../chapters/04-inferential/permutation-tests.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`permutation-tests` — For Reviewers](#sec-chapters-04-inferential-permutation-tests-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Plackett-Burman Designs
+### Plackett-Burman Designs {#sec-reporting-consort-plackett-burman-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1050,11 +1050,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Plackett-Burman Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`plackett-burman` — For Reviewers](../chapters/16-design/plackett-burman.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`plackett-burman` — For Reviewers](#sec-chapters-16-design-plackett-burman-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Pocock Boundary
+### Pocock Boundary {#sec-reporting-consort-pocock-boundary}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1064,11 +1064,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Pocock Boundary yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`pocock-boundary` — For Reviewers](../chapters/14-clinical/pocock-boundary.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`pocock-boundary` — For Reviewers](#sec-chapters-14-clinical-pocock-boundary-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Post-Hoc Power: A Controversy
+### Post-Hoc Power: A Controversy {#sec-reporting-consort-post-hoc-power-a-controversy}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1078,11 +1078,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Post-Hoc Power: A Controversy yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`post-hoc-power-controversy` — For Reviewers](../chapters/05-power/post-hoc-power-controversy.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`post-hoc-power-controversy` — For Reviewers](#sec-chapters-05-power-post-hoc-power-controversy-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Post-Hoc Tests with Tukey HSD
+### Post-Hoc Tests with Tukey HSD {#sec-reporting-consort-post-hoc-tests-with-tukey-hsd}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1092,11 +1092,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Post-Hoc Tests with Tukey HSD yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`post-hoc-tests-tukey` — For Reviewers](../chapters/04-inferential/post-hoc-tests-tukey.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`post-hoc-tests-tukey` — For Reviewers](#sec-chapters-04-inferential-post-hoc-tests-tukey-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power Analysis for DOE
+### Power Analysis for DOE {#sec-reporting-consort-power-analysis-for-doe}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1106,11 +1106,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power Analysis for DOE yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-in-doe` — For Reviewers](../chapters/16-design/power-in-doe.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-in-doe` — For Reviewers](#sec-chapters-16-design-power-in-doe-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power Analysis: Introduction
+### Power Analysis: Introduction {#sec-reporting-consort-power-analysis-introduction}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1120,11 +1120,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power Analysis: Introduction yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-analysis-introduction` — For Reviewers](../chapters/05-power/power-analysis-introduction.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-analysis-introduction` — For Reviewers](#sec-chapters-05-power-power-analysis-introduction-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Agreement (Kappa)
+### Power for Agreement (Kappa) {#sec-reporting-consort-power-for-agreement-kappa}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1134,11 +1134,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Agreement (Kappa) yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-agreement-kappa` — For Reviewers](../chapters/05-power/power-agreement-kappa.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-agreement-kappa` — For Reviewers](#sec-chapters-05-power-power-agreement-kappa-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Bland-Altman Studies
+### Power for Bland-Altman Studies {#sec-reporting-consort-power-for-bland-altman-studies}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1148,11 +1148,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Bland-Altman Studies yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-bland-altman` — For Reviewers](../chapters/05-power/power-bland-altman.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-bland-altman` — For Reviewers](#sec-chapters-05-power-power-bland-altman-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Chi-Squared Tests
+### Power for Chi-Squared Tests {#sec-reporting-consort-power-for-chi-squared-tests}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1162,11 +1162,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Chi-Squared Tests yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-chi-squared` — For Reviewers](../chapters/05-power/power-chi-squared.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-chi-squared` — For Reviewers](#sec-chapters-05-power-power-chi-squared-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Cluster-RCT
+### Power for Cluster-RCT {#sec-reporting-consort-power-for-cluster-rct}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1176,11 +1176,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Cluster-RCT yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-cluster-rct` — For Reviewers](../chapters/05-power/power-cluster-rct.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-cluster-rct` — For Reviewers](#sec-chapters-05-power-power-cluster-rct-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Correlation Tests
+### Power for Correlation Tests {#sec-reporting-consort-power-for-correlation-tests}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1190,11 +1190,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Correlation Tests yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-correlation` — For Reviewers](../chapters/05-power/power-correlation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-correlation` — For Reviewers](#sec-chapters-05-power-power-correlation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Cox Regression
+### Power for Cox Regression {#sec-reporting-consort-power-for-cox-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1204,11 +1204,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Cox Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-cox-regression` — For Reviewers](../chapters/05-power/power-cox-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-cox-regression` — For Reviewers](#sec-chapters-05-power-power-cox-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Crossover Trials
+### Power for Crossover Trials {#sec-reporting-consort-power-for-crossover-trials}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1218,11 +1218,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Crossover Trials yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-crossover` — For Reviewers](../chapters/05-power/power-crossover.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-crossover` — For Reviewers](#sec-chapters-05-power-power-crossover-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Diagnostic Accuracy
+### Power for Diagnostic Accuracy {#sec-reporting-consort-power-for-diagnostic-accuracy}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1232,11 +1232,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Diagnostic Accuracy yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-diagnostic-accuracy` — For Reviewers](../chapters/05-power/power-diagnostic-accuracy.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-diagnostic-accuracy` — For Reviewers](#sec-chapters-05-power-power-diagnostic-accuracy-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Equivalence (TOST)
+### Power for Equivalence (TOST) {#sec-reporting-consort-power-for-equivalence-tost}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1246,11 +1246,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Equivalence (TOST) yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-equivalence-tost` — For Reviewers](../chapters/05-power/power-equivalence-tost.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-equivalence-tost` — For Reviewers](#sec-chapters-05-power-power-equivalence-tost-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for ICC
+### Power for ICC {#sec-reporting-consort-power-for-icc}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1260,11 +1260,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for ICC yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-icc` — For Reviewers](../chapters/05-power/power-icc.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-icc` — For Reviewers](#sec-chapters-05-power-power-icc-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Linear Regression
+### Power for Linear Regression {#sec-reporting-consort-power-for-linear-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1274,11 +1274,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Linear Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-linear-regression` — For Reviewers](../chapters/05-power/power-linear-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-linear-regression` — For Reviewers](#sec-chapters-05-power-power-linear-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Logistic Regression
+### Power for Logistic Regression {#sec-reporting-consort-power-for-logistic-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1288,11 +1288,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Logistic Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-logistic-regression` — For Reviewers](../chapters/05-power/power-logistic-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-logistic-regression` — For Reviewers](#sec-chapters-05-power-power-logistic-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for McNemar's Test
+### Power for McNemar's Test {#sec-reporting-consort-power-for-mcnemar-s-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1302,11 +1302,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for McNemar's Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-mcnemar` — For Reviewers](../chapters/05-power/power-mcnemar.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-mcnemar` — For Reviewers](#sec-chapters-05-power-power-mcnemar-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Non-Inferiority Trials
+### Power for Non-Inferiority Trials {#sec-reporting-consort-power-for-non-inferiority-trials}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1316,11 +1316,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Non-Inferiority Trials yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-non-inferiority` — For Reviewers](../chapters/05-power/power-non-inferiority.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-non-inferiority` — For Reviewers](#sec-chapters-05-power-power-non-inferiority-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for One-Proportion Test
+### Power for One-Proportion Test {#sec-reporting-consort-power-for-one-proportion-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1330,11 +1330,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for One-Proportion Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-one-proportion` — For Reviewers](../chapters/05-power/power-one-proportion.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-one-proportion` — For Reviewers](#sec-chapters-05-power-power-one-proportion-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for One-Sample t-Test
+### Power for One-Sample t-Test {#sec-reporting-consort-power-for-one-sample-t-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1344,11 +1344,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for One-Sample t-Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-one-sample-t` — For Reviewers](../chapters/05-power/power-one-sample-t.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-one-sample-t` — For Reviewers](#sec-chapters-05-power-power-one-sample-t-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for One-Way ANOVA
+### Power for One-Way ANOVA {#sec-reporting-consort-power-for-one-way-anova}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1358,11 +1358,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for One-Way ANOVA yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-anova` — For Reviewers](../chapters/05-power/power-anova.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-anova` — For Reviewers](#sec-chapters-05-power-power-anova-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Paired t-Test
+### Power for Paired t-Test {#sec-reporting-consort-power-for-paired-t-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1372,11 +1372,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Paired t-Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-paired-t` — For Reviewers](../chapters/05-power/power-paired-t.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-paired-t` — For Reviewers](#sec-chapters-05-power-power-paired-t-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Repeated-Measures ANOVA
+### Power for Repeated-Measures ANOVA {#sec-reporting-consort-power-for-repeated-measures-anova}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1386,11 +1386,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Repeated-Measures ANOVA yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-repeated-measures` — For Reviewers](../chapters/05-power/power-repeated-measures.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-repeated-measures` — For Reviewers](#sec-chapters-05-power-power-repeated-measures-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Stepped-Wedge Trials
+### Power for Stepped-Wedge Trials {#sec-reporting-consort-power-for-stepped-wedge-trials}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1400,11 +1400,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Stepped-Wedge Trials yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-stepped-wedge` — For Reviewers](../chapters/05-power/power-stepped-wedge.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-stepped-wedge` — For Reviewers](#sec-chapters-05-power-power-stepped-wedge-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for the Log-Rank Test
+### Power for the Log-Rank Test {#sec-reporting-consort-power-for-the-log-rank-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1414,11 +1414,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for the Log-Rank Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-logrank-test` — For Reviewers](../chapters/05-power/power-logrank-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-logrank-test` — For Reviewers](#sec-chapters-05-power-power-logrank-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Power for Two-Proportion Test
+### Power for Two-Proportion Test {#sec-reporting-consort-power-for-two-proportion-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1428,11 +1428,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Power for Two-Proportion Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-two-proportions` — For Reviewers](../chapters/05-power/power-two-proportions.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-two-proportions` — For Reviewers](#sec-chapters-05-power-power-two-proportions-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Predictive Values and Prevalence
+### Predictive Values and Prevalence {#sec-reporting-consort-predictive-values-and-prevalence}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1442,11 +1442,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Predictive Values and Prevalence yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`predictive-values-prevalence` — For Reviewers](../chapters/14-clinical/predictive-values-prevalence.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`predictive-values-prevalence` — For Reviewers](#sec-chapters-14-clinical-predictive-values-prevalence-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Principles of Blocking
+### Principles of Blocking {#sec-reporting-consort-principles-of-blocking}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1456,11 +1456,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Principles of Blocking yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`blocking-principles` — For Reviewers](../chapters/16-design/blocking-principles.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`blocking-principles` — For Reviewers](#sec-chapters-16-design-blocking-principles-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Randomisation in Design
+### Randomisation in Design {#sec-reporting-consort-randomisation-in-design}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1470,11 +1470,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Randomisation in Design yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`randomization-in-design` — For Reviewers](../chapters/16-design/randomization-in-design.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`randomization-in-design` — For Reviewers](#sec-chapters-16-design-randomization-in-design-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Randomisation Methods
+### Randomisation Methods {#sec-reporting-consort-randomisation-methods}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1484,11 +1484,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Randomisation Methods yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`randomization-methods` — For Reviewers](../chapters/14-clinical/randomization-methods.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`randomization-methods` — For Reviewers](#sec-chapters-14-clinical-randomization-methods-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Randomised Complete Block Design
+### Randomised Complete Block Design {#sec-reporting-consort-randomised-complete-block-design}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1498,11 +1498,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Randomised Complete Block Design yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`randomised-complete-block` — For Reviewers](../chapters/16-design/randomised-complete-block.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`randomised-complete-block` — For Reviewers](#sec-chapters-16-design-randomised-complete-block-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Reliability and Cronbach's Alpha
+### Reliability and Cronbach's Alpha {#sec-reporting-consort-reliability-and-cronbach-s-alpha}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1512,11 +1512,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Reliability and Cronbach's Alpha yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`reliability-cronbach-alpha` — For Reviewers](../chapters/14-clinical/reliability-cronbach-alpha.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`reliability-cronbach-alpha` — For Reviewers](#sec-chapters-14-clinical-reliability-cronbach-alpha-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Repeated-Measures ANOVA
+### Repeated-Measures ANOVA {#sec-reporting-consort-repeated-measures-anova}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1526,11 +1526,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Repeated-Measures ANOVA yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`repeated-measures-anova` — For Reviewers](../chapters/04-inferential/repeated-measures-anova.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`repeated-measures-anova` — For Reviewers](#sec-chapters-04-inferential-repeated-measures-anova-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Repeated-Measures Designs
+### Repeated-Measures Designs {#sec-reporting-consort-repeated-measures-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1540,11 +1540,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Repeated-Measures Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`repeated-measures-design` — For Reviewers](../chapters/16-design/repeated-measures-design.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`repeated-measures-design` — For Reviewers](#sec-chapters-16-design-repeated-measures-design-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Resolution and Aliasing
+### Resolution and Aliasing {#sec-reporting-consort-resolution-and-aliasing}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1554,11 +1554,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Resolution and Aliasing yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`resolution-aliasing` — For Reviewers](../chapters/16-design/resolution-aliasing.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`resolution-aliasing` — For Reviewers](#sec-chapters-16-design-resolution-aliasing-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Response Surface Methodology
+### Response Surface Methodology {#sec-reporting-consort-response-surface-methodology}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1568,11 +1568,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Response Surface Methodology yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`response-surface-methodology` — For Reviewers](../chapters/16-design/response-surface-methodology.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`response-surface-methodology` — For Reviewers](#sec-chapters-16-design-response-surface-methodology-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Robust Parameter Design
+### Robust Parameter Design {#sec-reporting-consort-robust-parameter-design}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1582,11 +1582,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Robust Parameter Design yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`robust-parameter-design` — For Reviewers](../chapters/16-design/robust-parameter-design.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`robust-parameter-design` — For Reviewers](#sec-chapters-16-design-robust-parameter-design-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### ROC Analysis
+### ROC Analysis {#sec-reporting-consort-roc-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1596,11 +1596,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > ROC Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`roc-analysis` — For Reviewers](../chapters/14-clinical/roc-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`roc-analysis` — For Reviewers](#sec-chapters-14-clinical-roc-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Sample Size for a Two-Sample t-Test
+### Sample Size for a Two-Sample t-Test {#sec-reporting-consort-sample-size-for-a-two-sample-t-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1610,11 +1610,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Sample Size for a Two-Sample t-Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`power-two-sample-t` — For Reviewers](../chapters/05-power/power-two-sample-t.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`power-two-sample-t` — For Reviewers](#sec-chapters-05-power-power-two-sample-t-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Sample Size Re-Estimation
+### Sample Size Re-Estimation {#sec-reporting-consort-sample-size-re-estimation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1624,11 +1624,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Sample Size Re-Estimation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`sample-size-reestimation` — For Reviewers](../chapters/14-clinical/sample-size-reestimation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`sample-size-reestimation` — For Reviewers](#sec-chapters-14-clinical-sample-size-reestimation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Sample Size Sensitivity Analysis
+### Sample Size Sensitivity Analysis {#sec-reporting-consort-sample-size-sensitivity-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1638,11 +1638,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Sample Size Sensitivity Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`sensitivity-analysis-sample-size` — For Reviewers](../chapters/05-power/sensitivity-analysis-sample-size.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`sensitivity-analysis-sample-size` — For Reviewers](#sec-chapters-05-power-sensitivity-analysis-sample-size-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Sensitivity Analyses in Clinical Trials
+### Sensitivity Analyses in Clinical Trials {#sec-reporting-consort-sensitivity-analyses-in-clinical-trials}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1652,11 +1652,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Sensitivity Analyses in Clinical Trials yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`sensitivity-analysis-clinical` — For Reviewers](../chapters/14-clinical/sensitivity-analysis-clinical.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`sensitivity-analysis-clinical` — For Reviewers](#sec-chapters-14-clinical-sensitivity-analysis-clinical-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Shapiro-Wilk Normality Test
+### Shapiro-Wilk Normality Test {#sec-reporting-consort-shapiro-wilk-normality-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1666,11 +1666,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Shapiro-Wilk Normality Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`shapiro-wilk-test` — For Reviewers](../chapters/04-inferential/shapiro-wilk-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`shapiro-wilk-test` — For Reviewers](#sec-chapters-04-inferential-shapiro-wilk-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Signal-to-Noise Ratios
+### Signal-to-Noise Ratios {#sec-reporting-consort-signal-to-noise-ratios}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1680,11 +1680,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Signal-to-Noise Ratios yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`signal-to-noise-ratio` — For Reviewers](../chapters/16-design/signal-to-noise-ratio.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`signal-to-noise-ratio` — For Reviewers](#sec-chapters-16-design-signal-to-noise-ratio-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Simplex Centroid Designs
+### Simplex Centroid Designs {#sec-reporting-consort-simplex-centroid-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1694,11 +1694,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Simplex Centroid Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`mixture-centroid` — For Reviewers](../chapters/16-design/mixture-centroid.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`mixture-centroid` — For Reviewers](#sec-chapters-16-design-mixture-centroid-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Simplex Lattice Mixture Designs
+### Simplex Lattice Mixture Designs {#sec-reporting-consort-simplex-lattice-mixture-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1708,11 +1708,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Simplex Lattice Mixture Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`mixture-designs-simplex` — For Reviewers](../chapters/16-design/mixture-designs-simplex.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`mixture-designs-simplex` — For Reviewers](#sec-chapters-16-design-mixture-designs-simplex-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Spearman Rank Correlation Test
+### Spearman Rank Correlation Test {#sec-reporting-consort-spearman-rank-correlation-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1722,11 +1722,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Spearman Rank Correlation Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`spearman-correlation-test` — For Reviewers](../chapters/04-inferential/spearman-correlation-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`spearman-correlation-test` — For Reviewers](#sec-chapters-04-inferential-spearman-correlation-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Split-Plot Designs
+### Split-Plot Designs {#sec-reporting-consort-split-plot-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1736,11 +1736,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Split-Plot Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`split-plot-design` — For Reviewers](../chapters/16-design/split-plot-design.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`split-plot-design` — For Reviewers](#sec-chapters-16-design-split-plot-design-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Stepped-Wedge Trial
+### Stepped-Wedge Trial {#sec-reporting-consort-stepped-wedge-trial}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1750,11 +1750,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Stepped-Wedge Trial yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`stepped-wedge-trial` — For Reviewers](../chapters/14-clinical/stepped-wedge-trial.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`stepped-wedge-trial` — For Reviewers](#sec-chapters-14-clinical-stepped-wedge-trial-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Stratified Randomisation
+### Stratified Randomisation {#sec-reporting-consort-stratified-randomisation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1764,11 +1764,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Stratified Randomisation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`stratified-randomization` — For Reviewers](../chapters/14-clinical/stratified-randomization.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`stratified-randomization` — For Reviewers](#sec-chapters-14-clinical-stratified-randomization-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Strip-Plot Designs
+### Strip-Plot Designs {#sec-reporting-consort-strip-plot-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1778,11 +1778,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Strip-Plot Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`strip-plot-design` — For Reviewers](../chapters/16-design/strip-plot-design.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`strip-plot-design` — For Reviewers](#sec-chapters-16-design-strip-plot-design-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Subgroup Analyses
+### Subgroup Analyses {#sec-reporting-consort-subgroup-analyses}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1792,11 +1792,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Subgroup Analyses yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`subgroup-analysis` — For Reviewers](../chapters/14-clinical/subgroup-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`subgroup-analysis` — For Reviewers](#sec-chapters-14-clinical-subgroup-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Subgroup Forest Plots
+### Subgroup Forest Plots {#sec-reporting-consort-subgroup-forest-plots}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1806,11 +1806,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Subgroup Forest Plots yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`forest-plot-subgroup` — For Reviewers](../chapters/14-clinical/forest-plot-subgroup.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`forest-plot-subgroup` — For Reviewers](#sec-chapters-14-clinical-forest-plot-subgroup-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Taguchi Methods
+### Taguchi Methods {#sec-reporting-consort-taguchi-methods}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1820,11 +1820,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Taguchi Methods yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`taguchi-methods` — For Reviewers](../chapters/16-design/taguchi-methods.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`taguchi-methods` — For Reviewers](#sec-chapters-16-design-taguchi-methods-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### The Bootstrap: Introduction
+### The Bootstrap: Introduction {#sec-reporting-consort-the-bootstrap-introduction}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1834,11 +1834,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > The Bootstrap: Introduction yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`bootstrap-introduction` — For Reviewers](../chapters/04-inferential/bootstrap-introduction.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`bootstrap-introduction` — For Reviewers](#sec-chapters-04-inferential-bootstrap-introduction-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### The Jackknife
+### The Jackknife {#sec-reporting-consort-the-jackknife}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1848,11 +1848,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > The Jackknife yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`jackknife` — For Reviewers](../chapters/04-inferential/jackknife.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`jackknife` — For Reviewers](#sec-chapters-04-inferential-jackknife-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### The Runs Test
+### The Runs Test {#sec-reporting-consort-the-runs-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1862,11 +1862,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > The Runs Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`runs-test` — For Reviewers](../chapters/04-inferential/runs-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`runs-test` — For Reviewers](#sec-chapters-04-inferential-runs-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### The Sign Test
+### The Sign Test {#sec-reporting-consort-the-sign-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1876,11 +1876,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > The Sign Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`sign-test` — For Reviewers](../chapters/04-inferential/sign-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`sign-test` — For Reviewers](#sec-chapters-04-inferential-sign-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Two-Proportion Test
+### Two-Proportion Test {#sec-reporting-consort-two-proportion-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1890,11 +1890,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Two-Proportion Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`two-proportion-test` — For Reviewers](../chapters/04-inferential/two-proportion-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`two-proportion-test` — For Reviewers](#sec-chapters-04-inferential-two-proportion-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Two-Sample t-Test
+### Two-Sample t-Test {#sec-reporting-consort-two-sample-t-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1904,11 +1904,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Two-Sample t-Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`two-sample-t-test` — For Reviewers](../chapters/04-inferential/two-sample-t-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`two-sample-t-test` — For Reviewers](#sec-chapters-04-inferential-two-sample-t-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Two-Way ANOVA
+### Two-Way ANOVA {#sec-reporting-consort-two-way-anova}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1918,11 +1918,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Two-Way ANOVA yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`two-way-anova` — For Reviewers](../chapters/04-inferential/two-way-anova.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`two-way-anova` — For Reviewers](#sec-chapters-04-inferential-two-way-anova-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Type I and Type II Errors
+### Type I and Type II Errors {#sec-reporting-consort-type-i-and-type-ii-errors}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1932,11 +1932,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Type I and Type II Errors yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`type-i-type-ii-errors` — For Reviewers](../chapters/04-inferential/type-i-type-ii-errors.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`type-i-type-ii-errors` — For Reviewers](#sec-chapters-04-inferential-type-i-type-ii-errors-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Weighted Kappa
+### Weighted Kappa {#sec-reporting-consort-weighted-kappa}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1946,11 +1946,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Weighted Kappa yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`weighted-kappa` — For Reviewers](../chapters/14-clinical/weighted-kappa.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`weighted-kappa` — For Reviewers](#sec-chapters-14-clinical-weighted-kappa-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Welch's t-Test
+### Welch's t-Test {#sec-reporting-consort-welch-s-t-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1960,11 +1960,11 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Welch's t-Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`welch-t-test` — For Reviewers](../chapters/04-inferential/welch-t-test.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`welch-t-test` — For Reviewers](#sec-chapters-04-inferential-welch-t-test-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Wilcoxon Signed-Rank Test
+### Wilcoxon Signed-Rank Test {#sec-reporting-consort-wilcoxon-signed-rank-test}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1974,6 +1974,6 @@ This page contains **141 method-specific templates**. Each is a skeleton with pl
 
 > Wilcoxon Signed-Rank Test yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`wilcoxon-signed-rank` — For Reviewers](../chapters/04-inferential/wilcoxon-signed-rank.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`wilcoxon-signed-rank` — For Reviewers](#sec-chapters-04-inferential-wilcoxon-signed-rank-for-reviewers)
 
 <!-- TODO:reporting-template -->

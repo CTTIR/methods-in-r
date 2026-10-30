@@ -1,12 +1,14 @@
-## Introduction
+## Best Subset Selection {#sec-chapters-07-regression-best-subset-selection}
+
+### Introduction {#sec-chapters-07-regression-best-subset-selection-introduction}
 
 Best subset selection enumerates all $2^p$ possible predictor subsets and identifies the best subset by a chosen criterion (adjusted $R^2$, Mallows' $C_p$, BIC, cross-validation error). It is an exhaustive search and therefore avoids the sequence-dependence that plagues stepwise methods, but the combinatorial cost limits its practical use to modest $p$ — typically up to about 30 predictors with branch-and-bound algorithms (`leaps`).
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-best-subset-selection-prerequisites}
 
 A working understanding of multiple regression, model-selection criteria, and the bias-variance trade-off in choosing model complexity.
 
-## Theory
+### Theory {#sec-chapters-07-regression-best-subset-selection-theory}
 
 For each subset size $k \in \{0, 1, \dots, p\}$, find the subset with the lowest residual sum of squares (equivalently, highest $R^2$). Then compare across sizes using a criterion that penalises complexity:
 
@@ -18,11 +20,11 @@ For each subset size $k \in \{0, 1, \dots, p\}$, find the subset with the lowest
 
 `leaps::regsubsets` uses branch-and-bound to avoid evaluating every subset explicitly, making moderate-$p$ best-subset feasible.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-best-subset-selection-assumptions}
 
 Standard linear-regression assumptions; criteria like AIC, BIC assume Gaussian residuals (other forms exist for GLMs).
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-best-subset-selection-r-implementation}
 
 ```r
 library(leaps)
@@ -45,15 +47,15 @@ sum_fit$which
 plot(fit, scale = "bic")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-best-subset-selection-output-results}
 
 `regsubsets()` returns the best subset of each size up to `nvmax`. The summary provides criterion values; `sum_fit$which` shows which predictors are included at each size; the plot displays subsets ordered by the chosen criterion.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-best-subset-selection-interpretation}
 
 A reporting sentence: "Best-subset selection on `mtcars` (with `nvmax = 5`) identified weight (`wt`), quarter-mile time (`qsec`), and transmission (`am`) as the preferred three-predictor model under BIC ($\mathrm{BIC} = -84$); cross-validated mean squared error confirmed this as the best subset, with substantially worse performance for both smaller and larger models." Always state the criterion and pair with cross-validation when stakes are high.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-best-subset-selection-practical-tips}
 
 - Best subset is computationally feasible up to about $p = 30$ with branch-and-bound; beyond that, switch to penalised methods (lasso, elastic net).
 - Lasso and elastic net often perform similarly to best-subset selection with better scalability and less over-fitting; benchmark all three for high-dimensional problems.
@@ -62,46 +64,43 @@ A reporting sentence: "Best-subset selection on `mtcars` (with `nvmax = 5`) iden
 - Pre-specification of a subset based on substantive theory generally beats any data-driven search; reserve best-subset for genuinely exploratory work.
 - For GLMs, use `bestglm::bestglm` or stepwise on AIC; pure best-subset enumeration is OLS-specific in `leaps`.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-best-subset-selection-r-packages-used}
 
 `leaps::regsubsets` for branch-and-bound best-subset on linear models; `bestglm::bestglm` for GLMs; `glmnet` for lasso/elastic-net alternatives that scale to high $p$; `caret` and `tidymodels` for cross-validated subset comparison; `MuMIn::dredge` for model-averaging extensions.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-best-subset-selection-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-best-subset-selection-assumptions) and
+[practical tips](#sec-chapters-07-regression-best-subset-selection-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-best-subset-selection-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

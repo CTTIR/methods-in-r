@@ -1,11 +1,12 @@
 ---
 toc: true
 ---
+# Glossary {#sec-appendices-b-glossary}
+
 <div class="hero">
 <div class="kicker">
 APPENDIX · GLOSSARY
 </div>
-# Glossary
 <div class="lead">
 Plain-English definitions of the terms this curriculum uses the most.
 </div>
@@ -13,180 +14,180 @@ Plain-English definitions of the terms this curriculum uses the most.
 
 Each entry links to the first lab in which the term appears.
 
-## A
+## A {#sec-appendices-b-glossary-a}
 
-**α (alpha).** The probability of a type I error — rejecting a true null hypothesis. Conventional values are 0.05 and 0.01. [Hypothesis testing p values type i ii errors](../chapters/04-inferential/labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd).
+**α (alpha).** The probability of a type I error — rejecting a true null hypothesis. Conventional values are 0.05 and 0.01. [Hypothesis testing p values type i ii errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors).
 
-**ANCOVA.** Analysis of covariance: a linear model combining categorical predictors and continuous covariates, commonly used to adjust RCT analyses for baseline. [Ancova in rcts baseline adjustment](../chapters/07-regression/labs/lab-ancova-in-rcts-baseline-adjustment.Rmd).
+**ANCOVA.** Analysis of covariance: a linear model combining categorical predictors and continuous covariates, commonly used to adjust RCT analyses for baseline. [Ancova in rcts baseline adjustment](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment).
 
-**ANOVA.** Analysis of variance: a linear model with categorical predictors. [One way anova and contrasts emmeans](../chapters/07-regression/labs/lab-one-way-anova-and-contrasts-emmeans.Rmd).
+**ANOVA.** Analysis of variance: a linear model with categorical predictors. [One way anova and contrasts emmeans](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans).
 
-**Assumption.** A condition the chosen test needs to be interpretable — normality, equal variance, independence, linearity. [Two sample and paired t tests](../chapters/04-inferential/labs/lab-two-sample-and-paired-t-tests.Rmd).
+**Assumption.** A condition the chosen test needs to be interpretable — normality, equal variance, independence, linearity. [Two sample and paired t tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests).
 
-## B
+## B {#sec-appendices-b-glossary-b}
 
-**Bias.** Systematic deviation of an estimator from the quantity being estimated. [Populations samples and the central limit theorem](../chapters/04-inferential/labs/lab-populations-samples-and-the-central-limit-theorem.Rmd).
+**Bias.** Systematic deviation of an estimator from the quantity being estimated. [Populations samples and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem).
 
-**Bootstrap.** Resampling with replacement to approximate the sampling distribution of a statistic. [Bootstrap and permutation tests](../chapters/04-inferential/labs/lab-bootstrap-and-permutation-tests.Rmd).
+**Bootstrap.** Resampling with replacement to approximate the sampling distribution of a statistic. [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests).
 
-**Brier score.** Mean squared error between predicted probabilities and observed outcomes. [Calibration discrimination roc auc brier score](../chapters/07-regression/labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd).
+**Brier score.** Mean squared error between predicted probabilities and observed outcomes. [Calibration discrimination roc auc brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score).
 
-## C
+## C {#sec-appendices-b-glossary-c}
 
-**CI (confidence interval).** A range of plausible values for a parameter; in repeated sampling, 95% CIs cover the true value 95% of the time. [Bootstrap and permutation tests](../chapters/04-inferential/labs/lab-bootstrap-and-permutation-tests.Rmd).
+**CI (confidence interval).** A range of plausible values for a parameter; in repeated sampling, 95% CIs cover the true value 95% of the time. [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests).
 
-**Cohen's d.** Standardised difference in means; a common effect size for two-group comparisons. [Two sample and paired t tests](../chapters/04-inferential/labs/lab-two-sample-and-paired-t-tests.Rmd).
+**Cohen's d.** Standardised difference in means; a common effect size for two-group comparisons. [Two sample and paired t tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests).
 
-**Competing risk.** An event whose occurrence precludes or alters the probability of the event of interest. [Competing risks and multistate models](../chapters/11-survival/labs/lab-competing-risks-and-multistate-models.Rmd).
+**Competing risk.** An event whose occurrence precludes or alters the probability of the event of interest. [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models).
 
-**Confounding.** A third variable distorting the association between exposure and outcome. [Multiple regression confounding interaction centring](../chapters/07-regression/labs/lab-multiple-regression-confounding-interaction-centring.Rmd).
+**Confounding.** A third variable distorting the association between exposure and outcome. [Multiple regression confounding interaction centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring).
 
-**Cox model.** A proportional-hazards regression for time-to-event outcomes. [Survival primer km log rank cox ph](../chapters/11-survival/labs/lab-survival-primer-km-log-rank-cox-ph.Rmd).
+**Cox model.** A proportional-hazards regression for time-to-event outcomes. [Survival primer km log rank cox ph](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph).
 
-**CV (cross-validation).** Splitting data into folds to estimate generalisation error. [Cross validation nested cv bootstrap 632](../chapters/13-ml/labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd).
+**CV (cross-validation).** Splitting data into folds to estimate generalisation error. [Cross validation nested cv bootstrap 632](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632).
 
-## D
+## D {#sec-appendices-b-glossary-d}
 
-**DAG (directed acyclic graph).** A graphical representation of causal assumptions. [Dags with dagitty and ggdag](../chapters/16-design/labs/lab-dags-with-dagitty-and-ggdag.Rmd).
+**DAG (directed acyclic graph).** A graphical representation of causal assumptions. [Dags with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag).
 
-## E
+## E {#sec-appendices-b-glossary-e}
 
-**Effect size.** A standardised measure of the magnitude of an effect, independent of sample size. [Two sample and paired t tests](../chapters/04-inferential/labs/lab-two-sample-and-paired-t-tests.Rmd).
+**Effect size.** A standardised measure of the magnitude of an effect, independent of sample size. [Two sample and paired t tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests).
 
-## F
+## F {#sec-appendices-b-glossary-f}
 
-**FDR (false discovery rate).** The expected proportion of false positives among rejected nulls. [Fdr knockoffs replication crisis](../chapters/13-ml/labs/lab-fdr-knockoffs-replication-crisis.Rmd).
+**FDR (false discovery rate).** The expected proportion of false positives among rejected nulls. [Fdr knockoffs replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis).
 
-**Fisher's exact test.** Exact test of independence for 2×2 tables, appropriate when expected cell counts are small. [Two proportions chi square risk and odds](../chapters/04-inferential/labs/lab-two-proportions-chi-square-risk-and-odds.Rmd).
+**Fisher's exact test.** Exact test of independence for 2×2 tables, appropriate when expected cell counts are small. [Two proportions chi square risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds).
 
-## G
+## G {#sec-appendices-b-glossary-g}
 
-**GAM (generalised additive model).** A regression with smooth non-linear terms, fitted via penalised splines. [Gams with mgcv](../chapters/07-regression/labs/lab-gams-with-mgcv.Rmd).
+**GAM (generalised additive model).** A regression with smooth non-linear terms, fitted via penalised splines. [Gams with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv).
 
-**GEE (generalised estimating equations).** A marginal-model approach for clustered or repeated data. [Glmms and gee](../chapters/16-design/labs/lab-glmms-and-gee.Rmd).
+**GEE (generalised estimating equations).** A marginal-model approach for clustered or repeated data. [Glmms and gee](#sec-chapters-16-design-labs-lab-glmms-and-gee).
 
-**GLM (generalised linear model).** A regression with a link function and exponential-family error. [Logistic regression binomial glm](../chapters/07-regression/labs/lab-logistic-regression-binomial-glm.Rmd).
+**GLM (generalised linear model).** A regression with a link function and exponential-family error. [Logistic regression binomial glm](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm).
 
-## H
+## H {#sec-appendices-b-glossary-h}
 
-**Hazard ratio.** Ratio of hazard rates between two groups in a survival model. [Survival primer km log rank cox ph](../chapters/11-survival/labs/lab-survival-primer-km-log-rank-cox-ph.Rmd).
+**Hazard ratio.** Ratio of hazard rates between two groups in a survival model. [Survival primer km log rank cox ph](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph).
 
-## I
+## I {#sec-appendices-b-glossary-i}
 
-**ICC (intraclass correlation).** Proportion of variance attributable to clustering. [Kappa icc bland altman](../chapters/14-clinical/labs/lab-kappa-icc-bland-altman.Rmd).
+**ICC (intraclass correlation).** Proportion of variance attributable to clustering. [Kappa icc bland altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman).
 
-**Interaction.** The effect of one predictor depends on the value of another. [Multiple regression confounding interaction centring](../chapters/07-regression/labs/lab-multiple-regression-confounding-interaction-centring.Rmd).
+**Interaction.** The effect of one predictor depends on the value of another. [Multiple regression confounding interaction centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring).
 
-**IPTW (inverse-probability-of-treatment weighting).** Propensity-score method that reweights observations to emulate a trial. [Propensity scores and iptw](../chapters/16-design/labs/lab-propensity-scores-and-iptw.Rmd).
+**IPTW (inverse-probability-of-treatment weighting).** Propensity-score method that reweights observations to emulate a trial. [Propensity scores and iptw](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw).
 
-## K
+## K {#sec-appendices-b-glossary-k}
 
-**Kaplan-Meier.** Non-parametric estimator of the survival function. [Survival primer km log rank cox ph](../chapters/11-survival/labs/lab-survival-primer-km-log-rank-cox-ph.Rmd).
+**Kaplan-Meier.** Non-parametric estimator of the survival function. [Survival primer km log rank cox ph](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph).
 
-**Kruskal-Wallis.** Non-parametric one-way ANOVA on ranks. [Non parametric tests](../chapters/04-inferential/labs/lab-non-parametric-tests.Rmd).
+**Kruskal-Wallis.** Non-parametric one-way ANOVA on ranks. [Non parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests).
 
-## L
+## L {#sec-appendices-b-glossary-l}
 
-**Lasso.** L1-regularised regression; produces sparse coefficient estimates. [Regularisation ridge lasso elastic net](../chapters/13-ml/labs/lab-regularisation-ridge-lasso-elastic-net.Rmd).
+**Lasso.** L1-regularised regression; produces sparse coefficient estimates. [Regularisation ridge lasso elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net).
 
-**Likelihood.** The probability of the observed data under a model, viewed as a function of the parameters. [Maximum likelihood estimation](../chapters/04-inferential/labs/lab-maximum-likelihood-estimation.Rmd).
+**Likelihood.** The probability of the observed data under a model, viewed as a function of the parameters. [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation).
 
-**Linear model.** A model of the form $y = X\beta + \varepsilon$. [Simple linear regression](../chapters/07-regression/labs/lab-simple-linear-regression.Rmd).
+**Linear model.** A model of the form $y = X\beta + \varepsilon$. [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression).
 
-**Logistic regression.** GLM with a logit link for binary outcomes. [Logistic regression binomial glm](../chapters/07-regression/labs/lab-logistic-regression-binomial-glm.Rmd).
+**Logistic regression.** GLM with a logit link for binary outcomes. [Logistic regression binomial glm](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm).
 
-## M
+## M {#sec-appendices-b-glossary-m}
 
-**MAR (missing at random).** Missingness depends on observed variables only. [Mcar mar mnar](../chapters/16-design/labs/lab-mcar-mar-mnar.Rmd).
+**MAR (missing at random).** Missingness depends on observed variables only. [Mcar mar mnar](#sec-chapters-16-design-labs-lab-mcar-mar-mnar).
 
-**MCAR (missing completely at random).** Missingness is independent of all variables. [Mcar mar mnar](../chapters/16-design/labs/lab-mcar-mar-mnar.Rmd).
+**MCAR (missing completely at random).** Missingness is independent of all variables. [Mcar mar mnar](#sec-chapters-16-design-labs-lab-mcar-mar-mnar).
 
-**MCMC.** Markov-chain Monte Carlo; the Bayesian posterior-sampling workhorse. [Brms stan loo hierarchical models](../chapters/10-bayesian/labs/lab-brms-stan-loo-hierarchical-models.Rmd).
+**MCMC.** Markov-chain Monte Carlo; the Bayesian posterior-sampling workhorse. [Brms stan loo hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models).
 
-**MDE (minimum detectable effect).** Smallest effect your study has power to detect. [Power closed form and simulation](../chapters/05-power/labs/lab-power-closed-form-and-simulation.Rmd).
+**MDE (minimum detectable effect).** Smallest effect your study has power to detect. [Power closed form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation).
 
-**Meta-analysis.** Combining effect estimates across studies. [Meta analysis basics](../chapters/15-metaanalysis/labs/lab-meta-analysis-basics.Rmd).
+**Meta-analysis.** Combining effect estimates across studies. [Meta analysis basics](#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics).
 
-**Mixed model.** Regression combining fixed and random effects. [Linear mixed models with lme4](../chapters/16-design/labs/lab-linear-mixed-models-with-lme4.Rmd).
+**Mixed model.** Regression combining fixed and random effects. [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4).
 
-**MNAR (missing not at random).** Missingness depends on unobserved values. [Mcar mar mnar](../chapters/16-design/labs/lab-mcar-mar-mnar.Rmd).
+**MNAR (missing not at random).** Missingness depends on unobserved values. [Mcar mar mnar](#sec-chapters-16-design-labs-lab-mcar-mar-mnar).
 
-**Multiple imputation.** Imputing missing values several times and pooling the analyses. [Multiple imputation with mice](../chapters/16-design/labs/lab-multiple-imputation-with-mice.Rmd).
+**Multiple imputation.** Imputing missing values several times and pooling the analyses. [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice).
 
-## N
+## N {#sec-appendices-b-glossary-n}
 
-**Non-parametric.** A test or estimator that makes weak distributional assumptions. [Non parametric tests](../chapters/04-inferential/labs/lab-non-parametric-tests.Rmd).
+**Non-parametric.** A test or estimator that makes weak distributional assumptions. [Non parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests).
 
-## O
+## O {#sec-appendices-b-glossary-o}
 
-**Odds ratio.** Ratio of odds between two groups; the natural scale for logistic regression. [Logistic regression binomial glm](../chapters/07-regression/labs/lab-logistic-regression-binomial-glm.Rmd).
+**Odds ratio.** Ratio of odds between two groups; the natural scale for logistic regression. [Logistic regression binomial glm](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm).
 
-**Outlier.** An observation far from the bulk of the data. [Diagnostics residuals qq leverage cook s distance vif](../chapters/07-regression/labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd).
+**Outlier.** An observation far from the bulk of the data. [Diagnostics residuals qq leverage cook s distance vif](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif).
 
-**Overdispersion.** Variance exceeding the model's nominal variance; common in Poisson regression. [Poisson and negative binomial regression](../chapters/07-regression/labs/lab-poisson-and-negative-binomial-regression.Rmd).
+**Overdispersion.** Variance exceeding the model's nominal variance; common in Poisson regression. [Poisson and negative binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression).
 
-## P
+## P {#sec-appendices-b-glossary-p}
 
-**p-value.** Probability of data as or more extreme than observed, assuming the null. [Hypothesis testing p values type i ii errors](../chapters/04-inferential/labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd).
+**p-value.** Probability of data as or more extreme than observed, assuming the null. [Hypothesis testing p values type i ii errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors).
 
-**Paired test.** A test comparing matched observations rather than independent samples. [Two sample and paired t tests](../chapters/04-inferential/labs/lab-two-sample-and-paired-t-tests.Rmd).
+**Paired test.** A test comparing matched observations rather than independent samples. [Two sample and paired t tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests).
 
-**PCA (principal components analysis).** Linear dimension reduction by orthogonal projection onto directions of maximum variance. [Pca factor analysis cca lda](../chapters/08-multivariate/labs/lab-pca-factor-analysis-cca-lda.Rmd).
+**PCA (principal components analysis).** Linear dimension reduction by orthogonal projection onto directions of maximum variance. [Pca factor analysis cca lda](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda).
 
-**Permutation test.** Inference by shuffling labels to build a null distribution. [Bootstrap and permutation tests](../chapters/04-inferential/labs/lab-bootstrap-and-permutation-tests.Rmd).
+**Permutation test.** Inference by shuffling labels to build a null distribution. [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests).
 
-**Poisson regression.** GLM with a log link for counts. [Poisson and negative binomial regression](../chapters/07-regression/labs/lab-poisson-and-negative-binomial-regression.Rmd).
+**Poisson regression.** GLM with a log link for counts. [Poisson and negative binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression).
 
-**Power.** Probability of detecting an effect if it exists; 1 − β. [Sample size power and quarto reporting](../chapters/05-power/labs/lab-sample-size-power-and-quarto-reporting.Rmd).
+**Power.** Probability of detecting an effect if it exists; 1 − β. [Sample size power and quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting).
 
-**Pre-registration.** A timestamped record of the research plan before data analysis. [Pre registration and statistical analysis plans](../chapters/16-design/labs/lab-pre-registration-and-statistical-analysis-plans.Rmd).
+**Pre-registration.** A timestamped record of the research plan before data analysis. [Pre registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans).
 
-**Propensity score.** Probability of treatment given covariates. [Propensity scores and iptw](../chapters/16-design/labs/lab-propensity-scores-and-iptw.Rmd).
+**Propensity score.** Probability of treatment given covariates. [Propensity scores and iptw](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw).
 
-**Pseudoreplication.** Treating correlated observations as independent replicates. [Bench and translational design](../chapters/16-design/labs/lab-bench-and-translational-design.Rmd).
+**Pseudoreplication.** Treating correlated observations as independent replicates. [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design).
 
-## R
+## R {#sec-appendices-b-glossary-r}
 
-**Random effect.** A model coefficient treated as a draw from a distribution. [Linear mixed models with lme4](../chapters/16-design/labs/lab-linear-mixed-models-with-lme4.Rmd).
+**Random effect.** A model coefficient treated as a draw from a distribution. [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4).
 
-**Randomisation.** Allocating units to arms by a chance mechanism. [Randomised controlled trials](../chapters/16-design/labs/lab-randomised-controlled-trials.Rmd).
+**Randomisation.** Allocating units to arms by a chance mechanism. [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials).
 
-**Regression to the mean.** Tendency of extreme values to be closer to the mean on remeasurement. [Dichotomisation change scores regression to the mean](../chapters/07-regression/labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd).
+**Regression to the mean.** Tendency of extreme values to be closer to the mean on remeasurement. [Dichotomisation change scores regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean).
 
-**Reliability.** Consistency of repeated measurements. [Kappa icc bland altman](../chapters/14-clinical/labs/lab-kappa-icc-bland-altman.Rmd).
+**Reliability.** Consistency of repeated measurements. [Kappa icc bland altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman).
 
-**Resampling.** Bootstrap, permutation, and cross-validation collectively. [Bootstrap and permutation tests](../chapters/04-inferential/labs/lab-bootstrap-and-permutation-tests.Rmd).
+**Resampling.** Bootstrap, permutation, and cross-validation collectively. [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests).
 
-**Residual.** Observed minus predicted. [Diagnostics residuals qq leverage cook s distance vif](../chapters/07-regression/labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd).
+**Residual.** Observed minus predicted. [Diagnostics residuals qq leverage cook s distance vif](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif).
 
-**Risk ratio.** Ratio of event probabilities between two groups. [Two proportions chi square risk and odds](../chapters/04-inferential/labs/lab-two-proportions-chi-square-risk-and-odds.Rmd).
+**Risk ratio.** Ratio of event probabilities between two groups. [Two proportions chi square risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds).
 
-**Robust SE.** A standard error computed without assuming homoscedasticity. [Robust regression weighted ls hc sandwich standard errors](../chapters/07-regression/labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd).
+**Robust SE.** A standard error computed without assuming homoscedasticity. [Robust regression weighted ls hc sandwich standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors).
 
-**ROC / AUC.** Receiver operating characteristic; area under it measures discrimination. [Calibration discrimination roc auc brier score](../chapters/07-regression/labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd).
+**ROC / AUC.** Receiver operating characteristic; area under it measures discrimination. [Calibration discrimination roc auc brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score).
 
-## S
+## S {#sec-appendices-b-glossary-s}
 
-**SAP (statistical analysis plan).** The formal plan for a trial's analysis, written before data are seen. [Pre registration and statistical analysis plans](../chapters/16-design/labs/lab-pre-registration-and-statistical-analysis-plans.Rmd).
+**SAP (statistical analysis plan).** The formal plan for a trial's analysis, written before data are seen. [Pre registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans).
 
-**SE (standard error).** Standard deviation of a sampling distribution. [Populations samples and the central limit theorem](../chapters/04-inferential/labs/lab-populations-samples-and-the-central-limit-theorem.Rmd).
+**SE (standard error).** Standard deviation of a sampling distribution. [Populations samples and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem).
 
-**SEM (standard error of the mean).** Standard error of a sample mean. [Populations samples and the central limit theorem](../chapters/04-inferential/labs/lab-populations-samples-and-the-central-limit-theorem.Rmd).
+**SEM (standard error of the mean).** Standard error of a sample mean. [Populations samples and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem).
 
-**Shapiro-Wilk.** A test of normality, powerful in small samples. [Two sample and paired t tests](../chapters/04-inferential/labs/lab-two-sample-and-paired-t-tests.Rmd).
+**Shapiro-Wilk.** A test of normality, powerful in small samples. [Two sample and paired t tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests).
 
-**Spearman correlation.** Rank-based correlation. [Pearson and spearman correlation](../chapters/04-inferential/labs/lab-pearson-and-spearman-correlation.Rmd).
+**Spearman correlation.** Rank-based correlation. [Pearson and spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation).
 
-**Survival.** Time-to-event analysis. [Survival primer km log rank cox ph](../chapters/11-survival/labs/lab-survival-primer-km-log-rank-cox-ph.Rmd).
+**Survival.** Time-to-event analysis. [Survival primer km log rank cox ph](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph).
 
-## T
+## T {#sec-appendices-b-glossary-t}
 
-**Type I / II error.** False-positive and false-negative errors of a test. [Hypothesis testing p values type i ii errors](../chapters/04-inferential/labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd).
+**Type I / II error.** False-positive and false-negative errors of a test. [Hypothesis testing p values type i ii errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors).
 
-## V
+## V {#sec-appendices-b-glossary-v}
 
-**VIF (variance inflation factor).** Measure of collinearity among regression predictors. [Diagnostics residuals qq leverage cook s distance vif](../chapters/07-regression/labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd).
+**VIF (variance inflation factor).** Measure of collinearity among regression predictors. [Diagnostics residuals qq leverage cook s distance vif](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif).
 
-## W
+## W {#sec-appendices-b-glossary-w}
 
-**Wilcoxon test.** Non-parametric test for paired (signed-rank) or unpaired (rank-sum) data. [Non parametric tests](../chapters/04-inferential/labs/lab-non-parametric-tests.Rmd).
+**Wilcoxon test.** Non-parametric test for paired (signed-rank) or unpaired (rank-sum) data. [Non parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests).

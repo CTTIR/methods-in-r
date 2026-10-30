@@ -1,12 +1,14 @@
-## Introduction
+## GARCH Models {#sec-chapters-09-timeseries-garch-volatility}
+
+### Introduction {#sec-chapters-09-timeseries-garch-volatility-introduction}
 
 GARCH (Generalised Autoregressive Conditional Heteroscedasticity) models capture time-varying conditional variance — the volatility clustering pattern in which quiet periods alternate with volatile ones. Financial returns are the prototypical application: stock prices show stretches of low daily variability punctuated by high-volatility crisis episodes, a structure that conditional-Normal ARMA models cannot accommodate. GARCH extends ARMA by adding an autoregressive equation for the conditional variance itself, making volatility a forecastable quantity.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-garch-volatility-prerequisites}
 
 A working understanding of ARMA models, conditional distributions, and the distinction between unconditional and conditional variance.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-garch-volatility-theory}
 
 The GARCH(1, 1) model decomposes returns as
 
@@ -20,11 +22,11 @@ The mean structure can be combined with an ARMA component; GARCH specifically mo
 
 Extensions handle asymmetric responses to positive vs negative shocks (EGARCH, TGARCH, APARCH), variance feedback into the mean (GARCH-M), and multivariate volatility (DCC, BEKK). For non-Normal returns, $t$- or skewed-$t$-distributed innovations are standard.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-garch-volatility-assumptions}
 
 Conditional Normality (or $t$, skewed-$t$) of innovations $z_t$; stationarity of the conditional variance ($\alpha + \beta < 1$); the chosen GARCH order is appropriate for the data.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-garch-volatility-r-implementation}
 
 ```r
 library(rugarch)
@@ -47,15 +49,15 @@ show(fit)
 plot(fit, which = 3)   # conditional sd
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-garch-volatility-output-results}
 
 `ugarchfit()` returns parameter estimates ($\omega, \alpha, \beta$, mean parameters), log-likelihood, AIC/BIC, and Ljung-Box-style tests on standardised and squared standardised residuals. The conditional-standard-deviation plot shows the time-varying volatility extracted by the model.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-garch-volatility-interpretation}
 
 A reporting sentence: "A GARCH(1, 1) fit to daily returns estimated $\hat\omega = 0.0001$, $\hat\alpha = 0.08$, $\hat\beta = 0.91$ ($\hat\alpha + \hat\beta = 0.99$, very persistent volatility); standardised residuals showed no remaining ARCH effects (Ljung-Box on squared residuals $p = 0.42$). Conditional-volatility forecasts widen modestly over the 30-day horizon." Always report the persistence sum and standardised-residual diagnostics.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-garch-volatility-practical-tips}
 
 - Check standardised residuals (`residuals(fit, standardize = TRUE)`); they should be approximately iid and often heavier-tailed than Normal, motivating $t$ or skewed-$t$ innovations.
 - For asymmetric responses to positive vs negative shocks (the leverage effect in equity returns), use EGARCH or TGARCH; standard GARCH is symmetric and misses this.
@@ -64,30 +66,27 @@ A reporting sentence: "A GARCH(1, 1) fit to daily returns estimated $\hat\omega 
 - GARCH on returns is conventional, but the framework applies to any series with volatility clustering — physiological signals, atmospheric data, traffic counts.
 - For very long series, the parameter estimates can be stable but the conditional-volatility series may need recursive re-estimation; use `ugarchroll()` for genuine out-of-sample evaluation.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-garch-volatility-r-packages-used}
 
 `rugarch` for univariate GARCH and its many extensions; `rmgarch` for multivariate GARCH (DCC, BEKK); `fGarch` as an alternative implementation; `bayesGARCH` for Bayesian GARCH; `tsgarch` for the modern tidyverse-flavoured interface.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-garch-volatility-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-garch-volatility-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-garch-volatility-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-garch-volatility-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

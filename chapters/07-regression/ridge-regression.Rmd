@@ -1,12 +1,14 @@
-## Introduction
+## Ridge Regression {#sec-chapters-07-regression-ridge-regression}
+
+### Introduction {#sec-chapters-07-regression-ridge-regression-introduction}
 
 Ridge regression adds an L2 penalty $\lambda \sum_j \beta_j^2$ to the residual sum of squares. It shrinks coefficients toward zero — but never exactly to zero — reducing variance at the cost of a small bias and producing stable fits even when predictors are highly correlated. The classical motivation was multicollinearity: when $X^\top X$ is near-singular, OLS estimates are extremely variable, and the ridge penalty regularises the inverse and yields a well-defined estimator. Modern uses extend to high-dimensional regression where $p > n$ makes OLS undefined.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-ridge-regression-prerequisites}
 
 A working understanding of linear regression, the bias-variance trade-off, multicollinearity, and the role of cross-validation in tuning regularisation parameters.
 
-## Theory
+### Theory {#sec-chapters-07-regression-ridge-regression-theory}
 
 The ridge estimator minimises
 
@@ -16,11 +18,11 @@ with closed-form solution $\hat\beta_{\text{ridge}} = (X^\top X + \lambda I)^{-1
 
 Cross-validation (typically $k = 10$ folds) selects $\lambda$. Two common rules: $\lambda_{\min}$ minimises CV error, $\lambda_{1\mathrm{se}}$ takes the largest $\lambda$ within one standard error of the minimum (more parsimonious shrinkage).
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-ridge-regression-assumptions}
 
 Standard linear-model assumptions on residuals; predictors should be standardised (`glmnet` does this internally and back-transforms). For statistical inference on shrunken coefficients, the bias from regularisation must be considered; bootstrap or debiased lasso/ridge methods provide adjusted intervals.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-ridge-regression-r-implementation}
 
 ```r
 library(glmnet)
@@ -36,15 +38,15 @@ coef(cvfit, s = "lambda.min")
 coef(cvfit, s = "lambda.1se")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-ridge-regression-output-results}
 
 `cv.glmnet()` with `alpha = 0` fits ridge regression with cross-validated $\lambda$. The plot shows mean CV error against log $\lambda$ with the two selection lines. `coef()` returns shrunken coefficients at the chosen $\lambda$; all are non-zero, in contrast to lasso.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-ridge-regression-interpretation}
 
 A reporting sentence: "Ridge regression with CV-optimal $\lambda_{1\mathrm{se}} = 0.5$ produced shrunken coefficient estimates that remained stable despite the strong correlations between displacement, weight, and horsepower; the cross-validated mean squared error was 7.2 mpg² versus 9.8 mpg² for OLS, reflecting the variance reduction." Always report the chosen $\lambda$ and the cross-validated error.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-ridge-regression-practical-tips}
 
 - Always standardise predictors before ridge; `glmnet` does this internally with `standardize = TRUE` (default).
 - Use $\lambda_{1\mathrm{se}}$ for more shrinkage than $\lambda_{\min}$; the parsimonious choice typically generalises better.
@@ -53,46 +55,43 @@ A reporting sentence: "Ridge regression with CV-optimal $\lambda_{1\mathrm{se}} 
 - Set the random seed before `cv.glmnet()` to ensure reproducible $\lambda$ selection.
 - Compare ridge against lasso and elastic net on the same cross-validation folds when the right level of sparsity is unclear; modern penalised regression workflows benchmark all three.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-ridge-regression-r-packages-used}
 
 `glmnet` for canonical ridge, lasso, and elastic-net implementations with cross-validated tuning; `MASS::lm.ridge()` for an alternative ridge implementation; `hdi` for high-dimensional inference including debiased ridge; `caret` and `tidymodels` for unified cross-validated comparison across penalised methods.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-ridge-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-ridge-regression-assumptions) and
+[practical tips](#sec-chapters-07-regression-ridge-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-ridge-regression-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

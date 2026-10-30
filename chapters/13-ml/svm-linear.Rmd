@@ -1,12 +1,14 @@
-## Introduction
+## Linear Support Vector Machines {#sec-chapters-13-ml-svm-linear}
+
+### Introduction {#sec-chapters-13-ml-svm-linear-introduction}
 
 Linear support vector machines (SVMs) find the hyperplane that maximally separates classes with the largest possible margin. The soft-margin formulation introduced by Cortes and Vapnik in 1995 added slack variables to tolerate misclassified or margin-violating points, governed by a regularisation parameter $C$. Linear SVMs scale to very large sparse feature spaces (common in text classification, where bag-of-words gives millions of features) and are competitive with logistic regression on most tabular classification tasks.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-svm-linear-prerequisites}
 
 A working understanding of linear classification, convex optimisation, and the geometric concept of margin in supervised learning.
 
-## Theory
+### Theory {#sec-chapters-13-ml-svm-linear-theory}
 
 The soft-margin primal optimisation problem is
 
@@ -14,11 +16,11 @@ $$\min_{w, b, \xi} \tfrac{1}{2} \|w\|^2 + C \sum_i \xi_i \quad \text{s.t.} \quad
 
 The first term maximises the margin (minimising $\|w\|$); the second penalises slack. Larger $C$ penalises slack more, favouring low training error at the cost of higher variance; smaller $C$ allows more margin violations and produces a smoother boundary. The dual formulation exposes the support-vector structure: only points on or inside the margin contribute to $w$, so the trained model is effectively determined by a sparse subset of training points.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-svm-linear-assumptions}
 
 Classes are approximately linearly separable for the chosen $C$; features are appropriately scaled (SVMs are distance-based and unscaled features dominate the geometry).
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-svm-linear-r-implementation}
 
 ```r
 library(e1071)
@@ -47,15 +49,15 @@ sapply(cs, function(c) {
 })
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-svm-linear-output-results}
 
 `svm()` returns a fitted classifier with the support vectors, dual coefficients, and a learned weight vector. Varying $C$ shows the trade-off: small $C$ retains many support vectors (soft boundary), large $C$ retains few (tight boundary, high variance).
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-svm-linear-interpretation}
 
 A reporting sentence: "A linear SVM with cross-validated $C = 1$ achieved 92 % test accuracy with 124 support vectors out of 200 training points; the support-vector count indicates the classes overlap moderately and a soft boundary is appropriate. Higher $C$ values reduced support-vector counts but increased test error, confirming the bias-variance trade-off." Always report $C$, support-vector counts, and how $C$ was tuned.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-svm-linear-practical-tips}
 
 - Standardise features before fitting; unscaled features with different units bias the geometry of the margin.
 - Tune $C$ by cross-validation over a logarithmic grid (typical range $10^{-3}$ to $10^{3}$); the U-shaped CV-error curve has a clear optimum.
@@ -64,37 +66,34 @@ A reporting sentence: "A linear SVM with cross-validated $C = 1$ achieved 92 % t
 - Linear SVM and logistic regression often produce nearly identical decision boundaries on the same data; the SVM uses hinge loss while logistic uses log-loss, but for most tasks the choice is convention rather than substance.
 - For non-linearly separable data, switch to kernel SVM (RBF, polynomial); the linear SVM cannot represent non-linear boundaries regardless of $C$.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-svm-linear-r-packages-used}
 
 `e1071::svm()` for the canonical SVM implementation; `LiblineaR` for fast linear SVMs on large sparse data; `kernlab::ksvm()` for an alternative with richer kernel support; `parsnip::svm_linear()` for tidymodels integration; `caret` for cross-validated $C$ tuning.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-svm-linear-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-svm-linear-assumptions) and
+[practical tips](#sec-chapters-13-ml-svm-linear-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-svm-linear-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

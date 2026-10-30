@@ -1,8 +1,10 @@
+## Week 4, Session 5 — Explanation vs prediction; reporting {#sec-reporting-lab-explanation-vs-prediction-reporting}
+
 <div class="callout callout-note">
 **Workflow lab:** Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-reporting-lab-explanation-vs-prediction-reporting-learning-objectives}
 
 - Distinguish explanatory from predictive modelling, and choose the
   correct evaluation metric for each.
@@ -11,11 +13,11 @@
 - Produce a publication-ready regression table with `gtsummary` whose
   numbers trace directly to the fitted model.
 
-## Prerequisites
+### Prerequisites {#sec-reporting-lab-explanation-vs-prediction-reporting-prerequisites}
 
 The regression tools covered earlier in the book.
 
-## Background
+### Background {#sec-reporting-lab-explanation-vs-prediction-reporting-background}
 
 Breiman's 1998 essay *The Two Cultures* and Shmueli's 2010 essay *To
 Explain or to Predict?* draw the same line from opposite sides. In
@@ -35,7 +37,7 @@ TRIPOD (now TRIPOD-AI) for prediction models each specify the items a
 reader needs to evaluate the claim. A checklist filled in as you write
 is much easier than one filled in at submission.
 
-## Setup
+### Setup {#sec-reporting-lab-explanation-vs-prediction-reporting-setup}
 
 ```r
 library(tidyverse)
@@ -46,19 +48,20 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-reporting-lab-explanation-vs-prediction-reporting-1-goal}
 
 Fit a single linear model to the penguins data and present it two ways:
 once as an explanatory analysis (what drives body mass?) and once as a
 predictive model (can we predict body mass on held-out birds?).
 
-## 2. Approach
+### 2. Approach {#sec-reporting-lab-explanation-vs-prediction-reporting-2-approach}
 
 ```r
+peng <- penguins |> drop_na(body_mass_g, flipper_length_mm, sex, species)
 fit_expl <- lm(body_mass_g ~ flipper_length_mm + sex + species, data = peng)
 ```
 
-## 3. Execution
+### 3. Execution {#sec-reporting-lab-explanation-vs-prediction-reporting-3-execution}
 
 ```r
 peng |>
@@ -68,18 +71,20 @@ peng |>
   labs(x = "Flipper length (mm)", y = "Body mass (g)")
 ```
 
-## 4. Check
+### 4. Check {#sec-reporting-lab-explanation-vs-prediction-reporting-4-check}
 
 Explanatory evaluation: effect sizes with intervals, residual
 diagnostics, and adjusted *R*².
 
 ```r
+glance(fit_expl) |> select(r.squared, adj.r.squared, sigma, df, df.residual)
 ```
 
 Predictive evaluation: a 5-fold split, hand-coded to keep the example
 transparent.
 
 ```r
+k <- 5
 folds <- sample(rep(seq_len(k), length.out = nrow(peng)))
 rmse_k <- sapply(seq_len(k), function(i) {
   tr <- peng[folds != i, ]
@@ -91,7 +96,7 @@ mean_rmse <- mean(rmse_k)
 mean_rmse
 ```
 
-## 5. Report
+### 5. Report {#sec-reporting-lab-explanation-vs-prediction-reporting-5-report}
 
 ```r
 tbl_regression(fit_expl, intercept = TRUE) |>
@@ -104,7 +109,7 @@ tbl_regression(fit_expl, intercept = TRUE) |>
 > performance, estimated by 5-fold cross-validation, was RMSE =
 > `round(mean_rmse, 0)` g.
 
-### Reporting-guideline map
+#### Reporting-guideline map {#sec-reporting-lab-explanation-vs-prediction-reporting-reporting-guideline-map}
 
 | Design | Guideline | URL |
 |---|---|---|
@@ -115,7 +120,7 @@ tbl_regression(fit_expl, intercept = TRUE) |>
 | Systematic review | PRISMA | <http://prisma-statement.org/> |
 
 
-## Common pitfalls
+### Common pitfalls {#sec-reporting-lab-explanation-vs-prediction-reporting-common-pitfalls}
 
 - Choosing a predictor set by *R*² and reporting a predictive claim, or
   tuning a predictive model and reporting causal-sounding coefficients.
@@ -123,13 +128,14 @@ tbl_regression(fit_expl, intercept = TRUE) |>
   drafting.
 - Assuming in-sample *R*² generalises.
 
-## Further reading
+### Further reading {#sec-reporting-lab-explanation-vs-prediction-reporting-further-reading}
 
 - Breiman L. (2001). *Statistical Modeling: The Two Cultures.*
 - Shmueli G. (2010). *To Explain or to Predict?* Statistical Science.
-- [Writing a report](../../appendices/D-writing-a-report.Rmd).
+- [Writing a report](#sec-appendices-d-writing-a-report).
 
-## Session info
+### Session info {#sec-reporting-lab-explanation-vs-prediction-reporting-session-info}
 
 ```r
+sessionInfo()
 ```

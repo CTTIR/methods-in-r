@@ -1,12 +1,14 @@
-## Introduction
+## The Cauchy-Schwarz Inequality {#sec-chapters-01-foundations-cauchy-schwarz}
+
+### Introduction {#sec-chapters-01-foundations-cauchy-schwarz-introduction}
 
 The Cauchy-Schwarz inequality is the single most useful inequality in applied mathematics. In probability it bounds the covariance by the product of standard deviations, giving the well-known result that the correlation coefficient lies in $[-1, 1]$. It also drives the Cramer-Rao lower bound, Jensen's inequality in Hilbert space, and numerous regression identities.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-cauchy-schwarz-prerequisites}
 
 The reader should be comfortable with expectations, variances, covariances, and elementary algebra.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-cauchy-schwarz-theory}
 
 **Cauchy-Schwarz for expectations.** For any random variables $X, Y$ with finite second moments,
 
@@ -33,11 +35,11 @@ The expectations form arises as a special case with $\langle X, Y \rangle = E[XY
 - In information theory, the Cauchy-Schwarz bound on correlations implies the bound $|I(X; Y)| \leq \min(H(X), H(Y))$ for mutual information.
 - Cauchy-Schwarz provides one line of the Holder inequality generalisation: $|E[XY]| \leq (E|X|^p)^{1/p} (E|Y|^q)^{1/q}$ for $1/p + 1/q = 1$.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-cauchy-schwarz-assumptions}
 
 Cauchy-Schwarz requires the second moments of both $X$ and $Y$ to be finite. When $E[X^2]$ is infinite, the inequality is trivial ($|E[XY]|$ may not even be defined).
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-cauchy-schwarz-r-implementation}
 
 ```r
 set.seed(2026)
@@ -60,7 +62,7 @@ t(results)
 
 We generate data with varying noise levels and compute the covariance, the product of SDs, and the Pearson correlation.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-cauchy-schwarz-output-results}
 
 ```
      cov_xy   sd_x   sd_y     rho  product
@@ -73,11 +75,11 @@ We generate data with varying noise levels and compute the covariance, the produ
 
 The covariance is bounded by the product of SDs in every row; the ratio `rho` = covariance / (product of SDs) lies in $[-1, 1]$. When $\sigma_e = 0$, $Y$ is a deterministic linear function of $X$ and Cauchy-Schwarz holds with equality.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-cauchy-schwarz-interpretation}
 
 Cauchy-Schwarz is rarely invoked by name in applied papers, but its conclusions appear everywhere: correlations bounded by 1, $R^2$ bounded by 1, regression slopes expressible in terms of correlations and SDs. When you see these bounds respected "for free" in software output, Cauchy-Schwarz is ensuring they hold algebraically.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-cauchy-schwarz-practical-tips}
 
 - If a correlation value exceeds 1 in your output, there is a bug -- Cauchy-Schwarz forbids it. Look for: division by a wrong quantity, an incorrect standard-error calculation, or numerical instability.
 - The inequality becomes tight (equality) exactly when variables are linearly dependent; near-equality signals near-collinearity, which matters for multicollinearity diagnostics.
@@ -87,27 +89,24 @@ Cauchy-Schwarz is rarely invoked by name in applied papers, but its conclusions 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-cauchy-schwarz-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-cauchy-schwarz-assumptions) and
+[practical tips](#sec-chapters-01-foundations-cauchy-schwarz-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-cauchy-schwarz-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

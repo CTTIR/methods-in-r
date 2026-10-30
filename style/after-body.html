@@ -25,92 +25,43 @@
   })();
 </script>
 
-<!-- Left-sidebar Part dividers (bookdown's native (PART) is broken on bs4_book 0.46) -->
+<!-- Offer only downloads produced and inventoried by this build. -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    var toc = document.querySelector(".book-toc");
-    if (!toc) return;
-
-    var parts = [
-      { before: "sec-ch-01-foundations.html",  roman: "Part I",   title: "Foundations" },
-      { before: "sec-ch-07-regression.html",   roman: "Part II",  title: "Modelling" },
-      { before: "sec-ch-12-bioinformatics.html",roman: "Part III", title: "Applications" },
-      { before: "reporting-templates.html",    roman: "Part IV",  title: "Reporting Templates" },
-      { before: "the-research-workflow.html",  roman: "Appendix", title: "Reference Material" }
-    ];
-
-    parts.forEach(function (p) {
-      var anchor = toc.querySelector('a[href="' + p.before + '"]');
-      if (!anchor) return;
-      var li = anchor.closest("li");
-      if (!li || li.previousElementSibling && li.previousElementSibling.classList.contains("part-header")) return;
-      var hdr = document.createElement("li");
-      hdr.className = "part-header";
-      var k = document.createElement("span");
-      k.className = "part-kicker";
-      k.textContent = p.roman;
-      var t = document.createElement("span");
-      t.className = "part-title";
-      t.textContent = p.title;
-      hdr.appendChild(k);
-      hdr.appendChild(t);
-      li.parentNode.insertBefore(hdr, li);
-    });
-  });
-</script>
-
-<!-- Right-panel "Downloads" section, injected above View source / Edit this page -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // There are TWO .book-extra blocks on each page:
-    //  - sidebar one: contains #book-repo ("View book source")
-    //  - right-nav one: contains #book-source + #book-edit
-    // We want the latter.
-    var bookSource = document.getElementById("book-source");
-    var bookExtra = bookSource ? bookSource.closest(".book-extra") : null;
-    if (!bookExtra || document.querySelector(".book-downloads")) return;
-
-    var current = window.location.pathname.split("/").pop() || "index.html";
-    var chapterPdf = current.replace(/\.html$/, ".pdf");
-    var isLanding = current === "" || current === "index.html";
-
-    var wrap = document.createElement("div");
-    wrap.className = "book-downloads";
-
-    var heading = document.createElement("h6");
-    heading.className = "book-downloads-heading";
-    heading.textContent = "Downloads";
-    wrap.appendChild(heading);
-
-    var list = document.createElement("ul");
-    list.className = "list-unstyled";
-
-    var liBook = document.createElement("li");
-    var aBook = document.createElement("a");
-    aBook.id = "book-download-full";
-    aBook.href = "methods-in-r.pdf";
-    aBook.textContent = "Entire book (PDF) ";
-    var iconBook = document.createElement("i");
-    iconBook.className = "fa-solid fa-book";
-    aBook.appendChild(iconBook);
-    liBook.appendChild(aBook);
-    list.appendChild(liBook);
-
-    if (!isLanding) {
-      var liChapter = document.createElement("li");
-      var aChapter = document.createElement("a");
-      aChapter.id = "book-download-chapter";
-      aChapter.href = "pdf-chapters/" + chapterPdf;
-      aChapter.textContent = "This chapter (PDF) ";
-      var iconCh = document.createElement("i");
-      iconCh.className = "fa-solid fa-file-pdf";
-      aChapter.appendChild(iconCh);
-      liChapter.appendChild(aChapter);
-      list.appendChild(liChapter);
+  document.addEventListener("DOMContentLoaded", async function () {
+    var source = document.getElementById("book-source");
+    var extra = source && source.closest(".book-extra");
+    if (!extra) return;
+    try {
+      var response = await fetch("downloads.json");
+      if (!response.ok) return;
+      var files = await response.json();
+      var current = window.location.pathname.split("/").pop() || "index.html";
+      var candidates = [
+        ["methods-in-r.pdf", "Entire book (PDF)"],
+        ["methods-in-r.epub", "Entire book (EPUB)"]
+      ];
+      if (current !== "index.html")
+        candidates.push(["pdf-chapters/" + current.replace(/\.html$/, ".pdf"), "This chapter (PDF)"]);
+      var available = candidates.filter(function (item) { return files.includes(item[0]); });
+      if (!available.length) return;
+      var wrap = document.createElement("div");
+      wrap.className = "book-downloads";
+      var heading = document.createElement("h6");
+      heading.textContent = "Downloads";
+      wrap.appendChild(heading);
+      var list = document.createElement("ul");
+      list.className = "list-unstyled";
+      available.forEach(function (item) {
+        var li = document.createElement("li");
+        var link = document.createElement("a");
+        link.href = item[0]; link.textContent = item[1];
+        li.appendChild(link); list.appendChild(li);
+      });
+      wrap.appendChild(list);
+      extra.parentNode.insertBefore(wrap, extra);
+    } catch (error) {
+      // An unavailable inventory means there are no verified download links.
     }
-
-    wrap.appendChild(list);
-    bookExtra.parentNode.insertBefore(wrap, bookExtra);
   });
 </script>
 

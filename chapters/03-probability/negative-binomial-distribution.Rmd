@@ -1,12 +1,14 @@
-## Introduction
+## The Negative Binomial Distribution {#sec-chapters-03-probability-negative-binomial-distribution}
+
+### Introduction {#sec-chapters-03-probability-negative-binomial-distribution-introduction}
 
 The negative binomial distribution is the workhorse model for overdispersed counts -- counts whose variance exceeds their mean. It arises naturally as the number of failures before the $r$-th success in a sequence of Bernoulli trials, or as a gamma mixture of Poisson distributions. It dominates modern count-regression practice (RNA-seq, public-health incidence, insurance claims).
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-negative-binomial-distribution-prerequisites}
 
 Geometric and Poisson distributions; gamma distribution is useful for the mixture interpretation.
 
-## Theory
+### Theory {#sec-chapters-03-probability-negative-binomial-distribution-theory}
 
 Two standard parameterisations:
 
@@ -27,11 +29,11 @@ Moments in the mean-dispersion form:
 
 **Geometric as a special case**: $r = 1$ (or $\theta = 1$) recovers the geometric distribution.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-negative-binomial-distribution-assumptions}
 
 No common-rate assumption (unlike Poisson); the heterogeneity in underlying rates is parameterised by $\theta$.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-negative-binomial-distribution-r-implementation}
 
 ```r
 library(MASS)
@@ -57,7 +59,7 @@ fit <- glm.nb(y ~ x, data = df)
 summary(fit)$theta
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-negative-binomial-distribution-output-results}
 
 ```
      mean  variance expected_var
@@ -77,11 +79,11 @@ summary(fit)$theta
 
 Empirical variance (17.5) matches the theoretical $\mu + \mu^2/\theta = 5 + 25/2 = 17.5$. The MLE of $\theta$ is close to the true value 2.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-negative-binomial-distribution-interpretation}
 
 Negative binomial is the default count-data model in modern applied work. In a manuscript: "incidence rates were compared using negative binomial regression to account for overdispersion (dispersion estimated as $\theta = 2.0$)". Always report the dispersion parameter alongside the rate ratios.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-negative-binomial-distribution-practical-tips}
 
 - Detect overdispersion by fitting a Poisson first and checking residual deviance $\approx$ df; ratios $> 1.5$ suggest overdispersion.
 - `glm.nb` jointly estimates regression coefficients and dispersion; faster-but-less-flexible alternatives include `glmmTMB` and `brms`.
@@ -91,26 +93,23 @@ Negative binomial is the default count-data model in modern applied work. In a m
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-negative-binomial-distribution-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-negative-binomial-distribution-assumptions) and
+[practical tips](#sec-chapters-03-probability-negative-binomial-distribution-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-negative-binomial-distribution-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

@@ -1,9 +1,11 @@
+## Week 1, Session 2 — R, RStudio, Quarto, and renv toolchain {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-learning-objectives}
 
 - Describe the role of R, RStudio, Quarto, and renv in a reproducible
   analysis toolchain.
@@ -12,11 +14,11 @@ Goal → Approach → Execution → Check → Report.
 - Produce a rendered Quarto document from an R chunk that draws on a
   pinned package environment.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-prerequisites}
 
-R, RStudio, and Quarto installed (see [Get started](../../get_started.Rmd)).
+R, RStudio, and Quarto installed (see [Get started](#sec-how-to-use)).
 
-## Background
+### Background {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-background}
 
 A statistical analysis is only as trustworthy as the environment that
 produced it. A result that depends on the version of a package, the
@@ -41,7 +43,7 @@ not force you to reconstruct the environment you used six months ago,
 and a silent upgrade of a package does not break a graph you no
 longer remember how to draw.
 
-## Setup
+### Setup {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-setup}
 
 ```r
 library(tidyverse)
@@ -49,13 +51,13 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-1-goal}
 
 Stand up a minimal reproducible R project and demonstrate the commands
 that keep it reproducible: version reporting, environment snapshotting,
 and rendering.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-2-approach}
 
 A reproducible project has four minimum ingredients: a working
 directory, a package lockfile, a document that can be re-rendered, and
@@ -63,6 +65,7 @@ a record of the R session. In this lab we simulate a tiny dataset, draw
 a figure from it, and record the environment used to produce both.
 
 ```r
+lab <- tibble(
   subject = seq_len(30),
   group   = rep(c("A", "B"), each = 15),
   value   = c(rnorm(15, mean = 10, sd = 2),
@@ -71,7 +74,7 @@ a figure from it, and record the environment used to produce both.
 lab
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-3-execution}
 
 ```r
 lab |>
@@ -85,7 +88,7 @@ The chunk above is what a reader would rerun. It must be
 self-contained: the data are simulated inside the document, the seed is
 set, and only tidyverse is required.
 
-### Project anatomy
+#### Project anatomy {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-project-anatomy}
 
 A minimal project contains:
 
@@ -98,7 +101,7 @@ A minimal project contains:
 - A `data/` folder — ideally small and read-only; never raw CSVs you
   edited by hand.
 
-### renv in three commands
+#### renv in three commands {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-renv-in-three-commands}
 
 ```r
 # run once per project, after creating the .Rproj
@@ -116,12 +119,14 @@ lockfile. In a shared project, your rule of thumb is: if `status()`
 reports anything other than "project is synchronised with the
 lockfile", do not commit.
 
-## 4. Check
+### 4. Check {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-4-check}
 
 ```r
+R.version.string
 ```
 
 ```r
+# A minimal package-version report we can include in any write-up.
 installed_versions <- tibble(
   package = c("tidyverse", "ggplot2", "dplyr"),
   version = sapply(c("tidyverse", "ggplot2", "dplyr"),
@@ -134,7 +139,7 @@ The two outputs above — R version plus a small table of key package
 versions — are what a reviewer needs to rerun the figure. Everything
 larger (`sessionInfo()`) lives at the bottom of the document.
 
-## 5. Report
+### 5. Report {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-5-report}
 
 > A reproducible analysis is carried out in a project folder anchored
 > by an `.Rproj` file, with dependencies pinned in `renv.lock` and
@@ -148,7 +153,7 @@ run by cloning the repository and typing `quarto render` is the unit
 of reproducibility in this course.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-common-pitfalls}
 
 - Installing packages outside the project library, then wondering why
   `renv::restore()` on another machine produces different output.
@@ -158,22 +163,23 @@ of reproducibility in this course.
 - Rendering a Quarto doc that reads a file outside the project
   directory, then sharing only the `.qmd`.
 
-## Further reading
+### Further reading {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-further-reading}
 
 - Quarto documentation: [quarto.org](https://quarto.org).
 - renv documentation: `vignette("renv")`.
 - Wickham H. *R Packages*, chapter on project organisation.
 
-## Session info
+### Session info {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-01-foundations)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

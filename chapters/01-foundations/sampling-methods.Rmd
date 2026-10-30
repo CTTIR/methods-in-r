@@ -1,12 +1,14 @@
-## Introduction
+## Sampling Methods {#sec-chapters-01-foundations-sampling-methods}
+
+### Introduction {#sec-chapters-01-foundations-sampling-methods-introduction}
 
 How a sample is drawn matters as much as how big it is. The same 500 observations can support valid inference about a population or produce a misleading summary, depending entirely on the sampling mechanism. Classical sampling theory names a handful of probability designs, each with characteristic strengths, variance properties, and analysis requirements.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-sampling-methods-prerequisites}
 
 The reader should know the difference between a population and a sample, and should be familiar with random-number generation in R.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-sampling-methods-theory}
 
 **Simple random sampling (SRS)** draws $n$ units from a frame of $N$ such that every subset of size $n$ is equally likely. The sample mean is unbiased for the population mean, with standard error $\sigma/\sqrt{n} \cdot \sqrt{1 - n/N}$ (the finite-population correction is negligible for $n \ll N$). SRS is the theoretical baseline against which other designs are compared.
 
@@ -18,11 +20,11 @@ The reader should know the difference between a population and a sample, and sho
 
 **Convenience sampling** recruits whatever units are available -- internet panels, patients at one hospital, undergraduates in a course. It supports no probability-based inference about a broader population; any generalisation must be argued on non-statistical grounds (mechanism, theory, replication).
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-sampling-methods-assumptions}
 
 Probability designs assume a complete sampling frame and known selection probabilities. Analysis must incorporate design weights ($w_i = 1/\pi_i$) and the design variance; standard software that ignores weighting (a t-test on weighted survey data, say) produces incorrect standard errors.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-sampling-methods-r-implementation}
 
 ```r
 library(sampling)
@@ -51,7 +53,7 @@ weighted.mean(tapply(strat$y, strat$stratum, mean),
 
 The code draws a 200-unit SRS and a 200-unit stratified sample from the same population, then computes the design-consistent stratified estimator via weighted averages.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-sampling-methods-output-results}
 
 ```
 [1] 57.41       # SRS mean
@@ -65,11 +67,11 @@ The code draws a 200-unit SRS and a 200-unit stratified sample from the same pop
 
 Both estimators target the same quantity; the stratified design has systematically smaller variance across repeated sampling.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-sampling-methods-interpretation}
 
 A methods section should state the sampling design precisely: "Patients were sampled by stratified random sampling, stratified by treatment centre with proportional allocation, from a frame of 4 832 eligible records identified by the inclusion criteria." This lets a reviewer evaluate whether analysis choices respect the design.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-sampling-methods-practical-tips}
 
 - When using stratified or cluster designs, analyse with the `survey` package (or equivalent) so standard errors incorporate weights and clustering.
 - Proportional allocation is a sensible default for stratified sampling; optimal (Neyman) allocation weights strata by $N_h \sigma_h$, which can be used when prior variance estimates are available.
@@ -79,27 +81,24 @@ A methods section should state the sampling design precisely: "Patients were sam
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-sampling-methods-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-sampling-methods-assumptions) and
+[practical tips](#sec-chapters-01-foundations-sampling-methods-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-sampling-methods-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

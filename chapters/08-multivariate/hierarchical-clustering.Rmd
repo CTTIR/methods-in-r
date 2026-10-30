@@ -1,12 +1,14 @@
-## Introduction
+## Hierarchical Clustering {#sec-chapters-08-multivariate-hierarchical-clustering}
+
+### Introduction {#sec-chapters-08-multivariate-hierarchical-clustering-introduction}
 
 Hierarchical clustering builds a nested family of partitions: at the bottom every observation is its own cluster, at the top all observations form a single cluster, and intermediate levels correspond to all the partitions you might consider. Agglomerative methods (the practical default) merge the two closest clusters at each step until everything is connected; divisive methods reverse the process. The output is a dendrogram — a tree that can be cut at any height to produce a partition with the corresponding number of clusters. The dendrogram is the headline visual that distinguishes hierarchical clustering from partitioning methods.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-hierarchical-clustering-prerequisites}
 
 A working understanding of distance metrics, the difference between distance between observations and distance between clusters, and the dendrogram as a graphical representation of the merging sequence.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-hierarchical-clustering-theory}
 
 Linkage criteria define the distance between two clusters $A$ and $B$:
 
@@ -17,11 +19,11 @@ Linkage criteria define the distance between two clusters $A$ and $B$:
 
 The dendrogram is cut at a user-chosen height (or at $k$ clusters via `cutree()`); the height of the cut is itself a diagnostic — short merges below the cut indicate tight clusters, tall merges above suggest meaningful separation.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-hierarchical-clustering-assumptions}
 
 A meaningful distance metric on the data and roughly independent observations. The chosen linkage criterion matches the expected cluster geometry; Ward's assumes Euclidean distance.
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-hierarchical-clustering-r-implementation}
 
 ```r
 library(factoextra)
@@ -42,15 +44,15 @@ for (m in c("single", "complete", "average", "ward.D2")) {
 cutree(hc_ward, k = 3)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-hierarchical-clustering-output-results}
 
 `hclust()` returns the merging sequence and per-merge heights as an `hclust` object. `fviz_dend()` plots the dendrogram with cluster boxes and a colour palette. `cutree()` extracts cluster assignments at a chosen $k$. The four-panel comparison shows how dramatically linkage choice changes the resulting tree.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-hierarchical-clustering-interpretation}
 
 A reporting sentence: "Ward-linkage agglomerative clustering on standardised iris data, cut at $k = 3$, produced three clusters matching the species labels with 95 % agreement; single linkage produced a chained 1-iris-vs-149 partition that is uninformative for this dataset, illustrating the linkage choice's importance." Always disclose the linkage method and the distance metric used.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-hierarchical-clustering-practical-tips}
 
 - Ward's linkage (`ward.D2`) is the most reliable default for spherical clusters of similar size; it agrees with $k$-means in spirit but produces a tree.
 - Single linkage often produces stringy chains; reach for it only when chain-like structures are substantively meaningful (e.g. minimum spanning trees in network analysis).
@@ -59,32 +61,29 @@ A reporting sentence: "Ward-linkage agglomerative clustering on standardised iri
 - For mixed numeric-categorical data, compute Gower distance with `cluster::daisy()` and feed it to `hclust()`; Ward's then needs `method = "ward.D"` (not D2).
 - Consider `cluster::agnes()` over `hclust()` for an agglomerative coefficient that quantifies the strength of the clustering structure (close to 1 = strong structure).
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-hierarchical-clustering-r-packages-used}
 
 Base R `hclust()` and `cutree()`; `cluster::agnes()` and `diana()` for agglomerative and divisive variants with structure indices; `factoextra` for `fviz_dend()` and `fviz_cluster()` ggplot-style visualisation; `dendextend` for advanced dendrogram manipulation including tanglegrams comparing two trees.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-hierarchical-clustering-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-hierarchical-clustering-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-hierarchical-clustering-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-hierarchical-clustering-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

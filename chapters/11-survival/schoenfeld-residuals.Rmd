@@ -1,12 +1,14 @@
-## Introduction
+## Schoenfeld Residuals {#sec-chapters-11-survival-schoenfeld-residuals}
+
+### Introduction {#sec-chapters-11-survival-schoenfeld-residuals-introduction}
 
 Schoenfeld residuals are the standard diagnostic for the proportional-hazards (PH) assumption in Cox regression. They are computed at each event time as the difference between the failing subject's covariate value and the expected covariate value across the risk set. Under PH, Schoenfeld residuals are uncorrelated with time; a trend across time signals that the hazard ratio is itself time-varying, which violates the central assumption of the Cox model and invalidates a single-number hazard-ratio interpretation.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-schoenfeld-residuals-prerequisites}
 
 A working understanding of Cox proportional-hazards regression, the partial likelihood, and the difference between the proportional-hazards and accelerated-failure-time framings of survival regression.
 
-## Theory
+### Theory {#sec-chapters-11-survival-schoenfeld-residuals-theory}
 
 At event time $t_i$ in a Cox model, the Schoenfeld residual for covariate $x$ is
 
@@ -14,11 +16,11 @@ $$r_i = x_i - \hat{\mathbb E}[x \mid \text{risk set at } t_i],$$
 
 with the expectation weighted by the partial-likelihood weights $\hat w_j = \exp(X_j \hat\beta) / \sum_k \exp(X_k \hat\beta)$ over the risk set. Grambsch and Therneau (1994) developed scaled versions whose correlation with a function of time $g(t)$ — typically $\log t$ or rank-time — yields a $\chi^2_1$ test of PH for each covariate, plus a global $\chi^2_p$ test for the joint null. The function `cox.zph()` implements this test and returns smoothed-residual plots that visualise the time-varying effect when one is present.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-schoenfeld-residuals-assumptions}
 
 A Cox model has been fitted, with sufficient events to estimate the smoothed Schoenfeld residual function.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-schoenfeld-residuals-r-implementation}
 
 ```r
 library(survival)
@@ -35,15 +37,15 @@ plot(zph)
 par(mfrow = c(1, 1))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-schoenfeld-residuals-output-results}
 
 `print(zph)` returns per-covariate $\chi^2$ statistics, degrees of freedom, and $p$-values, plus a global test against the joint null that all hazard ratios are constant. `plot(zph)` produces one diagnostic panel per covariate showing the smoothed Schoenfeld residual against transformed time, with a horizontal reference line at the constant-hazard-ratio assumption.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-schoenfeld-residuals-interpretation}
 
 A reporting sentence: "Schoenfeld residual plots for age, sex, and ECOG performance status showed no systematic trend (per-covariate $p$ all > 0.20, global $p = 0.55$); the proportional-hazards assumption is supported." When PH fails: "The hazard ratio for treatment varied with time (Schoenfeld $p < 0.001$, decreasing trend); we report restricted-mean survival difference rather than a single Cox HR."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-schoenfeld-residuals-practical-tips}
 
 - Always run `cox.zph()` after fitting a Cox model; reporting an HR without a PH check is no longer acceptable in clinical-trial papers.
 - When PH fails for one covariate, options include: stratifying by it (`+ strata(var)`), modelling its effect as time-varying with `tt()` or `survSplit()`, or switching to RMST as the summary of treatment effect.
@@ -52,34 +54,30 @@ A reporting sentence: "Schoenfeld residual plots for age, sex, and ECOG performa
 - For strictly time-varying effects, switch to flexible parametric models (`flexsurv::flexsurvreg` with splines on log time) or include `tt(...)` time-transform functions in `coxph()`.
 - A failed PH test in itself is not reason to abandon the Cox model; it is a reason to refine the model, change the summary, or stratify.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-schoenfeld-residuals-r-packages-used}
 
 `survival` for `coxph()` and `cox.zph()`; `survminer::ggcoxzph()` for ggplot-style Schoenfeld diagnostic panels; `timereg` for additive hazards and structured time-varying-coefficient models; `flexsurv` for parametric alternatives when PH fails.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-schoenfeld-residuals-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-schoenfeld-residuals-assumptions) and [practical tips](#sec-chapters-11-survival-schoenfeld-residuals-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-schoenfeld-residuals-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

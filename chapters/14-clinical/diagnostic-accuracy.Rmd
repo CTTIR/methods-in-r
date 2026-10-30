@@ -1,12 +1,14 @@
-## Introduction
+## Diagnostic Test Accuracy {#sec-chapters-14-clinical-diagnostic-accuracy}
+
+### Introduction {#sec-chapters-14-clinical-diagnostic-accuracy-introduction}
 
 When a new diagnostic test is proposed, the first question is: how accurately does it classify disease status against a reference standard? The answer comes in several complementary numbers -- sensitivity, specificity, positive and negative predictive values, likelihood ratios, and the area under the ROC curve. Each answers a different question, and reporting any one alone is inadequate.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-diagnostic-accuracy-prerequisites}
 
 The reader should understand the distinction between a test result (positive/negative) and disease status (truly positive/negative), and should be comfortable with 2x2 tables and proportions.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-diagnostic-accuracy-theory}
 
 Given a binary test and a binary gold-standard diagnosis, every study produces a 2x2 table:
 
@@ -28,13 +30,13 @@ Sensitivity and specificity are properties of the test that are (approximately) 
 
 For a continuous marker, each possible threshold produces a pair (sensitivity, 1 - specificity). Plotting these across all thresholds gives the **receiver operating characteristic (ROC) curve**. The **area under the ROC curve (AUC)** is the probability that a randomly chosen diseased person has a higher marker value than a randomly chosen healthy person -- an interpretable summary of discrimination independent of any threshold.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-diagnostic-accuracy-assumptions}
 
 - The reference standard is a true gold standard (otherwise sensitivity and specificity are biased).
 - The test is evaluated on a representative spectrum of diseased and healthy individuals (spectrum bias can inflate apparent accuracy).
 - Test results are read blinded to the reference standard (verification and review bias are the two most common threats in reporting).
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-diagnostic-accuracy-r-implementation}
 
 ```r
 library(pROC)
@@ -69,11 +71,11 @@ plot(cp)
 
 `pROC::roc()` constructs the ROC object from marker values and disease labels. `auc()` and `ci.auc()` give the point estimate and 95% CI. The `cutpointr` package finds the threshold that maximises Youden's index (sensitivity + specificity - 1) and reports the operating characteristics at that threshold.
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-diagnostic-accuracy-output-results}
 
 The simulated example gives an AUC of approximately 0.85 (95% CI 0.79 to 0.90). The Youden-optimal cutoff is around 52, with sensitivity ~0.75 and specificity ~0.80 at that threshold.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-diagnostic-accuracy-interpretation}
 
 A manuscript table should report sensitivity, specificity, PPV, NPV, LR+, LR-, and the AUC, each with 95% confidence intervals. For a binary test:
 
@@ -81,7 +83,7 @@ A manuscript table should report sensitivity, specificity, PPV, NPV, LR+, LR-, a
 
 Crucially, the PPV depends on the disease prevalence in the study population. If the intended clinical use is in a lower-prevalence setting, report the projected PPV at that prevalence using Bayes' theorem.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-diagnostic-accuracy-practical-tips}
 
 - Always report the reference standard explicitly and justify it as a gold standard.
 - Report sensitivity and specificity *with* predictive values, not instead of them. Predictive values are what the clinician uses; sensitivity and specificity are what the test provides.
@@ -91,27 +93,24 @@ Crucially, the PPV depends on the disease prevalence in the study population. If
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-diagnostic-accuracy-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-diagnostic-accuracy-assumptions) and
+[practical tips](#sec-chapters-14-clinical-diagnostic-accuracy-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-diagnostic-accuracy-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

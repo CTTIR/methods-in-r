@@ -1,22 +1,24 @@
-## Introduction
+## Variant Calling with GATK {#sec-chapters-12-bioinformatics-variant-calling-gatk}
+
+### Introduction {#sec-chapters-12-bioinformatics-variant-calling-gatk-introduction}
 
 Variant calling turns aligned reads into a list of single-nucleotide variants (SNVs) and small insertions/deletions (indels). GATK's HaplotypeCaller is the de facto standard: it locally reassembles regions with evidence of variation and emits probabilistic genotype calls in VCF format.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-variant-calling-gatk-prerequisites}
 
 Sequence alignment, BAM format, reference genome indexing.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-variant-calling-gatk-theory}
 
 HaplotypeCaller proceeds in four stages: define **active regions** (loci with potential variation), perform **local de novo assembly** of haplotypes, **align reads to haplotypes** via pair-HMM, and **genotype** using likelihoods. For cohorts, each sample is first emitted as a per-sample GVCF, then joint-genotyped with `GenotypeGVCFs` -- this preserves reference evidence and scales linearly with samples.
 
 Downstream filtering is done with variant-quality score recalibration (VQSR) for whole-genome data or hard filters for smaller studies.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-variant-calling-gatk-assumptions}
 
 Reads are duplicate-marked, base-quality-recalibrated (BQSR), and aligned to a standard reference; ploidy is specified.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-variant-calling-gatk-r-implementation}
 
 The GATK workflow runs on the command line (Java-based); R interacts with VCF output via `VariantAnnotation`.
 
@@ -40,15 +42,15 @@ gatk HaplotypeCaller -R ref.fa -I sample.bam -O sample.g.vcf.gz -ERC GVCF
 gatk GenotypeGVCFs   -R ref.fa -V cohort.g.vcf.gz -O cohort.vcf.gz
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-variant-calling-gatk-output-results}
 
 A VCF / GVCF with per-variant coordinates, alleles, annotations, and per-sample genotypes, depths, and likelihoods.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-variant-calling-gatk-interpretation}
 
 "Joint genotyping with GATK HaplotypeCaller called 4.2M SNVs and 0.8M indels across the cohort; after VQSR with 99.9% sensitivity we retained 3.9M high-confidence SNVs."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-variant-calling-gatk-practical-tips}
 
 - Always BQSR before calling; skipping it inflates false positives, especially for low-frequency variants.
 - Use GVCF workflow for multi-sample studies; `HaplotypeCaller` in direct VCF mode is only for single-sample work.
@@ -58,26 +60,23 @@ A VCF / GVCF with per-variant coordinates, alleles, annotations, and per-sample 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-variant-calling-gatk-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-variant-calling-gatk-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-variant-calling-gatk-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-variant-calling-gatk-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

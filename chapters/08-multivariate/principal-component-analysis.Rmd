@@ -1,12 +1,14 @@
-## Introduction
+## Principal Component Analysis {#sec-chapters-08-multivariate-principal-component-analysis}
+
+### Introduction {#sec-chapters-08-multivariate-principal-component-analysis-introduction}
 
 Principal component analysis (PCA) takes a data matrix with many correlated variables and re-expresses it in a smaller number of uncorrelated components that capture most of the variance. It is used for exploratory visualisation, for compression, as a preprocessing step for regression and classification, and as a quality-control tool in high-dimensional experiments such as RNA-seq. It is not a model for the data; it is a change of basis.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-principal-component-analysis-prerequisites}
 
 The reader should be familiar with vectors, variance, covariance, and correlation. Some understanding of eigenvalues and eigenvectors helps but is not essential.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-principal-component-analysis-theory}
 
 Given a data matrix $\mathbf{X}$ with $n$ rows (observations) and $p$ columns (variables), PCA finds orthogonal directions in the $p$-dimensional space of variables that successively maximise the projected variance. The first principal component (PC1) is the direction of greatest variance; PC2 is the direction of greatest variance orthogonal to PC1; and so on up to $\min(n-1, p)$.
 
@@ -18,7 +20,7 @@ where the columns of $\mathbf{V}$ are the principal-component directions (loadin
 
 A practical issue: if the variables are on different scales, the variance-maximisation criterion is dominated by whichever variable happens to have the biggest numeric range. For heterogeneous data, PCA should be performed on the correlation matrix instead -- equivalent to standardising each variable to unit variance before the decomposition.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-principal-component-analysis-assumptions}
 
 PCA has no formal probabilistic assumptions, but its interpretation rests on:
 
@@ -28,7 +30,7 @@ PCA has no formal probabilistic assumptions, but its interpretation rests on:
 
 The first is violated when relationships are non-linear; alternative methods (kernel PCA, UMAP) may be needed. The second is violated when small-variance components encode the scientific signal (for example, subtle gene regulators in a bulk RNA-seq study).
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-principal-component-analysis-r-implementation}
 
 ```r
 library(FactoMineR)
@@ -51,15 +53,15 @@ summary(pca)
 
 `PCA()` from `FactoMineR` handles centring and scaling by default. `fviz_eig()` draws the scree plot; `fviz_pca_biplot()` draws the biplot with observations coloured by species and variable-loading arrows overlaid. `summary()` produces a textual summary including variance explained, variable loadings, and contribution percentages.
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-principal-component-analysis-output-results}
 
 For the `iris` data, the first component captures approximately 73% of the variance, the second another 23%; together the first two components retain 96% of the information. The biplot shows that the three species separate cleanly along PC1, which is heavily loaded on petal length, petal width, and sepal length.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-principal-component-analysis-interpretation}
 
 In a manuscript, a PCA is usually reported in two pieces: the proportion of variance explained by the first $k$ components, and the biological or physical interpretation of each component's loadings. "PC1 (73% of variance) is a size component, loading positively on all length measurements; PC2 (23%) contrasts sepal width against the other measurements and separates _I. setosa_ from the other two species."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-principal-component-analysis-practical-tips}
 
 - Always standardise (`scale.unit = TRUE`) unless all variables share the same units and you have a reason to preserve absolute-scale differences.
 - Inspect the scree plot and keep components up to an elbow, or enough for 80-90% cumulative variance, or until an interpretable pattern emerges. There is no universal rule.
@@ -69,26 +71,23 @@ In a manuscript, a PCA is usually reported in two pieces: the proportion of vari
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-principal-component-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-principal-component-analysis-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-principal-component-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-principal-component-analysis-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

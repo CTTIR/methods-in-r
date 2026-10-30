@@ -1,12 +1,14 @@
-## Introduction
+## Decision Trees (CART) {#sec-chapters-13-ml-decision-trees-cart}
+
+### Introduction {#sec-chapters-13-ml-decision-trees-cart-introduction}
 
 Decision trees partition the feature space by recursive binary splits, fitting a constant prediction in each terminal region (leaf). The Classification and Regression Trees (CART) algorithm by Breiman, Friedman, Olshen and Stone (1984) is the dominant implementation. Trees are interpretable (a single fitted tree can be read as a sequence of if-else rules), handle mixed numeric and categorical data without preprocessing, require no feature scaling, and serve as the building blocks for random forests and gradient boosting. Their main weakness is high variance — small data perturbations produce very different trees — which motivates ensemble methods that aggregate many trees.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-decision-trees-cart-prerequisites}
 
 A working understanding of classification and regression problems, impurity measures (Gini, entropy, variance), and the bias-variance trade-off in model complexity.
 
-## Theory
+### Theory {#sec-chapters-13-ml-decision-trees-cart-theory}
 
 At each node, CART searches over all features and candidate split points, choosing the split that maximally reduces impurity:
 
@@ -19,11 +21,11 @@ $$R_\alpha(T) = R(T) + \alpha |T|,$$
 
 where $R(T)$ is the training error and $|T|$ the number of terminal leaves. The pruning parameter $\alpha$ is chosen by cross-validation; the standard rule selects the smallest tree within one CV-standard-error of the minimum.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-decision-trees-cart-assumptions}
 
 Splits are axis-aligned (a single tree captures interactions only by combining splits at different depths, which limits its ability to model rotated or oblique decision boundaries); observations are independent.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-decision-trees-cart-r-implementation}
 
 ```r
 library(rpart); library(rpart.plot)
@@ -46,15 +48,15 @@ tree_pruned <- prune(tree,
 rpart.plot(tree_pruned, box.palette = c("#F4A261", "#2A9D8F"))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-decision-trees-cart-output-results}
 
 `rpart()` returns a fitted tree object; `printcp()` reports the cross-validation error at each candidate complexity parameter; `prune()` produces the cost-complexity-pruned tree at the chosen $\alpha$. `rpart.plot()` visualises the tree with split conditions and leaf class proportions.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-decision-trees-cart-interpretation}
 
 A reporting sentence: "CART with cost-complexity pruning at the CV-optimal $\alpha$ retained 5 leaves; the dominant split was on $x_1$ at 0.52, partitioning 78 % of positive cases into one branch and 80 % of negatives into the other; sub-splits on $x_2$ refined predictions within each branch." Always state the pruning method and the resulting tree size.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-decision-trees-cart-practical-tips}
 
 - Always prune using the `xerror` column of the CP table; unpruned trees over-fit severely.
 - A single tree has high variance; for predictive accuracy, prefer random forests, gradient boosting, or extra trees.
@@ -63,37 +65,34 @@ A reporting sentence: "CART with cost-complexity pruning at the CV-optimal $\alp
 - For regression, use `method = "anova"`; for classification, `method = "class"`; for survival, `method = "exp"` and the `rpart` package has built-in support.
 - For interpretability with better accuracy, use a small ensemble (e.g., 50 trees in a random forest) and aggregate variable-importance measures from across trees.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-decision-trees-cart-r-packages-used}
 
 `rpart` for CART implementation with cost-complexity pruning; `rpart.plot` for tree visualisation; `partykit` for an alternative tree framework with richer output classes; `tree` for an older alternative implementation; `caret` and `tidymodels::decision_tree()` for cross-validated pruning within ML pipelines.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-decision-trees-cart-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-decision-trees-cart-assumptions) and
+[practical tips](#sec-chapters-13-ml-decision-trees-cart-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-decision-trees-cart-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

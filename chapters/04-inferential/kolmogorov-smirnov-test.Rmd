@@ -1,12 +1,14 @@
-## Introduction
+## Kolmogorov-Smirnov Test {#sec-chapters-04-inferential-kolmogorov-smirnov-test}
+
+### Introduction {#sec-chapters-04-inferential-kolmogorov-smirnov-test-introduction}
 
 The Kolmogorov-Smirnov (KS) test compares an empirical distribution function (ECDF) against either a hypothesised theoretical CDF (one-sample test) or another empirical distribution (two-sample test). Its test statistic is the supremum of the absolute difference between the two CDFs, a measure of the largest vertical gap on a CDF plot. KS is the prototypical CDF-based goodness-of-fit test, valued for being fully non-parametric and distribution-free in the one-sample case (the null distribution of $D$ does not depend on the specific $F_0$ for continuous distributions). It is widely used as a quick distributional diagnostic and as a flexible two-sample test sensitive to differences in location, scale, and shape.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-kolmogorov-smirnov-test-prerequisites}
 
 A working understanding of empirical CDFs, the Glivenko-Cantelli theorem, and the difference between testing a fully specified hypothesised distribution and testing a parametric family with parameters estimated from the data.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-kolmogorov-smirnov-test-theory}
 
 For the **one-sample** test with sample $X_1, \dots, X_n$ and hypothesised CDF $F_0$,
 
@@ -18,11 +20,11 @@ $$D_{n,m} = \sup_x |\hat F_n(x) - \hat G_m(x)|.$$
 
 KS is distribution-free in the continuous one-sample case: the null distribution of $D$ depends only on the sample size, not the specific $F_0$. When parameters of $F_0$ are estimated from the same data, the nominal $p$-values are anti-conservative; the Lilliefors correction provides the appropriate adjustment for testing Normality with estimated mean and SD.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-kolmogorov-smirnov-test-assumptions}
 
 The underlying distribution is continuous (ties produce warnings and approximate $p$-values), observations are independent and identically distributed, and parameters of $F_0$ are either fully specified or appropriately corrected for if estimated from the sample.
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-kolmogorov-smirnov-test-r-implementation}
 
 ```r
 set.seed(2026)
@@ -41,15 +43,15 @@ library(nortest)
 lillie.test(x)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-kolmogorov-smirnov-test-output-results}
 
 The script demonstrates the four standard use cases. The one-sample KS against a Normal with sample-estimated parameters rejects the null but the $p$-value is anti-conservative; the Lilliefors-corrected variant gives the proper rejection. The two-sample KS detects the location and scale shift between $X_1$ and $X_2$ ($D = 0.31$, $p = 0.007$), illustrating the test's sensitivity to general distributional differences.
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-kolmogorov-smirnov-test-interpretation}
 
 A reporting sentence: "The Lilliefors-corrected Kolmogorov-Smirnov test rejected Normality of the residuals from the regression model ($D = 0.16$, $p < 0.001$), confirming the visual impression of right-skew in the Q-Q plot. A log transformation was applied before re-fitting; the residuals on the transformed scale passed the same test ($D = 0.05$, $p = 0.21$). The two-sample KS comparing transformed-residual distributions across treatment arms detected no significant difference in shape ($D = 0.08$, $p = 0.52$)." Always pair KS with a Q-Q plot.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-kolmogorov-smirnov-test-practical-tips}
 
 - KS is generally less powerful than Shapiro-Wilk for testing Normality in small to moderate samples; prefer Shapiro-Wilk as the default Normality test and use KS when the hypothesised distribution is non-Normal or when a two-sample distributional comparison is needed.
 - Ties in the sample invalidate the strict KS $p$-value and R issues a warning; prefer Anderson-Darling or the Cramér-von Mises test with discretised or rounded data, which handle ties more gracefully.
@@ -58,38 +60,35 @@ A reporting sentence: "The Lilliefors-corrected Kolmogorov-Smirnov test rejected
 - For very large samples, KS will reject almost any parametric fit because real data have rounding, ceiling effects, and other minor non-Normalities; use effect-size summaries and Q-Q plots in large samples rather than relying on the $p$-value alone.
 - The Anderson-Darling test gives more weight to the tails of the distribution than KS does; for tail-sensitive applications (extreme-value detection, financial risk), Anderson-Darling is often preferred.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-04-inferential-kolmogorov-smirnov-test-r-packages-used}
 
 Base R `ks.test()` for one- and two-sample Kolmogorov-Smirnov; `nortest::lillie.test()` for the Lilliefors-corrected Normality variant; `nortest::ad.test()` and `nortest::cvm.test()` for Anderson-Darling and Cramér-von Mises alternatives; `dgof::ks.test()` for discrete-data extensions; `car::qqPlot()` for graphical complements to the formal test.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-kolmogorov-smirnov-test-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-kolmogorov-smirnov-test-assumptions) and
+[practical tips](#sec-chapters-04-inferential-kolmogorov-smirnov-test-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-kolmogorov-smirnov-test-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

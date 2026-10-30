@@ -1,12 +1,14 @@
-## Introduction
+## Kaplan-Meier Estimation {#sec-chapters-11-survival-kaplan-meier}
+
+### Introduction {#sec-chapters-11-survival-kaplan-meier-introduction}
 
 The Kaplan-Meier (KM) estimator is the non-parametric maximum-likelihood estimator of the survival function from right-censored time-to-event data. Its signature step-function plot is the single most recognisable figure in clinical research. The estimator makes no distributional assumption about the time-to-event variable; it simply accumulates the conditional probability of surviving each observed event time.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-kaplan-meier-prerequisites}
 
 The reader should understand that a survival analysis studies time until an event, and that "right censoring" means some subjects are observed only up to a point before their event has occurred. Familiarity with R's `survival` package is not required but helps.
 
-## Theory
+### Theory {#sec-chapters-11-survival-kaplan-meier-theory}
 
 Let $t_1 < t_2 < \ldots < t_k$ denote the distinct event times observed in the data. At time $t_j$, let $d_j$ be the number of events and $n_j$ the number of subjects still at risk (not yet having had the event and not yet censored). The Kaplan-Meier estimator of the survival function is
 
@@ -22,7 +24,7 @@ Pointwise confidence intervals are typically constructed on the complementary lo
 
 The **log-rank test** compares survival between two or more groups. It sums the observed-minus-expected events at each event time across groups, yielding a test statistic that follows a $\chi^2_{k-1}$ distribution under the null hypothesis of equal survival functions.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-kaplan-meier-assumptions}
 
 Kaplan-Meier estimation assumes:
 
@@ -30,7 +32,7 @@ Kaplan-Meier estimation assumes:
 2. Subjects are independent.
 3. Risk of event does not depend on calendar time beyond what covariates capture (important when accrual spans a long period).
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-kaplan-meier-r-implementation}
 
 ```r
 library(survival)
@@ -55,15 +57,15 @@ ggsurvplot(fit,
 
 The `Surv()` call packages the time and event-indicator columns into a single survival object; `survfit()` with a right-hand side of `sex` produces separate KM curves for each sex. `ggsurvplot()` draws the curves with pointwise confidence bands, a log-rank p-value, and a risk table below.
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-kaplan-meier-output-results}
 
 The `lung` dataset has 138 male and 90 female patients with advanced lung cancer. The KM median survival is 270 days for males (95% CI 212 to 310) and 426 days for females (95% CI 348 to 550). The log-rank test gives $\chi^2_1 = 10.3$, $p = 0.0013$, indicating a significantly higher survival for females.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-kaplan-meier-interpretation}
 
 Reporting follows the CONSORT conventions: "Median overall survival was 270 days (95% CI 212-310) for males and 426 days (95% CI 348-550) for females; log-rank $p = 0.001$ (Figure X)." The figure should always be shown with a risk table beneath it -- the curve is nearly meaningless once the number at risk drops below a handful.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-kaplan-meier-practical-tips}
 
 - Always include a risk table. Survival curves at late follow-up with only 2 or 3 subjects remaining can swing wildly and mislead readers.
 - Do not rely on the median alone as a comparison statistic; if the curves cross, the median can flip direction as the study matures.
@@ -73,28 +75,24 @@ Reporting follows the CONSORT conventions: "Median overall survival was 270 days
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-kaplan-meier-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-kaplan-meier-assumptions) and [practical tips](#sec-chapters-11-survival-kaplan-meier-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-kaplan-meier-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

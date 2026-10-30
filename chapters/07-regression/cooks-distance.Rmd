@@ -1,12 +1,14 @@
-## Introduction
+## Cook's Distance {#sec-chapters-07-regression-cooks-distance}
+
+### Introduction {#sec-chapters-07-regression-cooks-distance-introduction}
 
 Cook's distance is the most widely used single-number summary of an observation's influence on a regression fit. It answers a direct question: how much would the fitted values change if we removed this observation? Cook's distance combines the residual (how badly the model fits this point) and the leverage (how unusual this point is in the predictor space) into one quantity, making it the first port of call for influence diagnostics in linear regression.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-cooks-distance-prerequisites}
 
 A working understanding of leverage (hat values), standardised residuals, and the leave-one-out perspective on regression diagnostics.
 
-## Theory
+### Theory {#sec-chapters-07-regression-cooks-distance-theory}
 
 For observation $i$ with standardised residual $r_i$ and hat value $h_{ii}$,
 
@@ -16,11 +18,11 @@ where $p + 1$ is the number of regression parameters. The product structure make
 
 Conventional thresholds: $D_i > 1$ indicates strong influence (the regression effectively hinges on this point); $D_i > 4/n$ indicates moderate influence and warrants investigation. The relative magnitude across observations is often more informative than absolute thresholds — a few points dominating the Cook's distance distribution deserve scrutiny regardless of cutoffs.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-cooks-distance-assumptions}
 
 Classical OLS assumptions, including residual Normality (Cook's distance is sensitive to outliers in the response). For robust alternatives, DFBETA (per-coefficient influence) or robust regression with leverage diagnostics is preferable.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-cooks-distance-r-implementation}
 
 ```r
 fit <- lm(mpg ~ wt + hp, data = mtcars)
@@ -36,15 +38,15 @@ abline(h = 4 / nrow(mtcars), col = "red", lty = 2)
 mtcars[cooks > 4 / nrow(mtcars), ]
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-cooks-distance-output-results}
 
 `cooks.distance(fit)` returns a vector of $D_i$ for every observation. The diagnostic plot (`plot(fit, which = 4)`) displays them as sticks, with the largest values labelled. Subsetting at the threshold identifies candidate influential observations for further inspection.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-cooks-distance-interpretation}
 
 A reporting sentence: "Three vehicles had Cook's distance exceeding $4/n = 0.125$ — the Maserati Bora, the Cadillac Fleetwood, and the Lincoln Continental — but refitting without them changed the coefficient on weight from $-3.88$ to $-3.65$ (95 % CI $-5.65$ to $-1.65$ vs $-5.20$ to $-2.10$ originally), with conclusions unchanged." Always run a sensitivity analysis after identifying influential points; never silently remove them.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-cooks-distance-practical-tips}
 
 - Cook's distance is sensitive to residual outliers as well as leverage; for robust alternatives, examine DFBETAs and consider robust regression.
 - An observation with $D_i > 1$ essentially guarantees the regression hinges on it; investigate the data point for errors before deciding whether to retain or exclude.
@@ -53,46 +55,43 @@ A reporting sentence: "Three vehicles had Cook's distance exceeding $4/n = 0.125
 - For GLMs, use `influence.measures(fit)`, which returns DFBETAs, hat values, and Cook's-distance analogues for the chosen family.
 - Influence diagnostics are not a substitute for substantive judgement — a high-leverage observation may be the most informative data point in the sample if it is correct.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-cooks-distance-r-packages-used}
 
 Base R `cooks.distance()`, `influence.measures()`, `dfbetas()`, `hatvalues()`; `car::influencePlot()` for an integrated visual; `performance::check_outliers()` for a tidy diagnostic interface; `MASS::rlm()` and `robustbase::lmrob()` for robust regression alternatives.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-cooks-distance-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-cooks-distance-assumptions) and
+[practical tips](#sec-chapters-07-regression-cooks-distance-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-cooks-distance-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

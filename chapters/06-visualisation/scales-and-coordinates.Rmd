@@ -1,12 +1,14 @@
-## Introduction
+## Scales and Coordinates {#sec-chapters-06-visualisation-scales-and-coordinates}
+
+### Introduction {#sec-chapters-06-visualisation-scales-and-coordinates-introduction}
 
 Scales and coordinates are the two layers of `ggplot2` that turn raw data into visual marks on a page. **Scales** map data values to visual properties — numbers to positions, factor levels to colours, ordered values to sizes — while **coordinates** describe the geometry of the plot area itself — Cartesian, polar, log, fixed aspect ratio. Most figure customisation happens at the scale level; coordinates change less often, but understanding the difference between them is what lets you switch between zooming, transforming, and projecting without breaking the rest of the plot.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-scales-and-coordinates-prerequisites}
 
 A working knowledge of `ggplot2` aesthetics and geoms, and basic familiarity with how `aes()` mappings flow through to scale choices.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-scales-and-coordinates-theory}
 
 Every aesthetic has a family of scales:
 
@@ -26,11 +28,11 @@ Coordinates change the geometry of the panel:
 
 The crucial distinction: `scale_x_continuous(limits = c(a, b))` *filters* observations outside `[a, b]` and recomputes statistics on the remaining data; `coord_cartesian(xlim = c(a, b))` *zooms* without filtering, leaving statistics untouched.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-scales-and-coordinates-assumptions}
 
 The data supplied are valid for the chosen scale (no negative values for log scales, no fractional dates for date scales).
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-scales-and-coordinates-r-implementation}
 
 ```r
 library(ggplot2); library(scales)
@@ -63,15 +65,15 @@ ggplot(diamonds, aes(carat, price)) +
   theme_minimal()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-scales-and-coordinates-output-results}
 
 Four illustrative plots: a log-scale price axis with currency formatting, a manual colour scale with custom x-axis labels, a horizontal bar chart via `coord_flip()`, and a zoomed-in scatter that preserves the full underlying dataset for accurate statistical layers.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-scales-and-coordinates-interpretation}
 
 A reporting sentence: "Price is shown on a base-10 log scale (`scale_y_log10`); the linear relationship between log-price and carat reflects an approximately power-law pricing structure." Note any non-default scale or coordinate in the figure caption — a log-scale axis is easy to overlook and can mislead readers expecting linear interpretation.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-scales-and-coordinates-practical-tips}
 
 - Reach for `scale_y_log10()` whenever the y-axis spans orders of magnitude; constant-rate growth then reads as a straight line.
 - Use `coord_cartesian()` to zoom — `scale_x_continuous(limits = ...)` *removes* the filtered data and recomputes any smoother or summary, which can mislead.
@@ -80,30 +82,26 @@ A reporting sentence: "Price is shown on a base-10 log scale (`scale_y_log10`); 
 - Reverse a scale with `scale_x_reverse()` (continuous) or `scale_x_discrete(limits = rev)` (categorical); avoid hand-flipping data frames.
 - For diverging numeric scales centred at zero, combine `scale_fill_gradient2()` with explicit `low`, `mid`, `high` colours; avoid one-sided palettes that misrepresent symmetry.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-scales-and-coordinates-r-packages-used}
 
 `ggplot2` for the scale and coordinate functions; `scales` for label formatters (`dollar_format`, `percent_format`, `comma_format`, `label_log`); `ggh4x` for nested axis labels and per-panel scale control; `cowplot` for `theme_cowplot()` paired with these scales for a publication look.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-scales-and-coordinates-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-scales-and-coordinates-assumptions) and [practical tips](#sec-chapters-06-visualisation-scales-and-coordinates-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-scales-and-coordinates-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

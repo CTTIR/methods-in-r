@@ -1,9 +1,11 @@
+## Week 2, Session 1 — Trees, random forests, gradient boosting {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-learning-objectives}
 
 - Fit a single decision tree, a random forest, and a gradient-boosted
   model on the same data, and compare their error.
@@ -11,11 +13,11 @@ Goal → Approach → Execution → Check → Report.
 - Explain when a tree ensemble is preferable to a linear model and when
   it is not.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-prerequisites}
 
 Cross-validation; regularisation.
 
-## Background
+### Background {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-background}
 
 Tree-based models divide feature space by axis-aligned splits and fit a
 constant within each region. A single tree is interpretable but high
@@ -37,7 +39,7 @@ tuning procedure, the out-of-bag or CV error, the variable-importance
 method, and — if the goal is scientific — a permutation-based importance
 to cross-check the default Gini/gain importance.
 
-## Setup
+### Setup {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-setup}
 
 ```r
 library(tidyverse)
@@ -48,21 +50,23 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-1-goal}
 
 Predict `mpg` from `mtcars` with a single tree, a random forest, and
 gradient boosting; compare errors and importances.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-2-approach}
 
 ```r
+d <- mtcars
 ggplot(d, aes(wt, mpg, colour = factor(cyl))) +
   geom_point() + labs(colour = "cyl")
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-3-execution}
 
 ```r
+tree_fit <- rpart(mpg ~ ., data = d, cp = 0.01)
 rf_fit   <- ranger(mpg ~ ., data = d, importance = "permutation",
                    num.trees = 500)
 xg_fit   <- xgboost(
@@ -72,11 +76,12 @@ xg_fit   <- xgboost(
 )
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-4-check}
 
 Honest error: CV for the tree and xgboost, OOB for ranger.
 
 ```r
+K <- 5
 folds <- sample(rep(1:K, length.out = nrow(d)))
 mse <- function(y, yhat) mean((y - yhat)^2)
 
@@ -103,13 +108,14 @@ errs
 ```
 
 ```r
+tibble(var = names(rf_fit$variable.importance),
        imp = as.numeric(rf_fit$variable.importance)) |>
   arrange(desc(imp)) |>
   ggplot(aes(reorder(var, imp), imp)) + geom_col() +
   coord_flip() + labs(x = NULL, y = "permutation importance")
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-5-report}
 
 > On `mtcars` (*n* = 32), 5-fold CV MSEs were
 > `round(errs["tree"], 2)` (single tree),
@@ -125,29 +131,30 @@ regime is where trees and boosting most often look like magic and
 almost always lie.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-common-pitfalls}
 
 - Reporting the training error of a forest; always use OOB or CV.
 - Trusting Gini/gain importance for correlated predictors.
 - Letting xgboost overfit with low `eta` and high `nrounds` without
   early stopping.
 
-## Further reading
+### Further reading {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-further-reading}
 
 - Breiman L (2001), *Random forests*.
 - Chen T, Guestrin C (2016), *XGBoost: A scalable tree boosting
   system*.
 
-## Session info
+### Session info {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-13-ml)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

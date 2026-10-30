@@ -1,12 +1,14 @@
-## Introduction
+## Power for Two-Proportion Test {#sec-chapters-05-power-power-two-proportions}
+
+### Introduction {#sec-chapters-05-power-power-two-proportions-introduction}
 
 Comparing proportions between two independent groups is one of the most common designs in clinical research, public-health epidemiology, and quality-control. Whenever the primary outcome is binary — event vs no event, response vs non-response, success vs failure — the trial's sample-size calculation reduces to a two-proportion power analysis. Several closely-related approaches are widely used: Cohen's arcsine-transformed effect size $h$ that maps cleanly to a Normal-approximation formula, direct sample-size formulas in the original-proportion scale (e.g., Kelsey's formula with continuity correction), and exact Fisher-based methods for rare events. The choice depends on the expected event rates, the desired allocation ratio, and the regulatory or methodological context.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-two-proportions-prerequisites}
 
 A working understanding of the two-proportion test, the arcsine variance-stabilising transformation, and Cohen's $h$ as the standardised effect-size measure for proportion-difference designs.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-two-proportions-theory}
 
 Cohen's $h$ is the arcsine-transformed proportion difference
 
@@ -18,11 +20,11 @@ $$n \approx 2 \left(\frac{z_{1-\alpha/2} + z_{1-\beta}}{h}\right)^2 \text{ per g
 
 For unequal allocation with ratio $k = n_2 / n_1$, the total sample size grows by a factor $(1 + 1/k)(1 + k)/4$ relative to the balanced minimum. Cohen's benchmarks for $h$ are 0.20 (small), 0.50 (medium), and 0.80 (large).
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-two-proportions-assumptions}
 
 The two groups are independent, the standard Normal-approximation conditions $np \geq 10$ and $n(1-p) \geq 10$ are satisfied for each group, and the proportions under the alternative hypothesis are pre-specified.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-two-proportions-r-implementation}
 
 ```r
 library(pwr); library(Hmisc)
@@ -39,15 +41,15 @@ pw <- sapply(n2_vals, function(n2)
 n2_vals[which(pw >= 0.80)[1]]
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-two-proportions-output-results}
 
 `pwr.2p.test()` returns the per-group sample size at specified $h$, $\alpha$, and power; `Hmisc::bsamsize()` provides the same calculation directly in the original-proportion scale. For $p_1 = 0.20$ vs $p_2 = 0.10$ at 80 % power, $n \approx 199$ per group (398 total). The unequal-allocation analysis shows that fixing $n_1 = 100$ requires roughly $n_2 = 280$ to maintain 80 % power, illustrating the inefficiency of imbalanced designs.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-two-proportions-interpretation}
 
 A reporting sentence: "To detect a difference in event rates from 10 % (historical control) to 20 % (active treatment) at $\alpha = 0.05$ two-sided with 80 % power, 199 patients per arm are required (398 total) under a 1:1 allocation. The protocol enrols 440 patients to allow for 10 % attrition. Sensitivity analyses across $p_2 \in [0.15, 0.25]$ yield required per-arm $n$ from 392 to 105, bracketing the assumed effect; the conservative end of this range was used to justify the operational sample size." Always report the assumed proportions and the allocation ratio.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-two-proportions-practical-tips}
 
 - Equal allocation (1:1) is most efficient for detecting a difference between two proportions; unequal allocation (2:1, 3:1) costs 10–30 % more total $n$ for the same power and is justified only when the cost or feasibility of the two arms differs substantially.
 - For rare events ($p < 0.01$ in either arm), the Normal-approximation formulas are unreliable; use exact Fisher's-test-based power calculations or simulation, available in `Exact::power.exact.test()` or via Monte Carlo enumeration.
@@ -56,31 +58,28 @@ A reporting sentence: "To detect a difference in event rates from 10 % (historic
 - Cohen's $h$ benchmarks (0.20 / 0.50 / 0.80) are useful for translating effect-size language into sample-size expectations, but tying the calculation to the actual expected proportions via `ES.h(p1, p2)` is more defensible than invoking the benchmarks directly.
 - For non-inferiority or equivalence designs, the calculation differs from a superiority test; use `pwr.2p.test()` with the appropriate margin or specialised tools like `bsamsize()` with non-inferiority arguments.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-05-power-power-two-proportions-r-packages-used}
 
 `pwr::pwr.2p.test()` and `pwr::pwr.2p2n.test()` for canonical Cohen's $h$ Normal-approximation calculations; `Hmisc::bsamsize()` for direct-proportion-scale calculations with optional continuity correction; `Exact::power.exact.test()` for exact-binomial power across small-sample two-proportion designs; `clusterPower` for cluster-randomised two-proportion power; `Mediana` for trial-design simulation including two-proportion power across complex designs.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-two-proportions-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-two-proportions-assumptions) and
+[practical tips](#sec-chapters-05-power-power-two-proportions-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-two-proportions-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

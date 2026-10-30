@@ -1,12 +1,14 @@
-## Introduction
+## Interpreting ACF and PACF {#sec-chapters-09-timeseries-acf-pacf-interpretation}
+
+### Introduction {#sec-chapters-09-timeseries-acf-pacf-interpretation-introduction}
 
 The autocorrelation function (ACF) and partial autocorrelation function (PACF) are the foundational diagnostic tools for ARIMA model identification. The Box-Jenkins approach uses their characteristic patterns to guess plausible orders for AR and MA terms before fitting. Even with modern automated tools (`auto.arima`), reading the ACF and PACF remains an essential skill for sanity-checking automated choices, identifying seasonal structure, and diagnosing residuals.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-acf-pacf-interpretation-prerequisites}
 
 A working understanding of autoregressive (AR) and moving-average (MA) processes, the difference between correlation and partial correlation, and stationarity as a precondition for meaningful ACF interpretation.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-acf-pacf-interpretation-theory}
 
 The ACF $\rho_k$ measures correlation between $y_t$ and $y_{t-k}$. The PACF $\phi_{kk}$ measures correlation between $y_t$ and $y_{t-k}$ after removing the effects of shorter lags $1, 2, \dots, k-1$. Box-Jenkins identification rules:
 
@@ -20,11 +22,11 @@ The dashed lines in R's ACF plot show approximate 95 % confidence bands ($\pm 1.
 
 For seasonal data, expect spikes at multiples of the seasonal period; multiplicative seasonal patterns produce decaying spikes at $s, 2s, 3s, \dots$ in the ACF.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-acf-pacf-interpretation-assumptions}
 
 The series is stationary; if not, difference first until it becomes stationary, then read the ACF / PACF on the differenced series.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-acf-pacf-interpretation-r-implementation}
 
 ```r
 library(forecast)
@@ -43,15 +45,15 @@ par(mfrow = c(1, 1))
 ggtsdisplay(ar_series)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-acf-pacf-interpretation-output-results}
 
 The four-panel display shows characteristic Box-Jenkins patterns: AR(1) ACF tails off geometrically while its PACF cuts off after lag 1; MA(1) ACF cuts off after lag 1 while its PACF tails off. `ggtsdisplay()` integrates the time-series plot with ACF and PACF in a single ggplot-style view.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-acf-pacf-interpretation-interpretation}
 
 A reporting sentence: "The ACF of the simulated AR(1) tailed off geometrically (lag-1 correlation 0.69, decaying smoothly); the PACF cut off sharply after lag 1 (0.69 at lag 1, well within bands at lags 2 onward), consistent with the AR(1) data-generating process. The MA(1) showed the reverse pattern, confirming Box-Jenkins identification rules." Identify the model class from the patterns before fitting any model.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-acf-pacf-interpretation-practical-tips}
 
 - Always difference the series until stationary before reading ACF / PACF on the levels; non-stationary series produce decaying ACFs that mimic AR.
 - Use `forecast::ggtsdisplay()` for a combined time-series + ACF + PACF view; faster than three separate plots.
@@ -60,30 +62,27 @@ A reporting sentence: "The ACF of the simulated AR(1) tailed off geometrically (
 - Complex ACF / PACF patterns (mixed ARMA, seasonal-plus-non-seasonal) are difficult to identify by eye; reach for `auto.arima` and verify the chosen orders against the ACF.
 - For very long series, even tiny correlations are statistically significant; focus on the magnitude and pattern, not on which lags fall just outside the bands.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-acf-pacf-interpretation-r-packages-used}
 
 Base R `acf()` and `pacf()`; `forecast::ggtsdisplay()` for ggplot-style integrated diagnostics; `feasts::ACF()`, `PACF()`, `gg_tsdisplay()` for the modern tidyverts equivalent; `astsa::acf2()` for compact two-panel display.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-acf-pacf-interpretation-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-acf-pacf-interpretation-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-acf-pacf-interpretation-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-acf-pacf-interpretation-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

@@ -1,4 +1,4 @@
-# Find your method {#sec-find-your-method}
+# Find your method {#sec-find-your-method .unnumbered}
 
 Open the book here when you don't know which chapter to read. Three
 routes are offered: a flowchart from research question to statistical
@@ -17,85 +17,18 @@ Bayesian, machine learning, time series, multivariate, meta-analysis,
 bioinformatics, study-design choices — are reached through their topic
 chapters or via the lookup table below.
 
-## The static decision tree
+## The static decision tree {#sec-ch00-find-your-method-the-static-decision-tree .unnumbered}
 
 Colour encodes the scale level of the outcome; a dashed border marks a
-non-parametric test. Click a node in the rendered HTML to jump to the
-method page.
+non-parametric test. Use the quick lookup links below to reach the chapters.
+This is an orientation aid; read the method's assumptions and study-design
+checks before selecting a test.
 
-```{mermaid}
-%%{init: {"securityLevel": "loose", "flowchart": {"htmlLabels": true, "useMaxWidth": true}}}%%
-flowchart TD
-    START["Research question"]:::root --> Q2{"Differences or<br/>associations?"}
-    START --> Q_INT{"Exploratory<br/>structure?"}
+![Decision tree from research question, outcome scale and study design to candidate statistical methods.](images/decision-tree.svg)
 
-    Q2 -->|Differences| QD1{"Kind of difference?"}
-    Q2 -->|Associations| QA1{"Variable count?"}
+[Open the full-size decision tree](images/decision-tree.svg)
 
-    QD1 -->|Central tendency| QD2{"Outcome scale?"}
-    QD1 -->|Variances| VAR["Variance tests<br/>(chi-sq, F, Levene)"]:::metric
-    QD1 -->|Proportions| QDPROP{"Single variable vs. expected?"}
-
-    QDPROP -->|Dichotomous| BIN["Binomial test"]:::nominal
-    QDPROP -->|Categorical| CHI_GOF["Chi-sq goodness-of-fit"]:::nominal
-
-    QD2 -->|Interval/ratio| QD3{"Number of groups?"}
-    QD2 -->|Ordinal| QD6{"Groups &amp; pairing?"}
-    QD2 -->|Nominal| QDPROP
-
-    QD3 -->|2 groups| QD4{"Independent/paired?"}
-    QD3 -->|3+ groups| QD5{"Factors &amp; design?"}
-
-    QD4 -->|Indep. normal| TT["Independent t-test"]:::metric
-    QD4 -->|Indep. non-normal| MWU["Mann-Whitney U"]:::metric_np
-    QD4 -->|Paired normal| PT["Paired t-test"]:::metric
-    QD4 -->|Paired non-normal| WSR["Wilcoxon signed-rank"]:::metric_np
-    QD4 -->|Paired sign only| SGN["Sign test"]:::metric_np
-
-    QD5 -->|1 between normal| OWA["One-way ANOVA"]:::metric
-    QD5 -->|2+ between normal| FA["Factorial ANOVA"]:::metric
-    QD5 -->|1 within normal| RM1["One-way rmANOVA"]:::metric
-    QD5 -->|Mixed design| RMM["Factorial/mixed rmANOVA"]:::metric
-    QD5 -->|Indep. non-normal| KW["Kruskal-Wallis"]:::metric_np
-    QD5 -->|Paired non-normal| FR["Friedman"]:::metric_np
-
-    QD6 -->|2 indep.| MWU
-    QD6 -->|2 paired| WSR
-    QD6 -->|&gt;2 indep.| KW
-    QD6 -->|&gt;2 paired| FR
-
-    QA1 -->|Two variables| QA2{"Scale levels?"}
-    QA1 -->|More than two| QA5{"DV scale?"}
-
-    QA2 -->|Both nominal| CHIC["Chi-sq contingency"]:::nominal
-    QA2 -->|Both ordinal| SPE["Spearman"]:::ordinal_np
-    QA2 -->|Ord + interval| SPE
-    QA2 -->|Interval linear| PEA["Pearson"]:::metric
-    QA2 -->|Interval directed| SLR["Simple linear regression"]:::metric
-    QA2 -->|Interval non-norm| KEN["Kendall tau"]:::metric_np
-
-    QA5 -->|Interval| MLR["Multiple linear regression"]:::metric
-    QA5 -->|Dichotomous| LOG["Logistic regression"]:::nominal
-    QA5 -->|Ordinal| ORL["Ordinal logistic regression"]:::ordinal
-    QA5 -->|Nominal k+| MNL["Multinomial logistic regression"]:::nominal
-
-    Q_INT -->|Reduce variables| FAC["Factor analysis"]:::interdep
-    Q_INT -->|Group cases| QCL{"Scale/size?"}
-
-    QCL -->|Mixed/small| HCL["Hierarchical clustering"]:::interdep
-    QCL -->|Metric/large| KMC["K-means"]:::interdep
-    QCL -->|Mixed/xlarge| TSC["Two-step clustering"]:::interdep
-
-    classDef metric fill:#2A9D8F,stroke:#1d6e65,color:#fff
-    classDef metric_np fill:#2A9D8F,stroke:#1d6e65,color:#fff,stroke-dasharray:6 4
-    classDef nominal fill:#F4A261,stroke:#b4743f,color:#000
-    classDef ordinal fill:#E9C46A,stroke:#a88a42,color:#000
-    classDef ordinal_np fill:#E9C46A,stroke:#a88a42,color:#000,stroke-dasharray:6 4
-    classDef interdep fill:#6A4C93,stroke:#4a3468,color:#fff
-    classDef root fill:#ffffff,stroke:#333,color:#000,font-weight:bold
-```
-
-## Quick lookup {#sec-quick-lookup}
+## Quick lookup {#sec-quick-lookup .unnumbered}
 
 A small table for the most common biomedical scenarios. The full tree
 above and the live wizard cover everything the table omits.

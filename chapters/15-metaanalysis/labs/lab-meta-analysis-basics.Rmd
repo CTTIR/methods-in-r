@@ -1,19 +1,21 @@
+## Week 4, Session 2 — Meta-analysis basics {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics}
+
 <div class="callout callout-note">
 **Inference lab:** Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-learning-objectives}
 
 - Fit a random-effects meta-analysis with `metafor::rma`.
 - Produce forest and funnel plots, and interpret between-study
   heterogeneity (τ², I²).
 - Assess small-study effects and publication bias informally.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-prerequisites}
 
 Comfort with effect sizes on the log scale.
 
-## Background
+### Background {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-background}
 
 Meta-analysis pools effect estimates across studies to sharpen an
 overall answer. Fixed-effect models assume all studies estimate one true
@@ -30,7 +32,7 @@ potential publication bias. Neither plot settles the question — Egger's
 test, trim-and-fill, and careful inspection of which small studies are
 missing are all part of the routine.
 
-## Setup
+### Setup {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-setup}
 
 ```r
 library(tidyverse)
@@ -39,14 +41,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-1-hypothesis}
 
 H₀: pooled log risk ratio = 0 (no overall effect). H₁: pooled log RR ≠ 0.
 α = 0.05.
 
-## 2. Visualise — use a built-in dataset
+### 2. Visualise — use a built-in dataset {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-2-visualise-use-a-built-in-dataset}
 
 ```r
+dat <- escalc(measure = "RR",
               ai = tpos, bi = tneg, ci = cpos, di = cneg,
               data = dat.bcg, slab = paste(author, year))
 ```
@@ -55,7 +58,7 @@ H₀: pooled log risk ratio = 0 (no overall effect). H₁: pooled log RR ≠ 0.
 forest(rma(yi, vi, data = dat), header = TRUE, cex = 0.8)
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-3-assumptions}
 
 - Between-study heterogeneity exists (τ² > 0) in virtually every real
   meta-analysis — a random-effects model absorbs it, a fixed-effect
@@ -63,9 +66,10 @@ forest(rma(yi, vi, data = dat), header = TRUE, cex = 0.8)
 - Funnel-plot asymmetry does not prove publication bias; it is
   consistent with several mechanisms.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-4-conduct}
 
 ```r
+fit <- rma(yi, vi, data = dat, method = "REML")
 fit
 ```
 
@@ -74,7 +78,7 @@ funnel(fit, main = "Funnel plot — BCG vaccine dataset")
 regtest(fit, model = "lm")
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-5-concluding-statement}
 
 ```r
 rr   <- exp(fit$b[1])
@@ -90,29 +94,30 @@ hi   <- exp(fit$ci.ub)
 > statistics in view.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-common-pitfalls}
 
 - Fixed-effect pooling when between-study heterogeneity is real.
 - Quoting a pooled effect without its heterogeneity measures.
 - Treating funnel-plot symmetry as a formal test rather than a visual
   prompt.
 
-## Further reading
+### Further reading {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-further-reading}
 
 - Viechtbauer W. (2010). *Conducting meta-analyses in R with the metafor
   package.* J Stat Softw.
 - Higgins JPT et al. *Cochrane Handbook for Systematic Reviews of Interventions.*
 
-## Session info
+### Session info {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-15-metaanalysis)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

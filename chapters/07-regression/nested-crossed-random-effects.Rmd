@@ -1,12 +1,14 @@
-## Introduction
+## Nested vs Crossed Random Effects {#sec-chapters-07-regression-nested-crossed-random-effects}
+
+### Introduction {#sec-chapters-07-regression-nested-crossed-random-effects-introduction}
 
 Mixed-effects models require careful specification of the random-effects structure, and the most common confusion is between nested and crossed designs. Nested means one grouping factor's levels sit strictly within another's: patients within hospitals, schools within districts, plots within fields. Crossed means levels of one factor appear across levels of another: subjects each rate the same items, items rated by multiple subjects, students each take the same set of exams. Misspecifying one as the other produces wrong variance components and biased standard errors.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-nested-crossed-random-effects-prerequisites}
 
 A working understanding of mixed-effects models, random intercepts, and the geometric meaning of "grouping factor" in a hierarchical or crossed design.
 
-## Theory
+### Theory {#sec-chapters-07-regression-nested-crossed-random-effects-theory}
 
 **Nested random effects**: each level of the inner factor belongs to exactly one level of the outer factor. Patient 17 in hospital A is a different conceptual entity from patient 17 in hospital B even if the IDs coincide. `lme4` syntax: `(1 | outer/inner)` or, equivalently, `(1 | outer) + (1 | outer:inner)`. The forward-slash shorthand expands automatically; explicit interaction notation removes ambiguity for readers.
 
@@ -14,11 +16,11 @@ A working understanding of mixed-effects models, random intercepts, and the geom
 
 A practical heuristic: if you can ask "which $A$ does this $B$ belong to?" and get a unique answer, the design is nested. If $B$s are reused across $A$s, the design is crossed.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-nested-crossed-random-effects-assumptions}
 
 The grouping structure is correctly identified; random effects within each grouping factor are independent and Normal; for crossed designs, the two grouping factors are conditionally independent given the model.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-nested-crossed-random-effects-r-implementation}
 
 ```r
 library(lme4)
@@ -38,15 +40,15 @@ fit_crossed <- lmer(y2 ~ 1 + (1 | hosp) + (1 | item))
 summary(fit_crossed)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-nested-crossed-random-effects-output-results}
 
 `summary(fit)` reports variance components for each random effect. For nested designs the variance is decomposed by hierarchical level; for crossed designs the two grouping factors contribute independently. Likelihood-ratio tests against simpler models confirm whether each random effect is needed.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-nested-crossed-random-effects-interpretation}
 
 A reporting sentence: "Crossed random effects for subject and item revealed substantial subject-level variation ($\hat\sigma_{\mathrm{subject}} = 2.1$) and smaller item-level variation ($\hat\sigma_{\mathrm{item}} = 1.0$); the residual SD was 1.5. The two grouping factors are conceptually independent — every subject saw every item — so the structure is correctly specified as crossed rather than nested." Always describe the grouping structure explicitly in methods.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-nested-crossed-random-effects-practical-tips}
 
 - Nested IDs must be unique within each parent level; if patient IDs repeat across hospitals (e.g. patient 17 in hospital A and a different patient 17 in hospital B), use the explicit `hospital:patient` interaction to disambiguate.
 - Crossed designs with small per-factor cluster counts (< 5 levels) can struggle; verify convergence and watch for singular fits.
@@ -55,46 +57,43 @@ A reporting sentence: "Crossed random effects for subject and item revealed subs
 - For longitudinal data with crossed item / occasion structure, include both random factors plus any temporal autocorrelation as a within-subject correlation term.
 - A common diagnosis tool: `xtabs(~ A + B, data = d)` shows the crossing pattern directly. A diagonal-block table indicates nesting; a dense table indicates crossing.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-nested-crossed-random-effects-r-packages-used}
 
 `lme4` for `lmer()` and `glmer()` with nested and crossed random effects; `lmerTest` for $p$-values via Satterthwaite or Kenward-Roger; `glmmTMB` for complex random structures and non-Normal outcomes; `pbkrtest` for parametric-bootstrap LRTs on variance components.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-nested-crossed-random-effects-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-nested-crossed-random-effects-assumptions) and
+[practical tips](#sec-chapters-07-regression-nested-crossed-random-effects-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-nested-crossed-random-effects-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## glmer: Generalised Mixed Models {#sec-chapters-07-regression-glmer-generalized-mixed}
+
+### Introduction {#sec-chapters-07-regression-glmer-generalized-mixed-introduction}
 
 `lme4::glmer()` fits generalised linear mixed models (GLMMs) — binary, count, and other non-Gaussian outcomes with random effects. The function inherits the random-effects formula syntax of `lmer()` and the family / link conventions of `glm()`, combining them into a single estimation problem. For binary outcomes (logistic mixed models), Poisson rates with cluster structure, and other GLM-style problems with repeated measures or hierarchical sampling, `glmer()` is the standard tool. The newer `glmmTMB` package is faster, more flexible (it handles overdispersed and zero-inflated families natively), and increasingly the recommended default.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-glmer-generalized-mixed-prerequisites}
 
 A working understanding of generalised linear models, mixed-effects models, and link functions; familiarity with `lme4` formula syntax for random effects.
 
-## Theory
+### Theory {#sec-chapters-07-regression-glmer-generalized-mixed-theory}
 
 The GLMM is
 
@@ -16,11 +18,11 @@ with $g$ the link function (logit for binary, log for Poisson, log-odds-cumulati
 
 Estimation uses Laplace approximation by default; adaptive Gauss-Hermite quadrature (`nAGQ > 1`) gives better accuracy at higher computational cost.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-glmer-generalized-mixed-assumptions}
 
 GLM-family assumptions on the conditional distribution, multivariate Normal random effects, conditional independence given random effects, and the appropriate link function for the outcome family.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-glmer-generalized-mixed-r-implementation}
 
 ```r
 library(lme4); library(glmmTMB)
@@ -41,15 +43,15 @@ summary(fit)
 fit_tmb <- glmmTMB(y ~ x + (1 | subject), data = d, family = binomial)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-glmer-generalized-mixed-output-results}
 
 `summary(fit)` reports fixed-effect coefficients on the linear-predictor (logit, log) scale with standard errors, Wald $z$ statistics, and $p$-values, plus random-effect variances and covariances and the AIC. Exponentiating fixed-effect coefficients gives odds ratios (binomial), rate ratios (Poisson), or other family-appropriate effect-size measures.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-glmer-generalized-mixed-interpretation}
 
 A reporting sentence: "A binomial GLMM estimated the population-level slope at 0.51 on the log-odds scale (OR = 1.66, 95 % CI 1.34 to 2.04, $p < 0.001$); the random-intercept standard deviation was 1.10, indicating substantial between-subject variability in baseline log-odds. Coefficients are conditional on subject; for marginal effects use `ggeffects::ggpredict`." Always state whether fixed-effect interpretations are conditional or marginal — they are different scales.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-glmer-generalized-mixed-practical-tips}
 
 - Laplace approximation is the default; for binary outcomes with small clusters, raise `nAGQ` to 7 or 11 for better accuracy.
 - Convergence warnings are common with binary data; try `glmmTMB` for a more robust optimiser, or switch to Bayesian fitting (`brms`).
@@ -58,46 +60,43 @@ A reporting sentence: "A binomial GLMM estimated the population-level slope at 0
 - For zero-inflated outcomes, `glmmTMB` handles the zero-inflation component natively; `lme4` does not.
 - Monitor singular fits — random-effect variances estimated near zero — and simplify the random structure when they appear.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-glmer-generalized-mixed-r-packages-used}
 
 `lme4` for `glmer()` with Laplace and adaptive Gauss-Hermite quadrature; `glmmTMB` for fast TMB-based GLMM fitting with overdispersed and zero-inflated families; `pbkrtest` for parametric-bootstrap LRTs on variance components; `ggeffects` and `marginaleffects` for marginal effects; `brms` for Bayesian GLMMs.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-glmer-generalized-mixed-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-glmer-generalized-mixed-assumptions) and
+[practical tips](#sec-chapters-07-regression-glmer-generalized-mixed-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-glmer-generalized-mixed-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Posterior Predictive Checks {#sec-chapters-10-bayesian-posterior-predictive-checks}
+
+### Introduction {#sec-chapters-10-bayesian-posterior-predictive-checks-introduction}
 
 A posterior predictive check is the Bayesian answer to "does this model produce data that look like ours?" After fitting, you draw replicated datasets from the model — each one using a different posterior parameter draw — and compare them to the observed data through summary statistics, density overlays, or grouped subsets. Systematic discrepancies between observed and replicated quantities are a model criticism: they tell you which feature of the data the current specification fails to capture, which is far more actionable than a single goodness-of-fit $p$-value.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-posterior-predictive-checks-prerequisites}
 
 A working understanding of the posterior predictive distribution and access to MCMC draws or any object that exposes a `posterior_predict()` method (`brms`, `rstanarm`, raw Stan).
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-posterior-predictive-checks-theory}
 
 The posterior predictive distribution is
 
@@ -14,11 +16,11 @@ $$p(\tilde y \mid y) = \int p(\tilde y \mid \theta) p(\theta \mid y) \, \mathrm 
 
 approximated by drawing $\theta$ from the posterior and then $\tilde y$ from the likelihood given that $\theta$. A posterior predictive check chooses a test statistic $T(y)$ — the mean, the standard deviation, the proportion of zeros, the maximum, the skew, or any function of the data — and compares its observed value to the distribution of $T(\tilde y)$ across replicates. If the observed statistic falls in the bulk of the replicate distribution, the model captures that aspect of the data; if it falls in a tail, the model misses it.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-posterior-predictive-checks-assumptions}
 
 A converged posterior with adequate effective sample size, since each replicate dataset depends on a posterior draw. PPCs do not require held-out data and are therefore not a measure of generalisation; they are a within-sample diagnostic.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-posterior-predictive-checks-r-implementation}
 
 ```r
 library(brms); library(bayesplot)
@@ -39,15 +41,15 @@ pp_check(fit, type = "stat", stat = "sd")
 pp_check(fit, type = "intervals")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-posterior-predictive-checks-output-results}
 
 `pp_check(fit)` returns a `ggplot` overlaying the empirical density of `y` on top of densities for several replicate datasets. `type = "stat"` plots the distribution of the chosen statistic across replicates with the observed value as a vertical line. `type = "intervals"` shows the 50 % and 90 % posterior predictive intervals point-by-point and is the most informative check for time-series and ordered data.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-posterior-predictive-checks-interpretation}
 
 A reporting sentence: "Posterior predictive density overlays showed the observed distribution falling well within the cloud of replicates; the standard-deviation check placed the observed value near the centre of the replicate distribution ($p_{\text{ppc}} = 0.48$), indicating that the Gaussian model captures both location and dispersion adequately." When a check fails, name the feature: "skew of replicates was systematically lower than the observed skew", which directly suggests a heavy-tailed family or a transformation.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-posterior-predictive-checks-practical-tips}
 
 - A density overlay is the broadest check; supplement it with tests on specific statistics (skew, kurtosis, proportion of zeros) that target likely misspecifications.
 - Group-wise PPCs (`pp_check(fit, type = "stat_grouped", group = "site")`) catch problems concentrated in specific subgroups that pooled checks would mask.
@@ -55,31 +57,28 @@ A reporting sentence: "Posterior predictive density overlays showed the observed
 - A passing PPC does not guarantee good predictions on new data; pair PPCs with `loo()` or held-out evaluation when generalisation matters.
 - When PPCs reveal misspecification, the fix is almost always a richer family (heavy tails, dispersion, mixtures) before a richer mean structure.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-posterior-predictive-checks-r-packages-used}
 
 `bayesplot` for the `pp_check()` and `ppc_*` graphics, `brms` (or `rstanarm`) as a backend that exposes `posterior_predict()` directly, and `posterior` for handling draw arrays when building custom PPCs by hand.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-posterior-predictive-checks-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-posterior-predictive-checks-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-posterior-predictive-checks-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-posterior-predictive-checks-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

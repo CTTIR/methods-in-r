@@ -1,16 +1,18 @@
-## Introduction
+## Fixed-Effect vs. Random-Effects Meta-Analysis {#sec-chapters-15-metaanalysis-fixed-vs-random-effects}
+
+### Introduction {#sec-chapters-15-metaanalysis-fixed-vs-random-effects-introduction}
 
 A meta-analysis pools effect-size estimates from multiple studies into a single summary. The two classical approaches -- the fixed-effect model and the random-effects model -- rest on different assumptions about what those studies represent. Choosing between them is not a technical afterthought; it is a substantive decision about the scope of inference, and it can change both the point estimate and its uncertainty.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-15-metaanalysis-fixed-vs-random-effects-prerequisites}
 
 The reader should know what an effect size is (mean difference, standardised mean difference, log-odds ratio, etc.), how its standard error is computed, and how a weighted average works. Familiarity with the `meta` or `metafor` packages is helpful.
 
-## Theory
+### Theory {#sec-chapters-15-metaanalysis-fixed-vs-random-effects-theory}
 
 Let $\hat{\theta}_i$ be the effect-size estimate from study $i$ with variance $v_i$, for $i = 1, \ldots, k$.
 
-### Fixed-effect model
+#### Fixed-effect model {#sec-chapters-15-metaanalysis-fixed-vs-random-effects-fixed-effect-model}
 
 Assumes all studies estimate the *same* true effect $\theta$:
 
@@ -22,7 +24,7 @@ $$\hat{\theta}_{\text{FE}} = \frac{\sum w_i \hat{\theta}_i}{\sum w_i}, \qquad w_
 
 with standard error $1 / \sqrt{\sum w_i}$. Scope of inference: *the set of studies included.*
 
-### Random-effects model
+#### Random-effects model {#sec-chapters-15-metaanalysis-fixed-vs-random-effects-random-effects-model}
 
 Assumes each study estimates its own study-specific true effect, drawn from a distribution of true effects across a population of plausible studies:
 
@@ -32,7 +34,7 @@ The weights become $w_i^* = 1/(v_i + \tau^2)$, where $\tau^2$ is the between-stu
 
 When $\tau^2 = 0$ (no heterogeneity), the random-effects model reduces to the fixed-effect model. When $\tau^2$ is large, random-effects weights are more balanced (small studies get relatively more weight), and the random-effects CI is wider than the fixed-effect CI -- properly so, since it reflects between-study variability.
 
-## Assumptions
+### Assumptions {#sec-chapters-15-metaanalysis-fixed-vs-random-effects-assumptions}
 
 Both models assume:
 
@@ -42,7 +44,7 @@ Both models assume:
 
 The fixed-effect model additionally assumes a single true effect. The random-effects model assumes a normal distribution of true effects; the Hartung-Knapp adjustment corrects CIs under small $k$ or imprecise $\tau^2$ estimates.
 
-## R Implementation
+### R Implementation {#sec-chapters-15-metaanalysis-fixed-vs-random-effects-r-implementation}
 
 ```r
 library(meta)
@@ -72,7 +74,7 @@ forest(m, leftcols = c("studlab", "n.e", "mean.e", "sd.e",
 
 `metacont()` handles continuous outcomes with mean differences. Setting `method.tau = "REML"` uses REML for $\tau^2$; `method.random.ci = "HK"` applies the Hartung-Knapp correction to the random-effects confidence interval.
 
-## Output & Results
+### Output & Results {#sec-chapters-15-metaanalysis-fixed-vs-random-effects-output-results}
 
 Typical output:
 
@@ -92,11 +94,11 @@ Test of heterogeneity:
 
 The fixed-effect and random-effects point estimates are similar here (1.21 vs. 1.20), but the random-effects confidence interval is more than 50% wider, reflecting the moderate heterogeneity ($I^2 = 53\%$).
 
-## Interpretation
+### Interpretation {#sec-chapters-15-metaanalysis-fixed-vs-random-effects-interpretation}
 
 Report both models when $I^2$ is non-negligible, and emphasise the random-effects result with its Hartung-Knapp CI as the primary inference when heterogeneity is plausible on substantive grounds. Include the $\tau^2$ estimate and the prediction interval -- the latter answers "what true effect should I expect in a future, similar study?" and is often the most informative summary for a clinician.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-15-metaanalysis-fixed-vs-random-effects-practical-tips}
 
 - Choose the model based on subject-matter plausibility, not on whether heterogeneity is statistically significant -- $Q$-tests are underpowered with few studies.
 - Report the prediction interval alongside the pooled estimate; it is the honest summary of what the pooled result implies for a new study.
@@ -106,26 +108,23 @@ Report both models when $I^2$ is non-negligible, and emphasise the random-effect
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-15-metaanalysis-fixed-vs-random-effects-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-15-metaanalysis-fixed-vs-random-effects-assumptions) and
+[practical tips](#sec-chapters-15-metaanalysis-fixed-vs-random-effects-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-15-metaanalysis-fixed-vs-random-effects-see-also-labs-in-this-chapter}
 
-- [Systematic reviews and PRISMA](labs/lab-systematic-reviews-and-prisma.Rmd)
-- [Meta-analysis basics](labs/lab-meta-analysis-basics.Rmd)
-- [Network meta-analysis](labs/lab-network-meta-analysis.Rmd)
+- [Systematic reviews and PRISMA](#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma)
+- [Meta-analysis basics](#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics)
+- [Network meta-analysis](#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis)
 
 <!-- END see-also -->

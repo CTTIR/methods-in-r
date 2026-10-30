@@ -1,9 +1,11 @@
+## Week 3, Session 1 — Logistic regression (binomial GLM) {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-learning-objectives}
 
 - Fit a logistic regression with `glm(family = binomial)` and translate
   coefficients into odds ratios.
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Report the model with an odds ratio, an interval, and a brief note on
   discrimination.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-prerequisites}
 
 Linear regression material.
 
-## Background
+### Background {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-background}
 
 Logistic regression models the log-odds of a binary outcome as a
 linear combination of predictors. The exponent of a coefficient is
@@ -36,7 +38,7 @@ the thresholds used in the clinic may not be the one that maximises
 accuracy. A later lab covers ROC curves and calibration, which
 give a threshold-free view of the same model.
 
-## Setup
+### Setup {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-setup}
 
 ```r
 library(tidyverse)
@@ -46,14 +48,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-1-hypothesis}
 
 Using `MASS::Pima.tr`, can plasma glucose (`glu`) predict diabetes
 status (`type`)?
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-2-visualise}
 
 ```r
+pima <- as_tibble(Pima.tr) |>
   mutate(type = factor(type, levels = c("No", "Yes")))
 
 ggplot(pima, aes(type, glu, fill = type)) +
@@ -62,12 +65,13 @@ ggplot(pima, aes(type, glu, fill = type)) +
   theme(legend.position = "none")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-3-assumptions}
 
 Binary outcome, independent observations, log-odds linear in the
 predictors (or handled explicitly with a smooth/transformation).
 
 ```r
+fit <- glm(type ~ glu, data = pima, family = binomial)
 # residuals are less informative in GLMs; check for linearity on the logit scale
 pima |>
   mutate(p = fitted(fit),
@@ -78,18 +82,20 @@ pima |>
   labs(x = "Plasma glucose", y = "Fitted logit")
 ```
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-4-conduct}
 
 ```r
+tidy(fit, conf.int = TRUE, exponentiate = TRUE)
 glance(fit)
 ```
 
 ```r
+pred_prob <- predict(fit, type = "response")
 pred_class <- ifelse(pred_prob > 0.5, "Yes", "No")
 table(pred_class, truth = pima$type)
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-5-concluding-statement}
 
 > In `nrow(pima)` women, each 10 mg/dL increase in plasma glucose
 > was associated with an odds ratio for diabetes of
@@ -101,28 +107,29 @@ table(pred_class, truth = pima$type)
 > threshold-free assessment appears in a later lab.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-common-pitfalls}
 
 - Reporting the coefficient on the log-odds scale without exponentiating.
 - Confusing probability and odds.
 - Evaluating the model with accuracy at one threshold and nothing else.
 
-## Further reading
+### Further reading {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-further-reading}
 
 - Hosmer DW, Lemeshow S. *Applied Logistic Regression*.
 - Harrell FE. *Regression Modeling Strategies*, ch. 10.
 - Gelman A, Hill J. *Data Analysis Using Regression and Multilevel…*.
 
-## Session info
+### Session info {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-07-regression)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

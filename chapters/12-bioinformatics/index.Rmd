@@ -2,67 +2,67 @@
 
 RNA-seq differential expression, pathway and GO enrichment, and single-cell RNA-seq. The chapter assumes basic familiarity with `Bioconductor` and points back to the regression and ML chapters for the underlying machinery.
 
-This chapter contains **50 method pages** and **3 labs**. If you are not sure which method to read, return to [Chapter 0](../../ch00-find-your-method.Rmd) and follow the decision tree to the right node.
+This chapter contains **50 method pages** and **3 labs**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.
 
-## Method pages
+## Method pages {#sec-chapters-12-bioinformatics-index-method-pages}
 
 | Method | Source slug |
 |---|---|
-| [Alignment with BWA and Bowtie](bwa-bowtie-alignment.Rmd) | `bwa-bowtie-alignment` |
-| [ATAC-Seq Analysis](atac-seq-analysis.Rmd) | `atac-seq-analysis` |
-| [Batch Correction with ComBat](batch-correction-combat.Rmd) | `batch-correction-combat` |
-| [Bulk RNA-seq Differential Expression with DESeq2](bulk-rnaseq-differential-expression.Rmd) | `bulk-rnaseq-differential-expression` |
-| [Cell-Type Annotation](scrna-cell-type-annotation.Rmd) | `scrna-cell-type-annotation` |
-| [ChIP-Seq Analysis](chip-seq-analysis.Rmd) | `chip-seq-analysis` |
-| [Copy Number Variation Analysis](cnv-analysis.Rmd) | `cnv-analysis` |
-| [Counting Reads with featureCounts](counting-reads-feature-counts.Rmd) | `counting-reads-feature-counts` |
-| [Differential Expression with edgeR](edger-differential-expression.Rmd) | `edger-differential-expression` |
-| [Differential Expression with limma-voom](limma-voom.Rmd) | `limma-voom` |
-| [DNA Methylation Analysis](methylation-analysis.Rmd) | `methylation-analysis` |
-| [Drug-Target Interaction Mining](drug-target-interaction.Rmd) | `drug-target-interaction` |
-| [FASTQ Quality Control](fastq-quality-control.Rmd) | `fastq-quality-control` |
-| [Finding Marker Genes](scrna-marker-genes.Rmd) | `scrna-marker-genes` |
-| [Gene Annotation with biomaRt](biomart-annotation.Rmd) | `biomart-annotation` |
-| [Gene Ontology Enrichment](gene-ontology-enrichment.Rmd) | `gene-ontology-enrichment` |
-| [GSEA Preranked Analysis](gsea-preranked.Rmd) | `gsea-preranked` |
-| [GSVA Single-Sample Enrichment](gsva-single-sample.Rmd) | `gsva-single-sample` |
-| [Heatmaps for RNA-seq](heatmaps-rnaseq.Rmd) | `heatmaps-rnaseq` |
-| [Integration with Harmony](scrna-integration-harmony.Rmd) | `scrna-integration-harmony` |
-| [KEGG Pathway Enrichment](pathway-enrichment-kegg.Rmd) | `pathway-enrichment-kegg` |
-| [MA Plots](ma-plots.Rmd) | `ma-plots` |
-| [Metagenomic Profiling](metagenomic-profiling.Rmd) | `metagenomic-profiling` |
-| [Microbiome Analysis with DADA2](microbiome-dada2.Rmd) | `microbiome-dada2` |
-| [Microbiome Diversity Metrics](microbiome-diversity.Rmd) | `microbiome-diversity` |
-| [Multi-Omics Integration](multiomics-integration.Rmd) | `multiomics-integration` |
-| [Multiple Sequence Alignment](msa-biostrings.Rmd) | `msa-biostrings` |
-| [PCA of RNA-seq Samples](pca-of-rnaseq.Rmd) | `pca-of-rnaseq` |
-| [Phylogenetic Trees with ape](phylogenetic-trees-ape.Rmd) | `phylogenetic-trees-ape` |
-| [Population Genetics Basics](population-genetics-basics.Rmd) | `population-genetics-basics` |
-| [Protein Structure Prediction](protein-structure-prediction.Rmd) | `protein-structure-prediction` |
-| [Proteomics with MSstats](proteomics-msstats.Rmd) | `proteomics-msstats` |
-| [Pseudoalignment with Salmon and Kallisto](salmon-kallisto-pseudoalignment.Rmd) | `salmon-kallisto-pseudoalignment` |
-| [Read Trimming and Adapter Removal](read-trimming-adapters.Rmd) | `read-trimming-adapters` |
-| [RNA-seq Normalisation](rnaseq-normalization.Rmd) | `rnaseq-normalization` |
-| [scRNA Clustering](scrna-clustering.Rmd) | `scrna-clustering` |
-| [scRNA Normalisation](scrna-normalization.Rmd) | `scrna-normalization` |
-| [scRNA QC and Filtering](scrna-qc-filtering.Rmd) | `scrna-qc-filtering` |
-| [Sequence Alignment: Overview](sequence-alignment-overview.Rmd) | `sequence-alignment-overview` |
-| [Single-Cell with Seurat](single-cell-seurat-intro.Rmd) | `single-cell-seurat-intro` |
-| [Spatial Transcriptomics](spatial-transcriptomics.Rmd) | `spatial-transcriptomics` |
-| [STAR: Spliced Alignment](star-spliced-alignment.Rmd) | `star-spliced-alignment` |
-| [Structural Variant Detection](structural-variant-detection.Rmd) | `structural-variant-detection` |
-| [Surrogate Variable Analysis (SVA)](surrogate-variable-analysis-sva.Rmd) | `surrogate-variable-analysis-sva` |
-| [Trajectory Analysis](scrna-trajectory-analysis.Rmd) | `scrna-trajectory-analysis` |
-| [Transcript-to-Gene Summarisation](tx-to-gene-summarization.Rmd) | `tx-to-gene-summarization` |
-| [Variant Annotation with VEP](annotation-variant-vep.Rmd) | `annotation-variant-vep` |
-| [Variant Calling with GATK](variant-calling-gatk.Rmd) | `variant-calling-gatk` |
-| [VCF Manipulation](vcf-manipulation.Rmd) | `vcf-manipulation` |
-| [Volcano Plots](volcano-plots.Rmd) | `volcano-plots` |
+| [Alignment with BWA and Bowtie](#sec-chapters-12-bioinformatics-bwa-bowtie-alignment) | `bwa-bowtie-alignment` |
+| [ATAC-Seq Analysis](#sec-chapters-12-bioinformatics-atac-seq-analysis) | `atac-seq-analysis` |
+| [Batch Correction with ComBat](#sec-chapters-12-bioinformatics-batch-correction-combat) | `batch-correction-combat` |
+| [Bulk RNA-seq Differential Expression with DESeq2](#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression) | `bulk-rnaseq-differential-expression` |
+| [Cell-Type Annotation](#sec-chapters-12-bioinformatics-scrna-cell-type-annotation) | `scrna-cell-type-annotation` |
+| [ChIP-Seq Analysis](#sec-chapters-12-bioinformatics-chip-seq-analysis) | `chip-seq-analysis` |
+| [Copy Number Variation Analysis](#sec-chapters-12-bioinformatics-cnv-analysis) | `cnv-analysis` |
+| [Counting Reads with featureCounts](#sec-chapters-12-bioinformatics-counting-reads-feature-counts) | `counting-reads-feature-counts` |
+| [Differential Expression with edgeR](#sec-chapters-12-bioinformatics-edger-differential-expression) | `edger-differential-expression` |
+| [Differential Expression with limma-voom](#sec-chapters-12-bioinformatics-limma-voom) | `limma-voom` |
+| [DNA Methylation Analysis](#sec-chapters-12-bioinformatics-methylation-analysis) | `methylation-analysis` |
+| [Drug-Target Interaction Mining](#sec-chapters-12-bioinformatics-drug-target-interaction) | `drug-target-interaction` |
+| [FASTQ Quality Control](#sec-chapters-12-bioinformatics-fastq-quality-control) | `fastq-quality-control` |
+| [Finding Marker Genes](#sec-chapters-12-bioinformatics-scrna-marker-genes) | `scrna-marker-genes` |
+| [Gene Annotation with biomaRt](#sec-chapters-12-bioinformatics-biomart-annotation) | `biomart-annotation` |
+| [Gene Ontology Enrichment](#sec-chapters-12-bioinformatics-gene-ontology-enrichment) | `gene-ontology-enrichment` |
+| [GSEA Preranked Analysis](#sec-chapters-12-bioinformatics-gsea-preranked) | `gsea-preranked` |
+| [GSVA Single-Sample Enrichment](#sec-chapters-12-bioinformatics-gsva-single-sample) | `gsva-single-sample` |
+| [Heatmaps for RNA-seq](#sec-chapters-12-bioinformatics-heatmaps-rnaseq) | `heatmaps-rnaseq` |
+| [Integration with Harmony](#sec-chapters-12-bioinformatics-scrna-integration-harmony) | `scrna-integration-harmony` |
+| [KEGG Pathway Enrichment](#sec-chapters-12-bioinformatics-pathway-enrichment-kegg) | `pathway-enrichment-kegg` |
+| [MA Plots](#sec-chapters-12-bioinformatics-ma-plots) | `ma-plots` |
+| [Metagenomic Profiling](#sec-chapters-12-bioinformatics-metagenomic-profiling) | `metagenomic-profiling` |
+| [Microbiome Analysis with DADA2](#sec-chapters-12-bioinformatics-microbiome-dada2) | `microbiome-dada2` |
+| [Microbiome Diversity Metrics](#sec-chapters-12-bioinformatics-microbiome-diversity) | `microbiome-diversity` |
+| [Multi-Omics Integration](#sec-chapters-12-bioinformatics-multiomics-integration) | `multiomics-integration` |
+| [Multiple Sequence Alignment](#sec-chapters-12-bioinformatics-msa-biostrings) | `msa-biostrings` |
+| [PCA of RNA-seq Samples](#sec-chapters-12-bioinformatics-pca-of-rnaseq) | `pca-of-rnaseq` |
+| [Phylogenetic Trees with ape](#sec-chapters-12-bioinformatics-phylogenetic-trees-ape) | `phylogenetic-trees-ape` |
+| [Population Genetics Basics](#sec-chapters-12-bioinformatics-population-genetics-basics) | `population-genetics-basics` |
+| [Protein Structure Prediction](#sec-chapters-12-bioinformatics-protein-structure-prediction) | `protein-structure-prediction` |
+| [Proteomics with MSstats](#sec-chapters-12-bioinformatics-proteomics-msstats) | `proteomics-msstats` |
+| [Pseudoalignment with Salmon and Kallisto](#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment) | `salmon-kallisto-pseudoalignment` |
+| [Read Trimming and Adapter Removal](#sec-chapters-12-bioinformatics-read-trimming-adapters) | `read-trimming-adapters` |
+| [RNA-seq Normalisation](#sec-chapters-12-bioinformatics-rnaseq-normalization) | `rnaseq-normalization` |
+| [scRNA Clustering](#sec-chapters-12-bioinformatics-scrna-clustering) | `scrna-clustering` |
+| [scRNA Normalisation](#sec-chapters-12-bioinformatics-scrna-normalization) | `scrna-normalization` |
+| [scRNA QC and Filtering](#sec-chapters-12-bioinformatics-scrna-qc-filtering) | `scrna-qc-filtering` |
+| [Sequence Alignment: Overview](#sec-chapters-12-bioinformatics-sequence-alignment-overview) | `sequence-alignment-overview` |
+| [Single-Cell with Seurat](#sec-chapters-12-bioinformatics-single-cell-seurat-intro) | `single-cell-seurat-intro` |
+| [Spatial Transcriptomics](#sec-chapters-12-bioinformatics-spatial-transcriptomics) | `spatial-transcriptomics` |
+| [STAR: Spliced Alignment](#sec-chapters-12-bioinformatics-star-spliced-alignment) | `star-spliced-alignment` |
+| [Structural Variant Detection](#sec-chapters-12-bioinformatics-structural-variant-detection) | `structural-variant-detection` |
+| [Surrogate Variable Analysis (SVA)](#sec-chapters-12-bioinformatics-surrogate-variable-analysis-sva) | `surrogate-variable-analysis-sva` |
+| [Trajectory Analysis](#sec-chapters-12-bioinformatics-scrna-trajectory-analysis) | `scrna-trajectory-analysis` |
+| [Transcript-to-Gene Summarisation](#sec-chapters-12-bioinformatics-tx-to-gene-summarization) | `tx-to-gene-summarization` |
+| [Variant Annotation with VEP](#sec-chapters-12-bioinformatics-annotation-variant-vep) | `annotation-variant-vep` |
+| [Variant Calling with GATK](#sec-chapters-12-bioinformatics-variant-calling-gatk) | `variant-calling-gatk` |
+| [VCF Manipulation](#sec-chapters-12-bioinformatics-vcf-manipulation) | `vcf-manipulation` |
+| [Volcano Plots](#sec-chapters-12-bioinformatics-volcano-plots) | `volcano-plots` |
 
-## Labs
+## Labs {#sec-chapters-12-bioinformatics-index-labs}
 
 | Lab |
 |---|
-| [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd) |
-| [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd) |
-| [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd) |
+| [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger) |
+| [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora) |
+| [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat) |

@@ -1,12 +1,14 @@
-## Introduction
+## The Interquartile Range {#sec-chapters-02-descriptives-interquartile-range}
+
+### Introduction {#sec-chapters-02-descriptives-interquartile-range-introduction}
 
 The interquartile range (IQR) is the distance between the first and third quartiles, $Q_3 - Q_1$. It measures the width of the central 50% of the distribution and is robust to outliers, since extreme values do not affect the quartiles themselves. The IQR appears in boxplots, Tukey fences, and the median-IQR convention for reporting skewed biomedical variables.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-interquartile-range-prerequisites}
 
 The reader should know what quantiles and quartiles are, and be comfortable with R's `quantile()` function.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-interquartile-range-theory}
 
 For a sample, $Q_1$ and $Q_3$ are the 0.25 and 0.75 quantiles of the empirical CDF. The IQR is
 
@@ -18,11 +20,11 @@ For a normal distribution with SD $\sigma$, the IQR equals $2 \cdot 0.6745 \cdot
 
 The **Tukey fences** at $Q_1 - 1.5 \cdot \mathrm{IQR}$ and $Q_3 + 1.5 \cdot \mathrm{IQR}$ define the whiskers of a standard boxplot; points beyond are flagged as outliers.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-interquartile-range-assumptions}
 
 The IQR is purely descriptive and requires no distributional assumption.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-interquartile-range-r-implementation}
 
 ```r
 set.seed(2026)
@@ -43,7 +45,7 @@ IQR(x) / 1.349
 sd(x)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-interquartile-range-output-results}
 
 ```
    25%      75%
@@ -60,11 +62,11 @@ lower  upper
 
 The two SD estimates agree closely for approximately normal data; divergence signals heavy tails or outliers.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-interquartile-range-interpretation}
 
 Report the IQR alongside the median for skewed data. A typical biomedical manuscript uses "median 6.8 days (IQR 4.2-10.1 days)" to summarise length-of-stay or similar variables.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-interquartile-range-practical-tips}
 
 - The boxplot visually displays the IQR as the box; whiskers extend to the Tukey fences or to the nearest non-outlier data point.
 - For very small samples ($n < 10$), the IQR is unstable; report the order statistics directly.
@@ -74,24 +76,21 @@ Report the IQR alongside the median for skewed data. A typical biomedical manusc
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-interquartile-range-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-interquartile-range-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-interquartile-range-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-interquartile-range-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

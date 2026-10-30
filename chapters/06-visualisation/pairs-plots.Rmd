@@ -1,20 +1,22 @@
-## Introduction
+## Pairs Plots {#sec-chapters-06-visualisation-pairs-plots}
+
+### Introduction {#sec-chapters-06-visualisation-pairs-plots-introduction}
 
 A pairs plot — also called a scatterplot matrix — shows every pairwise scatter for a set of continuous variables in a single grid figure. Modern variants enrich the matrix with marginal histograms or densities along the diagonal and correlation coefficients (or other pairwise summaries) in the upper triangle. The result is the single most efficient exploratory diagnostic for a small-to-moderate set of variables: it surfaces non-linearity, outliers, subgroup separation, and multicollinearity in one pass.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-06-visualisation-pairs-plots-prerequisites}
 
 A working knowledge of scatter plots, correlation, and group-coloured aesthetics; familiarity with the `GGally` package's extensions to `ggplot2`.
 
-## Theory
+### Theory {#sec-chapters-06-visualisation-pairs-plots-theory}
 
 For $p$ variables the matrix has $p^2$ cells. The diagonal shows the marginal distribution of each variable (histogram, density, or a labelled bar for factors). The lower triangle shows pairwise scatter plots; the upper triangle shows summary statistics — most commonly Pearson, Spearman, or Kendall correlations, optionally annotated by significance. `GGally::ggpairs()` is the canonical implementation, with arguments `lower`, `upper`, and `diag` each accepting a list of cell-type specifications. Group structure is added via `aes(colour = group)` which propagates through every panel and provides immediate insight into between-group differences.
 
-## Assumptions
+### Assumptions {#sec-chapters-06-visualisation-pairs-plots-assumptions}
 
 Each pairwise cell inherits the assumptions of the relevant geom: scatter plots assume continuous data; correlation cells assume meaningful linear (or rank) association. Categorical variables are displayed with bar charts and contingency tables in the off-diagonal cells.
 
-## R Implementation
+### R Implementation {#sec-chapters-06-visualisation-pairs-plots-r-implementation}
 
 ```r
 library(GGally)
@@ -28,15 +30,15 @@ ggpairs(mtcars, columns = c("mpg", "wt", "hp", "qsec"),
         lower = list(continuous = "smooth"))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-06-visualisation-pairs-plots-output-results}
 
 Two pairs plots: a four-variable matrix of the iris dataset coloured by species, and a four-variable matrix of `mtcars` numerical columns with LOESS smoothers in the lower triangle. The first reveals the species-driven separation across nearly every pairwise plot; the second emphasises the curvilinear weight–mpg and horsepower–quarter-mile relationships that a single scatter would obscure.
 
-## Interpretation
+### Interpretation {#sec-chapters-06-visualisation-pairs-plots-interpretation}
 
 A reporting sentence (figure caption): "Pairs plot of four iris measurements (n = 150), coloured by species; diagonal shows kernel densities, lower triangle shows pairwise scatter, upper triangle shows Pearson correlations within each species (`GGally::ggpairs`)." Always state the correlation type used in the upper triangle and the geom chosen for the lower; defaults differ between versions.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-06-visualisation-pairs-plots-practical-tips}
 
 - Keep the matrix to 3–6 variables; cells shrink quadratically and become unreadable beyond that. For more variables, switch to a correlation heatmap or a focused PCA.
 - Add `aes(colour = group)` to surface between-group structure; the same colour propagates through diagonal densities and lower-triangle scatters automatically.
@@ -45,30 +47,27 @@ A reporting sentence (figure caption): "Pairs plot of four iris measurements (n 
 - Save pairs plots at large dimensions (`ggsave(..., width = 10, height = 10, dpi = 300)`); shrinking them to a single column makes the cells unreadable.
 - For posterior or simulation diagnostics, `bayesplot::mcmc_pairs()` is the Bayesian-flavoured analogue and overlays divergent transitions on the off-diagonal cells.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-06-visualisation-pairs-plots-r-packages-used}
 
 `GGally` for `ggpairs()`, `ggcorr()`, and the `wrap()` helper that lets you customise individual cell types; `ggplot2` for the underlying grammar; `bayesplot::mcmc_pairs()` for posterior-draw matrices in MCMC diagnostics.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-06-visualisation-pairs-plots-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-06-visualisation-pairs-plots-assumptions) and
+[practical tips](#sec-chapters-06-visualisation-pairs-plots-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-06-visualisation-pairs-plots-see-also-labs-in-this-chapter}
 
-- [ggplot2 grammar and multi-panel layouts](labs/lab-ggplot2-grammar-and-multi-panel-layouts.Rmd)
+- [ggplot2 grammar and multi-panel layouts](#sec-chapters-06-visualisation-labs-lab-ggplot2-grammar-and-multi-panel-layouts)
 
 <!-- END see-also -->

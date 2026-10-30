@@ -1,22 +1,24 @@
-## Introduction
+## Plackett-Burman Designs {#sec-chapters-16-design-plackett-burman}
+
+### Introduction {#sec-chapters-16-design-plackett-burman-introduction}
 
 Plackett–Burman (PB) designs, introduced by Plackett and Burman in 1946, are two-level orthogonal screening designs with $n$ runs (where $n$ is a multiple of 4) that can accommodate up to $n - 1$ factors. They are widely regarded as the most economical screening tool in industrial DoE: when many candidate factors must be sifted to identify the few that drive the response, a 12-run PB design can screen up to 11 factors, a 20-run PB up to 19, and so on. The price for this economy is a resolution-III aliasing structure in which main effects are confounded with two-factor interactions, so PB designs are appropriate strictly for screening — never for confirmatory or interaction-aware inference.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-plackett-burman-prerequisites}
 
 Familiarity with fractional factorial designs, the concept of resolution, the effect-sparsity principle, and the distinction between regular and non-regular fractional factorial constructions.
 
-## Theory
+### Theory {#sec-chapters-16-design-plackett-burman-theory}
 
 PB designs are built from Hadamard matrices, square matrices of $\pm 1$ entries with mutually orthogonal columns. With $n$ runs the design supplies $n - 1$ orthogonal contrast columns, each of which can carry one factor. For $n = 12$, 11 factors fit; for $n = 20$, 19 factors.
 
 Non-regular PB designs (those whose run count is a multiple of 4 but not a power of 2, like 12, 20, 24) have a famously complex partial-aliasing structure: each main effect is aliased with multiple two-factor interactions at fractional weights, rather than fully confounded with a single one. This complex partial aliasing is a property the experimentalist must understand to interpret active-effect candidates correctly. Regular PB designs (n a power of 2) coincide with standard resolution-III fractional factorials and have cleaner alias chains.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-plackett-burman-assumptions}
 
 Two-factor and higher-order interactions are negligible compared with main effects (the sparsity-of-effects principle), and follow-up experiments will be conducted on the screened-in subset to characterise interactions properly. PB designs are a tool of two-stage industrial DoE: screen first, characterise second.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-plackett-burman-r-implementation}
 
 ```r
 library(FrF2)
@@ -34,15 +36,15 @@ fit <- lm(y ~ ., data = pb)
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-plackett-burman-output-results}
 
 `pb()` constructs a randomised Plackett–Burman layout for the requested run count and factor count. The main-effects regression returns coefficients for each factor; combining the regression with a Lenth-style or half-Normal-plot identification of the active subset is the standard analytical approach for unreplicated PB designs.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-plackett-burman-interpretation}
 
 A reporting sentence: "The 12-run Plackett–Burman design screened eight two-level factors, identifying A1 (effect 2.5, $p < 0.001$) and A2 (effect 1.8, $p < 0.001$) as the principal drivers of the response. The remaining six factors had effect estimates within Lenth's pseudo-standard-error envelope and were dropped from follow-up. A subsequent $2^2$ full factorial with replicated centre points characterised curvature and the A1 × A2 interaction in the active subset." Always describe both active and inactive factors and the screening criterion used.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-plackett-burman-practical-tips}
 
 - Plackett–Burman is a screening design; always follow it up with a higher-resolution fractional factorial, full factorial, or response-surface design on the active factor subset. Drawing causal conclusions directly from a PB result without follow-up is methodologically unsound.
 - The 12-run design is the most popular member of the family because it balances economy (one-third the runs of a comparable resolution-IV fractional factorial) with the orthogonality and ease-of-interpretation of regular Hadamard-based construction.
@@ -51,42 +53,39 @@ A reporting sentence: "The 12-run Plackett–Burman design screened eight two-le
 - Report transparently which factors were screened in and out of the follow-up; the pruning decision is itself a substantive analytical choice and reviewers will want to see the criterion used.
 - For mixed-level screening, definitive screening designs (DSDs, Jones and Nachtsheim 2011) generalise PB ideas to three-level factors and offer cleaner analysis of curvature alongside main-effect screening.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-plackett-burman-r-packages-used}
 
 `FrF2::pb()` for Plackett–Burman construction with explicit randomisation; `DoE.base::oa.design()` for general Hadamard-matrix-based orthogonal arrays; `daewr` for textbook companion examples and analysis helpers; `unrepx` for Lenth-style identification of active effects in unreplicated PB designs; `dsd` and `daewr::DefScreen()` for definitive screening designs as a modern alternative.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-plackett-burman-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-plackett-burman-assumptions) and
+[practical tips](#sec-chapters-16-design-plackett-burman-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-plackett-burman-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

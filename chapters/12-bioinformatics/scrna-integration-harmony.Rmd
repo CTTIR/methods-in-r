@@ -1,22 +1,24 @@
-## Introduction
+## Integration with Harmony {#sec-chapters-12-bioinformatics-scrna-integration-harmony}
+
+### Introduction {#sec-chapters-12-bioinformatics-scrna-integration-harmony-introduction}
 
 Datasets from different batches, donors, or technologies cluster by batch rather than biology without correction. Integration methods align shared cell types across datasets while preserving dataset-specific populations. Harmony iteratively centres cell embeddings by batch; Seurat's CCA/RPCA anchors cells between batches.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-scrna-integration-harmony-prerequisites}
 
 Multiple scRNA-seq datasets with shared cell populations; normalised expression; PCA embeddings.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-scrna-integration-harmony-theory}
 
 **Harmony** alternates (i) soft cluster assignment in PCA space, (ii) per-cluster batch centroid computation, (iii) shifting cells within each cluster by its batch-specific correction vector. Converges in a few iterations and scales to millions of cells.
 
 **Seurat CCA/RPCA integration** finds anchor pairs across datasets via mutual nearest neighbours in a shared low-dimensional space and uses anchors to transform embeddings.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-scrna-integration-harmony-assumptions}
 
 Shared cell types span batches; batch effects are corrective in PCA space; biology and batch are not perfectly confounded.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-scrna-integration-harmony-r-implementation}
 
 ```r
 library(harmony); library(Seurat)
@@ -47,15 +49,15 @@ so <- FindClusters(so, resolution = 0.3, verbose = FALSE)
 table(Batch = so$batch, Cluster = Idents(so))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-scrna-integration-harmony-output-results}
 
 A Harmony-corrected embedding; after clustering, batches should be represented in each cluster (shared cell types) rather than segregating by batch.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-scrna-integration-harmony-interpretation}
 
 "After Harmony integration, all seven major cell types contained cells from both donors (mixing LISI = 1.84 / 2.0), indicating successful batch correction without over-mixing."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-scrna-integration-harmony-practical-tips}
 
 - Use Harmony for speed; CCA/RPCA for heavier anchor-based correction when batches have unique cell types.
 - Quantify integration quality with kBET, LISI, or silhouette by batch vs cell type.
@@ -65,26 +67,23 @@ A Harmony-corrected embedding; after clustering, batches should be represented i
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-scrna-integration-harmony-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-scrna-integration-harmony-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-scrna-integration-harmony-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-scrna-integration-harmony-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

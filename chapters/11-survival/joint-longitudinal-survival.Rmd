@@ -1,12 +1,14 @@
-## Introduction
+## Joint Longitudinal-Survival Models {#sec-chapters-11-survival-joint-longitudinal-survival}
+
+### Introduction {#sec-chapters-11-survival-joint-longitudinal-survival-introduction}
 
 Joint longitudinal-survival models bring together two submodels — a mixed model for a longitudinally measured biomarker and a survival model for time to an event — via shared random effects so that the evolving biomarker is itself part of the hazard. This solves two problems simultaneously: the time-varying-covariate Cox model that uses last-observation-carried-forward biomarker values ignores measurement error and timing irregularity, and informative dropout (subjects censored because their biomarker is deteriorating) biases naive survival estimates. The joint formulation models both processes together and integrates over the shared random effects, yielding consistent hazard ratios for the underlying biomarker trajectory.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-joint-longitudinal-survival-prerequisites}
 
 A working understanding of linear mixed models, Cox regression, time-varying covariates, and the concept of informative dropout.
 
-## Theory
+### Theory {#sec-chapters-11-survival-joint-longitudinal-survival-theory}
 
 The longitudinal submodel is
 
@@ -18,11 +20,11 @@ $$h_i(t) = h_0(t) \exp\!\bigl(\alpha \mu_i(t) + x_i^\top \beta\bigr).$$
 
 The association parameter $\alpha$ measures how strongly the underlying biomarker drives the hazard. The joint likelihood integrates the random effects out of both submodels simultaneously, typically via Gauss-Hermite quadrature; this is what makes joint models computationally heavier than fitting the two submodels separately.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-joint-longitudinal-survival-assumptions}
 
 Multivariate Normal random effects, correctly specified mean and covariance structures, no model misspecification in either submodel, and a proper proportional-hazards form (or a flexible alternative) for the survival component.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-joint-longitudinal-survival-r-implementation}
 
 ```r
 library(JM)
@@ -37,15 +39,15 @@ joint_fit <- jointModel(lm_fit, surv_fit, timeVar = "year",
 summary(joint_fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-joint-longitudinal-survival-output-results}
 
 `summary(joint_fit)` returns the longitudinal-submodel coefficients (fixed effects, random-effect covariance), the survival-submodel coefficients ($\beta$), and the association parameter $\alpha$ with its standard error and 95 % confidence interval. Diagnostics include the Gauss-Hermite quadrature convergence criterion and the integrated likelihood.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-joint-longitudinal-survival-interpretation}
 
 A reporting sentence: "A joint longitudinal-survival model linking log-bilirubin trajectory to time to death (PBC dataset, 312 subjects) estimated the association parameter at $\alpha = 0.74$ ($\mathrm{SE} = 0.10$, $p < 0.001$); each unit increase in the underlying log-bilirubin level corresponded to a 2.1-fold higher hazard of death, after accounting for measurement error and informative dropout." Always describe both submodels in the methods so the joint structure is reproducible.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-joint-longitudinal-survival-practical-tips}
 
 - Use `JM` for classical maximum-likelihood joint models; `JMbayes2` for Bayesian alternatives that handle complex random-effect structures and missing data more flexibly.
 - Joint models handle informative dropout — subjects censored because their biomarker is deteriorating — that biases naive Cox time-varying-covariate analyses.
@@ -54,34 +56,30 @@ A reporting sentence: "A joint longitudinal-survival model linking log-bilirubin
 - Convergence diagnostics matter: check `joint_fit$convergence` and Gauss-Hermite node counts; raise `iter.qN` and `nQuad` if the model fails to converge.
 - A simpler alternative is the time-varying Cox model with LOCF imputation; it loses efficiency and ignores measurement error but is easier to fit and explain to a non-statistical audience.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-joint-longitudinal-survival-r-packages-used}
 
 `JM` for `jointModel()` with maximum-likelihood estimation; `JMbayes2` for Bayesian joint models with richer random-effect structures; `joineRML` for multivariate longitudinal-survival models with multiple biomarkers; `dynpred` for dynamic predictions when joint modelling is computationally infeasible.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-joint-longitudinal-survival-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-joint-longitudinal-survival-assumptions) and [practical tips](#sec-chapters-11-survival-joint-longitudinal-survival-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-joint-longitudinal-survival-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

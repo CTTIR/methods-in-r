@@ -1,12 +1,14 @@
-## Introduction
+## Frequency Tables {#sec-chapters-02-descriptives-frequency-tables}
+
+### Introduction {#sec-chapters-02-descriptives-frequency-tables-introduction}
 
 A frequency table is the most basic summary of a categorical or discrete-numeric variable: for each distinct value, how many times it occurred (absolute frequency), what share of the sample it represents (relative frequency), and the running total up to and including that value (cumulative frequency). Frequency tables are the building blocks of chi-squared tests, goodness-of-fit analyses, and most epidemiological prevalence reporting.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-frequency-tables-prerequisites}
 
 The reader should know what a categorical variable is and be comfortable with R factors.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-frequency-tables-theory}
 
 Given a categorical variable $X$ with levels $c_1, \ldots, c_k$ observed in a sample of size $n$:
 
@@ -15,11 +17,11 @@ Given a categorical variable $X$ with levels $c_1, \ldots, c_k$ observed in a sa
 - **Cumulative frequency** $F_j = f_1 + \ldots + f_j$: running count. Meaningful only for ordered variables.
 - **Cumulative relative frequency** $R_j = F_j / n$: running proportion, equivalent to the empirical CDF at $c_j$.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-frequency-tables-assumptions}
 
 Frequency tables are descriptive; no distributional assumption. The variable must be categorical (nominal or ordinal) or discrete numeric.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-frequency-tables-r-implementation}
 
 ```r
 library(dplyr)
@@ -52,7 +54,7 @@ cohort |> count(stage) |>
   fmt_number(columns = c(pct, cum_pct), decimals = 1)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-frequency-tables-output-results}
 
 ```
   I  II III  IV
@@ -67,11 +69,11 @@ cohort |> count(stage) |>
 
 For the ordered stages, the cumulative column shows that 87% of patients are stage III or earlier.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-frequency-tables-interpretation}
 
 Report frequency tables for every categorical variable in a manuscript's Table 1. Include both counts and percentages: "Stage III: 77 (30.8%)". For ordered variables, the cumulative column often tells the story more clearly than the raw counts.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-frequency-tables-practical-tips}
 
 - Preserve factor level ordering when reporting; ordered factors in R maintain the sequence automatically.
 - Report the denominator used for percentages (total sample or column total) to avoid confusion.
@@ -81,24 +83,21 @@ Report frequency tables for every categorical variable in a manuscript's Table 1
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-frequency-tables-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-frequency-tables-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-frequency-tables-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-frequency-tables-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

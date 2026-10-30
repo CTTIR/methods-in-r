@@ -1,9 +1,11 @@
+## Week 1, Session 4 — Bench and translational design {#sec-chapters-16-design-labs-lab-bench-and-translational-design}
+
 <div class="callout callout-note">
 **Inference lab** using the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-16-design-labs-lab-bench-and-translational-design-learning-objectives}
 
 - Recognise blocking, factorial, and split-plot designs in a bench
   setting.
@@ -11,12 +13,12 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Spot and correct a pseudoreplication error in a cell-culture
   example.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-labs-lab-bench-and-translational-design-prerequisites}
 
 Linear regression and ANOVA; familiarity with the formula
 interface.
 
-## Background
+### Background {#sec-chapters-16-design-labs-lab-bench-and-translational-design-background}
 
 Bench and translational biology lives on small, carefully structured
 experiments whose designs are often misread as simple one-way
@@ -43,7 +45,7 @@ could have independently randomised?* That is the unit of analysis.
 If an intervention was applied to a cage but measurements were taken
 on each mouse, the cage is the unit.
 
-## Setup
+### Setup {#sec-chapters-16-design-labs-lab-bench-and-translational-design-setup}
 
 ```r
 library(tidyverse)
@@ -51,14 +53,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-16-design-labs-lab-bench-and-translational-design-1-hypothesis}
 
 A drug and a diet each affect a continuous biomarker, and their
 combination may have a non-additive effect (interaction).
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-16-design-labs-lab-bench-and-translational-design-2-visualise}
 
 ```r
+n_per_cell <- 10
 fact <- expand_grid(
   drug = c("no", "yes"),
   diet = c("standard", "modified"),
@@ -78,7 +81,7 @@ fact |>
   labs(x = NULL, y = "Biomarker", fill = "Drug")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-16-design-labs-lab-bench-and-translational-design-3-assumptions}
 
 Independent observations *within each cell* (every replicate is a
 separate biological unit), approximately normal residuals, and equal
@@ -86,13 +89,15 @@ variance across cells. For the pseudoreplication demonstration we
 deliberately break the independence assumption.
 
 ```r
+fact |>
   group_by(drug, diet) |>
   summarise(mean = mean(y), sd = sd(y), n = n(), .groups = "drop")
 ```
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-16-design-labs-lab-bench-and-translational-design-4-conduct}
 
 ```r
+fit <- lm(y ~ drug * diet, data = fact)
 anova(fit)
 ```
 
@@ -101,6 +106,7 @@ measured three times (technical replicates) and we naively treated
 the 3 × rows as independent.
 
 ```r
+pseudo <- fact |>
   slice(rep(seq_len(n()), each = 3)) |>
   mutate(tech_noise = rnorm(n(), 0, 0.3),
          y = y + tech_noise)
@@ -118,7 +124,7 @@ bind_rows(
 The point estimate barely moves; the standard error in the bad
 analysis is smaller because the apparent *n* is three times larger.
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-16-design-labs-lab-bench-and-translational-design-5-concluding-statement}
 
 > In a simulated 2 × 2 factorial experiment (10 biological
 > replicates per cell), there was evidence of an interaction between
@@ -129,7 +135,7 @@ analysis is smaller because the apparent *n* is three times larger.
 > pseudoreplication artefact.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-16-design-labs-lab-bench-and-translational-design-common-pitfalls}
 
 - Counting wells, sections, or reads as independent samples.
 - Forgetting to include the block in the model when the design was
@@ -138,7 +144,7 @@ analysis is smaller because the apparent *n* is three times larger.
   interaction.
 - Split-plot designs analysed with a single-error-term model.
 
-## Further reading
+### Further reading {#sec-chapters-16-design-labs-lab-bench-and-translational-design-further-reading}
 
 - Montgomery DC. *Design and Analysis of Experiments*.
 - Lazic SE (2010), *The problem of pseudoreplication in
@@ -146,16 +152,17 @@ analysis is smaller because the apparent *n* is three times larger.
 - Festing MFW (2006), *Design and statistical methods in studies
   using animal models*.
 
-## Session info
+### Session info {#sec-chapters-16-design-labs-lab-bench-and-translational-design-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-16-design-labs-lab-bench-and-translational-design-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-16-design)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

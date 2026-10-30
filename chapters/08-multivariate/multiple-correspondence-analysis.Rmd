@@ -1,12 +1,14 @@
-## Introduction
+## Multiple Correspondence Analysis {#sec-chapters-08-multivariate-multiple-correspondence-analysis}
+
+### Introduction {#sec-chapters-08-multivariate-multiple-correspondence-analysis-introduction}
 
 Multiple correspondence analysis (MCA) is the categorical analogue of principal components analysis. Where PCA reduces a matrix of continuous variables to a small number of orthogonal axes capturing maximal variance, MCA reduces a set of categorical variables to axes capturing maximal chi-squared inertia. It is the natural exploratory tool for survey data, lifestyle patterns, ICD code panels, and any context in which several categorical variables jointly characterise units of observation.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-multiple-correspondence-analysis-prerequisites}
 
 A working understanding of correspondence analysis on a two-way contingency table, indicator (disjunctive) coding of categorical variables, and the chi-squared distance interpretation.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-multiple-correspondence-analysis-theory}
 
 MCA operates on the disjunctive-coded indicator matrix that represents each categorical variable by one binary column per category. Two equivalent computations exist:
 
@@ -15,11 +17,11 @@ MCA operates on the disjunctive-coded indicator matrix that represents each cate
 
 Each category becomes a point in the resulting low-dimensional space; each individual is also placed in the space (the "cloud of individuals"). Inertia per axis is typically low — much lower than typical PCA explained variance — because each indicator column contributes only one dimension of variation. Benzécri's or Greenacre's adjusted inertia formulas correct for this and give more meaningful variance-explained percentages.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-multiple-correspondence-analysis-assumptions}
 
 Categorical variables (no strong zero cells), sufficient sample size relative to the number of categories, and a meaningful joint structure to extract.
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-multiple-correspondence-analysis-r-implementation}
 
 ```r
 library(FactoMineR); library(factoextra)
@@ -32,15 +34,15 @@ fviz_mca_var(mca)
 summary(mca)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-multiple-correspondence-analysis-output-results}
 
 `MCA()` returns coordinates for individuals and category points, inertia per axis, contributions, and squared cosines (quality of representation). `fviz_mca_biplot()` displays both individuals and categories in the first two dimensions; `fviz_mca_var()` zooms in on the category cloud.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-multiple-correspondence-analysis-interpretation}
 
 A reporting sentence: "MCA of 8 hobby variables (n = 8,403 respondents) extracted two interpretable dimensions: the first contrasts active vs sedentary hobbies (Benzécri-adjusted inertia 28 %), the second social vs solitary hobbies (adjusted inertia 19 %); supplementary projection of age and gender showed a clear age gradient on the first dimension and a weak gender effect on the second." Always report adjusted inertia rather than raw inertia; raw values systematically understate explained variation.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-multiple-correspondence-analysis-practical-tips}
 
 - Use Benzécri's or Greenacre's adjusted inertia (`FactoMineR::MCA()` reports both) for variance-explained percentages; raw inertias are pessimistic and misleading.
 - Supplementary categorical variables (`quali.sup`) project onto the axes without affecting their estimation; useful for adding demographic markers post-hoc.
@@ -49,32 +51,29 @@ A reporting sentence: "MCA of 8 hobby variables (n = 8,403 respondents) extracte
 - For ordinal categorical data, MCA loses the ordering — consider polychoric PCA or graded-response IRT models instead.
 - Pair MCA with hierarchical clustering on the principal component scores (`HCPC()`) for a single workflow that combines exploration and partitioning.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-multiple-correspondence-analysis-r-packages-used}
 
 `FactoMineR` for `MCA()`, `FAMD()`, and `HCPC()`; `factoextra` for `fviz_mca_*` ggplot-style visualisation; `ca::mjca()` for an alternative Burt-table implementation; `ade4::dudi.acm()` for ecology-flavoured MCA.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-multiple-correspondence-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-multiple-correspondence-analysis-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-multiple-correspondence-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-multiple-correspondence-analysis-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

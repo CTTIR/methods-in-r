@@ -1,12 +1,14 @@
-## Introduction
+## Simplex Lattice Mixture Designs {#sec-chapters-16-design-mixture-designs-simplex}
+
+### Introduction {#sec-chapters-16-design-mixture-designs-simplex-introduction}
 
 Mixture experiments study how a response depends on the relative proportions of two or more components in a blend, where the proportions are constrained to sum to one. They arise routinely in food formulation (recipes), paint and coating chemistry, pharmaceutical excipient blending, fuel formulation, and any setting in which the absolute amount is fixed and only the relative composition can vary. Because the simplex constraint $x_1 + \cdots + x_q = 1$ removes one degree of freedom, standard polynomial regression models are not directly applicable, and Scheffé's canonical polynomial forms — which omit the intercept and pure quadratic terms — are the appropriate functional family. Simplex-lattice designs are the foundational mixture-design construction and the natural starting point for any mixture experiment.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-mixture-designs-simplex-prerequisites}
 
 A working understanding of factorial designs, basic simplex geometry, and the Scheffé canonical polynomial form for mixture models.
 
-## Theory
+### Theory {#sec-chapters-16-design-mixture-designs-simplex-theory}
 
 A $\{q, m\}$ simplex-lattice design for $q$ components samples all blends in which each component takes a proportion in the set $\{0, 1/m, 2/m, \dots, 1\}$, restricted to those proportions that sum to one. For $q = 3$ and $m = 2$, the design has six points: three pure components (vertices of the simplex), and three binary midpoints (edge centres at $(1/2, 1/2, 0)$, $(1/2, 0, 1/2)$, $(0, 1/2, 1/2)$). The Scheffé canonical polynomial of order $m$ in canonical form is
 
@@ -14,11 +16,11 @@ $$y = \sum_i \beta_i x_i + \sum_{i<j} \beta_{ij} x_i x_j + \cdots,$$
 
 with no intercept (because the linear terms already absorb a constant) and no pure-quadratic terms (because $\sum x_i = 1$ implies $x_i^2 = x_i - \sum_{j \neq i} x_i x_j$, redistributing the squared terms into linear and interaction blends).
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-mixture-designs-simplex-assumptions}
 
 The components sum to one (so the design lies on the standard $(q-1)$-simplex), the response is a smooth function of the component proportions, the residual error is approximately Normal with constant variance, and the chosen Scheffé polynomial order $m$ adequately captures the surface curvature.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-mixture-designs-simplex-r-implementation}
 
 ```r
 library(mixexp)
@@ -35,15 +37,15 @@ fit <- MixModel(design, "y", mixcomps = c("x1", "x2", "x3"), model = 2)
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-mixture-designs-simplex-output-results}
 
 `SLD()` returns the simplex-lattice points, and `MixModel()` fits the Scheffé polynomial of the requested order. The output reports per-component linear blend coefficients and pairwise interaction coefficients; reading these together with a contour plot on the ternary simplex is the standard way to identify the optimal blend.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-mixture-designs-simplex-interpretation}
 
 A reporting sentence: "The $\{3, 2\}$ simplex-lattice mixture design with six runs identified component 2 as the strongest pure component ($\beta_2 = 12.1$) and a positive synergy between components 1 and 2 ($\beta_{12} = 5.9$). The fitted optimum lies on the $x_1$-$x_2$ edge near $(0.5, 0.5, 0)$ with predicted response 12.5, exceeding any pure-component value. A follow-up centroid-augmented design will confirm whether the optimum truly lies on the binary edge or shifts toward the interior." Always interpret pure components alongside blend interactions.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-mixture-designs-simplex-practical-tips}
 
 - Report coefficients only in the Scheffé canonical form; standard polynomial models with intercept and pure quadratic terms misrepresent mixture data because they ignore the simplex constraint.
 - Augment simplex-lattice designs with the overall centroid (and optionally axial points partway between centroid and vertices) for better prediction of non-extreme blends; pure simplex-lattice designs over-sample the boundary and under-sample the interior.
@@ -52,42 +54,39 @@ A reporting sentence: "The $\{3, 2\}$ simplex-lattice mixture design with six ru
 - Contour plots on the ternary simplex (or generalisations to higher dimensions) are the standard visualisation; mixture intuition is overwhelmingly visual, and contour plots reveal optimal blends and constraint-binding edges far better than coefficient tables.
 - For more than four or five components, full simplex-lattice designs become impractical; D-optimal mixture designs or fractional simplex constructions are the modern alternative.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-mixture-designs-simplex-r-packages-used}
 
 `mixexp::SLD()` and `mixexp::MixModel()` for the canonical simplex-lattice design and Scheffé-model fitting; `mixexp::SCD()` for the simplex-centroid extension; `MixExpR` for a tidyverse-friendly mixture-design ecosystem; `qualityTools::mixDesign()` for an alternative mixture-design toolkit; `AlgDesign` for D-optimal mixture designs under arbitrary constraints.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-mixture-designs-simplex-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-mixture-designs-simplex-assumptions) and
+[practical tips](#sec-chapters-16-design-mixture-designs-simplex-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-mixture-designs-simplex-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

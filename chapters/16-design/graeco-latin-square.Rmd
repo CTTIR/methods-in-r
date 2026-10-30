@@ -1,12 +1,14 @@
-## Introduction
+## Graeco-Latin Square Designs {#sec-chapters-16-design-graeco-latin-square}
+
+### Introduction {#sec-chapters-16-design-graeco-latin-square-introduction}
 
 A Graeco-Latin square superimposes two orthogonal Latin squares to block simultaneously on three nuisance factors in a single $t \times t$ layout. Each of the $t$ treatments appears exactly once in every row, every column, and every Greek-letter level, so the four classifications — rows, columns, Greek letters, and Latin treatment letters — are mutually orthogonal. The design is extraordinarily compact: $t^2$ runs accommodate $t$ treatments with three layers of blocking, where a comparable randomised-block design would need $t^3$ runs to achieve the same blocking. This makes Graeco-Latin squares classical tools in industrial and agricultural experiments where each run is expensive and three nuisance factors (operator, machine, day; or row, column, fertiliser-batch) need to be controlled simultaneously.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-graeco-latin-square-prerequisites}
 
 Familiarity with Latin square designs, the orthogonality of factor classifications, and the concept of degrees-of-freedom partitioning in block ANOVA models.
 
-## Theory
+### Theory {#sec-chapters-16-design-graeco-latin-square-theory}
 
 The standard model is
 
@@ -14,11 +16,11 @@ $$y_{ijkl} = \mu + \rho_i + \gamma_j + \alpha_k + \tau_l + \varepsilon_{ijkl},$$
 
 with row effect $\rho_i$, column effect $\gamma_j$, Greek-letter effect $\alpha_k$, treatment effect $\tau_l$, and independent Normal error. Orthogonal Latin squares of order $t$ — required to construct the design — exist for all $t$ except $t = 2$ and $t = 6$, the famous exceptions from the work of Tarry and the Bose–Shrikhande–Parker theory of mutually orthogonal Latin squares (Fisher's argument originally excluded $t = 6$).
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-graeco-latin-square-assumptions}
 
 No interactions exist between any pair of the four classifications (treatment, row, column, Greek), the residual error has homogeneous variance, and the response is approximately Normal. Because residual degrees of freedom are very small for the smallest squares, the design is sensitive to violations of these assumptions.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-graeco-latin-square-r-implementation}
 
 ```r
 library(agricolae)
@@ -34,15 +36,15 @@ fit <- aov(y ~ row + col + greek + trts, data = gls$book)
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-graeco-latin-square-output-results}
 
 `design.graeco()` returns the experimental layout with row, column, Greek, and treatment indicators for each of the $t^2$ runs. The ANOVA partitions the total sum of squares into row, column, Greek, treatment, and residual components, with the treatment $F$-test as the primary inference. Reporting all four block effects alongside the treatment effect gives a complete picture of how variability was partitioned.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-graeco-latin-square-interpretation}
 
 A reporting sentence: "The Graeco-Latin square blocked simultaneously on row, column, and Greek-letter classifications. The treatment main effect was marginal ($F_{3, 3} = 6.4$, $p = 0.08$); residual degrees of freedom were limited ($\mathrm{df}_{\text{res}} = 3$) so the test had low power, and a replicated design or a Latin square with one fewer blocking layer would have given more stable inference. Block sums of squares were modest, indicating the nuisance factors did not dominate the response variability." Always note residual df explicitly.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-graeco-latin-square-practical-tips}
 
 - Residual degrees of freedom in a $t \times t$ Graeco-Latin square are $(t - 1)(t - 3)$, which is dangerously small for $t \leq 5$; for $t = 4$ only 3 residual df remain, severely limiting power.
 - Replicate the entire square if residual df are too few; replicated Graeco-Latin squares restore power without losing the orthogonal blocking structure.
@@ -51,42 +53,39 @@ A reporting sentence: "The Graeco-Latin square blocked simultaneously on row, co
 - Graeco-Latin squares are most common in agricultural field trials and industrial process-screening; in clinical-biostatistics they are rare because the assumed lack of interactions is hard to justify.
 - Higher-order extensions (hyper-Graeco-Latin squares with four or more orthogonal Latin squares superimposed) exist but consume residual df even more aggressively and are seldom used in practice.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-graeco-latin-square-r-packages-used}
 
 `agricolae::design.graeco()` for the canonical layout construction and randomisation; `crossdes` for systematic generation of mutually orthogonal Latin squares of higher order; `DoE.base` for general orthogonal-array construction encompassing Graeco-Latin layouts; `lme4` and `lmerTest` for mixed-model analysis when block effects are treated as random.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-graeco-latin-square-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-graeco-latin-square-assumptions) and
+[practical tips](#sec-chapters-16-design-graeco-latin-square-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-graeco-latin-square-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

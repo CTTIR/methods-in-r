@@ -1,12 +1,14 @@
-## Introduction
+## Tau-Squared Estimation {#sec-chapters-15-metaanalysis-tau-squared-estimation}
+
+### Introduction {#sec-chapters-15-metaanalysis-tau-squared-estimation-introduction}
 
 The random-effects meta-analysis requires an estimate of $\tau^2$, the between-study variance. Several estimators exist with different bias-variance trade-offs; the choice affects pooled estimates, CIs, and downstream inference. REML is the modern default; DerSimonian-Laird (DL) the historical default.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-15-metaanalysis-tau-squared-estimation-prerequisites}
 
 Random-effects meta-analysis; method-of-moments vs maximum likelihood.
 
-## Theory
+### Theory {#sec-chapters-15-metaanalysis-tau-squared-estimation-theory}
 
 Common estimators:
 - **DerSimonian-Laird (DL)**: method-of-moments; fastest, historically default.
@@ -17,11 +19,11 @@ Common estimators:
 
 DL systematically underestimates $\tau^2$ under moderate heterogeneity; REML is close to unbiased.
 
-## Assumptions
+### Assumptions {#sec-chapters-15-metaanalysis-tau-squared-estimation-assumptions}
 
 True effects are drawn from a distribution (typically normal) with common variance $\tau^2$; within-study variances are known.
 
-## R Implementation
+### R Implementation {#sec-chapters-15-metaanalysis-tau-squared-estimation-r-implementation}
 
 ```r
 library(metafor)
@@ -40,15 +42,15 @@ tau2_est <- sapply(methods, function(m) {
 round(tau2_est, 3)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-15-metaanalysis-tau-squared-estimation-output-results}
 
 $\tau^2$ estimates under the five methods. DL typically gives the smallest value; REML, PM, SJ, EB are often close.
 
-## Interpretation
+### Interpretation {#sec-chapters-15-metaanalysis-tau-squared-estimation-interpretation}
 
 "$\tau^2$ estimates ranged from 0.041 (DL) to 0.061 (SJ); we report REML ($\tau^2 = 0.055$, 95 % CI 0.012-0.142) as the primary estimator following modern meta-analysis recommendations."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-15-metaanalysis-tau-squared-estimation-practical-tips}
 
 - Use REML by default; it is less biased than DL under most conditions.
 - Hartung-Knapp adjustment (`test = "knha"` in metafor) improves CI coverage, especially with few studies.
@@ -58,26 +60,23 @@ $\tau^2$ estimates under the five methods. DL typically gives the smallest value
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-15-metaanalysis-tau-squared-estimation-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-15-metaanalysis-tau-squared-estimation-assumptions) and
+[practical tips](#sec-chapters-15-metaanalysis-tau-squared-estimation-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-15-metaanalysis-tau-squared-estimation-see-also-labs-in-this-chapter}
 
-- [Systematic reviews and PRISMA](labs/lab-systematic-reviews-and-prisma.Rmd)
-- [Meta-analysis basics](labs/lab-meta-analysis-basics.Rmd)
-- [Network meta-analysis](labs/lab-network-meta-analysis.Rmd)
+- [Systematic reviews and PRISMA](#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma)
+- [Meta-analysis basics](#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics)
+- [Network meta-analysis](#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Selection Models for Publication Bias {#sec-chapters-15-metaanalysis-selection-models-bias}
+
+### Introduction {#sec-chapters-15-metaanalysis-selection-models-bias-introduction}
 
 Selection models address publication bias more rigorously than trim-and-fill or simple regression-based asymmetry tests. They posit an explicit weight function describing how the probability of publication depends on a study's $p$-value or effect magnitude, then re-estimate the pooled effect under that assumed selection mechanism to recover a bias-adjusted estimate. Where trim-and-fill is descriptive and triangular in its assumption, selection models are formally model-based and yield likelihood-ratio tests of the selection hypothesis itself. The cost is stronger parametric assumptions about the form of the selection process, which means selection models are most useful when the meta-analysis is large enough that the selection function can be reasonably identified from the data.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-15-metaanalysis-selection-models-bias-prerequisites}
 
 A working understanding of publication bias as a selection process, maximum-likelihood estimation, and the logic of inverse-probability weighting on a sampled population.
 
-## Theory
+### Theory {#sec-chapters-15-metaanalysis-selection-models-bias-theory}
 
 Given observed effects $y_i$ with standard errors $\mathrm{SE}_i$ from published studies, the observed density is
 
@@ -14,11 +16,11 @@ $$p_{\text{obs}}(y) = \frac{w(y, \mathrm{SE}) \, p(y)}{\int w(y, \mathrm{SE}) \,
 
 where $p(y)$ is the population density of true effects and $w(\cdot)$ is a selection weight function — typically a step function in the one-sided $p$-value, with selection probability dropping at conventional thresholds (0.025, 0.05, 0.10). Maximum-likelihood estimation of the joint $(\mu, \tau^2, w)$ parameters then inverts the selection mechanism to recover the bias-adjusted pooled effect, and a likelihood-ratio test against the null of $w(\cdot) \equiv 1$ formally tests for selection.
 
-## Assumptions
+### Assumptions {#sec-chapters-15-metaanalysis-selection-models-bias-assumptions}
 
 The functional form of the selection weight is correctly specified (or at least a reasonable approximation), the meta-analysis contains enough studies to identify the selection parameters (typically 15–20+), and the studies are exchangeable conditional on their effect size and standard error.
 
-## R Implementation
+### R Implementation {#sec-chapters-15-metaanalysis-selection-models-bias-r-implementation}
 
 ```r
 library(metafor)
@@ -36,15 +38,15 @@ sel <- selmodel(res, type = "stepfun",
 sel
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-15-metaanalysis-selection-models-bias-output-results}
 
 `selmodel()` returns the bias-adjusted pooled estimate, its standard error and confidence interval, the estimated selection weights at each step, and a likelihood-ratio test against the null of no selection. Comparing the adjusted and unadjusted estimates side by side quantifies how much the conclusion shifts under the assumed selection mechanism.
 
-## Interpretation
+### Interpretation {#sec-chapters-15-metaanalysis-selection-models-bias-interpretation}
 
 A reporting sentence: "A step-function selection model with thresholds at $p = 0.025, 0.10, 0.50$ provided strong evidence for selective publication (likelihood-ratio test vs no-selection, $\chi^2 = 13.1$, df $= 3$, $p = 0.004$). The bias-adjusted standardised mean difference was 0.19 (95 % CI 0.05 to 0.33), substantially attenuated from the unadjusted estimate of 0.32 (0.21 to 0.43). The result suggests publication bias inflates the unadjusted pooled effect by roughly 40 %." Always report both estimates and the LR test.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-15-metaanalysis-selection-models-bias-practical-tips}
 
 - Selection models require at least 15–20 studies for stable estimates; below this threshold the selection function is poorly identified and confidence intervals become uninformatively wide.
 - Try several weight-function structures (different step thresholds, smooth-monotone forms) as sensitivity analyses; the bias-adjusted estimate can be quite sensitive to the assumed selection mechanism, and convergent results across forms are reassuring.
@@ -53,32 +55,29 @@ A reporting sentence: "A step-function selection model with thresholds at $p = 0
 - Bayesian selection models with informative priors on the weight parameters (e.g., in `RoBMA` and related packages) are a stable alternative when frequentist MLE is unstable.
 - Selection models adjust only for the selection mechanism they are told to assume; other forms of bias (selective outcome reporting, dependent effect-size selection) require separate handling.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-15-metaanalysis-selection-models-bias-r-packages-used}
 
 `metafor::selmodel()` for the canonical step-function and smooth selection-model implementations; `weightr` for Vevea–Hedges weight-function models; `puniform` and `puniforms` for $p$-uniform corrections; `RoBMA` for Bayesian model-averaged publication-bias adjustment; `metasens` for limit-meta-analysis and Copas-model alternatives.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-15-metaanalysis-selection-models-bias-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-15-metaanalysis-selection-models-bias-assumptions) and
+[practical tips](#sec-chapters-15-metaanalysis-selection-models-bias-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-15-metaanalysis-selection-models-bias-see-also-labs-in-this-chapter}
 
-- [Systematic reviews and PRISMA](labs/lab-systematic-reviews-and-prisma.Rmd)
-- [Meta-analysis basics](labs/lab-meta-analysis-basics.Rmd)
-- [Network meta-analysis](labs/lab-network-meta-analysis.Rmd)
+- [Systematic reviews and PRISMA](#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma)
+- [Meta-analysis basics](#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics)
+- [Network meta-analysis](#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis)
 
 <!-- END see-also -->

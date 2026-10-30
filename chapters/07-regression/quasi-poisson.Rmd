@@ -1,22 +1,24 @@
-## Introduction
+## Quasi-Poisson Regression {#sec-chapters-07-regression-quasi-poisson}
+
+### Introduction {#sec-chapters-07-regression-quasi-poisson-introduction}
 
 Quasi-Poisson regression is the simplest fix for overdispersion in count data: keep the Poisson mean structure $\log \mu = X^\top \beta$, but introduce a free dispersion parameter $\phi$ that scales the variance to $\phi \mu$ rather than the Poisson-mandated $\mu$. Coefficient estimates are identical to Poisson; only the standard errors change, multiplied by $\sqrt{\phi}$. It is the workhorse "quick fix" when a Poisson dispersion check fails by a moderate amount and you do not need a likelihood-based comparison.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-quasi-poisson-prerequisites}
 
 A working understanding of Poisson regression, generalised linear models, and the concept of overdispersion.
 
-## Theory
+### Theory {#sec-chapters-07-regression-quasi-poisson-theory}
 
 Quasi-Poisson uses quasi-likelihood: it specifies only the first two moments $\mathbb E[Y] = \mu$ and $\mathrm{Var}(Y) = \phi \mu$, without committing to a particular distribution. The dispersion parameter is estimated by Pearson chi-squared divided by residual degrees of freedom. Coefficient estimates are unchanged from Poisson; standard errors are inflated by $\sqrt{\hat\phi}$, and confidence intervals widen accordingly.
 
 Unlike the negative binomial — which has a genuine likelihood and AIC — quasi-Poisson is a quasi-likelihood model: no AIC, no BIC, no likelihood-ratio tests in the usual sense. F-type tests via `anova(fit, test = "F")` are appropriate for comparing nested quasi-Poisson models.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-quasi-poisson-assumptions}
 
 Non-negative integer outcomes, the variance-mean relationship $\mathrm{Var}(Y) = \phi \mu$ (linear in the mean), and independent observations. For quadratic variance-mean (typical of strongly overdispersed counts), negative binomial is more appropriate.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-quasi-poisson-r-implementation}
 
 ```r
 set.seed(2026)
@@ -33,15 +35,15 @@ summary(fit_pois)$coefficients
 summary(fit_qp)$coefficients
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-quasi-poisson-output-results}
 
 The `quasipoisson` family produces the same point estimates as Poisson but with inflated standard errors. The dispersion estimate is in `summary(fit)$dispersion`; comparing the two coefficient summaries shows how much SEs change.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-quasi-poisson-interpretation}
 
 A reporting sentence: "Quasi-Poisson regression estimated a dispersion of $\hat\phi = 2.8$, indicating substantial overdispersion; standard errors were inflated by $\sqrt{2.8} = 1.67$ relative to Poisson, giving a 95 % confidence interval for the rate ratio per unit $x$ of 1.30 to 2.00 (Poisson misleadingly gave 1.45 to 1.85)." Always quote the dispersion alongside the inflated SEs.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-quasi-poisson-practical-tips}
 
 - Quasi-Poisson is acceptable for estimation and confidence intervals, but it lacks a proper likelihood — no AIC, BIC, or LRTs in the usual sense.
 - For formal model selection by AIC, switch to negative binomial (`MASS::glm.nb` or `glmmTMB(family = nbinom2)`); the additional dispersion parameter is genuinely estimated.
@@ -50,46 +52,43 @@ A reporting sentence: "Quasi-Poisson regression estimated a dispersion of $\hat\
 - Use F-tests (`anova(fit, test = "F")`) for nested quasi-Poisson model comparisons; LRTs are not available.
 - For longitudinal or clustered counts, `glmmTMB(family = nbinom2)` is preferable to quasi-Poisson because it provides random effects and a proper likelihood.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-quasi-poisson-r-packages-used}
 
 Base R `glm()` with `family = quasipoisson`; `MASS::glm.nb()` for negative binomial as the recommended alternative; `glmmTMB` for mixed-effects count models with proper likelihoods; `DHARMa` for residual diagnostics across count-model families.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-quasi-poisson-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-quasi-poisson-assumptions) and
+[practical tips](#sec-chapters-07-regression-quasi-poisson-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-quasi-poisson-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

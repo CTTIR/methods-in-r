@@ -1,22 +1,24 @@
-## Introduction
+## Granger Causality {#sec-chapters-09-timeseries-granger-causality}
+
+### Introduction {#sec-chapters-09-timeseries-granger-causality-introduction}
 
 Granger causality tests whether past values of one time series improve the prediction of another, beyond what is already explained by the latter's own history. It is a *statistical* concept, not a *causal* one in the philosophical sense: a series Granger-causes another if including its lags reduces the residual variance of the predicted series, which is a useful but limited notion. Two series can Granger-cause each other without any direct causal link if both are driven by a common unobserved factor.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-granger-causality-prerequisites}
 
 A working understanding of vector autoregressive (VAR) models, F-tests on joint coefficient hypotheses, and the difference between predictive and causal claims.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-granger-causality-theory}
 
 Series $X$ Granger-causes series $Y$ at lag $p$ if the lagged values $X_{t-1}, \dots, X_{t-p}$ significantly improve the regression of $Y_t$ on its own lags $Y_{t-1}, \dots, Y_{t-p}$. The test is an F-test on the joint hypothesis that all coefficients on lagged $X$ are zero. Within a VAR system with $K$ series, Granger causality from one series to another (or to all others) is computed similarly with the residuals jointly estimated.
 
 A non-trivial extension is "instantaneous" causality: $X$ and $Y$ contemporaneously correlated after conditioning on lagged values of both. This is included by some implementations (e.g., `vars::causality`).
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-granger-causality-assumptions}
 
 Stationary series — the test is invalid for unit-root processes. No unmeasured common cause that drives both series; otherwise the Granger-causal direction is uninterpretable.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-granger-causality-r-implementation}
 
 ```r
 library(lmtest); library(vars)
@@ -33,15 +35,15 @@ causality(fit, cause = "egg")$Granger
 causality(fit, cause = "chicken")$Granger
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-granger-causality-output-results}
 
 `grangertest()` returns the F-statistic, degrees of freedom, and $p$-value for the joint hypothesis of zero coefficients on the cause's lags. `vars::causality()` extends this within a VAR framework, handling the multivariate residual structure correctly and adding the instantaneous-causality test.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-granger-causality-interpretation}
 
 A reporting sentence: "Egg production Granger-caused chicken population at lag 3 ($F(3, 48) = 4.9$, $p = 0.005$); the reverse test was not significant ($p = 0.39$). This suggests egg counts contain predictive information about future chicken populations beyond past chicken counts, but does not establish a direct causal mechanism." Always frame Granger results as predictive, not causal.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-granger-causality-practical-tips}
 
 - Granger causality requires stationarity; difference or detrend first using KPSS / ADF guidance.
 - Results are sensitive to lag order; try several plausible lags and report the chosen value with justification.
@@ -50,30 +52,27 @@ A reporting sentence: "Egg production Granger-caused chicken population at lag 3
 - Non-linear Granger causality exists (`bootGran`, `NlinTS`); the standard tests are linear and miss non-linear predictive relationships.
 - For frequency-domain Granger causality, the `vars::fevd()` and Geweke decomposition tools partition predictive contribution by frequency band.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-granger-causality-r-packages-used}
 
 `lmtest::grangertest()` for the bivariate test; `vars::VAR()` and `causality()` for VAR-based multivariate Granger causality; `tsDyn` for non-linear extensions; `NlinTS` for non-linear and information-theoretic causality measures.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-granger-causality-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-granger-causality-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-granger-causality-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-granger-causality-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

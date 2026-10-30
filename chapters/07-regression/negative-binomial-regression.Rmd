@@ -1,12 +1,14 @@
-## Introduction
+## Negative Binomial Regression {#sec-chapters-07-regression-negative-binomial-regression}
+
+### Introduction {#sec-chapters-07-regression-negative-binomial-regression-introduction}
 
 Negative binomial (NB) regression is the standard remedy for overdispersed count data — counts whose variance exceeds the mean, which is most real-world count data once any unobserved heterogeneity is present. It generalises Poisson regression by adding a dispersion parameter $\theta$ that explicitly models the additional variance, so confidence intervals and tests respect the true uncertainty rather than the artificially narrow Poisson ones. For epidemiological count data, hospital admissions, ecological abundance counts, and almost any context where Poisson dispersion checks fail, NB is the natural next step.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-negative-binomial-regression-prerequisites}
 
 A working understanding of Poisson regression, the log link, and the concept of overdispersion as the failure of $\mathrm{Var}(Y) = \mathbb E[Y]$.
 
-## Theory
+### Theory {#sec-chapters-07-regression-negative-binomial-regression-theory}
 
 The NB distribution arises as a Poisson-Gamma mixture: $Y \mid \lambda \sim \mathrm{Poisson}(\lambda)$ with $\lambda \sim \mathrm{Gamma}(\theta, \theta/\mu)$. Marginalising over the Gamma yields $Y \sim \mathrm{NegBin}(\mu, \theta)$ with mean $\mu$ and variance
 
@@ -16,11 +18,11 @@ The dispersion parameter $\theta$ controls extra-Poisson variance; as $\theta \t
 
 The regression model uses the log link $\log \mu = X^\top \beta$. Coefficients are interpreted as log-rate ratios identically to Poisson; the difference is that standard errors and inference reflect the genuine over-Poisson variance.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-negative-binomial-regression-assumptions}
 
 Non-negative integer outcomes, independent observations conditional on covariates, and the NB variance structure $\mu + \mu^2/\theta$. For excess zeros beyond what NB predicts, zero-inflated extensions are needed.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-negative-binomial-regression-r-implementation}
 
 ```r
 library(MASS)
@@ -35,15 +37,15 @@ exp(coef(fit))   # rate ratios
 fit$theta
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-negative-binomial-regression-output-results}
 
 `glm.nb()` returns regression coefficients on the log scale (Wald $z$-tests, confidence intervals) plus the estimated dispersion parameter $\hat\theta$. Exponentiating coefficients gives rate ratios; comparing AIC against a Poisson fit on the same data confirms whether NB is justified.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-negative-binomial-regression-interpretation}
 
 A reporting sentence: "Negative binomial regression with estimated dispersion $\hat\theta = 2.1$ (indicating substantial overdispersion relative to Poisson, $\Delta\mathrm{AIC} = 87$) estimated a rate ratio of 1.65 per unit increase in $x$ (95 % CI 1.40 to 1.95, $p < 0.001$); a Poisson fit underestimated the standard error by 22 %, illustrating the consequence of ignoring overdispersion." Always report $\hat\theta$ alongside the rate ratios; it carries information about residual heterogeneity.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-negative-binomial-regression-practical-tips}
 
 - Compare NB and Poisson by AIC or likelihood-ratio test (`lmtest::lrtest`); the NB additional parameter $\theta$ has well-defined inference.
 - For zero-inflation in addition to overdispersion, use `pscl::zeroinfl(..., dist = "negbin")` or `glmmTMB(family = nbinom2(), ziformula = ...)`.
@@ -52,46 +54,43 @@ A reporting sentence: "Negative binomial regression with estimated dispersion $\
 - The NB1 parameterisation (`glmmTMB(family = nbinom1())`) gives variance proportional to the mean (linear); NB2 (the default in `MASS::glm.nb`) gives quadratic variance. Choose based on the variance-mean relationship in residual plots.
 - Pearson residuals from the NB fit should look approximately uniform; systematic patterns reveal model misspecification.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-negative-binomial-regression-r-packages-used}
 
 `MASS::glm.nb()` for canonical NB regression with offset support; `glmmTMB` for mixed-effects NB1 / NB2 / zero-inflated models with cleaner overdispersion handling; `pscl::zeroinfl()` for zero-inflated count models; `lmtest::lrtest()` for likelihood-ratio comparisons against Poisson; `DHARMa` for residual diagnostics across count-model families.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-negative-binomial-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-negative-binomial-regression-assumptions) and
+[practical tips](#sec-chapters-07-regression-negative-binomial-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-negative-binomial-regression-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

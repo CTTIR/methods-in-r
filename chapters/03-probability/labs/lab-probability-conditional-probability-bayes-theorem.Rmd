@@ -1,9 +1,11 @@
+## Week 2, Session 2 — Probability, conditional probability, Bayes' theorem {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-learning-objectives}
 
 - Distinguish marginal, joint, and conditional probability and compute
   each from a contingency table.
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Simulate a population and recover conditional probabilities by
   counting.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-prerequisites}
 
 Basic probability.
 
-## Background
+### Background {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-background}
 
 Probability is the language for reasoning under uncertainty. In
 biostatistics, most of the probabilities we care about are conditional
@@ -38,7 +40,7 @@ the prevalence in the tested population. Screening a very-low-risk
 population with an imperfect test guarantees that most positives will
 be false positives, regardless of the test's quality.
 
-## Setup
+### Setup {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-setup}
 
 ```r
 library(tidyverse)
@@ -46,19 +48,20 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-1-hypothesis}
 
 We are not testing a hypothesis in the Fisherian sense; we are
 computing a conditional probability. The quantity of interest is the
 positive predictive value of a test with known sensitivity and
 specificity in a population of known prevalence.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-2-visualise}
 
 Simulate a population of 100,000 people. Prevalence of disease = 1%.
 Test sensitivity = 95%. Test specificity = 95%.
 
 ```r
+N <- 100000
 prev <- 0.01
 sens <- 0.95
 spec <- 0.95
@@ -75,6 +78,7 @@ pop <- tibble(
 ```
 
 ```r
+tab <- table(disease = pop$disease, test = pop$test)
 tab
 ```
 
@@ -89,7 +93,7 @@ as_tibble(tab) |>
   labs(x = "Test result", y = "True state", fill = "Count")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-3-assumptions}
 
 We assume each person is independent, the test's operating
 characteristics are fixed, and no selection bias. Real screening has
@@ -97,6 +101,7 @@ verification bias, spectrum bias, and imperfect gold standards; we
 are ignoring all of them to isolate the Bayesian calculation.
 
 ```r
+p_disease <- mean(pop$disease)
 p_positive <- mean(pop$test)
 p_pos_given_disease <- mean(pop$test[pop$disease == 1])
 p_pos_given_no_disease <- mean(pop$test[pop$disease == 0])
@@ -107,11 +112,12 @@ tibble(quantity = c("P(D)", "P(T+)",
                  p_pos_given_disease, p_pos_given_no_disease))
 ```
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-4-conduct}
 
 Apply Bayes' theorem by hand.
 
 ```r
+ppv_bayes <- (sens * prev) / (sens * prev + (1 - spec) * (1 - prev))
 ppv_bayes
 
 # By direct counting from the simulation.
@@ -124,6 +130,7 @@ simulation is counting from the table. They must agree, within
 sampling error.
 
 ```r
+# Sweep prevalence from 0.001 to 0.5 and see PPV change.
 sweep <- tibble(
   prev = seq(0.001, 0.5, length.out = 200),
   ppv = (sens * prev) / (sens * prev + (1 - spec) * (1 - prev))
@@ -138,7 +145,7 @@ sweep |>
   labs(x = "Prevalence", y = "Positive predictive value")
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-5-concluding-statement}
 
 > With sensitivity = `sens` and specificity = `spec`, a test
 > applied in a population of prevalence = `prev` has a positive
@@ -154,7 +161,7 @@ controversial, and why "my test is 95% accurate" is an incomplete
 statement.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-common-pitfalls}
 
 - Confusing sensitivity with PPV. *P*(T+|D) and *P*(D|T+) are not the
   same.
@@ -162,21 +169,22 @@ statement.
 - Assuming independence of repeated tests without checking.
 - Treating the prior (prevalence) as negotiable evidence.
 
-## Further reading
+### Further reading {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-further-reading}
 
 - Gigerenzer G. *Reckoning with Risk*.
 - Altman DG & Bland JM (1994), *Diagnostic tests 2: predictive values*.
 
-## Session info
+### Session info {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-03-probability)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Power for Paired t-Test {#sec-chapters-05-power-power-paired-t}
+
+### Introduction {#sec-chapters-05-power-power-paired-t-introduction}
 
 Paired designs achieve their statistical power gain by cancelling between-subject variability from the treatment contrast. Because each subject acts as their own control, the between-subject component of variance — typically the largest source of noise in clinical-pharmacology, behavioural, and clinical-laboratory studies — drops out of the within-subject difference. The result is that paired designs are substantially more powerful than independent-groups designs of equal total sample size, with the benefit growing as the within-subject correlation increases. Power analysis for the paired $t$-test must therefore explicitly account for this correlation; ignoring it under-uses the design's main analytic advantage and inflates the planned sample size unnecessarily.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-paired-t-prerequisites}
 
 A working understanding of the paired $t$-test, the relationship between within-subject correlation $\rho$ and difference standard deviation $\sigma_D$, and the standardised effect-size measures Cohen's $d$ (between-subject) and $d_z$ (within-subject paired).
 
-## Theory
+### Theory {#sec-chapters-05-power-power-paired-t-theory}
 
 For paired differences $D_i = X_i - Y_i$ with within-subject correlation $\rho$, the difference standard deviation is
 
@@ -18,11 +20,11 @@ $$d_z = \frac{\mu_D}{\sigma_D}.$$
 
 Higher within-subject correlation reduces $\sigma_D$, inflating $d_z$ for a fixed raw effect, and dramatically reducing the required sample size. With $\rho = 0$ the paired design reduces to the independent-groups case (at half the per-condition sample size); with $\rho \to 1$ the paired design approaches infinite efficiency.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-paired-t-assumptions}
 
 The design genuinely produces paired observations (each subject contributes one value per condition), the differences are approximately Normal (or the sample is large enough for the central limit theorem), and the within-subject correlation is reasonably known from pilot data or literature.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-paired-t-r-implementation}
 
 ```r
 library(pwr)
@@ -38,15 +40,15 @@ pwr.t.test(d = 0.5, power = 0.80, type = "two.sample")$n
 pwr.t.test(d = d_z_from_d(0.5, 0.7), power = 0.80, type = "paired")$n
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-paired-t-output-results}
 
 The script reports the required number of pairs at $d_z = 0.4$, the conversion from raw $d$ to paired $d_z$ at correlation 0.7, and the side-by-side sample-size comparison between independent-groups and paired designs for the same raw effect. The paired design needs roughly 21 pairs (42 observations) versus 128 observations for the independent comparison — a six-fold efficiency gain at $\rho = 0.7$.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-paired-t-interpretation}
 
 A reporting sentence: "Assuming a within-subject correlation of 0.7 (estimated from pilot data) and a raw mean difference of 0.5 SD, the paired design requires 21 paired observations for 80 % power at $\alpha = 0.05$ (two-sided), corresponding to a paired effect size $d_z = 0.65$. The same raw effect would require 128 observations (64 per arm) in an independent-groups design — a 6-fold efficiency gain. The protocol therefore enrols 25 subjects to accommodate up to 15 % attrition." Always report the assumed $\rho$ and the efficiency gain.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-paired-t-practical-tips}
 
 - Pre-specify the expected within-subject correlation $\rho$ from pilot data or published literature, and conduct a sensitivity analysis over a plausible range — typically $\rho \in [0.3, 0.8]$. The sample-size calculation is sensitive to this assumption, and protocols should defend the chosen value.
 - When $\rho = 0$ the paired design reduces to the independent-groups case at half the per-condition sample size; the paired design is genuinely advantageous only when within-subject correlation is meaningfully positive, which is almost always the case in repeated-measures contexts.
@@ -55,31 +57,28 @@ A reporting sentence: "Assuming a within-subject correlation of 0.7 (estimated f
 - For more than two repeated measures (three time points, multiple conditions per subject), use repeated-measures ANOVA or mixed-effects power calculations rather than treating the design as a series of pairwise paired tests; the multi-condition analysis is more efficient and avoids multiplicity adjustments.
 - Pilot estimates of $\rho$ have substantial uncertainty in small samples; using the lower end of a CI on $\rho$ for power planning is a conservative approach that protects against an over-optimistic point estimate.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-05-power-power-paired-t-r-packages-used}
 
 `pwr::pwr.t.test(type = "paired")` for the canonical paired-design power calculation in $d_z$ units; `WebPower::wp.t()` with paired specification for an alternative interface; `Superpower` for paired-design ANOVA and factorial extensions; `simr` for simulation-based power analysis when the design extends to mixed-effects models with random slopes; `BUCSS` for bias- and uncertainty-corrected sample-size estimation when pilot data are limited.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-paired-t-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-paired-t-assumptions) and
+[practical tips](#sec-chapters-05-power-power-paired-t-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-paired-t-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

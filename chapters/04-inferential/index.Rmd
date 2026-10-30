@@ -2,68 +2,68 @@
 
 Classical inference: the Central Limit Theorem, MLE, NHST and its philosophy, t-tests and proportions, goodness-of-fit, correlation, and the non-parametric counterparts. This is the largest chapter and the one most peer reviewers will read first.
 
-This chapter contains **45 method pages** and **9 labs**. If you are not sure which method to read, return to [Chapter 0](../../ch00-find-your-method.Rmd) and follow the decision tree to the right node.
+This chapter contains **45 method pages** and **9 labs**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.
 
-## Method pages
+## Method pages {#sec-chapters-04-inferential-index-method-pages}
 
 | Method | Source slug |
 |---|---|
-| [Anderson-Darling Test](anderson-darling-test.Rmd) | `anderson-darling-test` |
-| [Bartlett's Test](bartlett-test.Rmd) | `bartlett-test` |
-| [Benjamini-Hochberg FDR](benjamini-hochberg-fdr.Rmd) | `benjamini-hochberg-fdr` |
-| [Benjamini-Yekutieli FDR](benjamini-yekutieli.Rmd) | `benjamini-yekutieli` |
-| [Bonferroni Correction](bonferroni-correction.Rmd) | `bonferroni-correction` |
-| [Bootstrap Confidence Intervals](bootstrap-confidence-intervals.Rmd) | `bootstrap-confidence-intervals` |
-| [Chi-Squared Goodness-of-Fit Test](chi-squared-goodness-of-fit.Rmd) | `chi-squared-goodness-of-fit` |
-| [Chi-Squared Test of Independence](chi-squared-independence.Rmd) | `chi-squared-independence` |
-| [Cochran-Mantel-Haenszel Test](cochran-mantel-haenszel.Rmd) | `cochran-mantel-haenszel` |
-| [Effect Sizes: Overview](effect-sizes-overview.Rmd) | `effect-sizes-overview` |
-| [Equivalence Testing with TOST](equivalence-tost.Rmd) | `equivalence-tost` |
-| [Fisher's Exact Test](fisher-exact-test.Rmd) | `fisher-exact-test` |
-| [Friedman Test](friedman-test.Rmd) | `friedman-test` |
-| [Holm's Step-Down Correction](holm-correction.Rmd) | `holm-correction` |
-| [Kendall's Tau](kendall-tau.Rmd) | `kendall-tau` |
-| [Kolmogorov-Smirnov Test](kolmogorov-smirnov-test.Rmd) | `kolmogorov-smirnov-test` |
-| [Kruskal-Wallis Test](kruskal-wallis.Rmd) | `kruskal-wallis` |
-| [Levene's Test of Variances](levene-test.Rmd) | `levene-test` |
-| [Mann-Whitney U Test](mann-whitney-u.Rmd) | `mann-whitney-u` |
-| [McNemar's Test](mcnemar-test.Rmd) | `mcnemar-test` |
-| [Mixed ANOVA](mixed-anova.Rmd) | `mixed-anova` |
-| [Multiple Comparisons: Overview](multiple-comparisons-overview.Rmd) | `multiple-comparisons-overview` |
-| [Null and Alternative Hypotheses](null-alternative-hypotheses.Rmd) | `null-alternative-hypotheses` |
-| [One-Proportion Test](one-proportion-test.Rmd) | `one-proportion-test` |
-| [One-Sample t-Test](one-sample-t-test.Rmd) | `one-sample-t-test` |
-| [One-Sample z-Test](one-sample-z-test.Rmd) | `one-sample-z-test` |
-| [One-Way ANOVA](one-way-anova.Rmd) | `one-way-anova` |
-| [P-Values Explained](p-values-explained.Rmd) | `p-values-explained` |
-| [Paired t-Test](paired-t-test.Rmd) | `paired-t-test` |
-| [Pearson Correlation Test](pearson-correlation-test.Rmd) | `pearson-correlation-test` |
-| [Permutation Tests](permutation-tests.Rmd) | `permutation-tests` |
-| [Post-Hoc Tests with Tukey HSD](post-hoc-tests-tukey.Rmd) | `post-hoc-tests-tukey` |
-| [Repeated-Measures ANOVA](repeated-measures-anova.Rmd) | `repeated-measures-anova` |
-| [Shapiro-Wilk Normality Test](shapiro-wilk-test.Rmd) | `shapiro-wilk-test` |
-| [Spearman Rank Correlation Test](spearman-correlation-test.Rmd) | `spearman-correlation-test` |
-| [The Bootstrap: Introduction](bootstrap-introduction.Rmd) | `bootstrap-introduction` |
-| [The Jackknife](jackknife.Rmd) | `jackknife` |
-| [The Runs Test](runs-test.Rmd) | `runs-test` |
-| [The Sign Test](sign-test.Rmd) | `sign-test` |
-| [Two-Proportion Test](two-proportion-test.Rmd) | `two-proportion-test` |
-| [Two-Sample t-Test](two-sample-t-test.Rmd) | `two-sample-t-test` |
-| [Two-Way ANOVA](two-way-anova.Rmd) | `two-way-anova` |
-| [Type I and Type II Errors](type-i-type-ii-errors.Rmd) | `type-i-type-ii-errors` |
-| [Welch's t-Test](welch-t-test.Rmd) | `welch-t-test` |
-| [Wilcoxon Signed-Rank Test](wilcoxon-signed-rank.Rmd) | `wilcoxon-signed-rank` |
+| [Anderson-Darling Test](#sec-chapters-04-inferential-anderson-darling-test) | `anderson-darling-test` |
+| [Bartlett's Test](#sec-chapters-04-inferential-bartlett-test) | `bartlett-test` |
+| [Benjamini-Hochberg FDR](#sec-chapters-04-inferential-benjamini-hochberg-fdr) | `benjamini-hochberg-fdr` |
+| [Benjamini-Yekutieli FDR](#sec-chapters-04-inferential-benjamini-yekutieli) | `benjamini-yekutieli` |
+| [Bonferroni Correction](#sec-chapters-04-inferential-bonferroni-correction) | `bonferroni-correction` |
+| [Bootstrap Confidence Intervals](#sec-chapters-04-inferential-bootstrap-confidence-intervals) | `bootstrap-confidence-intervals` |
+| [Chi-Squared Goodness-of-Fit Test](#sec-chapters-04-inferential-chi-squared-goodness-of-fit) | `chi-squared-goodness-of-fit` |
+| [Chi-Squared Test of Independence](#sec-chapters-04-inferential-chi-squared-independence) | `chi-squared-independence` |
+| [Cochran-Mantel-Haenszel Test](#sec-chapters-04-inferential-cochran-mantel-haenszel) | `cochran-mantel-haenszel` |
+| [Effect Sizes: Overview](#sec-chapters-04-inferential-effect-sizes-overview) | `effect-sizes-overview` |
+| [Equivalence Testing with TOST](#sec-chapters-04-inferential-equivalence-tost) | `equivalence-tost` |
+| [Fisher's Exact Test](#sec-chapters-04-inferential-fisher-exact-test) | `fisher-exact-test` |
+| [Friedman Test](#sec-chapters-04-inferential-friedman-test) | `friedman-test` |
+| [Holm's Step-Down Correction](#sec-chapters-04-inferential-holm-correction) | `holm-correction` |
+| [Kendall's Tau](#sec-chapters-04-inferential-kendall-tau) | `kendall-tau` |
+| [Kolmogorov-Smirnov Test](#sec-chapters-04-inferential-kolmogorov-smirnov-test) | `kolmogorov-smirnov-test` |
+| [Kruskal-Wallis Test](#sec-chapters-04-inferential-kruskal-wallis) | `kruskal-wallis` |
+| [Levene's Test of Variances](#sec-chapters-04-inferential-levene-test) | `levene-test` |
+| [Mann-Whitney U Test](#sec-chapters-04-inferential-mann-whitney-u) | `mann-whitney-u` |
+| [McNemar's Test](#sec-chapters-04-inferential-mcnemar-test) | `mcnemar-test` |
+| [Mixed ANOVA](#sec-chapters-04-inferential-mixed-anova) | `mixed-anova` |
+| [Multiple Comparisons: Overview](#sec-chapters-04-inferential-multiple-comparisons-overview) | `multiple-comparisons-overview` |
+| [Null and Alternative Hypotheses](#sec-chapters-04-inferential-null-alternative-hypotheses) | `null-alternative-hypotheses` |
+| [One-Proportion Test](#sec-chapters-04-inferential-one-proportion-test) | `one-proportion-test` |
+| [One-Sample t-Test](#sec-chapters-04-inferential-one-sample-t-test) | `one-sample-t-test` |
+| [One-Sample z-Test](#sec-chapters-04-inferential-one-sample-z-test) | `one-sample-z-test` |
+| [One-Way ANOVA](#sec-chapters-04-inferential-one-way-anova) | `one-way-anova` |
+| [P-Values Explained](#sec-chapters-04-inferential-p-values-explained) | `p-values-explained` |
+| [Paired t-Test](#sec-chapters-04-inferential-paired-t-test) | `paired-t-test` |
+| [Pearson Correlation Test](#sec-chapters-04-inferential-pearson-correlation-test) | `pearson-correlation-test` |
+| [Permutation Tests](#sec-chapters-04-inferential-permutation-tests) | `permutation-tests` |
+| [Post-Hoc Tests with Tukey HSD](#sec-chapters-04-inferential-post-hoc-tests-tukey) | `post-hoc-tests-tukey` |
+| [Repeated-Measures ANOVA](#sec-chapters-04-inferential-repeated-measures-anova) | `repeated-measures-anova` |
+| [Shapiro-Wilk Normality Test](#sec-chapters-04-inferential-shapiro-wilk-test) | `shapiro-wilk-test` |
+| [Spearman Rank Correlation Test](#sec-chapters-04-inferential-spearman-correlation-test) | `spearman-correlation-test` |
+| [The Bootstrap: Introduction](#sec-chapters-04-inferential-bootstrap-introduction) | `bootstrap-introduction` |
+| [The Jackknife](#sec-chapters-04-inferential-jackknife) | `jackknife` |
+| [The Runs Test](#sec-chapters-04-inferential-runs-test) | `runs-test` |
+| [The Sign Test](#sec-chapters-04-inferential-sign-test) | `sign-test` |
+| [Two-Proportion Test](#sec-chapters-04-inferential-two-proportion-test) | `two-proportion-test` |
+| [Two-Sample t-Test](#sec-chapters-04-inferential-two-sample-t-test) | `two-sample-t-test` |
+| [Two-Way ANOVA](#sec-chapters-04-inferential-two-way-anova) | `two-way-anova` |
+| [Type I and Type II Errors](#sec-chapters-04-inferential-type-i-type-ii-errors) | `type-i-type-ii-errors` |
+| [Welch's t-Test](#sec-chapters-04-inferential-welch-t-test) | `welch-t-test` |
+| [Wilcoxon Signed-Rank Test](#sec-chapters-04-inferential-wilcoxon-signed-rank) | `wilcoxon-signed-rank` |
 
-## Labs
+## Labs {#sec-chapters-04-inferential-index-labs}
 
 | Lab |
 |---|
-| [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd) |
-| [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd) |
-| [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd) |
-| [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd) |
-| [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd) |
-| [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd) |
-| [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd) |
-| [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd) |
-| [Non-parametric tests](labs/lab-non-parametric-tests.Rmd) |
+| [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem) |
+| [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests) |
+| [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation) |
+| [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test) |
+| [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors) |
+| [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests) |
+| [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds) |
+| [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation) |
+| [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests) |

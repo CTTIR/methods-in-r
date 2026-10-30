@@ -1,12 +1,14 @@
-## Introduction
+## The Uniform Distribution {#sec-chapters-03-probability-uniform-distribution}
+
+### Introduction {#sec-chapters-03-probability-uniform-distribution-introduction}
 
 The uniform distribution spreads probability equally across its support. The continuous uniform on $[a, b]$ is the building block of random-number generation; the discrete uniform on $\{1, \ldots, k\}$ describes fair dice and random selection. It is the simplest non-trivial distribution.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-uniform-distribution-prerequisites}
 
 Continuous and discrete random variables.
 
-## Theory
+### Theory {#sec-chapters-03-probability-uniform-distribution-theory}
 
 **Continuous uniform $\mathrm{Uniform}(a, b)$** has PDF
 
@@ -18,11 +20,11 @@ with moments $E[X] = (a + b)/2$ and $\mathrm{Var}(X) = (b - a)^2 / 12$.
 
 **Probability integral transform**: if $X$ has a continuous CDF $F_X$, then $F_X(X) \sim \mathrm{Uniform}(0, 1)$. The inverse: $X = F_X^{-1}(U)$ where $U \sim \mathrm{Uniform}(0, 1)$ generates $X$ from uniform draws. This is the inverse-CDF method of simulation.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-uniform-distribution-assumptions}
 
 Continuous uniform assumes the variable genuinely has constant density; discrete uniform assumes genuinely equal probabilities across a specified set.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-uniform-distribution-r-implementation}
 
 ```r
 set.seed(2026)
@@ -43,7 +45,7 @@ c(mean_die = mean(die), theoretical = 3.5,
   var_die  = var(die),  theoretical_var = 35/12)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-uniform-distribution-output-results}
 
 ```
        mean theoretical          var  theoretical_var
@@ -58,11 +60,11 @@ empirical_mean  exponential_mean
 
 Empirical moments match theoretical exactly up to Monte Carlo error, and the inverse-CDF method recovers the exponential mean.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-uniform-distribution-interpretation}
 
 Uniforms rarely appear as substantive models of real data but pervade simulation, randomisation, and Monte Carlo methods. Reporting "trial assignment was simulated via `sample()`" is implicitly invoking a discrete uniform.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-uniform-distribution-practical-tips}
 
 - `runif(n)` defaults to $[0, 1]$; specify min/max explicitly to avoid surprises.
 - The uniform distribution has zero skewness and excess kurtosis $-1.2$ (light tails).
@@ -72,26 +74,23 @@ Uniforms rarely appear as substantive models of real data but pervade simulation
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-uniform-distribution-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-uniform-distribution-assumptions) and
+[practical tips](#sec-chapters-03-probability-uniform-distribution-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-uniform-distribution-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

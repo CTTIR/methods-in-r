@@ -1,20 +1,22 @@
-## Introduction
+## Bayesian ANOVA {#sec-chapters-10-bayesian-bayesian-anova}
+
+### Introduction {#sec-chapters-10-bayesian-bayesian-anova-introduction}
 
 Classical ANOVA reports an $F$-statistic, a $p$-value, and — if the omnibus is significant — pairwise comparisons with a multiple-testing correction tacked on. A Bayesian ANOVA replaces all of that with a single posterior distribution over the group means and any contrast you care to compute. There is no omnibus to clear before contrasts become legitimate, and there is no multiple-comparison adjustment to argue about, because every contrast already has its own honest credible interval reflecting the joint posterior of the parameters that compose it.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-bayesian-anova-prerequisites}
 
 A working understanding of one-way ANOVA, the distinction between fixed and random effects, and Bayesian regression. Familiarity with `emmeans` for marginal means makes the contrast step natural.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-bayesian-anova-theory}
 
 The model is $y_{ij} \sim \mathcal N(\mu_i, \sigma^2)$ with $\mu_i = \mu + \alpha_i$. Two parameterisations are common: a fixed-effects parameterisation with weakly informative priors on the contrasts, and a hierarchical parameterisation with $\alpha_i \sim \mathcal N(0, \tau^2)$ that pools group estimates toward the grand mean. The hierarchical version is preferable when group counts are large or when groups represent samples from a broader population. Pairwise contrasts and any linear combination of $\mu_i$ are computed at the level of MCMC draws, so each draw produces a contrast value and the posterior of the contrast is the empirical distribution of those values.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-bayesian-anova-assumptions}
 
 Approximately Normal residuals within groups, homogeneity of variance unless `sigma` is also modelled by group, exchangeability of groups under the hierarchical version, and proper priors. Independence between observations after group is the same Bayesian assumption as in classical ANOVA.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-bayesian-anova-r-implementation}
 
 ```r
 library(brms); library(bayestestR)
@@ -33,15 +35,15 @@ pairs_summary
 bayesfactor_parameters(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-bayesian-anova-output-results}
 
 `emmeans()` returns the posterior marginal mean for each group; `pairs()` returns the posterior of every pairwise difference with an HPD or equal-tailed credible interval. `bayesfactor_parameters()` evaluates the Savage-Dickey density ratio at zero for each contrast, returning a Bayes factor for "non-zero contrast" against the null.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-bayesian-anova-interpretation}
 
 A reporting sentence: "Posterior contrasts from a Bayesian one-way ANOVA showed `trt1` $-$ `ctrl` $= -0.37$ (95 % credible interval $-0.95$ to $0.21$, $\mathrm{BF}_{10} = 1.1$), `trt2` $-$ `ctrl` $= 0.49$ (95 % CrI 0.04 to 0.94, $\mathrm{BF}_{10} = 4.6$); the data weakly support a treatment-2 effect and are inconclusive about treatment 1." Pair the credible interval with the Bayes factor only when the prior under the alternative is disclosed, since the latter depends sensitively on it.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-bayesian-anova-practical-tips}
 
 - For more than five or six groups, switch to a hierarchical $(1 \mid \mathrm{group})$ random-effects parameterisation; shrinkage stabilises small-group estimates and gives a principled population-level summary.
 - `emmeans()` works directly on `brms` fits and integrates with `pairs()`, `contrast()`, and `confint()` to produce posterior contrasts on whatever scale you need.
@@ -49,31 +51,28 @@ A reporting sentence: "Posterior contrasts from a Bayesian one-way ANOVA showed 
 - For unequal variances, fit `bf(weight ~ group, sigma ~ group)` so the residual scale is also estimated per group; the contrast machinery generalises without changes.
 - Report posteriors graphically (`mcmc_areas`, `stat_halfeye`) alongside the numeric summaries; readers absorb the joint structure faster from a plot than from a contrast table.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-bayesian-anova-r-packages-used}
 
 `brms` for model specification and sampling, `emmeans` for posterior marginal means and contrasts, `bayestestR` for Bayes factors and ROPE summaries, and `tidybayes` for tidy posterior draws of contrasts when custom plots are needed.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-bayesian-anova-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-bayesian-anova-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-bayesian-anova-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-bayesian-anova-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

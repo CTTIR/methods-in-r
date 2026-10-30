@@ -1,12 +1,14 @@
-## Introduction
+## Bayesian Meta-Analysis {#sec-chapters-10-bayesian-bayesian-meta-analysis}
+
+### Introduction {#sec-chapters-10-bayesian-bayesian-meta-analysis-introduction}
 
 Meta-analysis with $k$ studies is awkward for frequentist random-effects estimators when $k$ is small: REML and DerSimonian-Laird both rely on asymptotic approximations that break down when only five or six studies contribute, and the between-study variance $\tau^2$ can collapse to zero or be wildly imprecise. A Bayesian formulation puts an explicit prior on $\tau$ and propagates uncertainty into both the pooled effect and the prediction interval for a new study, which is exactly the inferential question that drives most meta-analyses in clinical and biomedical work.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-bayesian-meta-analysis-prerequisites}
 
 A working understanding of fixed- and random-effects meta-analysis, exchangeability assumptions, and hierarchical Bayesian models. Familiarity with `brms` formula syntax accelerates the implementation step.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-bayesian-meta-analysis-theory}
 
 The hierarchical model is
 
@@ -14,11 +16,11 @@ $$y_i \sim \mathcal N(\theta_i, s_i^2), \qquad \theta_i \sim \mathcal N(\mu, \ta
 
 where $y_i$ and $s_i$ are the observed effect estimate and its standard error from study $i$, $\theta_i$ is the latent study-specific effect, $\mu$ is the population effect, and $\tau$ is the between-study standard deviation. Typical priors are weakly informative: $\mu \sim \mathcal N(0, 2)$ on the standardised-mean-difference scale and $\tau \sim \mathrm{half\text{-}Normal}(0, 0.5)$ or $\mathrm{half\text{-}Cauchy}(0, 0.3)$. The half-Cauchy gives the heavier tail favoured when very large heterogeneity is plausible. The posterior delivers $\mu$, $\tau$, every $\theta_i$ shrunk toward $\mu$, and a predictive distribution $\mathcal N(\mu, \tau^2)$ for the next study.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-bayesian-meta-analysis-assumptions}
 
 Exchangeable studies, accurate within-study standard errors $s_i$, and proper priors. The within-study sampling distribution is taken as known; if $s_i$ are themselves estimated from few patients, an additional level of hierarchy is needed.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-bayesian-meta-analysis-r-implementation}
 
 ```r
 library(brms)
@@ -37,15 +39,15 @@ fit <- brm(yi | se(sei) ~ 1 + (1 | seq_len(nrow(studies))),
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-bayesian-meta-analysis-output-results}
 
 `summary(fit)` returns the pooled effect (`Intercept`) and the between-study SD (`sd(seq_len(...))`) with 95 % credible intervals, $\hat R$, and ESS. Per-study posterior means come from `ranef(fit)`; the predictive distribution for a future study is `posterior_predict()` with `re_formula = NA`.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-bayesian-meta-analysis-interpretation}
 
 A reporting sentence: "A Bayesian random-effects meta-analysis with a half-Cauchy(0, 0.5) prior on $\tau$ pooled the five studies to an effect of 0.23 (95 % credible interval 0.07 to 0.39); the between-study heterogeneity was small ($\tau = 0.09$, 95 % CrI 0.01 to 0.25), and the 95 % predictive interval for a future trial was $-0.05$ to $0.51$." Reporting the predictive interval together with the pooled estimate avoids the false sense of precision that a credible interval on $\mu$ alone can convey.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-bayesian-meta-analysis-practical-tips}
 
 - With $k < 10$ studies, the prior on $\tau$ matters substantially; a half-$t(3, 0, 1)$ or half-Normal(0, 0.5) is a reasonable compromise between letting the data speak and avoiding implausible values.
 - Always report the prior in the methods section and conduct a sensitivity analysis with at least one wider and one tighter prior on $\tau$.
@@ -53,31 +55,28 @@ A reporting sentence: "A Bayesian random-effects meta-analysis with a half-Cauch
 - The `bayesmeta` package provides closed-form computations for simple models and is faster than MCMC when the prior is conjugate.
 - For network meta-analysis with multiple treatments, switch to `gemtc` or `multinma`; the random-effects machinery generalises but the implementation is non-trivial.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-bayesian-meta-analysis-r-packages-used}
 
 `brms` for the hierarchical Bayesian fit with study-level standard errors, `bayesmeta` for closed-form alternatives, `bayesplot` for diagnostic plots, and `gemtc` / `multinma` for the network-meta extension.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-bayesian-meta-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-bayesian-meta-analysis-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-bayesian-meta-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-bayesian-meta-analysis-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

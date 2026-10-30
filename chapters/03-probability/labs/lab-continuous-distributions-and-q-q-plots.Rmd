@@ -1,9 +1,11 @@
+## Week 2, Session 5 — Continuous distributions and Q-Q plots {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-learning-objectives}
 
 - Draw densities of the normal, *t*, chi-square, *F*, and exponential
   distributions and describe how shape changes with parameters.
@@ -12,11 +14,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Recognise the degrees-of-freedom relationships among the
   normal-derived distributions.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-prerequisites}
 
 Lab 2.4.
 
-## Background
+### Background {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-background}
 
 The continuous distributions in this lab cover the majority of
 routine parametric inference. The normal is the distribution of means
@@ -38,7 +40,7 @@ has df = *n* − 1 for a one-sample test; chi-square from a sum of
 *k* squared standard normals has df = *k*; *F* has two df — numerator
 and denominator — that come from the chi-squares in its ratio.
 
-## Setup
+### Setup {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-setup}
 
 ```r
 library(tidyverse)
@@ -46,17 +48,18 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-1-hypothesis}
 
 We are not testing a hypothesis. We are characterising five continuous
 distributions and using Q-Q plots to assess whether a sample is
 consistent with a model.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-2-visualise}
 
 Plot densities side by side.
 
 ```r
+grid <- tibble(x = seq(-5, 5, length.out = 400))
 
 densities <- bind_rows(
   grid |> mutate(density = dnorm(x),         dist = "Normal(0,1)"),
@@ -75,6 +78,7 @@ The *t* with 3 df has visibly heavier tails; at 30 df it is nearly
 normal.
 
 ```r
+chi_grid <- tibble(x = seq(0.01, 20, length.out = 400))
 chi <- bind_rows(
   chi_grid |> mutate(density = dchisq(x, df = 2), dist = "chi-sq(2)"),
   chi_grid |> mutate(density = dchisq(x, df = 5), dist = "chi-sq(5)"),
@@ -88,13 +92,14 @@ ggplot(chi, aes(x, density, colour = dist)) +
   labs(x = NULL, y = "Density", colour = NULL)
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-3-assumptions}
 
 We assume samples are independent and identically distributed. For the
 Q-Q check, the sample must be reasonably sized (say, at least 20
 observations) for the plot to be informative.
 
 ```r
+# Facet across df for the F distribution.
 f_grid <- expand_grid(
   x  = seq(0.01, 5, length.out = 300),
   df1 = c(2, 5, 10),
@@ -111,11 +116,12 @@ f_grid |>
   labs(x = NULL, y = "Density", colour = "df1")
 ```
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-4-conduct}
 
 Q-Q plots. Simulate data, compare to a hypothesised distribution.
 
 ```r
+n <- 200
 samples <- tibble(
   normal_sample = rnorm(n),
   heavy_tail    = rt(n, df = 3),
@@ -140,13 +146,14 @@ sample splays at both ends; the exponential curves away on one side.
 Shapiro-Wilk as a quick numerical check on the three samples.
 
 ```r
+sw_results <- samples |>
   pivot_longer(everything(), names_to = "sample", values_to = "value") |>
   group_by(sample) |>
   summarise(p = shapiro.test(value)$p.value, .groups = "drop")
 sw_results
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-5-concluding-statement}
 
 > The normal sample (*n* = `n`) was consistent with normality both
 > visually (Q-Q line) and by Shapiro-Wilk
@@ -160,7 +167,7 @@ distributional assumption. Numerical tests of normality (Shapiro-Wilk,
 Kolmogorov-Smirnov) should corroborate, not replace, the plot.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-common-pitfalls}
 
 - Reading the centre of a Q-Q plot and ignoring the tails. The tails
   are where the interesting departures live.
@@ -169,21 +176,22 @@ Kolmogorov-Smirnov) should corroborate, not replace, the plot.
 - Forgetting that *t* approaches normal as df → ∞; do not test with
   df = 500 in a fit-diagnostic mindset.
 
-## Further reading
+### Further reading {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-further-reading}
 
 - Rice JA. *Mathematical Statistics and Data Analysis*.
 - Kutner MH et al. *Applied Linear Statistical Models*.
 
-## Session info
+### Session info {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-03-probability)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

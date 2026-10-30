@@ -1,12 +1,14 @@
-## Introduction
+## Variance and Covariance {#sec-chapters-03-probability-variance-covariance-of-rv}
+
+### Introduction {#sec-chapters-03-probability-variance-covariance-of-rv-introduction}
 
 Variance measures how far a single random variable ranges around its mean; covariance measures how two random variables move together around their means. Together they populate the covariance matrix of a random vector, which is the central object in multivariate statistics, regression, and portfolio theory.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-variance-covariance-of-rv-prerequisites}
 
 Expectation and basic properties of random variables.
 
-## Theory
+### Theory {#sec-chapters-03-probability-variance-covariance-of-rv-theory}
 
 **Variance** of $X$:
 
@@ -29,11 +31,11 @@ Properties:
 
 The **covariance matrix** of a random vector $\mathbf{X} = (X_1, \ldots, X_p)$ is the $p \times p$ matrix $\Sigma$ with entries $\Sigma_{ij} = \mathrm{Cov}(X_i, X_j)$. $\Sigma$ is symmetric positive semi-definite.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-variance-covariance-of-rv-assumptions}
 
 $E[X^2] < \infty$ and $E[Y^2] < \infty$ for variance and covariance to be defined.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-variance-covariance-of-rv-r-implementation}
 
 ```r
 library(mvtnorm)
@@ -63,7 +65,7 @@ c(cov = cov(X, Y),
   correlation = cor(X, Y))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-variance-covariance-of-rv-output-results}
 
 ```
 theoretical   empirical
@@ -86,11 +88,11 @@ theoretical   empirical
 
 Empirical variance and covariance match the theoretical values within Monte Carlo error. $X$ and $X^2$ have zero covariance but are clearly dependent -- covariance detects only linear association.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-variance-covariance-of-rv-interpretation}
 
 Reporting a mean and a variance (or SD) gives a rough summary of a distribution's location and spread; reporting a covariance matrix gives the joint structure of several variables. Most multivariate methods (PCA, MANOVA, linear discriminant analysis) work with sample covariance matrices.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-variance-covariance-of-rv-practical-tips}
 
 - Sample variance uses divisor $n - 1$ for unbiasedness; R's `var()` uses $n - 1$ by default.
 - $\mathrm{Cov}(X, Y) = 0$ does not imply independence except in the Gaussian case.
@@ -100,26 +102,23 @@ Reporting a mean and a variance (or SD) gives a rough summary of a distribution'
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-variance-covariance-of-rv-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-variance-covariance-of-rv-assumptions) and
+[practical tips](#sec-chapters-03-probability-variance-covariance-of-rv-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-variance-covariance-of-rv-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## White Noise Tests {#sec-chapters-09-timeseries-white-noise-tests}
+
+### Introduction {#sec-chapters-09-timeseries-white-noise-tests-introduction}
 
 After fitting a time-series model — ARIMA, ETS, regression with ARIMA errors — the residuals should look like white noise: zero mean, constant variance, and no autocorrelation. White-noise tests check these properties formally and are the standard residual-diagnostic battery for time-series modelling. Significant rejection indicates the model has missed structure that should motivate refinement; failure to reject supports model adequacy.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-white-noise-tests-prerequisites}
 
 A working understanding of ARIMA models, residual diagnostics, and the autocorrelation function (ACF) as the visual counterpart to formal autocorrelation tests.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-white-noise-tests-theory}
 
 Three test families dominate practice:
 
@@ -16,11 +18,11 @@ Three test families dominate practice:
 
 A failure on Ljung-Box at any lag indicates missed autocorrelation that the model should address; a failure on the runs or turning-points test indicates more general non-randomness.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-white-noise-tests-assumptions}
 
 Null: residuals are iid white noise. The tests have different power against autocorrelation, heteroscedasticity, and non-linearity; no single test detects all departures, so multiple tests are run as a battery.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-white-noise-tests-r-implementation}
 
 ```r
 library(forecast)
@@ -36,15 +38,15 @@ Box.test(resid_fit, lag = 24, type = "Ljung-Box", fitdf = 2)
 checkresiduals(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-white-noise-tests-output-results}
 
 `Box.test()` returns the test statistic and $p$-value; `checkresiduals()` aggregates the Ljung-Box test with ACF, histogram, and time-series plots into a single diagnostic display.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-white-noise-tests-interpretation}
 
 A reporting sentence: "Ljung-Box at lag 24 on the residuals from the ARIMA(0,1,1)(0,1,1)\[12\] fit gave $Q = 28.1$ on 22 degrees of freedom ($p = 0.17$); the ACF showed no isolated significant lags, the histogram was approximately Normal, and the residual time-series plot showed no remaining structure. Residuals are consistent with white noise." Always pair the numerical test with the ACF plot.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-white-noise-tests-practical-tips}
 
 - Choose the maximum lag $h$ around $\log n$ to a small multiple thereof; for seasonal models, set $h$ at least one full seasonal period to detect missed seasonal autocorrelation.
 - Use `fitdf = p + q` for ARMA($p$, $q$) fitted models; the test ignores the parameter cost otherwise and is anti-conservative.
@@ -53,30 +55,27 @@ A reporting sentence: "Ljung-Box at lag 24 on the residuals from the ARIMA(0,1,1
 - `forecast::checkresiduals()` is the convenient one-call diagnostic battery; use it routinely after every time-series fit.
 - For non-Normal residuals, a Jarque-Bera or Shapiro-Wilk test on the residuals complements the ACF-based tests.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-white-noise-tests-r-packages-used}
 
 Base R `Box.test()` for Ljung-Box and Box-Pierce; `forecast::checkresiduals()` for the integrated diagnostic; `tseries::runs.test()` for the runs test; `randtests::turning.point.test()` for the turning-points test; `feasts::ljung_box()` for the modern tidyverts implementation.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-white-noise-tests-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-white-noise-tests-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-white-noise-tests-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-white-noise-tests-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

@@ -1,9 +1,11 @@
+## Week 1, Session 2 — Regularisation: ridge, lasso, elastic net {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-learning-objectives}
 
 - Fit ridge, lasso, and elastic-net regressions with `glmnet`, and
   explain what each penalty does to the coefficient path.
@@ -12,11 +14,11 @@ Goal → Approach → Execution → Check → Report.
 - Interpret a coefficient path figure and a set of standardised
   coefficients.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-prerequisites}
 
 OLS and GLMs; the cross-validation lab.
 
-## Background
+### Background {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-background}
 
 The ordinary least-squares solution is unbiased but, when *p* is close
 to or larger than *n*, it is unstable: small perturbations of the data
@@ -40,7 +42,7 @@ variable in raw units will be penalised differently from the same
 variable in standardised units. `glmnet` standardises by default, but
 it is worth knowing what the coefficients refer to when you plot them.
 
-## Setup
+### Setup {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-setup}
 
 ```r
 library(tidyverse)
@@ -49,18 +51,19 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-1-goal}
 
 Compare ridge, lasso, and elastic net on a simulated high-dimensional
 regression problem and pick a final model.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-2-approach}
 
 `n = 100`, `p = 200`, block-correlated design with a handful of true
 signals, to exercise both the sparsity of lasso and the group-handling
 of elastic net.
 
 ```r
+n <- 100; p <- 200
 Z <- matrix(rnorm(n * (p / 10)), n, p / 10)
 X <- Z[, rep(seq_len(p / 10), each = 10)] + 0.2 * matrix(rnorm(n * p), n, p)
 beta <- c(rep(2, 5), rep(-1.5, 5), rep(0, p - 10))
@@ -71,7 +74,7 @@ tibble(i = seq_along(beta), beta = beta) |>
   labs(x = "feature index", y = "true coefficient")
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-3-execution}
 
 ```r
 fit_ridge <- glmnet(X, y, alpha = 0)
@@ -83,11 +86,12 @@ plot(fit_lasso, xvar = "lambda"); title("lasso")
 plot(fit_enet,  xvar = "lambda"); title("elastic net")
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-4-check}
 
 Pick `lambda` by CV for each; compare minimum CV MSE.
 
 ```r
+cv_ridge <- cv.glmnet(X, y, alpha = 0,   nfolds = 5)
 cv_lasso <- cv.glmnet(X, y, alpha = 1,   nfolds = 5)
 cv_enet  <- cv.glmnet(X, y, alpha = 0.5, nfolds = 5)
 tibble(
@@ -99,7 +103,7 @@ tibble(
 )
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-5-report}
 
 > On a simulated `n = 100`, `p = 200` regression with 10 true signals,
 > elastic net (α = 0.5) achieved the lowest 5-fold CV MSE
@@ -114,30 +118,31 @@ interpretable sparsity; if the next step is prediction only, ridge is
 often more stable.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-common-pitfalls}
 
 - Interpreting lasso coefficients as unbiased effect estimates.
 - Forgetting that correlated features share shrinkage: lasso may pick
   any one of them.
 - Reporting CV-minimum error as generalisation error (see the cross-validation lab).
 
-## Further reading
+### Further reading {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-further-reading}
 
 - Friedman J, Hastie T, Tibshirani R (2010), *Regularization paths for
   generalized linear models via coordinate descent*.
 - Zou H, Hastie T (2005), *Regularization and variable selection via
   the elastic net*.
 
-## Session info
+### Session info {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-13-ml)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Non-Inferiority Margin Selection {#sec-chapters-14-clinical-non-inferiority-margin}
+
+### Introduction {#sec-chapters-14-clinical-non-inferiority-margin-introduction}
 
 Non-inferiority (NI) trials test whether a new treatment is not worse than an active comparator by more than a pre-specified margin $\Delta$. Margin selection is the most consequential and scrutinised part of NI trial design: too loose and a genuinely inferior treatment is approved; too tight and the study is infeasible.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-non-inferiority-margin-prerequisites}
 
 Hypothesis testing; active-controlled trials; historical-control data.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-non-inferiority-margin-theory}
 
 Two common approaches:
 - **Fixed-margin (synthesis) method**: margin $\Delta$ is chosen based on the historical effect of the active comparator vs placebo, typically preserving 50-75 % of that effect. Example: if active reduces mortality by 10 % vs placebo, $\Delta$ might be set at 5 %.
@@ -14,11 +16,11 @@ Two common approaches:
 
 Both require regulatory justification; FDA and EMA typically require the synthesis approach with supporting clinical judgement.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-non-inferiority-margin-assumptions}
 
 Historical active-vs-placebo effect is consistent and generalisable to the current trial population; assay sensitivity (ability to detect a difference if truly present) is preserved.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-non-inferiority-margin-r-implementation}
 
 ```r
 # Synthesis-method margin calculation
@@ -35,15 +37,15 @@ pwr.t.test(d = 0.25, sig.level = 0.025, power = 0.80,
            type = "two.sample", alternative = "greater")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-non-inferiority-margin-output-results}
 
 Synthesis-based margin (0.035 = 3.5 % preserving 50 % of historical effect); sample-size calculation gives ~252/arm for a 0.25 SD margin.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-non-inferiority-margin-interpretation}
 
 "The non-inferiority margin was prospectively set at 3.5 percentage points, preserving at least 50 % of the historical benefit of the active comparator (7 % lower bound of historical effect). Sample size was 504 based on 80 % power to rule out a margin with one-sided alpha 0.025."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-non-inferiority-margin-practical-tips}
 
 - Margin selection must be pre-specified, regulator-reviewed, and clinically justified.
 - Run both ITT and per-protocol analyses; NI requires consistency.
@@ -53,27 +55,24 @@ Synthesis-based margin (0.035 = 3.5 % preserving 50 % of historical effect); sam
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-non-inferiority-margin-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-non-inferiority-margin-assumptions) and
+[practical tips](#sec-chapters-14-clinical-non-inferiority-margin-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-non-inferiority-margin-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

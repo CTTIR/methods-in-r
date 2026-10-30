@@ -1,12 +1,14 @@
-## Introduction
+## Bayesian Linear Regression {#sec-chapters-10-bayesian-linear-regression-bayes}
+
+### Introduction {#sec-chapters-10-bayesian-linear-regression-bayes-introduction}
 
 Bayesian linear regression keeps the same linear predictor and Normal residual structure as ordinary least squares but treats every parameter as a random variable with a prior. Inference returns a joint posterior over coefficients and the residual scale rather than a point estimate plus standard errors. The practical gain is direct: credible intervals carry the probability statement that students often (incorrectly) attribute to confidence intervals, predictions inherit propagated uncertainty automatically, and small-sample analyses no longer rely on asymptotic approximations of $t$ distributions.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-linear-regression-bayes-prerequisites}
 
 A working understanding of multiple linear regression, comfort with the idea of a likelihood, and a basic sense of priors. A Stan-capable backend (`rstan` or `cmdstanr`) is needed because `brms` compiles models on demand; `rstanarm` ships with pre-compiled models if compile time is a concern.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-linear-regression-bayes-theory}
 
 The model is
 
@@ -14,11 +16,11 @@ $$y_i = X_i \beta + \varepsilon_i, \qquad \varepsilon_i \sim \mathcal N(0, \sigm
 
 with priors $\beta_j \sim \mathcal N(0, \tau_j)$ and $\sigma \sim \mathrm{Exponential}(\lambda)$ or a half-$t$. With weakly informative priors and reasonable sample size, the posterior mean is close to the OLS estimate while small-$n$ inference is regularised toward the prior. The default sampler is Hamiltonian Monte Carlo with the No-U-Turn termination criterion (NUTS); convergence is assessed through $\hat R$, bulk and tail effective sample size, and divergent-transition counts.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-linear-regression-bayes-assumptions}
 
 Linearity in the linear predictor, additive Normal residuals with constant variance, independence of observations, and proper priors. Convergence diagnostics are part of the model assumptions in practice — a chain that has not mixed cannot deliver a credible posterior summary.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-linear-regression-bayes-r-implementation}
 
 ```r
 library(brms)
@@ -36,15 +38,15 @@ summary(fit)
 plot(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-linear-regression-bayes-output-results}
 
 `summary(fit)` returns posterior mean, standard error of the mean, posterior standard deviation, 95 % credible interval, $\hat R$, and bulk and tail effective sample size for every parameter. `plot(fit)` shows trace plots (one line per chain) alongside marginal density plots; well-mixed chains overlap throughout warm-up and produce indistinguishable density plots.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-linear-regression-bayes-interpretation}
 
 A reporting sentence: "A Bayesian linear regression with weakly informative priors estimated the slope at 1.53 (95 % CrI 1.23 to 1.84) and the residual scale at 1.02 (95 % CrI 0.90 to 1.17); $\hat R = 1.00$ for all parameters, with $n_{\text{eff}} > 3{,}500$." Always report a convergence statistic alongside the interval — without it, a reader cannot tell whether the posterior summary is trustworthy.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-linear-regression-bayes-practical-tips}
 
 - Standardise predictors before fitting so a single $\mathcal N(0, 2.5)$ prior on slopes is sensible across columns.
 - Run a prior predictive check (`sample_prior = "only"`) and look at the implied range of `y`; if it spans implausible values, tighten the prior before fitting to the data.
@@ -53,31 +55,28 @@ A reporting sentence: "A Bayesian linear regression with weakly informative prio
 - Compare nested models with `loo_compare(loo(fit1), loo(fit2))` rather than $F$-tests; the difference in expected log predictive density and its standard error is a richer summary than a $p$-value.
 - For non-Gaussian outcomes, change `family = gaussian` to `bernoulli()`, `poisson()`, `student()`, or any other supported family — the prior structure carries over unchanged.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-linear-regression-bayes-r-packages-used}
 
 `brms` for formula-based Bayesian regression, `rstan` or `cmdstanr` as the sampling backend, `bayesplot` for diagnostic and posterior predictive plots, and `loo` for cross-validation.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-linear-regression-bayes-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-linear-regression-bayes-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-linear-regression-bayes-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-linear-regression-bayes-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

@@ -1,23 +1,25 @@
-## Introduction
+## Bivariate SROC Curves {#sec-chapters-15-metaanalysis-bivariate-sroc}
+
+### Introduction {#sec-chapters-15-metaanalysis-bivariate-sroc-introduction}
 
 The summary ROC (SROC) curve visualises the relationship between pooled sensitivity and specificity across a meta-analysis of diagnostic studies. Modern SROCs are derived from bivariate or HSROC models that properly account for the correlation between sensitivity and specificity as thresholds vary.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-15-metaanalysis-bivariate-sroc-prerequisites}
 
 Sensitivity and specificity; bivariate meta-analysis.
 
-## Theory
+### Theory {#sec-chapters-15-metaanalysis-bivariate-sroc-theory}
 
 The bivariate model fits
 $$\begin{pmatrix} \text{logit}(\text{Sens}_i) \\ \text{logit}(1 - \text{Spec}_i) \end{pmatrix} \sim N(\mu, \Sigma).$$
 
 The SROC curve is derived by mapping a range of the logit(1 - Spec) axis back to expected logit(Sens), given the bivariate mean and covariance. The curve shows how sensitivity trades against specificity as threshold varies.
 
-## Assumptions
+### Assumptions {#sec-chapters-15-metaanalysis-bivariate-sroc-assumptions}
 
 Logit sensitivity and specificity are bivariate normal; studies vary by threshold; between-study heterogeneity captured by the covariance matrix.
 
-## R Implementation
+### R Implementation {#sec-chapters-15-metaanalysis-bivariate-sroc-r-implementation}
 
 ```r
 library(mada)
@@ -41,15 +43,15 @@ plot(fit, sroclty = 1, sroclwd = 2, predict = TRUE, predlty = 2,
 points(fpr(df), sens(df), cex = 0.8, pch = 19, col = "grey40")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-15-metaanalysis-bivariate-sroc-output-results}
 
 Pooled sensitivity and FPR estimates; SROC curve with confidence (mean) and prediction (future-study) regions; individual study points overlaid.
 
-## Interpretation
+### Interpretation {#sec-chapters-15-metaanalysis-bivariate-sroc-interpretation}
 
 "The SROC curve had AUC = 0.94, with pooled sensitivity 0.84 and specificity 0.91 at the summary operating point. Individual studies clustered tightly along the curve, consistent with threshold variation rather than diagnostic accuracy variation."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-15-metaanalysis-bivariate-sroc-practical-tips}
 
 - Always display both confidence (mean) and prediction (future-study) regions on the SROC.
 - Individual study points should lie close to the curve; large off-curve outliers indicate effect modifiers.
@@ -59,26 +61,23 @@ Pooled sensitivity and FPR estimates; SROC curve with confidence (mean) and pred
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-15-metaanalysis-bivariate-sroc-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-15-metaanalysis-bivariate-sroc-assumptions) and
+[practical tips](#sec-chapters-15-metaanalysis-bivariate-sroc-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-15-metaanalysis-bivariate-sroc-see-also-labs-in-this-chapter}
 
-- [Systematic reviews and PRISMA](labs/lab-systematic-reviews-and-prisma.Rmd)
-- [Meta-analysis basics](labs/lab-meta-analysis-basics.Rmd)
-- [Network meta-analysis](labs/lab-network-meta-analysis.Rmd)
+- [Systematic reviews and PRISMA](#sec-chapters-15-metaanalysis-labs-lab-systematic-reviews-and-prisma)
+- [Meta-analysis basics](#sec-chapters-15-metaanalysis-labs-lab-meta-analysis-basics)
+- [Network meta-analysis](#sec-chapters-15-metaanalysis-labs-lab-network-meta-analysis)
 
 <!-- END see-also -->

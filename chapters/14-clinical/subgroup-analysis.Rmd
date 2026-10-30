@@ -1,22 +1,24 @@
-## Introduction
+## Subgroup Analyses {#sec-chapters-14-clinical-subgroup-analysis}
+
+### Introduction {#sec-chapters-14-clinical-subgroup-analysis-introduction}
 
 Subgroup analyses in clinical trials assess whether the overall treatment effect varies across pre-specified baseline characteristics — age, sex, disease severity, comorbidity, biomarker status. They provide important insight into treatment heterogeneity, support guideline development, and inform precision-medicine decisions. They are also notoriously prone to over-interpretation: with enough subgroups and enough cut-points, false-positive heterogeneity findings appear by chance alone, and the literature is replete with cautionary tales of subgroup claims that failed to replicate. Modern guidance (CONSORT, ICH-E9, regulatory subgroup analysis frameworks) emphasises pre-specification, formal interaction tests, and graphical communication via forest plots, while warning against per-subgroup hypothesis testing as a substitute for the interaction test.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-subgroup-analysis-prerequisites}
 
 A working understanding of treatment effect estimation in randomised trials, interaction terms in regression, the multiple-testing problem, and the regulatory framework around pre-specified versus post-hoc analyses.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-subgroup-analysis-theory}
 
 The statistically appropriate test for effect heterogeneity is the **treatment-by-subgroup interaction** in a regression of the outcome on treatment, subgroup, and their product. The standard reporting set includes the overall treatment effect with its 95 % CI, the subgroup-specific effects with CIs, and the interaction $p$-value. Comparing within-subgroup $p$-values across strata (the "significant in one, not the other" fallacy) is statistically incorrect because each within-subgroup test is under-powered and the comparison ignores the multiplicity.
 
 Pre-specification is the key safeguard: a small number of biologically-motivated subgroups documented in the SAP carry interpretable evidentiary weight, while post-hoc subgroup discovery is at best hypothesis-generating and at worst misleading.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-subgroup-analysis-assumptions}
 
 The subgroups are pre-specified in the protocol or SAP, the subgrouping covariates are measured at baseline rather than on-treatment (avoiding immortal-time bias and other post-randomisation issues), and the trial is large enough that the interaction test has at least minimal power — usually not the case in practice, which is why subgroup tests rarely reach significance.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-subgroup-analysis-r-implementation}
 
 ```r
 set.seed(2026)
@@ -36,15 +38,15 @@ by(data.frame(y, arm), sex, function(df) {
 })
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-subgroup-analysis-output-results}
 
 The interaction term in the regression model is the formal test of effect modification by subgroup; the per-subgroup $t$-tests give the subgroup-specific point estimates that populate the forest plot. Reporting both — interaction $p$-value plus subgroup-specific estimates with CIs — is the standard expected by trial reporting guidelines.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-subgroup-analysis-interpretation}
 
 A reporting sentence: "The overall treatment effect was 0.65 (95 % CI 0.45 to 0.85, $p < 0.001$); the pre-specified treatment-by-sex interaction was significant ($p = 0.02$), with the effect in women (0.98, 95 % CI 0.69 to 1.27) approximately three-fold larger than in men (0.32, 95 % CI 0.04 to 0.61). This sex-by-treatment heterogeneity was hypothesised in the protocol on the basis of pharmacokinetic differences and is reported here as a confirmatory rather than exploratory finding; replication in an independent trial is desirable." Always state pre-specification status.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-subgroup-analysis-practical-tips}
 
 - Pre-specify all subgroup analyses in the protocol and SAP; post-hoc subgroups are exploratory at best and should be flagged as such in any reporting, ideally in a separate section labelled "exploratory."
 - Always interpret the interaction $p$-value as the test of heterogeneity, not the per-subgroup $p$-values; the per-subgroup tests are nearly always under-powered, and comparing their significance across subgroups is a well-known statistical fallacy.
@@ -53,33 +55,30 @@ A reporting sentence: "The overall treatment effect was 0.65 (95 % CI 0.45 to 0.
 - Heterogeneity-of-treatment-effect (HTE) methods — causal forests, BART, model-based recursive partitioning, the SIDES algorithm — are emerging for principled data-driven subgroup discovery, with appropriate multiplicity control built in. They are increasingly accepted as exploratory complements to traditional pre-specified subgroup analyses.
 - For survival or time-to-event subgroup analyses, fit a Cox model with treatment, subgroup, and treatment × subgroup terms; the per-subgroup hazard ratios should be reported with 95 % CIs alongside the joint interaction test.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-14-clinical-subgroup-analysis-r-packages-used}
 
 Base R `lm()`, `glm()`, and `t.test()` for canonical subgroup analysis; `survival::coxph()` with interaction terms for survival subgroup analyses; `forestplot` and `forester` for publication-quality subgroup forest plots; `grf` for generalised random forests with treatment-effect estimation; `SIDES` and `model4you` for principled exploratory subgroup discovery.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-subgroup-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-subgroup-analysis-assumptions) and
+[practical tips](#sec-chapters-14-clinical-subgroup-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-subgroup-analysis-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

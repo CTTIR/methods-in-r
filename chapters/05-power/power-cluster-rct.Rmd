@@ -1,12 +1,14 @@
-## Introduction
+## Power for Cluster-RCT {#sec-chapters-05-power-power-cluster-rct}
+
+### Introduction {#sec-chapters-05-power-power-cluster-rct-introduction}
 
 In cluster-randomised trials (CRTs), treatment is assigned at the cluster (clinic, school, village) rather than individual level. Within-cluster correlation inflates variance, reducing effective sample size and requiring more individuals than an individually randomised trial.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-cluster-rct-prerequisites}
 
 Intraclass correlation, CRT design.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-cluster-rct-theory}
 
 The **design effect** (DE) converts individual-level sample size to cluster-RCT sample size:
 
@@ -16,13 +18,13 @@ where $\bar{m}$ is the average cluster size and $\rho_{ICC}$ is the intraclass c
 
 Required individual-level $n$ for an individually-randomised design, multiplied by DE, gives the cluster-RCT total. Required clusters = total / $\bar{m}$.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-cluster-rct-assumptions}
 
 - Balanced or nearly balanced cluster sizes.
 - Pre-specified ICC (from pilot or literature).
 - Analysis adjusts for clustering (mixed models or GEE).
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-cluster-rct-r-implementation}
 
 ```r
 library(clusterPower)
@@ -46,15 +48,15 @@ cpa.normal(alpha = 0.05, power = 0.80, nclusters = NA,
            ICC = 0.02)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-cluster-rct-output-results}
 
 Individual $n \approx 143$ per arm; DE = 1.58 at ICC 0.02 and cluster size 30, giving 226 per arm (about 8 clusters of 30 per arm).
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-cluster-rct-interpretation}
 
 "With an assumed ICC of 0.02 and 30 subjects per cluster, the design effect is 1.58. To detect a standardised difference of 0.33 (5 units / 15 SD) at 80 % power and two-sided $\alpha = 0.05$, 8 clusters per arm are required (total 480 subjects)."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-cluster-rct-practical-tips}
 
 - ICC estimates vary widely; use pilot data, literature, or sensitivity ranges (0.001 to 0.1).
 - Unequal cluster sizes reduce power; inflate $n$ by 10-20 % as buffer.
@@ -64,25 +66,22 @@ Individual $n \approx 143$ per arm; DE = 1.58 at ICC 0.02 and cluster size 30, g
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-cluster-rct-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-cluster-rct-assumptions) and
+[practical tips](#sec-chapters-05-power-power-cluster-rct-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-cluster-rct-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

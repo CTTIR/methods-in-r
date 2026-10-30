@@ -1,4 +1,4 @@
-# Citing this Guide {-}
+# Citing this Guide {#sec-98-citing-this-guide .unnumbered}
 
 The suggested citation is:
 

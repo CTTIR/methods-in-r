@@ -1,12 +1,14 @@
-## Introduction
+## Competing Risks: Cumulative Incidence {#sec-chapters-11-survival-competing-risks-cif}
+
+### Introduction {#sec-chapters-11-survival-competing-risks-cif-introduction}
 
 A competing risk is an event whose occurrence prevents the event of interest from happening — death from a non-disease cause prevents disease-specific death, retirement prevents return-to-work, and so on. In this setting the standard Kaplan-Meier estimator overestimates the cumulative incidence of the event of interest, because it treats competing events as censoring rather than as the absorbing states they actually are. The cumulative incidence function (CIF), estimated non-parametrically by Aalen-Johansen, is the correct summary: it gives the probability of having experienced each cause by time $t$ in the presence of all other competing causes.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-competing-risks-cif-prerequisites}
 
 A working understanding of survival analysis, censoring, and the Kaplan-Meier estimator; familiarity with multi-state thinking ("alive → cause-1 event" vs "alive → cause-2 event") helps.
 
-## Theory
+### Theory {#sec-chapters-11-survival-competing-risks-cif-theory}
 
 The CIF for cause $k$ is
 
@@ -14,11 +16,11 @@ $$\mathrm{CIF}_k(t) = \mathrm P(T \le t, \text{cause} = k) = \int_0^t S(u^-) h_k
 
 where $h_k$ is the cause-specific hazard and $S$ is the overall (any-cause) survival. Summing CIFs across causes recovers $1 - S(t)$. The Aalen-Johansen estimator generalises Nelson-Aalen for multi-state processes; Gray's test compares CIFs across groups, with the null that the CIF for the event of interest is equal across groups. For regression, the Fine-Gray subdistribution-hazards model targets covariate effects on the CIF directly, whereas cause-specific Cox models target effects on the cause-specific hazard — the two answer different scientific questions.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-competing-risks-cif-assumptions}
 
 Non-informative censoring (independent of competing causes), only one event per subject (the first event ends follow-up), and accurate cause classification.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-competing-risks-cif-r-implementation}
 
 ```r
 library(cmprsk)
@@ -37,15 +39,15 @@ plot(fit, xlab = "Time", ylab = "Cumulative incidence",
 print(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-competing-risks-cif-output-results}
 
 `cuminc()` returns CIF estimates for each combination of cause and group, plus Gray's test $\chi^2$ statistics for equality across groups within each cause. The plot overlays the four CIF curves; cumulative incidences for the two causes within each group sum to less than the corresponding $1 - S$ at every time.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-competing-risks-cif-interpretation}
 
 A reporting sentence: "The five-year cumulative incidence of event 1 was 25 % in group A and 40 % in group B (Gray's test $p = 0.01$); event 2 incidences were 20 % vs 18 % ($p = 0.65$). KM analysis would have estimated event-1 incidence in group B at 52 %, illustrating the upward bias of ignoring the competing cause." Always present CIFs for every competing cause and explain why KM is inappropriate.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-competing-risks-cif-practical-tips}
 
 - Never report $1 - \hat S(t)$ from Kaplan-Meier as "cumulative incidence" in competing-risks settings; it overestimates the true cumulative incidence.
 - Plot the CIF for every competing cause so readers see the partition of the overall event probability across causes.
@@ -54,34 +56,30 @@ A reporting sentence: "The five-year cumulative incidence of event 1 was 25 % in
 - Gray's test compares CIFs; the log-rank test on cause-1 events with cause-2 events censored compares cause-specific hazards. Report both when they disagree.
 - For visualisation in `ggplot2`, `tidycmprsk` and `ggsurvfit` provide tidy interfaces with cleaner output than base `cmprsk::plot.cuminc()`.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-competing-risks-cif-r-packages-used}
 
 `cmprsk` for `cuminc()` and `crr()` (Fine-Gray); `tidycmprsk` for tidy-style competing-risks workflows; `riskRegression` for `FGR()`, `CSC()` (cause-specific Cox), and unified prediction interfaces; `ggsurvfit` for ggplot-friendly CIF plots.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-competing-risks-cif-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-competing-risks-cif-assumptions) and [practical tips](#sec-chapters-11-survival-competing-risks-cif-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-competing-risks-cif-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

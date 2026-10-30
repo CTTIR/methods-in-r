@@ -1,9 +1,11 @@
+## Week 2, Session 4 — Discrete distributions: Bernoulli, binomial, Poisson {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-learning-objectives}
 
 - Simulate Bernoulli trials and aggregate them to a binomial.
 - Show the Poisson approximation to the binomial when *n* is large
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Use `dbinom()`, `pbinom()`, and `rbinom()` (and their Poisson
   counterparts) to answer probability questions.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-prerequisites}
 
 Lab 2.2 (probability).
 
-## Background
+### Background {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-background}
 
 The Bernoulli distribution is the simplest non-trivial distribution:
 one coin, two outcomes, a single probability *p*. The binomial adds
@@ -39,7 +41,7 @@ and either is defensible. When the event is not rare, the Poisson can
 assign meaningful probability to impossible events (more successes
 than trials), so the binomial is strictly better.
 
-## Setup
+### Setup {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-setup}
 
 ```r
 library(tidyverse)
@@ -47,17 +49,18 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-1-hypothesis}
 
 We characterise three discrete distributions by simulation, then
 compare the empirical frequencies to the theoretical probabilities.
 No hypothesis is tested.
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-2-visualise}
 
 A Bernoulli trial: one coin, success probability 0.3.
 
 ```r
+n_trials <- 1000
 bern <- rbinom(n_trials, 1, 0.3)
 mean(bern)   # empirical p
 ```
@@ -66,6 +69,7 @@ A binomial count: how many successes in 20 trials each at *p* = 0.3,
 repeated 10,000 times.
 
 ```r
+n_rep <- 10000
 bin  <- rbinom(n_rep, size = 20, prob = 0.3)
 
 bin_tibble <- tibble(k = bin) |>
@@ -83,7 +87,7 @@ bin_tibble |>
        y = "Proportion (bars) vs. P(k) (points)")
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-3-assumptions}
 
 Binomial assumes fixed *n*, independence, and constant *p*. Poisson
 assumes a constant rate and independent counts over disjoint
@@ -91,6 +95,7 @@ intervals. When *n* is large and *p* is small with *np* = *λ*, the
 binomial approaches Poisson.
 
 ```r
+# n=1000, p=0.003, so np = 3. Compare binomial and Poisson probabilities.
 probs <- tibble(
   k = 0:10,
   binom  = dbinom(k, 1000, 0.003),
@@ -99,11 +104,12 @@ probs <- tibble(
 probs
 ```
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-4-conduct}
 
 Answer two specific questions.
 
 ```r
+# Q1: In a trial of 20 patients at p=0.3 response rate, what is
 # P(at least 8 responders)?
 p_ge8 <- 1 - pbinom(7, size = 20, prob = 0.3)
 p_ge8
@@ -117,6 +123,7 @@ p_pois_ge7
 Simulate Q2 to confirm.
 
 ```r
+sim <- rpois(10000, lambda = 3)
 mean(sim >= 7)
 ```
 
@@ -128,7 +135,7 @@ tibble(k = 0:15) |>
   labs(x = "Number of events", y = "P(X = k)")
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-5-concluding-statement}
 
 > A response rate of 0.3 in a 20-patient trial implies a probability
 > of `round(p_ge8, 3)` of observing eight or more responders.
@@ -144,7 +151,7 @@ reached for as continuous (eg regressions on a rate) have a cleaner
 count-based model sitting next to them.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-common-pitfalls}
 
 - Using the normal approximation to the binomial when *n* is small.
   For small *n* use `pbinom()` directly.
@@ -153,22 +160,23 @@ count-based model sitting next to them.
 - Treating a Poisson with a known *λ* as if its variance had to be
   estimated. For Poisson, mean = variance.
 
-## Further reading
+### Further reading {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-further-reading}
 
 - Rosner B. *Fundamentals of Biostatistics*, chapter on discrete
   distributions.
 - Agresti A. *Categorical Data Analysis*, opening chapter.
 
-## Session info
+### Session info {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-03-probability)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,22 +1,24 @@
-## Introduction
+## GSVA Single-Sample Enrichment {#sec-chapters-12-bioinformatics-gsva-single-sample}
+
+### Introduction {#sec-chapters-12-bioinformatics-gsva-single-sample-introduction}
 
 GSVA (Gene Set Variation Analysis) transforms a gene-by-sample expression matrix into a pathway-by-sample matrix by assigning each sample a per-pathway enrichment score. The transformation enables pathways to be treated as features in any downstream analysis — Cox regression for survival, clustering, classification, or differential analysis at the pathway level. Where over-representation analysis (GO, KEGG over-representation) tells you which pathways are enriched in a hit list, GSVA tells you how each individual sample stands relative to a panel of pathways.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-gsva-single-sample-prerequisites}
 
 A working understanding of gene-set enrichment, log-normalised expression matrices, and the difference between sample-level and contrast-level enrichment.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-gsva-single-sample-theory}
 
 For each sample, GSVA computes an empirical CDF of expression values across genes (rank-based) and derives a Kolmogorov-Smirnov-like statistic for each gene set. The result is a per-sample, per-pathway score, typically on a roughly $[-1, 1]$ scale. ssGSEA (single-sample GSEA) is a related method differing primarily in the weighting scheme; both are implemented in the `GSVA` package.
 
 The transformed pathway-by-sample matrix can be analysed with any standard tool: limma for differential pathway expression, Cox regression for survival, hierarchical clustering, supervised classification.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-gsva-single-sample-assumptions}
 
 Expression is consistently normalised across samples; gene sets are accurately curated and relevant to the biology; scores are interpretable as relative within a study but not on an absolute scale across studies.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-gsva-single-sample-r-implementation}
 
 ```r
 library(GSVA)
@@ -38,15 +40,15 @@ dim(gsva_scores)        # pathways x samples
 round(gsva_scores[, 1:4], 2)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-gsva-single-sample-output-results}
 
 `gsva()` returns a pathway-by-sample matrix of enrichment scores. Each column is one sample's pathway profile; high scores indicate the pathway's genes are coordinately up-regulated in that sample relative to others, low scores indicate the opposite.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-gsva-single-sample-interpretation}
 
 A reporting sentence: "GSVA pathway scores (Hallmark v7.5 gene sets, log-CPM input, Gaussian kernel) served as features in a Cox regression of overall survival across 200 patients; the inflammatory-response pathway emerged as the strongest independent predictor (HR 1.7 per SD increase, 95 % CI 1.2 to 2.4, $p = 0.002$) after adjustment for age, stage, and treatment arm." Always state the gene-set source, the kernel, and the input data.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-gsva-single-sample-practical-tips}
 
 - Use `kcdf = "Gaussian"` for log-CPM, `kcdf = "Poisson"` for raw counts; the wrong setting biases scores systematically.
 - Downstream differential-pathway analysis works with a standard limma fit on the GSVA score matrix with the same design used for gene-level analysis.
@@ -55,32 +57,29 @@ A reporting sentence: "GSVA pathway scores (Hallmark v7.5 gene sets, log-CPM inp
 - Scores are relative within a study; do not compare raw GSVA scores across independent datasets without re-running on the combined matrix.
 - For pathway exploration, the MSigDB Hallmark, KEGG, and Reactome gene sets (via `msigdbr::msigdbr()`) are the standard starting libraries.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-gsva-single-sample-r-packages-used}
 
 `GSVA::gsva()` for the canonical GSVA and ssGSEA implementation; `msigdbr` for MSigDB gene-set retrieval; `AUCell` and `UCell` for single-cell-friendly enrichment alternatives; `singscore` for an alternative rank-based single-sample method; `escape` for a `Seurat`-integrated GSVA workflow.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-gsva-single-sample-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-gsva-single-sample-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-gsva-single-sample-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-gsva-single-sample-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

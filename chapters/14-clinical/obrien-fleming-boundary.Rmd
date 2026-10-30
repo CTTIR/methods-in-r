@@ -1,20 +1,22 @@
-## Introduction
+## O'Brien-Fleming Boundary {#sec-chapters-14-clinical-obrien-fleming-boundary}
+
+### Introduction {#sec-chapters-14-clinical-obrien-fleming-boundary-introduction}
 
 The O'Brien-Fleming (OF) boundary, introduced by Peter O'Brien and Thomas Fleming in 1979, is the most widely used efficacy stopping boundary for group-sequential clinical trials and the de facto regulatory default for confirmatory phase-3 trials. It is conservative early and liberal late: very little type-I error budget is spent at early interim analyses, so stopping early for efficacy requires an unusually large effect, while the final analysis uses nearly the full nominal alpha. The practical consequence is that interim stops are rare and convincing — they happen only when the treatment effect is much larger than the powered alternative — while the final analysis suffers only a tiny multiplicity penalty if no early stop occurs.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-obrien-fleming-boundary-prerequisites}
 
 A working understanding of group-sequential trial design, the alpha-spending framework, and the trade-off between early-stopping ease and final-analysis stringency in repeated-look hypothesis testing.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-obrien-fleming-boundary-theory}
 
 The O'Brien-Fleming boundary on the standardised Wald-statistic scale takes the form $c_k = c / \sqrt{t_k}$ at information fraction $t_k$, so the nominal $p$-value threshold required at interim $k$ shrinks with $1/\sqrt{t_k}$. In practice, a five-look equally-spaced OF design has nominal $\alpha$ values approximately $5 \times 10^{-6}$, $0.0013$, $0.008$, $0.018$, $0.041$ at the five sequential analyses (for one-sided $\alpha = 0.025$). The final analysis therefore uses 0.041 instead of 0.025 — a mild penalty for the option to stop early — while early looks are protected against premature rejection.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-obrien-fleming-boundary-assumptions}
 
 Information accrues as planned (regular interim spacing or alpha-spending implementation that handles irregular timing), the test statistic is approximately Normal at each look, and the multiplicity correction is pre-specified before any data are unblinded.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-obrien-fleming-boundary-r-implementation}
 
 ```r
 library(rpact)
@@ -32,15 +34,15 @@ print(design$criticalValues)
 plot(design, type = 1)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-obrien-fleming-boundary-output-results}
 
 `rpact` returns the stage-specific nominal alphas (very conservative at early looks, near-nominal at the final analysis) and the corresponding critical values on the standardised test-statistic scale. The boundary plot makes the asymmetric "high early, low late" shape visually obvious and is a standard supplementary figure in trial design documents.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-obrien-fleming-boundary-interpretation}
 
 A reporting sentence: "The five-stage group-sequential design with O'Brien-Fleming efficacy boundaries required nominal $p < 5 \times 10^{-6}$ at the 20 % information interim, relaxing to $p < 0.041$ at the final analysis to maintain overall one-sided $\alpha = 0.025$. Early stopping was therefore triggered only by treatment effects substantially larger than the powered alternative; the final analysis suffered only a 0.009 multiplicity penalty (0.041 vs unadjusted 0.025) if no earlier stop occurred. The maximum sample size was 6 % larger than a fixed-design equivalent." Always justify boundary choice.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-obrien-fleming-boundary-practical-tips}
 
 - O'Brien-Fleming is the default efficacy boundary in confirmatory phase-3 trials and is virtually always the regulatory expectation; deviations should be justified in the protocol with explicit reasoning about why a different boundary (Pocock, Hwang-Shih-DeCani, custom) is preferred.
 - Pair O'Brien-Fleming efficacy boundaries with a non-binding futility boundary (gamma-spending or beta-spending) to detect hopeless trials early; this combination preserves the type-I error of the efficacy analysis while allowing the trial to stop for futility when the conditional power is low.
@@ -49,33 +51,30 @@ A reporting sentence: "The five-stage group-sequential design with O'Brien-Flemi
 - Compared with the Pocock boundary, OF makes early stopping substantially harder but preserves near-nominal final-analysis alpha and a smaller maximum sample size; Pocock makes early stopping easier but at higher final-analysis cost. Choice should reflect the trial's ethical and practical priorities.
 - Stage-specific information fractions need not be equally spaced; alpha-spending OF accommodates whatever schedule the data-monitoring committee prefers, but the schedule should be pre-specified or generated from a pre-specified spending function.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-14-clinical-obrien-fleming-boundary-r-packages-used}
 
 `rpact` for canonical group-sequential design with O'Brien-Fleming, Pocock, Hwang-Shih-DeCani, and custom alpha-spending boundaries; `gsDesign` for an alternative comprehensive group-sequential framework; `ldbounds` for Lan-DeMets alpha-spending; `gsbDesign` for Bayesian group-sequential alternatives; `Mediana` for trial-design simulation including OF and other boundary comparisons.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-obrien-fleming-boundary-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-obrien-fleming-boundary-assumptions) and
+[practical tips](#sec-chapters-14-clinical-obrien-fleming-boundary-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-obrien-fleming-boundary-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

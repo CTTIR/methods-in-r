@@ -1,9 +1,11 @@
+## Week 3, Session 3 — Biomarker statistics (Youden, NRI, decision curves) {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves}
+
 <div class="callout callout-note">
 **Testing labs** use the main template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-learning-objectives}
 
 - Compute ROC-AUC, Youden's index, sensitivity, and specificity at the
   optimal cut-point.
@@ -11,11 +13,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Construct a decision curve and interpret net benefit at a range of
   threshold probabilities.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-prerequisites}
 
 Binary classification and ROC curves; logistic regression.
 
-## Background
+### Background {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-background}
 
 A candidate biomarker is not useful until it is tied to a decision.
 ROC-AUC summarises discrimination across all thresholds but is
@@ -38,7 +40,7 @@ to put a clinical question — what is the harm-to-benefit ratio of
 acting on this prediction? — into the analysis, and to see how the
 answer depends on that ratio.
 
-## Setup
+### Setup {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-setup}
 
 ```r
 library(tidyverse)
@@ -48,28 +50,30 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-1-hypothesis}
 
 Can a logistic model on `Pima.tr` (glucose, BMI, age) distinguish
 diabetic from non-diabetic patients well enough to support a screening
 decision?
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-2-visualise}
 
 ```r
+d <- as_tibble(MASS::Pima.tr)
 ggplot(d, aes(glu, bmi, colour = type)) + geom_point(alpha = 0.7)
 ```
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-3-assumptions}
 
 Independence of observations; probability of diabetes is monotone in
 the linear predictor; no missingness.
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-4-conduct}
 
 Fit a simple logistic regression and compute discrimination.
 
 ```r
+fit <- glm(type ~ glu + bmi + age, data = d, family = binomial())
 d$p <- predict(fit, type = "response")
 r  <- roc(d$type, d$p, direction = "<", quiet = TRUE)
 auc(r)
@@ -80,6 +84,7 @@ coords(r, "best", ret = c("threshold", "sensitivity", "specificity",
 NRI against a glucose-only baseline.
 
 ```r
+fit0 <- glm(type ~ glu, data = d, family = binomial())
 p0 <- predict(fit0, type = "response")
 p1 <- d$p
 # Continuous NRI
@@ -93,6 +98,7 @@ c(nri_cases = nri_up, nri_noncases = nri_dn, nri_total = nri)
 A manual decision curve.
 
 ```r
+thr <- seq(0.05, 0.6, by = 0.02)
 dca <- sapply(thr, function(t) {
   treat <- p1 > t
   tp <- sum(treat &  case); fp <- sum(treat & !case); N <- length(case)
@@ -108,7 +114,7 @@ tibble(threshold = thr, model = dca, treat_all = nb_all, treat_none = 0) |>
   labs(x = "threshold probability", y = "net benefit")
 ```
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-5-concluding-statement}
 
 > A logistic model using glucose, BMI, and age discriminated diabetic
 > from non-diabetic patients in `MASS::Pima.tr` with AUC
@@ -125,7 +131,7 @@ at p = 0.05 or p = 0.7, it is barely distinguishable from treat-all
 or treat-none.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-common-pitfalls}
 
 - Reporting AUC without calibration or decision curves.
 - Computing NRI with a categorical risk cut-point and failing to
@@ -133,22 +139,23 @@ or treat-none.
 - Using the same data to develop and evaluate the biomarker (apparent
   performance).
 
-## Further reading
+### Further reading {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-further-reading}
 
 - Pencina MJ, D'Agostino RB Sr, et al. (2008), *Evaluating the added
   predictive ability of a new marker*.
 - Vickers AJ, Elkin EB (2006), *Decision curve analysis*.
 
-## Session info
+### Session info {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-14-clinical)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

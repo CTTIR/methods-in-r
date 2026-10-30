@@ -1,12 +1,14 @@
-## Introduction
+## The Hazard Function {#sec-chapters-03-probability-hazard-function}
+
+### Introduction {#sec-chapters-03-probability-hazard-function-introduction}
 
 The hazard function $h(t)$ gives the instantaneous rate at which events occur at time $t$, given that they have not occurred before $t$. It is the primary object in survival analysis and reliability engineering: proportional-hazards models, accelerated-failure-time models, and competing-risks methods all reason about hazards rather than distributions directly.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-hazard-function-prerequisites}
 
 Continuous distributions; survival function $S(t) = P(T > t)$.
 
-## Theory
+### Theory {#sec-chapters-03-probability-hazard-function-theory}
 
 For a non-negative continuous random variable $T$ with density $f$ and survival function $S(t) = 1 - F(t)$,
 
@@ -27,11 +29,11 @@ Conversely, $S(t) = e^{-H(t)}$. Once either of $f$, $F$, $S$, $h$, $H$ is known,
 - Gompertz: $h(t) = \alpha e^{\beta t}$ -- exponentially increasing; common in human mortality.
 - Log-normal: $h(t)$ rises then falls.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-hazard-function-assumptions}
 
 $T$ is a non-negative continuous random variable with a density. Proportional-hazards models further assume $h(t \mid x) = h_0(t) \exp(\beta^\top x)$.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-hazard-function-r-implementation}
 
 ```r
 library(survival); library(ggplot2)
@@ -68,15 +70,15 @@ plot(fit, fun = "cumhaz", col = "#2A9D8F", lwd = 2,
 abline(0, 0.3, col = "#F4A261", lty = 2)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-hazard-function-output-results}
 
 The plot shows three hazards: exponential (flat), increasing Weibull, decreasing Weibull. The empirical cumulative hazard from 100 exponential event times is approximately linear with slope $\lambda = 0.3$, matching the theoretical $H(t) = 0.3 t$.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-hazard-function-interpretation}
 
 In survival analysis, hazards are the natural target of regression: "the hazard of death was 40 % higher in the treated group than in controls (HR = 1.40, 95 % CI 1.10-1.78)". The proportional-hazards model is ubiquitous because it avoids specifying the baseline hazard shape.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-hazard-function-practical-tips}
 
 - A constant hazard implies exponentiality; a log-log plot of $-\log S(t)$ against $\log t$ that is linear indicates Weibull.
 - Empirical hazards are noisy at the tail where few subjects remain; report cumulative hazard (smoother) or kernel-smoothed hazard estimates.
@@ -86,26 +88,23 @@ In survival analysis, hazards are the natural target of regression: "the hazard 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-hazard-function-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-hazard-function-assumptions) and
+[practical tips](#sec-chapters-03-probability-hazard-function-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-hazard-function-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

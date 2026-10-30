@@ -1,4 +1,4 @@
-# Impressum {-}
+# Impressum {#sec-00-impressum .unnumbered}
 
 **Methods in R: A Topic Reference for Biomedical Research and Peer Review**
 
@@ -18,19 +18,19 @@ Source repository: <https://github.com/r-heller/methods-in-r>
 
 Build date: `r Sys.Date()`.
 
-## Suggested citation {-}
+## Suggested citation {#sec-00-impressum-suggested-citation .unnumbered}
 
 > Heller, R. (`r format(Sys.Date(), "%Y")`).
 > *Methods in R: A Topic Reference for Biomedical Research and Peer Review.*
 > <https://r-heller.github.io/methods-in-r/>.
 
-## Disclaimer {-}
+## Disclaimer {#sec-00-impressum-disclaimer .unnumbered}
 
 This book is provided "as is" without warranty of any kind. The author
 assumes no responsibility for errors or omissions, and the content is
 not a substitute for professional statistical or clinical advice.
 
-## Contact {-}
+## Contact {#sec-00-impressum-contact .unnumbered}
 
 For corrections, suggestions, or issues:
 <https://github.com/r-heller/methods-in-r/issues>

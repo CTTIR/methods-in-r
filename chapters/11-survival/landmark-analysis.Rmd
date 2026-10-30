@@ -1,12 +1,14 @@
-## Introduction
+## Landmark Analysis {#sec-chapters-11-survival-landmark-analysis}
+
+### Introduction {#sec-chapters-11-survival-landmark-analysis-introduction}
 
 Landmark analysis is the standard fix for the immortal-time bias that arises when subjects are classified by a post-baseline exposure (treatment response, biomarker change, secondary event). Naively grouping subjects by a covariate measured after follow-up begins assigns "responder" status only to subjects who survived long enough to be assessed, automatically biasing comparisons in their favour. Landmark analysis sidesteps this by selecting a fixed landmark time, restricting to subjects alive and observable at that time, classifying them by covariate value *at the landmark*, and then analysing only the post-landmark survival.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-landmark-analysis-prerequisites}
 
 A working understanding of Cox regression, time-varying covariates, and the immortal-time bias that makes naive responder-vs-nonresponder analyses invalid.
 
-## Theory
+### Theory {#sec-chapters-11-survival-landmark-analysis-theory}
 
 At a chosen landmark time $L$:
 
@@ -17,11 +19,11 @@ At a chosen landmark time $L$:
 
 Multiple landmarks can be combined into a "super model" with `id`-clustered variance and a smooth function of $L$ as a covariate, gaining efficiency at the cost of additional model complexity (Van Houwelingen 2007).
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-landmark-analysis-assumptions}
 
 The covariate value at landmark $L$ is the relevant exposure for prognosis; sufficient follow-up beyond $L$ remains; and the censoring mechanism after $L$ is non-informative.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-landmark-analysis-r-implementation}
 
 ```r
 library(survival)
@@ -46,15 +48,15 @@ fit <- coxph(Surv(time_from_L, status_from_L) ~ response, data = at_risk)
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-landmark-analysis-output-results}
 
 A standard Cox regression on the post-landmark cohort: hazard ratio for the covariate (here `response`) measured at the landmark, with 95 % confidence interval and Wald test. The number of events and at-risk subjects shrinks after the landmark, so confidence intervals are wider than in a full-cohort analysis.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-landmark-analysis-interpretation}
 
 A reporting sentence: "Among the 152 patients alive at the six-month landmark, treatment responders (n = 78) had a 50 % lower hazard of subsequent death than non-responders (HR 0.50, 95 % CI 0.30 to 0.83); the analysis avoids the immortal-time bias inherent in unrestricted responder-vs-non-responder comparisons." Always state the landmark time and the post-landmark sample size.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-landmark-analysis-practical-tips}
 
 - Choose the landmark time at a clinically meaningful assessment point (six-week imaging response, three-month biomarker re-measurement); arbitrary times can produce unstable estimates.
 - Multiple landmarks (super-model approach) combine information across time and provide a smooth treatment-effect estimate; cluster the variance on subject id when fitting.
@@ -63,34 +65,30 @@ A reporting sentence: "Among the 152 patients alive at the six-month landmark, t
 - Be transparent about exclusions: report how many subjects had events before $L$ and were excluded, because this is the headline difference from a naive analysis.
 - For complex time-varying patterns, consider joint longitudinal-survival models (`JM` or `joineRML`) instead of repeated landmark analyses.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-landmark-analysis-r-packages-used}
 
 `survival` for the standard Cox fit on landmark cohorts; `dynpred` for super-model landmark analyses with smooth time effects; `JM` and `joineRML` for joint longitudinal-survival modelling that handles continuous time-varying covariates without landmarks; `mstate` for multi-state extensions.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-landmark-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-landmark-analysis-assumptions) and [practical tips](#sec-chapters-11-survival-landmark-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-landmark-analysis-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

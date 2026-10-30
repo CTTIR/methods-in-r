@@ -1,12 +1,14 @@
-## Introduction
+## Gene Ontology Enrichment {#sec-chapters-12-bioinformatics-gene-ontology-enrichment}
+
+### Introduction {#sec-chapters-12-bioinformatics-gene-ontology-enrichment-introduction}
 
 Gene Ontology (GO) enrichment asks whether a list of differentially-expressed genes is disproportionately annotated to specific GO terms — biological processes, molecular functions, or cellular components. It is the most common first-pass functional interpretation of an RNA-seq, proteomics, or single-cell DE list and is the entry point to pathway-level analysis. The dominant method is over-representation analysis (ORA) using Fisher's exact or hypergeometric tests; gene-set enrichment analysis (GSEA) extends to ranked gene lists without requiring a significance threshold.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-gene-ontology-enrichment-prerequisites}
 
 A working understanding of differential-expression analysis, GO annotations and their three branches (biological process, molecular function, cellular component), and basic Fisher's exact test framework.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-gene-ontology-enrichment-theory}
 
 ORA constructs a 2×2 contingency table for each GO term:
 
@@ -19,11 +21,11 @@ Fisher's exact test (or the hypergeometric distribution) tests whether more DE g
 
 Multiple testing across thousands of GO terms is controlled via Benjamini-Hochberg FDR; nested GO term hierarchies introduce correlated tests, but BH adjustment remains conservative under dependence.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-gene-ontology-enrichment-assumptions}
 
 Genes are sampled uniformly from the universe given non-DE status; GO annotations are correct (recently updated); the universe matches the tested set (testing all genes from the genome inflates apparent enrichment when most are not in the tested set).
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-gene-ontology-enrichment-r-implementation}
 
 ```r
 library(clusterProfiler); library(org.Hs.eg.db)
@@ -46,15 +48,15 @@ head(as.data.frame(ego))[, c("ID", "Description", "p.adjust", "Count")]
 dotplot(ego, showCategory = 15)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-gene-ontology-enrichment-output-results}
 
 `enrichGO()` returns a ranked table of GO terms with BH-adjusted $p$-values, gene counts, and the contributing gene symbols. `dotplot()` visualises the top hits as a horizontal dot plot with gene-count size and adjusted-$p$-value colour.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-gene-ontology-enrichment-interpretation}
 
 A reporting sentence: "GO over-representation analysis (BH-FDR < 0.05) identified 28 biological-process terms among the 200 DE genes; the top terms — `response to stimulus` (45 genes), `immune response` (32), `cell cycle regulation` (28) — reflect the experimental manipulation. `simplify()` reduced the redundant hierarchy to 12 representative terms." Always state the universe, the multiple-testing correction, and any term-redundancy reduction.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-gene-ontology-enrichment-practical-tips}
 
 - Define the universe correctly — always the set of genes that passed pre-filtering and were tested for DE, never the whole genome; using the latter inflates apparent enrichment.
 - Use `simplify()` on the `enrichResult` object to collapse redundant nested GO terms; the unsimplified output often contains many parent-child duplications.
@@ -63,32 +65,29 @@ A reporting sentence: "GO over-representation analysis (BH-FDR < 0.05) identifie
 - `goseq` adjusts for gene-length bias in RNA-seq (longer genes have more power for DE detection); use it when length bias is a concern.
 - Pair GO with KEGG (`enrichKEGG`) and Reactome (`enrichPathway`) for complementary functional coverage.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-gene-ontology-enrichment-r-packages-used}
 
 `clusterProfiler::enrichGO()`, `gseGO()`, `simplify()` for canonical GO enrichment; `org.Hs.eg.db` and species-specific packages for annotation; `topGO` and `goseq` for alternative implementations; `enrichplot` for `dotplot()`, `cnetplot()`, and `emapplot()` visualisations of enrichment results.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-gene-ontology-enrichment-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-gene-ontology-enrichment-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-gene-ontology-enrichment-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-gene-ontology-enrichment-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

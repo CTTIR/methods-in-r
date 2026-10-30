@@ -1,12 +1,14 @@
-## Introduction
+## Parametric Survival: Log-Normal {#sec-chapters-11-survival-parametric-survival-lognormal}
+
+### Introduction {#sec-chapters-11-survival-parametric-survival-lognormal-introduction}
 
 The log-normal survival model assumes that $\log T$ follows a Normal distribution. Its distinctive feature among parametric survival models is a *non-monotone* hazard — the instantaneous risk rises early in follow-up, peaks, and then declines. This shape suits diseases or processes in which susceptible individuals fail relatively quickly while a hardy subset survives indefinitely: for example, post-surgical mortality (early peri-operative risk that wanes), some cancer recurrences, and time-to-engagement processes in behavioural data. Where Weibull and exponential models lock in monotone hazards, log-normal accommodates the rise-and-fall pattern naturally.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-parametric-survival-lognormal-prerequisites}
 
 A working understanding of the log-normal distribution, parametric survival regression, and the accelerated-failure-time (AFT) parameterisation as an alternative to the proportional-hazards form.
 
-## Theory
+### Theory {#sec-chapters-11-survival-parametric-survival-lognormal-theory}
 
 The log-normal survival function is
 
@@ -18,11 +20,11 @@ $$h(t) = \frac{(1/(t \sigma)) \phi((\log t - \mu)/\sigma)}{1 - \Phi((\log t - \m
 
 The hazard has a unique maximum near $t \approx \exp(\mu - \sigma^2)$ for $\sigma > 1$ and decreases thereafter. The AFT parameterisation $\log T = X\beta + \sigma W$ (with $W \sim \mathcal N(0, 1)$) makes regression coefficients interpretable as multiplicative effects on the *event time* — a one-unit increase in a covariate scales the time scale by $\exp(-\beta)$.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-parametric-survival-lognormal-assumptions}
 
 A non-monotone (rising-then-falling) hazard, log-Normal residual structure on the log time scale, independent observations, and non-informative censoring.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-parametric-survival-lognormal-r-implementation}
 
 ```r
 library(survival); library(flexsurv)
@@ -36,15 +38,15 @@ flex <- flexsurvreg(Surv(time, status) ~ age + sex, data = lung, dist = "lnorm")
 plot(flex, type = "hazard")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-parametric-survival-lognormal-output-results}
 
 `survreg()` returns AFT coefficients on the log-time scale plus the scale parameter $\sigma$. `flexsurvreg()` produces equivalent estimates with cleaner survival, hazard, and quantile prediction methods. `plot(flex, type = "hazard")` draws the model-implied hazard curve, making the rise-peak-decline shape visible against KM-based hazard estimates.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-parametric-survival-lognormal-interpretation}
 
 A reporting sentence: "A log-normal AFT model estimated that each additional year of age shortened expected event time by approximately 2 % ($\hat\beta_{\mathrm{age}} = -0.02$, 95 % CI $-0.04$ to $-0.00$); the model-implied hazard peaked at approximately 9 months and declined thereafter, consistent with the observed concentration of events in the first year of follow-up." Always plot the implied hazard alongside Kaplan-Meier to verify the non-monotone shape is supported by the data.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-parametric-survival-lognormal-practical-tips}
 
 - Use log-normal when Kaplan-Meier or non-parametric hazard estimates show a clear "hump" of events early in follow-up; for monotone hazards, Weibull or exponential are simpler and more efficient.
 - Log-logistic is a close alternative with similar non-monotone hazard but heavier tails; compare AICs across both before committing.
@@ -53,34 +55,30 @@ A reporting sentence: "A log-normal AFT model estimated that each additional yea
 - Predictions on the natural time scale come via `predict(fit, type = "quantile")` for `survreg` or `summary(flex, type = "quantile")` for `flexsurv` objects.
 - When some covariates produce monotone hazards and others produce non-monotone, consider a heterogeneous-effects extension or a flexible spline model rather than forcing one parametric family.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-parametric-survival-lognormal-r-packages-used}
 
 `survival` for `survreg()` with `dist = "lognormal"`; `flexsurv` for `flexsurvreg()` with cleaner prediction interfaces and rich plotting; `eha` for additional parametric hazard models; `rstpm2` for Royston-Parmar spline-based parametric extensions when the log-normal hazard shape is too restrictive.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-parametric-survival-lognormal-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-parametric-survival-lognormal-assumptions) and [practical tips](#sec-chapters-11-survival-parametric-survival-lognormal-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-parametric-survival-lognormal-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

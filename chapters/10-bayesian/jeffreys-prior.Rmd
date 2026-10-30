@@ -1,12 +1,14 @@
-## Introduction
+## Jeffreys' Prior {#sec-chapters-10-bayesian-jeffreys-prior}
+
+### Introduction {#sec-chapters-10-bayesian-jeffreys-prior-introduction}
 
 Jeffreys' prior is the classical "objective" or "reference" prior in Bayesian inference. Defined as proportional to the square root of the Fisher information, it has the elegant property of being invariant under monotone reparameterisation: the prior on a transformation $\eta = g(\theta)$ derived from the Jeffreys prior on $\theta$ equals the Jeffreys prior derived directly for $\eta$. This invariance — absent from a flat prior, which is parameterisation-dependent — is what historically made Jeffreys' rule the default attempt at a non-informative prior. In modern Bayesian practice, however, weakly informative priors have largely displaced it because they regularise small-sample inference more reliably and behave better in hierarchical models.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-jeffreys-prior-prerequisites}
 
 A working understanding of Fisher information, the role of reparameterisation in inference, and the difference between proper and improper priors.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-jeffreys-prior-theory}
 
 For a scalar parameter $\theta$ with likelihood $p(y \mid \theta)$, the Jeffreys prior is
 
@@ -21,11 +23,11 @@ Standard examples:
 
 Jeffreys priors are often improper, but the posterior is usually proper as long as the sample size is sufficient. For multivariate parameters, $I(\theta)$ is a matrix and the prior is $\sqrt{|I(\theta)|}$.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-jeffreys-prior-assumptions}
 
 A regular likelihood (twice differentiable in $\theta$, with finite Fisher information across the parameter space). Boundary problems and parameter-dimension growth complicate the construction; reference priors (Bernardo) generalise Jeffreys' rule for hierarchical and high-dimensional cases.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-jeffreys-prior-r-implementation}
 
 ```r
 # Binomial: posterior under Jeffreys is Beta(1/2 + x, 1/2 + n - x)
@@ -42,15 +44,15 @@ data.frame(
 )
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-jeffreys-prior-output-results}
 
 Closed-form summaries under three priors. With 8 successes in 10 trials the Jeffreys posterior mean is approximately 0.77 (vs. 0.75 under the uniform $\mathrm{Beta}(1, 1)$ and 0.71 under the more informative $\mathrm{Beta}(2, 2)$), and the 95 % credible interval is roughly $(0.47, 0.94)$. The comparison highlights how mildly Jeffreys differs from a flat prior in this setting.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-jeffreys-prior-interpretation}
 
 A reporting sentence: "Jeffreys' prior $\mathrm{Beta}(0.5, 0.5)$ on the success probability combined with 8 successes in 10 trials yielded a posterior mean of 0.77 (95 % credible interval 0.47 to 0.94); the result is essentially equivalent to a uniform prior at this sample size, justifying the reference-prior framing." When Jeffreys differs materially from a weakly informative prior, the prior is doing real work and you should be explicit about why you chose it.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-jeffreys-prior-practical-tips}
 
 - The invariance property is mathematically attractive but in practice rarely affects applied conclusions; weakly informative priors are a more flexible default in modern workflows.
 - Jeffreys priors can behave badly in hierarchical models — the multivariate version often produces improper posteriors when variance components are at the boundary. Reach for weakly informative half-Cauchy or half-Normal priors instead.
@@ -58,31 +60,28 @@ A reporting sentence: "Jeffreys' prior $\mathrm{Beta}(0.5, 0.5)$ on the success 
 - Reference priors (Bernardo) generalise Jeffreys' rule for ordered parameters of interest and nuisance components; they are the modern theoretical successor when an objective prior is genuinely required.
 - For pedagogical purposes, Jeffreys' prior is invaluable because it makes invariance under reparameterisation a hands-on exercise; for applied analyses, prefer weakly informative defaults unless invariance is a publication requirement.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-jeffreys-prior-r-packages-used}
 
 Base R suffices for closed-form Jeffreys updates in conjugate models; `BayesianTools` and `mcmc` allow Jeffreys priors via custom log-prior functions; `bayestestR::point_estimate()` and `HDInterval::hdi()` deliver tidy summaries on the resulting posteriors.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-jeffreys-prior-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-jeffreys-prior-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-jeffreys-prior-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-jeffreys-prior-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

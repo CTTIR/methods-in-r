@@ -1,12 +1,14 @@
-## Introduction
+## The Correlation Coefficient {#sec-chapters-03-probability-correlation-coefficient}
+
+### Introduction {#sec-chapters-03-probability-correlation-coefficient-introduction}
 
 The correlation coefficient rescales covariance into a unitless number between $-1$ and $+1$, making comparisons across different measurement scales meaningful. A correlation of $+1$ means perfect positive linear dependence, $-1$ perfect negative, and $0$ no linear association. It is the single most reported bivariate summary in applied research.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-03-probability-correlation-coefficient-prerequisites}
 
 Variance and covariance.
 
-## Theory
+### Theory {#sec-chapters-03-probability-correlation-coefficient-theory}
 
 For random variables $X, Y$ with finite non-zero variances,
 
@@ -24,12 +26,12 @@ $$r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \s
 - $\rho$ measures only the *linear* component of association; non-linear dependence is invisible to it.
 - Outliers affect $r$ disproportionately; a robust alternative is the Spearman rank correlation.
 
-## Assumptions
+### Assumptions {#sec-chapters-03-probability-correlation-coefficient-assumptions}
 
 - Both variances finite and non-zero.
 - Linearity is the interpretive assumption: $\rho$ captures only linear dependence.
 
-## R Implementation
+### R Implementation {#sec-chapters-03-probability-correlation-coefficient-r-implementation}
 
 ```r
 library(mvtnorm)
@@ -56,7 +58,7 @@ c(no_outlier = cor(X, Y),
   with_outlier = cor(c(X, 20), c(Y, -20)))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-03-probability-correlation-coefficient-output-results}
 
 ```
   true  empirical
@@ -74,11 +76,11 @@ no_outlier with_outlier
 
 Sample correlations recover the population values within Monte Carlo error. The $X, X^2 - 1$ example shows zero correlation with obvious dependence. A single outlying point flips the sign of a small-sample correlation.
 
-## Interpretation
+### Interpretation {#sec-chapters-03-probability-correlation-coefficient-interpretation}
 
 Reported in a paper as "r = .68 (95% CI .56-.77), $p < .001$", the correlation conveys both direction and magnitude of linear association. Always accompany $r$ with a scatter plot to verify linearity; never report $r$ alone.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-03-probability-correlation-coefficient-practical-tips}
 
 - Use Pearson only for roughly linear relationships between continuous variables.
 - For monotone non-linear association, use Spearman's rho or Kendall's tau.
@@ -88,26 +90,23 @@ Reported in a paper as "r = .68 (95% CI .56-.77), $p < .001$", the correlation c
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-03-probability-correlation-coefficient-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-03-probability-correlation-coefficient-assumptions) and
+[practical tips](#sec-chapters-03-probability-correlation-coefficient-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-03-probability-correlation-coefficient-see-also-labs-in-this-chapter}
 
-- [Probability, conditional probability, Bayes' theorem](labs/lab-probability-conditional-probability-bayes-theorem.Rmd)
-- [Discrete distributions: Bernoulli, binomial, Poisson](labs/lab-discrete-distributions-bernoulli-binomial-poisson.Rmd)
-- [Continuous distributions and Q-Q plots](labs/lab-continuous-distributions-and-q-q-plots.Rmd)
+- [Probability, conditional probability, Bayes' theorem](#sec-chapters-03-probability-labs-lab-probability-conditional-probability-bayes-theorem)
+- [Discrete distributions: Bernoulli, binomial, Poisson](#sec-chapters-03-probability-labs-lab-discrete-distributions-bernoulli-binomial-poisson)
+- [Continuous distributions and Q-Q plots](#sec-chapters-03-probability-labs-lab-continuous-distributions-and-q-q-plots)
 
 <!-- END see-also -->

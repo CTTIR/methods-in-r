@@ -1,12 +1,14 @@
-## Introduction
+## Kendall's Tau {#sec-chapters-04-inferential-kendall-tau}
+
+### Introduction {#sec-chapters-04-inferential-kendall-tau-introduction}
 
 Kendall's $\tau$ quantifies association via the proportion of pairs of observations that are **concordant** (both variables increase or both decrease) minus the proportion that are **discordant**. It is more robust than Spearman in small samples and under ties.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-kendall-tau-prerequisites}
 
 Ranks, concordant / discordant pairs.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-kendall-tau-theory}
 
 For $n$ observations, there are $\binom{n}{2}$ pairs. A pair $(i, j)$ is concordant if $\mathrm{sign}(X_i - X_j) = \mathrm{sign}(Y_i - Y_j)$, discordant if the signs differ, and tied otherwise.
 
@@ -20,11 +22,11 @@ Variants (for ties):
 
 $\tau \in [-1, 1]$; 0 indicates no association. The null distribution (no association) is asymptotically normal; exact distributions exist for small $n$.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-kendall-tau-assumptions}
 
 Same as Spearman: ordinal or continuous data, monotonic relationship, independent pairs.
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-kendall-tau-r-implementation}
 
 ```r
 library(DescTools)
@@ -48,7 +50,7 @@ y2 <- round(y, 1)
 cor.test(x2, y2, method = "kendall")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-kendall-tau-output-results}
 
 ```
         Kendall's rank correlation tau
@@ -63,11 +65,11 @@ tau: 0.394
 
 Both correlations are significantly positive; Kendall's $\tau$ is numerically smaller than Spearman (typical, as they measure different things).
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-kendall-tau-interpretation}
 
 Report: "Kendall's $\tau = 0.39$ (z = 3.68, p < 0.001), indicating a moderate positive monotonic association between $x$ and $y$."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-kendall-tau-practical-tips}
 
 - Kendall and Spearman measure different quantities; do not treat them as interchangeable.
 - Kendall is more robust in small samples; Spearman is more common in reporting.
@@ -77,32 +79,29 @@ Report: "Kendall's $\tau = 0.39$ (z = 3.68, p < 0.001), indicating a moderate po
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-kendall-tau-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-kendall-tau-assumptions) and
+[practical tips](#sec-chapters-04-inferential-kendall-tau-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-kendall-tau-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

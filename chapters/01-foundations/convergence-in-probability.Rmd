@@ -1,12 +1,14 @@
-## Introduction
+## Convergence in Probability {#sec-chapters-01-foundations-convergence-in-probability}
+
+### Introduction {#sec-chapters-01-foundations-convergence-in-probability-introduction}
 
 Convergence in probability is the minimal sense in which a sequence of random variables gets close to a limit. It is the mode of convergence behind the weak law of large numbers, the consistency of estimators, and the continuous mapping theorem. Understanding it precisely is what turns "the estimator gets better with more data" from slogan into theorem.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-convergence-in-probability-prerequisites}
 
 The reader should understand the concept of a sequence of random variables and elementary probability statements.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-convergence-in-probability-theory}
 
 A sequence $Y_n$ of random variables converges in probability to $Y$, written $Y_n \xrightarrow{P} Y$, if for every $\varepsilon > 0$,
 
@@ -26,11 +28,11 @@ Most often $Y$ is a constant (the true parameter), but the definition allows $Y$
 
 **Slutsky's theorem** combines convergence in distribution and in probability to simplify many asymptotic arguments.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-convergence-in-probability-assumptions}
 
 Convergence in probability is defined for any sequence of random variables on a common probability space; it requires no integrability or distributional assumption.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-convergence-in-probability-r-implementation}
 
 ```r
 library(ggplot2)
@@ -57,7 +59,7 @@ ggplot(data.frame(n = n_vals, p = prob_far),
 
 For each $n$, we estimate the probability that the sample mean is farther than $\varepsilon = 0.1$ from the truth; we plot this against $n$ on a log scale.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-convergence-in-probability-output-results}
 
 ```
    n     p
@@ -72,11 +74,11 @@ For each $n$, we estimate the probability that the sample mean is farther than $
 
 The probability of being $\varepsilon$-far from $\mu$ drops to zero as $n$ grows. This is convergence in probability in empirical form.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-convergence-in-probability-interpretation}
 
 When a methods paper states "the estimator is consistent", the reader should hear "convergence in probability to the true parameter". It is a guarantee about the limit, not about any finite-$n$ performance. Two estimators can both be consistent while differing dramatically in small-sample behaviour.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-convergence-in-probability-practical-tips}
 
 - Consistency is a minimum requirement, not a success criterion. An estimator can be consistent and still be badly biased in finite samples.
 - Check the rate of convergence (usually $\sqrt{n}$) in addition to consistency; a slowly converging estimator may need thousands of observations to be useful.
@@ -86,27 +88,24 @@ When a methods paper states "the estimator is consistent", the reader should hea
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-convergence-in-probability-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-convergence-in-probability-assumptions) and
+[practical tips](#sec-chapters-01-foundations-convergence-in-probability-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-convergence-in-probability-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

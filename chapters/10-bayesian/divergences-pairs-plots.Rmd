@@ -1,20 +1,22 @@
-## Introduction
+## Divergences and Pairs Plots {#sec-chapters-10-bayesian-divergences-pairs-plots}
+
+### Introduction {#sec-chapters-10-bayesian-divergences-pairs-plots-introduction}
 
 A divergent transition is HMC's most informative warning: it tells you that the leapfrog integrator could not navigate a region of the posterior accurately, and the chain therefore did *not* explore that region. Unlike a high $\hat R$, which can sometimes be cured by running longer chains, a divergent transition signals a structural problem with the posterior geometry that no amount of additional sampling will fix. Diagnosing where divergences occur — typically through pairs plots that colour divergent draws — is the path to a reparameterisation that lets the sampler do its job.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-divergences-pairs-plots-prerequisites}
 
 A working understanding of Hamiltonian Monte Carlo, leapfrog integration, and the geometric origins of divergent transitions; familiarity with `bayesplot::mcmc_pairs()` for visualising joint posteriors.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-divergences-pairs-plots-theory}
 
 The leapfrog integrator approximates Hamiltonian dynamics with finite step size $\epsilon$. In regions of high curvature (typically funnels in hierarchical models, where a small variance parameter shrinks all dependent effects), even a moderate $\epsilon$ produces a Hamiltonian error large enough that the proposal is biased. Stan flags such proposals as divergent and refuses to use them, so the chain effectively avoids the problem region instead of exploring it. The classical remedy is a *non-centred* reparameterisation: replacing $\beta_i \sim \mathcal N(\mu, \sigma^2)$ with $\tilde z_i \sim \mathcal N(0, 1)$ and $\beta_i = \mu + \sigma \tilde z_i$ decouples the funnel geometry and makes the posterior easier to sample.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-divergences-pairs-plots-assumptions}
 
 HMC or NUTS sampling; the divergent-transition flag is specific to these algorithms. Random-walk samplers do not produce divergences but suffer different pathologies (slow mixing, mode-trapping) that need separate diagnostics.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-divergences-pairs-plots-r-implementation}
 
 ```r
 library(brms); library(bayesplot)
@@ -34,15 +36,15 @@ mcmc_pairs(as.array(fit), pars = c("b_Days", "sd_Subject__Days"),
            np = np, np_style = pairs_style_np(div_color = "red"))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-divergences-pairs-plots-output-results}
 
 `check_hmc_diagnostics()` reports the count of divergent transitions, tree-depth saturation events, and the energy Bayesian fraction of missing information (E-BFMI). `mcmc_pairs()` overlays the joint draws of two parameters with red points marking divergences; clustering of red points along the boundary of the parameter space pinpoints the geometry that broke.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-divergences-pairs-plots-interpretation}
 
 A reporting sentence: "An initial fit produced 12 divergent transitions concentrated near small values of the random-slope standard deviation; switching to a non-centred parameterisation and increasing `adapt_delta` to 0.99 eliminated all divergences and yielded $\hat R = 1.00$ for every parameter." Report the diagnostic and the fix together; a published Bayesian analysis with unmentioned divergences is not a credible analysis.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-divergences-pairs-plots-practical-tips}
 
 - Any divergence is worth investigating; even a single one signals a region of the posterior the sampler did not explore correctly.
 - The classic funnel — variance parameter near zero with correlated dependent effects — is the most common offender; non-centred parameterisation is almost always the right fix.
@@ -50,31 +52,28 @@ A reporting sentence: "An initial fit produced 12 divergent transitions concentr
 - `bayesplot::mcmc_parcoord()` complements pairs plots by showing divergent transitions across many parameters simultaneously, which is helpful in models with dozens of variance components.
 - When divergences persist after non-centred parameterisation and high `adapt_delta`, examine the prior — improperly tight priors can pinch the posterior into geometry that no sampler can navigate.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-divergences-pairs-plots-r-packages-used}
 
 `bayesplot` for `mcmc_pairs()`, `mcmc_parcoord()`, and `nuts_params()`; `rstan` and `cmdstanr` for the underlying diagnostic outputs (`check_hmc_diagnostics()`, `get_sampler_params()`); `posterior` for tidy access to NUTS metadata when building custom diagnostic summaries.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-divergences-pairs-plots-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-divergences-pairs-plots-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-divergences-pairs-plots-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-divergences-pairs-plots-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Platt Scaling {#sec-chapters-13-ml-platt-scaling}
+
+### Introduction {#sec-chapters-13-ml-platt-scaling-introduction}
 
 Platt scaling (Platt, 1999) is a post-hoc calibration method that maps a classifier's raw scores onto well-calibrated probabilities by fitting a logistic regression from scores to true labels on a held-out validation set. It is the simplest and often best calibration method for SVMs, neural networks, and other classifiers whose mis-calibration is approximately monotone. The idea is to leave the classifier's ranking untouched while rescaling the score axis so that the predicted probability of class 1 matches the empirical class-1 rate.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-platt-scaling-prerequisites}
 
 A working understanding of calibration plots, the difference between discrimination and calibration, logistic regression, and the use of held-out validation sets.
 
-## Theory
+### Theory {#sec-chapters-13-ml-platt-scaling-theory}
 
 Given validation pairs $(f_i, y_i)$ where $f_i$ is the classifier score (decision value, logit, or raw probability), fit
 
@@ -14,11 +16,11 @@ $$P(y = 1 \mid f) = \frac{1}{1 + \exp(A f + B)},$$
 
 by maximum likelihood. New predictions are $P(y = 1 \mid f(x))$ from this fitted sigmoid. The transformation has only two parameters and preserves the rank order — and therefore the ROC curve and AUC — of the original classifier. Label smoothing $(y + 1)/(N + 2)$ avoids numerical issues near 0 and 1 when the validation set is small.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-platt-scaling-assumptions}
 
 Mis-calibration is monotone (a sigmoid family is appropriate); a separate validation set is available for fitting the calibration; the classifier's scores rank observations meaningfully (Platt scaling cannot fix a classifier with poor discrimination).
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-platt-scaling-r-implementation}
 
 ```r
 set.seed(2026)
@@ -42,15 +44,15 @@ c(naive = mean((naive_p[te_idx] - y[te_idx])^2),
   platt = mean((platt_p - y[te_idx])^2))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-platt-scaling-output-results}
 
 Brier score (mean squared error of probability vs label) drops after Platt scaling, reflecting improved calibration. AUC remains unchanged because the rescaling is monotone and preserves rank.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-platt-scaling-interpretation}
 
 A reporting sentence: "Platt scaling reduced the Brier score from 0.21 (naive sigmoid of SVM decision values) to 0.18 (Platt-rescaled) on the held-out test set; ROC AUC was unchanged at 0.81 because the rescaling preserves rank order. The reliability diagram shifted toward the diagonal at every probability decile after recalibration." Always report Brier score and a reliability diagram before and after calibration.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-platt-scaling-practical-tips}
 
 - Platt scaling works best when mis-calibration is smooth and monotone; for wiggly or non-monotone calibration curves, isotonic regression is preferred.
 - Use a separate validation set (not training data) to fit the calibration; in-sample calibration is self-reinforcing and biased.
@@ -59,37 +61,34 @@ A reporting sentence: "Platt scaling reduced the Brier score from 0.21 (naive si
 - Pair with a reliability diagram (`ggcalibrate` or hand-built) before and after calibration to verify the visual improvement.
 - Platt scaling cannot improve discrimination; if AUC is poor, fix the underlying classifier rather than chasing better calibration.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-platt-scaling-r-packages-used}
 
 Base R `glm(family = "binomial")` for fitting the Platt sigmoid; `caret::calibrate()` for an integrated calibration workflow; `probably` for tidymodels-flavoured calibration utilities; `betacal` for Beta calibration as an alternative parametric form; `mlr3calibration` for calibration extensions in the mlr3 ecosystem.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-platt-scaling-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-platt-scaling-assumptions) and
+[practical tips](#sec-chapters-13-ml-platt-scaling-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-platt-scaling-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

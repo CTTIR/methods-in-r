@@ -1,14 +1,16 @@
-## Introduction
+## Conjugate Priors {#sec-chapters-10-bayesian-conjugate-priors}
+
+### Introduction {#sec-chapters-10-bayesian-conjugate-priors-introduction}
 
 Before MCMC made arbitrary Bayesian models tractable, conjugate priors provided the only route to a tractable posterior. A prior is **conjugate** to a likelihood if the resulting posterior belongs to the same distributional family as the prior -- the prior and posterior share a form, with updated parameters that have simple closed-form expressions. Conjugate pairs remain pedagogically central because they make the Bayesian update arithmetic, and they remain practically useful as building blocks within larger hierarchical models.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-conjugate-priors-prerequisites}
 
 The reader should know Bayes' theorem and be comfortable with the beta, normal, and gamma distributions. Familiarity with basic R plotting is assumed.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-conjugate-priors-theory}
 
-### Beta-Binomial
+#### Beta-Binomial {#sec-chapters-10-bayesian-conjugate-priors-beta-binomial}
 
 For a binomial observation $Y \sim \text{Binomial}(n, \theta)$ with success probability $\theta$ and a beta prior $\theta \sim \text{Beta}(\alpha, \beta)$, the posterior is
 
@@ -16,7 +18,7 @@ $$\theta \mid Y = y \;\sim\; \text{Beta}(\alpha + y, \beta + n - y).$$
 
 The update rule is nothing more than "add successes to the first shape parameter and failures to the second". The posterior mean is $(\alpha + y)/(\alpha + \beta + n)$, a weighted average of the prior mean $\alpha/(\alpha + \beta)$ and the observed proportion $y/n$, with weights determined by the prior's "effective sample size" $\alpha + \beta$.
 
-### Normal-Normal with known variance
+#### Normal-Normal with known variance {#sec-chapters-10-bayesian-conjugate-priors-normal-normal-with-known-variance}
 
 For observations $Y_1, \ldots, Y_n \overset{iid}{\sim} \mathcal{N}(\mu, \sigma^2)$ with $\sigma^2$ known, and a normal prior $\mu \sim \mathcal{N}(\mu_0, \tau_0^2)$, the posterior is
 
@@ -24,7 +26,7 @@ $$\mu \mid y \;\sim\; \mathcal{N}(\mu_n, \tau_n^2),$$
 
 where the posterior precision is $1/\tau_n^2 = 1/\tau_0^2 + n/\sigma^2$, and the posterior mean is a precision-weighted average $\mu_n = \tau_n^2 (\mu_0/\tau_0^2 + n \bar{y}/\sigma^2)$.
 
-### Gamma-Poisson
+#### Gamma-Poisson {#sec-chapters-10-bayesian-conjugate-priors-gamma-poisson}
 
 For independent counts $Y_i \sim \text{Poisson}(\lambda)$ and a gamma prior $\lambda \sim \text{Gamma}(\alpha, \beta)$ (shape-rate parameterisation), the posterior is
 
@@ -32,11 +34,11 @@ $$\lambda \mid y \;\sim\; \text{Gamma}\!\left(\alpha + \sum y_i,\; \beta + n\rig
 
 Each of these updates can be memorised as "add the data to the prior parameters", with the precise form determined by the sufficient statistics of the likelihood.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-conjugate-priors-assumptions}
 
 Conjugate analyses assume the same independence and distributional conditions as the corresponding likelihoods. In addition, they assume that the prior is genuinely an expression of prior belief, not a mathematical convenience chosen for conjugacy alone. An informative conjugate prior that contradicts the data produces a posterior that is a compromise between the two; if this is not what you intended, the prior was a bad choice.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-conjugate-priors-r-implementation}
 
 A visualisation of the beta-binomial update makes the idea concrete:
 
@@ -71,7 +73,7 @@ ggplot(df, aes(x = theta, y = density, colour = kind, linetype = kind)) +
 
 A `Beta(2, 2)` prior (symmetric, weakly informative around 0.5) combined with 8 successes in 10 trials gives a `Beta(10, 4)` posterior concentrated around 0.71.
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-conjugate-priors-output-results}
 
 Posterior summaries from the beta distribution are:
 
@@ -79,11 +81,11 @@ Posterior summaries from the beta distribution are:
 - 95% equal-tailed credible interval: `qbeta(c(0.025, 0.975), 10, 4)` $\approx (0.47, 0.91)$
 - Probability that $\theta > 0.5$: `1 - pbeta(0.5, 10, 4)` $\approx 0.95$.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-conjugate-priors-interpretation}
 
 The posterior in a conjugate model is not an approximation; it is the exact posterior under the stated prior. A Bayesian reporting this analysis would write: "With a weakly informative $\text{Beta}(2, 2)$ prior and data of 8 successes in 10 trials, the posterior for $\theta$ is $\text{Beta}(10, 4)$, with posterior mean 0.71 (95% CrI 0.47 to 0.91). The posterior probability that $\theta$ exceeds 0.5 is 0.95."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-conjugate-priors-practical-tips}
 
 - Report the prior explicitly so readers can judge its influence.
 - Use informative priors when justified by domain knowledge; use weakly informative priors as the default for exploratory analyses.
@@ -93,25 +95,22 @@ The posterior in a conjugate model is not an approximation; it is the exact post
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-conjugate-priors-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-conjugate-priors-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-conjugate-priors-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-conjugate-priors-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

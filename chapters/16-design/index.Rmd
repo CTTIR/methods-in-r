@@ -2,57 +2,57 @@
 
 Study design across the spectrum: observational designs and STROBE, randomised trials, missing-data mechanisms and multiple imputation, mixed-effects models, DAGs and confounding, propensity scores, the g-methods family (IV, DiD, RDD, HTE), compartmental models for outbreaks, and the pre-registration / SAP / replication-crisis literature.
 
-This chapter contains **30 method pages** and **13 labs**. If you are not sure which method to read, return to [Chapter 0](../../ch00-find-your-method.Rmd) and follow the decision tree to the right node.
+This chapter contains **30 method pages** and **13 labs**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.
 
-## Method pages
+## Method pages {#sec-chapters-16-design-index-method-pages}
 
 | Method | Source slug |
 |---|---|
-| [2^k Factorial Designs](factorial-2k.Rmd) | `factorial-2k` |
-| [3^k Factorial Designs](factorial-3k.Rmd) | `factorial-3k` |
-| [Balanced Incomplete Block Designs](balanced-incomplete-block.Rmd) | `balanced-incomplete-block` |
-| [Box-Behnken Designs](box-behnken-design.Rmd) | `box-behnken-design` |
-| [Central Composite Designs](central-composite-design.Rmd) | `central-composite-design` |
-| [Completely Randomised Design](completely-randomized-design.Rmd) | `completely-randomized-design` |
-| [Constrained Mixture Designs](constrained-mixture.Rmd) | `constrained-mixture` |
-| [Crossover Designs](crossover-designs.Rmd) | `crossover-designs` |
-| [Desirability Functions](desirability-function.Rmd) | `desirability-function` |
-| [Fractional Factorial Designs](fractional-factorial-design.Rmd) | `fractional-factorial-design` |
-| [Graeco-Latin Square Designs](graeco-latin-square.Rmd) | `graeco-latin-square` |
-| [Latin Square Designs](latin-square.Rmd) | `latin-square` |
-| [Method of Steepest Ascent](steepest-ascent.Rmd) | `steepest-ascent` |
-| [Optimal Designs: D, A, I](optimal-design-d-a-i.Rmd) | `optimal-design-d-a-i` |
-| [Orthogonal Arrays](orthogonal-arrays.Rmd) | `orthogonal-arrays` |
-| [Plackett-Burman Designs](plackett-burman.Rmd) | `plackett-burman` |
-| [Power Analysis for DOE](power-in-doe.Rmd) | `power-in-doe` |
-| [Principles of Blocking](blocking-principles.Rmd) | `blocking-principles` |
-| [Randomisation in Design](randomization-in-design.Rmd) | `randomization-in-design` |
-| [Randomised Complete Block Design](randomised-complete-block.Rmd) | `randomised-complete-block` |
-| [Repeated-Measures Designs](repeated-measures-design.Rmd) | `repeated-measures-design` |
-| [Resolution and Aliasing](resolution-aliasing.Rmd) | `resolution-aliasing` |
-| [Response Surface Methodology](response-surface-methodology.Rmd) | `response-surface-methodology` |
-| [Robust Parameter Design](robust-parameter-design.Rmd) | `robust-parameter-design` |
-| [Signal-to-Noise Ratios](signal-to-noise-ratio.Rmd) | `signal-to-noise-ratio` |
-| [Simplex Centroid Designs](mixture-centroid.Rmd) | `mixture-centroid` |
-| [Simplex Lattice Mixture Designs](mixture-designs-simplex.Rmd) | `mixture-designs-simplex` |
-| [Split-Plot Designs](split-plot-design.Rmd) | `split-plot-design` |
-| [Strip-Plot Designs](strip-plot-design.Rmd) | `strip-plot-design` |
-| [Taguchi Methods](taguchi-methods.Rmd) | `taguchi-methods` |
+| [2^k Factorial Designs](#sec-chapters-16-design-factorial-2k) | `factorial-2k` |
+| [3^k Factorial Designs](#sec-chapters-16-design-factorial-3k) | `factorial-3k` |
+| [Balanced Incomplete Block Designs](#sec-chapters-16-design-balanced-incomplete-block) | `balanced-incomplete-block` |
+| [Box-Behnken Designs](#sec-chapters-16-design-box-behnken-design) | `box-behnken-design` |
+| [Central Composite Designs](#sec-chapters-16-design-central-composite-design) | `central-composite-design` |
+| [Completely Randomised Design](#sec-chapters-16-design-completely-randomized-design) | `completely-randomized-design` |
+| [Constrained Mixture Designs](#sec-chapters-16-design-constrained-mixture) | `constrained-mixture` |
+| [Crossover Designs](#sec-chapters-16-design-crossover-designs) | `crossover-designs` |
+| [Desirability Functions](#sec-chapters-16-design-desirability-function) | `desirability-function` |
+| [Fractional Factorial Designs](#sec-chapters-16-design-fractional-factorial-design) | `fractional-factorial-design` |
+| [Graeco-Latin Square Designs](#sec-chapters-16-design-graeco-latin-square) | `graeco-latin-square` |
+| [Latin Square Designs](#sec-chapters-16-design-latin-square) | `latin-square` |
+| [Method of Steepest Ascent](#sec-chapters-16-design-steepest-ascent) | `steepest-ascent` |
+| [Optimal Designs: D, A, I](#sec-chapters-16-design-optimal-design-d-a-i) | `optimal-design-d-a-i` |
+| [Orthogonal Arrays](#sec-chapters-16-design-orthogonal-arrays) | `orthogonal-arrays` |
+| [Plackett-Burman Designs](#sec-chapters-16-design-plackett-burman) | `plackett-burman` |
+| [Power Analysis for DOE](#sec-chapters-16-design-power-in-doe) | `power-in-doe` |
+| [Principles of Blocking](#sec-chapters-16-design-blocking-principles) | `blocking-principles` |
+| [Randomisation in Design](#sec-chapters-16-design-randomization-in-design) | `randomization-in-design` |
+| [Randomised Complete Block Design](#sec-chapters-16-design-randomised-complete-block) | `randomised-complete-block` |
+| [Repeated-Measures Designs](#sec-chapters-16-design-repeated-measures-design) | `repeated-measures-design` |
+| [Resolution and Aliasing](#sec-chapters-16-design-resolution-aliasing) | `resolution-aliasing` |
+| [Response Surface Methodology](#sec-chapters-16-design-response-surface-methodology) | `response-surface-methodology` |
+| [Robust Parameter Design](#sec-chapters-16-design-robust-parameter-design) | `robust-parameter-design` |
+| [Signal-to-Noise Ratios](#sec-chapters-16-design-signal-to-noise-ratio) | `signal-to-noise-ratio` |
+| [Simplex Centroid Designs](#sec-chapters-16-design-mixture-centroid) | `mixture-centroid` |
+| [Simplex Lattice Mixture Designs](#sec-chapters-16-design-mixture-designs-simplex) | `mixture-designs-simplex` |
+| [Split-Plot Designs](#sec-chapters-16-design-split-plot-design) | `split-plot-design` |
+| [Strip-Plot Designs](#sec-chapters-16-design-strip-plot-design) | `strip-plot-design` |
+| [Taguchi Methods](#sec-chapters-16-design-taguchi-methods) | `taguchi-methods` |
 
-## Labs
+## Labs {#sec-chapters-16-design-index-labs}
 
 | Lab |
 |---|
-| [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd) |
-| [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd) |
-| [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd) |
-| [Bench and translational design](labs/lab-bench-and-translational-design.Rmd) |
-| [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd) |
-| [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd) |
-| [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd) |
-| [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd) |
-| [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd) |
-| [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd) |
-| [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd) |
-| [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd) |
-| [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd) |
+| [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe) |
+| [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials) |
+| [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials) |
+| [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design) |
+| [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar) |
+| [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice) |
+| [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4) |
+| [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee) |
+| [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag) |
+| [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw) |
+| [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect) |
+| [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve) |
+| [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans) |

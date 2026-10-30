@@ -1,25 +1,25 @@
-# How to use this book {-}
+# How to use this book {#sec-how-to-use .unnumbered}
 
 The book is organised around **method topics**, not courses. There are
-sixteen topic chapters, plus Chapter 0 (the decision tree),
+sixteen topic chapters, an unnumbered method chooser,
 five reporting-template chapters, and five appendices.
 
-## Three reading modes
+## Three reading modes {#sec-how-to-use-three-reading-modes .unnumbered}
 
 **As an author with data.**
-Open \@ref(sec-find-your-method). Answer the question
+Open [Find your method](#sec-find-your-method). Answer the question
 *"what are you trying to do?"* until you land on a method. Read the
-method page top to bottom: the R Implementation block runs; the Output
-& Results section tells you what to read off; the Reporting Templates
-part has a paragraph you can paste into the Methods section of your
-paper.
+method page top to bottom. Adapt and check the displayed R code against your
+data, package versions and assumptions. The Output & Results section explains
+what to inspect. Reporting templates are starting points to complete with your
+actual design and results, not descriptions of analyses you have not performed.
 
 **As a peer reviewer.**
 Search for the method by name and jump straight to the
-**For Reviewers** section at the bottom of the page. It tells you what
-should be in the Methods paragraph, which diagnostics should have been
-reported, and where the typical failures live. Then skim Theory and
-Assumptions to confirm the application is sound.
+**For Reviewers** section at the bottom of the page. It links to the shared
+checklist below and to that method's assumptions and practical tips. Detailed
+method-specific reviewer notes remain editorial work; they are not yet supplied
+by the imported entries. Read Theory and Assumptions before judging an application.
 
 **As a learner.**
 Each topic chapter has labs under `chapters/<topic>/labs/`. Labs follow
@@ -27,34 +27,56 @@ Each topic chapter has labs under `chapters/<topic>/labs/`. Labs follow
 through them in order; the methods they exercise live in the same
 chapter and are linked from the labs.
 
-## Conventions
+## Conventions {#sec-how-to-use-conventions .unnumbered}
 
-- All examples are R. The R Implementation block runs as written when
-  the listed packages are installed. Seeds are pinned (`set.seed(2026)`
-  for tutorials, `set.seed(42)` for some labs) so numbers reproduce.
-- Every method page has the same ten sections, in this order:
-  *Introduction · Prerequisites · Theory · Assumptions · R
-  Implementation · Output & Results · Interpretation · Practical Tips
-  · Reporting · For Reviewers*.
-- The Reporting Templates part is the **only** place with copy-paste
-  Methods + Results prose. The reporting block on each method page
-  links to the corresponding template entry.
+- Examples are R, displayed without execution during the reference build.
+  All 80 lab scripts pass syntax checks; the maintenance review executed the
+  tidy-data and import/join labs. Other examples and scientific outputs still
+  need checking in their intended data and package environment.
+- Method pages organize background, prerequisites, theory, assumptions, code,
+  interpretation and practical tips. Their reviewer sections provide navigation
+  to the relevant checks rather than completed specialist appraisals.
+- The Reporting Templates part contains draft Methods and Results wording.
+  Replace every example-specific statement with the analysis actually performed.
 
-## What this book is not
+## Shared reviewer checklist {#sec-reviewer-checklist .unnumbered}
+
+1. **Match the analysis to the question and design.** Identify the estimand,
+   outcome scale, sampling unit and dependence structure. Compare them with the
+   selected method's Theory and Assumptions sections.
+2. **Ask for evidence about relevant assumptions.** Locate the diagnostics and
+   sensitivity analyses needed for this application. A successful package call
+   alone does not establish that the assumptions are met.
+3. **Reconcile the reported analysis.** Check sample counts and denominators,
+   exclusions, missing-data handling, transformations and uncertainty summaries
+   against the stated model and supplied analysis code.
+4. **Check reproducibility and interpretation.** Look for data provenance,
+   package versions and sufficient code to reproduce the reported calculation.
+   Distinguish the model's output from the scientific claim made from it.
+5. **Check the Methods paragraph.** It should identify the question, analysis
+   unit, model or test, relevant settings, handling of missing observations and
+   diagnostic checks. Record unresolved details rather than assuming defaults.
+
+This is a general reading aid. Method-specific validity and reporting requirements
+need an appraisal of the actual study and relevant primary methodological sources.
+
+## What this book is not {#sec-how-to-use-what-this-book-is-not .unnumbered}
 
 It is not a linear introductory textbook. It does not derive every
 result from first principles. It does not cover SAS, Stata, SPSS, or
 Python. It does not host the interactive decision-tree wizard
 (Shiny apps remain on the live site).
 
-## Building locally
+## Building locally {#sec-how-to-use-building-locally .unnumbered}
 
 ```bash
-git clone https://github.com/r-heller/methods-in-r
-cd methods-in-r
-R -e 'renv::restore()'
-quarto render
+Rscript --vanilla -e 'install.packages(c("bookdown","rmarkdown","knitr","bslib","downlit","xml2","htmltools","sessioninfo"), repos="https://cloud.r-project.org")'
+python3 -m unittest discover -s tests
+Rscript --vanilla -e 'bookdown::render_book("index.Rmd", output_format="bookdown::bs4_book")'
+python3 scripts/build-download-manifest.py
+python3 -m http.server 8000 --directory docs
 ```
 
-Output goes to `docs/`. The HTML book is the canonical format; the PDF
-build is provided for offline reference.
+Run these commands from the repository root and open <http://localhost:8000>.
+HTML is the primary reading format. README.md also documents the verified EPUB
+build and its link-finalization step. PDF requires a separate TeX qualification.

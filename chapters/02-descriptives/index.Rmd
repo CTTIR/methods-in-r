@@ -2,40 +2,40 @@
 
 Methods for summarising a dataset before any inference: Table 1 construction, numerical summaries, and visual exploratory data analysis. Most papers in biomedicine open with a Table 1 — this chapter covers what belongs in it and how to render it cleanly with `gtsummary`.
 
-This chapter contains **25 method pages** and **1 lab**. If you are not sure which method to read, return to [Chapter 0](../../ch00-find-your-method.Rmd) and follow the decision tree to the right node.
+This chapter contains **25 method pages** and **1 lab**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.
 
-## Method pages
+## Method pages {#sec-chapters-02-descriptives-index-method-pages}
 
 | Method | Source slug |
 |---|---|
-| [Coefficient of Variation](coefficient-of-variation.Rmd) | `coefficient-of-variation` |
-| [Contingency Tables](contingency-tables.Rmd) | `contingency-tables` |
-| [Cross-Tabulations](cross-tabulations.Rmd) | `cross-tabulations` |
-| [Descriptive vs Inferential Statistics](descriptive-vs-inferential.Rmd) | `descriptive-vs-inferential` |
-| [Five-Number Summary](five-number-summary.Rmd) | `five-number-summary` |
-| [Frequency Tables](frequency-tables.Rmd) | `frequency-tables` |
-| [Kurtosis](kurtosis.Rmd) | `kurtosis` |
-| [Mean Absolute Deviation](mean-absolute-deviation.Rmd) | `mean-absolute-deviation` |
-| [Measures of Central Tendency](measures-of-location.Rmd) | `measures-of-location` |
-| [Measures of Dispersion](measures-of-dispersion.Rmd) | `measures-of-dispersion` |
-| [Measures of Shape](measures-of-shape.Rmd) | `measures-of-shape` |
-| [Outlier Detection Rules](outlier-detection-rules.Rmd) | `outlier-detection-rules` |
-| [Percentile Ranks](percentile-rank.Rmd) | `percentile-rank` |
-| [Quantiles and Percentiles](quantiles-and-percentiles.Rmd) | `quantiles-and-percentiles` |
-| [Robust Statistics: An Overview](robust-statistics-overview.Rmd) | `robust-statistics-overview` |
-| [Skewness](skewness.Rmd) | `skewness` |
-| [Standardisation and z-Scores](standardisation-zscore.Rmd) | `standardisation-zscore` |
-| [Stem-and-Leaf Plots](stem-and-leaf-plots.Rmd) | `stem-and-leaf-plots` |
-| [Summary by Group](summary-by-group.Rmd) | `summary-by-group` |
-| [The Geometric Mean](geometric-mean.Rmd) | `geometric-mean` |
-| [The Harmonic Mean](harmonic-mean.Rmd) | `harmonic-mean` |
-| [The Interquartile Range](interquartile-range.Rmd) | `interquartile-range` |
-| [The Weighted Mean](weighted-mean.Rmd) | `weighted-mean` |
-| [Trimmed and Winsorised Means](trimmed-winsorized-mean.Rmd) | `trimmed-winsorized-mean` |
-| [Variance and Standard Deviation](variance-and-sd.Rmd) | `variance-and-sd` |
+| [Coefficient of Variation](#sec-chapters-02-descriptives-coefficient-of-variation) | `coefficient-of-variation` |
+| [Contingency Tables](#sec-chapters-02-descriptives-contingency-tables) | `contingency-tables` |
+| [Cross-Tabulations](#sec-chapters-02-descriptives-cross-tabulations) | `cross-tabulations` |
+| [Descriptive vs Inferential Statistics](#sec-chapters-02-descriptives-descriptive-vs-inferential) | `descriptive-vs-inferential` |
+| [Five-Number Summary](#sec-chapters-02-descriptives-five-number-summary) | `five-number-summary` |
+| [Frequency Tables](#sec-chapters-02-descriptives-frequency-tables) | `frequency-tables` |
+| [Kurtosis](#sec-chapters-02-descriptives-kurtosis) | `kurtosis` |
+| [Mean Absolute Deviation](#sec-chapters-02-descriptives-mean-absolute-deviation) | `mean-absolute-deviation` |
+| [Measures of Central Tendency](#sec-chapters-02-descriptives-measures-of-location) | `measures-of-location` |
+| [Measures of Dispersion](#sec-chapters-02-descriptives-measures-of-dispersion) | `measures-of-dispersion` |
+| [Measures of Shape](#sec-chapters-02-descriptives-measures-of-shape) | `measures-of-shape` |
+| [Outlier Detection Rules](#sec-chapters-02-descriptives-outlier-detection-rules) | `outlier-detection-rules` |
+| [Percentile Ranks](#sec-chapters-02-descriptives-percentile-rank) | `percentile-rank` |
+| [Quantiles and Percentiles](#sec-chapters-02-descriptives-quantiles-and-percentiles) | `quantiles-and-percentiles` |
+| [Robust Statistics: An Overview](#sec-chapters-02-descriptives-robust-statistics-overview) | `robust-statistics-overview` |
+| [Skewness](#sec-chapters-02-descriptives-skewness) | `skewness` |
+| [Standardisation and z-Scores](#sec-chapters-02-descriptives-standardisation-zscore) | `standardisation-zscore` |
+| [Stem-and-Leaf Plots](#sec-chapters-02-descriptives-stem-and-leaf-plots) | `stem-and-leaf-plots` |
+| [Summary by Group](#sec-chapters-02-descriptives-summary-by-group) | `summary-by-group` |
+| [The Geometric Mean](#sec-chapters-02-descriptives-geometric-mean) | `geometric-mean` |
+| [The Harmonic Mean](#sec-chapters-02-descriptives-harmonic-mean) | `harmonic-mean` |
+| [The Interquartile Range](#sec-chapters-02-descriptives-interquartile-range) | `interquartile-range` |
+| [The Weighted Mean](#sec-chapters-02-descriptives-weighted-mean) | `weighted-mean` |
+| [Trimmed and Winsorised Means](#sec-chapters-02-descriptives-trimmed-winsorized-mean) | `trimmed-winsorized-mean` |
+| [Variance and Standard Deviation](#sec-chapters-02-descriptives-variance-and-sd) | `variance-and-sd` |
 
-## Labs
+## Labs {#sec-chapters-02-descriptives-index-labs}
 
 | Lab |
 |---|
-| [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd) |
+| [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1) |

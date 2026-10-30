@@ -1,12 +1,14 @@
-## Introduction
+## Power for One-Sample t-Test {#sec-chapters-05-power-power-one-sample-t}
+
+### Introduction {#sec-chapters-05-power-power-one-sample-t-introduction}
 
 Power analysis for the one-sample $t$-test determines the sample size required to detect a specified departure of the population mean from a reference value with a given probability, or equivalently the power achievable at a fixed sample size. The one-sample $t$-test arises in many practical contexts: validating a quality-control measurement against a target, comparing a single-arm pilot study against a historical benchmark, testing whether a within-subject change differs from zero. In every case, the planning question is the same — given the smallest effect of scientific interest and the assumed within-population standard deviation, how many observations are needed for an adequately-powered test? Pre-specifying the calculation in the protocol is now standard for any prospective study.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-05-power-power-one-sample-t-prerequisites}
 
 A working understanding of the one-sample $t$-test, the concept of statistical power and type-II error, and Cohen's $d$ as the standardised effect-size measure for one-mean tests.
 
-## Theory
+### Theory {#sec-chapters-05-power-power-one-sample-t-theory}
 
 Under the alternative hypothesis $H_1: \mu = \mu_1 \neq \mu_0$, the $t$-statistic follows a non-central $t$-distribution with $n - 1$ degrees of freedom and non-centrality parameter
 
@@ -14,11 +16,11 @@ $$\lambda = \frac{\mu_1 - \mu_0}{\sigma / \sqrt{n}} = d \sqrt{n},$$
 
 where $d = (\mu_1 - \mu_0)/\sigma$ is Cohen's standardised effect. Power is the probability $P(|T| > t_{1-\alpha/2, n-1})$ computed under the non-central $t$-distribution. Closed-form sample-size solutions invert this expression to produce the smallest $n$ achieving target power against a specified $d$, $\alpha$, and one-sided / two-sided test direction.
 
-## Assumptions
+### Assumptions {#sec-chapters-05-power-power-one-sample-t-assumptions}
 
 The population is approximately Normal or the sample size is large enough for the central limit theorem to apply, the within-population standard deviation $\sigma$ is reasonably known (or has been estimated from pilot data with adequate precision), and the effect size $d$ is pre-specified — usually as the smallest clinically or scientifically meaningful difference rather than the expected value.
 
-## R Implementation
+### R Implementation {#sec-chapters-05-power-power-one-sample-t-r-implementation}
 
 ```r
 library(pwr)
@@ -35,15 +37,15 @@ plot(n_grid, pw, type = "l", lwd = 2, col = "#2A9D8F",
 abline(h = 0.80, lty = 2)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-05-power-power-one-sample-t-output-results}
 
 `pwr.t.test()` returns the sample size required to achieve target power against a specified $d$, the achievable power for a given $n$, or the minimum detectable effect size for a given $n$ and target power. Plotting the power curve against $n$ for the chosen $d$ visualises the trade-off and is a useful supplement to the single-point calculation.
 
-## Interpretation
+### Interpretation {#sec-chapters-05-power-power-one-sample-t-interpretation}
 
 A reporting sentence: "A sample of 51 participants is required to detect a standardised effect of $d = 0.4$ with 80 % power at $\alpha = 0.05$ (two-sided) using a one-sample $t$-test against the reference value 10. With the planned sample of 25 participants, the minimum detectable effect at 80 % power would be $d = 0.58$, which exceeds the smallest clinically meaningful effect of 0.4 and would leave the study underpowered. The protocol therefore stipulates 51 participants, with 60 enrolled to allow for 15 % attrition." Always state $d$, $\alpha$, power, and the attrition margin.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-05-power-power-one-sample-t-practical-tips}
 
 - The one-sample $t$-test power formula applies equally to the paired $t$-test if the effect size $d$ is computed using the within-subject difference SD rather than the between-subject SD; this is the most common practical use of the calculation.
 - For very small effect sizes, sample sizes grow rapidly: halving $d$ quadruples the required $n$ because power scales with $d \sqrt n$. A clear-headed choice of the smallest clinically meaningful $d$ is therefore essential, and pilot-data $d$ estimates should be treated with appropriate uncertainty.
@@ -52,31 +54,28 @@ A reporting sentence: "A sample of 51 participants is required to detect a stand
 - Inflate the calculated sample size for expected attrition, dropout, or non-evaluable observations; a 15–20 % inflation is typical for clinical studies, with field-specific norms varying.
 - Distinguish achievable power (post-hoc, computed from observed effect size) from planned power (a priori); only planned power is methodologically valid, and "post-hoc power" calculations are widely discouraged because they are mathematically determined by the observed $p$-value.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-05-power-power-one-sample-t-r-packages-used}
 
 `pwr::pwr.t.test()` for the canonical one-sample and paired $t$-test power calculation; `WebPower::wp.t()` for an alternative interface mirroring popular online calculators; `Superpower` for ANOVA and factorial-design power simulation; `simr` for power analysis via simulation when classical formulas do not apply; `MESS::power_t_test()` as a fast alternative.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-05-power-power-one-sample-t-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-05-power-power-one-sample-t-assumptions) and
+[practical tips](#sec-chapters-05-power-power-one-sample-t-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-05-power-power-one-sample-t-see-also-labs-in-this-chapter}
 
-- [Sample size, power, and Quarto reporting](labs/lab-sample-size-power-and-quarto-reporting.Rmd)
-- [Power: closed-form and simulation](labs/lab-power-closed-form-and-simulation.Rmd)
+- [Sample size, power, and Quarto reporting](#sec-chapters-05-power-labs-lab-sample-size-power-and-quarto-reporting)
+- [Power: closed-form and simulation](#sec-chapters-05-power-labs-lab-power-closed-form-and-simulation)
 
 <!-- END see-also -->

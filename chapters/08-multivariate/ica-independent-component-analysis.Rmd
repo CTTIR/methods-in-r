@@ -1,12 +1,14 @@
-## Introduction
+## Independent Component Analysis {#sec-chapters-08-multivariate-ica-independent-component-analysis}
+
+### Introduction {#sec-chapters-08-multivariate-ica-independent-component-analysis-introduction}
 
 Independent component analysis (ICA) is the canonical approach for recovering statistically independent latent signals from observed linear mixtures. The classic application is the "cocktail-party problem" — separating individual conversations from microphone recordings of overlapping speakers — but the technique generalises to any setting where multiple independent sources mix linearly into a smaller set of observed channels. EEG, fMRI, gene-expression data, and audio source separation all use ICA as a primary decomposition method.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-ica-independent-component-analysis-prerequisites}
 
 A working understanding of principal components analysis, statistical independence (a stronger condition than uncorrelatedness), and the concept of a linear mixing model.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-ica-independent-component-analysis-theory}
 
 The ICA model assumes observations $X$ are generated as $X = A S$, where $A$ is an unknown $n \times n$ mixing matrix and $S$ contains the independent latent sources. The goal is to estimate $A$ (or its inverse, the unmixing matrix $W$) so that $\hat S = W X$ recovers the sources up to permutation and scale ambiguities.
 
@@ -19,11 +21,11 @@ FastICA is the most widely used algorithm and uses fixed-point iteration on kurt
 
 The key contrast with PCA: PCA produces *uncorrelated* components by maximising variance; ICA produces *independent* components by maximising non-Gaussianity. The two coincide only for Gaussian data, where ICA is undefined.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-ica-independent-component-analysis-assumptions}
 
 Sources are statistically independent and non-Gaussian (at most one Gaussian source can be recovered); mixing is linear and instantaneous; the number of sources equals the number of observed channels (or equals the chosen number of components).
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-ica-independent-component-analysis-r-implementation}
 
 ```r
 library(fastICA)
@@ -49,15 +51,15 @@ matplot(ic$S, type = "l", main = "Recovered ICA components")
 par(mfrow = c(1, 1))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-ica-independent-component-analysis-output-results}
 
 `fastICA()` returns the recovered sources `$S`, the estimated mixing matrix `$A`, and the unmixing matrix `$W`. The three-panel plot shows the original sine and sawtooth sources, the mixed signals as observed, and the ICA-recovered components — visually almost identical to the originals up to sign and permutation.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-ica-independent-component-analysis-interpretation}
 
 A reporting sentence: "FastICA on two channels of mixed sine and sawtooth signals recovered both sources cleanly (visual inspection), demonstrating blind source separation under the linear-mixing model; recovered components were rescaled to unit variance and permuted, reflecting the inherent ICA ambiguities." Mention the algorithm and pre-processing (whitening, mean-centring) in the methods section.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-ica-independent-component-analysis-practical-tips}
 
 - Pre-whiten the data (PCA-based decorrelation followed by unit-variance scaling) before FastICA; the `fastICA` package does this automatically.
 - ICA is essentially a rotation of whitened data — order and sign of components are arbitrary; do not interpret component indices as meaningful.
@@ -66,32 +68,29 @@ A reporting sentence: "FastICA on two channels of mixed sine and sawtooth signal
 - For non-square mixing problems (more sources than channels), compressive ICA and multi-modal extensions exist but require specialised tools.
 - ICA is unsupervised; evaluating the result requires interpreting the recovered signals substantively, often through expert judgement.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-ica-independent-component-analysis-r-packages-used}
 
 `fastICA` for the standard FastICA implementation; `ica` for additional ICA variants including extended Infomax; `mlbench` for synthetic mixing examples; `JADE` for joint approximate diagonalisation of eigen-matrices, an alternative algebraic approach to ICA.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-ica-independent-component-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-ica-independent-component-analysis-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-ica-independent-component-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-ica-independent-component-analysis-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

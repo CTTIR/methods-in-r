@@ -1,12 +1,14 @@
-## Introduction
+## LightGBM {#sec-chapters-13-ml-lightgbm}
+
+### Introduction {#sec-chapters-13-ml-lightgbm-introduction}
 
 LightGBM (Ke et al., 2017) is a gradient-boosting framework engineered for very large datasets. It introduces several optimisations over XGBoost: histogram-based split finding (substantially faster than sorted-value enumeration), leaf-wise tree growth (deeper trees per leaf count than level-wise), Gradient-based One-Side Sampling (GOSS) that prioritises high-gradient instances during training, and Exclusive Feature Bundling (EFB) that combines mutually exclusive sparse features. The result is typically 3–5× faster than XGBoost with comparable or slightly better accuracy on large tabular data.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-lightgbm-prerequisites}
 
 A working understanding of gradient boosting, XGBoost or similar boosted-tree workflow, and the bias-variance trade-off in tree depth and leaf count.
 
-## Theory
+### Theory {#sec-chapters-13-ml-lightgbm-theory}
 
 Three core innovations distinguish LightGBM from earlier gradient-boosting libraries:
 
@@ -14,11 +16,11 @@ Three core innovations distinguish LightGBM from earlier gradient-boosting libra
 - **Leaf-wise growth**: at each iteration, expand the leaf with maximum loss reduction. Produces deeper, asymmetric trees given a fixed leaf count compared to level-wise growth, but at a higher over-fit risk.
 - **GOSS**: sample instances by gradient magnitude, keeping the top-$a$ fraction with largest gradients and a random sample of the rest. The classifier focuses on the hard examples that contribute most to the gradient.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-lightgbm-assumptions}
 
 Sufficient data for histogram bins to be informative; regularisation (`max_depth`, `num_leaves`, `min_data_in_leaf`) is tuned to prevent the over-fit risk inherent in leaf-wise growth.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-lightgbm-r-implementation}
 
 ```r
 library(lightgbm)
@@ -48,15 +50,15 @@ imp <- lgb.importance(model, percentage = TRUE)
 head(imp)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-lightgbm-output-results}
 
 `lgb.train()` returns a fitted model with the early-stopping iteration, best validation metric, and tree structure. `lgb.importance()` ranks features by gain (or split count, or cover) with optional percentage display.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-lightgbm-interpretation}
 
 A reporting sentence: "LightGBM with `learning_rate = 0.05`, `num_leaves = 31`, feature and bagging fractions 0.8 converged at 184 boosting rounds with early stopping (validation log-loss 0.39); feature 1 contributed 53 % of total gain, confirming it as the dominant predictor in line with the simulated data-generating process. Training was approximately 4× faster than XGBoost on the same data." Always state hyperparameters and early-stopping criteria.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-lightgbm-practical-tips}
 
 - Constrain `num_leaves` (default 31) or `max_depth` to prevent the over-fit risk of leaf-wise growth; deeper trees are more accurate per round but more prone to over-fitting.
 - LightGBM is typically 3–5× faster than XGBoost for the same number of trees; the speed gap widens further for $>$ 1M rows.
@@ -65,37 +67,34 @@ A reporting sentence: "LightGBM with `learning_rate = 0.05`, `num_leaves = 31`, 
 - GPU training (`device_type = "gpu"`) provides a drop-in 3–10× acceleration for very large data; CPU performance is already excellent.
 - Compare LightGBM and XGBoost on the same data; results are usually very close, but the better model varies by task.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-lightgbm-r-packages-used}
 
 `lightgbm` for the canonical R interface; `xgboost` for the closely-related alternative; `catboost` for the third major gradient-boosting library (with native categorical handling); `parsnip::boost_tree(engine = "lightgbm")` for tidymodels integration; `bonsai` for the tidymodels-LightGBM bridge.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-lightgbm-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-lightgbm-assumptions) and
+[practical tips](#sec-chapters-13-ml-lightgbm-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-lightgbm-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

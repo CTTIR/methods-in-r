@@ -1,4 +1,4 @@
-# About the author {-}
+# About the author {#sec-00-about-the-author .unnumbered}
 
 **Raban Heller** is a biomedical researcher and applied statistician.
 This book consolidates the method pages and labs from his earlier public
@@ -10,7 +10,7 @@ every method page.
 - GitHub: <https://github.com/r-heller>
 - Website: <https://r-heller.github.io/website/>
 
-## Sibling volume {-}
+## Sibling volume {#sec-00-about-the-author-sibling-volume .unnumbered}
 
 This is the second book in the *…in R* series. The first is
 [`r-heller/strategy-in-r`](https://github.com/r-heller/strategy-in-r) —

@@ -1,9 +1,11 @@
+## Week 1, Session 1 — Cross-validation, nested CV, bootstrap .632+ {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-learning-objectives}
 
 - Implement k-fold and repeated k-fold cross-validation from scratch and
   with a package, and report an honest generalisation error.
@@ -12,12 +14,12 @@ Goal → Approach → Execution → Check → Report.
 - Compute a bootstrap .632+ estimate and say when it is preferable to
   CV.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-prerequisites}
 
 Sampling variability; comfort with `caret` or
 base-R model fitting.
 
-## Background
+### Background {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-background}
 
 Every predictive model reports an error on the data it was fit to. That
 number is almost always optimistic, because the fit has had a chance to
@@ -48,7 +50,7 @@ cannot be reproduced. Nested CV is not a cosmetic fix; it is the
 difference between a number that generalises and a number that does
 not.
 
-## Setup
+### Setup {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-setup}
 
 ```r
 library(tidyverse)
@@ -57,13 +59,13 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-1-goal}
 
 Estimate the generalisation error of a lasso on a moderate *p*, small
 *n* simulated regression problem, first naively, then with a proper
 nested cross-validation.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-2-approach}
 
 We simulate `n = 120` observations with `p = 40` features, of which
 only 5 are true signal. We will (i) fit a single `cv.glmnet`, (ii)
@@ -71,6 +73,7 @@ report the CV-minimising error, then (iii) wrap that in an outer 5-fold
 loop to show that the inner CV error is optimistic.
 
 ```r
+n <- 120; p <- 40
 X <- matrix(rnorm(n * p), n, p)
 beta <- c(rep(1.5, 5), rep(0, p - 5))
 y <- as.numeric(X %*% beta + rnorm(n, sd = 1.0))
@@ -82,11 +85,12 @@ tibble(yhat_naive = as.numeric(X %*% beta), y = y) |>
   labs(x = "True linear predictor", y = "Observed y")
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-3-execution}
 
 **Naive single-layer CV.**
 
 ```r
+cv1 <- cv.glmnet(X, y, alpha = 1, nfolds = 5)
 naive_mse <- min(cv1$cvm)
 naive_mse
 ```
@@ -95,6 +99,7 @@ naive_mse
 produce the reported MSE.
 
 ```r
+K <- 5
 folds <- sample(rep(1:K, length.out = n))
 outer_mse <- numeric(K)
 for (k in 1:K) {
@@ -107,11 +112,12 @@ nested_mse <- mean(outer_mse)
 c(naive = naive_mse, nested = nested_mse)
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-4-check}
 
 Bootstrap .632+ error as a cross-check.
 
 ```r
+B <- 50
 errs_in <- errs_oob <- numeric(B)
 for (b in 1:B) {
   idx <- sample.int(n, n, replace = TRUE)
@@ -128,7 +134,7 @@ c(apparent = err_app, oob = err_oob, boot632 = err_632,
   nested = nested_mse)
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-5-report}
 
 > On simulated data (*n* = 120, *p* = 40, five true signals), a lasso
 > with tuning parameter chosen by 5-fold CV achieved an out-of-sample
@@ -142,7 +148,7 @@ as well as the fit. Only the nested number is a fair estimate of what
 this procedure — tune-then-fit — will do on new data.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-common-pitfalls}
 
 - Tuning on the test fold and reporting the resulting error.
 - Using a single 80/20 split in high dimensions; variance across splits
@@ -150,7 +156,7 @@ this procedure — tune-then-fit — will do on new data.
 - Bootstrapping without tracking in-bag vs out-of-bag, which inflates
   the estimate back to the apparent error.
 
-## Further reading
+### Further reading {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-further-reading}
 
 - Hastie, Tibshirani, Friedman, *Elements of Statistical Learning*,
   §7.10–7.11.
@@ -159,16 +165,17 @@ this procedure — tune-then-fit — will do on new data.
 - Efron B, Tibshirani R (1997), *Improvements on cross-validation: the
   .632+ bootstrap method*.
 
-## Session info
+### Session info {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-13-ml)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

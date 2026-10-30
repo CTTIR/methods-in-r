@@ -1,12 +1,14 @@
-## Introduction
+## Skewness {#sec-chapters-02-descriptives-skewness}
+
+### Introduction {#sec-chapters-02-descriptives-skewness-introduction}
 
 Skewness is the third standardised moment of a distribution; it quantifies how asymmetric the distribution is around its mean. Zero skewness corresponds to perfect symmetry; positive skewness indicates a long right tail; negative skewness indicates a long left tail. Many biomedical variables (lab values, incubation times, survival times) are right-skewed; income and wealth distributions are classically right-skewed with very long tails.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-02-descriptives-skewness-prerequisites}
 
 The reader should know what a mean and SD are, and should have seen a few histograms.
 
-## Theory
+### Theory {#sec-chapters-02-descriptives-skewness-theory}
 
 The population skewness is
 
@@ -14,11 +16,11 @@ $$\gamma_1 = E\!\left[\left(\frac{X - \mu}{\sigma}\right)^3\right].$$
 
 Several sample estimators exist with different small-sample biases. The classical moment estimator is $g_1 = m_3 / m_2^{3/2}$ where $m_k = \frac{1}{n} \sum (x_i - \bar{x})^k$. SAS/SPSS/`psych` use a bias-corrected form $G_1 = \sqrt{n(n-1)}/(n-2) \cdot g_1$. Interpretation: $|g_1| < 0.5$ is approximately symmetric, $0.5 < |g_1| < 1$ is moderately skewed, $|g_1| > 1$ is highly skewed.
 
-## Assumptions
+### Assumptions {#sec-chapters-02-descriptives-skewness-assumptions}
 
 As a descriptive statistic, skewness has no assumptions. As an estimator, it requires finite third moments, which fails for heavy-tailed distributions like the Cauchy.
 
-## R Implementation
+### R Implementation {#sec-chapters-02-descriptives-skewness-r-implementation}
 
 ```r
 library(moments)
@@ -36,7 +38,7 @@ c(symmetric = skewness(sym),
 skewness(log(rskew))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-02-descriptives-skewness-output-results}
 
 ```
 symmetric      right       left
@@ -45,11 +47,11 @@ symmetric      right       left
 
 Log-transforming the right-skewed sample drops skewness from 2.1 to approximately 0; this is the standard remedy for biomedical lab values.
 
-## Interpretation
+### Interpretation {#sec-chapters-02-descriptives-skewness-interpretation}
 
 Report skewness for any variable whose histogram departs from symmetry. When $|g_1| > 1$, the mean is pulled away from the centre of mass; the median is a better point summary, or the variable should be transformed.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-02-descriptives-skewness-practical-tips}
 
 - Log transformation is the default remedy for right-skewed positive data.
 - Visual inspection beats numerical thresholds; a histogram makes the shape immediately visible.
@@ -59,24 +61,21 @@ Report skewness for any variable whose histogram departs from symmetry. When $|g
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-02-descriptives-skewness-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-02-descriptives-skewness-assumptions) and
+[practical tips](#sec-chapters-02-descriptives-skewness-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-02-descriptives-skewness-see-also-labs-in-this-chapter}
 
-- [Descriptive statistics and Table 1](labs/lab-descriptive-statistics-and-table-1.Rmd)
+- [Descriptive statistics and Table 1](#sec-chapters-02-descriptives-labs-lab-descriptive-statistics-and-table-1)
 
 <!-- END see-also -->

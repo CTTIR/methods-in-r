@@ -1,12 +1,14 @@
-## Introduction
+## k-Nearest Neighbours Regression {#sec-chapters-13-ml-knn-regression}
+
+### Introduction {#sec-chapters-13-ml-knn-regression-introduction}
 
 $k$-Nearest Neighbours regression predicts a continuous outcome at a query point as the mean (or weighted mean) of the $k$ nearest training targets in feature space. It is the simplest non-parametric regression method, making no assumption about the global functional form and only requiring a distance metric. The trade-off is straightforward: small $k$ produces high variance (each prediction depends on a few neighbours), while large $k$ produces high bias (predictions average over a wide region and miss local structure).
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-knn-regression-prerequisites}
 
 A working understanding of distance metrics, the bias-variance trade-off, and train-test evaluation in supervised learning.
 
-## Theory
+### Theory {#sec-chapters-13-ml-knn-regression-theory}
 
 The kNN regression prediction at query point $x^*$ is
 
@@ -16,11 +18,11 @@ where $N_k(x^*)$ is the set of indices of the $k$ training points nearest to $x^
 
 The bias-variance trade-off in $k$ is direct: $k = 1$ memorises training noise (high variance, low bias); $k = n$ predicts the global mean (low variance, high bias). Cross-validation chooses the optimal $k$ for the data.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-knn-regression-assumptions}
 
 Features are appropriately scaled (unscaled features with different units dominate the distance computation); the regression surface is locally smooth (kNN cannot extrapolate or model abrupt changes well).
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-knn-regression-r-implementation}
 
 ```r
 library(FNN)
@@ -43,15 +45,15 @@ rmses <- sapply(c(1, 5, 15, 51), function(k) {
 setNames(rmses, paste0("k=", c(1, 5, 15, 51)))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-knn-regression-output-results}
 
 Test RMSE across a grid of $k$ values reveals the U-shaped bias-variance curve: very small $k$ overfits noise, very large $k$ oversmooths the sinusoid, and a moderate $k$ (around 15 in this example) minimises test error.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-knn-regression-interpretation}
 
 A reporting sentence: "$k$-NN regression with $k = 15$ achieved test RMSE of 0.31 on the held-out 30 % of the simulated sinusoid, matching the irreducible noise level ($\sigma = 0.3$); $k = 1$ over-fitted to RMSE 0.42, $k = 51$ under-fitted to RMSE 0.45. Cross-validation across $k$ confirmed $k = 15$ as the optimum." Always state how $k$ was selected and the test-set RMSE.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-knn-regression-practical-tips}
 
 - Scale features (`scale()` or `recipes::step_normalize()`); unscaled features with different units dominate the distance computation and produce biased predictions.
 - Use distance-weighted kNN (`kknn::train.kknn`) for smoother predictions and slightly better accuracy at the cost of one extra hyperparameter.
@@ -60,37 +62,34 @@ A reporting sentence: "$k$-NN regression with $k = 15$ achieved test RMSE of 0.3
 - kNN has no native handling of categorical predictors; encode as dummy variables or use Gower distance for mixed numeric-categorical inputs.
 - For large datasets, consider approximate nearest-neighbour search (`RANN`, `Annoy`); exact $k$-NN becomes computationally prohibitive beyond a few million points.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-knn-regression-r-packages-used}
 
 `FNN::knn.reg()` for fast kd-tree-based exact $k$-NN regression; `kknn::train.kknn()` for weighted $k$-NN with cross-validated kernel and $k$ selection; `caret` and `tidymodels` for cross-validated $k$-NN within the broader ML workflow; `RANN` for approximate nearest-neighbour search at scale.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-knn-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-knn-regression-assumptions) and
+[practical tips](#sec-chapters-13-ml-knn-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-knn-regression-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

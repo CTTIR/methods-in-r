@@ -1,12 +1,14 @@
-## Introduction
+## Missing Data in RCTs {#sec-chapters-14-clinical-missing-data-rct}
+
+### Introduction {#sec-chapters-14-clinical-missing-data-rct-introduction}
 
 Missing data are ubiquitous in RCTs and can invalidate inference if not handled carefully. Three missingness mechanisms characterise the problem: **MCAR** (missingness is random), **MAR** (missingness depends on observed variables), and **MNAR** (missingness depends on the unobserved value). Valid analyses require assumptions on the mechanism.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-missing-data-rct-prerequisites}
 
 Basic probability; estimands framework (ICH E9 R1).
 
-## Theory
+### Theory {#sec-chapters-14-clinical-missing-data-rct-theory}
 
 - **MCAR**: $P(\text{missing}) = P(\text{missing} \mid X, Y)$. Complete-case analysis is unbiased but inefficient.
 - **MAR**: $P(\text{missing} \mid X, Y) = P(\text{missing} \mid X)$. Multiple imputation, ML, or weighting is unbiased.
@@ -14,11 +16,11 @@ Basic probability; estimands framework (ICH E9 R1).
 
 Missingness is rarely MCAR in practice; MAR is the default operating assumption, with MNAR as sensitivity.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-missing-data-rct-assumptions}
 
 Missingness pattern is characterised by the analyst; auxiliary variables are included in the imputation model; the mechanism assumption matches the method.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-missing-data-rct-r-implementation}
 
 ```r
 library(mice); library(naniar)
@@ -43,15 +45,15 @@ imp <- mice(df, m = 10, method = "pmm", printFlag = FALSE)
 pool(with(imp, lm(outcome ~ arm + baseline))) %>% summary()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-missing-data-rct-output-results}
 
 Missing-data summary (outcome has ~20 % missingness); pooled MI estimate for treatment effect after adjusting for baseline.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-missing-data-rct-interpretation}
 
 "Under MAR, multiple imputation with 10 imputations gave a treatment effect of 0.94 (95 % CI 0.62-1.26, p < 0.001); complete-case analysis gave a similar estimate, consistent with MAR assumption."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-missing-data-rct-practical-tips}
 
 - Prevent missing data by design (pre-specified follow-up, low attrition) before analysis tricks.
 - Distinguish missing at random from missing-completely-at-random; CCA needs the stronger MCAR.
@@ -61,27 +63,24 @@ Missing-data summary (outcome has ~20 % missingness); pooled MI estimate for tre
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-missing-data-rct-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-missing-data-rct-assumptions) and
+[practical tips](#sec-chapters-14-clinical-missing-data-rct-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-missing-data-rct-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

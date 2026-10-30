@@ -1,9 +1,11 @@
+## Week 2, Session 3 — RCBD and repeated measures → mixed models {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models}
+
 <div class="callout callout-note">
 **Inference labs** use the five-step template:
 Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-learning-objectives}
 
 - Fit a randomised complete block design (RCBD) with `aov()` and read
   the block term.
@@ -12,11 +14,11 @@ Hypothesis → Visualise → Assumptions → Conduct → Conclude.
 - Interpret random intercepts as between-subject variance and residuals
   as within-subject variance.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-prerequisites}
 
 Sessions 1–2 of this week.
 
-## Background
+### Background {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-background}
 
 Blocks and repeated measures share a single idea: some units are more
 similar to themselves than to the rest of the data. In an RCBD, the
@@ -39,7 +41,7 @@ sleep. A paired *t*-test answers the main question; a mixed model
 with subject as a random intercept is the same thing with more
 machinery and more honest diagnostics.
 
-## Setup
+### Setup {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-setup}
 
 ```r
 library(tidyverse)
@@ -50,14 +52,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Hypothesis
+### 1. Hypothesis {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-1-hypothesis}
 
 Using the `sleep` dataset, does drug group affect extra hours of sleep
 after accounting for the within-subject pairing?
 
-## 2. Visualise
+### 2. Visualise {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-2-visualise}
 
 ```r
+ggplot(sleep, aes(group, extra, group = ID)) +
   geom_line(colour = "grey70") +
   geom_point(aes(colour = group), size = 3) +
   labs(x = "Drug", y = "Extra sleep (hours)", colour = "Drug")
@@ -66,30 +69,33 @@ after accounting for the within-subject pairing?
 Lines track each subject across the two drugs. Most rise from left to
 right, suggesting drug 2 adds more sleep than drug 1.
 
-## 3. Assumptions
+### 3. Assumptions {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-3-assumptions}
 
 ```r
+fit_rcbd <- aov(extra ~ group + Error(ID), data = sleep)
 summary(fit_rcbd)
 ```
 
 Residual diagnostics for the mixed version:
 
 ```r
+fit_lmm <- lmer(extra ~ group + (1 | ID), data = sleep)
 qqnorm(resid(fit_lmm)); qqline(resid(fit_lmm))
 plot(fitted(fit_lmm), resid(fit_lmm),
      xlab = "Fitted", ylab = "Residuals"); abline(h = 0, lty = 2)
 ```
 
-## 4. Conduct
+### 4. Conduct {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-4-conduct}
 
 ```r
+summary(fit_lmm)
 tidy(fit_lmm, conf.int = TRUE, effects = "fixed")
 ```
 
 The random intercept variance captures between-subject differences in
 baseline sleep; the residual variance captures within-subject noise.
 
-## 5. Concluding statement
+### 5. Concluding statement {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-5-concluding-statement}
 
 > In ten subjects each given both drugs, drug 2 was associated with
 > `round(fixef(fit_lmm)[2], 2)` additional hours of extra sleep
@@ -99,7 +105,7 @@ baseline sleep; the residual variance captures within-subject noise.
 > included a random intercept for subject to account for the pairing.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-common-pitfalls}
 
 - Ignoring the pairing and fitting a two-sample *t*-test.
 - Fitting a random slope that the data cannot identify (tiny cluster
@@ -107,22 +113,23 @@ baseline sleep; the residual variance captures within-subject noise.
 - Reporting only fixed-effect estimates and omitting the variance
   components.
 
-## Further reading
+### Further reading {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-further-reading}
 
 - Pinheiro JC, Bates DM. *Mixed-Effects Models in S and S-PLUS*.
 - Bates D et al. (2015), *Fitting linear mixed-effects models using lme4*.
 - Zuur AF et al. *Mixed Effects Models and Extensions in Ecology*.
 
-## Session info
+### Session info {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-07-regression)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

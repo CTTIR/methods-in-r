@@ -1,22 +1,24 @@
-## Introduction
+## PLS Discriminant Analysis {#sec-chapters-08-multivariate-pls-da}
+
+### Introduction {#sec-chapters-08-multivariate-pls-da-introduction}
 
 PLS discriminant analysis (PLS-DA) extends partial least squares regression to classification by dummy-coding the class variable as a binary indicator matrix. It has become a standard tool in metabolomics, transcriptomics, and other omics disciplines because it handles the $p \gg n$ regime gracefully and, in its sparse variant, performs simultaneous classification and feature selection. The output — a small set of latent components plus the discriminant boundary in the projected space — is interpretable in a way that black-box classifiers (random forests, deep nets) often are not.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-pls-da-prerequisites}
 
 A working understanding of PLS regression, classification metrics, and the high-dimensional ($p \gg n$) regime that motivates latent-component methods.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-pls-da-theory}
 
 Encode the class variable as one-hot indicators $Y \in \{0, 1\}^{n \times K}$ for $K$ classes. PLS regression on $(X, Y)$ produces latent components that maximise covariance with the indicator matrix; the predicted indicators are continuous, and a new sample is assigned to the class with the largest prediction. The number of components is selected by cross-validation (`mixOmics::perf()`).
 
 Sparse PLS-DA (sPLS-DA) imposes an L1 penalty per component, retaining only `keepX` predictors per component. This produces a signature — a small list of variables driving the classification — that can be reported alongside the classifier itself.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-pls-da-assumptions}
 
 Linear relationships between latent components and outcome probabilities, sample sizes large enough per class to estimate the components stably (rule of thumb: at least 5–10 observations per class), and meaningful covariance between predictors and the encoded indicators.
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-pls-da-r-implementation}
 
 ```r
 library(mixOmics)
@@ -34,15 +36,15 @@ fit_splsda <- splsda(X, Y, ncomp = 3, keepX = c(50, 50, 50))
 selectVar(fit_splsda, comp = 1)$name |> head()
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-pls-da-output-results}
 
 `plsda()` returns latent component scores per sample, loadings for each predictor, and predicted class labels. `splsda()` adds variable-selection-per-component, with `selectVar()` extracting the chosen predictors. `plotIndiv()` displays samples in the latent component space, coloured by class.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-pls-da-interpretation}
 
 A reporting sentence: "Sparse PLS-DA on the 2,308-gene SRBCT dataset selected 50 genes per component across three components, achieving 100 % balanced accuracy in 10-fold cross-validation; the resulting 150-gene signature substantially overlaps with the published transcriptomic markers of the four cancer subtypes." Always report both classification performance (accuracy, balanced accuracy, AUC) and the selected feature signature.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-pls-da-practical-tips}
 
 - Use `mixOmics::perf()` with cross-validation to select `ncomp` and `keepX`; a fixed choice without tuning over-fits in high-dimensional omics.
 - For two-class problems, logistic regression with elastic net regularisation often performs comparably and is more familiar; reserve sPLS-DA for multi-class or when the covariance structure is strongly multivariate.
@@ -51,32 +53,29 @@ A reporting sentence: "Sparse PLS-DA on the 2,308-gene SRBCT dataset selected 50
 - Compare against alternative classifiers (random forest, elastic-net logistic, sPLS-DA) on identical CV folds; modern omics papers typically report multiple methods.
 - For very imbalanced classes, use `near.zero.var = TRUE` and balanced cross-validation to prevent the majority class from dominating component construction.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-pls-da-r-packages-used}
 
 `mixOmics` for `plsda()`, `splsda()`, `perf()`, `selectVar()`, and the broader multi-block extensions; `caret` for unified cross-validated benchmarking against alternative classifiers; `ropls` for an alternative PLS-DA implementation popular in metabolomics; `glmnet` for elastic-net logistic regression as a complementary high-dimensional classifier.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-pls-da-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-pls-da-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-pls-da-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-pls-da-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

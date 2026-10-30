@@ -1,12 +1,14 @@
-## Introduction
+## Changepoint Detection {#sec-chapters-09-timeseries-changepoint-detection}
+
+### Introduction {#sec-chapters-09-timeseries-changepoint-detection-introduction}
 
 Changepoint detection identifies the times at which the statistical properties of a time series — mean, variance, regression coefficients, or full distribution — change abruptly. Applications range from monitoring physiological signals (heart-rate or EEG state changes), to detecting regime shifts in financial and economic series, to segmenting long sensor recordings into homogeneous epochs. The output is a list of changepoint times together with the within-segment summaries between them; the methodological choices concern the change type, the detection algorithm, and the penalty controlling sensitivity.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-changepoint-detection-prerequisites}
 
 A working understanding of hypothesis testing, segmentation, and the trade-off between detecting true changepoints and false positives.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-changepoint-detection-theory}
 
 Three algorithm classes dominate:
 
@@ -16,11 +18,11 @@ Three algorithm classes dominate:
 
 The penalty (BIC, MBIC, Hannan-Quinn, or AIC) controls how many changepoints are reported; a larger penalty yields fewer changepoints. Different change types have different test statistics: mean changes use the likelihood-ratio test under a Normal model; variance changes use the same with $\sigma$ as the parameter; meanvar combines both; regression changepoints generalise to coefficient breaks.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-changepoint-detection-assumptions}
 
 Independent observations within segments (or correctly specified within-segment dependence structure); the change type matches the underlying signal (mean shifts vs variance shifts vs regression breaks).
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-changepoint-detection-r-implementation}
 
 ```r
 library(changepoint)
@@ -38,15 +40,15 @@ cp_v <- cpt.var(x, method = "PELT")
 cpts(cp_v)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-changepoint-detection-output-results}
 
 `cpt.mean()` returns a `cpt` object with the changepoint times accessible via `cpts()`, the within-segment means via `param.est()`, and a plot showing the detected segments. The simulated three-segment structure is recovered with changepoints at times 100 and 200.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-changepoint-detection-interpretation}
 
 A reporting sentence: "PELT with BIC penalty detected two changepoints at times 100 and 200, recovering the simulated three-segment mean structure (segment means $0.04$, $2.95$, $-0.97$); a sensitivity analysis with MBIC and Hannan-Quinn penalties yielded the same changepoints." Always report the algorithm, the penalty, and a sensitivity check across penalties.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-changepoint-detection-practical-tips}
 
 - Choose the right change type: `cpt.mean` for mean shifts, `cpt.var` for variance shifts, `cpt.meanvar` for both, regression-based methods for coefficient breaks.
 - The penalty controls false positives; try several (BIC, MBIC, Hannan-Quinn) and check that conclusions are robust.
@@ -55,30 +57,27 @@ A reporting sentence: "PELT with BIC penalty detected two changepoints at times 
 - PELT is offline — it requires the full series. For online (real-time) detection, use CUSUM, Page-Hinkley, or Bayesian online methods.
 - For multivariate changepoint detection, `ecp` and `InspectChangepoint` extend PELT-style methods to vector time series.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-changepoint-detection-r-packages-used}
 
 `changepoint` for `cpt.mean()`, `cpt.var()`, `cpt.meanvar()`, and PELT/Binary Segmentation algorithms; `bcp` for Bayesian changepoint detection with posterior probabilities; `ecp` for non-parametric multivariate changepoints; `cpm` for online changepoint methods.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-changepoint-detection-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-changepoint-detection-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-changepoint-detection-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-changepoint-detection-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Wavelet Analysis {#sec-chapters-09-timeseries-wavelet-analysis}
+
+### Introduction {#sec-chapters-09-timeseries-wavelet-analysis-introduction}
 
 Wavelet analysis decomposes a time series into components localised in both time and frequency simultaneously. Unlike the Fourier transform, which assumes stationarity and produces a single spectrum for the entire series, wavelets capture cyclic components that appear, shift, or disappear over time — essential for non-stationary signals such as EEG recordings, climate proxies, or any series whose periodic content evolves. The output is a scalogram, a 2D map of power across time and frequency that reveals the time-varying structure that Fourier methods miss.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-wavelet-analysis-prerequisites}
 
 A working understanding of spectral analysis and Fourier transforms, the concept of time-frequency localisation, and basic familiarity with the trade-off between time and frequency resolution.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-wavelet-analysis-theory}
 
 The continuous wavelet transform (CWT) convolves the signal with scaled and shifted copies of a mother wavelet $\psi$:
 
@@ -16,11 +18,11 @@ The scale $a$ controls the wavelet's "width" and corresponds inversely to freque
 
 The cone of influence delimits regions of the scalogram free of edge artefacts; power within the cone is reliable, power outside should be discounted.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-wavelet-analysis-assumptions}
 
 Depends on the wavelet choice; minimal beyond a sufficiently long series. The discrete wavelet transform (DWT) requires series length to be a power of 2; the CWT does not.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-wavelet-analysis-r-implementation}
 
 ```r
 library(WaveletComp)
@@ -38,15 +40,15 @@ wt <- analyze.wavelet(df, "x", loess.span = 0, dt = 1,
 wt.image(wt, main = "Wavelet power spectrum")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-wavelet-analysis-output-results}
 
 `analyze.wavelet()` returns a list containing the wavelet power, phase, and statistical-significance information. `wt.image()` plots the scalogram as a 2D heatmap with the cone of influence overlaid.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-wavelet-analysis-interpretation}
 
 A reporting sentence: "The wavelet power spectrum revealed a 50-time-step cycle in the first half of the series and a 20-time-step cycle in the second half — a non-stationary feature invisible to a global Fourier analysis. The cone of influence excluded the first and last 30 time points from interpretation due to edge effects." Always describe the time-frequency structure visible and acknowledge the cone of influence.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-wavelet-analysis-practical-tips}
 
 - Choose the wavelet to suit the signal: Morlet for oscillatory components, Mexican-hat for localised peaks, Daubechies for compression and denoising.
 - Power outside the cone of influence is unreliable; mask it or interpret with caution.
@@ -55,30 +57,27 @@ A reporting sentence: "The wavelet power spectrum revealed a 50-time-step cycle 
 - For EEG, fMRI, and other neurophysiological data, wavelets are the standard time-frequency tool; specialised packages (`eegkit`, `fmri.wavelets`) extend the framework.
 - For multi-channel time-frequency analysis, cross-wavelet coherence and wavelet phase quantify time-varying co-movements between series.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-wavelet-analysis-r-packages-used}
 
 `WaveletComp` for `analyze.wavelet()`, `wt.image()`, and biwavelet coherence; `wavelets` and `wavethresh` for discrete wavelet transforms and threshold-based denoising; `dplR` for tree-ring-style wavelet analysis; `Rwave` for additional wavelet families and inversion.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-wavelet-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-wavelet-analysis-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-wavelet-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-wavelet-analysis-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

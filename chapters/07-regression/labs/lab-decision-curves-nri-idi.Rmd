@@ -1,8 +1,10 @@
+## Week 4, Session 4 — Decision curves, NRI, IDI {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi}
+
 <div class="callout callout-note">
 **Workflow lab:** Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-learning-objectives}
 
 - Compute net benefit and draw a decision-curve plot for two competing
   risk models.
@@ -10,12 +12,12 @@
   ROC/AUC.
 - Decide which of the three to report in which setting.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-prerequisites}
 
 Calibration and discrimination, plus a working
 logistic-regression fit.
 
-## Background
+### Background {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-background}
 
 A prediction model is useful when its decisions, weighted by clinical
 consequence, beat any alternative policy. Decision-curve analysis makes
@@ -33,7 +35,7 @@ probabilities. Both are noisy in small samples and both are prone to
 optimistic interpretation, so report them alongside, not instead of, the
 decision curve.
 
-## Setup
+### Setup {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-setup}
 
 ```r
 library(tidyverse)
@@ -42,14 +44,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-1-goal}
 
 Compare a baseline logistic model with a model that adds a new marker,
 using decision curves, NRI, and IDI.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-2-approach}
 
 ```r
+n <- 800
 x1 <- rnorm(n)
 x2 <- rnorm(n) + 0.3 * x1
 lp <- -1 + 0.9 * x1 + 0.6 * x2
@@ -63,9 +66,10 @@ df <- df |>
          p_new  = predict(new_fit,  type = "response"))
 ```
 
-## 3. Execution — decision curve (hand-coded)
+### 3. Execution — decision curve (hand-coded) {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-3-execution-decision-curve-hand-coded}
 
 ```r
+net_benefit <- function(y, p, thr) {
   n <- length(y)
   pred_pos <- p >= thr
   tp <- sum(pred_pos &  y == 1)
@@ -93,9 +97,10 @@ ggplot(dc, aes(threshold, net_benefit, colour = strategy)) +
        colour = NULL)
 ```
 
-## 4. Check — NRI and IDI
+### 4. Check — NRI and IDI {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-4-check-nri-and-idi}
 
 ```r
+nri <- function(y, p_old, p_new) {
   up   <- mean((p_new > p_old)[y == 1]) - mean((p_new < p_old)[y == 1])
   down <- mean((p_new < p_old)[y == 0]) - mean((p_new > p_old)[y == 0])
   c(events = up, non_events = down, overall = up + down)
@@ -111,7 +116,7 @@ nri(df$y, df$p_base, df$p_new)
 idi(df$y, df$p_base, df$p_new)
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-5-report}
 
 > Adding the new marker to a baseline logistic model yielded higher net
 > benefit than the baseline across clinically plausible threshold
@@ -120,30 +125,31 @@ idi(df$y, df$p_base, df$p_new)
 > should be interpreted alongside the decision curve, not in isolation.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-common-pitfalls}
 
 - Reporting NRI without an interval or decision-curve context.
 - Choosing the threshold range post-hoc to maximise apparent gain.
 - Forgetting that decision curves assume the cost/benefit ratio implied
   by the threshold is clinically reasonable.
 
-## Further reading
+### Further reading {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-further-reading}
 
 - Vickers AJ, Elkin EB. (2006). *Decision curve analysis: a novel
   method for evaluating prediction models.* Medical Decision Making.
 - Pencina MJ et al. (2008). *Evaluating the added predictive ability
   of a new marker.*
 
-## Session info
+### Session info {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-07-regression)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Resolution and Aliasing {#sec-chapters-16-design-resolution-aliasing}
+
+### Introduction {#sec-chapters-16-design-resolution-aliasing-introduction}
 
 In any fractional factorial design, effects are aliased — two or more distinct effects produce the same contrast in the data and cannot be disentangled from the experimental results alone. The choice of fraction determines exactly which effects are aliased with which, and the design's **resolution** summarises the severity of this aliasing in a single Roman numeral. Higher resolution means lower-order effects are protected from aliasing with each other; lower resolution means smaller designs but messier confounding. Understanding resolution and the alias chain is essential for interpreting any fractional-factorial result, because an unrecognised alias is one of the most common sources of misleading DoE conclusions.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-resolution-aliasing-prerequisites}
 
 Familiarity with fractional factorial designs, the algebra of defining relations and word lengths, and the effect-sparsity principle that motivates accepting higher-order aliasing.
 
-## Theory
+### Theory {#sec-chapters-16-design-resolution-aliasing-theory}
 
 A fractional factorial is defined by one or more **defining relations** of the form $I = ABCD\cdots$, where each word represents a product of factor letters. The defining relation determines the alias structure: multiplying any effect by the defining word (modulo squaring out $A^2 = I$) produces its alias. For example, with $I = ABCD$, we have $A = BCD$, $AB = CD$, and so on. The **resolution** of the design is the length of the shortest word in the defining relation:
 
@@ -14,11 +16,11 @@ A fractional factorial is defined by one or more **defining relations** of the f
 - **Resolution IV**: shortest word length 4; main effects are clear of two-factor interactions, but two-factor interactions alias with each other ($AB = CD$).
 - **Resolution V**: shortest word length 5; main effects and all two-factor interactions are mutually clear; only three-factor and higher interactions are aliased with two-factor ones.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-resolution-aliasing-assumptions}
 
 The effect-sparsity principle holds — higher-order interactions are negligible compared with lower-order effects, so accepting aliasing among higher-order terms is acceptable. The chosen resolution is appropriate for the scientific question, and the alias chain is documented in the analysis.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-resolution-aliasing-r-implementation}
 
 ```r
 library(FrF2)
@@ -33,15 +35,15 @@ res6 <- FrF2(nruns = 32, nfactors = 6, resolution = 6)
 design.info(res6)$aliased
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-resolution-aliasing-output-results}
 
 `design.info()` reports the complete alias structure of the design — the defining relation, the resolution, and the chain of effects aliased together. Inspecting this output before analysis is essential: it tells the analyst exactly which estimates can be interpreted as pure main or interaction effects and which represent the joint estimate of an aliased pair.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-resolution-aliasing-interpretation}
 
 A reporting sentence: "The $2^{7-4}_{\text{III}}$ design used 8 runs to screen seven two-level factors, with main effects aliased with two-factor interactions; the design is appropriate when only main effects are expected to matter and would not be appropriate if interaction effects were of interest. The $2^{7-2}_{\text{IV}}$ design used 32 runs to study the same factor set with main effects clear of two-factor interactions, at the cost of four-fold more experimentation. The complete alias chain is reported in Supplementary Table S1." Always document resolution and alias chain.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-resolution-aliasing-practical-tips}
 
 - Resolution III designs (and Plackett–Burman designs at run counts not a power of 2) are appropriate for early screening when interactions are confidently negligible; never rely on a resolution-III design for inference about interactions or for confirmatory analysis.
 - Resolution IV is the standard choice for initial investigation of many factors when the experimentalist wants clean main effects without paying the run-count cost of resolution V.
@@ -50,42 +52,39 @@ A reporting sentence: "The $2^{7-4}_{\text{III}}$ design used 8 runs to screen s
 - Always document the alias structure explicitly in reports and protocols; reviewers and downstream analysts cannot interpret the results correctly without knowing which effects can be separated from which.
 - For mixed-level fractional designs and irregular run counts, software-generated D-optimal designs may achieve cleaner partial aliasing than the standard regular fractions; consider them when the standard catalogue does not match your factor structure.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-resolution-aliasing-r-packages-used}
 
 `FrF2::FrF2()` and `FrF2::design.info()` for fractional factorial construction with explicit resolution control and alias-structure documentation; `DoE.base` for general orthogonal-array DoE with comprehensive alias reporting; `unrepx` for unreplicated-design effect identification under aliased structures; `BsMD` for Bayesian screening of fractional designs; `daewr` for textbook companion datasets.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-resolution-aliasing-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-resolution-aliasing-assumptions) and
+[practical tips](#sec-chapters-16-design-resolution-aliasing-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-resolution-aliasing-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

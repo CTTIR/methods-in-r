@@ -1,20 +1,22 @@
-## Introduction
+## brms Basics {#sec-chapters-10-bayesian-brms-basics}
+
+### Introduction {#sec-chapters-10-bayesian-brms-basics-introduction}
 
 `brms` is the most widely used high-level interface between R and Stan. It accepts the familiar `lme4` formula syntax for fixed and random effects, automatically translates the model to Stan, compiles it, runs the No-U-Turn Sampler (NUTS), and returns a posterior together with diagnostic and predictive helpers. This means you can fit Bayesian generalised linear, mixed, multinomial, ordinal, censored, distributional, or non-linear models without writing Stan by hand, while still being able to inspect or override the generated code when the situation demands it.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-brms-basics-prerequisites}
 
 Comfort with classical regression, an understanding of priors and posteriors, and a working `rstan` or `cmdstanr` toolchain (a C++ compiler is required on first use). Familiarity with `lme4` formulas accelerates the learning curve dramatically because almost every random-effects expression carries over unchanged.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-brms-basics-theory}
 
 A `brms` model has three pieces: a **formula** (mean structure plus optional distributional terms), a **family** (likelihood and link), and **priors** (per parameter class). Random effects use `(slope | group)` syntax, with `||` for uncorrelated terms. Distributional models, set up through `bf(y ~ ..., sigma ~ ...)`, let any parameter of the family depend on predictors. Priors are attached by class: `b` for population-level slopes, `Intercept` for the centred intercept, `sd` for random-effect standard deviations, `sigma` for residual scale, and `cor` for correlation matrices via the LKJ distribution. Defaults are weakly informative but should be reviewed for any analysis intended for publication.
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-brms-basics-assumptions}
 
 Inherits the assumptions of the chosen family — for `gaussian` that means linearity in the linear predictor, additivity, and Normal residuals after partial pooling. Convergence diagnostics ($\hat R < 1.01$, no divergent transitions, sensible effective sample size) are also a precondition for trusting any posterior summary.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-brms-basics-r-implementation}
 
 ```r
 library(brms)
@@ -34,15 +36,15 @@ summary(fit)
 pp_check(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-brms-basics-output-results}
 
 `summary()` reports posterior means, standard errors, 95 % credible intervals, $\hat R$, bulk effective sample size, and tail effective sample size for every population-level coefficient, group-level standard deviation, and the residual scale. `pp_check()` overlays simulated datasets on the observed outcome; if the empirical density falls inside the cloud of replicated densities, the model captures the marginal distribution adequately.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-brms-basics-interpretation}
 
 A reporting sentence: "A Bayesian linear mixed model (`brms` 2.21, four chains, 2,000 iterations) estimated reaction time to increase by 10.5 ms per day of sleep deprivation (95 % CrI 7.4 to 13.6), with substantial between-subject heterogeneity in both intercept ($SD = 26$) and slope ($SD = 6.5$); $\hat R = 1.00$ for all parameters." Always pair the point estimate with the credible interval and a convergence statistic.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-brms-basics-practical-tips}
 
 - Run `get_prior()` on your formula before fitting; it lists every prior class so you can override defaults instead of inheriting them silently.
 - Inspect `stancode(fit)` and `standata(fit)` when something behaves oddly; the generated code is readable and reveals exactly how `brms` parameterised the model.
@@ -51,31 +53,28 @@ A reporting sentence: "A Bayesian linear mixed model (`brms` 2.21, four chains, 
 - For very large datasets, switch to `backend = "cmdstanr"` and `threads_per_chain = 2` to exploit within-chain parallelism.
 - When defaults yield divergent transitions, increase `adapt_delta` to 0.95 or 0.99 before reaching for stronger priors.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-brms-basics-r-packages-used}
 
 `brms` for model specification and compilation, `rstan` or `cmdstanr` as the sampling backend, `bayesplot` for diagnostic plots used internally by `pp_check()`, and `posterior` for handling draw arrays.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-brms-basics-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-brms-basics-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-brms-basics-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-brms-basics-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

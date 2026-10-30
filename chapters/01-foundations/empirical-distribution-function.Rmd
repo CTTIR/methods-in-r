@@ -1,12 +1,14 @@
-## Introduction
+## The Empirical Distribution Function {#sec-chapters-01-foundations-empirical-distribution-function}
+
+### Introduction {#sec-chapters-01-foundations-empirical-distribution-function-introduction}
 
 The empirical distribution function (ECDF) is the simplest possible non-parametric estimator of a probability distribution: it puts mass $1/n$ at each observation and returns the resulting step-function CDF. Despite its simplicity, the ECDF is consistent uniformly for the true CDF (Glivenko-Cantelli), has a tight universal error bound (Dvoretzky-Kiefer-Wolfowitz), and underlies every non-parametric statistic built on ranks or percentiles.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-empirical-distribution-function-prerequisites}
 
 The reader should know what a CDF is and should be able to sort a vector in R.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-empirical-distribution-function-theory}
 
 For iid observations $X_1, \ldots, X_n$ from a CDF $F$, the ECDF is
 
@@ -25,11 +27,11 @@ This is a *uniform* bound -- it controls the supremum over all $x$ -- and holds 
 
 **Sup-norm CI.** Setting the DKW bound equal to $\alpha$ and solving for $\varepsilon$ gives a $1 - \alpha$ confidence band of the form $[\hat{F}_n(x) - \varepsilon, \hat{F}_n(x) + \varepsilon]$ for all $x$ simultaneously.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-empirical-distribution-function-assumptions}
 
 The ECDF is defined for any distribution; it is an estimator with minimal assumptions -- only iid sampling (or exchangeability). Dependent data complicate the variance but not the point estimator.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-empirical-distribution-function-r-implementation}
 
 ```r
 library(ggplot2)
@@ -63,15 +65,15 @@ ggplot(df, aes(x = x)) +
 
 The plot overlays the ECDF, the DKW 95% band, and the true CDF. With $n = 100$ and $\alpha = 0.05$, the band width is $\varepsilon = \sqrt{\log(40)/200} \approx 0.136$ -- constant across $x$.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-empirical-distribution-function-output-results}
 
 The ECDF traces the true CDF closely; the DKW band contains it at every $x$, as expected since the DKW bound is universal. Increasing $n$ to 1000 shrinks the band to $\varepsilon \approx 0.043$.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-empirical-distribution-function-interpretation}
 
 The ECDF is an omnibus, assumption-light summary of the data. Reporting a plot of the ECDF with DKW bands is a sensible way to communicate a distribution's shape when no parametric form is assumed. Quantile reporting, K-S tests, and many other non-parametric procedures ultimately derive from the ECDF.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-empirical-distribution-function-practical-tips}
 
 - For small samples ($n < 30$), the DKW band is wide; report pointwise Clopper-Pearson or Wilson CIs instead if you only need uncertainty at specific quantiles.
 - The `ecdf()` function in R returns a function; apply it to any vector of $x$ values to get empirical probabilities.
@@ -81,27 +83,24 @@ The ECDF is an omnibus, assumption-light summary of the data. Reporting a plot o
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-empirical-distribution-function-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-empirical-distribution-function-assumptions) and
+[practical tips](#sec-chapters-01-foundations-empirical-distribution-function-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-empirical-distribution-function-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## scRNA QC and Filtering {#sec-chapters-12-bioinformatics-scrna-qc-filtering}
+
+### Introduction {#sec-chapters-12-bioinformatics-scrna-qc-filtering-introduction}
 
 Single-cell RNA-seq experiments routinely contain empty droplets, stressed or apoptotic cells, doublets (two cells captured in one droplet), and various technical artefacts that should not enter downstream clustering or differential-expression analysis. Per-cell QC filtering by library size, detected-gene count, and mitochondrial-read percentage removes the worst offenders. The trade-off is delicate: over-filtering excludes real biology (e.g. plasma cells with naturally low gene counts), while under-filtering produces clusters of damaged cells that mimic real cell types.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-scrna-qc-filtering-prerequisites}
 
 A working understanding of scRNA-seq counts, the structure of droplet-based experiments, and the role of mitochondrial reads as a cell-health indicator.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-scrna-qc-filtering-theory}
 
 Three canonical per-cell metrics dominate QC:
 
@@ -18,11 +20,11 @@ Thresholds are dataset-specific; fixed cutoffs (`percent.mt < 15` for 10x human 
 
 For doublet detection, dedicated tools (`scDblFinder`, `DoubletFinder`) provide more reliable identification than naive UMI-based heuristics.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-scrna-qc-filtering-assumptions}
 
 Mitochondrial percentage is a valid proxy for cell health (fails in some tissue types — cardiomyocytes naturally have very high mitochondrial content); doublets show abnormally high UMI counts on average; the chosen filtering thresholds preserve biological diversity.
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-scrna-qc-filtering-r-implementation}
 
 ```r
 library(Seurat)
@@ -47,15 +49,15 @@ so_f <- subset(so,
 dim(so_f)       # cells x genes after QC
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-scrna-qc-filtering-output-results}
 
 `PercentageFeatureSet()` adds the mitochondrial percentage to per-cell metadata; `VlnPlot()` shows the distribution of QC metrics across cells. `subset()` applies thresholds and returns a filtered Seurat object. Inspecting the violin plots before and after filtering confirms that the chosen thresholds remove the tails without truncating the bulk of the distribution.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-scrna-qc-filtering-interpretation}
 
 A reporting sentence: "Per-cell QC removed 4{,}166 of 12{,}400 cells (33.6 %) that fell outside the chosen thresholds (nFeature < 500, nFeature > 6{,}000, percent.mt > 15); doublet detection with `scDblFinder` flagged an additional 312 cells (3.8 %), yielding 7{,}922 high-quality cells for clustering. Thresholds were chosen by inspecting violin plots per sample." Always state thresholds and the rationale.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-scrna-qc-filtering-practical-tips}
 
 - Inspect QC metrics per sample or batch separately before pooling; differing distributions reflect technical variation that should inform sample-specific thresholds.
 - Use median-absolute-deviation-based thresholds (`scater::isOutlier(metric, nmads = 3)`) for reproducibility across datasets; fixed cutoffs are sample-specific.
@@ -64,32 +66,29 @@ A reporting sentence: "Per-cell QC removed 4{,}166 of 12{,}400 cells (33.6 %) th
 - Document QC parameters in the methods section; results are highly sensitive to filter choice and reproducibility requires explicit thresholds.
 - For tissues where mitochondrial percentage is biologically meaningful (heart, skeletal muscle), adjust thresholds accordingly or use alternative QC metrics.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-scrna-qc-filtering-r-packages-used}
 
 `Seurat::PercentageFeatureSet()`, `VlnPlot()`, `subset()` for the standard QC workflow; `scater::isOutlier()` for adaptive MAD-based thresholds; `scDblFinder` and `DoubletFinder` for doublet detection; `emptyDrops` (in `DropletUtils`) for distinguishing real cells from empty droplets at the upstream step.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-scrna-qc-filtering-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-scrna-qc-filtering-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-scrna-qc-filtering-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-scrna-qc-filtering-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Conditional Power {#sec-chapters-14-clinical-conditional-power}
+
+### Introduction {#sec-chapters-14-clinical-conditional-power-introduction}
 
 Conditional power is the probability of rejecting the null at the final analysis given the observed interim data and an assumed treatment effect for the remainder. It is the standard tool for futility stopping: a low conditional power indicates the trial is unlikely to succeed even with favourable future data.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-conditional-power-prerequisites}
 
 Group-sequential designs; interim analyses; power calculations.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-conditional-power-theory}
 
 For a two-sided Z-test at fraction $t$ of information, conditional power under assumption $\theta$ is
 $$\text{CP}(\theta) = 1 - \Phi\left(\frac{z_{1-\alpha} \sqrt{1} - \sqrt{t} \, Z_t - (1 - t) \theta / \sqrt{V}}{\sqrt{1 - t}}\right)$$
@@ -14,11 +16,11 @@ where $Z_t$ is the observed interim statistic and $V$ is the information.
 
 Typical futility trigger: stop if CP(assumed effect) < 20 %.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-conditional-power-assumptions}
 
 Assumed effect for the remainder of the trial is appropriate (observed, target, or conservative); test is Z-like.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-conditional-power-r-implementation}
 
 ```r
 library(rpact)
@@ -44,15 +46,15 @@ cond <- getConditionalPower(ana,
 cond
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-conditional-power-output-results}
 
 Conditional power at two assumed future effects; if CP at the planned effect is low (say < 20 %), a DMC might recommend futility stopping.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-conditional-power-interpretation}
 
 "Interim conditional power under the originally planned effect was 0.18; under the observed interim trend, 0.11. The DMC recommended futility stopping at the pre-specified < 20 % threshold."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-conditional-power-practical-tips}
 
 - Always pre-specify the futility threshold and assumed effect in the SAP.
 - CP under the **observed effect** is the "optimistic" view; CP under zero effect is the conservative view.
@@ -60,33 +62,30 @@ Conditional power at two assumed future effects; if CP at the planned effect is 
 - Futility boundaries are typically **non-binding** (can be overridden by DMC) to preserve alpha.
 - CP-based futility can save substantial cost in otherwise failing trials.
 
-## Reporting
+### Reporting {#sec-chapters-14-clinical-conditional-power-reporting}
 
 A clear conditional-power report distinguishes the assumed effect from the observed interim effect, and presents both anchors so reviewers can judge the futility decision against the original design intent and against the trial's actual interim trajectory. Quote the threshold prospectively recorded in the statistical analysis plan and state whether crossing it triggered a binding stop or only a recommendation that the data monitoring committee could override. Where Bayesian predictive power was computed, report the prior used for the effect and explain why that prior was deemed plausible at the design stage, since the futility decision is only as defensible as the assumptions feeding it.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-conditional-power-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-conditional-power-assumptions) and
+[practical tips](#sec-chapters-14-clinical-conditional-power-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-conditional-power-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

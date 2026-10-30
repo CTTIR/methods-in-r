@@ -1,12 +1,14 @@
-## Introduction
+## Bonferroni Correction {#sec-chapters-04-inferential-bonferroni-correction}
+
+### Introduction {#sec-chapters-04-inferential-bonferroni-correction-introduction}
 
 When many hypothesis tests are performed simultaneously, the probability that at least one rejects a true null grows rapidly. The **Bonferroni correction** is the simplest, most conservative way to control the family-wise error rate (FWER): divide the target $\alpha$ by the number of tests.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-bonferroni-correction-prerequisites}
 
 Hypothesis testing, Type I error.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-bonferroni-correction-theory}
 
 For $m$ tests each at nominal $\alpha$, if all nulls are true, the probability of at least one false rejection is
 
@@ -24,11 +26,11 @@ Properties:
 - Very conservative when tests are positively correlated.
 - Powerful only when $m$ is small; the correction becomes harsh as $m$ grows.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-bonferroni-correction-assumptions}
 
 No distributional assumptions about the tests themselves; Bonferroni works for arbitrary dependence. The cost is a lower power for each individual test.
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-bonferroni-correction-r-implementation}
 
 ```r
 set.seed(2026)
@@ -62,7 +64,7 @@ data.frame(group = groups[-1],
            holm = round(p_holm, 4))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-bonferroni-correction-output-results}
 
 ```
   group    raw  bonferroni   holm
@@ -80,11 +82,11 @@ data.frame(group = groups[-1],
 
 Only the large-effect test (G) survives Bonferroni correction at $\alpha = 0.05$. Several raw p-values below 0.05 (e.g., E at 0.019) become non-significant after correction.
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-bonferroni-correction-interpretation}
 
 "After Bonferroni correction for 10 pairwise comparisons (adjusted $\alpha = 0.005$), only group G differed significantly from control (raw p = 0.0004, adjusted p = 0.004)."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-bonferroni-correction-practical-tips}
 
 - Bonferroni is overly conservative when $m$ is large; prefer Holm or FDR.
 - `p.adjust()` in R supports "bonferroni", "holm", "hochberg", "hommel", "BH" (FDR), "BY" methods.
@@ -94,32 +96,29 @@ Only the large-effect test (G) survives Bonferroni correction at $\alpha = 0.05$
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-bonferroni-correction-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-bonferroni-correction-assumptions) and
+[practical tips](#sec-chapters-04-inferential-bonferroni-correction-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-bonferroni-correction-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

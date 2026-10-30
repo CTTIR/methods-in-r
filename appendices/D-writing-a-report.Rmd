@@ -1,18 +1,19 @@
 ---
 toc: true
 ---
+# Writing a report {#sec-appendices-d-writing-a-report}
+
 <div class="hero">
 <div class="kicker">
 APPENDIX · WRITING A REPORT
 </div>
-# Writing a report
 <div class="lead">
 How to turn an analysis into a document a reviewer, a PI, or a future
 version of yourself will trust.
 </div>
 </div>
 
-## IMRaD
+## IMRaD {#sec-appendices-d-writing-a-report-imrad}
 
 Biomedical writing follows a durable convention: **Introduction, Methods,
 Results, and Discussion.** The structure is not an aesthetic choice — it
@@ -23,7 +24,7 @@ analysis plans make the Methods section possible to write before the
 Results exist, and the five-step template taught throughout this site
 feeds directly into the Methods paragraph for every inferential test.
 
-## Effect sizes and intervals
+## Effect sizes and intervals {#sec-appendices-d-writing-a-report-effect-sizes-and-intervals}
 
 Every result worth reporting is reported with both a point estimate and
 an interval. A p-value alone is rarely useful: it tells you whether the
@@ -39,7 +40,7 @@ Notice the three things: the direction and magnitude of the effect, the
 interval, and — optionally — a standardised effect size. Nothing else
 is needed for the reader to think for themselves.
 
-## Figures
+## Figures {#sec-appendices-d-writing-a-report-figures}
 
 Two rules: **one figure, one idea**, and **no figure without a caption
 that could stand alone**. A caption tells the reader what the figure
@@ -50,7 +51,7 @@ Use `theme_minimal()` with the site accent palette where colour is
 discretionary, and avoid colour-only encoding: pair colour with shape or
 linetype so colourblind readers can follow along.
 
-## Tables
+## Tables {#sec-appendices-d-writing-a-report-tables}
 
 Tables are rarely the best way to communicate a result that a plot can
 show, but some results genuinely need them — baseline characteristics,
@@ -60,7 +61,7 @@ rows, so put the thing you want the reader to compare next to itself and
 round numbers to sensible precision (three significant figures is
 usually plenty; two for proportions).
 
-## Citing R and packages
+## Citing R and packages {#sec-appendices-d-writing-a-report-citing-r-and-packages}
 
 R and its packages are freely maintained by volunteers who deserve
 citations. At the foot of every report, include something like:
@@ -73,7 +74,7 @@ You can get the correct citation for any package with
 `citation("pkgname")`. The bibliography it returns is already in BibTeX
 form.
 
-## Reporting guidelines
+## Reporting guidelines {#sec-appendices-d-writing-a-report-reporting-guidelines}
 
 Every substantive biomedical study has a reporting guideline. Use them;
 reviewers will use them whether you do or not.
@@ -89,7 +90,7 @@ A checklist filled in as you write is much easier than one filled in at
 the end. Many journals now require a signed checklist as a supplementary
 file; bookmark the above now.
 
-## Reproducibility
+## Reproducibility {#sec-appendices-d-writing-a-report-reproducibility}
 
 The document you submit should come from a single render of a single
 source. If the numbers in the text are not the numbers in the

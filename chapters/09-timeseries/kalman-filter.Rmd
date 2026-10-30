@@ -1,12 +1,14 @@
-## Introduction
+## The Kalman Filter {#sec-chapters-09-timeseries-kalman-filter}
+
+### Introduction {#sec-chapters-09-timeseries-kalman-filter-introduction}
 
 The Kalman filter is the workhorse algorithm for state-space models with linear-Gaussian observation and transition equations. It recursively combines the previous state estimate with each new observation to produce an updated state estimate together with its uncertainty, in a closed-form Gaussian update that is provably optimal under the linear-Gaussian assumptions. Originally developed for aerospace tracking, it now underpins virtually every classical time-series filtering application — economic indicators, signal processing, target tracking, financial volatility estimation.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-kalman-filter-prerequisites}
 
 A working understanding of state-space models, linear algebra, and the multivariate Normal distribution.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-kalman-filter-theory}
 
 For a linear-Gaussian state-space model with observation $y_t = F x_t + v_t$ and transition $x_t = G x_{t-1} + w_t$, the Kalman filter alternates two steps at each time:
 
@@ -20,11 +22,11 @@ with Kalman gain $K_t = P_{t \mid t-1} F^\top (F P_{t \mid t-1} F^\top + V)^{-1}
 
 The smoother (Rauch-Tung-Striebel) is a backward recursion that combines forward filter estimates with future observations to produce smoothed estimates $x_{t \mid T}$. Non-linear extensions include the extended Kalman filter (linearisation around the current estimate) and the unscented Kalman filter (sigma-point sampling); particle filters handle fully non-Gaussian and non-linear models via Monte Carlo.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-kalman-filter-assumptions}
 
 Linear Gaussian observation and transition equations with known parameters $(F, G, V, W)$. Parameters can be estimated by MLE on the innovations.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-kalman-filter-r-implementation}
 
 ```r
 library(dlm)
@@ -41,15 +43,15 @@ smo <- dlmSmooth(filt)
 lines(dropFirst(smo$s), col = "blue", lwd = 2)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-kalman-filter-output-results}
 
 `dlmFilter()` returns the filtered state estimates ($x_{t \mid t}$) and their covariances. `dlmSmooth()` produces the retrospective smoothed estimates ($x_{t \mid T}$). Plotting both on the original series shows the filter's adaptation in real time and the smoother's retrospective best estimate.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-kalman-filter-interpretation}
 
 A reporting sentence: "The Kalman filter applied to the Nile river-flow series produced one-step-ahead forecasts (filtered states) that adapt to each new observation; the smoothed estimate, using the full series in retrospect, identified a sharp level drop near 1899 that the forward filter takes several years to track." Distinguish filtered (real-time) from smoothed (retrospective) estimates in any report.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-kalman-filter-practical-tips}
 
 - For non-linear models, use the extended Kalman filter (`KFAS::EKF` or hand-coded) for mild non-linearity, the unscented Kalman filter for stronger non-linearity, or particle filters (`SMCSamplers`, `SMC2`) for arbitrary non-linear / non-Gaussian models.
 - Uncertainty propagates naturally through both predict and update steps; report state estimates with their estimated standard errors.
@@ -58,30 +60,27 @@ A reporting sentence: "The Kalman filter applied to the Nile river-flow series p
 - For extremely high-dimensional state spaces (large meteorological models), the ensemble Kalman filter approximates the covariance with a low-rank ensemble; standard Kalman fails in that setting.
 - Pair filtering with diagnostic checks on the innovations (one-step-ahead residuals); they should be approximately white noise under correct model specification.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-kalman-filter-r-packages-used}
 
 `dlm` for `dlmFilter()`, `dlmSmooth()`, and `dlmLL()`; `KFAS` for fast filtering with non-Gaussian observations; `FKF` for the fast Kalman filter implementation; `bsts` for Bayesian structural time-series alternatives; `nimble` for hand-built non-linear filters via probabilistic programming.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-kalman-filter-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-kalman-filter-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-kalman-filter-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-kalman-filter-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

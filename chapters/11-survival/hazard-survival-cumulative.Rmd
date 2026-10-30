@@ -1,12 +1,14 @@
-## Introduction
+## Hazard, Survival, and Cumulative Hazard {#sec-chapters-11-survival-hazard-survival-cumulative}
+
+### Introduction {#sec-chapters-11-survival-hazard-survival-cumulative-introduction}
 
 A time-to-event distribution admits three mutually equivalent representations: the survival function $S(t)$, the hazard function $h(t)$, and the cumulative hazard $H(t)$. They contain the same information but emphasise different aspects of the process — surviving probability, instantaneous risk, and accumulated risk respectively. Switching freely among them is one of the foundational fluencies of survival analysis, because each form has natural plotting and inferential conventions and most software exposes all three.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-hazard-survival-cumulative-prerequisites}
 
 A working understanding of survival analysis basics, the difference between probability and rate, and integration of non-negative functions.
 
-## Theory
+### Theory {#sec-chapters-11-survival-hazard-survival-cumulative-theory}
 
 For a non-negative continuous time-to-event $T$ with density $f(t)$:
 
@@ -16,11 +18,11 @@ For a non-negative continuous time-to-event $T$ with density $f(t)$:
 
 Any one of the three determines the other two: $S(t) = e^{-H(t)}$, $h(t) = -\mathrm d \log S(t) / \mathrm d t$. The Kaplan-Meier estimator targets $S(t)$ directly; the Nelson-Aalen estimator targets $H(t)$ and is preferable in the right tail where the KM step function is unstable. The hazard itself is never estimated directly without smoothing, because instantaneous rates require kernel methods or parametric assumptions.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-hazard-survival-cumulative-assumptions}
 
 A non-negative, almost surely continuous time-to-event with proper density (or, for discrete time, a discrete analogue with the same mutual recoverability).
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-hazard-survival-cumulative-r-implementation}
 
 ```r
 library(survival)
@@ -35,15 +37,15 @@ plot(fit, conf.int = TRUE, main = "S(t)")
 plot(fit, fun = "cumhaz", main = "H(t)")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-hazard-survival-cumulative-output-results}
 
 Two complementary curves: the Kaplan-Meier survival function with point-wise confidence bands, and the cumulative hazard estimated via $-\log \hat S(t)$ (which agrees with Nelson-Aalen up to small-sample corrections). Reading both together makes the underlying hazard pattern visible — a steep $S(t)$ corresponds to a rising $H(t)$, and the slope of $H(t)$ at any time is the local hazard rate.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-hazard-survival-cumulative-interpretation}
 
 A reporting sentence: "Median survival was 310 days (95 % CI 280 to 360); cumulative hazard at one year was approximately 0.85, corresponding to $S(365) = \mathrm{exp}(-0.85) = 0.43$, consistent with the KM estimate of 42 % at one year." Quoting both representations communicates the same fact in two complementary forms readers may prefer.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-hazard-survival-cumulative-practical-tips}
 
 - Hazard is a rate, not a probability; never describe a hazard ratio as "doubled probability" without converting through $S(t)$ or absolute differences.
 - Compare cumulative hazards across groups when discriminating risk over follow-up; the log-rank test is essentially a comparison of cumulative hazards.
@@ -52,34 +54,30 @@ A reporting sentence: "Median survival was 310 days (95 % CI 280 to 360); cumula
 - Hazard ratios are interpretable only under proportional hazards; if the assumption fails, report cumulative incidence, restricted-mean survival time, or stratify the comparison.
 - For modelling a smooth hazard, use parametric (Weibull, log-normal) or flexible (Royston-Parmar splines) models; don't try to estimate $h(t)$ non-parametrically without bandwidth selection.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-hazard-survival-cumulative-r-packages-used}
 
 `survival` for `survfit()`, `Surv()`, and the standard estimators; `flexsurv` for parametric and Royston-Parmar spline-based models that yield smooth hazards; `muhaz` for kernel-smoothed hazard estimation; `survminer::ggsurvplot()` and `survminer::ggsurvplot_combine()` for ggplot-style display of the curves.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-hazard-survival-cumulative-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-hazard-survival-cumulative-assumptions) and [practical tips](#sec-chapters-11-survival-hazard-survival-cumulative-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-hazard-survival-cumulative-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

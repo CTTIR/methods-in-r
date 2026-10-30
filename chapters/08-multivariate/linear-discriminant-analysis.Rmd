@@ -1,12 +1,14 @@
-## Introduction
+## Linear Discriminant Analysis {#sec-chapters-08-multivariate-linear-discriminant-analysis}
+
+### Introduction {#sec-chapters-08-multivariate-linear-discriminant-analysis-introduction}
 
 Linear discriminant analysis (LDA) is the canonical Gaussian classifier for two or more classes. Under the assumption that within-class distributions are multivariate Normal with a common covariance matrix, the optimal Bayes classifier is linear in the predictors, and the corresponding posterior probabilities are simple closed-form functions of class means and the pooled covariance. Fisher's complementary derivation gives a projection onto $K - 1$ axes that maximally separates the $K$ class centroids; this is the most useful low-dimensional visualisation for class structure.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-08-multivariate-linear-discriminant-analysis-prerequisites}
 
 A working understanding of multivariate Normal distributions, classification metrics, and the Bayes-optimal classifier under known generative assumptions.
 
-## Theory
+### Theory {#sec-chapters-08-multivariate-linear-discriminant-analysis-theory}
 
 Assume class $k$ has prior $\pi_k$, mean $\mu_k$, and common covariance $\Sigma$. The Bayes-optimal log-discriminant is
 
@@ -16,11 +18,11 @@ Assigning $x$ to the class with the largest $\delta_k$ gives the LDA classifier.
 
 Fisher's LDA, conceptually identical, finds the directions in which the between-class variance is large relative to the within-class variance; projecting onto the top $K - 1$ directions gives the canonical low-dimensional visualisation of class structure.
 
-## Assumptions
+### Assumptions {#sec-chapters-08-multivariate-linear-discriminant-analysis-assumptions}
 
 Multivariate Normal within each class, equal class covariance matrices (otherwise QDA is preferred), and independent observations. Outliers can pull class means and inflate the pooled covariance, distorting the linear boundary.
 
-## R Implementation
+### R Implementation {#sec-chapters-08-multivariate-linear-discriminant-analysis-r-implementation}
 
 ```r
 library(MASS)
@@ -37,15 +39,15 @@ table(pred$class, test$Species)
 plot(fit_lda, col = as.integer(train$Species))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-08-multivariate-linear-discriminant-analysis-output-results}
 
 `lda()` returns class priors, class means, scaling matrix (coefficients of linear discriminants), and the proportion of trace each axis explains. `predict()` provides class labels and posterior probabilities. The classifier projects test observations onto the LDA axes and assigns each to the nearest class centroid in the projected space.
 
-## Interpretation
+### Interpretation {#sec-chapters-08-multivariate-linear-discriminant-analysis-interpretation}
 
 A reporting sentence: "Linear discriminant analysis on the iris training set classified the held-out observations with 98 % accuracy (49/50 correct); the first discriminant axis accounted for 99 % of between-group variance, indicating that a single linear combination of the four measurements largely separates the three species." Compare LDA to QDA when class covariances differ; otherwise LDA is the more efficient choice.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-08-multivariate-linear-discriminant-analysis-practical-tips}
 
 - For class-specific covariance differences, switch to quadratic discriminant analysis (QDA); Box's M test (`biotools::boxM`) provides a formal check, but it is sensitive to non-Normality.
 - LDA is sensitive to outliers; screen for them or use robust variants such as `MASS::lda(... , method = "mve")` or `rrcov::Linda()`.
@@ -54,32 +56,29 @@ A reporting sentence: "Linear discriminant analysis on the iris training set cla
 - Multiclass alternatives include multinomial logistic regression (`nnet::multinom`) and random forests; LDA remains competitive in low-dimensional problems with Gaussian-like classes.
 - Visualise the LDA projection with the first two discriminants; a 2D plot with class colours quickly shows whether classes are linearly separable.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-08-multivariate-linear-discriminant-analysis-r-packages-used}
 
 `MASS` for `lda()` and `qda()`; `klaR` for `rda()` (regularised) and `partimat()` for partition diagnostics; `caret` for cross-validated comparison across discriminant variants; `rrcov` for robust LDA; `sparseLDA` for high-dimensional sparse extensions.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-08-multivariate-linear-discriminant-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-08-multivariate-linear-discriminant-analysis-assumptions) and
+[practical tips](#sec-chapters-08-multivariate-linear-discriminant-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-08-multivariate-linear-discriminant-analysis-see-also-labs-in-this-chapter}
 
-- [PCA, factor analysis, CCA, LDA](labs/lab-pca-factor-analysis-cca-lda.Rmd)
-- [Clustering: k-means, hierarchical, model-based](labs/lab-clustering-k-means-hierarchical-model-based.Rmd)
-- [UMAP and t-SNE](labs/lab-umap-and-t-sne.Rmd)
+- [PCA, factor analysis, CCA, LDA](#sec-chapters-08-multivariate-labs-lab-pca-factor-analysis-cca-lda)
+- [Clustering: k-means, hierarchical, model-based](#sec-chapters-08-multivariate-labs-lab-clustering-k-means-hierarchical-model-based)
+- [UMAP and t-SNE](#sec-chapters-08-multivariate-labs-lab-umap-and-t-sne)
 
 <!-- END see-also -->

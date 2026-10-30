@@ -1,22 +1,24 @@
-## Introduction
+## Constrained Mixture Designs {#sec-chapters-16-design-constrained-mixture}
+
+### Introduction {#sec-chapters-16-design-constrained-mixture-introduction}
 
 In many real-world mixture experiments, each component carries individual lower and upper bounds — salt must remain at least 5 %, alcohol must not exceed 15 %, an active pharmaceutical ingredient must be between 2 and 8 % — so the feasible blend region is no longer the full simplex but a constrained convex polytope inside it. Standard simplex-lattice and simplex-centroid designs do not exploit this structure and would place runs outside the feasible region. Extreme-vertices designs (McLean and Anderson, 1966) instead enumerate the vertices of the constraint polytope and sample them, augmenting with edge midpoints, face centroids, and an overall centroid as the design budget allows. The result is a design that is simultaneously feasible everywhere and informative about the response across the full constrained region.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-constrained-mixture-prerequisites}
 
 A working understanding of simplex-lattice and simplex-centroid mixture designs, the Scheffé canonical polynomial, and basic convex-geometry concepts (vertices, edges, polytopes).
 
-## Theory
+### Theory {#sec-chapters-16-design-constrained-mixture-theory}
 
 Given lower bounds $L_i$ and upper bounds $U_i$ on each of the $q$ components, the feasible region is the convex polytope $\{x : L_i \leq x_i \leq U_i, \sum_i x_i = 1\}$. Its vertices are computable from the constraint set and form the natural design points; the design is augmented with edge midpoints, face centroids, and the overall centroid as needed for fitting the chosen Scheffé polynomial order.
 
 The pseudo-component transformation $x'_i = (x_i - L_i)/(1 - \sum_i L_i)$ maps the constrained region back to a standard unit simplex when only lower bounds are active, allowing standard simplex-lattice or simplex-centroid construction in the transformed coordinates. Predictions can then be back-transformed to the original-component scale.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-constrained-mixture-assumptions}
 
 Components are non-negative and sum to one (they are proportions of a fixed total amount), the lower and upper bounds are fixed and known in advance, and the residual error is approximately Normal with constant variance over the feasible region.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-constrained-mixture-r-implementation}
 
 ```r
 library(mixexp)
@@ -37,15 +39,15 @@ fit <- MixModel(xv, "y",
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-constrained-mixture-output-results}
 
 `Xvert()` returns the vertices of the constrained polytope along with optionally requested edge midpoints and centroids. `MixModel()` fits the Scheffé linear, quadratic, or special-cubic mixture model on the design, with coefficients interpretable as blend effects. Visualising the polytope and overlaying the design points before running the experiment is a recommended sanity check.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-constrained-mixture-interpretation}
 
 A reporting sentence: "The extreme-vertices design identified seven feasible vertices of the constrained simplex with bounds $L = (0.2, 0.1, 0.3)$ and $U = (0.5, 0.6, 0.7)$. The fitted quadratic Scheffé model showed the response was maximised near the vertex $(0.5, 0.2, 0.3)$ with a meaningful pairwise synergy between components 1 and 2 ($\beta_{12} = 5.9$, $p = 0.01$). Linear blend coefficients indicated component 2 was individually most effective." Always describe the feasible region and report which vertex achieved the optimum.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-constrained-mixture-practical-tips}
 
 - Use extreme-vertices designs whenever component bounds are genuinely binding; interior-only designs (simplex-lattice or centroid) miss optima that lie on the boundary of the feasible region — a common occurrence when constraints reflect formulation requirements.
 - D-optimal mixture designs (via `AlgDesign::optMonteCarlo` or `AlgDesign::optFederov`) handle complex constraints elegantly and give the most efficient design when the number of feasible candidate points exceeds the run budget.
@@ -54,42 +56,39 @@ A reporting sentence: "The extreme-vertices design identified seven feasible ver
 - Always plot the feasible region in 3D or on the simplex before finalising the design; visualising the polytope helps detect over-tight constraints (a near-empty polytope) or accidentally redundant ones, and reveals which vertices are clinically meaningful.
 - When the polytope is degenerate (very thin in one direction), the design will be ill-conditioned; relax the offending constraint or accept a higher prediction variance in the squeezed direction.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-constrained-mixture-r-packages-used}
 
 `mixexp::Xvert()` for the canonical extreme-vertices design and `MixModel()` for Scheffé-model fitting; `AlgDesign::optFederov()` and `optMonteCarlo()` for D-optimal mixture designs under arbitrary linear constraints; `qualityTools::mixDesign()` for an alternative interface; `daewr` for textbook companion datasets and worked constrained-mixture examples; `MixExpR` for a tidyverse-friendly mixture-design workflow.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-constrained-mixture-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-constrained-mixture-assumptions) and
+[practical tips](#sec-chapters-16-design-constrained-mixture-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-constrained-mixture-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

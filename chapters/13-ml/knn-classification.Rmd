@@ -1,12 +1,14 @@
-## Introduction
+## k-Nearest Neighbours Classification {#sec-chapters-13-ml-knn-classification}
+
+### Introduction {#sec-chapters-13-ml-knn-classification-introduction}
 
 $k$-nearest-neighbours classification assigns each test observation the majority class among its $k$ nearest training points in feature space. It is the simplest instance-based learning method: there is no training step beyond storing the data, and prediction is a search-and-vote operation. kNN is competitive on low-dimensional, well-separated data and serves as a useful baseline against which more complex methods are compared. Performance depends critically on the distance metric and on $k$, both of which require attention.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-13-ml-knn-classification-prerequisites}
 
 A working understanding of distance metrics (Euclidean, Manhattan, Mahalanobis), train-test splits, and the bias-variance trade-off in supervised learning.
 
-## Theory
+### Theory {#sec-chapters-13-ml-knn-classification-theory}
 
 For a query point $x^*$ and training set $\{(x_i, y_i)\}$, the prediction is the mode of the labels of the $k$ nearest neighbours: $\hat y(x^*) = \mathrm{mode}\{y_i : x_i \in N_k(x^*)\}$. Distance-weighted variants weight votes inversely by distance, giving closer neighbours more influence and often improving boundary smoothness.
 
@@ -14,11 +16,11 @@ The bias-variance trade-off in $k$ is direct: small $k$ produces high-variance, 
 
 The choice of distance metric matters: Euclidean is the default, Manhattan is more robust to outliers, Mahalanobis accounts for feature covariance, and Gower distance handles mixed numeric-categorical inputs.
 
-## Assumptions
+### Assumptions {#sec-chapters-13-ml-knn-classification-assumptions}
 
 Features are appropriately scaled (distances are scale-sensitive); labels are sufficiently clean for local majority voting to be informative; the chosen distance metric reflects meaningful similarity.
 
-## R Implementation
+### R Implementation {#sec-chapters-13-ml-knn-classification-r-implementation}
 
 ```r
 library(class)
@@ -40,15 +42,15 @@ accs <- sapply(c(1, 5, 15, 51), function(k) {
 setNames(accs, paste0("k=", c(1, 5, 15, 51)))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-13-ml-knn-classification-output-results}
 
 Test accuracy across a grid of $k$ values reveals the U-shaped bias-variance curve: very small $k$ overfits training noise, very large $k$ oversmooths the decision boundary, and a moderate $k$ minimises test error.
 
-## Interpretation
+### Interpretation {#sec-chapters-13-ml-knn-classification-interpretation}
 
 A reporting sentence: "$k$-NN classification achieved best test accuracy of 0.91 at $k = 15$ on the circular-decision-boundary task; $k = 1$ over-fit to noise with accuracy 0.82, while $k = 51$ over-smoothed and dropped to 0.80. Cross-validation across $k$ confirmed $k = 15$ as the optimum." Always state the chosen $k$, the distance metric, and the test-set accuracy.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-13-ml-knn-classification-practical-tips}
 
 - Always standardise features before kNN; unscaled features with different units dominate the distance computation and bias predictions.
 - Tune $k$ by cross-validation; the U-shaped accuracy-vs-$k$ curve has a clear optimum on most datasets.
@@ -57,37 +59,34 @@ A reporting sentence: "$k$-NN classification achieved best test accuracy of 0.91
 - kNN is a lazy learner: prediction cost is $O(n d)$ per query for naive search; use `FNN` with kd-tree or ball-tree indexing for $O(\log n)$ queries on large training sets.
 - For mixed numeric-categorical inputs, use Gower distance via `cluster::daisy()` instead of Euclidean; the standard distance breaks down on categorical features.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-13-ml-knn-classification-r-packages-used}
 
 `class::knn()` for the canonical implementation; `FNN::knn()` for fast kd-tree-based search; `kknn::train.kknn()` for weighted kNN with cross-validated $k$ and kernel selection; `caret` and `tidymodels` for cross-validated kNN within ML pipelines; `RANN` for approximate nearest-neighbour search at scale.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-13-ml-knn-classification-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-13-ml-knn-classification-assumptions) and
+[practical tips](#sec-chapters-13-ml-knn-classification-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-13-ml-knn-classification-see-also-labs-in-this-chapter}
 
-- [Cross-validation, nested CV, bootstrap .632+](labs/lab-cross-validation-nested-cv-bootstrap-632.Rmd)
-- [Regularisation: ridge, lasso, elastic net](labs/lab-regularisation-ridge-lasso-elastic-net.Rmd)
-- [Trees, random forests, gradient boosting](labs/lab-trees-random-forests-gradient-boosting.Rmd)
-- [Interpretability and SHAP](labs/lab-interpretability-and-shap.Rmd)
-- [Tabular neural networks with torch](labs/lab-tabular-neural-networks-with-torch.Rmd)
-- [Imaging and sequence models intro](labs/lab-imaging-and-sequence-models-intro.Rmd)
-- [tidymodels pipelines](labs/lab-tidymodels-pipelines.Rmd)
-- [FDR, knockoffs, replication crisis](labs/lab-fdr-knockoffs-replication-crisis.Rmd)
+- [Cross-validation, nested CV, bootstrap .632+](#sec-chapters-13-ml-labs-lab-cross-validation-nested-cv-bootstrap-632)
+- [Regularisation: ridge, lasso, elastic net](#sec-chapters-13-ml-labs-lab-regularisation-ridge-lasso-elastic-net)
+- [Trees, random forests, gradient boosting](#sec-chapters-13-ml-labs-lab-trees-random-forests-gradient-boosting)
+- [Interpretability and SHAP](#sec-chapters-13-ml-labs-lab-interpretability-and-shap)
+- [Tabular neural networks with torch](#sec-chapters-13-ml-labs-lab-tabular-neural-networks-with-torch)
+- [Imaging and sequence models intro](#sec-chapters-13-ml-labs-lab-imaging-and-sequence-models-intro)
+- [tidymodels pipelines](#sec-chapters-13-ml-labs-lab-tidymodels-pipelines)
+- [FDR, knockoffs, replication crisis](#sec-chapters-13-ml-labs-lab-fdr-knockoffs-replication-crisis)
 
 <!-- END see-also -->

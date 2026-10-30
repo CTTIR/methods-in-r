@@ -1,12 +1,14 @@
-## Introduction
+## The Standard Error {#sec-chapters-01-foundations-standard-error}
+
+### Introduction {#sec-chapters-01-foundations-standard-error-introduction}
 
 The **standard error** of a statistic is the standard deviation of its sampling distribution. It quantifies how much the statistic would vary across hypothetical repetitions of the sampling process. Every confidence interval and every t- or z-statistic is built on an estimate of the standard error, so understanding and correctly computing SEs is central to competent data analysis.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-standard-error-prerequisites}
 
 A reader should know what the sampling distribution is, what a sample standard deviation is, and how to use the `sd()` and `mean()` functions in R.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-standard-error-theory}
 
 For an iid sample $X_1, \ldots, X_n$ from a population with variance $\sigma^2$, the sample mean $\bar{X}$ has variance $\sigma^2/n$ and therefore
 
@@ -26,11 +28,11 @@ For regression coefficients, standard errors come from the diagonal of $\hat{\si
 
 For statistics without a closed-form SE (ratios, quantiles, custom summaries), the **bootstrap** gives a general-purpose estimator: resample with replacement $B$ times, compute the statistic for each resample, and use the SD of the $B$ bootstrap statistics as $\widehat{\mathrm{SE}}$.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-standard-error-assumptions}
 
 The formula-based SEs above assume iid sampling and, for the finite-sample versions, enough regularity for the CLT to justify using them in normal-approximation CIs. The bootstrap SE is consistent under weaker conditions but inherits the design: it is accurate only when resampling units are the same as the independent sampling units (so bootstrap at the cluster level for cluster samples).
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-standard-error-r-implementation}
 
 ```r
 library(boot)
@@ -54,7 +56,7 @@ se_iqr
 
 The first two blocks use the closed-form SEs for the mean and a proportion; the third uses the bootstrap for the IQR, which has no convenient closed form.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-standard-error-output-results}
 
 ```
 [1] 1.552        # SE(mean)
@@ -64,11 +66,11 @@ The first two blocks use the closed-form SEs for the mean and a proportion; the 
 
 Each of these is the estimated typical distance between the sample statistic and the population parameter it estimates.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-standard-error-interpretation}
 
 The standard error is what gets reported alongside the estimate: "mean 75.8 (SE 1.6)" or "proportion 0.24 (95% CI 0.16--0.32)", where the CI is approximately the estimate plus/minus 1.96 times the SE. A reviewer glancing at the SE can judge whether the study is precise enough to support its claims.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-standard-error-practical-tips}
 
 - Always distinguish the SD (spread of individual values) from the SE (spread of a statistic); papers regularly report the wrong one.
 - For proportions near 0 or 1, the normal-approximation SE is poor; prefer Wilson or Clopper-Pearson intervals, which are available via `binom.test()` and the `binom` package.
@@ -78,27 +80,24 @@ The standard error is what gets reported alongside the estimate: "mean 75.8 (SE 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-standard-error-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-standard-error-assumptions) and
+[practical tips](#sec-chapters-01-foundations-standard-error-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-standard-error-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

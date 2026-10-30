@@ -1,12 +1,14 @@
-## Introduction
+## Moments and Moment Generating Functions {#sec-chapters-01-foundations-moments-and-mgfs}
+
+### Introduction {#sec-chapters-01-foundations-moments-and-mgfs-introduction}
 
 Moments are the descending sequence of expectations $E[X], E[X^2], E[X^3], \ldots$ that summarise a distribution's location, spread, skewness, kurtosis, and finer shape features. The moment generating function (MGF) packages all moments into a single function; when it exists, the MGF characterises the distribution uniquely. MGFs give elegant proofs of the CLT, the distribution of sums of independent variables, and the closure properties of many distributional families.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-moments-and-mgfs-prerequisites}
 
 The reader should know what an expectation is and be comfortable with basic calculus.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-moments-and-mgfs-theory}
 
 The **$k$-th moment** of $X$ is $\mu_k = E[X^k]$ (provided the integral converges). The **central moments** are $\mu^{(c)}_k = E[(X - \mu)^k]$; $\mu^{(c)}_2$ is the variance, $\mu^{(c)}_3$ feeds skewness, $\mu^{(c)}_4$ feeds kurtosis.
 
@@ -26,11 +28,11 @@ If $M_X$ is finite in a neighbourhood of zero, then (i) all moments of $X$ exist
 
 MGFs prove the CLT elegantly: the MGF of the standardised mean converges to $e^{t^2/2}$, which is the MGF of the standard normal, and uniqueness of MGFs gives convergence in distribution.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-moments-and-mgfs-assumptions}
 
 Existence of moments up to order $k$ requires $E[|X|^k] < \infty$. Existence of the MGF in a neighbourhood of zero is a much stronger condition (light-tailed distributions only).
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-moments-and-mgfs-r-implementation}
 
 ```r
 set.seed(2026)
@@ -60,7 +62,7 @@ cbind(t = t_vals, theoretical = mgf_theoretical,
 
 We compare empirical and theoretical moments and MGF values for a gamma distribution.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-moments-and-mgfs-output-results}
 
 ```
        m_1       m_2       m_3       m_4
@@ -77,11 +79,11 @@ We compare empirical and theoretical moments and MGF values for a gamma distribu
 
 Empirical and theoretical values agree to three decimal places with one million observations; with smaller samples the agreement is poorer in the higher moments and far tails.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-moments-and-mgfs-interpretation}
 
 For applied statistics, MGFs appear most often as proof tools rather than quantities to compute. Many closure properties (the normal family is closed under convolution; the gamma family has the same closure with a fixed rate parameter) are memorised via their MGFs.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-moments-and-mgfs-practical-tips}
 
 - For heavy-tailed distributions, higher moments may not exist; always check that the moments you are computing are finite.
 - Characteristic functions always exist; use them when MGFs don't.
@@ -91,27 +93,24 @@ For applied statistics, MGFs appear most often as proof tools rather than quanti
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-moments-and-mgfs-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-moments-and-mgfs-assumptions) and
+[practical tips](#sec-chapters-01-foundations-moments-and-mgfs-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-moments-and-mgfs-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

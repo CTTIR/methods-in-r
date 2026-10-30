@@ -1,12 +1,14 @@
-## Introduction
+## Completely Randomised Design {#sec-chapters-16-design-completely-randomized-design}
+
+### Introduction {#sec-chapters-16-design-completely-randomized-design-introduction}
 
 The completely randomised design (CRD) is the simplest and most flexible of all comparative experimental designs: each of the available experimental units is assigned to one of several treatment groups by an unrestricted random mechanism, with no blocking, stratification, or other restriction on randomisation. CRD is the default starting point in any introductory experimental-design course and remains the right choice whenever the experimental units are reasonably homogeneous and no nuisance source of variation justifies the additional complexity of a blocked layout. Its analysis is one-way ANOVA, its assumptions are minimal, and its results are easily generalised to whatever target population the units were sampled from.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-16-design-completely-randomized-design-prerequisites}
 
 A working understanding of randomisation as the foundation of causal inference in experiments, one-way analysis of variance with the $F$-test, and the multiple-comparisons problem that arises when more than two treatment groups are compared.
 
-## Theory
+### Theory {#sec-chapters-16-design-completely-randomized-design-theory}
 
 With $a$ treatment levels and $r$ replicates per treatment, $n = a \cdot r$ experimental units are randomly allocated to treatments without any restriction. The standard analysis model is
 
@@ -14,11 +16,11 @@ $$y_{ij} = \mu + \tau_i + \varepsilon_{ij}, \qquad \varepsilon_{ij} \sim N(0, \s
 
 with $\tau_i$ the fixed effect of the $i$-th treatment and $\varepsilon_{ij}$ independent Normal error. The omnibus null hypothesis is $\tau_1 = \cdots = \tau_a$, tested by the one-way ANOVA $F$-statistic. Post-hoc pairwise comparisons (Tukey HSD, Dunnett against a control, Scheffé for arbitrary contrasts) follow when the omnibus test is significant and pairwise inference is needed.
 
-## Assumptions
+### Assumptions {#sec-chapters-16-design-completely-randomized-design-assumptions}
 
 The experimental units are exchangeable prior to randomisation (homogeneous), the errors are independent within and across treatment groups, the within-group residuals are approximately Normal, and the residual variance is the same in each group. Departures from variance homogeneity can usually be addressed by transformation, weighted ANOVA, or Welch's $F$-test.
 
-## R Implementation
+### R Implementation {#sec-chapters-16-design-completely-randomized-design-r-implementation}
 
 ```r
 set.seed(2026)
@@ -33,15 +35,15 @@ summary(fit)
 TukeyHSD(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-16-design-completely-randomized-design-output-results}
 
 `aov()` returns the one-way ANOVA partitioning of the total sum of squares into between-group and within-group components, with the omnibus $F$-test reported as the primary inference. `TukeyHSD()` provides simultaneous 95 % confidence intervals for all pairwise differences, controlling family-wise error rate at the chosen $\alpha$, and is the standard follow-up when the omnibus null is rejected.
 
-## Interpretation
+### Interpretation {#sec-chapters-16-design-completely-randomized-design-interpretation}
 
 A reporting sentence: "The one-way ANOVA showed significant treatment differences ($F_{3, 20} = 5.9$, $p = 0.005$); Tukey HSD identified treatment D as significantly higher than treatment A (mean difference 3.7, adjusted $p = 0.004$, 95 % CI 1.2 to 6.2). Other pairwise contrasts did not reach the adjusted $\alpha = 0.05$ level. Residual diagnostics (Q-Q plot, Levene's test $p = 0.41$) supported the Normal-equal-variance assumptions." Always pair the omnibus test with adjusted pairwise comparisons and a brief assumption-check statement.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-16-design-completely-randomized-design-practical-tips}
 
 - CRD is most efficient when experimental units are reasonably homogeneous; if a substantial source of nuisance variation is known in advance, a randomised complete block design will reduce error variance and increase power without changing the inferential framework.
 - Balanced designs with equal $r$ across groups are optimal in efficiency and most robust to small departures from variance homogeneity; modest imbalance is acceptable but complicates type-III sum-of-squares interpretation.
@@ -50,42 +52,39 @@ A reporting sentence: "The one-way ANOVA showed significant treatment difference
 - Document the randomisation procedure (seed, software, date) so that the assignment list can be reconstructed from the protocol — a basic reproducibility requirement that auditors increasingly demand.
 - If interest centres on a specific contrast (treatment vs control), Dunnett's procedure is more powerful than Tukey HSD and should be pre-specified in the protocol.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-16-design-completely-randomized-design-r-packages-used}
 
 Base R `aov()`, `lm()`, and `TukeyHSD()` cover the canonical CRD analysis; `agricolae` for `LSD.test()` and Duncan-style multiple-comparison tools used in agricultural DoE; `multcomp` for Dunnett, Scheffé, and arbitrary linear contrasts with adjustment; `emmeans` for marginal-mean estimation, plotting, and flexible contrast construction across designs.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-16-design-completely-randomized-design-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-16-design-completely-randomized-design-assumptions) and
+[practical tips](#sec-chapters-16-design-completely-randomized-design-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-16-design-completely-randomized-design-see-also-labs-in-this-chapter}
 
-- [Observational designs and STROBE](labs/lab-observational-designs-and-strobe.Rmd)
-- [Randomised controlled trials](labs/lab-randomised-controlled-trials.Rmd)
-- [Adaptive, non-inferiority, equivalence trials](labs/lab-adaptive-non-inferiority-equivalence-trials.Rmd)
-- [Bench and translational design](labs/lab-bench-and-translational-design.Rmd)
-- [MCAR, MAR, MNAR](labs/lab-mcar-mar-mnar.Rmd)
-- [Multiple imputation with mice](labs/lab-multiple-imputation-with-mice.Rmd)
-- [Linear mixed models with lme4](labs/lab-linear-mixed-models-with-lme4.Rmd)
-- [GLMMs and GEE](labs/lab-glmms-and-gee.Rmd)
-- [DAGs with dagitty and ggdag](labs/lab-dags-with-dagitty-and-ggdag.Rmd)
-- [Propensity scores and IPTW](labs/lab-propensity-scores-and-iptw.Rmd)
-- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](labs/lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect.Rmd)
-- [SIR and SEIR models with deSolve](labs/lab-sir-and-seir-models-with-desolve.Rmd)
-- [Pre-registration and statistical analysis plans](labs/lab-pre-registration-and-statistical-analysis-plans.Rmd)
+- [Observational designs and STROBE](#sec-chapters-16-design-labs-lab-observational-designs-and-strobe)
+- [Randomised controlled trials](#sec-chapters-16-design-labs-lab-randomised-controlled-trials)
+- [Adaptive, non-inferiority, equivalence trials](#sec-chapters-16-design-labs-lab-adaptive-non-inferiority-equivalence-trials)
+- [Bench and translational design](#sec-chapters-16-design-labs-lab-bench-and-translational-design)
+- [MCAR, MAR, MNAR](#sec-chapters-16-design-labs-lab-mcar-mar-mnar)
+- [Multiple imputation with mice](#sec-chapters-16-design-labs-lab-multiple-imputation-with-mice)
+- [Linear mixed models with lme4](#sec-chapters-16-design-labs-lab-linear-mixed-models-with-lme4)
+- [GLMMs and GEE](#sec-chapters-16-design-labs-lab-glmms-and-gee)
+- [DAGs with dagitty and ggdag](#sec-chapters-16-design-labs-lab-dags-with-dagitty-and-ggdag)
+- [Propensity scores and IPTW](#sec-chapters-16-design-labs-lab-propensity-scores-and-iptw)
+- [G-methods, IV, DiD, RDD; heterogeneity of treatment effect](#sec-chapters-16-design-labs-lab-g-methods-iv-did-rdd-heterogeneity-of-treatment-effect)
+- [SIR and SEIR models with deSolve](#sec-chapters-16-design-labs-lab-sir-and-seir-models-with-desolve)
+- [Pre-registration and statistical analysis plans](#sec-chapters-16-design-labs-lab-pre-registration-and-statistical-analysis-plans)
 
 <!-- END see-also -->

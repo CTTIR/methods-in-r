@@ -1,12 +1,14 @@
-## Introduction
+## The Cramer-Rao Lower Bound {#sec-chapters-01-foundations-cramer-rao-lower-bound}
+
+### Introduction {#sec-chapters-01-foundations-cramer-rao-lower-bound-introduction}
 
 The Cramer-Rao lower bound (CRLB) is a theoretical limit: no unbiased estimator of a parameter can have smaller variance than a value determined by the Fisher information. Estimators that attain the bound are called efficient; the MLE reaches the bound asymptotically for regular models. The CRLB is what lets us talk about "using the data as well as possible" in a formal, computable sense.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-cramer-rao-lower-bound-prerequisites}
 
 The reader should understand Fisher information, the notion of an unbiased estimator, and elementary linear algebra for the multivariate version.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-cramer-rao-lower-bound-theory}
 
 For a regular parametric family with Fisher information $I(\theta)$, any unbiased estimator $\hat{\theta}$ of $\theta$ satisfies
 
@@ -26,11 +28,11 @@ An estimator that attains the CRLB is **efficient**; its variance equals the inv
 
 The CRLB is also used for optimal design: by choosing the design (sample allocation, predictor values) to maximise $I(\theta)$, one minimises the achievable variance of any unbiased estimator.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-cramer-rao-lower-bound-assumptions}
 
 The CRLB applies to regular parametric families: smooth densities, identifiable parameters, finite information. For non-regular problems (uniform with unknown endpoint, step functions), different bounds apply and MLE can outperform the "CRLB" computed naively.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-cramer-rao-lower-bound-r-implementation}
 
 ```r
 set.seed(2026)
@@ -57,7 +59,7 @@ do.call(rbind, lapply(n_values, compare))
 
 We compare the empirical variance of two variance estimators (MLE and the unbiased $n - 1$ estimator) against the CRLB $2\sigma^4/n$ across a range of sample sizes.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-cramer-rao-lower-bound-output-results}
 
 ```
         n    var_mle   var_ubv    crlb
@@ -69,11 +71,11 @@ We compare the empirical variance of two variance estimators (MLE and the unbias
 
 As $n$ grows, both estimators approach the CRLB; the unbiased estimator's variance is always slightly larger than the MLE's (which is slightly biased), but both converge to the bound.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-cramer-rao-lower-bound-interpretation}
 
 For a reader of a methods paper that claims an estimator is "efficient", the CRLB is the benchmark. Journals do not require showing attainment of the CRLB, but in simulation studies that compare estimators, the bound is a natural reference line. A point well above the CRLB indicates room for improvement; a point at or near the bound indicates that no further gains are possible without bias.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-cramer-rao-lower-bound-practical-tips}
 
 - The CRLB is a bound for *unbiased* estimators; biased estimators with lower variance can have lower MSE, so "efficient" in the CRLB sense does not imply "optimal by MSE".
 - Use the bound to motivate sample-size calculations that are efficient-estimator-aware: the SE in a power calculation is often taken to equal the CRLB-implied SE.
@@ -83,27 +85,24 @@ For a reader of a methods paper that claims an estimator is "efficient", the CRL
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-cramer-rao-lower-bound-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-cramer-rao-lower-bound-assumptions) and
+[practical tips](#sec-chapters-01-foundations-cramer-rao-lower-bound-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-cramer-rao-lower-bound-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

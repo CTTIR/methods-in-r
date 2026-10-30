@@ -1,12 +1,14 @@
-## Introduction
+## The Glivenko-Cantelli Theorem {#sec-chapters-01-foundations-glivenko-cantelli}
+
+### Introduction {#sec-chapters-01-foundations-glivenko-cantelli-introduction}
 
 The Glivenko-Cantelli theorem is sometimes called the "fundamental theorem of statistics". It says that the empirical distribution function converges uniformly, almost surely, to the true CDF as the sample size grows. This is a stronger guarantee than pointwise convergence at every $x$: it says that the *worst-case* error over all $x$ vanishes. Every non-parametric inference built from the ECDF rests on this theorem.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-01-foundations-glivenko-cantelli-prerequisites}
 
 The reader should know what a CDF is, what the ECDF is, and the difference between pointwise and uniform convergence.
 
-## Theory
+### Theory {#sec-chapters-01-foundations-glivenko-cantelli-theory}
 
 Let $X_1, X_2, \ldots$ be iid from a CDF $F$, and let $\hat{F}_n$ denote the ECDF computed from the first $n$ observations. The **Glivenko-Cantelli theorem** states that
 
@@ -20,11 +22,11 @@ Equivalently, the supremum of the pointwise error -- the sup-norm error -- goes 
 
 The DKW inequality (a finite-sample refinement) gives an explicit rate: the sup-norm error drops at rate $O_P(1/\sqrt{n})$.
 
-## Assumptions
+### Assumptions {#sec-chapters-01-foundations-glivenko-cantelli-assumptions}
 
 The classical theorem requires iid sampling. Extensions to stationary ergodic sequences hold, though the rate of uniform convergence can be slower.
 
-## R Implementation
+### R Implementation {#sec-chapters-01-foundations-glivenko-cantelli-r-implementation}
 
 ```r
 library(ggplot2)
@@ -56,15 +58,15 @@ ggplot(data.frame(n = n_vals, sup_err = sup_errors),
 
 For each $n$, we compute the sup-norm error $\sup_x |\hat{F}_n(x) - F(x)|$ over a fine grid and average across replications.
 
-## Output & Results
+### Output & Results {#sec-chapters-01-foundations-glivenko-cantelli-output-results}
 
 On the log-log plot, the sup-norm error drops as a straight line with slope approximately $-1/2$, confirming the $1/\sqrt{n}$ rate predicted by DKW. At $n = 10^4$, the expected sup-norm error is around 0.01; at $n = 100$, around 0.1.
 
-## Interpretation
+### Interpretation {#sec-chapters-01-foundations-glivenko-cantelli-interpretation}
 
 For a reader of a methods paper: Glivenko-Cantelli is rarely named, but it is the theorem invoked when any procedure "based on the ECDF" is claimed to be consistent. K-S goodness-of-fit, bootstrap consistency, and many non-parametric estimators rely on this theorem at the proof level.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-01-foundations-glivenko-cantelli-practical-tips}
 
 - Glivenko-Cantelli is a pure convergence result; for quantitative error bounds, use DKW's finite-sample version.
 - The theorem holds on the real line; its multivariate extension requires that the class of events (rectangles, half-spaces) form a Glivenko-Cantelli class, which is automatic for low-dimensional CDFs but harder in complex function classes.
@@ -74,27 +76,24 @@ For a reader of a methods paper: Glivenko-Cantelli is rarely named, but it is th
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-01-foundations-glivenko-cantelli-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-01-foundations-glivenko-cantelli-assumptions) and
+[practical tips](#sec-chapters-01-foundations-glivenko-cantelli-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-01-foundations-glivenko-cantelli-see-also-labs-in-this-chapter}
 
-- [Scientific process and research workflow](labs/lab-scientific-process-and-research-workflow.Rmd)
-- [R, RStudio, Quarto, and renv toolchain](labs/lab-r-rstudio-quarto-and-renv-toolchain.Rmd)
-- [Data types, tidy data, accuracy and precision](labs/lab-data-types-tidy-data-accuracy-and-precision.Rmd)
-- [Import, joins, and missingness with dplyr](labs/lab-import-joins-and-missingness-with-dplyr.Rmd)
+- [Scientific process and research workflow](#sec-chapters-01-foundations-labs-lab-scientific-process-and-research-workflow)
+- [R, RStudio, Quarto, and renv toolchain](#sec-chapters-01-foundations-labs-lab-r-rstudio-quarto-and-renv-toolchain)
+- [Data types, tidy data, accuracy and precision](#sec-chapters-01-foundations-labs-lab-data-types-tidy-data-accuracy-and-precision)
+- [Import, joins, and missingness with dplyr](#sec-chapters-01-foundations-labs-lab-import-joins-and-missingness-with-dplyr)
 
 <!-- END see-also -->

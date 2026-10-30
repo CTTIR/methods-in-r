@@ -1,12 +1,14 @@
-## Introduction
+## One-Way ANOVA {#sec-chapters-04-inferential-one-way-anova}
+
+### Introduction {#sec-chapters-04-inferential-one-way-anova-introduction}
 
 One-way ANOVA tests whether the means of three or more independent groups are equal. It generalises the two-sample t-test to multiple groups while controlling overall Type I error. The omnibus F-test tells us whether *any* means differ; post-hoc tests (Tukey HSD, Dunnett) identify which pairs.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-one-way-anova-prerequisites}
 
 Two-sample t-test, F distribution.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-one-way-anova-theory}
 
 For $k$ groups with $n_i$ observations each, total $n = \sum n_i$, define:
 
@@ -22,13 +24,13 @@ Large F implies between-group variation exceeds within-group variation, rejectin
 
 Effect size: $\eta^2 = \text{SSB} / \text{SST}$, the proportion of variance explained by the group factor.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-one-way-anova-assumptions}
 
 - Independent observations within and across groups.
 - Normal residuals (or large enough $n_i$).
 - Homogeneous variances across groups (Welch ANOVA relaxes this).
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-one-way-anova-r-implementation}
 
 ```r
 library(effectsize); library(broom); library(car)
@@ -62,7 +64,7 @@ oneway.test(y ~ group, data = df)
 TukeyHSD(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-one-way-anova-output-results}
 
 ```
             Df Sum Sq Mean Sq F value  Pr(>F)
@@ -86,11 +88,11 @@ D-C  -4.086  -10.09   1.92 0.297
 
 F(3, 116) = 4.83, p = 0.003, rejects equal means. Tukey identifies C vs. A as the significant pair.
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-one-way-anova-interpretation}
 
 Report: "A one-way ANOVA showed a significant group effect (F(3, 116) = 4.83, p = 0.003, $\eta^2 = 0.11$). Tukey HSD comparisons indicated that group C differed significantly from group A (mean difference 8.2, 95 % CI 2.2 to 14.2, adjusted p = 0.003)."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-one-way-anova-practical-tips}
 
 - Always check homogeneity of variances; if violated, use Welch ANOVA.
 - Always report an effect size; F alone is not enough.
@@ -100,32 +102,29 @@ Report: "A one-way ANOVA showed a significant group effect (F(3, 116) = 4.83, p 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-one-way-anova-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-one-way-anova-assumptions) and
+[practical tips](#sec-chapters-04-inferential-one-way-anova-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-one-way-anova-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

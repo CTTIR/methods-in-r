@@ -1,22 +1,24 @@
-## Introduction
+## KEGG Pathway Enrichment {#sec-chapters-12-bioinformatics-pathway-enrichment-kegg}
+
+### Introduction {#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-introduction}
 
 KEGG (Kyoto Encyclopedia of Genes and Genomes) is a curated database of metabolic and signalling pathways represented as directed graphs of genes and gene products. KEGG pathway enrichment asks whether the genes in a differential-expression hit list are over-represented in any of the curated pathways, identifying functional themes in the differential signal. The companion visualisation tool `pathview` overlays log-fold-change values directly onto the canonical KEGG pathway diagrams, making it straightforward to communicate which specific genes within a pathway drive the enrichment signal.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-prerequisites}
 
 A working understanding of differential-expression analysis, Entrez gene identifiers, and basic over-representation analysis using hypergeometric or Fisher's exact tests.
 
-## Theory
+### Theory {#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-theory}
 
 KEGG enrichment uses the same statistical framework as GO over-representation analysis: a hypergeometric (Fisher's exact) test for each pathway compares the proportion of DE genes assigned to the pathway against the proportion expected by chance from the universe of all annotated genes. Adjusted $p$-values (BH or Benjamini-Hochberg) control the false-discovery rate across the many pathways tested.
 
 Pathway visualisation via `pathview` rendering colours each gene node in the canonical KEGG diagram by user-supplied log fold change (or any continuous statistic), producing an annotated PNG/PDF of the pathway map. The visual immediately exposes whether the enrichment is driven by a coordinated up- or down-regulation across the pathway versus a few isolated hits.
 
-## Assumptions
+### Assumptions {#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-assumptions}
 
 DE genes are correctly mapped to Entrez IDs; KEGG pathway annotations are current (KEGG is updated regularly; old annotations miss recent additions); tests are independent across pathways (BH adjustment is conservative for the typical correlated-pathway structure).
 
-## R Implementation
+### R Implementation {#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-r-implementation}
 
 ```r
 library(clusterProfiler); library(org.Hs.eg.db)
@@ -36,15 +38,15 @@ head(as.data.frame(ek))[, c("ID", "Description", "p.adjust", "Count")]
 # pathview(gene.data = lfc_vec, pathway.id = "hsa04110", species = "hsa")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-output-results}
 
 `enrichKEGG()` returns an `enrichResult` object with one row per pathway, including the pathway ID and description, the count of DE genes, BH-adjusted $p$-value, and the comma-separated list of contributing gene symbols. `pathview()` writes a PNG of the pathway diagram with each gene node coloured by its supplied log-fold-change value.
 
-## Interpretation
+### Interpretation {#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-interpretation}
 
 A reporting sentence: "KEGG enrichment with `clusterProfiler::enrichKEGG` (organism = hsa, BH-adjusted $p < 0.05$) identified the cell cycle (hsa04110, $p_{\mathrm{adj}} = 0.001$, 23 genes) and p53 signalling (hsa04115, $p_{\mathrm{adj}} = 0.008$, 14 genes) as top enriched pathways; pathview overlay on hsa04110 showed consistent up-regulation of cyclins and CDKs alongside down-regulation of CDK inhibitors." Always state the species code, the universe of background genes, and the multiple-testing correction.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-practical-tips}
 
 - KEGG functions in `clusterProfiler` require Entrez IDs; convert from gene symbols via `bitr(symbols, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = org.Hs.eg.db)`.
 - `enrichMKEGG()` uses KEGG modules (smaller, more specific functional units); it is preferable for metabolic studies where the broader KEGG pathway granularity is too coarse.
@@ -53,32 +55,29 @@ A reporting sentence: "KEGG enrichment with `clusterProfiler::enrichKEGG` (organ
 - Combine KEGG (broad pathways) with Reactome (`ReactomePA::enrichPathway`) for complementary coverage; the two databases overlap but emphasise different aspects of biology.
 - For genes with associated fold-change estimates, GSEA on KEGG pathways (`gseKEGG()`) is more powerful than over-representation analysis because it uses the full ranked gene list rather than thresholding into hit and non-hit sets.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-r-packages-used}
 
 `clusterProfiler` for `enrichKEGG()`, `enrichMKEGG()`, `gseKEGG()`, and the broader enrichment-analysis framework; `pathview` for KEGG pathway visualisation with LFC overlay; `org.Hs.eg.db` (and species-specific equivalents) for Entrez ID conversion; `ReactomePA` for Reactome alternatives; `enrichplot` for ggplot-based visualisations of enrichment results.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-assumptions) and
+[practical tips](#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-see-also-labs-in-this-chapter}
 
-- [RNA-seq with DESeq2 / edgeR](labs/lab-rna-seq-with-deseq2-edger.Rmd)
-- [Enrichment analysis (GSEA / ORA)](labs/lab-enrichment-analysis-gsea-ora.Rmd)
-- [scRNA-seq with Seurat](labs/lab-scrna-seq-with-seurat.Rmd)
+- [RNA-seq with DESeq2 / edgeR](#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger)
+- [Enrichment analysis (GSEA / ORA)](#sec-chapters-12-bioinformatics-labs-lab-enrichment-analysis-gsea-ora)
+- [scRNA-seq with Seurat](#sec-chapters-12-bioinformatics-labs-lab-scrna-seq-with-seurat)
 
 <!-- END see-also -->

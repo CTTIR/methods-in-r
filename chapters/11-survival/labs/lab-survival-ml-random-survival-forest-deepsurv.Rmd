@@ -1,9 +1,11 @@
+## Week 3, Session 4 — Survival ML (random survival forest, DeepSurv) {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-learning-objectives}
 
 - Fit a random survival forest and interpret its variable importance
   and risk stratification.
@@ -11,11 +13,11 @@ Goal → Approach → Execution → Check → Report.
   preferred over the forest.
 - Compare against a Cox model on the same features.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-prerequisites}
 
 Cox regression and censoring.
 
-## Background
+### Background {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-background}
 
 Survival analysis deals with time-to-event data in the presence of
 censoring. The Cox proportional-hazards model is the workhorse linear
@@ -36,7 +38,7 @@ Evaluation of survival models uses time-integrated concordance
 decision curves at a clinically relevant horizon. Reporting only C on
 a single test set is weak evidence.
 
-## Setup
+### Setup {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-setup}
 
 ```r
 library(tidyverse)
@@ -46,14 +48,15 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-1-goal}
 
 Fit an RSF on `survival::pbc` and compare to a Cox model using
 Harrell's concordance.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-2-approach}
 
 ```r
+d <- survival::pbc |>
   as_tibble() |>
   drop_na(bili, albumin, age, edema, protime, stage) |>
   mutate(status = ifelse(status == 2, 1, 0))
@@ -63,9 +66,10 @@ ggplot(d, aes(time / 365.25, fill = factor(status))) +
   labs(x = "follow-up (years)", y = "count", fill = "event")
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-3-execution}
 
 ```r
+fit_cox <- coxph(Surv(time, status) ~ bili + albumin + age + edema +
                    protime + stage, data = d)
 fit_rsf <- rfsrc(Surv(time, status) ~ bili + albumin + age + edema +
                    protime + stage,
@@ -75,17 +79,19 @@ fit_rsf
 ```
 
 ```r
+tibble(var = names(fit_rsf$importance),
        imp = as.numeric(fit_rsf$importance)) |>
   arrange(desc(imp)) |>
   ggplot(aes(reorder(var, imp), imp)) +
   geom_col() + coord_flip() + labs(x = NULL, y = "VIMP")
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-4-check}
 
 Compare concordance on held-out data.
 
 ```r
+idx <- sample(nrow(d), 0.7 * nrow(d))
 tr <- d[idx, ]; te <- d[-idx, ]
 cox2 <- coxph(Surv(time, status) ~ bili + albumin + age + edema +
                 protime + stage, data = tr)
@@ -114,7 +120,7 @@ deepsurv_loss <- function(risk, time, event) {
 }
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-5-report}
 
 > On `survival::pbc`, a random survival forest achieved test
 > concordance `round(c_rsf, 3)` compared with
@@ -127,7 +133,7 @@ On this sample size, the RSF and Cox model are close; on larger
 datasets with nonlinearities, the forest often pulls ahead.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-common-pitfalls}
 
 - Treating the Cox proportional-hazards assumption as always met; it
   often is not, and the RSF is more robust to violation.
@@ -136,23 +142,24 @@ datasets with nonlinearities, the forest often pulls ahead.
 - Reporting only C without a calibration or decision curve at the
   horizon of interest.
 
-## Further reading
+### Further reading {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-further-reading}
 
 - Ishwaran H et al. (2008), *Random survival forests*.
 - Katzman JL et al. (2018), *DeepSurv: Personalized treatment
   recommender system using a Cox proportional hazards deep neural
   network*.
 
-## Session info
+### Session info {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-11-survival)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

@@ -1,12 +1,14 @@
-## Introduction
+## Bayesian Hierarchical Models {#sec-chapters-10-bayesian-bayesian-hierarchical-intro}
+
+### Introduction {#sec-chapters-10-bayesian-bayesian-hierarchical-intro-introduction}
 
 A hierarchical Bayesian model embeds the group-level parameters of a multilevel design inside a higher-level prior, so that the group-level estimates inform each other rather than being computed in isolation. The pay-off is partial pooling: groups with abundant data are estimated almost from their own observations, groups with little data are pulled toward the overall mean, and every estimate carries a credible interval that reflects both the within-group sample size and the between-group heterogeneity. This single mechanism resolves a long list of practical problems — small-sample variance, unbalanced designs, sparse counts — that frequentist mixed-effects models can only address by reweighting or by appealing to asymptotic theory.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-10-bayesian-bayesian-hierarchical-intro-prerequisites}
 
 A working understanding of Bayesian inference, the random-effects mixed model, and the role of exchangeability in motivating shared priors.
 
-## Theory
+### Theory {#sec-chapters-10-bayesian-bayesian-hierarchical-intro-theory}
 
 A two-level model has
 
@@ -16,11 +18,11 @@ A two-level model has
 
 The posterior of $\theta_i$ is a precision-weighted average of the within-group estimate (driven by the data in group $i$) and the population mean $\mu$, with weight inversely proportional to the within-group variance and to the cross-group variance $\tau^2$. Smaller groups rely more on the population mean; larger groups stand on their own data. This is the formal expression of "shrinkage" or "borrowing strength."
 
-## Assumptions
+### Assumptions {#sec-chapters-10-bayesian-bayesian-hierarchical-intro-assumptions}
 
 Exchangeability of groups (group labels carry no information beyond what is in the predictors) and a hyperprior whose support spans plausible values of $\mu$ and $\tau$. A poorly chosen hyperprior — particularly an overly tight prior on $\tau$ — can dominate the posterior in small samples and look like a strong empirical claim.
 
-## R Implementation
+### R Implementation {#sec-chapters-10-bayesian-bayesian-hierarchical-intro-r-implementation}
 
 ```r
 library(brms)
@@ -41,15 +43,15 @@ fit <- brm(events | trials(trials) ~ 1 + (1 | hospital),
 summary(fit)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-10-bayesian-bayesian-hierarchical-intro-output-results}
 
 `summary(fit)` returns the population-level intercept (overall log-odds), the between-hospital SD on the logit scale, and per-hospital posterior summaries via `ranef(fit)`. The shrinkage of small-hospital estimates toward the population mean is most visible when you plot raw event proportions against posterior means alongside hospital sample size.
 
-## Interpretation
+### Interpretation {#sec-chapters-10-bayesian-bayesian-hierarchical-intro-interpretation}
 
 A reporting sentence: "A Bayesian binomial hierarchical model estimated the population baseline at $\mathrm{logit}^{-1}(-1.4) = 0.20$ (95 % credible interval 0.16 to 0.24); the between-hospital standard deviation on the logit scale was 0.51 (95 % CrI 0.34 to 0.74), and small-hospital posterior means were drawn substantially toward the population baseline." Always report cluster-specific and overall estimates; one without the other misses the central insight of the hierarchical fit.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-10-bayesian-bayesian-hierarchical-intro-practical-tips}
 
 - Partial pooling is the headline benefit: do not throw it away by switching to a fixed-effects fit just because cluster counts are large.
 - For divergent transitions, switch to non-centred parameterisation; `brms` does this automatically when you specify `prior(... , class = "sd", ...)`.
@@ -57,31 +59,28 @@ A reporting sentence: "A Bayesian binomial hierarchical model estimated the popu
 - For more than two levels (e.g. patient $\subset$ hospital $\subset$ region), nest random effects: `(1 | region/hospital)`. The same shrinkage logic applies at each level.
 - Do not interpret cluster-specific posterior means as if they came from independent fits; they are *intentionally* shrunk and that shrinkage is the right answer to "how good is hospital $i$?"
 
-## R Packages Used
+### R Packages Used {#sec-chapters-10-bayesian-bayesian-hierarchical-intro-r-packages-used}
 
 `brms` for the hierarchical Bayesian fit, `rstanarm` for pre-compiled `stan_glmer` alternatives, `tidybayes` for tidy cluster-level draws when bespoke shrinkage plots are needed, and `bayesplot` for diagnostic visualisation.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-10-bayesian-bayesian-hierarchical-intro-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-10-bayesian-bayesian-hierarchical-intro-assumptions) and
+[practical tips](#sec-chapters-10-bayesian-bayesian-hierarchical-intro-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-10-bayesian-bayesian-hierarchical-intro-see-also-labs-in-this-chapter}
 
-- [Bayesian thinking; α control vs decision error](labs/lab-bayesian-thinking-control-vs-decision-error.Rmd)
-- [brms / Stan, LOO, hierarchical models](labs/lab-brms-stan-loo-hierarchical-models.Rmd)
+- [Bayesian thinking; α control vs decision error](#sec-chapters-10-bayesian-labs-lab-bayesian-thinking-control-vs-decision-error)
+- [brms / Stan, LOO, hierarchical models](#sec-chapters-10-bayesian-labs-lab-brms-stan-loo-hierarchical-models)
 
 <!-- END see-also -->

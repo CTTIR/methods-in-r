@@ -1,12 +1,14 @@
-## Introduction
+## ROC Analysis {#sec-chapters-14-clinical-roc-analysis}
+
+### Introduction {#sec-chapters-14-clinical-roc-analysis-introduction}
 
 The receiver-operating-characteristic (ROC) curve traces sensitivity against $1 - $ specificity across all possible decision thresholds of a continuous-valued diagnostic test or risk score. Where a single sensitivity-specificity pair characterises performance at one cut-off, the ROC curve summarises performance across every cut-off and therefore captures the discriminative ability of the underlying continuous measurement independently of any chosen threshold. The area under the curve (AUC) reduces this curve to a single number with a clean probabilistic interpretation: it equals the probability that a randomly chosen diseased case has a higher biomarker value than a randomly chosen non-diseased case. AUC values of 0.5 indicate chance-level discrimination and 1.0 indicates perfect separation; values between 0.7 and 0.9 are typical for clinically useful biomarkers.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-roc-analysis-prerequisites}
 
 A working understanding of sensitivity and specificity, the role of decision thresholds in diagnostic-test performance, and the trade-off between true and false positive rates that the ROC curve makes explicit.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-roc-analysis-theory}
 
 For a continuous biomarker $X$ and binary disease status $D$, the ROC curve is the parametric plot
 
@@ -18,11 +20,11 @@ $$\mathrm{AUC} = P(X_1 > X_0),$$
 
 with $X_1$ a random observation from the diseased and $X_0$ from the non-diseased population — the probability of correct ranking. Confidence intervals on AUC are typically computed via the DeLong non-parametric method or by bootstrap; bootstrap is also the standard approach for inference on the curve itself.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-roc-analysis-assumptions}
 
 Test values are measured on a continuous scale (or at least an ordinal scale with many levels), disease status is correctly classified by a reliable gold-standard reference, and observations are independent. The interpretation as a discrimination measure is independent of disease prevalence — a feature of AUC that distinguishes it from predictive values.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-roc-analysis-r-implementation}
 
 ```r
 library(pROC)
@@ -42,15 +44,15 @@ plot(roc_obj, col = "#2A9D8F", lwd = 2, legacy.axes = TRUE,
 abline(0, 1, lty = 2, col = "grey60")
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-roc-analysis-output-results}
 
 `roc()` constructs the ROC object; `auc()` returns the area under the curve and `ci.auc()` provides the DeLong or bootstrap confidence interval. The standard plot shows sensitivity on the vertical axis and $1 - $ specificity on the horizontal axis, with the chance-diagonal as a reference line. Points along the curve correspond to sensitivity-specificity trade-offs at different cut-off values.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-roc-analysis-interpretation}
 
 A reporting sentence: "The biomarker showed good discrimination for the binary disease outcome with AUC 0.77 (95 % CI 0.70 to 0.84, DeLong method); this exceeds the conventional 'fair' threshold of 0.70 but falls short of 'excellent' ($\geq 0.90$). At the Youden-optimal cut-off (biomarker $\geq 0.42$), sensitivity was 73 % and specificity 70 %; alternative cut-offs prioritising specificity (e.g., $\geq 1.0$, sensitivity 51 %, specificity 87 %) may be preferred for screening applications." Always report both AUC and at least one operating point.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-roc-analysis-practical-tips}
 
 - Report AUC with a 95 % confidence interval — DeLong's non-parametric method is the standard for paired comparisons and bootstrap is preferable for very small or imbalanced samples; AUC without uncertainty bounds is uninterpretable.
 - Test AUC against 0.5 (chance) using `pROC::roc.test()`; compare two AUCs from the same cases using a paired DeLong test, which respects the correlation induced by shared subjects.
@@ -59,33 +61,30 @@ A reporting sentence: "The biomarker showed good discrimination for the binary d
 - For heavily imbalanced data (rare disease, screening contexts), precision-recall AUC is often more informative than ROC AUC because the ROC can look deceptively good when most subjects are non-diseased; PRAUC focuses on the positive class.
 - When comparing biomarkers, include the increment in AUC ($\Delta$ AUC), the integrated discrimination index (IDI), and the net reclassification improvement (NRI); each captures a different facet of incremental performance.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-14-clinical-roc-analysis-r-packages-used}
 
 `pROC` for canonical ROC analysis with DeLong and bootstrap CIs, partial AUC, and paired comparisons; `ROCR` for an alternative interface with comprehensive performance-measure support; `PRROC` for precision-recall AUC and area-under-the-PR-curve analyses; `cutpointr` for principled threshold selection; `rms::lrm()` for AUC reporting integrated with logistic-regression model evaluation.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-roc-analysis-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-roc-analysis-assumptions) and
+[practical tips](#sec-chapters-14-clinical-roc-analysis-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-roc-analysis-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->

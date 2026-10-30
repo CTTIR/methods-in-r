@@ -1,9 +1,11 @@
+## Week 4, Session 1 — RNA-seq with DESeq2 / edgeR {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger}
+
 <div class="callout callout-note">
 **Workflow labs** use the variant template:
 Goal → Approach → Execution → Check → Report.
 </div>
 
-## Learning objectives
+### Learning objectives {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-learning-objectives}
 
 - Describe the count-model assumptions behind DESeq2 and edgeR and
   explain the role of dispersion estimation.
@@ -11,11 +13,11 @@ Goal → Approach → Execution → Check → Report.
   complex experiment.
 - Recognise when a log-transformed `limma-voom` workflow is preferable.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-prerequisites}
 
 GLMs; multiple testing.
 
-## Background
+### Background {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-background}
 
 Bulk RNA-sequencing yields integer counts per gene per sample. Raw
 counts are heteroscedastic — variance grows with the mean — and the
@@ -36,7 +38,7 @@ call pattern with `#| eval: false` and walk through a conceptually
 parallel simulation with base R GLMs so the ideas run end-to-end in
 any environment.
 
-## Setup
+### Setup {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-setup}
 
 ```r
 library(tidyverse)
@@ -45,18 +47,19 @@ set.seed(42)
 theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Goal
+### 1. Goal {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-1-goal}
 
 Simulate a small RNA-seq count matrix with two conditions and
 demonstrate the DESeq2/edgeR pipeline pattern alongside a base-R
 negative-binomial GLM that actually runs.
 
-## 2. Approach
+### 2. Approach {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-2-approach}
 
 Simulate 500 genes × 10 samples (5 per group). Ten genes are truly
 differentially expressed.
 
 ```r
+n_gene <- 500; n_samp <- 10
 group <- rep(c("A", "B"), each = 5)
 mu <- 2 * runif(n_gene, 1, 10)   # baseline mean per gene
 lfc <- c(rep(log(3), 10), rep(0, n_gene - 10))
@@ -74,7 +77,7 @@ tibble(mean = rowMeans(counts), var = apply(counts, 1, var)) |>
   labs(title = "mean–variance (log–log)")
 ```
 
-## 3. Execution
+### 3. Execution {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-3-execution}
 
 A DESeq2 call pattern (not run).
 
@@ -106,6 +109,7 @@ topTags(qlf)
 A per-gene negative-binomial GLM that runs.
 
 ```r
+pvals <- numeric(n_gene)
 logfcs <- numeric(n_gene)
 for (g in seq_len(n_gene)) {
   y <- counts[g, ]
@@ -118,11 +122,12 @@ for (g in seq_len(n_gene)) {
 padj <- p.adjust(pvals, method = "BH")
 ```
 
-## 4. Check
+### 4. Check {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-4-check}
 
 Volcano plot with the truly DE genes flagged.
 
 ```r
+truth <- c(rep("DE", 10), rep("null", n_gene - 10))
 tibble(lfc = logfcs, padj = padj, truth = truth) |>
   drop_na() |>
   ggplot(aes(lfc, -log10(padj), colour = truth)) +
@@ -131,10 +136,11 @@ tibble(lfc = logfcs, padj = padj, truth = truth) |>
 ```
 
 ```r
+mean(padj[1:10] < 0.05, na.rm = TRUE)
 mean(padj[11:n_gene] < 0.05, na.rm = TRUE)
 ```
 
-## 5. Report
+### 5. Report {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-5-report}
 
 > On a simulated 500-gene, 10-sample RNA-seq dataset with 10 truly
 > differentially expressed genes (log fold change ≈ 1.1),
@@ -150,30 +156,31 @@ dispersion across the experiment; the per-gene fit shown here is a
 transparent but low-power version of the same idea.
 
 
-## Common pitfalls
+### Common pitfalls {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-common-pitfalls}
 
 - Running a *t*-test on raw counts — the variance structure is wrong.
 - Filtering genes after seeing the results (data-driven filters are
   fine only if applied before testing).
 - Forgetting to include batch or library-size terms in the design.
 
-## Further reading
+### Further reading {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-further-reading}
 
 - Love MI, Huber W, Anders S (2014), *Moderated estimation of fold
   change and dispersion for RNA-seq data with DESeq2*.
 - Law CW et al. (2014), *voom: precision weights unlock linear model
   analysis tools for RNA-seq read counts*.
 
-## Session info
+### Session info {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-session-info}
 
 ```r
+sessionInfo()
 ```
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — chapter index
+### See also — chapter index {#sec-chapters-12-bioinformatics-labs-lab-rna-seq-with-deseq2-edger-see-also-chapter-index}
 
-- [Methods in this chapter](../index.Rmd)
-- [Find your method (Chapter 0)](../../../ch00-find-your-method.Rmd)
+- [Methods in this chapter](#sec-ch-12-bioinformatics)
+- [Find your method (Chapter 0)](#sec-find-your-method)
 
 <!-- END see-also -->

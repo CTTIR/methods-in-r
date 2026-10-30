@@ -1,12 +1,14 @@
-## Introduction
+## Quantile Regression {#sec-chapters-07-regression-quantile-regression}
+
+### Introduction {#sec-chapters-07-regression-quantile-regression-introduction}
 
 Quantile regression estimates a chosen conditional quantile of the outcome (median, lower percentile, upper percentile) rather than the conditional mean. The result is a richer description of how covariates affect the outcome distribution: the same covariate may have a different effect at the 10th percentile (where it shifts the lower tail) than at the 90th (where it shifts the upper tail). Median regression is the L1 alternative to OLS and robust to outliers; multi-quantile fits expose heteroscedasticity and asymmetric effects that mean regression hides.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-07-regression-quantile-regression-prerequisites}
 
 A working understanding of linear regression, conditional quantiles, and the difference between modelling the mean versus the median or other percentiles of a distribution.
 
-## Theory
+### Theory {#sec-chapters-07-regression-quantile-regression-theory}
 
 Mean regression minimises squared residuals; quantile regression minimises an asymmetric absolute-value loss:
 
@@ -14,11 +16,11 @@ $$\sum_i \rho_\tau(y_i - x_i^\top \beta), \qquad \rho_\tau(u) = u(\tau - \mathbf
 
 Setting $\tau = 0.5$ gives median regression. The objective is convex but non-differentiable; standard solvers use linear programming. Standard errors come from rank-based or bootstrap methods. Inference at multiple $\tau$ values produces a quantile process — the trajectory of each coefficient as $\tau$ varies — which is the most informative summary of how covariates shift the conditional distribution.
 
-## Assumptions
+### Assumptions {#sec-chapters-07-regression-quantile-regression-assumptions}
 
 Fewer than OLS: independence and correct specification at the chosen quantile. No Normality, no homoscedasticity, no constant variance assumption. The robustness comes from the bounded influence of any single observation.
 
-## R Implementation
+### R Implementation {#sec-chapters-07-regression-quantile-regression-r-implementation}
 
 ```r
 library(quantreg)
@@ -37,15 +39,15 @@ coef(fit_lm)
 coef(rq(mpg ~ wt, data = mtcars, tau = 0.5))
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-07-regression-quantile-regression-output-results}
 
 `rq()` returns coefficient estimates per requested $\tau$ with rank-based standard errors. The `plot(summary())` method shows each coefficient as a function of $\tau$, with confidence bands — the canonical visualisation of how covariate effects shift across the conditional distribution.
 
-## Interpretation
+### Interpretation {#sec-chapters-07-regression-quantile-regression-interpretation}
 
 A reporting sentence: "Quantile regression of mpg on weight at five quantiles ($\tau \in \{0.1, 0.25, 0.5, 0.75, 0.9\}$) showed that each 1000-lb increase in weight reduced mpg by 6.8 at the 10th percentile, 5.7 at the median, and 4.2 at the 90th percentile (all $p < 0.001$); the gradient indicates heteroscedasticity that ordinary mean regression would obscure." Always plot the quantile process when reporting multi-$\tau$ results; it communicates more than a coefficient table.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-07-regression-quantile-regression-practical-tips}
 
 - Median regression ($\tau = 0.5$) is the L1 alternative to OLS and robust to outliers; reach for it when residual diagnostics show heavy tails.
 - Multi-quantile fits expose heteroscedasticity and distributional shape changes; report at least three quantiles ($\tau \in \{0.25, 0.5, 0.75\}$) to characterise the conditional distribution.
@@ -54,46 +56,43 @@ A reporting sentence: "Quantile regression of mpg on weight at five quantiles ($
 - For longitudinal or clustered data, `lqmm::lqmm()` or `qrLMM::QRLMM()` extend quantile regression to mixed-effects.
 - Quantile regression does not require homoscedasticity and is often more informative than OLS plus robust SEs for heteroscedastic data.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-07-regression-quantile-regression-r-packages-used}
 
 `quantreg` for `rq()`, `rqss()`, and bootstrap SEs; `lqmm` for linear quantile mixed-effects models; `qrLMM` for quantile regression in linear mixed models with random intercepts; `quantregForest` for random-forest extensions to quantile prediction.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-07-regression-quantile-regression-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-07-regression-quantile-regression-assumptions) and
+[practical tips](#sec-chapters-07-regression-quantile-regression-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-07-regression-quantile-regression-see-also-labs-in-this-chapter}
 
-- [Correlation vs regression; Model-I/II regression](labs/lab-correlation-vs-regression-model-i-ii-regression.Rmd)
-- [Simple linear regression](labs/lab-simple-linear-regression.Rmd)
-- [Multiple regression: confounding, interaction, centring](labs/lab-multiple-regression-confounding-interaction-centring.Rmd)
-- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](labs/lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif.Rmd)
-- [Robust regression, weighted LS, HC (sandwich) standard errors](labs/lab-robust-regression-weighted-ls-hc-sandwich-standard-errors.Rmd)
-- [One-way ANOVA and contrasts (emmeans)](labs/lab-one-way-anova-and-contrasts-emmeans.Rmd)
-- [Two-way / factorial ANOVA with interaction](labs/lab-two-way-factorial-anova-with-interaction.Rmd)
-- [RCBD and repeated measures → mixed models](labs/lab-rcbd-and-repeated-measures-mixed-models.Rmd)
-- [GAMs with mgcv](labs/lab-gams-with-mgcv.Rmd)
-- [Non-linear regression with nls](labs/lab-non-linear-regression-with-nls.Rmd)
-- [Logistic regression (binomial GLM)](labs/lab-logistic-regression-binomial-glm.Rmd)
-- [ANCOVA in RCTs (baseline adjustment)](labs/lab-ancova-in-rcts-baseline-adjustment.Rmd)
-- [Ordinal and multinomial regression](labs/lab-ordinal-and-multinomial-regression.Rmd)
-- [Poisson and negative-binomial regression](labs/lab-poisson-and-negative-binomial-regression.Rmd)
-- [Calibration, discrimination, ROC/AUC, Brier score](labs/lab-calibration-discrimination-roc-auc-brier-score.Rmd)
-- [Dichotomisation, change scores, regression to the mean](labs/lab-dichotomisation-change-scores-regression-to-the-mean.Rmd)
-- [Decision curves, NRI, IDI](labs/lab-decision-curves-nri-idi.Rmd)
+- [Correlation vs regression; Model-I/II regression](#sec-chapters-07-regression-labs-lab-correlation-vs-regression-model-i-ii-regression)
+- [Simple linear regression](#sec-chapters-07-regression-labs-lab-simple-linear-regression)
+- [Multiple regression: confounding, interaction, centring](#sec-chapters-07-regression-labs-lab-multiple-regression-confounding-interaction-centring)
+- [Diagnostics: residuals, QQ, leverage, Cook's distance, VIF](#sec-chapters-07-regression-labs-lab-diagnostics-residuals-qq-leverage-cook-s-distance-vif)
+- [Robust regression, weighted LS, HC (sandwich) standard errors](#sec-chapters-07-regression-labs-lab-robust-regression-weighted-ls-hc-sandwich-standard-errors)
+- [One-way ANOVA and contrasts (emmeans)](#sec-chapters-07-regression-labs-lab-one-way-anova-and-contrasts-emmeans)
+- [Two-way / factorial ANOVA with interaction](#sec-chapters-07-regression-labs-lab-two-way-factorial-anova-with-interaction)
+- [RCBD and repeated measures → mixed models](#sec-chapters-07-regression-labs-lab-rcbd-and-repeated-measures-mixed-models)
+- [GAMs with mgcv](#sec-chapters-07-regression-labs-lab-gams-with-mgcv)
+- [Non-linear regression with nls](#sec-chapters-07-regression-labs-lab-non-linear-regression-with-nls)
+- [Logistic regression (binomial GLM)](#sec-chapters-07-regression-labs-lab-logistic-regression-binomial-glm)
+- [ANCOVA in RCTs (baseline adjustment)](#sec-chapters-07-regression-labs-lab-ancova-in-rcts-baseline-adjustment)
+- [Ordinal and multinomial regression](#sec-chapters-07-regression-labs-lab-ordinal-and-multinomial-regression)
+- [Poisson and negative-binomial regression](#sec-chapters-07-regression-labs-lab-poisson-and-negative-binomial-regression)
+- [Calibration, discrimination, ROC/AUC, Brier score](#sec-chapters-07-regression-labs-lab-calibration-discrimination-roc-auc-brier-score)
+- [Dichotomisation, change scores, regression to the mean](#sec-chapters-07-regression-labs-lab-dichotomisation-change-scores-regression-to-the-mean)
+- [Decision curves, NRI, IDI](#sec-chapters-07-regression-labs-lab-decision-curves-nri-idi)
 
 <!-- END see-also -->

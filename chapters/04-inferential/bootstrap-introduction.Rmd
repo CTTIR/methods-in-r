@@ -1,12 +1,14 @@
-## Introduction
+## The Bootstrap: Introduction {#sec-chapters-04-inferential-bootstrap-introduction}
+
+### Introduction {#sec-chapters-04-inferential-bootstrap-introduction-introduction}
 
 The **bootstrap** approximates the sampling distribution of a statistic by repeatedly resampling from the observed data with replacement and recomputing the statistic each time. Introduced by Efron in 1979, it is a general-purpose tool for standard errors, bias estimates, and confidence intervals when analytical formulas are absent or unreliable.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-04-inferential-bootstrap-introduction-prerequisites}
 
 Sampling distributions, standard errors.
 
-## Theory
+### Theory {#sec-chapters-04-inferential-bootstrap-introduction-theory}
 
 Given a sample $\mathbf{X} = (X_1, \ldots, X_n)$ and a statistic $\hat{\theta} = T(\mathbf{X})$, the bootstrap:
 
@@ -18,14 +20,14 @@ From this distribution: SE, bias, percentile or BCa confidence intervals, hypoth
 
 **Validity** rests on the bootstrap-principle analogy: the relationship between $\hat{\theta}$ and the true $\theta$ is well-approximated by the relationship between $\hat{\theta}^*$ and $\hat{\theta}$.
 
-## Assumptions
+### Assumptions {#sec-chapters-04-inferential-bootstrap-introduction-assumptions}
 
 - iid observations (or an extension for dependent data).
 - The statistic is a smooth function of the empirical distribution.
 
 Bootstrap fails for extreme quantiles (e.g., the sample maximum) and for heavy-tailed distributions without finite variance.
 
-## R Implementation
+### R Implementation {#sec-chapters-04-inferential-bootstrap-introduction-r-implementation}
 
 ```r
 library(boot)
@@ -51,7 +53,7 @@ c(estimate = boot_out$t0,
   bias     = mean(boot_out$t) - boot_out$t0)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-04-inferential-bootstrap-introduction-output-results}
 
 ```
 ORDINARY NONPARAMETRIC BOOTSTRAP
@@ -69,11 +71,11 @@ Level     Percentile                   BCa
 
 Observed CV = 0.77 with bootstrap SE 0.08. The BCa CI (0.62, 0.94) accounts for skew and bias in the bootstrap distribution.
 
-## Interpretation
+### Interpretation {#sec-chapters-04-inferential-bootstrap-introduction-interpretation}
 
 "The coefficient of variation was 0.77 (bootstrap SE = 0.08; 95 % BCa CI 0.62 to 0.94 based on 5000 bootstrap resamples)."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-04-inferential-bootstrap-introduction-practical-tips}
 
 - Use BCa intervals by default; they correct for skewness and bias in the bootstrap distribution.
 - $B = 1000$ suffices for SEs; $B \geq 10000$ is recommended for accurate BCa CIs.
@@ -83,32 +85,29 @@ Observed CV = 0.77 with bootstrap SE 0.08. The BCa CI (0.62, 0.94) accounts for 
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-04-inferential-bootstrap-introduction-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-04-inferential-bootstrap-introduction-assumptions) and
+[practical tips](#sec-chapters-04-inferential-bootstrap-introduction-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-04-inferential-bootstrap-introduction-see-also-labs-in-this-chapter}
 
-- [Populations, samples, and the central limit theorem](labs/lab-populations-samples-and-the-central-limit-theorem.Rmd)
-- [Bootstrap and permutation tests](labs/lab-bootstrap-and-permutation-tests.Rmd)
-- [Maximum likelihood estimation](labs/lab-maximum-likelihood-estimation.Rmd)
-- [One-sample t-test and one-proportion test](labs/lab-one-sample-t-test-and-one-proportion-test.Rmd)
-- [Hypothesis testing, p-values, type I/II errors](labs/lab-hypothesis-testing-p-values-type-i-ii-errors.Rmd)
-- [Two-sample and paired t-tests](labs/lab-two-sample-and-paired-t-tests.Rmd)
-- [Two proportions, chi-square, risk and odds](labs/lab-two-proportions-chi-square-risk-and-odds.Rmd)
-- [Pearson and Spearman correlation](labs/lab-pearson-and-spearman-correlation.Rmd)
-- [Non-parametric tests](labs/lab-non-parametric-tests.Rmd)
+- [Populations, samples, and the central limit theorem](#sec-chapters-04-inferential-labs-lab-populations-samples-and-the-central-limit-theorem)
+- [Bootstrap and permutation tests](#sec-chapters-04-inferential-labs-lab-bootstrap-and-permutation-tests)
+- [Maximum likelihood estimation](#sec-chapters-04-inferential-labs-lab-maximum-likelihood-estimation)
+- [One-sample t-test and one-proportion test](#sec-chapters-04-inferential-labs-lab-one-sample-t-test-and-one-proportion-test)
+- [Hypothesis testing, p-values, type I/II errors](#sec-chapters-04-inferential-labs-lab-hypothesis-testing-p-values-type-i-ii-errors)
+- [Two-sample and paired t-tests](#sec-chapters-04-inferential-labs-lab-two-sample-and-paired-t-tests)
+- [Two proportions, chi-square, risk and odds](#sec-chapters-04-inferential-labs-lab-two-proportions-chi-square-risk-and-odds)
+- [Pearson and Spearman correlation](#sec-chapters-04-inferential-labs-lab-pearson-and-spearman-correlation)
+- [Non-parametric tests](#sec-chapters-04-inferential-labs-lab-non-parametric-tests)
 
 <!-- END see-also -->

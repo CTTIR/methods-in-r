@@ -1,4 +1,4 @@
-# Acknowledgments {-}
+# Acknowledgments {#sec-00-acknowledgments .unnumbered}
 
 This book is built with [bookdown](https://bookdown.org/) by Yihui Xie and the R Markdown community.
 The wider R ecosystem — base R, the tidyverse, and the many domain-specific packages cited in the body — is the foundation on which every chapter rests.
@@ -15,11 +15,11 @@ all editorial decisions, errors, and omissions remain the author's.
 
 <!-- TODO: name reviewers and contributors here once feedback is incorporated. -->
 
-## Inspiration {-}
+## Inspiration {#sec-00-acknowledgments-inspiration .unnumbered}
 
 The structural and pedagogical model for this book draws heavily on Mathias Harrer, Pim Cuijpers, Toshi A. Furukawa, and David D. Ebert's [_Doing Meta-Analysis with R: A Hands-On Guide_](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/) — both the book and its open-source repository at <https://github.com/MathiasHarrer/Doing-Meta-Analysis-in-R>. Their thorough, transparent, and beautifully laid-out bookdown setup — sidebar grouping, semantic callout boxes, the citation block, the dark/light toggle, MathJax-rendered formulas, downloadable BibTeX/RIS citations — set a clear standard for what a reproducible R-based research book can look like. Where the present book mirrors their conventions, it does so deliberately and gratefully. Where it diverges (colors, typography, individual icons), the divergence is cosmetic; the underlying craft is theirs to credit.
 
-## Use of LLM tools {-}
+## Use of LLM tools {#sec-00-acknowledgments-use-of-llm-tools .unnumbered}
 
 Portions of this book were prepared with assistance from large language model tooling for
 narrowly defined, non-authorial tasks: copyediting, prose smoothing, Markdown/LaTeX formatting,

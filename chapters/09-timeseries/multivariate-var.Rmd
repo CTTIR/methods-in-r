@@ -1,12 +1,14 @@
-## Introduction
+## Vector Autoregression (VAR) {#sec-chapters-09-timeseries-multivariate-var}
+
+### Introduction {#sec-chapters-09-timeseries-multivariate-var-introduction}
 
 Vector autoregression (VAR) is the multivariate generalisation of an autoregressive model: each variable in a $k$-variate time series depends linearly on lags of itself and lags of every other variable in the system. It is the workhorse of empirical macroeconomics, where modelling GDP, inflation, and interest rates jointly produces forecasts and impulse-response analyses that single-equation models cannot. Outside macro, VAR is the natural tool whenever multiple time series are believed to be jointly determined and forecasting all of them is the goal.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-09-timeseries-multivariate-var-prerequisites}
 
 A working understanding of univariate AR models, multivariate data, and the concept of system-wide forecasting and identification.
 
-## Theory
+### Theory {#sec-chapters-09-timeseries-multivariate-var-theory}
 
 A VAR($p$) model is
 
@@ -16,11 +18,11 @@ where $\mathbf y_t$ is a $k$-vector, $A_i$ are $k \times k$ coefficient matrices
 
 The VAR feeds three key downstream analyses: multi-step forecasts with system-coherent uncertainty bands, impulse-response functions that trace the dynamic effect of a shock to one variable through the system, and Granger-causality tests for predictive relationships among the variables.
 
-## Assumptions
+### Assumptions {#sec-chapters-09-timeseries-multivariate-var-assumptions}
 
 Stationary series (difference first if not, or use VECM for cointegrated I(1) series); independent, homoscedastic, jointly white-noise innovations; correctly specified lag order.
 
-## R Implementation
+### R Implementation {#sec-chapters-09-timeseries-multivariate-var-r-implementation}
 
 ```r
 library(vars)
@@ -36,15 +38,15 @@ fc <- predict(fit, n.ahead = 8)
 plot(fc)
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-09-timeseries-multivariate-var-output-results}
 
 `VARselect()` returns suggested lag orders by four information criteria; differing recommendations across criteria are common. `summary()` returns equation-by-equation coefficient tables. `predict()` produces multi-step forecasts with system-coherent confidence bands.
 
-## Interpretation
+### Interpretation {#sec-chapters-09-timeseries-multivariate-var-interpretation}
 
 A reporting sentence: "VARselect identified $p = 2$ as the AIC- and HQ-optimal lag order for the four-variate Canada series; the VAR(2) model produced eight-quarter forecasts with prediction intervals that widen from $\pm 0.5$ % at one quarter to $\pm 1.8$ % at eight, with the multivariate covariance structure preserving the empirical co-movements between employment, GDP, and inflation." Always state the lag selection criterion and the deterministic specification (constant, trend, or both).
 
-## Practical Tips
+### Practical Tips {#sec-chapters-09-timeseries-multivariate-var-practical-tips}
 
 - Select lag order by AIC, BIC, or HQ information criteria; differing recommendations are common, and the conservative HQ or BIC choice is usually preferable for forecasting.
 - Check residual cross-correlations with `serial.test(fit)`; significant off-diagonals indicate missed cross-series dynamics.
@@ -53,30 +55,27 @@ A reporting sentence: "VARselect identified $p = 2$ as the AIC- and HQ-optimal l
 - Forecast-error variance decompositions (`fevd(fit)`) partition forecast uncertainty across innovations; useful for understanding which variables drive forecast errors at each horizon.
 - For high-dimensional VARs ($k > 10$), use Bayesian VARs with Minnesota or stochastic-search variable-selection priors; reduced-form OLS becomes unstable.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-09-timeseries-multivariate-var-r-packages-used}
 
 `vars::VAR()`, `predict()`, `irf()`, `fevd()`, `causality()` for the canonical VAR workflow; `urca::ca.jo()` for cointegration tests as the precursor to VECM; `tsDyn::lineVar()` for an alternative implementation; `BVAR` for Bayesian VARs with hierarchical priors; `fable::VAR()` for the modern tidyverts interface.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-09-timeseries-multivariate-var-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-09-timeseries-multivariate-var-assumptions) and
+[practical tips](#sec-chapters-09-timeseries-multivariate-var-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-09-timeseries-multivariate-var-see-also-labs-in-this-chapter}
 
-- [Time series basics](labs/lab-time-series-basics.Rmd)
+- [Time series basics](#sec-chapters-09-timeseries-labs-lab-time-series-basics)
 
 <!-- END see-also -->

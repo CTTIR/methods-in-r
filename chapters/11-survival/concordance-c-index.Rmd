@@ -1,12 +1,14 @@
-## Introduction
+## Concordance and the C-Index {#sec-chapters-11-survival-concordance-c-index}
+
+### Introduction {#sec-chapters-11-survival-concordance-c-index-introduction}
 
 Harrell's concordance index (C-index) generalises the ROC AUC to censored survival data. It is the probability that, for a randomly chosen pair of subjects, the one with the higher model-predicted risk actually fails first. The C-index is therefore the headline measure of *discrimination* for any survival model — Cox regression, parametric survival, machine-learning predictors — and the default reporting standard alongside the model's coefficients in clinical prediction-model papers.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-11-survival-concordance-c-index-prerequisites}
 
 A working understanding of survival analysis, Cox regression, censoring, and the AUC for binary classifiers; familiarity with the distinction between calibration and discrimination.
 
-## Theory
+### Theory {#sec-chapters-11-survival-concordance-c-index-theory}
 
 Define a pair $(i, j)$ as *comparable* if it can be determined which subject failed first — at least one observed event with the other subject either failing later or surviving past the first failure. The C-index is the proportion of comparable pairs for which the higher predicted risk corresponds to the earlier observed event:
 
@@ -14,11 +16,11 @@ $$C = \mathrm{P}(\hat\eta_i > \hat\eta_j \mid T_i < T_j, \delta_i = 1).$$
 
 $C = 0.5$ corresponds to random ranking and $C = 1.0$ to perfect discrimination. Variants address specific limitations of Harrell's original index: Uno's C-statistic uses inverse-probability-of-censoring weights for unbiased estimation under heavy or non-uniform censoring; time-dependent AUCs (Heagerty, Uno) describe how discrimination changes across the follow-up period; the integrated Brier score is a complementary calibration-discrimination compound.
 
-## Assumptions
+### Assumptions {#sec-chapters-11-survival-concordance-c-index-assumptions}
 
 Risk scores come from a survival model whose linear predictor $\hat\eta = X\hat\beta$ is a meaningful ranking; the censoring mechanism is non-informative for Harrell's C and may be informative for Uno's C up to its weighting.
 
-## R Implementation
+### R Implementation {#sec-chapters-11-survival-concordance-c-index-r-implementation}
 
 ```r
 library(survival)
@@ -30,15 +32,15 @@ summary(fit)$concordance
 # Time-dependent c-index via survcomp or timeROC
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-11-survival-concordance-c-index-output-results}
 
 `summary(fit)$concordance` returns Harrell's C-index together with its standard error. For richer diagnostics, `survcomp::concordance.index()` adds bootstrap confidence intervals and `timeROC::timeROC()` returns time-dependent AUCs at user-specified landmarks.
 
-## Interpretation
+### Interpretation {#sec-chapters-11-survival-concordance-c-index-interpretation}
 
 A reporting sentence: "The Cox model achieved a Harrell's C-index of 0.63 (95 % CI 0.56 to 0.70) on the development data, indicating modest discrimination; on the held-out validation cohort the C-index dropped to 0.59, suggesting some optimism that the bootstrap procedure did not fully correct." Always pair the development-set C with an external or cross-validated estimate; in-sample concordance is optimistic.
 
-## Practical Tips
+### Practical Tips {#sec-chapters-11-survival-concordance-c-index-practical-tips}
 
 - $C > 0.7$ is conventionally considered acceptable for clinical use, $C > 0.8$ good; thresholds depend on the application and on what alternative classifiers achieve.
 - Use Uno's C-statistic (`survAUC::UnoC()`) when censoring is heavy or non-uniform; Harrell's C can be biased upward in those settings.
@@ -47,34 +49,30 @@ A reporting sentence: "The Cox model achieved a Harrell's C-index of 0.63 (95 % 
 - For external validation, compute the C-index on an independent dataset; a development-set C without validation should never be the only discrimination measure reported.
 - Pair discrimination (C-index) with calibration (calibration-in-the-large, calibration slope, Brier score); a model can rank well but predict poorly calibrated absolute probabilities.
 
-## R Packages Used
+### R Packages Used {#sec-chapters-11-survival-concordance-c-index-r-packages-used}
 
 `survival` for `coxph()` with built-in concordance computation; `survcomp` for `concordance.index()` and bootstrap CIs; `timeROC` for time-dependent AUCs; `pec` for prediction-error curves and integrated Brier scores; `riskRegression` for unified discrimination and calibration metrics.
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-11-survival-concordance-c-index-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-11-survival-concordance-c-index-assumptions) and [practical tips](#sec-chapters-11-survival-concordance-c-index-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-11-survival-concordance-c-index-see-also-labs-in-this-chapter}
 
-- [Survival primer: KM, log-rank, Cox PH](labs/lab-survival-primer-km-log-rank-cox-ph.Rmd)
-- [Time-varying covariates and immortal-time bias](labs/lab-time-varying-covariates-and-immortal-time-bias.Rmd)
-- [Competing risks and multistate models](labs/lab-competing-risks-and-multistate-models.Rmd)
-- [Survival ML (random survival forest, DeepSurv)](labs/lab-survival-ml-random-survival-forest-deepsurv.Rmd)
-- [Time-dependent Brier, IPA, external validation](labs/lab-time-dependent-brier-ipa-external-validation.Rmd)
+- [Survival primer: KM, log-rank, Cox PH](#sec-chapters-11-survival-labs-lab-survival-primer-km-log-rank-cox-ph)
+- [Time-varying covariates and immortal-time bias](#sec-chapters-11-survival-labs-lab-time-varying-covariates-and-immortal-time-bias)
+- [Competing risks and multistate models](#sec-chapters-11-survival-labs-lab-competing-risks-and-multistate-models)
+- [Survival ML (random survival forest, DeepSurv)](#sec-chapters-11-survival-labs-lab-survival-ml-random-survival-forest-deepsurv)
+- [Time-dependent Brier, IPA, external validation](#sec-chapters-11-survival-labs-lab-time-dependent-brier-ipa-external-validation)
 
 <!-- END see-also -->

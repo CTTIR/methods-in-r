@@ -1,10 +1,10 @@
-# TRIPOD-AI — prediction models
+# TRIPOD-AI — prediction models {#sec-reporting-tripod-ai}
 
 TRIPOD-AI — *Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis, AI extension* — covers prediction models, including those built with machine learning. The checklist is at <https://www.tripod-statement.org/>. The templates below cover model development, validation, calibration, and fairness reporting.
 
 This page contains **163 method-specific templates**. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.
 
-### A Complete mlr3 Workflow
+### A Complete mlr3 Workflow {#sec-reporting-tripod-ai-a-complete-mlr3-workflow}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -14,11 +14,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > A Complete mlr3 Workflow yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`mlr3-workflow` — For Reviewers](../chapters/13-ml/mlr3-workflow.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`mlr3-workflow` — For Reviewers](#sec-chapters-13-ml-mlr3-workflow-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### A Complete tidymodels Workflow
+### A Complete tidymodels Workflow {#sec-reporting-tripod-ai-a-complete-tidymodels-workflow}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -28,11 +28,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > A Complete tidymodels Workflow yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`tidymodels-workflow` — For Reviewers](../chapters/13-ml/tidymodels-workflow.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`tidymodels-workflow` — For Reviewers](#sec-chapters-13-ml-tidymodels-workflow-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Accelerated Failure Time Models
+### Accelerated Failure Time Models {#sec-reporting-tripod-ai-accelerated-failure-time-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -42,11 +42,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Accelerated Failure Time Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`accelerated-failure-time` — For Reviewers](../chapters/11-survival/accelerated-failure-time.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`accelerated-failure-time` — For Reviewers](#sec-chapters-11-survival-accelerated-failure-time-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Adaptive Trial Designs
+### Adaptive Trial Designs {#sec-reporting-tripod-ai-adaptive-trial-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -56,11 +56,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Adaptive Trial Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`adaptive-design` — For Reviewers](../chapters/14-clinical/adaptive-design.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`adaptive-design` — For Reviewers](#sec-chapters-14-clinical-adaptive-design-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Added-Variable Plots
+### Added-Variable Plots {#sec-reporting-tripod-ai-added-variable-plots}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -70,11 +70,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Added-Variable Plots yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`added-variable-plots` — For Reviewers](../chapters/07-regression/added-variable-plots.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`added-variable-plots` — For Reviewers](#sec-chapters-07-regression-added-variable-plots-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Alpha-Spending Functions
+### Alpha-Spending Functions {#sec-reporting-tripod-ai-alpha-spending-functions}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -84,11 +84,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Alpha-Spending Functions yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`alpha-spending` — For Reviewers](../chapters/14-clinical/alpha-spending.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`alpha-spending` — For Reviewers](#sec-chapters-14-clinical-alpha-spending-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Anomaly Detection
+### Anomaly Detection {#sec-reporting-tripod-ai-anomaly-detection}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -98,11 +98,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Anomaly Detection yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`anomaly-detection` — For Reviewers](../chapters/13-ml/anomaly-detection.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`anomaly-detection` — For Reviewers](#sec-chapters-13-ml-anomaly-detection-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Bagging
+### Bagging {#sec-reporting-tripod-ai-bagging}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -112,11 +112,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Bagging yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`bagging` — For Reviewers](../chapters/13-ml/bagging.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`bagging` — For Reviewers](#sec-chapters-13-ml-bagging-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Baseline Adjustment with ANCOVA
+### Baseline Adjustment with ANCOVA {#sec-reporting-tripod-ai-baseline-adjustment-with-ancova}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -126,11 +126,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Baseline Adjustment with ANCOVA yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`baseline-adjustment-ancova` — For Reviewers](../chapters/14-clinical/baseline-adjustment-ancova.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`baseline-adjustment-ancova` — For Reviewers](#sec-chapters-14-clinical-baseline-adjustment-ancova-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Best Subset Selection
+### Best Subset Selection {#sec-reporting-tripod-ai-best-subset-selection}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -140,11 +140,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Best Subset Selection yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`best-subset-selection` — For Reviewers](../chapters/07-regression/best-subset-selection.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`best-subset-selection` — For Reviewers](#sec-chapters-07-regression-best-subset-selection-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Beta Regression
+### Beta Regression {#sec-reporting-tripod-ai-beta-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -154,11 +154,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Beta Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`beta-regression` — For Reviewers](../chapters/07-regression/beta-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`beta-regression` — For Reviewers](#sec-chapters-07-regression-beta-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Bland-Altman Limits of Agreement
+### Bland-Altman Limits of Agreement {#sec-reporting-tripod-ai-bland-altman-limits-of-agreement}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -168,11 +168,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Bland-Altman Limits of Agreement yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`bland-altman-analysis` — For Reviewers](../chapters/14-clinical/bland-altman-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`bland-altman-analysis` — For Reviewers](#sec-chapters-14-clinical-bland-altman-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Blinding Procedures
+### Blinding Procedures {#sec-reporting-tripod-ai-blinding-procedures}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -182,11 +182,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Blinding Procedures yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`blinding-procedures` — For Reviewers](../chapters/14-clinical/blinding-procedures.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`blinding-procedures` — For Reviewers](#sec-chapters-14-clinical-blinding-procedures-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Block Randomisation
+### Block Randomisation {#sec-reporting-tripod-ai-block-randomisation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -196,11 +196,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Block Randomisation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`block-randomization` — For Reviewers](../chapters/14-clinical/block-randomization.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`block-randomization` — For Reviewers](#sec-chapters-14-clinical-block-randomization-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Calibration Plots
+### Calibration Plots {#sec-reporting-tripod-ai-calibration-plots}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -210,11 +210,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Calibration Plots yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`calibration-plots` — For Reviewers](../chapters/13-ml/calibration-plots.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`calibration-plots` — For Reviewers](#sec-chapters-13-ml-calibration-plots-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### CatBoost
+### CatBoost {#sec-reporting-tripod-ai-catboost}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -224,11 +224,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > CatBoost yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`catboost` — For Reviewers](../chapters/13-ml/catboost.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`catboost` — For Reviewers](#sec-chapters-13-ml-catboost-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Censoring Types
+### Censoring Types {#sec-reporting-tripod-ai-censoring-types}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -238,11 +238,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Censoring Types yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`censoring-types` — For Reviewers](../chapters/11-survival/censoring-types.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`censoring-types` — For Reviewers](#sec-chapters-11-survival-censoring-types-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Centring and Scaling Predictors
+### Centring and Scaling Predictors {#sec-reporting-tripod-ai-centring-and-scaling-predictors}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -252,11 +252,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Centring and Scaling Predictors yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`centered-scaled-predictors` — For Reviewers](../chapters/07-regression/centered-scaled-predictors.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`centered-scaled-predictors` — For Reviewers](#sec-chapters-07-regression-centered-scaled-predictors-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Checking Cox Assumptions
+### Checking Cox Assumptions {#sec-reporting-tripod-ai-checking-cox-assumptions}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -266,11 +266,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Checking Cox Assumptions yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cox-assumptions-check` — For Reviewers](../chapters/11-survival/cox-assumptions-check.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cox-assumptions-check` — For Reviewers](#sec-chapters-11-survival-cox-assumptions-check-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Class Weights for Imbalanced Data
+### Class Weights for Imbalanced Data {#sec-reporting-tripod-ai-class-weights-for-imbalanced-data}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -280,11 +280,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Class Weights for Imbalanced Data yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`class-weights-imbalanced` — For Reviewers](../chapters/13-ml/class-weights-imbalanced.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`class-weights-imbalanced` — For Reviewers](#sec-chapters-13-ml-class-weights-imbalanced-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Clinical Equivalence Trials
+### Clinical Equivalence Trials {#sec-reporting-tripod-ai-clinical-equivalence-trials}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -294,11 +294,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Clinical Equivalence Trials yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`equivalence-clinical` — For Reviewers](../chapters/14-clinical/equivalence-clinical.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`equivalence-clinical` — For Reviewers](#sec-chapters-14-clinical-equivalence-clinical-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cluster-Randomised Trials
+### Cluster-Randomised Trials {#sec-reporting-tripod-ai-cluster-randomised-trials}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -308,11 +308,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Cluster-Randomised Trials yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cluster-rct` — For Reviewers](../chapters/14-clinical/cluster-rct.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cluster-rct` — For Reviewers](#sec-chapters-14-clinical-cluster-rct-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cohen's Kappa
+### Cohen's Kappa {#sec-reporting-tripod-ai-cohen-s-kappa}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -322,11 +322,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Cohen's Kappa yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cohens-kappa` — For Reviewers](../chapters/14-clinical/cohens-kappa.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cohens-kappa` — For Reviewers](#sec-chapters-14-clinical-cohens-kappa-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Competing Risks: Cumulative Incidence
+### Competing Risks: Cumulative Incidence {#sec-reporting-tripod-ai-competing-risks-cumulative-incidence}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -336,11 +336,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Competing Risks: Cumulative Incidence yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`competing-risks-cif` — For Reviewers](../chapters/11-survival/competing-risks-cif.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`competing-risks-cif` — For Reviewers](#sec-chapters-11-survival-competing-risks-cif-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Concordance and the C-Index
+### Concordance and the C-Index {#sec-reporting-tripod-ai-concordance-and-the-c-index}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -350,11 +350,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Concordance and the C-Index yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`concordance-c-index` — For Reviewers](../chapters/11-survival/concordance-c-index.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`concordance-c-index` — For Reviewers](#sec-chapters-11-survival-concordance-c-index-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Conditional Power
+### Conditional Power {#sec-reporting-tripod-ai-conditional-power}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -364,11 +364,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Conditional Power yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`conditional-power` — For Reviewers](../chapters/14-clinical/conditional-power.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`conditional-power` — For Reviewers](#sec-chapters-14-clinical-conditional-power-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Conditional Survival
+### Conditional Survival {#sec-reporting-tripod-ai-conditional-survival}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -378,11 +378,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Conditional Survival yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`conditional-survival` — For Reviewers](../chapters/11-survival/conditional-survival.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`conditional-survival` — For Reviewers](#sec-chapters-11-survival-conditional-survival-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Contrasts in R
+### Contrasts in R {#sec-reporting-tripod-ai-contrasts-in-r}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -392,11 +392,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Contrasts in R yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`contrasts-in-r` — For Reviewers](../chapters/07-regression/contrasts-in-r.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`contrasts-in-r` — For Reviewers](#sec-chapters-07-regression-contrasts-in-r-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Convolutional Neural Networks: Introduction
+### Convolutional Neural Networks: Introduction {#sec-reporting-tripod-ai-convolutional-neural-networks-introduction}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -406,11 +406,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Convolutional Neural Networks: Introduction yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cnn-introduction` — For Reviewers](../chapters/13-ml/cnn-introduction.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cnn-introduction` — For Reviewers](#sec-chapters-13-ml-cnn-introduction-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cook's Distance
+### Cook's Distance {#sec-reporting-tripod-ai-cook-s-distance}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -420,11 +420,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Cook's Distance yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cooks-distance` — For Reviewers](../chapters/07-regression/cooks-distance.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cooks-distance` — For Reviewers](#sec-chapters-07-regression-cooks-distance-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cox Proportional Hazards Regression
+### Cox Proportional Hazards Regression {#sec-reporting-tripod-ai-cox-proportional-hazards-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -434,11 +434,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Cox Proportional Hazards Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cox-proportional-hazards` — For Reviewers](../chapters/11-survival/cox-proportional-hazards.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cox-proportional-hazards` — For Reviewers](#sec-chapters-11-survival-cox-proportional-hazards-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cox Regression as Regression
+### Cox Regression as Regression {#sec-reporting-tripod-ai-cox-regression-as-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -448,11 +448,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Cox Regression as Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`survival-regression-cox` — For Reviewers](../chapters/07-regression/survival-regression-cox.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`survival-regression-cox` — For Reviewers](#sec-chapters-07-regression-survival-regression-cox-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cross-Validation
+### Cross-Validation {#sec-reporting-tripod-ai-cross-validation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -462,11 +462,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Cross-Validation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cross-validation` — For Reviewers](../chapters/13-ml/cross-validation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cross-validation` — For Reviewers](#sec-chapters-13-ml-cross-validation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Crossover RCT Design
+### Crossover RCT Design {#sec-reporting-tripod-ai-crossover-rct-design}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -476,11 +476,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Crossover RCT Design yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`rct-design-crossover` — For Reviewers](../chapters/14-clinical/rct-design-crossover.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`rct-design-crossover` — For Reviewers](#sec-chapters-14-clinical-rct-design-crossover-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Cutpoint Selection
+### Cutpoint Selection {#sec-reporting-tripod-ai-cutpoint-selection}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -490,11 +490,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Cutpoint Selection yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`cutpoint-selection` — For Reviewers](../chapters/14-clinical/cutpoint-selection.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`cutpoint-selection` — For Reviewers](#sec-chapters-14-clinical-cutpoint-selection-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### DBSCAN as an ML Tool
+### DBSCAN as an ML Tool {#sec-reporting-tripod-ai-dbscan-as-an-ml-tool}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -504,11 +504,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > DBSCAN as an ML Tool yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`clustering-dbscan-ml` — For Reviewers](../chapters/13-ml/clustering-dbscan-ml.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`clustering-dbscan-ml` — For Reviewers](#sec-chapters-13-ml-clustering-dbscan-ml-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Decision Trees (CART)
+### Decision Trees (CART) {#sec-reporting-tripod-ai-decision-trees-cart}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -518,11 +518,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Decision Trees (CART) yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`decision-trees-cart` — For Reviewers](../chapters/13-ml/decision-trees-cart.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`decision-trees-cart` — For Reviewers](#sec-chapters-13-ml-decision-trees-cart-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Diagnostic Test Accuracy
+### Diagnostic Test Accuracy {#sec-reporting-tripod-ai-diagnostic-test-accuracy}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -532,11 +532,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Diagnostic Test Accuracy yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`diagnostic-accuracy` — For Reviewers](../chapters/14-clinical/diagnostic-accuracy.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`diagnostic-accuracy` — For Reviewers](#sec-chapters-14-clinical-diagnostic-accuracy-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Dirichlet Regression
+### Dirichlet Regression {#sec-reporting-tripod-ai-dirichlet-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -546,11 +546,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Dirichlet Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`dirichlet-regression` — For Reviewers](../chapters/07-regression/dirichlet-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`dirichlet-regression` — For Reviewers](#sec-chapters-07-regression-dirichlet-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Dropout and Early Stopping
+### Dropout and Early Stopping {#sec-reporting-tripod-ai-dropout-and-early-stopping}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -560,11 +560,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Dropout and Early Stopping yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`dropout-early-stopping` — For Reviewers](../chapters/13-ml/dropout-early-stopping.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`dropout-early-stopping` — For Reviewers](#sec-chapters-13-ml-dropout-early-stopping-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Dummy Coding
+### Dummy Coding {#sec-reporting-tripod-ai-dummy-coding}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -574,11 +574,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Dummy Coding yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`dummy-coding` — For Reviewers](../chapters/07-regression/dummy-coding.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`dummy-coding` — For Reviewers](#sec-chapters-07-regression-dummy-coding-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Effect (Deviation) Coding
+### Effect (Deviation) Coding {#sec-reporting-tripod-ai-effect-deviation-coding}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -588,11 +588,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Effect (Deviation) Coding yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`effect-coding` — For Reviewers](../chapters/07-regression/effect-coding.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`effect-coding` — For Reviewers](#sec-chapters-07-regression-effect-coding-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Elastic Net
+### Elastic Net {#sec-reporting-tripod-ai-elastic-net}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -602,11 +602,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Elastic Net yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`elastic-net` — For Reviewers](../chapters/07-regression/elastic-net.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`elastic-net` — For Reviewers](#sec-chapters-07-regression-elastic-net-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Extremely Randomised Trees
+### Extremely Randomised Trees {#sec-reporting-tripod-ai-extremely-randomised-trees}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -616,11 +616,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Extremely Randomised Trees yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`extremely-randomized-trees` — For Reviewers](../chapters/13-ml/extremely-randomized-trees.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`extremely-randomized-trees` — For Reviewers](#sec-chapters-13-ml-extremely-randomized-trees-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Factorial Trials
+### Factorial Trials {#sec-reporting-tripod-ai-factorial-trials}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -630,11 +630,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Factorial Trials yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`factorial-trial` — For Reviewers](../chapters/14-clinical/factorial-trial.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`factorial-trial` — For Reviewers](#sec-chapters-14-clinical-factorial-trial-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Feature Engineering
+### Feature Engineering {#sec-reporting-tripod-ai-feature-engineering}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -644,11 +644,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Feature Engineering yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`feature-engineering` — For Reviewers](../chapters/13-ml/feature-engineering.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`feature-engineering` — For Reviewers](#sec-chapters-13-ml-feature-engineering-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Feature Selection
+### Feature Selection {#sec-reporting-tripod-ai-feature-selection}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -658,11 +658,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Feature Selection yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`feature-selection` — For Reviewers](../chapters/13-ml/feature-selection.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`feature-selection` — For Reviewers](#sec-chapters-13-ml-feature-selection-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Feedforward Networks in torch
+### Feedforward Networks in torch {#sec-reporting-tripod-ai-feedforward-networks-in-torch}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -672,11 +672,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Feedforward Networks in torch yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`feedforward-networks-torch` — For Reviewers](../chapters/13-ml/feedforward-networks-torch.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`feedforward-networks-torch` — For Reviewers](#sec-chapters-13-ml-feedforward-networks-torch-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Fine-Gray Subdistribution Hazards
+### Fine-Gray Subdistribution Hazards {#sec-reporting-tripod-ai-fine-gray-subdistribution-hazards}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -686,11 +686,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Fine-Gray Subdistribution Hazards yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`fine-gray-regression` — For Reviewers](../chapters/11-survival/fine-gray-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`fine-gray-regression` — For Reviewers](#sec-chapters-11-survival-fine-gray-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Frailty Models
+### Frailty Models {#sec-reporting-tripod-ai-frailty-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -700,11 +700,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Frailty Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`frailty-models` — For Reviewers](../chapters/11-survival/frailty-models.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`frailty-models` — For Reviewers](#sec-chapters-11-survival-frailty-models-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### GAMMs: Additive Mixed Models
+### GAMMs: Additive Mixed Models {#sec-reporting-tripod-ai-gamms-additive-mixed-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -714,11 +714,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > GAMMs: Additive Mixed Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`gamm-additive-mixed` — For Reviewers](../chapters/07-regression/gamm-additive-mixed.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`gamm-additive-mixed` — For Reviewers](#sec-chapters-07-regression-gamm-additive-mixed-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### GAMs: Introduction
+### GAMs: Introduction {#sec-reporting-tripod-ai-gams-introduction}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -728,11 +728,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > GAMs: Introduction yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`gam-introduction` — For Reviewers](../chapters/07-regression/gam-introduction.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`gam-introduction` — For Reviewers](#sec-chapters-07-regression-gam-introduction-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Generalised Estimating Equations
+### Generalised Estimating Equations {#sec-reporting-tripod-ai-generalised-estimating-equations}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -742,11 +742,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Generalised Estimating Equations yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`generalized-estimating-equations` — For Reviewers](../chapters/07-regression/generalized-estimating-equations.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`generalized-estimating-equations` — For Reviewers](#sec-chapters-07-regression-generalized-estimating-equations-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### glmer: Generalised Mixed Models
+### glmer: Generalised Mixed Models {#sec-reporting-tripod-ai-glmer-generalised-mixed-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -756,11 +756,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > glmer: Generalised Mixed Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`glmer-generalized-mixed` — For Reviewers](../chapters/07-regression/glmer-generalized-mixed.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`glmer-generalized-mixed` — For Reviewers](#sec-chapters-07-regression-glmer-generalized-mixed-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Gradient Boosting
+### Gradient Boosting {#sec-reporting-tripod-ai-gradient-boosting}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -770,11 +770,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Gradient Boosting yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`gradient-boosting` — For Reviewers](../chapters/13-ml/gradient-boosting.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`gradient-boosting` — For Reviewers](#sec-chapters-13-ml-gradient-boosting-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Hazard, Survival, and Cumulative Hazard
+### Hazard, Survival, and Cumulative Hazard {#sec-reporting-tripod-ai-hazard-survival-and-cumulative-hazard}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -784,11 +784,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Hazard, Survival, and Cumulative Hazard yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`hazard-survival-cumulative` — For Reviewers](../chapters/11-survival/hazard-survival-cumulative.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`hazard-survival-cumulative` — For Reviewers](#sec-chapters-11-survival-hazard-survival-cumulative-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Hurdle Models
+### Hurdle Models {#sec-reporting-tripod-ai-hurdle-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -798,11 +798,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Hurdle Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`hurdle-models` — For Reviewers](../chapters/07-regression/hurdle-models.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`hurdle-models` — For Reviewers](#sec-chapters-07-regression-hurdle-models-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Interactions in Regression
+### Interactions in Regression {#sec-reporting-tripod-ai-interactions-in-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -812,11 +812,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Interactions in Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`interactions-in-regression` — For Reviewers](../chapters/07-regression/interactions-in-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`interactions-in-regression` — For Reviewers](#sec-chapters-07-regression-interactions-in-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Interim Analyses and Group Sequential Designs
+### Interim Analyses and Group Sequential Designs {#sec-reporting-tripod-ai-interim-analyses-and-group-sequential-designs}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -826,11 +826,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Interim Analyses and Group Sequential Designs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`interim-analysis-group-sequential` — For Reviewers](../chapters/14-clinical/interim-analysis-group-sequential.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`interim-analysis-group-sequential` — For Reviewers](#sec-chapters-14-clinical-interim-analysis-group-sequential-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Interval-Censored Data
+### Interval-Censored Data {#sec-reporting-tripod-ai-interval-censored-data}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -840,11 +840,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Interval-Censored Data yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`interval-censored-data` — For Reviewers](../chapters/11-survival/interval-censored-data.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`interval-censored-data` — For Reviewers](#sec-chapters-11-survival-interval-censored-data-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Intraclass Correlation Coefficient (ICC)
+### Intraclass Correlation Coefficient (ICC) {#sec-reporting-tripod-ai-intraclass-correlation-coefficient-icc}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -854,11 +854,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Intraclass Correlation Coefficient (ICC) yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`icc-continuous-agreement` — For Reviewers](../chapters/14-clinical/icc-continuous-agreement.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`icc-continuous-agreement` — For Reviewers](#sec-chapters-14-clinical-icc-continuous-agreement-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Isolation Forest
+### Isolation Forest {#sec-reporting-tripod-ai-isolation-forest}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -868,11 +868,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Isolation Forest yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`isolation-forest` — For Reviewers](../chapters/13-ml/isolation-forest.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`isolation-forest` — For Reviewers](#sec-chapters-13-ml-isolation-forest-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Isotonic Regression Calibration
+### Isotonic Regression Calibration {#sec-reporting-tripod-ai-isotonic-regression-calibration}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -882,11 +882,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Isotonic Regression Calibration yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`isotonic-regression` — For Reviewers](../chapters/13-ml/isotonic-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`isotonic-regression` — For Reviewers](#sec-chapters-13-ml-isotonic-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### ITT vs Per-Protocol Analysis
+### ITT vs Per-Protocol Analysis {#sec-reporting-tripod-ai-itt-vs-per-protocol-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -896,11 +896,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > ITT vs Per-Protocol Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`itt-vs-pp-analysis` — For Reviewers](../chapters/14-clinical/itt-vs-pp-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`itt-vs-pp-analysis` — For Reviewers](#sec-chapters-14-clinical-itt-vs-pp-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Joint Longitudinal-Survival Models
+### Joint Longitudinal-Survival Models {#sec-reporting-tripod-ai-joint-longitudinal-survival-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -910,11 +910,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Joint Longitudinal-Survival Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`joint-longitudinal-survival` — For Reviewers](../chapters/11-survival/joint-longitudinal-survival.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`joint-longitudinal-survival` — For Reviewers](#sec-chapters-11-survival-joint-longitudinal-survival-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### k-Means as an ML Tool
+### k-Means as an ML Tool {#sec-reporting-tripod-ai-k-means-as-an-ml-tool}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -924,11 +924,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > k-Means as an ML Tool yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`clustering-kmeans-ml` — For Reviewers](../chapters/13-ml/clustering-kmeans-ml.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`clustering-kmeans-ml` — For Reviewers](#sec-chapters-13-ml-clustering-kmeans-ml-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### k-Nearest Neighbours Classification
+### k-Nearest Neighbours Classification {#sec-reporting-tripod-ai-k-nearest-neighbours-classification}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -938,11 +938,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > k-Nearest Neighbours Classification yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`knn-classification` — For Reviewers](../chapters/13-ml/knn-classification.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`knn-classification` — For Reviewers](#sec-chapters-13-ml-knn-classification-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### k-Nearest Neighbours Regression
+### k-Nearest Neighbours Regression {#sec-reporting-tripod-ai-k-nearest-neighbours-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -952,11 +952,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > k-Nearest Neighbours Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`knn-regression` — For Reviewers](../chapters/13-ml/knn-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`knn-regression` — For Reviewers](#sec-chapters-13-ml-knn-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Kaplan-Meier Estimation
+### Kaplan-Meier Estimation {#sec-reporting-tripod-ai-kaplan-meier-estimation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -966,11 +966,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Kaplan-Meier Estimation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`kaplan-meier` — For Reviewers](../chapters/11-survival/kaplan-meier.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`kaplan-meier` — For Reviewers](#sec-chapters-11-survival-kaplan-meier-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Kernel SVMs
+### Kernel SVMs {#sec-reporting-tripod-ai-kernel-svms}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -980,11 +980,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Kernel SVMs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`svm-kernel` — For Reviewers](../chapters/13-ml/svm-kernel.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`svm-kernel` — For Reviewers](#sec-chapters-13-ml-svm-kernel-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Landmark Analysis
+### Landmark Analysis {#sec-reporting-tripod-ai-landmark-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -994,11 +994,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Landmark Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`landmark-analysis` — For Reviewers](../chapters/11-survival/landmark-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`landmark-analysis` — For Reviewers](#sec-chapters-11-survival-landmark-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Lasso Regression
+### Lasso Regression {#sec-reporting-tripod-ai-lasso-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1008,11 +1008,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Lasso Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`lasso-regression` — For Reviewers](../chapters/07-regression/lasso-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`lasso-regression` — For Reviewers](#sec-chapters-07-regression-lasso-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Left Truncation
+### Left Truncation {#sec-reporting-tripod-ai-left-truncation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1022,11 +1022,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Left Truncation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`left-truncation` — For Reviewers](../chapters/11-survival/left-truncation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`left-truncation` — For Reviewers](#sec-chapters-11-survival-left-truncation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Leverage and Influence
+### Leverage and Influence {#sec-reporting-tripod-ai-leverage-and-influence}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1036,11 +1036,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Leverage and Influence yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`leverage-influence` — For Reviewers](../chapters/07-regression/leverage-influence.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`leverage-influence` — For Reviewers](#sec-chapters-07-regression-leverage-influence-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### LightGBM
+### LightGBM {#sec-reporting-tripod-ai-lightgbm}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1050,11 +1050,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > LightGBM yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`lightgbm` — For Reviewers](../chapters/13-ml/lightgbm.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`lightgbm` — For Reviewers](#sec-chapters-13-ml-lightgbm-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Likelihood Ratios
+### Likelihood Ratios {#sec-reporting-tripod-ai-likelihood-ratios}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1064,11 +1064,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Likelihood Ratios yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`likelihood-ratios` — For Reviewers](../chapters/14-clinical/likelihood-ratios.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`likelihood-ratios` — For Reviewers](#sec-chapters-14-clinical-likelihood-ratios-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### LIME Explanations
+### LIME Explanations {#sec-reporting-tripod-ai-lime-explanations}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1078,11 +1078,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > LIME Explanations yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`lime-explanations` — For Reviewers](../chapters/13-ml/lime-explanations.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`lime-explanations` — For Reviewers](#sec-chapters-13-ml-lime-explanations-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Linear Discriminant as ML
+### Linear Discriminant as ML {#sec-reporting-tripod-ai-linear-discriminant-as-ml}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1092,11 +1092,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Linear Discriminant as ML yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`linear-discriminant-ml` — For Reviewers](../chapters/13-ml/linear-discriminant-ml.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`linear-discriminant-ml` — For Reviewers](#sec-chapters-13-ml-linear-discriminant-ml-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Linear Regression Assumptions
+### Linear Regression Assumptions {#sec-reporting-tripod-ai-linear-regression-assumptions}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1106,11 +1106,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Linear Regression Assumptions yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`regression-assumptions` — For Reviewers](../chapters/07-regression/regression-assumptions.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`regression-assumptions` — For Reviewers](#sec-chapters-07-regression-regression-assumptions-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Linear Support Vector Machines
+### Linear Support Vector Machines {#sec-reporting-tripod-ai-linear-support-vector-machines}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1120,11 +1120,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Linear Support Vector Machines yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`svm-linear` — For Reviewers](../chapters/13-ml/svm-linear.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`svm-linear` — For Reviewers](#sec-chapters-13-ml-svm-linear-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Log-Rank Test: Details
+### Log-Rank Test: Details {#sec-reporting-tripod-ai-log-rank-test-details}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1134,11 +1134,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Log-Rank Test: Details yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`log-rank-test-details` — For Reviewers](../chapters/11-survival/log-rank-test-details.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`log-rank-test-details` — For Reviewers](#sec-chapters-11-survival-log-rank-test-details-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Logistic Regression
+### Logistic Regression {#sec-reporting-tripod-ai-logistic-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1148,11 +1148,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Logistic Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`logistic-regression` — For Reviewers](../chapters/07-regression/logistic-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`logistic-regression` — For Reviewers](#sec-chapters-07-regression-logistic-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Logistic Regression as ML
+### Logistic Regression as ML {#sec-reporting-tripod-ai-logistic-regression-as-ml}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1162,11 +1162,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Logistic Regression as ML yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`logistic-regression-ml` — For Reviewers](../chapters/13-ml/logistic-regression-ml.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`logistic-regression-ml` — For Reviewers](#sec-chapters-13-ml-logistic-regression-ml-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Logistic Regression Diagnostics
+### Logistic Regression Diagnostics {#sec-reporting-tripod-ai-logistic-regression-diagnostics}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1176,11 +1176,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Logistic Regression Diagnostics yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`logistic-regression-diagnostics` — For Reviewers](../chapters/07-regression/logistic-regression-diagnostics.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`logistic-regression-diagnostics` — For Reviewers](#sec-chapters-07-regression-logistic-regression-diagnostics-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Minimisation Algorithm
+### Minimisation Algorithm {#sec-reporting-tripod-ai-minimisation-algorithm}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1190,11 +1190,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Minimisation Algorithm yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`minimization-algorithm` — For Reviewers](../chapters/14-clinical/minimization-algorithm.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`minimization-algorithm` — For Reviewers](#sec-chapters-14-clinical-minimization-algorithm-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Missing Data in RCTs
+### Missing Data in RCTs {#sec-reporting-tripod-ai-missing-data-in-rcts}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1204,11 +1204,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Missing Data in RCTs yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`missing-data-rct` — For Reviewers](../chapters/14-clinical/missing-data-rct.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`missing-data-rct` — For Reviewers](#sec-chapters-14-clinical-missing-data-rct-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Mixed-Effects Models: Introduction
+### Mixed-Effects Models: Introduction {#sec-reporting-tripod-ai-mixed-effects-models-introduction}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1218,11 +1218,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Mixed-Effects Models: Introduction yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`mixed-models-intro` — For Reviewers](../chapters/07-regression/mixed-models-intro.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`mixed-models-intro` — For Reviewers](#sec-chapters-07-regression-mixed-models-intro-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Model Selection with AIC and BIC
+### Model Selection with AIC and BIC {#sec-reporting-tripod-ai-model-selection-with-aic-and-bic}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1232,11 +1232,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Model Selection with AIC and BIC yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`model-selection-aic-bic` — For Reviewers](../chapters/07-regression/model-selection-aic-bic.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`model-selection-aic-bic` — For Reviewers](#sec-chapters-07-regression-model-selection-aic-bic-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Multi-State Models
+### Multi-State Models {#sec-reporting-tripod-ai-multi-state-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1246,11 +1246,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Multi-State Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`multi-state-models` — For Reviewers](../chapters/11-survival/multi-state-models.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`multi-state-models` — For Reviewers](#sec-chapters-11-survival-multi-state-models-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Multicollinearity and VIF
+### Multicollinearity and VIF {#sec-reporting-tripod-ai-multicollinearity-and-vif}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1260,11 +1260,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Multicollinearity and VIF yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`multicollinearity-vif` — For Reviewers](../chapters/07-regression/multicollinearity-vif.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`multicollinearity-vif` — For Reviewers](#sec-chapters-07-regression-multicollinearity-vif-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Multinomial Logistic Regression
+### Multinomial Logistic Regression {#sec-reporting-tripod-ai-multinomial-logistic-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1274,11 +1274,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Multinomial Logistic Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`multinomial-logistic` — For Reviewers](../chapters/07-regression/multinomial-logistic.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`multinomial-logistic` — For Reviewers](#sec-chapters-07-regression-multinomial-logistic-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Multiple Imputation
+### Multiple Imputation {#sec-reporting-tripod-ai-multiple-imputation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1288,11 +1288,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Multiple Imputation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`multiple-imputation` — For Reviewers](../chapters/14-clinical/multiple-imputation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`multiple-imputation` — For Reviewers](#sec-chapters-14-clinical-multiple-imputation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Multiple Linear Regression
+### Multiple Linear Regression {#sec-reporting-tripod-ai-multiple-linear-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1302,11 +1302,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Multiple Linear Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`multiple-linear-regression` — For Reviewers](../chapters/07-regression/multiple-linear-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`multiple-linear-regression` — For Reviewers](#sec-chapters-07-regression-multiple-linear-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Naive Bayes
+### Naive Bayes {#sec-reporting-tripod-ai-naive-bayes}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1316,11 +1316,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Naive Bayes yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`naive-bayes` — For Reviewers](../chapters/13-ml/naive-bayes.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`naive-bayes` — For Reviewers](#sec-chapters-13-ml-naive-bayes-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Negative Binomial Regression
+### Negative Binomial Regression {#sec-reporting-tripod-ai-negative-binomial-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1330,11 +1330,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Negative Binomial Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`negative-binomial-regression` — For Reviewers](../chapters/07-regression/negative-binomial-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`negative-binomial-regression` — For Reviewers](#sec-chapters-07-regression-negative-binomial-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Nested Cross-Validation
+### Nested Cross-Validation {#sec-reporting-tripod-ai-nested-cross-validation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1344,11 +1344,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Nested Cross-Validation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`nested-cv` — For Reviewers](../chapters/13-ml/nested-cv.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`nested-cv` — For Reviewers](#sec-chapters-13-ml-nested-cv-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Nested vs Crossed Random Effects
+### Nested vs Crossed Random Effects {#sec-reporting-tripod-ai-nested-vs-crossed-random-effects}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1358,11 +1358,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Nested vs Crossed Random Effects yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`nested-crossed-random-effects` — For Reviewers](../chapters/07-regression/nested-crossed-random-effects.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`nested-crossed-random-effects` — For Reviewers](#sec-chapters-07-regression-nested-crossed-random-effects-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Neural Networks: Introduction
+### Neural Networks: Introduction {#sec-reporting-tripod-ai-neural-networks-introduction}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1372,11 +1372,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Neural Networks: Introduction yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`neural-networks-intro` — For Reviewers](../chapters/13-ml/neural-networks-intro.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`neural-networks-intro` — For Reviewers](#sec-chapters-13-ml-neural-networks-intro-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Non-Inferiority Margin Selection
+### Non-Inferiority Margin Selection {#sec-reporting-tripod-ai-non-inferiority-margin-selection}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1386,11 +1386,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Non-Inferiority Margin Selection yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`non-inferiority-margin` — For Reviewers](../chapters/14-clinical/non-inferiority-margin.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`non-inferiority-margin` — For Reviewers](#sec-chapters-14-clinical-non-inferiority-margin-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### O'Brien-Fleming Boundary
+### O'Brien-Fleming Boundary {#sec-reporting-tripod-ai-o-brien-fleming-boundary}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1400,11 +1400,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > O'Brien-Fleming Boundary yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`obrien-fleming-boundary` — For Reviewers](../chapters/14-clinical/obrien-fleming-boundary.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`obrien-fleming-boundary` — For Reviewers](#sec-chapters-14-clinical-obrien-fleming-boundary-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Offsets in Regression
+### Offsets in Regression {#sec-reporting-tripod-ai-offsets-in-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1414,11 +1414,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Offsets in Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`offsets-in-regression` — For Reviewers](../chapters/07-regression/offsets-in-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`offsets-in-regression` — For Reviewers](#sec-chapters-07-regression-offsets-in-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Ordinal Logistic Regression
+### Ordinal Logistic Regression {#sec-reporting-tripod-ai-ordinal-logistic-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1428,11 +1428,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Ordinal Logistic Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`ordinal-logistic` — For Reviewers](../chapters/07-regression/ordinal-logistic.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`ordinal-logistic` — For Reviewers](#sec-chapters-07-regression-ordinal-logistic-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Parallel-Group RCT Design
+### Parallel-Group RCT Design {#sec-reporting-tripod-ai-parallel-group-rct-design}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1442,11 +1442,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Parallel-Group RCT Design yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`rct-design-parallel` — For Reviewers](../chapters/14-clinical/rct-design-parallel.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`rct-design-parallel` — For Reviewers](#sec-chapters-14-clinical-rct-design-parallel-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Parametric Survival: Log-Normal
+### Parametric Survival: Log-Normal {#sec-reporting-tripod-ai-parametric-survival-log-normal}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1456,11 +1456,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Parametric Survival: Log-Normal yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`parametric-survival-lognormal` — For Reviewers](../chapters/11-survival/parametric-survival-lognormal.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`parametric-survival-lognormal` — For Reviewers](#sec-chapters-11-survival-parametric-survival-lognormal-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Parametric Survival: Weibull
+### Parametric Survival: Weibull {#sec-reporting-tripod-ai-parametric-survival-weibull}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1470,11 +1470,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Parametric Survival: Weibull yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`parametric-survival-weibull` — For Reviewers](../chapters/11-survival/parametric-survival-weibull.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`parametric-survival-weibull` — For Reviewers](#sec-chapters-11-survival-parametric-survival-weibull-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Partial Correlation
+### Partial Correlation {#sec-reporting-tripod-ai-partial-correlation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1484,11 +1484,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Partial Correlation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`partial-correlation` — For Reviewers](../chapters/07-regression/partial-correlation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`partial-correlation` — For Reviewers](#sec-chapters-07-regression-partial-correlation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Partial Dependence Plots
+### Partial Dependence Plots {#sec-reporting-tripod-ai-partial-dependence-plots}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1498,11 +1498,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Partial Dependence Plots yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`partial-dependence-plots` — For Reviewers](../chapters/13-ml/partial-dependence-plots.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`partial-dependence-plots` — For Reviewers](#sec-chapters-13-ml-partial-dependence-plots-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Platt Scaling
+### Platt Scaling {#sec-reporting-tripod-ai-platt-scaling}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1512,11 +1512,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Platt Scaling yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`platt-scaling` — For Reviewers](../chapters/13-ml/platt-scaling.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`platt-scaling` — For Reviewers](#sec-chapters-13-ml-platt-scaling-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Pocock Boundary
+### Pocock Boundary {#sec-reporting-tripod-ai-pocock-boundary}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1526,11 +1526,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Pocock Boundary yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`pocock-boundary` — For Reviewers](../chapters/14-clinical/pocock-boundary.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`pocock-boundary` — For Reviewers](#sec-chapters-14-clinical-pocock-boundary-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Poisson Regression
+### Poisson Regression {#sec-reporting-tripod-ai-poisson-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1540,11 +1540,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Poisson Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`poisson-regression` — For Reviewers](../chapters/07-regression/poisson-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`poisson-regression` — For Reviewers](#sec-chapters-07-regression-poisson-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Polynomial Regression
+### Polynomial Regression {#sec-reporting-tripod-ai-polynomial-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1554,11 +1554,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Polynomial Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`polynomial-regression` — For Reviewers](../chapters/07-regression/polynomial-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`polynomial-regression` — For Reviewers](#sec-chapters-07-regression-polynomial-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Predictive Values and Prevalence
+### Predictive Values and Prevalence {#sec-reporting-tripod-ai-predictive-values-and-prevalence}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1568,11 +1568,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Predictive Values and Prevalence yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`predictive-values-prevalence` — For Reviewers](../chapters/14-clinical/predictive-values-prevalence.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`predictive-values-prevalence` — For Reviewers](#sec-chapters-14-clinical-predictive-values-prevalence-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Preprocessing with recipes
+### Preprocessing with recipes {#sec-reporting-tripod-ai-preprocessing-with-recipes}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1582,11 +1582,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Preprocessing with recipes yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`recipes-preprocessing` — For Reviewers](../chapters/13-ml/recipes-preprocessing.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`recipes-preprocessing` — For Reviewers](#sec-chapters-13-ml-recipes-preprocessing-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Probit Regression
+### Probit Regression {#sec-reporting-tripod-ai-probit-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1596,11 +1596,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Probit Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`probit-regression` — For Reviewers](../chapters/07-regression/probit-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`probit-regression` — For Reviewers](#sec-chapters-07-regression-probit-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Quantile Regression
+### Quantile Regression {#sec-reporting-tripod-ai-quantile-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1610,11 +1610,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Quantile Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`quantile-regression` — For Reviewers](../chapters/07-regression/quantile-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`quantile-regression` — For Reviewers](#sec-chapters-07-regression-quantile-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Quasi-Poisson Regression
+### Quasi-Poisson Regression {#sec-reporting-tripod-ai-quasi-poisson-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1624,11 +1624,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Quasi-Poisson Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`quasi-poisson` — For Reviewers](../chapters/07-regression/quasi-poisson.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`quasi-poisson` — For Reviewers](#sec-chapters-07-regression-quasi-poisson-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### R-Squared and Adjusted R-Squared
+### R-Squared and Adjusted R-Squared {#sec-reporting-tripod-ai-r-squared-and-adjusted-r-squared}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1638,11 +1638,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > R-Squared and Adjusted R-Squared yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`r-squared-adjusted` — For Reviewers](../chapters/07-regression/r-squared-adjusted.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`r-squared-adjusted` — For Reviewers](#sec-chapters-07-regression-r-squared-adjusted-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Random Forests
+### Random Forests {#sec-reporting-tripod-ai-random-forests}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1652,11 +1652,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Random Forests yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`random-forest` — For Reviewers](../chapters/13-ml/random-forest.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`random-forest` — For Reviewers](#sec-chapters-13-ml-random-forest-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Random-Intercept Models
+### Random-Intercept Models {#sec-reporting-tripod-ai-random-intercept-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1666,11 +1666,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Random-Intercept Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`random-intercepts` — For Reviewers](../chapters/07-regression/random-intercepts.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`random-intercepts` — For Reviewers](#sec-chapters-07-regression-random-intercepts-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Random-Slope Models
+### Random-Slope Models {#sec-reporting-tripod-ai-random-slope-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1680,11 +1680,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Random-Slope Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`random-slopes` — For Reviewers](../chapters/07-regression/random-slopes.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`random-slopes` — For Reviewers](#sec-chapters-07-regression-random-slopes-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Randomisation Methods
+### Randomisation Methods {#sec-reporting-tripod-ai-randomisation-methods}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1694,11 +1694,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Randomisation Methods yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`randomization-methods` — For Reviewers](../chapters/14-clinical/randomization-methods.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`randomization-methods` — For Reviewers](#sec-chapters-14-clinical-randomization-methods-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Recurrent Events
+### Recurrent Events {#sec-reporting-tripod-ai-recurrent-events}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1708,11 +1708,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Recurrent Events yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`recurrent-events` — For Reviewers](../chapters/11-survival/recurrent-events.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`recurrent-events` — For Reviewers](#sec-chapters-11-survival-recurrent-events-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Regularisation in ML
+### Regularisation in ML {#sec-reporting-tripod-ai-regularisation-in-ml}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1722,11 +1722,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Regularisation in ML yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`regularization-ridge-lasso-ml` — For Reviewers](../chapters/13-ml/regularization-ridge-lasso-ml.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`regularization-ridge-lasso-ml` — For Reviewers](#sec-chapters-13-ml-regularization-ridge-lasso-ml-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Reliability and Cronbach's Alpha
+### Reliability and Cronbach's Alpha {#sec-reporting-tripod-ai-reliability-and-cronbach-s-alpha}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1736,11 +1736,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Reliability and Cronbach's Alpha yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`reliability-cronbach-alpha` — For Reviewers](../chapters/14-clinical/reliability-cronbach-alpha.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`reliability-cronbach-alpha` — For Reviewers](#sec-chapters-14-clinical-reliability-cronbach-alpha-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Residual Diagnostics
+### Residual Diagnostics {#sec-reporting-tripod-ai-residual-diagnostics}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1750,11 +1750,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Residual Diagnostics yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`residual-diagnostics` — For Reviewers](../chapters/07-regression/residual-diagnostics.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`residual-diagnostics` — For Reviewers](#sec-chapters-07-regression-residual-diagnostics-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Restricted Mean Survival Time (RMST)
+### Restricted Mean Survival Time (RMST) {#sec-reporting-tripod-ai-restricted-mean-survival-time-rmst}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1764,11 +1764,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Restricted Mean Survival Time (RMST) yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`restricted-mean-survival-time` — For Reviewers](../chapters/11-survival/restricted-mean-survival-time.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`restricted-mean-survival-time` — For Reviewers](#sec-chapters-11-survival-restricted-mean-survival-time-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Ridge Regression
+### Ridge Regression {#sec-reporting-tripod-ai-ridge-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1778,11 +1778,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Ridge Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`ridge-regression` — For Reviewers](../chapters/07-regression/ridge-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`ridge-regression` — For Reviewers](#sec-chapters-07-regression-ridge-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### RNNs and LSTMs: Introduction
+### RNNs and LSTMs: Introduction {#sec-reporting-tripod-ai-rnns-and-lstms-introduction}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1792,11 +1792,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > RNNs and LSTMs: Introduction yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`rnn-lstm-intro` — For Reviewers](../chapters/13-ml/rnn-lstm-intro.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`rnn-lstm-intro` — For Reviewers](#sec-chapters-13-ml-rnn-lstm-intro-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Robust Regression
+### Robust Regression {#sec-reporting-tripod-ai-robust-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1806,11 +1806,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Robust Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`robust-regression` — For Reviewers](../chapters/07-regression/robust-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`robust-regression` — For Reviewers](#sec-chapters-07-regression-robust-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### ROC Analysis
+### ROC Analysis {#sec-reporting-tripod-ai-roc-analysis}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1820,11 +1820,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > ROC Analysis yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`roc-analysis` — For Reviewers](../chapters/14-clinical/roc-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`roc-analysis` — For Reviewers](#sec-chapters-14-clinical-roc-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### ROC and AUC for Logistic Models
+### ROC and AUC for Logistic Models {#sec-reporting-tripod-ai-roc-and-auc-for-logistic-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1834,11 +1834,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > ROC and AUC for Logistic Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`roc-auc-for-logistic` — For Reviewers](../chapters/07-regression/roc-auc-for-logistic.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`roc-auc-for-logistic` — For Reviewers](#sec-chapters-07-regression-roc-auc-for-logistic-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Royston-Parmar Flexible Parametric Models
+### Royston-Parmar Flexible Parametric Models {#sec-reporting-tripod-ai-royston-parmar-flexible-parametric-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1848,11 +1848,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Royston-Parmar Flexible Parametric Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`flexible-parametric-royston-parmar` — For Reviewers](../chapters/11-survival/flexible-parametric-royston-parmar.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`flexible-parametric-royston-parmar` — For Reviewers](#sec-chapters-11-survival-flexible-parametric-royston-parmar-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Sample Size Re-Estimation
+### Sample Size Re-Estimation {#sec-reporting-tripod-ai-sample-size-re-estimation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1862,11 +1862,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Sample Size Re-Estimation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`sample-size-reestimation` — For Reviewers](../chapters/14-clinical/sample-size-reestimation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`sample-size-reestimation` — For Reviewers](#sec-chapters-14-clinical-sample-size-reestimation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Schoenfeld Residuals
+### Schoenfeld Residuals {#sec-reporting-tripod-ai-schoenfeld-residuals}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1876,11 +1876,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Schoenfeld Residuals yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`schoenfeld-residuals` — For Reviewers](../chapters/11-survival/schoenfeld-residuals.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`schoenfeld-residuals` — For Reviewers](#sec-chapters-11-survival-schoenfeld-residuals-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Sensitivity Analyses in Clinical Trials
+### Sensitivity Analyses in Clinical Trials {#sec-reporting-tripod-ai-sensitivity-analyses-in-clinical-trials}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1890,11 +1890,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Sensitivity Analyses in Clinical Trials yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`sensitivity-analysis-clinical` — For Reviewers](../chapters/14-clinical/sensitivity-analysis-clinical.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`sensitivity-analysis-clinical` — For Reviewers](#sec-chapters-14-clinical-sensitivity-analysis-clinical-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### SHAP Values
+### SHAP Values {#sec-reporting-tripod-ai-shap-values}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1904,11 +1904,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > SHAP Values yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`shap-values` — For Reviewers](../chapters/13-ml/shap-values.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`shap-values` — For Reviewers](#sec-chapters-13-ml-shap-values-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Simple Linear Regression
+### Simple Linear Regression {#sec-reporting-tripod-ai-simple-linear-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1918,11 +1918,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Simple Linear Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`simple-linear-regression` — For Reviewers](../chapters/07-regression/simple-linear-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`simple-linear-regression` — For Reviewers](#sec-chapters-07-regression-simple-linear-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Simulating Survival Data
+### Simulating Survival Data {#sec-reporting-tripod-ai-simulating-survival-data}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1932,11 +1932,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Simulating Survival Data yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`survival-simulation` — For Reviewers](../chapters/11-survival/survival-simulation.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`survival-simulation` — For Reviewers](#sec-chapters-11-survival-survival-simulation-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### SMOTE for Imbalanced Classes
+### SMOTE for Imbalanced Classes {#sec-reporting-tripod-ai-smote-for-imbalanced-classes}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1946,11 +1946,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > SMOTE for Imbalanced Classes yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`smote-imbalanced` — For Reviewers](../chapters/13-ml/smote-imbalanced.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`smote-imbalanced` — For Reviewers](#sec-chapters-13-ml-smote-imbalanced-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Spline Regression
+### Spline Regression {#sec-reporting-tripod-ai-spline-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1960,11 +1960,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Spline Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`spline-regression` — For Reviewers](../chapters/07-regression/spline-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`spline-regression` — For Reviewers](#sec-chapters-07-regression-spline-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Stacking Ensembles
+### Stacking Ensembles {#sec-reporting-tripod-ai-stacking-ensembles}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1974,11 +1974,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Stacking Ensembles yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`stacking-ensembles` — For Reviewers](../chapters/13-ml/stacking-ensembles.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`stacking-ensembles` — For Reviewers](#sec-chapters-13-ml-stacking-ensembles-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Stepped-Wedge Trial
+### Stepped-Wedge Trial {#sec-reporting-tripod-ai-stepped-wedge-trial}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -1988,11 +1988,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Stepped-Wedge Trial yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`stepped-wedge-trial` — For Reviewers](../chapters/14-clinical/stepped-wedge-trial.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`stepped-wedge-trial` — For Reviewers](#sec-chapters-14-clinical-stepped-wedge-trial-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Stepwise Regression: Pitfalls
+### Stepwise Regression: Pitfalls {#sec-reporting-tripod-ai-stepwise-regression-pitfalls}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2002,11 +2002,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Stepwise Regression: Pitfalls yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`stepwise-regression-pitfalls` — For Reviewers](../chapters/07-regression/stepwise-regression-pitfalls.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`stepwise-regression-pitfalls` — For Reviewers](#sec-chapters-07-regression-stepwise-regression-pitfalls-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Stratified Cox Models
+### Stratified Cox Models {#sec-reporting-tripod-ai-stratified-cox-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2016,11 +2016,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Stratified Cox Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`stratified-cox` — For Reviewers](../chapters/11-survival/stratified-cox.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`stratified-cox` — For Reviewers](#sec-chapters-11-survival-stratified-cox-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Stratified Randomisation
+### Stratified Randomisation {#sec-reporting-tripod-ai-stratified-randomisation}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2030,11 +2030,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Stratified Randomisation yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`stratified-randomization` — For Reviewers](../chapters/14-clinical/stratified-randomization.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`stratified-randomization` — For Reviewers](#sec-chapters-14-clinical-stratified-randomization-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Subgroup Analyses
+### Subgroup Analyses {#sec-reporting-tripod-ai-subgroup-analyses}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2044,11 +2044,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Subgroup Analyses yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`subgroup-analysis` — For Reviewers](../chapters/14-clinical/subgroup-analysis.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`subgroup-analysis` — For Reviewers](#sec-chapters-14-clinical-subgroup-analysis-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Subgroup Forest Plots
+### Subgroup Forest Plots {#sec-reporting-tripod-ai-subgroup-forest-plots}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2058,11 +2058,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Subgroup Forest Plots yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`forest-plot-subgroup` — For Reviewers](../chapters/14-clinical/forest-plot-subgroup.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`forest-plot-subgroup` — For Reviewers](#sec-chapters-14-clinical-forest-plot-subgroup-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Supervised Learning: Overview
+### Supervised Learning: Overview {#sec-reporting-tripod-ai-supervised-learning-overview}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2072,11 +2072,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Supervised Learning: Overview yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`supervised-learning-overview` — For Reviewers](../chapters/13-ml/supervised-learning-overview.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`supervised-learning-overview` — For Reviewers](#sec-chapters-13-ml-supervised-learning-overview-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### The Bias-Variance Tradeoff
+### The Bias-Variance Tradeoff {#sec-reporting-tripod-ai-the-bias-variance-tradeoff}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2086,11 +2086,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > The Bias-Variance Tradeoff yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`bias-variance-tradeoff` — For Reviewers](../chapters/13-ml/bias-variance-tradeoff.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`bias-variance-tradeoff` — For Reviewers](#sec-chapters-13-ml-bias-variance-tradeoff-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### The Brier Score for Survival
+### The Brier Score for Survival {#sec-reporting-tripod-ai-the-brier-score-for-survival}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2100,11 +2100,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > The Brier Score for Survival yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`brier-score-survival` — For Reviewers](../chapters/11-survival/brier-score-survival.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`brier-score-survival` — For Reviewers](#sec-chapters-11-survival-brier-score-survival-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### The Nelson-Aalen Estimator
+### The Nelson-Aalen Estimator {#sec-reporting-tripod-ai-the-nelson-aalen-estimator}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2114,11 +2114,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > The Nelson-Aalen Estimator yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`nelson-aalen-estimator` — For Reviewers](../chapters/11-survival/nelson-aalen-estimator.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`nelson-aalen-estimator` — For Reviewers](#sec-chapters-11-survival-nelson-aalen-estimator-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Time-Dependent ROC
+### Time-Dependent ROC {#sec-reporting-tripod-ai-time-dependent-roc}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2128,11 +2128,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Time-Dependent ROC yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`time-dependent-roc` — For Reviewers](../chapters/11-survival/time-dependent-roc.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`time-dependent-roc` — For Reviewers](#sec-chapters-11-survival-time-dependent-roc-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Time-Varying Covariates
+### Time-Varying Covariates {#sec-reporting-tripod-ai-time-varying-covariates}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2142,11 +2142,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Time-Varying Covariates yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`time-varying-covariates` — For Reviewers](../chapters/11-survival/time-varying-covariates.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`time-varying-covariates` — For Reviewers](#sec-chapters-11-survival-time-varying-covariates-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Tobit Regression
+### Tobit Regression {#sec-reporting-tripod-ai-tobit-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2156,11 +2156,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Tobit Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`tobit-regression` — For Reviewers](../chapters/07-regression/tobit-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`tobit-regression` — For Reviewers](#sec-chapters-07-regression-tobit-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Train-Test Splits
+### Train-Test Splits {#sec-reporting-tripod-ai-train-test-splits}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2170,11 +2170,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Train-Test Splits yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`train-test-split` — For Reviewers](../chapters/13-ml/train-test-split.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`train-test-split` — For Reviewers](#sec-chapters-13-ml-train-test-split-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Transformers: Overview
+### Transformers: Overview {#sec-reporting-tripod-ai-transformers-overview}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2184,11 +2184,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Transformers: Overview yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`transformer-overview` — For Reviewers](../chapters/13-ml/transformer-overview.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`transformer-overview` — For Reviewers](#sec-chapters-13-ml-transformer-overview-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Truncated Regression
+### Truncated Regression {#sec-reporting-tripod-ai-truncated-regression}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2198,11 +2198,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Truncated Regression yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`truncated-regression` — For Reviewers](../chapters/07-regression/truncated-regression.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`truncated-regression` — For Reviewers](#sec-chapters-07-regression-truncated-regression-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Variable Importance
+### Variable Importance {#sec-reporting-tripod-ai-variable-importance}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2212,11 +2212,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Variable Importance yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`variable-importance` — For Reviewers](../chapters/13-ml/variable-importance.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`variable-importance` — For Reviewers](#sec-chapters-13-ml-variable-importance-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Weighted Kappa
+### Weighted Kappa {#sec-reporting-tripod-ai-weighted-kappa}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2226,11 +2226,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Weighted Kappa yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`weighted-kappa` — For Reviewers](../chapters/14-clinical/weighted-kappa.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`weighted-kappa` — For Reviewers](#sec-chapters-14-clinical-weighted-kappa-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Weighted Log-Rank Tests
+### Weighted Log-Rank Tests {#sec-reporting-tripod-ai-weighted-log-rank-tests}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2240,11 +2240,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Weighted Log-Rank Tests yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`weighted-log-rank` — For Reviewers](../chapters/11-survival/weighted-log-rank.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`weighted-log-rank` — For Reviewers](#sec-chapters-11-survival-weighted-log-rank-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Worked lme4::lmer Examples
+### Worked lme4::lmer Examples {#sec-reporting-tripod-ai-worked-lme4-lmer-examples}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2254,11 +2254,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Worked lme4::lmer Examples yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`lme4-lmer-examples` — For Reviewers](../chapters/07-regression/lme4-lmer-examples.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`lme4-lmer-examples` — For Reviewers](#sec-chapters-07-regression-lme4-lmer-examples-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### XGBoost
+### XGBoost {#sec-reporting-tripod-ai-xgboost}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2268,11 +2268,11 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > XGBoost yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`xgboost` — For Reviewers](../chapters/13-ml/xgboost.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`xgboost` — For Reviewers](#sec-chapters-13-ml-xgboost-for-reviewers)
 
 <!-- TODO:reporting-template -->
 
-### Zero-Inflated Models
+### Zero-Inflated Models {#sec-reporting-tripod-ai-zero-inflated-models}
 
 **Methods paragraph (copy-paste, fill in italics):**
 
@@ -2282,6 +2282,6 @@ This page contains **163 method-specific templates**. Each is a skeleton with pl
 
 > Zero-Inflated Models yielded *[estimate]* (95% CI *[lower, upper]*, p = *[value]*). *[Diagnostic / assumption summary]*. *[Sensitivity analysis result]*.
 
-**Reviewer checklist for this method.** → [`zero-inflated-models` — For Reviewers](../chapters/07-regression/zero-inflated-models.Rmd#for-reviewers)
+**Reviewer checklist for this method.** → [`zero-inflated-models` — For Reviewers](#sec-chapters-07-regression-zero-inflated-models-for-reviewers)
 
 <!-- TODO:reporting-template -->

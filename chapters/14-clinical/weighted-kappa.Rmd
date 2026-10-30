@@ -1,12 +1,14 @@
-## Introduction
+## Weighted Kappa {#sec-chapters-14-clinical-weighted-kappa}
+
+### Introduction {#sec-chapters-14-clinical-weighted-kappa-introduction}
 
 Weighted kappa extends Cohen's kappa to ordinal data by crediting partial agreement: near-miss disagreements (mild vs moderate) weigh less than dramatic disagreements (mild vs severe). It is the standard inter-rater agreement statistic for Likert-type scales, radiology grading, and symptom-severity ratings.
 
-## Prerequisites
+### Prerequisites {#sec-chapters-14-clinical-weighted-kappa-prerequisites}
 
 Cohen's kappa; ordinal measurement.
 
-## Theory
+### Theory {#sec-chapters-14-clinical-weighted-kappa-theory}
 
 $$\kappa_w = 1 - \frac{\sum_{ij} w_{ij} f_{ij}}{\sum_{ij} w_{ij} e_{ij}},$$
 where $w_{ij}$ is the disagreement weight between category $i$ and $j$, $f_{ij}$ observed cell frequency, $e_{ij}$ expected under chance.
@@ -17,11 +19,11 @@ where $w_{ij}$ is the disagreement weight between category $i$ and $j$, $f_{ij}$
 
 Quadratic is most common for multi-category ordinal scales.
 
-## Assumptions
+### Assumptions {#sec-chapters-14-clinical-weighted-kappa-assumptions}
 
 Category ordering is meaningful and equally spaced; two raters; independent ratings.
 
-## R Implementation
+### R Implementation {#sec-chapters-14-clinical-weighted-kappa-r-implementation}
 
 ```r
 library(psych)
@@ -43,15 +45,15 @@ cohen.kappa(cbind(rater1, rater2),
             w = "linear")$weighted.kappa
 ```
 
-## Output & Results
+### Output & Results {#sec-chapters-14-clinical-weighted-kappa-output-results}
 
 Unweighted kappa (~0.35), linear-weighted (~0.55), quadratic-weighted (~0.70); quadratic weights reward near-miss agreement more heavily.
 
-## Interpretation
+### Interpretation {#sec-chapters-14-clinical-weighted-kappa-interpretation}
 
 "Weighted kappa with quadratic weights was 0.72 (95 % CI 0.62-0.82), consistent with substantial agreement; unweighted kappa of 0.35 understates agreement by not crediting near-miss ratings."
 
-## Practical Tips
+### Practical Tips {#sec-chapters-14-clinical-weighted-kappa-practical-tips}
 
 - Use quadratic weights for most clinical ordinal scales; they reflect that 1-step disagreements matter far less than 3-step.
 - Linear weights are appropriate when category spacing is more uniform-linear.
@@ -61,27 +63,24 @@ Unweighted kappa (~0.35), linear-weighted (~0.55), quadratic-weighted (~0.70); q
 
 <!-- BEGIN for-reviewers (auto-inserted skeleton) -->
 
-## For Reviewers
+### For Reviewers {#sec-chapters-14-clinical-weighted-kappa-for-reviewers}
 
-**What to look for in a paper using this method.**
+Use the [shared reviewer checklist](#sec-reviewer-checklist), together with this
+method's [assumptions](#sec-chapters-14-clinical-weighted-kappa-assumptions) and
+[practical tips](#sec-chapters-14-clinical-weighted-kappa-practical-tips).
 
-- **Common misapplications.**
-- **Diagnostics that should be reported but often aren't.**
-- **Red flags in tables and figures.**
-- **What to verify.**
-- **What an adequate Methods paragraph must contain.**
+Method-specific reviewer notes have not yet been developed for this entry. The
+links above support a structured review; they do not certify the example or a
+manuscript's application of the method.
 
-<!-- TODO:reviewer-section -->
-
-<!-- END for-reviewers -->
 
 <!-- BEGIN see-also (auto-injected) -->
 
-## See also — labs in this chapter
+### See also — labs in this chapter {#sec-chapters-14-clinical-weighted-kappa-see-also-labs-in-this-chapter}
 
-- [Diagnostic testing: Se, Sp, PPV, NPV, LR](labs/lab-diagnostic-testing-se-sp-ppv-npv-lr.Rmd)
-- [Kappa, ICC, Bland–Altman](labs/lab-kappa-icc-bland-altman.Rmd)
-- [Biomarker statistics (Youden, NRI, decision curves)](labs/lab-biomarker-statistics-youden-nri-decision-curves.Rmd)
-- [TRIPOD-AI, fairness auditing, reproducibility at scale](labs/lab-tripod-ai-fairness-auditing-reproducibility-at-scale.Rmd)
+- [Diagnostic testing: Se, Sp, PPV, NPV, LR](#sec-chapters-14-clinical-labs-lab-diagnostic-testing-se-sp-ppv-npv-lr)
+- [Kappa, ICC, Bland–Altman](#sec-chapters-14-clinical-labs-lab-kappa-icc-bland-altman)
+- [Biomarker statistics (Youden, NRI, decision curves)](#sec-chapters-14-clinical-labs-lab-biomarker-statistics-youden-nri-decision-curves)
+- [TRIPOD-AI, fairness auditing, reproducibility at scale](#sec-chapters-14-clinical-labs-lab-tripod-ai-fairness-auditing-reproducibility-at-scale)
 
 <!-- END see-also -->
