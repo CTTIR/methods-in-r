@@ -367,3 +367,15 @@ small.text-muted {
 .bookdown-attribution a {
   border-bottom-style: solid;
 }
+
+/* Bootstrap sets table-cell color independently of the body theme. */
+[data-theme="dark"] .table,
+[data-theme="dark"] .table th,
+[data-theme="dark"] .table td {
+  color: var(--table-text-color);
+}
+[data-theme="dark"] .book-toc .active,
+[data-theme="dark"] #toc .nav-link.active {
+  background-color: var(--toc-active);
+  color: var(--text-color);
+}
