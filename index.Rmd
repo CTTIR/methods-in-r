@@ -9,8 +9,8 @@ bibliography: [references.bib, packages.bib]
 biblio-style: apalike
 csl: style/vancouver.csl
 link-citations: yes
-github-repo: "r-heller/methods-in-r"
-url: https://r-heller.github.io/methods-in-r/
+github-repo: "CTTIR/methods-in-r"
+url: https://cttir.github.io/methods-in-r/
 favicon: "favicon.ico"
 description: "A bench reference for biomedical authors and peer reviewers — every common method covered with R code, diagnostics, and reviewer-facing red flags."
 cover-image: "images/cover.png"
@@ -20,7 +20,7 @@ cover-image: "images/cover.png"
 
 ---
 
-<a href="https://r-heller.github.io/methods-in-r/" target="_blank"><img src="images/cover.png" width="250" align="right" alt="Methods in R cover" class="cover" /></a> Welcome to **"Methods in R: A Topic Reference for Biomedical Research and Peer Review"**.
+<a href="https://cttir.github.io/methods-in-r/" target="_blank"><img src="images/cover.png" width="250" align="right" alt="Methods in R cover" class="cover" /></a> Welcome to **"Methods in R: A Topic Reference for Biomedical Research and Peer Review"**.
 
 This book is shaped for two readers it expects to serve in the same week: the **author** who has data in front of them and needs to pick a method, run it in R, and write the Methods paragraph; and the **peer reviewer** who has a manuscript on their desk and needs to know what a competent application of that method looks like, which diagnostics should have been reported, and what red flags to flag.
 
@@ -34,7 +34,7 @@ The book is not a textbook of statistics. It assumes you can read an R session a
 
 ---
 
-This book has been built using [**{rmarkdown}**](https://rmarkdown.rstudio.com/docs/) and [**{bookdown}**](https://bookdown.org/). Formulas are rendered using [MathJax](http://docs.mathjax.org/en/latest/index.html). All source files are available on **GitHub**: <https://github.com/r-heller/methods-in-r>. You are free to fork, share, and reuse the contents under the [CC BY 4.0 license](https://github.com/r-heller/methods-in-r/blob/main/LICENSE-CONTENT).
+This book has been built using [**{rmarkdown}**](https://rmarkdown.rstudio.com/docs/) and [**{bookdown}**](https://bookdown.org/). Formulas are rendered using [MathJax](http://docs.mathjax.org/en/latest/index.html). All source files are available on **GitHub**: <https://github.com/CTTIR/methods-in-r>. You are free to fork, share, and reuse the contents under the [CC BY 4.0 license](https://github.com/CTTIR/methods-in-r/blob/main/LICENSE-CONTENT).
 
 <br></br>
 
@@ -46,7 +46,7 @@ This book has been built using [**{rmarkdown}**](https://rmarkdown.rstudio.com/d
 - **Where the code lives.** Code in each method page and lab is display-only in the rendered book; copy it into an R session with the packages cited in that section attached. Reusable helpers are kept in `R/helpers.R` in the source repository.
 - **Per-chapter PDFs.** Every chapter has a *Download this chapter (PDF)* button at the top of its page; the full set is also available at `pdf-chapters/`.
 - **Whole-book PDF and EPUB.** Use the navbar *Download* menu for a single-file PDF or EPUB.
-- **Corrections and suggestions.** Open an issue at <https://github.com/r-heller/methods-in-r/issues>.
+- **Corrections and suggestions.** Open an issue at <https://github.com/CTTIR/methods-in-r/issues>.
 
 <br></br>
 
@@ -54,7 +54,7 @@ This book has been built using [**{rmarkdown}**](https://rmarkdown.rstudio.com/d
 
 ---
 
-Issues and pull requests are welcome — see [CONTRIBUTING.md](https://github.com/r-heller/methods-in-r/blob/main/CONTRIBUTING.md).
+Issues and pull requests are welcome — see [CONTRIBUTING.md](https://github.com/CTTIR/methods-in-r/blob/main/CONTRIBUTING.md).
 <!-- TODO: name reviewers and contributors here once feedback is incorporated. -->
 
 <br></br>
@@ -66,7 +66,7 @@ Issues and pull requests are welcome — see [CONTRIBUTING.md](https://github.co
 The suggested citation is:
 
 ```{block, type='boxempty'}
-**Heller, R.** (2026). *Methods in R: A Topic Reference for Biomedical Research and Peer Review* (Version 1.0.0). Self-published via GitHub Pages. <https://r-heller.github.io/methods-in-r/>.
+**Heller, R.** (2026). *Methods in R: A Topic Reference for Biomedical Research and Peer Review* (Version 1.0.0). Self-published via GitHub Pages. <https://cttir.github.io/methods-in-r/>.
 ```
 
 Download the reference as [BibTeX](citation-files/citation.bib) or [.ris](citation-files/citation.ris).

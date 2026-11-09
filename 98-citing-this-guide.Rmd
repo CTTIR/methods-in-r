@@ -3,7 +3,7 @@
 The suggested citation is:
 
 ```{block, type='boxempty'}
-**Heller, R.** (2026). *Methods in R: A Topic Reference for Biomedical Research and Peer Review* (Version 1.0.0). Self-published via GitHub Pages. <https://r-heller.github.io/methods-in-r/>.
+**Heller, R.** (2026). *Methods in R: A Topic Reference for Biomedical Research and Peer Review* (Version 1.0.0). Self-published via GitHub Pages. <https://cttir.github.io/methods-in-r/>.
 ```
 
 Download the reference as [BibTeX](citation-files/citation.bib) or [.ris](citation-files/citation.ris).

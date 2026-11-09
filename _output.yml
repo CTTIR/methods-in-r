@@ -7,7 +7,7 @@ bookdown::bs4_book:
     heading_font: { google: "Inter" }
     code_font: { google: "JetBrains Mono" }
   repo:
-    base: https://github.com/r-heller/methods-in-r
+    base: https://github.com/CTTIR/methods-in-r
     branch: main
   css: style/style.css
   includes:
@@ -36,7 +36,7 @@ bookdown::gitbook:
     toolbar:
       position: fixed
     edit:
-      link: https://github.com/r-heller/methods-in-r/edit/main/%s
+      link: https://github.com/CTTIR/methods-in-r/edit/main/%s
       text: "Edit"
     download: ["pdf", "epub"]
     sharing:

@@ -12,9 +12,9 @@ Content released under the
 Source code released under the
 [MIT License](https://opensource.org/licenses/MIT).
 
-Published online: <https://r-heller.github.io/methods-in-r/>
+Published online: <https://cttir.github.io/methods-in-r/>
 
-Source repository: <https://github.com/r-heller/methods-in-r>
+Source repository: <https://github.com/CTTIR/methods-in-r>
 
 Build date: `r Sys.Date()`.
 
@@ -22,7 +22,7 @@ Build date: `r Sys.Date()`.
 
 > Heller, R. (`r format(Sys.Date(), "%Y")`).
 > *Methods in R: A Topic Reference for Biomedical Research and Peer Review.*
-> <https://r-heller.github.io/methods-in-r/>.
+> <https://cttir.github.io/methods-in-r/>.
 
 ## Disclaimer {#sec-00-impressum-disclaimer .unnumbered}
 
@@ -33,4 +33,4 @@ not a substitute for professional statistical or clinical advice.
 ## Contact {#sec-00-impressum-contact .unnumbered}
 
 For corrections, suggestions, or issues:
-<https://github.com/r-heller/methods-in-r/issues>
+<https://github.com/CTTIR/methods-in-r/issues>

@@ -6,8 +6,8 @@ authors:
     given-names: "Raban"
     orcid: "https://orcid.org/0000-0001-8006-9742"
 type: book
-repository-code: "https://github.com/r-heller/methods-in-r"
-url: "https://r-heller.github.io/methods-in-r/"
+repository-code: "https://github.com/CTTIR/methods-in-r"
+url: "https://cttir.github.io/methods-in-r/"
 license: "CC-BY-4.0"
 version: "1.0.0"
 date-released: "2026-05-11"

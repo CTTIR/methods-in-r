@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://r-heller.github.io/methods-in-r/">
+  <a href="https://cttir.github.io/methods-in-r/">
     <img src="images/cover.png" alt="Methods in R book cover" width="280">
   </a>
 </p>
@@ -12,7 +12,7 @@ A free, open-source book by **Raban Heller**.
 
 ## Read it online
 
-📖 **<https://r-heller.github.io/methods-in-r/>**
+📖 **<https://cttir.github.io/methods-in-r/>**
 
 ## Download
 
@@ -56,7 +56,7 @@ Both source repositories are MIT-licensed and authored by R. Heller.
 ## How to cite
 
 > Heller, R. (`2026`). *Methods in R: A Topic Reference for Biomedical
-> Research and Peer Review.* <https://r-heller.github.io/methods-in-r/>.
+> Research and Peer Review.* <https://cttir.github.io/methods-in-r/>.
 
 BibTeX:
 
@@ -66,7 +66,7 @@ BibTeX:
   title     = {Methods in R: A Topic Reference for Biomedical Research and Peer Review},
   year      = {2026},
   publisher = {Self-published via GitHub Pages},
-  url       = {https://r-heller.github.io/methods-in-r/}
+  url       = {https://cttir.github.io/methods-in-r/}
 }
 ```
 
@@ -80,7 +80,7 @@ validation of all methods or a substitute for checking assumptions on your data.
 Requirements: R, Pandoc, Python 3, and bookdown >= 0.47. A first HTML build:
 
 ```bash
-git clone https://github.com/r-heller/methods-in-r.git
+git clone https://github.com/CTTIR/methods-in-r.git
 cd methods-in-r
 Rscript --vanilla -e 'install.packages(c("bookdown", "rmarkdown", "knitr", "bslib", "downlit", "xml2", "htmltools", "sessioninfo"), repos="https://cloud.r-project.org")'
 python3 -m unittest discover -s tests
@@ -116,7 +116,7 @@ with that environment on `NODE_PATH`. Normal book builds do not need Node or a b
 ## Sibling volume
 
 This is the second book in the *…in R* series. The first is
-[`r-heller/strategy-in-r`](https://github.com/r-heller/strategy-in-r) —
+[`CTTIR/strategy-in-r`](https://github.com/CTTIR/strategy-in-r) —
 *Strategy in R: Game Theory, Simulation, and Machine Intelligence*.
 
 ## Use of LLM tools
@@ -139,4 +139,4 @@ The prose of this book is licensed under [CC BY 4.0](https://creativecommons.org
 ## Contributing
 
 Issues and PRs welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) or open an
-issue at <https://github.com/r-heller/methods-in-r/issues>.
+issue at <https://github.com/CTTIR/methods-in-r/issues>.

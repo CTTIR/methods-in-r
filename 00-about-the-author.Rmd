@@ -13,7 +13,7 @@ every method page.
 ## Sibling volume {#sec-00-about-the-author-sibling-volume .unnumbered}
 
 This is the second book in the *…in R* series. The first is
-[`r-heller/strategy-in-r`](https://github.com/r-heller/strategy-in-r) —
+[`CTTIR/strategy-in-r`](https://github.com/CTTIR/strategy-in-r) —
 *Strategy in R: Game Theory, Simulation, and Machine Intelligence*. The
 two share branding, build conventions (bookdown, `renv`, GitHub Pages
 deploy), and a preference for R-only worked examples over toy
