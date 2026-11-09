@@ -99,6 +99,15 @@ jobs:
       - name: Check rendered navigation
         run: python3 scripts/check-html-links.py docs /tmp/methods-links.json
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and verify every book and chapter download
+        run: bash scripts/build-downloads-ci.sh docs methods-in-r https://cttir.github.io/methods-in-r/
+
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
