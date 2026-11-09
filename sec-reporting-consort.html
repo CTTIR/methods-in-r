@@ -1,31 +1,32 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
 <title>Chapter 19 CONSORT — randomised trials | Methods in R</title>
-<meta name="author" content="R. Heller">
-<meta name="description" content="CONSORT — Consolidated Standards of Reporting Trials — covers randomised controlled trials. The 25-item checklist and flow diagram are at https://www.consort-statement.org/. The templates below...">
-<meta name="generator" content="bookdown 0.48 with bs4_book()">
-<meta property="og:title" content="Chapter 19 CONSORT — randomised trials | Methods in R">
-<meta property="og:type" content="book">
-<meta property="og:url" content="https://cttir.github.io/methods-in-r/sec-reporting-consort.html">
-<meta property="og:image" content="https://cttir.github.io/methods-in-r/images/cover.png">
-<meta property="og:description" content="CONSORT — Consolidated Standards of Reporting Trials — covers randomised controlled trials. The 25-item checklist and flow diagram are at https://www.consort-statement.org/. The templates below...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 19 CONSORT — randomised trials | Methods in R">
-<meta name="twitter:description" content="CONSORT — Consolidated Standards of Reporting Trials — covers randomised controlled trials. The 25-item checklist and flow diagram are at https://www.consort-statement.org/. The templates below...">
-<meta name="twitter:image" content="https://cttir.github.io/methods-in-r/images/cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet">
-<link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
-<script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+<meta content="R. Heller" name="author"/>
+<meta content="CONSORT — Consolidated Standards of Reporting Trials — covers randomised controlled trials. The 25-item checklist and flow diagram are at https://www.consort-statement.org/. The templates below..." name="description"/>
+<meta content="bookdown 0.48 with bs4_book()" name="generator"/>
+<meta content="Chapter 19 CONSORT — randomised trials | Methods in R" property="og:title"/>
+<meta content="book" property="og:type"/>
+<meta content="https://cttir.github.io/methods-in-r/sec-reporting-consort.html" property="og:url"/>
+<meta content="https://cttir.github.io/methods-in-r/images/cover.png" property="og:image"/>
+<meta content="CONSORT — Consolidated Standards of Reporting Trials — covers randomised controlled trials. The 25-item checklist and flow diagram are at https://www.consort-statement.org/. The templates below..." property="og:description"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Chapter 19 CONSORT — randomised trials | Methods in R" name="twitter:title"/>
+<meta content="CONSORT — Consolidated Standards of Reporting Trials — covers randomised controlled trials. The 25-item checklist and flow diagram are at https://www.consort-statement.org/. The templates below..." name="twitter:description"/>
+<meta content="https://cttir.github.io/methods-in-r/images/cover.png" name="twitter:image"/>
+<!-- JS --><script crossorigin="anonymous" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script><script crossorigin="anonymous" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js"></script><script crossorigin="anonymous" src="https://kit.fontawesome.com/6ecbd6c532.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet"/>
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet"/>
+<link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet"/>
+<script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet"/>
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="style/font-awesome.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js"></script><script crossorigin="anonymous" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
@@ -51,29 +52,36 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style/style.css">
-</head>
+<link href="style/style.css" rel="stylesheet"/>
+<style id="unified-book-download-style">
+.book-downloads--unified {display:flex!important;flex-wrap:wrap;gap:12px 24px;margin:16px 0 24px!important;padding:14px 16px!important;border:1px solid #a8adb4;border-radius:8px;background:transparent;color:inherit;font-family:system-ui,sans-serif;font-size:14px;line-height:1.4;box-sizing:border-box;max-width:100%;}
+.book-downloads--unified .book-download-group {display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.book-downloads--unified .book-download-label {font-weight:600;margin-right:4px;}
+.book-downloads--unified a {display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border:1px solid currentColor;border-radius:5px;text-decoration:none!important;font-weight:600;color:inherit;}
+.book-downloads--unified a:hover {background:rgba(127,127,127,.14);}
+.book-downloads--unified a:focus-visible {outline:3px solid #2684d9;outline-offset:3px;}
+.book-downloads--unified svg {height:20px;width:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.book-downloads:not(.book-downloads--unified),.book-download-footer,.sidebar-downloads {display:none!important;}
+@media(max-width:500px){.book-downloads--unified{gap:12px;padding:12px!important;}.book-downloads--unified .book-download-group{width:100%;}.book-downloads--unified .book-download-label{min-width:92px;}}
+@media print{.book-downloads--unified{display:none!important;}}
+</style></head>
 <body data-spy="scroll" data-target="#toc">
-
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
-
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="A topic reference for biomedical research and peer review">Methods in R</a>:
+<header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<div class="d-flex align-items-start justify-content-between">
+<h1>
+<a href="index.html" title="A topic reference for biomedical research and peer review">Methods in R</a>:
         <small class="text-muted">A topic reference for biomedical research and peer review</small>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
-
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</h1>
+<button aria-controls="main-nav" aria-expanded="true" class="btn btn-outline-primary d-lg-none ml-2 mt-1" data-target="#main-nav" data-toggle="collapse" type="button"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+</div>
+<div class="collapse-lg" id="main-nav">
+<form role="search">
+<input aria-label="Search" class="form-control" id="search" placeholder="Search" type="search"/>
 </form>
-
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
+<nav aria-label="Table of contents"><h2>Table of contents</h2>
+<ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Welcome!</a></li>
 <li><a class="" href="sec-00-impressum.html">Impressum</a></li>
 <li><a class="" href="sec-00-acknowledgments.html">Acknowledgments</a></li>
@@ -112,21 +120,20 @@
 <li><a class="" href="sec-98-citing-this-guide.html">Citing this Guide</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
-
-        <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/CTTIR/methods-in-r">View book source <i class="fab fa-github"></i></a></p>
-        </div>
-      </nav>
+<div class="book-extra">
+<p><a href="https://github.com/CTTIR/methods-in-r" id="book-repo">View book source <i class="fab fa-github"></i></a></p>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="sec-reporting-consort" class="section level1" number="19">
+</nav>
+</div>
+</header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div class="section level1" id="sec-reporting-consort" number="19">
 <h1>
-<span class="header-section-number">19</span> CONSORT — randomised trials<a class="anchor" aria-label="anchor" href="#sec-reporting-consort"><i class="fas fa-link"></i></a>
-</h1>
-<p>CONSORT — <em>Consolidated Standards of Reporting Trials</em> — covers randomised controlled trials. The 25-item checklist and flow diagram are at <a href="https://www.consort-statement.org/" class="uri">https://www.consort-statement.org/</a>. The templates below cover the analytic methods most often used for primary and secondary endpoints in a trial.</p>
+<span class="header-section-number">19</span> CONSORT — randomised trials<a aria-label="anchor" class="anchor" href="#sec-reporting-consort"><i class="fas fa-link"></i></a>
+</h1><nav aria-label="Book and chapter downloads" class="book-downloads book-downloads--unified"><div class="book-download-group"><span class="book-download-label">Entire book</span><a aria-label="Download entire book as PDF" download="" href="methods-in-r.pdf" title="Download entire book as PDF"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M14 2H5v20h14V7z"></path><path d="M14 2v6h5M8 13h8M8 17h6"></path></svg><span>PDF</span></a><a aria-label="Download entire book as EPUB" download="" href="methods-in-r.epub" title="Download entire book as EPUB"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM21 4h-5a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h5z"></path></svg><span>EPUB</span></a></div><div class="book-download-group"><span class="book-download-label">This chapter</span><a aria-label="Download this chapter as PDF" download="" href="downloads/chapters/sec-reporting-consort.pdf" title="Download this chapter as PDF"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M14 2H5v20h14V7z"></path><path d="M14 2v6h5M8 13h8M8 17h6"></path></svg><span>PDF</span></a><a aria-label="Download this chapter as EPUB" download="" href="downloads/chapters/sec-reporting-consort.epub" title="Download this chapter as EPUB"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM21 4h-5a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h5z"></path></svg><span>EPUB</span></a></div></nav>
+<p>CONSORT — <em>Consolidated Standards of Reporting Trials</em> — covers randomised controlled trials. The 25-item checklist and flow diagram are at <a class="uri" href="https://www.consort-statement.org/">https://www.consort-statement.org/</a>. The templates below cover the analytic methods most often used for primary and secondary endpoints in a trial.</p>
 <p>This page contains <strong>141 method-specific templates</strong>. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.</p>
-<div id="sec-reporting-consort-2-k-factorial-designs" class="section level3" number="19.0.1">
+<div class="section level3" id="sec-reporting-consort-2-k-factorial-designs" number="19.0.1">
 <h3>
-<span class="header-section-number">19.0.1</span> 2^k Factorial Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-2-k-factorial-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.1</span> 2^k Factorial Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-2-k-factorial-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -139,9 +146,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-factorial-2k-for-reviewers"><code>factorial-2k</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-3-k-factorial-designs" class="section level3" number="19.0.2">
+<div class="section level3" id="sec-reporting-consort-3-k-factorial-designs" number="19.0.2">
 <h3>
-<span class="header-section-number">19.0.2</span> 3^k Factorial Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-3-k-factorial-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.2</span> 3^k Factorial Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-3-k-factorial-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -154,9 +161,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-factorial-3k-for-reviewers"><code>factorial-3k</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-adaptive-trial-designs" class="section level3" number="19.0.3">
+<div class="section level3" id="sec-reporting-consort-adaptive-trial-designs" number="19.0.3">
 <h3>
-<span class="header-section-number">19.0.3</span> Adaptive Trial Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-adaptive-trial-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.3</span> Adaptive Trial Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-adaptive-trial-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -169,9 +176,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-adaptive-design-for-reviewers"><code>adaptive-design</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-alpha-spending-functions" class="section level3" number="19.0.4">
+<div class="section level3" id="sec-reporting-consort-alpha-spending-functions" number="19.0.4">
 <h3>
-<span class="header-section-number">19.0.4</span> Alpha-Spending Functions<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-alpha-spending-functions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.4</span> Alpha-Spending Functions<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-alpha-spending-functions"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -184,9 +191,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-alpha-spending-for-reviewers"><code>alpha-spending</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-anderson-darling-test" class="section level3" number="19.0.5">
+<div class="section level3" id="sec-reporting-consort-anderson-darling-test" number="19.0.5">
 <h3>
-<span class="header-section-number">19.0.5</span> Anderson-Darling Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-anderson-darling-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.5</span> Anderson-Darling Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-anderson-darling-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -199,9 +206,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-anderson-darling-test-for-reviewers"><code>anderson-darling-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-balanced-incomplete-block-designs" class="section level3" number="19.0.6">
+<div class="section level3" id="sec-reporting-consort-balanced-incomplete-block-designs" number="19.0.6">
 <h3>
-<span class="header-section-number">19.0.6</span> Balanced Incomplete Block Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-balanced-incomplete-block-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.6</span> Balanced Incomplete Block Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-balanced-incomplete-block-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -214,9 +221,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-balanced-incomplete-block-for-reviewers"><code>balanced-incomplete-block</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-bartlett-s-test" class="section level3" number="19.0.7">
+<div class="section level3" id="sec-reporting-consort-bartlett-s-test" number="19.0.7">
 <h3>
-<span class="header-section-number">19.0.7</span> Bartlett’s Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-bartlett-s-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.7</span> Bartlett’s Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-bartlett-s-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -229,9 +236,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-bartlett-test-for-reviewers"><code>bartlett-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-baseline-adjustment-with-ancova" class="section level3" number="19.0.8">
+<div class="section level3" id="sec-reporting-consort-baseline-adjustment-with-ancova" number="19.0.8">
 <h3>
-<span class="header-section-number">19.0.8</span> Baseline Adjustment with ANCOVA<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-baseline-adjustment-with-ancova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.8</span> Baseline Adjustment with ANCOVA<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-baseline-adjustment-with-ancova"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -244,9 +251,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-baseline-adjustment-ancova-for-reviewers"><code>baseline-adjustment-ancova</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-benjamini-hochberg-fdr" class="section level3" number="19.0.9">
+<div class="section level3" id="sec-reporting-consort-benjamini-hochberg-fdr" number="19.0.9">
 <h3>
-<span class="header-section-number">19.0.9</span> Benjamini-Hochberg FDR<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-benjamini-hochberg-fdr"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.9</span> Benjamini-Hochberg FDR<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-benjamini-hochberg-fdr"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -259,9 +266,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-benjamini-hochberg-fdr-for-reviewers"><code>benjamini-hochberg-fdr</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-benjamini-yekutieli-fdr" class="section level3" number="19.0.10">
+<div class="section level3" id="sec-reporting-consort-benjamini-yekutieli-fdr" number="19.0.10">
 <h3>
-<span class="header-section-number">19.0.10</span> Benjamini-Yekutieli FDR<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-benjamini-yekutieli-fdr"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.10</span> Benjamini-Yekutieli FDR<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-benjamini-yekutieli-fdr"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -274,9 +281,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-benjamini-yekutieli-for-reviewers"><code>benjamini-yekutieli</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-bland-altman-limits-of-agreement" class="section level3" number="19.0.11">
+<div class="section level3" id="sec-reporting-consort-bland-altman-limits-of-agreement" number="19.0.11">
 <h3>
-<span class="header-section-number">19.0.11</span> Bland-Altman Limits of Agreement<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-bland-altman-limits-of-agreement"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.11</span> Bland-Altman Limits of Agreement<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-bland-altman-limits-of-agreement"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -289,9 +296,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-bland-altman-analysis-for-reviewers"><code>bland-altman-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-blinding-procedures" class="section level3" number="19.0.12">
+<div class="section level3" id="sec-reporting-consort-blinding-procedures" number="19.0.12">
 <h3>
-<span class="header-section-number">19.0.12</span> Blinding Procedures<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-blinding-procedures"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.12</span> Blinding Procedures<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-blinding-procedures"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -304,9 +311,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-blinding-procedures-for-reviewers"><code>blinding-procedures</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-block-randomisation" class="section level3" number="19.0.13">
+<div class="section level3" id="sec-reporting-consort-block-randomisation" number="19.0.13">
 <h3>
-<span class="header-section-number">19.0.13</span> Block Randomisation<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-block-randomisation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.13</span> Block Randomisation<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-block-randomisation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -319,9 +326,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-block-randomization-for-reviewers"><code>block-randomization</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-bonferroni-correction" class="section level3" number="19.0.14">
+<div class="section level3" id="sec-reporting-consort-bonferroni-correction" number="19.0.14">
 <h3>
-<span class="header-section-number">19.0.14</span> Bonferroni Correction<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-bonferroni-correction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.14</span> Bonferroni Correction<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-bonferroni-correction"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -334,9 +341,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-bonferroni-correction-for-reviewers"><code>bonferroni-correction</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-bootstrap-confidence-intervals" class="section level3" number="19.0.15">
+<div class="section level3" id="sec-reporting-consort-bootstrap-confidence-intervals" number="19.0.15">
 <h3>
-<span class="header-section-number">19.0.15</span> Bootstrap Confidence Intervals<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-bootstrap-confidence-intervals"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.15</span> Bootstrap Confidence Intervals<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-bootstrap-confidence-intervals"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -349,9 +356,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-bootstrap-confidence-intervals-for-reviewers"><code>bootstrap-confidence-intervals</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-box-behnken-designs" class="section level3" number="19.0.16">
+<div class="section level3" id="sec-reporting-consort-box-behnken-designs" number="19.0.16">
 <h3>
-<span class="header-section-number">19.0.16</span> Box-Behnken Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-box-behnken-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.16</span> Box-Behnken Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-box-behnken-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -364,9 +371,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-box-behnken-design-for-reviewers"><code>box-behnken-design</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-central-composite-designs" class="section level3" number="19.0.17">
+<div class="section level3" id="sec-reporting-consort-central-composite-designs" number="19.0.17">
 <h3>
-<span class="header-section-number">19.0.17</span> Central Composite Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-central-composite-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.17</span> Central Composite Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-central-composite-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -379,9 +386,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-central-composite-design-for-reviewers"><code>central-composite-design</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-chi-squared-goodness-of-fit-test" class="section level3" number="19.0.18">
+<div class="section level3" id="sec-reporting-consort-chi-squared-goodness-of-fit-test" number="19.0.18">
 <h3>
-<span class="header-section-number">19.0.18</span> Chi-Squared Goodness-of-Fit Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-chi-squared-goodness-of-fit-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.18</span> Chi-Squared Goodness-of-Fit Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-chi-squared-goodness-of-fit-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -394,9 +401,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-chi-squared-goodness-of-fit-for-reviewers"><code>chi-squared-goodness-of-fit</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-chi-squared-test-of-independence" class="section level3" number="19.0.19">
+<div class="section level3" id="sec-reporting-consort-chi-squared-test-of-independence" number="19.0.19">
 <h3>
-<span class="header-section-number">19.0.19</span> Chi-Squared Test of Independence<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-chi-squared-test-of-independence"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.19</span> Chi-Squared Test of Independence<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-chi-squared-test-of-independence"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -409,9 +416,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-chi-squared-independence-for-reviewers"><code>chi-squared-independence</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-clinical-equivalence-trials" class="section level3" number="19.0.20">
+<div class="section level3" id="sec-reporting-consort-clinical-equivalence-trials" number="19.0.20">
 <h3>
-<span class="header-section-number">19.0.20</span> Clinical Equivalence Trials<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-clinical-equivalence-trials"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.20</span> Clinical Equivalence Trials<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-clinical-equivalence-trials"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -424,9 +431,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-equivalence-clinical-for-reviewers"><code>equivalence-clinical</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-cluster-randomised-trials" class="section level3" number="19.0.21">
+<div class="section level3" id="sec-reporting-consort-cluster-randomised-trials" number="19.0.21">
 <h3>
-<span class="header-section-number">19.0.21</span> Cluster-Randomised Trials<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-cluster-randomised-trials"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.21</span> Cluster-Randomised Trials<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-cluster-randomised-trials"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -439,9 +446,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-cluster-rct-for-reviewers"><code>cluster-rct</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-cochran-mantel-haenszel-test" class="section level3" number="19.0.22">
+<div class="section level3" id="sec-reporting-consort-cochran-mantel-haenszel-test" number="19.0.22">
 <h3>
-<span class="header-section-number">19.0.22</span> Cochran-Mantel-Haenszel Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-cochran-mantel-haenszel-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.22</span> Cochran-Mantel-Haenszel Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-cochran-mantel-haenszel-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -454,9 +461,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-cochran-mantel-haenszel-for-reviewers"><code>cochran-mantel-haenszel</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-cohen-s-kappa" class="section level3" number="19.0.23">
+<div class="section level3" id="sec-reporting-consort-cohen-s-kappa" number="19.0.23">
 <h3>
-<span class="header-section-number">19.0.23</span> Cohen’s Kappa<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-cohen-s-kappa"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.23</span> Cohen’s Kappa<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-cohen-s-kappa"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -469,9 +476,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-cohens-kappa-for-reviewers"><code>cohens-kappa</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-completely-randomised-design" class="section level3" number="19.0.24">
+<div class="section level3" id="sec-reporting-consort-completely-randomised-design" number="19.0.24">
 <h3>
-<span class="header-section-number">19.0.24</span> Completely Randomised Design<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-completely-randomised-design"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.24</span> Completely Randomised Design<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-completely-randomised-design"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -484,9 +491,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-completely-randomized-design-for-reviewers"><code>completely-randomized-design</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-conditional-power" class="section level3" number="19.0.25">
+<div class="section level3" id="sec-reporting-consort-conditional-power" number="19.0.25">
 <h3>
-<span class="header-section-number">19.0.25</span> Conditional Power<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-conditional-power"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.25</span> Conditional Power<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-conditional-power"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -499,9 +506,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-conditional-power-for-reviewers"><code>conditional-power</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-constrained-mixture-designs" class="section level3" number="19.0.26">
+<div class="section level3" id="sec-reporting-consort-constrained-mixture-designs" number="19.0.26">
 <h3>
-<span class="header-section-number">19.0.26</span> Constrained Mixture Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-constrained-mixture-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.26</span> Constrained Mixture Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-constrained-mixture-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -514,9 +521,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-constrained-mixture-for-reviewers"><code>constrained-mixture</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-crossover-designs" class="section level3" number="19.0.27">
+<div class="section level3" id="sec-reporting-consort-crossover-designs" number="19.0.27">
 <h3>
-<span class="header-section-number">19.0.27</span> Crossover Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-crossover-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.27</span> Crossover Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-crossover-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -529,9 +536,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-crossover-designs-for-reviewers"><code>crossover-designs</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-crossover-rct-design" class="section level3" number="19.0.28">
+<div class="section level3" id="sec-reporting-consort-crossover-rct-design" number="19.0.28">
 <h3>
-<span class="header-section-number">19.0.28</span> Crossover RCT Design<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-crossover-rct-design"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.28</span> Crossover RCT Design<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-crossover-rct-design"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -544,9 +551,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-rct-design-crossover-for-reviewers"><code>rct-design-crossover</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-cutpoint-selection" class="section level3" number="19.0.29">
+<div class="section level3" id="sec-reporting-consort-cutpoint-selection" number="19.0.29">
 <h3>
-<span class="header-section-number">19.0.29</span> Cutpoint Selection<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-cutpoint-selection"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.29</span> Cutpoint Selection<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-cutpoint-selection"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -559,9 +566,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-cutpoint-selection-for-reviewers"><code>cutpoint-selection</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-desirability-functions" class="section level3" number="19.0.30">
+<div class="section level3" id="sec-reporting-consort-desirability-functions" number="19.0.30">
 <h3>
-<span class="header-section-number">19.0.30</span> Desirability Functions<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-desirability-functions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.30</span> Desirability Functions<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-desirability-functions"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -574,9 +581,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-desirability-function-for-reviewers"><code>desirability-function</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-diagnostic-test-accuracy" class="section level3" number="19.0.31">
+<div class="section level3" id="sec-reporting-consort-diagnostic-test-accuracy" number="19.0.31">
 <h3>
-<span class="header-section-number">19.0.31</span> Diagnostic Test Accuracy<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-diagnostic-test-accuracy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.31</span> Diagnostic Test Accuracy<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-diagnostic-test-accuracy"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -589,9 +596,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-diagnostic-accuracy-for-reviewers"><code>diagnostic-accuracy</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-effect-size-cohen-s-d" class="section level3" number="19.0.32">
+<div class="section level3" id="sec-reporting-consort-effect-size-cohen-s-d" number="19.0.32">
 <h3>
-<span class="header-section-number">19.0.32</span> Effect Size: Cohen’s d<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-effect-size-cohen-s-d"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.32</span> Effect Size: Cohen’s d<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-effect-size-cohen-s-d"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -604,9 +611,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-effect-size-cohens-d-for-reviewers"><code>effect-size-cohens-d</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-effect-size-cohen-s-h" class="section level3" number="19.0.33">
+<div class="section level3" id="sec-reporting-consort-effect-size-cohen-s-h" number="19.0.33">
 <h3>
-<span class="header-section-number">19.0.33</span> Effect Size: Cohen’s h<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-effect-size-cohen-s-h"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.33</span> Effect Size: Cohen’s h<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-effect-size-cohen-s-h"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -619,9 +626,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-effect-size-cohens-h-for-reviewers"><code>effect-size-cohens-h</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-effect-size-eta-squared" class="section level3" number="19.0.34">
+<div class="section level3" id="sec-reporting-consort-effect-size-eta-squared" number="19.0.34">
 <h3>
-<span class="header-section-number">19.0.34</span> Effect Size: Eta-Squared<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-effect-size-eta-squared"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.34</span> Effect Size: Eta-Squared<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-effect-size-eta-squared"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -634,9 +641,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-effect-size-eta-squared-for-reviewers"><code>effect-size-eta-squared</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-effect-sizes-overview" class="section level3" number="19.0.35">
+<div class="section level3" id="sec-reporting-consort-effect-sizes-overview" number="19.0.35">
 <h3>
-<span class="header-section-number">19.0.35</span> Effect Sizes: Overview<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-effect-sizes-overview"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.35</span> Effect Sizes: Overview<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-effect-sizes-overview"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -649,9 +656,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-effect-sizes-overview-for-reviewers"><code>effect-sizes-overview</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-equivalence-testing-with-tost" class="section level3" number="19.0.36">
+<div class="section level3" id="sec-reporting-consort-equivalence-testing-with-tost" number="19.0.36">
 <h3>
-<span class="header-section-number">19.0.36</span> Equivalence Testing with TOST<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-equivalence-testing-with-tost"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.36</span> Equivalence Testing with TOST<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-equivalence-testing-with-tost"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -664,9 +671,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-equivalence-tost-for-reviewers"><code>equivalence-tost</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-factorial-trials" class="section level3" number="19.0.37">
+<div class="section level3" id="sec-reporting-consort-factorial-trials" number="19.0.37">
 <h3>
-<span class="header-section-number">19.0.37</span> Factorial Trials<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-factorial-trials"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.37</span> Factorial Trials<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-factorial-trials"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -679,9 +686,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-factorial-trial-for-reviewers"><code>factorial-trial</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-fisher-s-exact-test" class="section level3" number="19.0.38">
+<div class="section level3" id="sec-reporting-consort-fisher-s-exact-test" number="19.0.38">
 <h3>
-<span class="header-section-number">19.0.38</span> Fisher’s Exact Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-fisher-s-exact-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.38</span> Fisher’s Exact Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-fisher-s-exact-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -694,9 +701,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-fisher-exact-test-for-reviewers"><code>fisher-exact-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-fractional-factorial-designs" class="section level3" number="19.0.39">
+<div class="section level3" id="sec-reporting-consort-fractional-factorial-designs" number="19.0.39">
 <h3>
-<span class="header-section-number">19.0.39</span> Fractional Factorial Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-fractional-factorial-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.39</span> Fractional Factorial Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-fractional-factorial-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -709,9 +716,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-fractional-factorial-design-for-reviewers"><code>fractional-factorial-design</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-friedman-test" class="section level3" number="19.0.40">
+<div class="section level3" id="sec-reporting-consort-friedman-test" number="19.0.40">
 <h3>
-<span class="header-section-number">19.0.40</span> Friedman Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-friedman-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.40</span> Friedman Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-friedman-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -724,9 +731,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-friedman-test-for-reviewers"><code>friedman-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-graeco-latin-square-designs" class="section level3" number="19.0.41">
+<div class="section level3" id="sec-reporting-consort-graeco-latin-square-designs" number="19.0.41">
 <h3>
-<span class="header-section-number">19.0.41</span> Graeco-Latin Square Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-graeco-latin-square-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.41</span> Graeco-Latin Square Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-graeco-latin-square-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -739,9 +746,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-graeco-latin-square-for-reviewers"><code>graeco-latin-square</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-holm-s-step-down-correction" class="section level3" number="19.0.42">
+<div class="section level3" id="sec-reporting-consort-holm-s-step-down-correction" number="19.0.42">
 <h3>
-<span class="header-section-number">19.0.42</span> Holm’s Step-Down Correction<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-holm-s-step-down-correction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.42</span> Holm’s Step-Down Correction<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-holm-s-step-down-correction"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -754,9 +761,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-holm-correction-for-reviewers"><code>holm-correction</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-interim-analyses-and-group-sequential-designs" class="section level3" number="19.0.43">
+<div class="section level3" id="sec-reporting-consort-interim-analyses-and-group-sequential-designs" number="19.0.43">
 <h3>
-<span class="header-section-number">19.0.43</span> Interim Analyses and Group Sequential Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-interim-analyses-and-group-sequential-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.43</span> Interim Analyses and Group Sequential Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-interim-analyses-and-group-sequential-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -769,9 +776,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-interim-analysis-group-sequential-for-reviewers"><code>interim-analysis-group-sequential</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-intraclass-correlation-coefficient-icc" class="section level3" number="19.0.44">
+<div class="section level3" id="sec-reporting-consort-intraclass-correlation-coefficient-icc" number="19.0.44">
 <h3>
-<span class="header-section-number">19.0.44</span> Intraclass Correlation Coefficient (ICC)<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-intraclass-correlation-coefficient-icc"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.44</span> Intraclass Correlation Coefficient (ICC)<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-intraclass-correlation-coefficient-icc"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -784,9 +791,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-icc-continuous-agreement-for-reviewers"><code>icc-continuous-agreement</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-itt-vs-per-protocol-analysis" class="section level3" number="19.0.45">
+<div class="section level3" id="sec-reporting-consort-itt-vs-per-protocol-analysis" number="19.0.45">
 <h3>
-<span class="header-section-number">19.0.45</span> ITT vs Per-Protocol Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-itt-vs-per-protocol-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.45</span> ITT vs Per-Protocol Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-itt-vs-per-protocol-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -799,9 +806,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-itt-vs-pp-analysis-for-reviewers"><code>itt-vs-pp-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-kendall-s-tau" class="section level3" number="19.0.46">
+<div class="section level3" id="sec-reporting-consort-kendall-s-tau" number="19.0.46">
 <h3>
-<span class="header-section-number">19.0.46</span> Kendall’s Tau<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-kendall-s-tau"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.46</span> Kendall’s Tau<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-kendall-s-tau"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -814,9 +821,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-kendall-tau-for-reviewers"><code>kendall-tau</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-kolmogorov-smirnov-test" class="section level3" number="19.0.47">
+<div class="section level3" id="sec-reporting-consort-kolmogorov-smirnov-test" number="19.0.47">
 <h3>
-<span class="header-section-number">19.0.47</span> Kolmogorov-Smirnov Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-kolmogorov-smirnov-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.47</span> Kolmogorov-Smirnov Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-kolmogorov-smirnov-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -829,9 +836,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-kolmogorov-smirnov-test-for-reviewers"><code>kolmogorov-smirnov-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-kruskal-wallis-test" class="section level3" number="19.0.48">
+<div class="section level3" id="sec-reporting-consort-kruskal-wallis-test" number="19.0.48">
 <h3>
-<span class="header-section-number">19.0.48</span> Kruskal-Wallis Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-kruskal-wallis-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.48</span> Kruskal-Wallis Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-kruskal-wallis-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -844,9 +851,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-kruskal-wallis-for-reviewers"><code>kruskal-wallis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-latin-square-designs" class="section level3" number="19.0.49">
+<div class="section level3" id="sec-reporting-consort-latin-square-designs" number="19.0.49">
 <h3>
-<span class="header-section-number">19.0.49</span> Latin Square Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-latin-square-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.49</span> Latin Square Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-latin-square-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -859,9 +866,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-latin-square-for-reviewers"><code>latin-square</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-levene-s-test-of-variances" class="section level3" number="19.0.50">
+<div class="section level3" id="sec-reporting-consort-levene-s-test-of-variances" number="19.0.50">
 <h3>
-<span class="header-section-number">19.0.50</span> Levene’s Test of Variances<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-levene-s-test-of-variances"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.50</span> Levene’s Test of Variances<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-levene-s-test-of-variances"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -874,9 +881,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-levene-test-for-reviewers"><code>levene-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-likelihood-ratios" class="section level3" number="19.0.51">
+<div class="section level3" id="sec-reporting-consort-likelihood-ratios" number="19.0.51">
 <h3>
-<span class="header-section-number">19.0.51</span> Likelihood Ratios<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-likelihood-ratios"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.51</span> Likelihood Ratios<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-likelihood-ratios"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -889,9 +896,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-likelihood-ratios-for-reviewers"><code>likelihood-ratios</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-mann-whitney-u-test" class="section level3" number="19.0.52">
+<div class="section level3" id="sec-reporting-consort-mann-whitney-u-test" number="19.0.52">
 <h3>
-<span class="header-section-number">19.0.52</span> Mann-Whitney U Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-mann-whitney-u-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.52</span> Mann-Whitney U Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-mann-whitney-u-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -904,9 +911,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-mann-whitney-u-for-reviewers"><code>mann-whitney-u</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-mcnemar-s-test" class="section level3" number="19.0.53">
+<div class="section level3" id="sec-reporting-consort-mcnemar-s-test" number="19.0.53">
 <h3>
-<span class="header-section-number">19.0.53</span> McNemar’s Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-mcnemar-s-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.53</span> McNemar’s Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-mcnemar-s-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -919,9 +926,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-mcnemar-test-for-reviewers"><code>mcnemar-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-method-of-steepest-ascent" class="section level3" number="19.0.54">
+<div class="section level3" id="sec-reporting-consort-method-of-steepest-ascent" number="19.0.54">
 <h3>
-<span class="header-section-number">19.0.54</span> Method of Steepest Ascent<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-method-of-steepest-ascent"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.54</span> Method of Steepest Ascent<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-method-of-steepest-ascent"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -934,9 +941,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-steepest-ascent-for-reviewers"><code>steepest-ascent</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-minimisation-algorithm" class="section level3" number="19.0.55">
+<div class="section level3" id="sec-reporting-consort-minimisation-algorithm" number="19.0.55">
 <h3>
-<span class="header-section-number">19.0.55</span> Minimisation Algorithm<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-minimisation-algorithm"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.55</span> Minimisation Algorithm<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-minimisation-algorithm"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -949,9 +956,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-minimization-algorithm-for-reviewers"><code>minimization-algorithm</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-minimum-detectable-effect" class="section level3" number="19.0.56">
+<div class="section level3" id="sec-reporting-consort-minimum-detectable-effect" number="19.0.56">
 <h3>
-<span class="header-section-number">19.0.56</span> Minimum Detectable Effect<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-minimum-detectable-effect"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.56</span> Minimum Detectable Effect<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-minimum-detectable-effect"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -964,9 +971,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-minimum-detectable-effect-for-reviewers"><code>minimum-detectable-effect</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-missing-data-in-rcts" class="section level3" number="19.0.57">
+<div class="section level3" id="sec-reporting-consort-missing-data-in-rcts" number="19.0.57">
 <h3>
-<span class="header-section-number">19.0.57</span> Missing Data in RCTs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-missing-data-in-rcts"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.57</span> Missing Data in RCTs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-missing-data-in-rcts"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -979,9 +986,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-missing-data-rct-for-reviewers"><code>missing-data-rct</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-mixed-anova" class="section level3" number="19.0.58">
+<div class="section level3" id="sec-reporting-consort-mixed-anova" number="19.0.58">
 <h3>
-<span class="header-section-number">19.0.58</span> Mixed ANOVA<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-mixed-anova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.58</span> Mixed ANOVA<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-mixed-anova"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -994,9 +1001,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-mixed-anova-for-reviewers"><code>mixed-anova</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-multiple-comparisons-overview" class="section level3" number="19.0.59">
+<div class="section level3" id="sec-reporting-consort-multiple-comparisons-overview" number="19.0.59">
 <h3>
-<span class="header-section-number">19.0.59</span> Multiple Comparisons: Overview<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-multiple-comparisons-overview"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.59</span> Multiple Comparisons: Overview<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-multiple-comparisons-overview"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1009,9 +1016,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-multiple-comparisons-overview-for-reviewers"><code>multiple-comparisons-overview</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-multiple-imputation" class="section level3" number="19.0.60">
+<div class="section level3" id="sec-reporting-consort-multiple-imputation" number="19.0.60">
 <h3>
-<span class="header-section-number">19.0.60</span> Multiple Imputation<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-multiple-imputation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.60</span> Multiple Imputation<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-multiple-imputation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1024,9 +1031,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-multiple-imputation-for-reviewers"><code>multiple-imputation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-non-inferiority-margin-selection" class="section level3" number="19.0.61">
+<div class="section level3" id="sec-reporting-consort-non-inferiority-margin-selection" number="19.0.61">
 <h3>
-<span class="header-section-number">19.0.61</span> Non-Inferiority Margin Selection<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-non-inferiority-margin-selection"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.61</span> Non-Inferiority Margin Selection<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-non-inferiority-margin-selection"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1039,9 +1046,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-non-inferiority-margin-for-reviewers"><code>non-inferiority-margin</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-null-and-alternative-hypotheses" class="section level3" number="19.0.62">
+<div class="section level3" id="sec-reporting-consort-null-and-alternative-hypotheses" number="19.0.62">
 <h3>
-<span class="header-section-number">19.0.62</span> Null and Alternative Hypotheses<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-null-and-alternative-hypotheses"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.62</span> Null and Alternative Hypotheses<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-null-and-alternative-hypotheses"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1054,9 +1061,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-null-alternative-hypotheses-for-reviewers"><code>null-alternative-hypotheses</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-o-brien-fleming-boundary" class="section level3" number="19.0.63">
+<div class="section level3" id="sec-reporting-consort-o-brien-fleming-boundary" number="19.0.63">
 <h3>
-<span class="header-section-number">19.0.63</span> O’Brien-Fleming Boundary<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-o-brien-fleming-boundary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.63</span> O’Brien-Fleming Boundary<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-o-brien-fleming-boundary"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1069,9 +1076,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-obrien-fleming-boundary-for-reviewers"><code>obrien-fleming-boundary</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-one-proportion-test" class="section level3" number="19.0.64">
+<div class="section level3" id="sec-reporting-consort-one-proportion-test" number="19.0.64">
 <h3>
-<span class="header-section-number">19.0.64</span> One-Proportion Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-one-proportion-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.64</span> One-Proportion Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-one-proportion-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1084,9 +1091,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-one-proportion-test-for-reviewers"><code>one-proportion-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-one-sample-t-test" class="section level3" number="19.0.65">
+<div class="section level3" id="sec-reporting-consort-one-sample-t-test" number="19.0.65">
 <h3>
-<span class="header-section-number">19.0.65</span> One-Sample t-Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-one-sample-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.65</span> One-Sample t-Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-one-sample-t-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1099,9 +1106,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-one-sample-t-test-for-reviewers"><code>one-sample-t-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-one-sample-z-test" class="section level3" number="19.0.66">
+<div class="section level3" id="sec-reporting-consort-one-sample-z-test" number="19.0.66">
 <h3>
-<span class="header-section-number">19.0.66</span> One-Sample z-Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-one-sample-z-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.66</span> One-Sample z-Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-one-sample-z-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1114,9 +1121,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-one-sample-z-test-for-reviewers"><code>one-sample-z-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-one-way-anova" class="section level3" number="19.0.67">
+<div class="section level3" id="sec-reporting-consort-one-way-anova" number="19.0.67">
 <h3>
-<span class="header-section-number">19.0.67</span> One-Way ANOVA<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-one-way-anova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.67</span> One-Way ANOVA<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-one-way-anova"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1129,9 +1136,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-one-way-anova-for-reviewers"><code>one-way-anova</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-optimal-designs-d-a-i" class="section level3" number="19.0.68">
+<div class="section level3" id="sec-reporting-consort-optimal-designs-d-a-i" number="19.0.68">
 <h3>
-<span class="header-section-number">19.0.68</span> Optimal Designs: D, A, I<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-optimal-designs-d-a-i"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.68</span> Optimal Designs: D, A, I<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-optimal-designs-d-a-i"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1144,9 +1151,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-optimal-design-d-a-i-for-reviewers"><code>optimal-design-d-a-i</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-orthogonal-arrays" class="section level3" number="19.0.69">
+<div class="section level3" id="sec-reporting-consort-orthogonal-arrays" number="19.0.69">
 <h3>
-<span class="header-section-number">19.0.69</span> Orthogonal Arrays<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-orthogonal-arrays"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.69</span> Orthogonal Arrays<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-orthogonal-arrays"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1159,9 +1166,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-orthogonal-arrays-for-reviewers"><code>orthogonal-arrays</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-p-values-explained" class="section level3" number="19.0.70">
+<div class="section level3" id="sec-reporting-consort-p-values-explained" number="19.0.70">
 <h3>
-<span class="header-section-number">19.0.70</span> P-Values Explained<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-p-values-explained"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.70</span> P-Values Explained<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-p-values-explained"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1174,9 +1181,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-p-values-explained-for-reviewers"><code>p-values-explained</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-paired-t-test" class="section level3" number="19.0.71">
+<div class="section level3" id="sec-reporting-consort-paired-t-test" number="19.0.71">
 <h3>
-<span class="header-section-number">19.0.71</span> Paired t-Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-paired-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.71</span> Paired t-Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-paired-t-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1189,9 +1196,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-paired-t-test-for-reviewers"><code>paired-t-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-parallel-group-rct-design" class="section level3" number="19.0.72">
+<div class="section level3" id="sec-reporting-consort-parallel-group-rct-design" number="19.0.72">
 <h3>
-<span class="header-section-number">19.0.72</span> Parallel-Group RCT Design<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-parallel-group-rct-design"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.72</span> Parallel-Group RCT Design<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-parallel-group-rct-design"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1204,9 +1211,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-rct-design-parallel-for-reviewers"><code>rct-design-parallel</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-pearson-correlation-test" class="section level3" number="19.0.73">
+<div class="section level3" id="sec-reporting-consort-pearson-correlation-test" number="19.0.73">
 <h3>
-<span class="header-section-number">19.0.73</span> Pearson Correlation Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-pearson-correlation-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.73</span> Pearson Correlation Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-pearson-correlation-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1219,9 +1226,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-pearson-correlation-test-for-reviewers"><code>pearson-correlation-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-permutation-tests" class="section level3" number="19.0.74">
+<div class="section level3" id="sec-reporting-consort-permutation-tests" number="19.0.74">
 <h3>
-<span class="header-section-number">19.0.74</span> Permutation Tests<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-permutation-tests"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.74</span> Permutation Tests<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-permutation-tests"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1234,9 +1241,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-permutation-tests-for-reviewers"><code>permutation-tests</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-plackett-burman-designs" class="section level3" number="19.0.75">
+<div class="section level3" id="sec-reporting-consort-plackett-burman-designs" number="19.0.75">
 <h3>
-<span class="header-section-number">19.0.75</span> Plackett-Burman Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-plackett-burman-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.75</span> Plackett-Burman Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-plackett-burman-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1249,9 +1256,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-plackett-burman-for-reviewers"><code>plackett-burman</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-pocock-boundary" class="section level3" number="19.0.76">
+<div class="section level3" id="sec-reporting-consort-pocock-boundary" number="19.0.76">
 <h3>
-<span class="header-section-number">19.0.76</span> Pocock Boundary<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-pocock-boundary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.76</span> Pocock Boundary<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-pocock-boundary"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1264,9 +1271,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-pocock-boundary-for-reviewers"><code>pocock-boundary</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-post-hoc-power-a-controversy" class="section level3" number="19.0.77">
+<div class="section level3" id="sec-reporting-consort-post-hoc-power-a-controversy" number="19.0.77">
 <h3>
-<span class="header-section-number">19.0.77</span> Post-Hoc Power: A Controversy<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-post-hoc-power-a-controversy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.77</span> Post-Hoc Power: A Controversy<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-post-hoc-power-a-controversy"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1279,9 +1286,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-post-hoc-power-controversy-for-reviewers"><code>post-hoc-power-controversy</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-post-hoc-tests-with-tukey-hsd" class="section level3" number="19.0.78">
+<div class="section level3" id="sec-reporting-consort-post-hoc-tests-with-tukey-hsd" number="19.0.78">
 <h3>
-<span class="header-section-number">19.0.78</span> Post-Hoc Tests with Tukey HSD<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-post-hoc-tests-with-tukey-hsd"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.78</span> Post-Hoc Tests with Tukey HSD<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-post-hoc-tests-with-tukey-hsd"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1294,9 +1301,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-post-hoc-tests-tukey-for-reviewers"><code>post-hoc-tests-tukey</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-analysis-for-doe" class="section level3" number="19.0.79">
+<div class="section level3" id="sec-reporting-consort-power-analysis-for-doe" number="19.0.79">
 <h3>
-<span class="header-section-number">19.0.79</span> Power Analysis for DOE<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-analysis-for-doe"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.79</span> Power Analysis for DOE<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-analysis-for-doe"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1309,9 +1316,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-power-in-doe-for-reviewers"><code>power-in-doe</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-analysis-introduction" class="section level3" number="19.0.80">
+<div class="section level3" id="sec-reporting-consort-power-analysis-introduction" number="19.0.80">
 <h3>
-<span class="header-section-number">19.0.80</span> Power Analysis: Introduction<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-analysis-introduction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.80</span> Power Analysis: Introduction<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-analysis-introduction"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1324,9 +1331,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-analysis-introduction-for-reviewers"><code>power-analysis-introduction</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-agreement-kappa" class="section level3" number="19.0.81">
+<div class="section level3" id="sec-reporting-consort-power-for-agreement-kappa" number="19.0.81">
 <h3>
-<span class="header-section-number">19.0.81</span> Power for Agreement (Kappa)<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-agreement-kappa"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.81</span> Power for Agreement (Kappa)<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-agreement-kappa"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1339,9 +1346,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-agreement-kappa-for-reviewers"><code>power-agreement-kappa</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-bland-altman-studies" class="section level3" number="19.0.82">
+<div class="section level3" id="sec-reporting-consort-power-for-bland-altman-studies" number="19.0.82">
 <h3>
-<span class="header-section-number">19.0.82</span> Power for Bland-Altman Studies<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-bland-altman-studies"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.82</span> Power for Bland-Altman Studies<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-bland-altman-studies"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1354,9 +1361,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-bland-altman-for-reviewers"><code>power-bland-altman</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-chi-squared-tests" class="section level3" number="19.0.83">
+<div class="section level3" id="sec-reporting-consort-power-for-chi-squared-tests" number="19.0.83">
 <h3>
-<span class="header-section-number">19.0.83</span> Power for Chi-Squared Tests<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-chi-squared-tests"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.83</span> Power for Chi-Squared Tests<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-chi-squared-tests"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1369,9 +1376,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-chi-squared-for-reviewers"><code>power-chi-squared</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-cluster-rct" class="section level3" number="19.0.84">
+<div class="section level3" id="sec-reporting-consort-power-for-cluster-rct" number="19.0.84">
 <h3>
-<span class="header-section-number">19.0.84</span> Power for Cluster-RCT<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-cluster-rct"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.84</span> Power for Cluster-RCT<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-cluster-rct"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1384,9 +1391,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-cluster-rct-for-reviewers"><code>power-cluster-rct</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-correlation-tests" class="section level3" number="19.0.85">
+<div class="section level3" id="sec-reporting-consort-power-for-correlation-tests" number="19.0.85">
 <h3>
-<span class="header-section-number">19.0.85</span> Power for Correlation Tests<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-correlation-tests"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.85</span> Power for Correlation Tests<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-correlation-tests"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1399,9 +1406,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-correlation-for-reviewers"><code>power-correlation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-cox-regression" class="section level3" number="19.0.86">
+<div class="section level3" id="sec-reporting-consort-power-for-cox-regression" number="19.0.86">
 <h3>
-<span class="header-section-number">19.0.86</span> Power for Cox Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-cox-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.86</span> Power for Cox Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-cox-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1414,9 +1421,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-cox-regression-for-reviewers"><code>power-cox-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-crossover-trials" class="section level3" number="19.0.87">
+<div class="section level3" id="sec-reporting-consort-power-for-crossover-trials" number="19.0.87">
 <h3>
-<span class="header-section-number">19.0.87</span> Power for Crossover Trials<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-crossover-trials"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.87</span> Power for Crossover Trials<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-crossover-trials"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1429,9 +1436,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-crossover-for-reviewers"><code>power-crossover</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-diagnostic-accuracy" class="section level3" number="19.0.88">
+<div class="section level3" id="sec-reporting-consort-power-for-diagnostic-accuracy" number="19.0.88">
 <h3>
-<span class="header-section-number">19.0.88</span> Power for Diagnostic Accuracy<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-diagnostic-accuracy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.88</span> Power for Diagnostic Accuracy<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-diagnostic-accuracy"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1444,9 +1451,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-diagnostic-accuracy-for-reviewers"><code>power-diagnostic-accuracy</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-equivalence-tost" class="section level3" number="19.0.89">
+<div class="section level3" id="sec-reporting-consort-power-for-equivalence-tost" number="19.0.89">
 <h3>
-<span class="header-section-number">19.0.89</span> Power for Equivalence (TOST)<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-equivalence-tost"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.89</span> Power for Equivalence (TOST)<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-equivalence-tost"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1459,9 +1466,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-equivalence-tost-for-reviewers"><code>power-equivalence-tost</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-icc" class="section level3" number="19.0.90">
+<div class="section level3" id="sec-reporting-consort-power-for-icc" number="19.0.90">
 <h3>
-<span class="header-section-number">19.0.90</span> Power for ICC<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-icc"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.90</span> Power for ICC<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-icc"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1474,9 +1481,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-icc-for-reviewers"><code>power-icc</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-linear-regression" class="section level3" number="19.0.91">
+<div class="section level3" id="sec-reporting-consort-power-for-linear-regression" number="19.0.91">
 <h3>
-<span class="header-section-number">19.0.91</span> Power for Linear Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-linear-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.91</span> Power for Linear Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-linear-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1489,9 +1496,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-linear-regression-for-reviewers"><code>power-linear-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-logistic-regression" class="section level3" number="19.0.92">
+<div class="section level3" id="sec-reporting-consort-power-for-logistic-regression" number="19.0.92">
 <h3>
-<span class="header-section-number">19.0.92</span> Power for Logistic Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-logistic-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.92</span> Power for Logistic Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-logistic-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1504,9 +1511,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-logistic-regression-for-reviewers"><code>power-logistic-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-mcnemar-s-test" class="section level3" number="19.0.93">
+<div class="section level3" id="sec-reporting-consort-power-for-mcnemar-s-test" number="19.0.93">
 <h3>
-<span class="header-section-number">19.0.93</span> Power for McNemar’s Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-mcnemar-s-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.93</span> Power for McNemar’s Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-mcnemar-s-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1519,9 +1526,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-mcnemar-for-reviewers"><code>power-mcnemar</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-non-inferiority-trials" class="section level3" number="19.0.94">
+<div class="section level3" id="sec-reporting-consort-power-for-non-inferiority-trials" number="19.0.94">
 <h3>
-<span class="header-section-number">19.0.94</span> Power for Non-Inferiority Trials<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-non-inferiority-trials"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.94</span> Power for Non-Inferiority Trials<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-non-inferiority-trials"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1534,9 +1541,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-non-inferiority-for-reviewers"><code>power-non-inferiority</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-one-proportion-test" class="section level3" number="19.0.95">
+<div class="section level3" id="sec-reporting-consort-power-for-one-proportion-test" number="19.0.95">
 <h3>
-<span class="header-section-number">19.0.95</span> Power for One-Proportion Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-one-proportion-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.95</span> Power for One-Proportion Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-one-proportion-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1549,9 +1556,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-one-proportion-for-reviewers"><code>power-one-proportion</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-one-sample-t-test" class="section level3" number="19.0.96">
+<div class="section level3" id="sec-reporting-consort-power-for-one-sample-t-test" number="19.0.96">
 <h3>
-<span class="header-section-number">19.0.96</span> Power for One-Sample t-Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-one-sample-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.96</span> Power for One-Sample t-Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-one-sample-t-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1564,9 +1571,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-one-sample-t-for-reviewers"><code>power-one-sample-t</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-one-way-anova" class="section level3" number="19.0.97">
+<div class="section level3" id="sec-reporting-consort-power-for-one-way-anova" number="19.0.97">
 <h3>
-<span class="header-section-number">19.0.97</span> Power for One-Way ANOVA<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-one-way-anova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.97</span> Power for One-Way ANOVA<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-one-way-anova"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1579,9 +1586,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-anova-for-reviewers"><code>power-anova</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-paired-t-test" class="section level3" number="19.0.98">
+<div class="section level3" id="sec-reporting-consort-power-for-paired-t-test" number="19.0.98">
 <h3>
-<span class="header-section-number">19.0.98</span> Power for Paired t-Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-paired-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.98</span> Power for Paired t-Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-paired-t-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1594,9 +1601,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-paired-t-for-reviewers"><code>power-paired-t</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-repeated-measures-anova" class="section level3" number="19.0.99">
+<div class="section level3" id="sec-reporting-consort-power-for-repeated-measures-anova" number="19.0.99">
 <h3>
-<span class="header-section-number">19.0.99</span> Power for Repeated-Measures ANOVA<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-repeated-measures-anova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.99</span> Power for Repeated-Measures ANOVA<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-repeated-measures-anova"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1609,9 +1616,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-repeated-measures-for-reviewers"><code>power-repeated-measures</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-stepped-wedge-trials" class="section level3" number="19.0.100">
+<div class="section level3" id="sec-reporting-consort-power-for-stepped-wedge-trials" number="19.0.100">
 <h3>
-<span class="header-section-number">19.0.100</span> Power for Stepped-Wedge Trials<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-stepped-wedge-trials"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.100</span> Power for Stepped-Wedge Trials<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-stepped-wedge-trials"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1624,9 +1631,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-stepped-wedge-for-reviewers"><code>power-stepped-wedge</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-the-log-rank-test" class="section level3" number="19.0.101">
+<div class="section level3" id="sec-reporting-consort-power-for-the-log-rank-test" number="19.0.101">
 <h3>
-<span class="header-section-number">19.0.101</span> Power for the Log-Rank Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-the-log-rank-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.101</span> Power for the Log-Rank Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-the-log-rank-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1639,9 +1646,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-logrank-test-for-reviewers"><code>power-logrank-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-power-for-two-proportion-test" class="section level3" number="19.0.102">
+<div class="section level3" id="sec-reporting-consort-power-for-two-proportion-test" number="19.0.102">
 <h3>
-<span class="header-section-number">19.0.102</span> Power for Two-Proportion Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-power-for-two-proportion-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.102</span> Power for Two-Proportion Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-power-for-two-proportion-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1654,9 +1661,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-two-proportions-for-reviewers"><code>power-two-proportions</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-predictive-values-and-prevalence" class="section level3" number="19.0.103">
+<div class="section level3" id="sec-reporting-consort-predictive-values-and-prevalence" number="19.0.103">
 <h3>
-<span class="header-section-number">19.0.103</span> Predictive Values and Prevalence<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-predictive-values-and-prevalence"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.103</span> Predictive Values and Prevalence<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-predictive-values-and-prevalence"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1669,9 +1676,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-predictive-values-prevalence-for-reviewers"><code>predictive-values-prevalence</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-principles-of-blocking" class="section level3" number="19.0.104">
+<div class="section level3" id="sec-reporting-consort-principles-of-blocking" number="19.0.104">
 <h3>
-<span class="header-section-number">19.0.104</span> Principles of Blocking<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-principles-of-blocking"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.104</span> Principles of Blocking<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-principles-of-blocking"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1684,9 +1691,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-blocking-principles-for-reviewers"><code>blocking-principles</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-randomisation-in-design" class="section level3" number="19.0.105">
+<div class="section level3" id="sec-reporting-consort-randomisation-in-design" number="19.0.105">
 <h3>
-<span class="header-section-number">19.0.105</span> Randomisation in Design<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-randomisation-in-design"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.105</span> Randomisation in Design<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-randomisation-in-design"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1699,9 +1706,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-randomization-in-design-for-reviewers"><code>randomization-in-design</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-randomisation-methods" class="section level3" number="19.0.106">
+<div class="section level3" id="sec-reporting-consort-randomisation-methods" number="19.0.106">
 <h3>
-<span class="header-section-number">19.0.106</span> Randomisation Methods<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-randomisation-methods"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.106</span> Randomisation Methods<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-randomisation-methods"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1714,9 +1721,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-randomization-methods-for-reviewers"><code>randomization-methods</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-randomised-complete-block-design" class="section level3" number="19.0.107">
+<div class="section level3" id="sec-reporting-consort-randomised-complete-block-design" number="19.0.107">
 <h3>
-<span class="header-section-number">19.0.107</span> Randomised Complete Block Design<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-randomised-complete-block-design"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.107</span> Randomised Complete Block Design<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-randomised-complete-block-design"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1729,9 +1736,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-randomised-complete-block-for-reviewers"><code>randomised-complete-block</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-reliability-and-cronbach-s-alpha" class="section level3" number="19.0.108">
+<div class="section level3" id="sec-reporting-consort-reliability-and-cronbach-s-alpha" number="19.0.108">
 <h3>
-<span class="header-section-number">19.0.108</span> Reliability and Cronbach’s Alpha<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-reliability-and-cronbach-s-alpha"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.108</span> Reliability and Cronbach’s Alpha<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-reliability-and-cronbach-s-alpha"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1744,9 +1751,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-reliability-cronbach-alpha-for-reviewers"><code>reliability-cronbach-alpha</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-repeated-measures-anova" class="section level3" number="19.0.109">
+<div class="section level3" id="sec-reporting-consort-repeated-measures-anova" number="19.0.109">
 <h3>
-<span class="header-section-number">19.0.109</span> Repeated-Measures ANOVA<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-repeated-measures-anova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.109</span> Repeated-Measures ANOVA<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-repeated-measures-anova"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1759,9 +1766,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-repeated-measures-anova-for-reviewers"><code>repeated-measures-anova</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-repeated-measures-designs" class="section level3" number="19.0.110">
+<div class="section level3" id="sec-reporting-consort-repeated-measures-designs" number="19.0.110">
 <h3>
-<span class="header-section-number">19.0.110</span> Repeated-Measures Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-repeated-measures-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.110</span> Repeated-Measures Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-repeated-measures-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1774,9 +1781,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-repeated-measures-design-for-reviewers"><code>repeated-measures-design</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-resolution-and-aliasing" class="section level3" number="19.0.111">
+<div class="section level3" id="sec-reporting-consort-resolution-and-aliasing" number="19.0.111">
 <h3>
-<span class="header-section-number">19.0.111</span> Resolution and Aliasing<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-resolution-and-aliasing"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.111</span> Resolution and Aliasing<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-resolution-and-aliasing"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1789,9 +1796,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-resolution-aliasing-for-reviewers"><code>resolution-aliasing</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-response-surface-methodology" class="section level3" number="19.0.112">
+<div class="section level3" id="sec-reporting-consort-response-surface-methodology" number="19.0.112">
 <h3>
-<span class="header-section-number">19.0.112</span> Response Surface Methodology<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-response-surface-methodology"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.112</span> Response Surface Methodology<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-response-surface-methodology"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1804,9 +1811,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-response-surface-methodology-for-reviewers"><code>response-surface-methodology</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-robust-parameter-design" class="section level3" number="19.0.113">
+<div class="section level3" id="sec-reporting-consort-robust-parameter-design" number="19.0.113">
 <h3>
-<span class="header-section-number">19.0.113</span> Robust Parameter Design<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-robust-parameter-design"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.113</span> Robust Parameter Design<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-robust-parameter-design"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1819,9 +1826,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-robust-parameter-design-for-reviewers"><code>robust-parameter-design</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-roc-analysis" class="section level3" number="19.0.114">
+<div class="section level3" id="sec-reporting-consort-roc-analysis" number="19.0.114">
 <h3>
-<span class="header-section-number">19.0.114</span> ROC Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-roc-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.114</span> ROC Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-roc-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1834,9 +1841,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-roc-analysis-for-reviewers"><code>roc-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-sample-size-for-a-two-sample-t-test" class="section level3" number="19.0.115">
+<div class="section level3" id="sec-reporting-consort-sample-size-for-a-two-sample-t-test" number="19.0.115">
 <h3>
-<span class="header-section-number">19.0.115</span> Sample Size for a Two-Sample t-Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-sample-size-for-a-two-sample-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.115</span> Sample Size for a Two-Sample t-Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-sample-size-for-a-two-sample-t-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1849,9 +1856,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-power-two-sample-t-for-reviewers"><code>power-two-sample-t</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-sample-size-re-estimation" class="section level3" number="19.0.116">
+<div class="section level3" id="sec-reporting-consort-sample-size-re-estimation" number="19.0.116">
 <h3>
-<span class="header-section-number">19.0.116</span> Sample Size Re-Estimation<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-sample-size-re-estimation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.116</span> Sample Size Re-Estimation<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-sample-size-re-estimation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1864,9 +1871,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-sample-size-reestimation-for-reviewers"><code>sample-size-reestimation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-sample-size-sensitivity-analysis" class="section level3" number="19.0.117">
+<div class="section level3" id="sec-reporting-consort-sample-size-sensitivity-analysis" number="19.0.117">
 <h3>
-<span class="header-section-number">19.0.117</span> Sample Size Sensitivity Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-sample-size-sensitivity-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.117</span> Sample Size Sensitivity Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-sample-size-sensitivity-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1879,9 +1886,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-05-power.html#sec-chapters-05-power-sensitivity-analysis-sample-size-for-reviewers"><code>sensitivity-analysis-sample-size</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-sensitivity-analyses-in-clinical-trials" class="section level3" number="19.0.118">
+<div class="section level3" id="sec-reporting-consort-sensitivity-analyses-in-clinical-trials" number="19.0.118">
 <h3>
-<span class="header-section-number">19.0.118</span> Sensitivity Analyses in Clinical Trials<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-sensitivity-analyses-in-clinical-trials"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.118</span> Sensitivity Analyses in Clinical Trials<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-sensitivity-analyses-in-clinical-trials"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1894,9 +1901,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-sensitivity-analysis-clinical-for-reviewers"><code>sensitivity-analysis-clinical</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-shapiro-wilk-normality-test" class="section level3" number="19.0.119">
+<div class="section level3" id="sec-reporting-consort-shapiro-wilk-normality-test" number="19.0.119">
 <h3>
-<span class="header-section-number">19.0.119</span> Shapiro-Wilk Normality Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-shapiro-wilk-normality-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.119</span> Shapiro-Wilk Normality Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-shapiro-wilk-normality-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1909,9 +1916,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-shapiro-wilk-test-for-reviewers"><code>shapiro-wilk-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-signal-to-noise-ratios" class="section level3" number="19.0.120">
+<div class="section level3" id="sec-reporting-consort-signal-to-noise-ratios" number="19.0.120">
 <h3>
-<span class="header-section-number">19.0.120</span> Signal-to-Noise Ratios<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-signal-to-noise-ratios"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.120</span> Signal-to-Noise Ratios<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-signal-to-noise-ratios"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1924,9 +1931,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-signal-to-noise-ratio-for-reviewers"><code>signal-to-noise-ratio</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-simplex-centroid-designs" class="section level3" number="19.0.121">
+<div class="section level3" id="sec-reporting-consort-simplex-centroid-designs" number="19.0.121">
 <h3>
-<span class="header-section-number">19.0.121</span> Simplex Centroid Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-simplex-centroid-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.121</span> Simplex Centroid Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-simplex-centroid-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1939,9 +1946,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-mixture-centroid-for-reviewers"><code>mixture-centroid</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-simplex-lattice-mixture-designs" class="section level3" number="19.0.122">
+<div class="section level3" id="sec-reporting-consort-simplex-lattice-mixture-designs" number="19.0.122">
 <h3>
-<span class="header-section-number">19.0.122</span> Simplex Lattice Mixture Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-simplex-lattice-mixture-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.122</span> Simplex Lattice Mixture Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-simplex-lattice-mixture-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1954,9 +1961,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-mixture-designs-simplex-for-reviewers"><code>mixture-designs-simplex</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-spearman-rank-correlation-test" class="section level3" number="19.0.123">
+<div class="section level3" id="sec-reporting-consort-spearman-rank-correlation-test" number="19.0.123">
 <h3>
-<span class="header-section-number">19.0.123</span> Spearman Rank Correlation Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-spearman-rank-correlation-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.123</span> Spearman Rank Correlation Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-spearman-rank-correlation-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1969,9 +1976,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-spearman-correlation-test-for-reviewers"><code>spearman-correlation-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-split-plot-designs" class="section level3" number="19.0.124">
+<div class="section level3" id="sec-reporting-consort-split-plot-designs" number="19.0.124">
 <h3>
-<span class="header-section-number">19.0.124</span> Split-Plot Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-split-plot-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.124</span> Split-Plot Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-split-plot-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1984,9 +1991,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-split-plot-design-for-reviewers"><code>split-plot-design</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-stepped-wedge-trial" class="section level3" number="19.0.125">
+<div class="section level3" id="sec-reporting-consort-stepped-wedge-trial" number="19.0.125">
 <h3>
-<span class="header-section-number">19.0.125</span> Stepped-Wedge Trial<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-stepped-wedge-trial"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.125</span> Stepped-Wedge Trial<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-stepped-wedge-trial"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1999,9 +2006,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-stepped-wedge-trial-for-reviewers"><code>stepped-wedge-trial</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-stratified-randomisation" class="section level3" number="19.0.126">
+<div class="section level3" id="sec-reporting-consort-stratified-randomisation" number="19.0.126">
 <h3>
-<span class="header-section-number">19.0.126</span> Stratified Randomisation<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-stratified-randomisation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.126</span> Stratified Randomisation<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-stratified-randomisation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2014,9 +2021,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-stratified-randomization-for-reviewers"><code>stratified-randomization</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-strip-plot-designs" class="section level3" number="19.0.127">
+<div class="section level3" id="sec-reporting-consort-strip-plot-designs" number="19.0.127">
 <h3>
-<span class="header-section-number">19.0.127</span> Strip-Plot Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-strip-plot-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.127</span> Strip-Plot Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-strip-plot-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2029,9 +2036,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-strip-plot-design-for-reviewers"><code>strip-plot-design</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-subgroup-analyses" class="section level3" number="19.0.128">
+<div class="section level3" id="sec-reporting-consort-subgroup-analyses" number="19.0.128">
 <h3>
-<span class="header-section-number">19.0.128</span> Subgroup Analyses<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-subgroup-analyses"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.128</span> Subgroup Analyses<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-subgroup-analyses"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2044,9 +2051,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-subgroup-analysis-for-reviewers"><code>subgroup-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-subgroup-forest-plots" class="section level3" number="19.0.129">
+<div class="section level3" id="sec-reporting-consort-subgroup-forest-plots" number="19.0.129">
 <h3>
-<span class="header-section-number">19.0.129</span> Subgroup Forest Plots<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-subgroup-forest-plots"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.129</span> Subgroup Forest Plots<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-subgroup-forest-plots"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2059,9 +2066,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-forest-plot-subgroup-for-reviewers"><code>forest-plot-subgroup</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-taguchi-methods" class="section level3" number="19.0.130">
+<div class="section level3" id="sec-reporting-consort-taguchi-methods" number="19.0.130">
 <h3>
-<span class="header-section-number">19.0.130</span> Taguchi Methods<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-taguchi-methods"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.130</span> Taguchi Methods<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-taguchi-methods"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2074,9 +2081,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-16-design.html#sec-chapters-16-design-taguchi-methods-for-reviewers"><code>taguchi-methods</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-the-bootstrap-introduction" class="section level3" number="19.0.131">
+<div class="section level3" id="sec-reporting-consort-the-bootstrap-introduction" number="19.0.131">
 <h3>
-<span class="header-section-number">19.0.131</span> The Bootstrap: Introduction<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-the-bootstrap-introduction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.131</span> The Bootstrap: Introduction<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-the-bootstrap-introduction"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2089,9 +2096,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-bootstrap-introduction-for-reviewers"><code>bootstrap-introduction</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-the-jackknife" class="section level3" number="19.0.132">
+<div class="section level3" id="sec-reporting-consort-the-jackknife" number="19.0.132">
 <h3>
-<span class="header-section-number">19.0.132</span> The Jackknife<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-the-jackknife"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.132</span> The Jackknife<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-the-jackknife"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2104,9 +2111,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-jackknife-for-reviewers"><code>jackknife</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-the-runs-test" class="section level3" number="19.0.133">
+<div class="section level3" id="sec-reporting-consort-the-runs-test" number="19.0.133">
 <h3>
-<span class="header-section-number">19.0.133</span> The Runs Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-the-runs-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.133</span> The Runs Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-the-runs-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2119,9 +2126,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-runs-test-for-reviewers"><code>runs-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-the-sign-test" class="section level3" number="19.0.134">
+<div class="section level3" id="sec-reporting-consort-the-sign-test" number="19.0.134">
 <h3>
-<span class="header-section-number">19.0.134</span> The Sign Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-the-sign-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.134</span> The Sign Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-the-sign-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2134,9 +2141,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-sign-test-for-reviewers"><code>sign-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-two-proportion-test" class="section level3" number="19.0.135">
+<div class="section level3" id="sec-reporting-consort-two-proportion-test" number="19.0.135">
 <h3>
-<span class="header-section-number">19.0.135</span> Two-Proportion Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-two-proportion-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.135</span> Two-Proportion Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-two-proportion-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2149,9 +2156,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-two-proportion-test-for-reviewers"><code>two-proportion-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-two-sample-t-test" class="section level3" number="19.0.136">
+<div class="section level3" id="sec-reporting-consort-two-sample-t-test" number="19.0.136">
 <h3>
-<span class="header-section-number">19.0.136</span> Two-Sample t-Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-two-sample-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.136</span> Two-Sample t-Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-two-sample-t-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2164,9 +2171,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-two-sample-t-test-for-reviewers"><code>two-sample-t-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-two-way-anova" class="section level3" number="19.0.137">
+<div class="section level3" id="sec-reporting-consort-two-way-anova" number="19.0.137">
 <h3>
-<span class="header-section-number">19.0.137</span> Two-Way ANOVA<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-two-way-anova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.137</span> Two-Way ANOVA<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-two-way-anova"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2179,9 +2186,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-two-way-anova-for-reviewers"><code>two-way-anova</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-type-i-and-type-ii-errors" class="section level3" number="19.0.138">
+<div class="section level3" id="sec-reporting-consort-type-i-and-type-ii-errors" number="19.0.138">
 <h3>
-<span class="header-section-number">19.0.138</span> Type I and Type II Errors<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-type-i-and-type-ii-errors"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.138</span> Type I and Type II Errors<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-type-i-and-type-ii-errors"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2194,9 +2201,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-type-i-type-ii-errors-for-reviewers"><code>type-i-type-ii-errors</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-weighted-kappa" class="section level3" number="19.0.139">
+<div class="section level3" id="sec-reporting-consort-weighted-kappa" number="19.0.139">
 <h3>
-<span class="header-section-number">19.0.139</span> Weighted Kappa<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-weighted-kappa"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.139</span> Weighted Kappa<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-weighted-kappa"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2209,9 +2216,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-weighted-kappa-for-reviewers"><code>weighted-kappa</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-welch-s-t-test" class="section level3" number="19.0.140">
+<div class="section level3" id="sec-reporting-consort-welch-s-t-test" number="19.0.140">
 <h3>
-<span class="header-section-number">19.0.140</span> Welch’s t-Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-welch-s-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.140</span> Welch’s t-Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-welch-s-t-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2224,9 +2231,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-welch-t-test-for-reviewers"><code>welch-t-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-consort-wilcoxon-signed-rank-test" class="section level3" number="19.0.141">
+<div class="section level3" id="sec-reporting-consort-wilcoxon-signed-rank-test" number="19.0.141">
 <h3>
-<span class="header-section-number">19.0.141</span> Wilcoxon Signed-Rank Test<a class="anchor" aria-label="anchor" href="#sec-reporting-consort-wilcoxon-signed-rank-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.0.141</span> Wilcoxon Signed-Rank Test<a aria-label="anchor" class="anchor" href="#sec-reporting-consort-wilcoxon-signed-rank-test"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2238,16 +2245,14 @@
 </blockquote>
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-04-inferential.html#sec-chapters-04-inferential-wilcoxon-signed-rank-for-reviewers"><code>wilcoxon-signed-rank</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
-
 </div>
 </div>
 <!-- Dark / light mode toggle (replaces Harrer's emoji with a Font Awesome glyph) -->
 <div class="sticky-item">
-  <button type="button" id="mode-switch" class="btn-circle-mode" aria-label="Toggle dark mode">
-    <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
-  </button>
+<button aria-label="Toggle dark mode" class="btn-circle-mode" id="mode-switch" type="button">
+<i aria-hidden="true" class="fa-solid fa-circle-half-stroke"></i>
+</button>
 </div>
-
 <script>
   (function () {
     var stored = localStorage.getItem('themeMode');
@@ -2266,52 +2271,15 @@
       });
     });
   })();
-</script><!-- Offer only downloads produced and inventoried by this build. --><script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    var source = document.getElementById("book-source");
-    var extra = source && source.closest(".book-extra");
-    if (!extra) return;
-    try {
-      var response = await fetch("downloads.json");
-      if (!response.ok) return;
-      var files = await response.json();
-      var current = window.location.pathname.split("/").pop() || "index.html";
-      var candidates = [
-        ["methods-in-r.pdf", "Entire book (PDF)"],
-        ["methods-in-r.epub", "Entire book (EPUB)"]
-      ];
-      if (current !== "index.html")
-        candidates.push(["pdf-chapters/" + current.replace(/\.html$/, ".pdf"), "This chapter (PDF)"]);
-      var available = candidates.filter(function (item) { return files.includes(item[0]); });
-      if (!available.length) return;
-      var wrap = document.createElement("div");
-      wrap.className = "book-downloads";
-      var heading = document.createElement("h6");
-      heading.textContent = "Downloads";
-      wrap.appendChild(heading);
-      var list = document.createElement("ul");
-      list.className = "list-unstyled";
-      available.forEach(function (item) {
-        var li = document.createElement("li");
-        var link = document.createElement("a");
-        link.href = item[0]; link.textContent = item[1];
-        li.appendChild(link); list.appendChild(li);
-      });
-      wrap.appendChild(list);
-      extra.parentNode.insertBefore(wrap, extra);
-    } catch (error) {
-      // An unavailable inventory means there are no verified download links.
-    }
-  });
-</script><!-- Footer attribution --><div class="bookdown-attribution">
+</script><!-- Offer only downloads produced and inventoried by this build. --><!-- Footer attribution --><div class="bookdown-attribution">
   This book was built by the <a href="https://bookdown.org/"><strong>bookdown</strong></a> R package.
 </div>
-  <div class="chapter-nav">
+<div class="chapter-nav">
 <div class="prev"><a href="sec-reporting-strobe.html"><span class="header-section-number">18</span> STROBE — observational studies</a></div>
 <div class="next"><a href="sec-reporting-tripod-ai.html"><span class="header-section-number">20</span> TRIPOD-AI — prediction models</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li>
+<nav aria-label="On this page" data-toggle="toc" id="toc"><h2>On this page</h2>
+<ul class="nav navbar-nav"><li>
 <a class="nav-link" href="#sec-reporting-consort"><span class="header-section-number">19</span> CONSORT — randomised trials</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#sec-reporting-consort-2-k-factorial-designs"><span class="header-section-number">19.0.1</span> 2^k Factorial Designs</a></li>
 <li><a class="nav-link" href="#sec-reporting-consort-3-k-factorial-designs"><span class="header-section-number">19.0.2</span> 3^k Factorial Designs</a></li>
@@ -2456,29 +2424,23 @@
 <li><a class="nav-link" href="#sec-reporting-consort-wilcoxon-signed-rank-test"><span class="header-section-number">19.0.141</span> Wilcoxon Signed-Rank Test</a></li>
 </ul>
 </li></ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/CTTIR/methods-in-r/blob/main/reporting/consort.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/CTTIR/methods-in-r/edit/main/reporting/consort.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
-        </ul>
+<div class="book-extra">
+<ul class="list-unstyled">
+<li><a href="https://github.com/CTTIR/methods-in-r/blob/main/reporting/consort.Rmd" id="book-source">View source <i class="fab fa-github"></i></a></li>
+<li><a href="https://github.com/CTTIR/methods-in-r/edit/main/reporting/consort.Rmd" id="book-edit">Edit this page <i class="fab fa-github"></i></a></li>
+</ul>
 </div>
-    </nav>
+</nav>
 </div>
-
 </div>
 </div> <!-- .container -->
-
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-09.</p>
-  </div>
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
+<div class="col-12 col-md-6 mt-3">
+<p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-09.</p>
+</div>
+<div class="col-12 col-md-6 mt-3">
+<p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+</div>
 </div></div>
 </footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {

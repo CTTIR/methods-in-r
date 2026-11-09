@@ -1,31 +1,32 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
 <title>Chapter 27 Cheatsheets | Methods in R</title>
-<meta name="author" content="R. Heller">
-<meta name="description" content="One-page topical summaries, aggregated here as a printable reference. Each is a self-contained reminder of the syntax, the assumptions, and the diagnostics that go with the methods it covers. ...">
-<meta name="generator" content="bookdown 0.48 with bs4_book()">
-<meta property="og:title" content="Chapter 27 Cheatsheets | Methods in R">
-<meta property="og:type" content="book">
-<meta property="og:url" content="https://cttir.github.io/methods-in-r/sec-appendices-e-cheatsheets.html">
-<meta property="og:image" content="https://cttir.github.io/methods-in-r/images/cover.png">
-<meta property="og:description" content="One-page topical summaries, aggregated here as a printable reference. Each is a self-contained reminder of the syntax, the assumptions, and the diagnostics that go with the methods it covers. ...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 27 Cheatsheets | Methods in R">
-<meta name="twitter:description" content="One-page topical summaries, aggregated here as a printable reference. Each is a self-contained reminder of the syntax, the assumptions, and the diagnostics that go with the methods it covers. ...">
-<meta name="twitter:image" content="https://cttir.github.io/methods-in-r/images/cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet">
-<link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
-<script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+<meta content="R. Heller" name="author"/>
+<meta content="One-page topical summaries, aggregated here as a printable reference. Each is a self-contained reminder of the syntax, the assumptions, and the diagnostics that go with the methods it covers. ..." name="description"/>
+<meta content="bookdown 0.48 with bs4_book()" name="generator"/>
+<meta content="Chapter 27 Cheatsheets | Methods in R" property="og:title"/>
+<meta content="book" property="og:type"/>
+<meta content="https://cttir.github.io/methods-in-r/sec-appendices-e-cheatsheets.html" property="og:url"/>
+<meta content="https://cttir.github.io/methods-in-r/images/cover.png" property="og:image"/>
+<meta content="One-page topical summaries, aggregated here as a printable reference. Each is a self-contained reminder of the syntax, the assumptions, and the diagnostics that go with the methods it covers. ..." property="og:description"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Chapter 27 Cheatsheets | Methods in R" name="twitter:title"/>
+<meta content="One-page topical summaries, aggregated here as a printable reference. Each is a self-contained reminder of the syntax, the assumptions, and the diagnostics that go with the methods it covers. ..." name="twitter:description"/>
+<meta content="https://cttir.github.io/methods-in-r/images/cover.png" name="twitter:image"/>
+<!-- JS --><script crossorigin="anonymous" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script><script crossorigin="anonymous" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js"></script><script crossorigin="anonymous" src="https://kit.fontawesome.com/6ecbd6c532.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet"/>
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet"/>
+<link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet"/>
+<script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet"/>
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="style/font-awesome.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js"></script><script crossorigin="anonymous" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
@@ -51,29 +52,36 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style/style.css">
-</head>
+<link href="style/style.css" rel="stylesheet"/>
+<style id="unified-book-download-style">
+.book-downloads--unified {display:flex!important;flex-wrap:wrap;gap:12px 24px;margin:16px 0 24px!important;padding:14px 16px!important;border:1px solid #a8adb4;border-radius:8px;background:transparent;color:inherit;font-family:system-ui,sans-serif;font-size:14px;line-height:1.4;box-sizing:border-box;max-width:100%;}
+.book-downloads--unified .book-download-group {display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.book-downloads--unified .book-download-label {font-weight:600;margin-right:4px;}
+.book-downloads--unified a {display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border:1px solid currentColor;border-radius:5px;text-decoration:none!important;font-weight:600;color:inherit;}
+.book-downloads--unified a:hover {background:rgba(127,127,127,.14);}
+.book-downloads--unified a:focus-visible {outline:3px solid #2684d9;outline-offset:3px;}
+.book-downloads--unified svg {height:20px;width:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.book-downloads:not(.book-downloads--unified),.book-download-footer,.sidebar-downloads {display:none!important;}
+@media(max-width:500px){.book-downloads--unified{gap:12px;padding:12px!important;}.book-downloads--unified .book-download-group{width:100%;}.book-downloads--unified .book-download-label{min-width:92px;}}
+@media print{.book-downloads--unified{display:none!important;}}
+</style></head>
 <body data-spy="scroll" data-target="#toc">
-
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
-
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="A topic reference for biomedical research and peer review">Methods in R</a>:
+<header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<div class="d-flex align-items-start justify-content-between">
+<h1>
+<a href="index.html" title="A topic reference for biomedical research and peer review">Methods in R</a>:
         <small class="text-muted">A topic reference for biomedical research and peer review</small>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
-
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</h1>
+<button aria-controls="main-nav" aria-expanded="true" class="btn btn-outline-primary d-lg-none ml-2 mt-1" data-target="#main-nav" data-toggle="collapse" type="button"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+</div>
+<div class="collapse-lg" id="main-nav">
+<form role="search">
+<input aria-label="Search" class="form-control" id="search" placeholder="Search" type="search"/>
 </form>
-
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
+<nav aria-label="Table of contents"><h2>Table of contents</h2>
+<ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Welcome!</a></li>
 <li><a class="" href="sec-00-impressum.html">Impressum</a></li>
 <li><a class="" href="sec-00-acknowledgments.html">Acknowledgments</a></li>
@@ -112,42 +120,41 @@
 <li><a class="" href="sec-98-citing-this-guide.html">Citing this Guide</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
-
-        <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/CTTIR/methods-in-r">View book source <i class="fab fa-github"></i></a></p>
-        </div>
-      </nav>
+<div class="book-extra">
+<p><a href="https://github.com/CTTIR/methods-in-r" id="book-repo">View book source <i class="fab fa-github"></i></a></p>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="sec-appendices-e-cheatsheets" class="section level1" number="27">
+</nav>
+</div>
+</header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div class="section level1" id="sec-appendices-e-cheatsheets" number="27">
 <h1>
-<span class="header-section-number">27</span> Cheatsheets<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets"><i class="fas fa-link"></i></a>
-</h1>
+<span class="header-section-number">27</span> Cheatsheets<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets"><i class="fas fa-link"></i></a>
+</h1><nav aria-label="Book and chapter downloads" class="book-downloads book-downloads--unified"><div class="book-download-group"><span class="book-download-label">Entire book</span><a aria-label="Download entire book as PDF" download="" href="methods-in-r.pdf" title="Download entire book as PDF"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M14 2H5v20h14V7z"></path><path d="M14 2v6h5M8 13h8M8 17h6"></path></svg><span>PDF</span></a><a aria-label="Download entire book as EPUB" download="" href="methods-in-r.epub" title="Download entire book as EPUB"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM21 4h-5a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h5z"></path></svg><span>EPUB</span></a></div><div class="book-download-group"><span class="book-download-label">This chapter</span><a aria-label="Download this chapter as PDF" download="" href="downloads/chapters/sec-appendices-e-cheatsheets.pdf" title="Download this chapter as PDF"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M14 2H5v20h14V7z"></path><path d="M14 2v6h5M8 13h8M8 17h6"></path></svg><span>PDF</span></a><a aria-label="Download this chapter as EPUB" download="" href="downloads/chapters/sec-appendices-e-cheatsheets.epub" title="Download this chapter as EPUB"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM21 4h-5a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h5z"></path></svg><span>EPUB</span></a></div></nav>
 <p>One-page topical summaries, aggregated here as a printable reference. Each is a self-contained reminder of the syntax, the assumptions, and the diagnostics that go with the methods it covers.</p>
-<div id="sec-appendices-e-cheatsheets-foundations" class="section level2" number="27.1">
+<div class="section level2" id="sec-appendices-e-cheatsheets-foundations" number="27.1">
 <h2>
-<span class="header-section-number">27.1</span> Foundations<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-foundations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.1</span> Foundations<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-foundations"><i class="fas fa-link"></i></a>
 </h2>
-<div id="sec-appendices-e-cheatsheets-toolchain-tidy-data-and-ggplot2-the-research-workflow" class="section level3" number="27.1.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-toolchain-tidy-data-and-ggplot2-the-research-workflow" number="27.1.1">
 <h3>
-<span class="header-section-number">27.1.1</span> Toolchain, tidy data, and <code>ggplot2</code><a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-toolchain-tidy-data-and-ggplot2-the-research-workflow"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.1.1</span> Toolchain, tidy data, and <code>ggplot2</code><a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-toolchain-tidy-data-and-ggplot2-the-research-workflow"><i class="fas fa-link"></i></a>
 </h3>
-<div id="the-research-workflow" class="section level4" number="27.1.1.1">
+<div class="section level4" id="the-research-workflow" number="27.1.1.1">
 <h4>
-<span class="header-section-number">27.1.1.1</span> The research workflow<a class="anchor" aria-label="anchor" href="#the-research-workflow"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.1.1.1</span> The research workflow<a aria-label="anchor" class="anchor" href="#the-research-workflow"><i class="fas fa-link"></i></a>
 </h4>
 <p><code>Question → Measurements → Design → Acquisition → Description → Analysis → Interpretation → Validation → Knowledge</code></p>
 <p>Biological vs statistical significance: “<em>p</em> &lt; 0.05” ≠ “effect matters”.</p>
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-r-rstudio-quarto-renv" class="section level2" number="27.2">
+<div class="section level2" id="sec-appendices-e-cheatsheets-r-rstudio-quarto-renv" number="27.2">
 <h2>
-<span class="header-section-number">27.2</span> R / RStudio / Quarto / renv<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-r-rstudio-quarto-renv"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.2</span> R / RStudio / Quarto / renv<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-r-rstudio-quarto-renv"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col width="50%"/>
+<col width="50%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Task</th>
@@ -179,9 +186,9 @@
 </tbody>
 </table></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-data-types-and-scales" class="section level2" number="27.3">
+<div class="section level2" id="sec-appendices-e-cheatsheets-data-types-and-scales" number="27.3">
 <h2>
-<span class="header-section-number">27.3</span> Data types and scales<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-data-types-and-scales"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.3</span> Data types and scales<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-data-types-and-scales"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -214,9 +221,9 @@
 </table></div>
 <p>Accuracy ≠ precision. Bias shifts the target; variance spreads the shots.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-tidy-data" class="section level2" number="27.4">
+<div class="section level2" id="sec-appendices-e-cheatsheets-tidy-data" number="27.4">
 <h2>
-<span class="header-section-number">27.4</span> Tidy data<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-tidy-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.4</span> Tidy data<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-tidy-data"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li>One variable per column.</li>
@@ -224,9 +231,9 @@
 <li>One observational unit per table.</li>
 </ol>
 </div>
-<div id="sec-appendices-e-cheatsheets-dplyr-verbs" class="section level2" number="27.5">
+<div class="section level2" id="sec-appendices-e-cheatsheets-dplyr-verbs" number="27.5">
 <h2>
-<span class="header-section-number">27.5</span> <code>dplyr</code> verbs<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-dplyr-verbs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.5</span> <code>dplyr</code> verbs<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-dplyr-verbs"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1236"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span></span>
@@ -238,9 +245,9 @@
 <p>Joins: <code>left_join</code>, <code>inner_join</code>, <code>anti_join</code> by a key.</p>
 <p>Missingness: <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code>, <code>drop_na()</code>, <code>tidyr::complete()</code>.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-ggplot2-grammar" class="section level2" number="27.6">
+<div class="section level2" id="sec-appendices-e-cheatsheets-ggplot2-grammar" number="27.6">
 <h2>
-<span class="header-section-number">27.6</span> <code>ggplot2</code> grammar<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-ggplot2-grammar"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.6</span> <code>ggplot2</code> grammar<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-ggplot2-grammar"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, colour <span class="op">=</span> <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -250,9 +257,9 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Layer order: <code>data → aes → geom → facet → scales → labels → theme</code>.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-plot-families" class="section level2" number="27.7">
+<div class="section level2" id="sec-appendices-e-cheatsheets-plot-families" number="27.7">
 <h2>
-<span class="header-section-number">27.7</span> Plot families<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-plot-families"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.7</span> Plot families<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-plot-families"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>One variable continuous → <strong>histogram</strong>, <strong>density</strong>.</li>
@@ -261,9 +268,9 @@
 <li>Two categorical → <strong>bar with fill</strong>, <strong>mosaic</strong>.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule" class="section level2" number="27.8">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule" number="27.8">
 <h2>
-<span class="header-section-number">27.8</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.8</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Cannot read the data into a tibble → fix data entry first.</li>
@@ -271,9 +278,9 @@
 <li>Plot is ugly or cluttered → trust the plot, not the summary statistic.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls" class="section level2" number="27.9">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls" number="27.9">
 <h2>
-<span class="header-section-number">27.9</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.9</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Running statistics on untyped / partially-missing data.</li>
@@ -282,21 +289,21 @@
 <li>Forgetting <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> in any simulation chunk.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading" class="section level2" number="27.10">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading" number="27.10">
 <h2>
-<span class="header-section-number">27.10</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.10</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Wickham, <em>R for Data Science</em> (2e).</li>
 <li>Posit ggplot2 and dplyr cheatsheets.</li>
 </ul>
-<div id="sec-appendices-e-cheatsheets-descriptive-statistics-bayes-and-distributions-descriptive-statistics" class="section level3" number="27.10.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-descriptive-statistics-bayes-and-distributions-descriptive-statistics" number="27.10.1">
 <h3>
-<span class="header-section-number">27.10.1</span> Descriptive statistics, Bayes, and distributions<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-descriptive-statistics-bayes-and-distributions-descriptive-statistics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.10.1</span> Descriptive statistics, Bayes, and distributions<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-descriptive-statistics-bayes-and-distributions-descriptive-statistics"><i class="fas fa-link"></i></a>
 </h3>
-<div id="descriptive-statistics" class="section level4" number="27.10.1.1">
+<div class="section level4" id="descriptive-statistics" number="27.10.1.1">
 <h4>
-<span class="header-section-number">27.10.1.1</span> Descriptive statistics<a class="anchor" aria-label="anchor" href="#descriptive-statistics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.10.1.1</span> Descriptive statistics<a aria-label="anchor" class="anchor" href="#descriptive-statistics"><i class="fas fa-link"></i></a>
 </h4>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -326,24 +333,24 @@
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-contingency-tables" class="section level2" number="27.11">
+<div class="section level2" id="sec-appendices-e-cheatsheets-contingency-tables" number="27.11">
 <h2>
-<span class="header-section-number">27.11</span> Contingency tables<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-contingency-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.11</span> Contingency tables<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-contingency-tables"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1238"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">x</span>, <span class="va">df</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">x</span>, <span class="va">df</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>, margin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-bayes-theorem" class="section level2" number="27.12">
+<div class="section level2" id="sec-appendices-e-cheatsheets-bayes-theorem" number="27.12">
 <h2>
-<span class="header-section-number">27.12</span> Bayes’ theorem<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-bayes-theorem"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.12</span> Bayes’ theorem<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-bayes-theorem"><i class="fas fa-link"></i></a>
 </h2>
 <p><span class="math inline">\(P(A \mid B) = \dfrac{P(B \mid A) P(A)}{P(B)}\)</span></p>
 <p>In odds form: <strong>posterior odds = prior odds × likelihood ratio.</strong></p>
 </div>
-<div id="sec-appendices-e-cheatsheets-diagnostic-testing" class="section level2" number="27.13">
+<div class="section level2" id="sec-appendices-e-cheatsheets-diagnostic-testing" number="27.13">
 <h2>
-<span class="header-section-number">27.13</span> Diagnostic testing<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-diagnostic-testing"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.13</span> Diagnostic testing<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-diagnostic-testing"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -379,15 +386,15 @@
 </table></div>
 <p>PPV collapses at low prevalence — even a 95%-accurate test is mostly false positives.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-discrete-distributions" class="section level2" number="27.14">
+<div class="section level2" id="sec-appendices-e-cheatsheets-discrete-distributions" number="27.14">
 <h2>
-<span class="header-section-number">27.14</span> Discrete distributions<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-discrete-distributions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.14</span> Discrete distributions<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-discrete-distributions"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="33%"/>
+<col width="33%"/>
+<col width="33%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Distribution</th>
@@ -421,9 +428,9 @@
 </table></div>
 <p>Binomial → Poisson as <em>n</em> grows and <em>p</em> shrinks with <em>np = λ</em>.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-continuous-distributions" class="section level2" number="27.15">
+<div class="section level2" id="sec-appendices-e-cheatsheets-continuous-distributions" number="27.15">
 <h2>
-<span class="header-section-number">27.15</span> Continuous distributions<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-continuous-distributions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.15</span> Continuous distributions<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-continuous-distributions"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -456,17 +463,17 @@
 </table></div>
 <p>R uses the <code>d / p / q / r</code> prefix: density, CDF, quantile, random.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-q-q-plot" class="section level2" number="27.16">
+<div class="section level2" id="sec-appendices-e-cheatsheets-q-q-plot" number="27.16">
 <h2>
-<span class="header-section-number">27.16</span> Q-Q plot<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-q-q-plot"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.16</span> Q-Q plot<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-q-q-plot"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1239"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>sample <span class="op">=</span> <span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">stat_qq</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">stat_qq_line</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>S-shape → heavy tails. U-shape → skew. Plot before the test.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-2" class="section level2" number="27.17">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-2" number="27.17">
 <h2>
-<span class="header-section-number">27.17</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.17</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-2"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Reporting a mean? First check a histogram.</li>
@@ -474,9 +481,9 @@
 <li>Choosing a distribution? Simulate before believing.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-2" class="section level2" number="27.18">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-2" number="27.18">
 <h2>
-<span class="header-section-number">27.18</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.18</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-2"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Quoting PPV without disclosing prevalence.</li>
@@ -484,21 +491,21 @@
 <li>Using mean ± SD on skewed data.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-2" class="section level2" number="27.19">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-2" number="27.19">
 <h2>
-<span class="header-section-number">27.19</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.19</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-2"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Altman, <em>Practical Statistics for Medical Research</em>.</li>
 <li>Gelman et al., <em>Bayesian Data Analysis</em>, ch. 1.</li>
 </ul>
-<div id="sec-appendices-e-cheatsheets-sampling-estimation-and-one-sample-tests-populations-vs-samples" class="section level3" number="27.19.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-sampling-estimation-and-one-sample-tests-populations-vs-samples" number="27.19.1">
 <h3>
-<span class="header-section-number">27.19.1</span> Sampling, estimation, and one-sample tests<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-sampling-estimation-and-one-sample-tests-populations-vs-samples"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.19.1</span> Sampling, estimation, and one-sample tests<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-sampling-estimation-and-one-sample-tests-populations-vs-samples"><i class="fas fa-link"></i></a>
 </h3>
-<div id="populations-vs-samples" class="section level4" number="27.19.1.1">
+<div class="section level4" id="populations-vs-samples" number="27.19.1.1">
 <h4>
-<span class="header-section-number">27.19.1.1</span> Populations vs samples<a class="anchor" aria-label="anchor" href="#populations-vs-samples"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.19.1.1</span> Populations vs samples<a aria-label="anchor" class="anchor" href="#populations-vs-samples"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>
@@ -511,23 +518,23 @@
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-central-limit-theorem" class="section level2" number="27.20">
+<div class="section level2" id="sec-appendices-e-cheatsheets-central-limit-theorem" number="27.20">
 <h2>
-<span class="header-section-number">27.20</span> Central limit theorem<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-central-limit-theorem"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.20</span> Central limit theorem<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-central-limit-theorem"><i class="fas fa-link"></i></a>
 </h2>
 <p>For iid samples with finite variance, as <span class="math inline">\(n \to \infty\)</span>:
 <span class="math inline">\(\bar X \sim N\!\left(\mu, \sigma / \sqrt n\right)\)</span></p>
 <p>Holds roughly by <span class="math inline">\(n \approx 30\)</span> for most non-pathological distributions.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-standard-error" class="section level2" number="27.21">
+<div class="section level2" id="sec-appendices-e-cheatsheets-standard-error" number="27.21">
 <h2>
-<span class="header-section-number">27.21</span> Standard error<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-standard-error"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.21</span> Standard error<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-standard-error"><i class="fas fa-link"></i></a>
 </h2>
 <p><span class="math inline">\(\mathrm{SE}(\bar X) = \sigma / \sqrt n\)</span>, estimated by <span class="math inline">\(s / \sqrt n\)</span>.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-bootstrap" class="section level2" number="27.22">
+<div class="section level2" id="sec-appendices-e-cheatsheets-bootstrap" number="27.22">
 <h2>
-<span class="header-section-number">27.22</span> Bootstrap<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-bootstrap"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.22</span> Bootstrap<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-bootstrap"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fl">2000</span></span>
@@ -535,9 +542,9 @@
 <span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">boot_mean</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span>   <span class="co"># 95% percentile CI</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">boot_mean</span><span class="op">)</span>                           <span class="co"># bootstrap SE</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-permutation-test" class="section level2" number="27.23">
+<div class="section level2" id="sec-appendices-e-cheatsheets-permutation-test" number="27.23">
 <h2>
-<span class="header-section-number">27.23</span> Permutation test<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-permutation-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.23</span> Permutation test<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-permutation-test"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1241"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obs</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span></span>
@@ -548,9 +555,9 @@
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">null</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span><span class="op">)</span>   <span class="co"># two-sided p</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-maximum-likelihood" class="section level2" number="27.24">
+<div class="section level2" id="sec-appendices-e-cheatsheets-maximum-likelihood" number="27.24">
 <h2>
-<span class="header-section-number">27.24</span> Maximum likelihood<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-maximum-likelihood"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.24</span> Maximum likelihood<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-maximum-likelihood"><i class="fas fa-link"></i></a>
 </h2>
 <p>Given data <span class="math inline">\(x\)</span> and model <span class="math inline">\(f(x; \theta)\)</span>:</p>
 <ul>
@@ -561,16 +568,16 @@
 <li>Fisher information <span class="math inline">\(I(\theta)\)</span>; asymptotic SE = <span class="math inline">\(1/\sqrt{I(\hat\theta)}\)</span>.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-one-sample-tests-five-step-template" class="section level2" number="27.25">
+<div class="section level2" id="sec-appendices-e-cheatsheets-one-sample-tests-five-step-template" number="27.25">
 <h2>
-<span class="header-section-number">27.25</span> One-sample tests (five-step template)<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-one-sample-tests-five-step-template"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.25</span> One-sample tests (five-step template)<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-one-sample-tests-five-step-template"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Hypothesis → Visualise → Assumptions → Conduct → Conclude.</strong></p>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="33%"/>
+<col width="33%"/>
+<col width="33%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Test</th>
@@ -597,9 +604,9 @@
 </tbody>
 </table></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-hypothesis-testing-vocabulary" class="section level2" number="27.26">
+<div class="section level2" id="sec-appendices-e-cheatsheets-hypothesis-testing-vocabulary" number="27.26">
 <h2>
-<span class="header-section-number">27.26</span> Hypothesis-testing vocabulary<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-hypothesis-testing-vocabulary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.26</span> Hypothesis-testing vocabulary<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-hypothesis-testing-vocabulary"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>
@@ -611,9 +618,9 @@
 <li>A <em>p</em>-value is <strong>not</strong> the probability that H₀ is true.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-3" class="section level2" number="27.27">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-3" number="27.27">
 <h2>
-<span class="header-section-number">27.27</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.27</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-3"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Want a CI? Bootstrap first, then ask whether a formula applies.</li>
@@ -621,9 +628,9 @@
 <li>Want to know if <em>n</em> is big enough? Simulate the CLT for your outcome.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-3" class="section level2" number="27.28">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-3" number="27.28">
 <h2>
-<span class="header-section-number">27.28</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.28</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-3"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Reporting SE when you meant SD (or vice versa).</li>
@@ -631,27 +638,27 @@
 <li>Running many tests and quoting the smallest <em>p</em>-value.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-3" class="section level2" number="27.29">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-3" number="27.29">
 <h2>
-<span class="header-section-number">27.29</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.29</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-3"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Harrell, <em>Biostatistics for Biomedical Research</em>, ch. 3–5.</li>
 <li>Efron &amp; Tibshirani, <em>An Introduction to the Bootstrap</em>.</li>
 </ul>
-<div id="sec-appendices-e-cheatsheets-two-group-comparisons-effect-sizes-and-power-choosing-a-comparison" class="section level3" number="27.29.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-two-group-comparisons-effect-sizes-and-power-choosing-a-comparison" number="27.29.1">
 <h3>
-<span class="header-section-number">27.29.1</span> Two-group comparisons, effect sizes, and power<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-two-group-comparisons-effect-sizes-and-power-choosing-a-comparison"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.29.1</span> Two-group comparisons, effect sizes, and power<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-two-group-comparisons-effect-sizes-and-power-choosing-a-comparison"><i class="fas fa-link"></i></a>
 </h3>
-<div id="choosing-a-comparison" class="section level4" number="27.29.1.1">
+<div class="section level4" id="choosing-a-comparison" number="27.29.1.1">
 <h4>
-<span class="header-section-number">27.29.1.1</span> Choosing a comparison<a class="anchor" aria-label="anchor" href="#choosing-a-comparison"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.29.1.1</span> Choosing a comparison<a aria-label="anchor" class="anchor" href="#choosing-a-comparison"><i class="fas fa-link"></i></a>
 </h4>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="33%"/>
+<col width="33%"/>
+<col width="33%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Design</th>
@@ -684,9 +691,9 @@
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-effect-sizes" class="section level2" number="27.30">
+<div class="section level2" id="sec-appendices-e-cheatsheets-effect-sizes" number="27.30">
 <h2>
-<span class="header-section-number">27.30</span> Effect sizes<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-effect-sizes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.30</span> Effect sizes<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-effect-sizes"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -722,9 +729,9 @@
 <div class="sourceCode" id="cb1242"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">effectsize</span><span class="fu">::</span><span class="fu">cohens_d</span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">g</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-two-proportions" class="section level2" number="27.31">
+<div class="section level2" id="sec-appendices-e-cheatsheets-two-proportions" number="27.31">
 <h2>
-<span class="header-section-number">27.31</span> Two proportions<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-two-proportions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.31</span> Two proportions<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-two-proportions"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1243"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/prop.test.html">prop.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">tA</span>, <span class="va">tB</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">nA</span>, <span class="va">nB</span><span class="op">)</span><span class="op">)</span>         <span class="co"># asymptotic</span></span>
@@ -732,15 +739,15 @@
 <span>                     <span class="va">tB</span>, <span class="va">nB</span> <span class="op">-</span> <span class="va">tB</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>  <span class="co"># exact, small cells</span></span></code></pre></div>
 <p>Report RR (or OR) with 95% CI, not just the <em>p</em>-value.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-correlation" class="section level2" number="27.32">
+<div class="section level2" id="sec-appendices-e-cheatsheets-correlation" number="27.32">
 <h2>
-<span class="header-section-number">27.32</span> Correlation<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-correlation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.32</span> Correlation<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-correlation"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="33%"/>
+<col width="33%"/>
+<col width="33%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Method</th>
@@ -768,9 +775,9 @@
 <div class="sourceCode" id="cb1244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-non-parametric-tests" class="section level2" number="27.33">
+<div class="section level2" id="sec-appendices-e-cheatsheets-non-parametric-tests" number="27.33">
 <h2>
-<span class="header-section-number">27.33</span> Non-parametric tests<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-non-parametric-tests"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.33</span> Non-parametric tests<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-non-parametric-tests"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -799,9 +806,9 @@
 </tbody>
 </table></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-power-and-sample-size" class="section level2" number="27.34">
+<div class="section level2" id="sec-appendices-e-cheatsheets-power-and-sample-size" number="27.34">
 <h2>
-<span class="header-section-number">27.34</span> Power and sample size<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-power-and-sample-size"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.34</span> Power and sample size<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-power-and-sample-size"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1245"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">pwr</span><span class="fu">::</span><span class="fu">pwr.t.test</span><span class="op">(</span>d <span class="op">=</span> <span class="fl">0.5</span>, power <span class="op">=</span> <span class="fl">0.80</span>, sig.level <span class="op">=</span> <span class="fl">0.05</span>,</span>
@@ -835,9 +842,9 @@
 </table></div>
 <p>Simulation-based power for anything the textbooks skip: <code>simr::powerSim</code>.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-reporting-with-gtsummary" class="section level2" number="27.35">
+<div class="section level2" id="sec-appendices-e-cheatsheets-reporting-with-gtsummary" number="27.35">
 <h2>
-<span class="header-section-number">27.35</span> Reporting with <code>gtsummary</code><a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-reporting-with-gtsummary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.35</span> Reporting with <code>gtsummary</code><a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-reporting-with-gtsummary"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span></span>
@@ -846,9 +853,9 @@
 <span>  <span class="fu">add_p</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">add_overall</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-4" class="section level2" number="27.36">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-4" number="27.36">
 <h2>
-<span class="header-section-number">27.36</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.36</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-4"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Ask: one-group, two-group, paired, or many-group?</li>
@@ -856,9 +863,9 @@
 <li>Report: point estimate + 95% CI + effect size; <em>p</em>-value last, not first.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-4" class="section level2" number="27.37">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-4" number="27.37">
 <h2>
-<span class="header-section-number">27.37</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.37</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-4"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Equal-variance <em>t</em>-test (default in some languages) when variances differ.</li>
@@ -867,9 +874,9 @@
 <li>Chaining correlations until one is “significant”.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-4" class="section level2" number="27.38">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-4" number="27.38">
 <h2>
-<span class="header-section-number">27.38</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.38</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-4"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Altman, Machin et al., <em>Statistics with Confidence</em>.</li>
@@ -877,17 +884,17 @@
 <a href="https://www.danieldsjoberg.com/gtsummary/"><code>gtsummary</code> docs</a>.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-regression" class="section level2" number="27.39">
+<div class="section level2" id="sec-appendices-e-cheatsheets-regression" number="27.39">
 <h2>
-<span class="header-section-number">27.39</span> Regression<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.39</span> Regression<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-regression"><i class="fas fa-link"></i></a>
 </h2>
-<div id="sec-appendices-e-cheatsheets-linear-regression-and-diagnostics-correlation-vs-regression" class="section level3" number="27.39.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-linear-regression-and-diagnostics-correlation-vs-regression" number="27.39.1">
 <h3>
-<span class="header-section-number">27.39.1</span> Linear regression and diagnostics<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-linear-regression-and-diagnostics-correlation-vs-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.39.1</span> Linear regression and diagnostics<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-linear-regression-and-diagnostics-correlation-vs-regression"><i class="fas fa-link"></i></a>
 </h3>
-<div id="correlation-vs-regression" class="section level4" number="27.39.1.1">
+<div class="section level4" id="correlation-vs-regression" number="27.39.1.1">
 <h4>
-<span class="header-section-number">27.39.1.1</span> Correlation vs regression<a class="anchor" aria-label="anchor" href="#correlation-vs-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.39.1.1</span> Correlation vs regression<a aria-label="anchor" class="anchor" href="#correlation-vs-regression"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>Correlation: symmetric; both variables random (<strong>Model II</strong>).</li>
@@ -897,9 +904,9 @@
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-simple-linear-regression" class="section level2" number="27.40">
+<div class="section level2" id="sec-appendices-e-cheatsheets-simple-linear-regression" number="27.40">
 <h2>
-<span class="header-section-number">27.40</span> Simple linear regression<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-simple-linear-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.40</span> Simple linear regression<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-simple-linear-regression"><i class="fas fa-link"></i></a>
 </h2>
 <p><span class="math inline">\(y_i = \beta_0 + \beta_1 x_i + \varepsilon_i, \quad \varepsilon_i \sim N(0, \sigma^2)\)</span></p>
 <div class="sourceCode" id="cb1247"><pre class="downlit sourceCode r">
@@ -907,9 +914,9 @@
 <span><span class="fu">broom</span><span class="fu">::</span><span class="fu">tidy</span><span class="op">(</span><span class="va">fit</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">broom</span><span class="fu">::</span><span class="fu">glance</span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-multiple-regression" class="section level2" number="27.41">
+<div class="section level2" id="sec-appendices-e-cheatsheets-multiple-regression" number="27.41">
 <h2>
-<span class="header-section-number">27.41</span> Multiple regression<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-multiple-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.41</span> Multiple regression<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-multiple-regression"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1248"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">+</span> <span class="va">x1</span><span class="op">:</span><span class="va">x2</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></code></pre></div>
@@ -940,9 +947,9 @@
 </tbody>
 </table></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-diagnostics" class="section level2" number="27.42">
+<div class="section level2" id="sec-appendices-e-cheatsheets-diagnostics" number="27.42">
 <h2>
-<span class="header-section-number">27.42</span> Diagnostics<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-diagnostics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.42</span> Diagnostics<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-diagnostics"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>                   <span class="co"># base: 4 diagnostic plots</span></span>
@@ -974,9 +981,9 @@
 </table></div>
 <p>VIF &gt; 5 → investigate collinearity; &gt; 10 → fix it.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-robust-weighted" class="section level2" number="27.43">
+<div class="section level2" id="sec-appendices-e-cheatsheets-robust-weighted" number="27.43">
 <h2>
-<span class="header-section-number">27.43</span> Robust / weighted<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-robust-weighted"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.43</span> Robust / weighted<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-robust-weighted"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1250"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span>          <span class="co"># robust to outliers</span></span>
@@ -986,9 +993,9 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://zeileis.codeberg.page/sandwich/">sandwich</a></span><span class="op">)</span>; <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">lmtest</span><span class="op">)</span></span>
 <span><span class="fu">coeftest</span><span class="op">(</span><span class="va">fit</span>, vcov <span class="op">=</span> <span class="fu">vcovHC</span><span class="op">(</span><span class="va">fit</span>, type <span class="op">=</span> <span class="st">"HC3"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-5" class="section level2" number="27.44">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-5" number="27.44">
 <h2>
-<span class="header-section-number">27.44</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.44</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-5"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Residual plot ugly? Transform, add terms, or switch link.</li>
@@ -997,9 +1004,9 @@
 <li>Variance depends on X? HC3 SEs or weighted LS.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-5" class="section level2" number="27.45">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-5" number="27.45">
 <h2>
-<span class="header-section-number">27.45</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.45</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-5"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Interpreting <span class="math inline">\(\beta_1\)</span> as “effect of X” under confounding.</li>
@@ -1008,21 +1015,21 @@
 <li>Centring categorical predictors (don’t — use reference coding).</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-5" class="section level2" number="27.46">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-5" number="27.46">
 <h2>
-<span class="header-section-number">27.46</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.46</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-5"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Harrell, <em>Regression Modeling Strategies</em>, ch. 4–5.</li>
 <li>Fox, <em>Applied Regression Analysis</em>.</li>
 </ul>
-<div id="sec-appendices-e-cheatsheets-anova-mixed-models-and-non-linear-regression-one-way-anova" class="section level3" number="27.46.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-anova-mixed-models-and-non-linear-regression-one-way-anova" number="27.46.1">
 <h3>
-<span class="header-section-number">27.46.1</span> ANOVA, mixed models, and non-linear regression<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-anova-mixed-models-and-non-linear-regression-one-way-anova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.46.1</span> ANOVA, mixed models, and non-linear regression<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-anova-mixed-models-and-non-linear-regression-one-way-anova"><i class="fas fa-link"></i></a>
 </h3>
-<div id="one-way-anova" class="section level4" number="27.46.1.1">
+<div class="section level4" id="one-way-anova" number="27.46.1.1">
 <h4>
-<span class="header-section-number">27.46.1.1</span> One-way ANOVA<a class="anchor" aria-label="anchor" href="#one-way-anova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.46.1.1</span> One-way ANOVA<a aria-label="anchor" class="anchor" href="#one-way-anova"><i class="fas fa-link"></i></a>
 </h4>
 <div class="sourceCode" id="cb1251"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -1031,9 +1038,9 @@ compares between-group to within-group variance.</p>
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-contrasts-with-emmeans" class="section level2" number="27.47">
+<div class="section level2" id="sec-appendices-e-cheatsheets-contrasts-with-emmeans" number="27.47">
 <h2>
-<span class="header-section-number">27.47</span> Contrasts with <code>emmeans</code><a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-contrasts-with-emmeans"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.47</span> Contrasts with <code>emmeans</code><a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-contrasts-with-emmeans"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1252"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvlenth.github.io/emmeans/">emmeans</a></span><span class="op">)</span></span>
@@ -1043,9 +1050,9 @@ compares between-group to within-group variance.</p>
 <p>Pre-specify contrasts before looking at the data; correct for
 multiplicity.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-two-way-factorial-anova" class="section level2" number="27.48">
+<div class="section level2" id="sec-appendices-e-cheatsheets-two-way-factorial-anova" number="27.48">
 <h2>
-<span class="header-section-number">27.48</span> Two-way / factorial ANOVA<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-two-way-factorial-anova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.48</span> Two-way / factorial ANOVA<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-two-way-factorial-anova"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1253"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">A</span> <span class="op">*</span> <span class="va">B</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -1053,9 +1060,9 @@ multiplicity.</p>
 <p>Interaction means “effect of A differs by level of B”. Report the
 interaction first; main effects are conditional.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-repeated-measures-blocking" class="section level2" number="27.49">
+<div class="section level2" id="sec-appendices-e-cheatsheets-repeated-measures-blocking" number="27.49">
 <h2>
-<span class="header-section-number">27.49</span> Repeated measures / blocking<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-repeated-measures-blocking"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.49</span> Repeated measures / blocking<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-repeated-measures-blocking"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>RCBD: <code>aov(y ~ treatment + Error(block))</code>.</li>
@@ -1065,9 +1072,9 @@ interaction first; main effects are conditional.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>; <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/runehaubo/lmerTestR">lmerTest</a></span><span class="op">)</span></span>
 <span><span class="fu">lmer</span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">treatment</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">subject</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-gams-smooth-non-linear-terms" class="section level2" number="27.50">
+<div class="section level2" id="sec-appendices-e-cheatsheets-gams-smooth-non-linear-terms" number="27.50">
 <h2>
-<span class="header-section-number">27.50</span> GAMs — smooth non-linear terms<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-gams-smooth-non-linear-terms"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.50</span> GAMs — smooth non-linear terms<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-gams-smooth-non-linear-terms"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1255"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span>; <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gavinsimpson.github.io/gratia/">gratia</a></span><span class="op">)</span></span>
@@ -1076,9 +1083,9 @@ interaction first; main effects are conditional.</p>
 <span><span class="fu">draw</span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>         <span class="co"># smooth + CI</span></span></code></pre></div>
 <p>edf ≈ 1 → nearly linear; &gt; 4 → clearly non-linear.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-non-linear-regression-nls" class="section level2" number="27.51">
+<div class="section level2" id="sec-appendices-e-cheatsheets-non-linear-regression-nls" number="27.51">
 <h2>
-<span class="header-section-number">27.51</span> Non-linear regression (<code>nls</code>)<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-non-linear-regression-nls"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.51</span> Non-linear regression (<code>nls</code>)<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-non-linear-regression-nls"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1256"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Michaelis-Menten: y = Vmax * x / (K + x)</span></span>
@@ -1086,9 +1093,9 @@ interaction first; main effects are conditional.</p>
 <span>           data <span class="op">=</span> <span class="va">df</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Vmax <span class="op">=</span> <span class="fl">1</span>, K <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Start values matter. If it fails, plot first to guess reasonable starts.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-6" class="section level2" number="27.52">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-6" number="27.52">
 <h2>
-<span class="header-section-number">27.52</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.52</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-6"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Categorical predictor, &gt; 2 levels → ANOVA + contrasts.</li>
@@ -1097,9 +1104,9 @@ interaction first; main effects are conditional.</p>
 <li>Repeated measures → mixed model, not repeated-measures ANOVA.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-6" class="section level2" number="27.53">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-6" number="27.53">
 <h2>
-<span class="header-section-number">27.53</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.53</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-6"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Tukey HSD without pre-specified contrasts of interest.</li>
@@ -1108,29 +1115,29 @@ interaction first; main effects are conditional.</p>
 <li>Ignoring the random effect in clustered designs (pseudoreplication).</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-6" class="section level2" number="27.54">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-6" number="27.54">
 <h2>
-<span class="header-section-number">27.54</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.54</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-6"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Wood, <em>Generalized Additive Models</em>, 2e.</li>
 <li>
 <a href="https://cran.r-project.org/package=emmeans"><code>emmeans</code> vignette</a>.</li>
 </ul>
-<div id="sec-appendices-e-cheatsheets-generalised-linear-models-and-prediction-evaluation-glm-link-functions" class="section level3" number="27.54.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-generalised-linear-models-and-prediction-evaluation-glm-link-functions" number="27.54.1">
 <h3>
-<span class="header-section-number">27.54.1</span> Generalised linear models and prediction evaluation<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-generalised-linear-models-and-prediction-evaluation-glm-link-functions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.54.1</span> Generalised linear models and prediction evaluation<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-generalised-linear-models-and-prediction-evaluation-glm-link-functions"><i class="fas fa-link"></i></a>
 </h3>
-<div id="glm-link-functions" class="section level4" number="27.54.1.1">
+<div class="section level4" id="glm-link-functions" number="27.54.1.1">
 <h4>
-<span class="header-section-number">27.54.1.1</span> GLM link functions<a class="anchor" aria-label="anchor" href="#glm-link-functions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.54.1.1</span> GLM link functions<a aria-label="anchor" class="anchor" href="#glm-link-functions"><i class="fas fa-link"></i></a>
 </h4>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="25%">
-<col width="25%">
-<col width="25%">
-<col width="25%">
+<col width="25%"/>
+<col width="25%"/>
+<col width="25%"/>
+<col width="25%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Outcome</th>
@@ -1180,9 +1187,9 @@ interaction first; main effects are conditional.</p>
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-logistic-regression" class="section level2" number="27.55">
+<div class="section level2" id="sec-appendices-e-cheatsheets-logistic-regression" number="27.55">
 <h2>
-<span class="header-section-number">27.55</span> Logistic regression<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-logistic-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.55</span> Logistic regression<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-logistic-regression"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1257"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span>, data <span class="op">=</span> <span class="va">df</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
@@ -1194,9 +1201,9 @@ interaction first; main effects are conditional.</p>
 <li>Interpret ORs cautiously; RR is more intuitive for the audience.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-ancova-in-an-rct" class="section level2" number="27.56">
+<div class="section level2" id="sec-appendices-e-cheatsheets-ancova-in-an-rct" number="27.56">
 <h2>
-<span class="header-section-number">27.56</span> ANCOVA in an RCT<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-ancova-in-an-rct"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.56</span> ANCOVA in an RCT<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-ancova-in-an-rct"><i class="fas fa-link"></i></a>
 </h2>
 <p>Adjust for baseline; <strong>do not</strong> analyse the change score.</p>
 <div class="sourceCode" id="cb1258"><pre class="downlit sourceCode r">
@@ -1204,9 +1211,9 @@ interaction first; main effects are conditional.</p>
 <p>More efficient than simple t-test on change scores when baseline and
 follow-up are correlated.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-poisson-negative-binomial" class="section level2" number="27.57">
+<div class="section level2" id="sec-appendices-e-cheatsheets-poisson-negative-binomial" number="27.57">
 <h2>
-<span class="header-section-number">27.57</span> Poisson / negative binomial<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-poisson-negative-binomial"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.57</span> Poisson / negative binomial<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-poisson-negative-binomial"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1259"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cases</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/offset.html">offset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">person_years</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -1215,15 +1222,15 @@ follow-up are correlated.</p>
 <p>Check dispersion: <code>sum(residuals(fit, type = "pearson")^2) / df.residual</code>.
 If &gt; 1.5, switch to NB.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-evaluation-calibration-discrimination" class="section level2" number="27.58">
+<div class="section level2" id="sec-appendices-e-cheatsheets-evaluation-calibration-discrimination" number="27.58">
 <h2>
-<span class="header-section-number">27.58</span> Evaluation — calibration + discrimination<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-evaluation-calibration-discrimination"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.58</span> Evaluation — calibration + discrimination<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-evaluation-calibration-discrimination"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="33%"/>
+<col width="33%"/>
+<col width="33%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Metric</th>
@@ -1260,9 +1267,9 @@ If &gt; 1.5, switch to NB.</p>
 <span><span class="fu">auc</span><span class="op">(</span><span class="va">roc_obj</span><span class="op">)</span>; <span class="fu">ci.auc</span><span class="op">(</span><span class="va">roc_obj</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">roc_obj</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-7" class="section level2" number="27.59">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-7" number="27.59">
 <h2>
-<span class="header-section-number">27.59</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-7"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.59</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-7"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Binary outcome → logistic; report OR + 95% CI.</li>
@@ -1271,9 +1278,9 @@ If &gt; 1.5, switch to NB.</p>
 <li>Prediction model → calibration curve first, ROC second, decision curves third.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-7" class="section level2" number="27.60">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-7" number="27.60">
 <h2>
-<span class="header-section-number">27.60</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-7"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.60</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-7"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Quoting AUC without calibration (a discriminating but miscalibrated
@@ -1283,21 +1290,21 @@ model is dangerous).</li>
 <li>Presenting logistic regression coefficients on the log-odds scale without OR.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-7" class="section level2" number="27.61">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-7" number="27.61">
 <h2>
-<span class="header-section-number">27.61</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-7"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.61</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-7"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Harrell, <em>RMS</em>, ch. 10–12.</li>
 <li>Steyerberg, <em>Clinical Prediction Models</em>.</li>
 </ul>
-<div id="sec-appendices-e-cheatsheets-agreement-survival-primer-and-reporting-don-t-dichotomise" class="section level3" number="27.61.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-agreement-survival-primer-and-reporting-don-t-dichotomise" number="27.61.1">
 <h3>
-<span class="header-section-number">27.61.1</span> Agreement, survival primer, and reporting<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-agreement-survival-primer-and-reporting-don-t-dichotomise"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.61.1</span> Agreement, survival primer, and reporting<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-agreement-survival-primer-and-reporting-don-t-dichotomise"><i class="fas fa-link"></i></a>
 </h3>
-<div id="dont-dichotomise" class="section level4" number="27.61.1.1">
+<div class="section level4" id="dont-dichotomise" number="27.61.1.1">
 <h4>
-<span class="header-section-number">27.61.1.1</span> Don’t dichotomise<a class="anchor" aria-label="anchor" href="#dont-dichotomise"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.61.1.1</span> Don’t dichotomise<a aria-label="anchor" class="anchor" href="#dont-dichotomise"><i class="fas fa-link"></i></a>
 </h4>
 <p>Cutting a continuous variable at the median loses ≈ 37% of the
 information for a linear association. Keep predictors continuous;
@@ -1305,9 +1312,9 @@ model non-linearity with a spline if needed.</p>
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-change-scores-vs-ancova" class="section level2" number="27.62">
+<div class="section level2" id="sec-appendices-e-cheatsheets-change-scores-vs-ancova" number="27.62">
 <h2>
-<span class="header-section-number">27.62</span> Change scores vs ANCOVA<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-change-scores-vs-ancova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.62</span> Change scores vs ANCOVA<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-change-scores-vs-ancova"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Change scores suffer from <strong>regression to the mean</strong>.</li>
@@ -1316,15 +1323,15 @@ model non-linearity with a spline if needed.</p>
 answer subtly different questions — state which.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-agreement-reliability" class="section level2" number="27.63">
+<div class="section level2" id="sec-appendices-e-cheatsheets-agreement-reliability" number="27.63">
 <h2>
-<span class="header-section-number">27.63</span> Agreement &amp; reliability<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-agreement-reliability"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.63</span> Agreement &amp; reliability<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-agreement-reliability"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="33%"/>
+<col width="33%"/>
+<col width="33%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Statistic</th>
@@ -1361,14 +1368,14 @@ answer subtly different questions — state which.</li>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="op">(</span><span class="va">x</span> <span class="op">+</span> <span class="va">y</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, <span class="va">y</span> <span class="op">-</span> <span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">mean_diff</span>, <span class="va">loa</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-survival-primer" class="section level2" number="27.64">
+<div class="section level2" id="sec-appendices-e-cheatsheets-survival-primer" number="27.64">
 <h2>
-<span class="header-section-number">27.64</span> Survival primer<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-survival-primer"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.64</span> Survival primer<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-survival-primer"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col width="50%"/>
+<col width="50%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Concept</th>
@@ -1401,9 +1408,9 @@ answer subtly different questions — state which.</li>
 <li>Interpret HR only after checking for non-informative censoring.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-curves-nri-idi" class="section level2" number="27.65">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-curves-nri-idi" number="27.65">
 <h2>
-<span class="header-section-number">27.65</span> Decision curves, NRI, IDI<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-curves-nri-idi"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.65</span> Decision curves, NRI, IDI<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-curves-nri-idi"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>
@@ -1416,14 +1423,14 @@ answer subtly different questions — state which.</li>
 <li>Report decision curve first; NRI/IDI as secondary.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-explanation-vs-prediction-shmueli" class="section level2" number="27.66">
+<div class="section level2" id="sec-appendices-e-cheatsheets-explanation-vs-prediction-shmueli" number="27.66">
 <h2>
-<span class="header-section-number">27.66</span> Explanation vs prediction (Shmueli)<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-explanation-vs-prediction-shmueli"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.66</span> Explanation vs prediction (Shmueli)<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-explanation-vs-prediction-shmueli"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col width="50%"/>
+<col width="50%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Explanatory</th>
@@ -1445,9 +1452,9 @@ answer subtly different questions — state which.</li>
 </tbody>
 </table></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-reporting-guidelines" class="section level2" number="27.67">
+<div class="section level2" id="sec-appendices-e-cheatsheets-reporting-guidelines" number="27.67">
 <h2>
-<span class="header-section-number">27.67</span> Reporting guidelines<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-reporting-guidelines"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.67</span> Reporting guidelines<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-reporting-guidelines"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -1482,9 +1489,9 @@ answer subtly different questions — state which.</li>
 </tbody>
 </table></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-8" class="section level2" number="27.68">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-8" number="27.68">
 <h2>
-<span class="header-section-number">27.68</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.68</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-8"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Continuous predictor + continuous outcome → no median splits.</li>
@@ -1494,9 +1501,9 @@ answer subtly different questions — state which.</li>
 <li>Prediction model → TRIPOD checklist at submission.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-8" class="section level2" number="27.69">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-8" number="27.69">
 <h2>
-<span class="header-section-number">27.69</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.69</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-8"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Reporting κ on near-constant outcomes (high % agreement, low κ).</li>
@@ -1505,32 +1512,32 @@ answer subtly different questions — state which.</li>
 <li>Claiming a “prediction model” built on the same data used for evaluation.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-8" class="section level2" number="27.70">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-8" number="27.70">
 <h2>
-<span class="header-section-number">27.70</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.70</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-8"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Harrell, <em>BBR</em>, ch. 17–18.</li>
 <li>Royston &amp; Altman, <em>Prognosis research</em>.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-design-causal-inference" class="section level2" number="27.71">
+<div class="section level2" id="sec-appendices-e-cheatsheets-design-causal-inference" number="27.71">
 <h2>
-<span class="header-section-number">27.71</span> Design &amp; Causal Inference<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-design-causal-inference"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.71</span> Design &amp; Causal Inference<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-design-causal-inference"><i class="fas fa-link"></i></a>
 </h2>
-<div id="sec-appendices-e-cheatsheets-study-designs-and-power-observational-designs" class="section level3" number="27.71.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-study-designs-and-power-observational-designs" number="27.71.1">
 <h3>
-<span class="header-section-number">27.71.1</span> Study designs and power<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-study-designs-and-power-observational-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.71.1</span> Study designs and power<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-study-designs-and-power-observational-designs"><i class="fas fa-link"></i></a>
 </h3>
-<div id="observational-designs" class="section level4" number="27.71.1.1">
+<div class="section level4" id="observational-designs" number="27.71.1.1">
 <h4>
-<span class="header-section-number">27.71.1.1</span> Observational designs<a class="anchor" aria-label="anchor" href="#observational-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.71.1.1</span> Observational designs<a aria-label="anchor" class="anchor" href="#observational-designs"><i class="fas fa-link"></i></a>
 </h4>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="33%"/>
+<col width="33%"/>
+<col width="33%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Design</th>
@@ -1560,18 +1567,18 @@ answer subtly different questions — state which.</li>
 </tr>
 </tbody>
 </table></div>
-<p>STROBE checklist: <a href="https://www.strobe-statement.org/" class="uri">https://www.strobe-statement.org/</a></p>
+<p>STROBE checklist: <a class="uri" href="https://www.strobe-statement.org/">https://www.strobe-statement.org/</a></p>
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-trial-designs" class="section level2" number="27.72">
+<div class="section level2" id="sec-appendices-e-cheatsheets-trial-designs" number="27.72">
 <h2>
-<span class="header-section-number">27.72</span> Trial designs<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-trial-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.72</span> Trial designs<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-trial-designs"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col width="50%"/>
+<col width="50%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1609,11 +1616,11 @@ answer subtly different questions — state which.</li>
 </tr>
 </tbody>
 </table></div>
-<p>CONSORT for RCTs: <a href="https://www.consort-statement.org/" class="uri">https://www.consort-statement.org/</a></p>
+<p>CONSORT for RCTs: <a class="uri" href="https://www.consort-statement.org/">https://www.consort-statement.org/</a></p>
 </div>
-<div id="sec-appendices-e-cheatsheets-bench-translational" class="section level2" number="27.73">
+<div class="section level2" id="sec-appendices-e-cheatsheets-bench-translational" number="27.73">
 <h2>
-<span class="header-section-number">27.73</span> Bench / translational<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-bench-translational"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.73</span> Bench / translational<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-bench-translational"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>
@@ -1626,9 +1633,9 @@ answer subtly different questions — state which.</li>
 <strong>Pseudoreplication</strong>: technical replicates ≠ biological replicates.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-power-closed-form" class="section level2" number="27.74">
+<div class="section level2" id="sec-appendices-e-cheatsheets-power-closed-form" number="27.74">
 <h2>
-<span class="header-section-number">27.74</span> Power — closed form<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-power-closed-form"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.74</span> Power — closed form<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-power-closed-form"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1262"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/heliosdrm/pwr">pwr</a></span><span class="op">)</span></span>
@@ -1639,9 +1646,9 @@ answer subtly different questions — state which.</li>
 <span><span class="fu">pwr.anova.test</span><span class="op">(</span>k <span class="op">=</span> <span class="fl">4</span>, f <span class="op">=</span> <span class="fl">0.25</span>, power <span class="op">=</span> <span class="fl">0.80</span><span class="op">)</span></span></code></pre></div>
 <p>Effect-size conventions (Cohen): small <span class="math inline">\(d\)</span> = 0.2, medium 0.5, large 0.8.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-power-simulation" class="section level2" number="27.75">
+<div class="section level2" id="sec-appendices-e-cheatsheets-power-simulation" number="27.75">
 <h2>
-<span class="header-section-number">27.75</span> Power — simulation<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-power-simulation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.75</span> Power — simulation<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-power-simulation"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1263"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pitakakariki/simr">simr</a></span><span class="op">)</span></span>
@@ -1651,9 +1658,9 @@ answer subtly different questions — state which.</li>
 <p>Simulation wins for any design the textbook skips: mixed models,
 adaptive rules, non-standard outcomes.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-9" class="section level2" number="27.76">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-9" number="27.76">
 <h2>
-<span class="header-section-number">27.76</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-9"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.76</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-9"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Randomise if you can. If not, draw a DAG and name the biases.</li>
@@ -1662,9 +1669,9 @@ adaptive rules, non-standard outcomes.</p>
 <li>Bench experiments → treat batch, plate, and operator as random effects.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-9" class="section level2" number="27.77">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-9" number="27.77">
 <h2>
-<span class="header-section-number">27.77</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-9"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.77</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-9"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Planning a cluster RCT without inflating N for design effect.</li>
@@ -1673,27 +1680,27 @@ adaptive rules, non-standard outcomes.</p>
 <li>Treating technical replicates as if they were biological.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-9" class="section level2" number="27.78">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-9" number="27.78">
 <h2>
-<span class="header-section-number">27.78</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-9"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.78</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-9"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Matthews, <em>Introduction to Randomized Controlled Clinical Trials</em>.</li>
 <li>Chow &amp; Liu, <em>Design and Analysis of Clinical Trials</em>.</li>
 </ul>
-<div id="sec-appendices-e-cheatsheets-missing-data-mixed-models-and-longitudinal-missingness-mechanisms" class="section level3" number="27.78.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-missing-data-mixed-models-and-longitudinal-missingness-mechanisms" number="27.78.1">
 <h3>
-<span class="header-section-number">27.78.1</span> Missing data, mixed models, and longitudinal<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-missing-data-mixed-models-and-longitudinal-missingness-mechanisms"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.78.1</span> Missing data, mixed models, and longitudinal<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-missing-data-mixed-models-and-longitudinal-missingness-mechanisms"><i class="fas fa-link"></i></a>
 </h3>
-<div id="missingness-mechanisms" class="section level4" number="27.78.1.1">
+<div class="section level4" id="missingness-mechanisms" number="27.78.1.1">
 <h4>
-<span class="header-section-number">27.78.1.1</span> Missingness mechanisms<a class="anchor" aria-label="anchor" href="#missingness-mechanisms"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.78.1.1</span> Missingness mechanisms<a aria-label="anchor" class="anchor" href="#missingness-mechanisms"><i class="fas fa-link"></i></a>
 </h4>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="33%"/>
+<col width="33%"/>
+<col width="33%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Mechanism</th>
@@ -1722,9 +1729,9 @@ adaptive rules, non-standard outcomes.</p>
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-multiple-imputation-with-mice" class="section level2" number="27.79">
+<div class="section level2" id="sec-appendices-e-cheatsheets-multiple-imputation-with-mice" number="27.79">
 <h2>
-<span class="header-section-number">27.79</span> Multiple imputation with <code>mice</code><a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-multiple-imputation-with-mice"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.79</span> Multiple imputation with <code>mice</code><a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-multiple-imputation-with-mice"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1264"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/amices/mice">mice</a></span><span class="op">)</span></span>
@@ -1735,9 +1742,9 @@ adaptive rules, non-standard outcomes.</p>
 <p>Rule of thumb: <em>m</em> ≥ 100 × fraction of missing information, but 20 is a
 fine starting point.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-linear-mixed-models" class="section level2" number="27.80">
+<div class="section level2" id="sec-appendices-e-cheatsheets-linear-mixed-models" number="27.80">
 <h2>
-<span class="header-section-number">27.80</span> Linear mixed models<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-linear-mixed-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.80</span> Linear mixed models<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-linear-mixed-models"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1265"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>; <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/runehaubo/lmerTestR">lmerTest</a></span><span class="op">)</span></span>
@@ -1751,9 +1758,9 @@ fine starting point.</p>
 <p>REML for variance components; ML only for likelihood-ratio tests on
 fixed effects.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-glmms-gee" class="section level2" number="27.81">
+<div class="section level2" id="sec-appendices-e-cheatsheets-glmms-gee" number="27.81">
 <h2>
-<span class="header-section-number">27.81</span> GLMMs &amp; GEE<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-glmms-gee"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.81</span> GLMMs &amp; GEE<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-glmms-gee"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1266"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span></span>
@@ -1768,9 +1775,9 @@ fixed effects.</p>
 misspecification (when combined with robust SEs).</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-time-series-basics" class="section level2" number="27.82">
+<div class="section level2" id="sec-appendices-e-cheatsheets-time-series-basics" number="27.82">
 <h2>
-<span class="header-section-number">27.82</span> Time series basics<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-time-series-basics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.82</span> Time series basics<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-time-series-basics"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1267"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pkg.robjhyndman.com/forecast/">forecast</a></span><span class="op">)</span></span>
@@ -1781,9 +1788,9 @@ misspecification (when combined with robust SEs).</li>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rkillick/changepoint/">changepoint</a></span><span class="op">)</span></span>
 <span><span class="fu">cpt.mean</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"PELT"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-10" class="section level2" number="27.83">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-10" number="27.83">
 <h2>
-<span class="header-section-number">27.83</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-10"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.83</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-10"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Missing data &gt; 5% → at least sensitivity analysis; prefer MI.</li>
@@ -1793,9 +1800,9 @@ misspecification (when combined with robust SEs).</li>
 <li>Time series with trend / seasonality → decompose before modelling.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-10" class="section level2" number="27.84">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-10" number="27.84">
 <h2>
-<span class="header-section-number">27.84</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-10"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.84</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-10"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Last-observation-carried-forward; usually biased.</li>
@@ -1805,21 +1812,21 @@ of freedom correction).</li>
 <li>Quoting GEE coefficients as if they were subject-specific.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-10" class="section level2" number="27.85">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-10" number="27.85">
 <h2>
-<span class="header-section-number">27.85</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-10"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.85</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-10"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>van Buuren, <em>Flexible Imputation of Missing Data</em>.</li>
 <li>Fitzmaurice, Laird, Ware, <em>Applied Longitudinal Analysis</em>.</li>
 </ul>
-<div id="sec-appendices-e-cheatsheets-causal-inference-methods-time-varying-covariates-landmarking" class="section level3" number="27.85.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-causal-inference-methods-time-varying-covariates-landmarking" number="27.85.1">
 <h3>
-<span class="header-section-number">27.85.1</span> Causal inference methods<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-causal-inference-methods-time-varying-covariates-landmarking"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.85.1</span> Causal inference methods<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-causal-inference-methods-time-varying-covariates-landmarking"><i class="fas fa-link"></i></a>
 </h3>
-<div id="time-varying-covariates-landmarking" class="section level4" number="27.85.1.1">
+<div class="section level4" id="time-varying-covariates-landmarking" number="27.85.1.1">
 <h4>
-<span class="header-section-number">27.85.1.1</span> Time-varying covariates / landmarking<a class="anchor" aria-label="anchor" href="#time-varying-covariates-landmarking"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.85.1.1</span> Time-varying covariates / landmarking<a aria-label="anchor" class="anchor" href="#time-varying-covariates-landmarking"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>Counting-process data: split follow-up into intervals.</li>
@@ -1836,9 +1843,9 @@ long enough to be exposed → spurious survival benefit.</li>
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-competing-risks" class="section level2" number="27.86">
+<div class="section level2" id="sec-appendices-e-cheatsheets-competing-risks" number="27.86">
 <h2>
-<span class="header-section-number">27.86</span> Competing risks<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-competing-risks"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.86</span> Competing risks<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-competing-risks"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1269"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mskcc-epi-bio.github.io/tidycmprsk/">tidycmprsk</a></span><span class="op">)</span>; <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/ggsurvfit">ggsurvfit</a></span><span class="op">)</span></span>
@@ -1854,9 +1861,9 @@ hazard for event <em>k</em>?”</li>
 whole cohort, treating competing events as obstacles?”</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-dags" class="section level2" number="27.87">
+<div class="section level2" id="sec-appendices-e-cheatsheets-dags" number="27.87">
 <h2>
-<span class="header-section-number">27.87</span> DAGs<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-dags"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.87</span> DAGs<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-dags"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.dagitty.net">dagitty</a></span><span class="op">)</span>; <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-causal/ggdag">ggdag</a></span><span class="op">)</span></span>
@@ -1868,9 +1875,9 @@ whole cohort, treating competing events as obstacles?”</li>
 <li>Adjusting for a mediator estimates the direct effect only.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-propensity-scores-iptw" class="section level2" number="27.88">
+<div class="section level2" id="sec-appendices-e-cheatsheets-propensity-scores-iptw" number="27.88">
 <h2>
-<span class="header-section-number">27.88</span> Propensity scores / IPTW<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-propensity-scores-iptw"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.88</span> Propensity scores / IPTW<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-propensity-scores-iptw"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1271"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://kosukeimai.github.io/MatchIt/">MatchIt</a></span><span class="op">)</span>; <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ngreifer.github.io/cobalt/">cobalt</a></span><span class="op">)</span></span>
@@ -1880,9 +1887,9 @@ whole cohort, treating competing events as obstacles?”</li>
 <p>IPTW: weight by <span class="math inline">\(1/\hat{e}_i\)</span> for treated, <span class="math inline">\(1/(1-\hat{e}_i)\)</span> for untreated.
 Stabilised weights stay closer to 1; trim extremes to avoid outliers.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-g-methods-iv-did-rdd" class="section level2" number="27.89">
+<div class="section level2" id="sec-appendices-e-cheatsheets-g-methods-iv-did-rdd" number="27.89">
 <h2>
-<span class="header-section-number">27.89</span> G-methods, IV, DiD, RDD<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-g-methods-iv-did-rdd"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.89</span> G-methods, IV, DiD, RDD<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-g-methods-iv-did-rdd"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -1909,9 +1916,9 @@ Stabilised weights stay closer to 1; trim extremes to avoid outliers.</p>
 </tbody>
 </table></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-heterogeneous-treatment-effects" class="section level2" number="27.90">
+<div class="section level2" id="sec-appendices-e-cheatsheets-heterogeneous-treatment-effects" number="27.90">
 <h2>
-<span class="header-section-number">27.90</span> Heterogeneous treatment effects<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-heterogeneous-treatment-effects"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.90</span> Heterogeneous treatment effects<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-heterogeneous-treatment-effects"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Causal forest (<code>grf::causal_forest</code>) or meta-learners (S-, T-, X-).</li>
@@ -1919,9 +1926,9 @@ Stabilised weights stay closer to 1; trim extremes to avoid outliers.</p>
 subgroup p-values.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-11" class="section level2" number="27.91">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-11" number="27.91">
 <h2>
-<span class="header-section-number">27.91</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-11"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.91</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-11"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Treatment assigned over time → time-varying Cox.</li>
@@ -1931,9 +1938,9 @@ strategy second.</li>
 <li>Want the whole distribution of treatment effect? → causal forest.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-11" class="section level2" number="27.92">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-11" number="27.92">
 <h2>
-<span class="header-section-number">27.92</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-11"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.92</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-11"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Adjusting for a post-treatment variable (induces collider bias).</li>
@@ -1942,21 +1949,21 @@ strategy second.</li>
 <li>Calling IV estimates “generalisable” when they are local to compliers.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-11" class="section level2" number="27.93">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-11" number="27.93">
 <h2>
-<span class="header-section-number">27.93</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-11"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.93</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-11"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Hernán &amp; Robins, <em>Causal Inference: What If</em>.</li>
 <li>Therneau &amp; Grambsch, <em>Modeling Survival Data</em>.</li>
 </ul>
-<div id="sec-appendices-e-cheatsheets-synthesis-and-pre-registration-systematic-review-workflow" class="section level3" number="27.93.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-synthesis-and-pre-registration-systematic-review-workflow" number="27.93.1">
 <h3>
-<span class="header-section-number">27.93.1</span> Synthesis and pre-registration<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-synthesis-and-pre-registration-systematic-review-workflow"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.93.1</span> Synthesis and pre-registration<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-synthesis-and-pre-registration-systematic-review-workflow"><i class="fas fa-link"></i></a>
 </h3>
-<div id="systematic-review-workflow" class="section level4" number="27.93.1.1">
+<div class="section level4" id="systematic-review-workflow" number="27.93.1.1">
 <h4>
-<span class="header-section-number">27.93.1.1</span> Systematic review workflow<a class="anchor" aria-label="anchor" href="#systematic-review-workflow"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.93.1.1</span> Systematic review workflow<a aria-label="anchor" class="anchor" href="#systematic-review-workflow"><i class="fas fa-link"></i></a>
 </h4>
 <ol style="list-style-type: decimal">
 <li>PICO: Population, Intervention, Comparator, Outcome.</li>
@@ -1969,9 +1976,9 @@ strategy second.</li>
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-meta-analysis" class="section level2" number="27.94">
+<div class="section level2" id="sec-appendices-e-cheatsheets-meta-analysis" number="27.94">
 <h2>
-<span class="header-section-number">27.94</span> Meta-analysis<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-meta-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.94</span> Meta-analysis<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-meta-analysis"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1272"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.metafor-project.org">metafor</a></span><span class="op">)</span></span>
@@ -2005,9 +2012,9 @@ strategy second.</li>
 <p>Fixed-effect only when heterogeneity is effectively zero. Default to
 random effects.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-network-meta-analysis" class="section level2" number="27.95">
+<div class="section level2" id="sec-appendices-e-cheatsheets-network-meta-analysis" number="27.95">
 <h2>
-<span class="header-section-number">27.95</span> Network meta-analysis<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-network-meta-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.95</span> Network meta-analysis<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-network-meta-analysis"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1273"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/guido-s/netmeta">netmeta</a></span><span class="op">)</span></span>
@@ -2018,9 +2025,9 @@ random effects.</p>
 <span><span class="fu">decomp.design</span><span class="op">(</span><span class="va">net</span><span class="op">)</span>                     <span class="co"># inconsistency</span></span></code></pre></div>
 <p>Transitivity + consistency are the core assumptions.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-infectious-disease-sir-seir" class="section level2" number="27.96">
+<div class="section level2" id="sec-appendices-e-cheatsheets-infectious-disease-sir-seir" number="27.96">
 <h2>
-<span class="header-section-number">27.96</span> Infectious disease — SIR / SEIR<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-infectious-disease-sir-seir"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.96</span> Infectious disease — SIR / SEIR<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-infectious-disease-sir-seir"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1274"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tpetzoldt/deSolve/">deSolve</a></span><span class="op">)</span></span>
@@ -2036,9 +2043,9 @@ random effects.</p>
 <span>           parms <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>beta <span class="op">=</span> <span class="fl">0.3</span>, gamma <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><span class="math inline">\(R_0 = \beta / \gamma\)</span>. Herd-immunity threshold <span class="math inline">\(\approx 1 - 1/R_0\)</span>.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-pre-registration-and-sap" class="section level2" number="27.97">
+<div class="section level2" id="sec-appendices-e-cheatsheets-pre-registration-and-sap" number="27.97">
 <h2>
-<span class="header-section-number">27.97</span> Pre-registration and SAP<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-pre-registration-and-sap"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.97</span> Pre-registration and SAP<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-pre-registration-and-sap"><i class="fas fa-link"></i></a>
 </h2>
 <p>A pre-registration specifies, before data analysis:</p>
 <ul>
@@ -2050,9 +2057,9 @@ random effects.</p>
 </ul>
 <p>OSF and ClinicalTrials.gov are the two common registries.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-12" class="section level2" number="27.98">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-12" number="27.98">
 <h2>
-<span class="header-section-number">27.98</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-12"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.98</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-12"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>More than a handful of studies on a question → plan a systematic review.</li>
@@ -2062,9 +2069,9 @@ random effects.</p>
 labelled as such in the manuscript.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-12" class="section level2" number="27.99">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-12" number="27.99">
 <h2>
-<span class="header-section-number">27.99</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-12"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.99</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-12"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Declaring a review “systematic” without a pre-registered protocol.</li>
@@ -2073,9 +2080,9 @@ labelled as such in the manuscript.</li>
 <li>Calling a compartmental model a “forecast” without uncertainty.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-12" class="section level2" number="27.100">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-12" number="27.100">
 <h2>
-<span class="header-section-number">27.100</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-12"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.100</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-12"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Higgins et al., <em>Cochrane Handbook for Systematic Reviews</em>.</li>
@@ -2083,17 +2090,17 @@ labelled as such in the manuscript.</li>
 <li>Nosek et al. (2018), <em>The preregistration revolution</em>.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-machine-learning-high-dimensional-data" class="section level2" number="27.101">
+<div class="section level2" id="sec-appendices-e-cheatsheets-machine-learning-high-dimensional-data" number="27.101">
 <h2>
-<span class="header-section-number">27.101</span> Machine Learning &amp; High-Dimensional Data<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-machine-learning-high-dimensional-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.101</span> Machine Learning &amp; High-Dimensional Data<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-machine-learning-high-dimensional-data"><i class="fas fa-link"></i></a>
 </h2>
-<div id="sec-appendices-e-cheatsheets-cross-validation-regularisation-and-unsupervised-cross-validation" class="section level3" number="27.101.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-cross-validation-regularisation-and-unsupervised-cross-validation" number="27.101.1">
 <h3>
-<span class="header-section-number">27.101.1</span> Cross-validation, regularisation, and unsupervised<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-cross-validation-regularisation-and-unsupervised-cross-validation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.101.1</span> Cross-validation, regularisation, and unsupervised<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-cross-validation-regularisation-and-unsupervised-cross-validation"><i class="fas fa-link"></i></a>
 </h3>
-<div id="cross-validation" class="section level4" number="27.101.1.1">
+<div class="section level4" id="cross-validation" number="27.101.1.1">
 <h4>
-<span class="header-section-number">27.101.1.1</span> Cross-validation<a class="anchor" aria-label="anchor" href="#cross-validation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.101.1.1</span> Cross-validation<a aria-label="anchor" class="anchor" href="#cross-validation"><i class="fas fa-link"></i></a>
 </h4>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -2132,9 +2139,9 @@ when you are also tuning hyperparameters.</p>
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-regularisation" class="section level2" number="27.102">
+<div class="section level2" id="sec-appendices-e-cheatsheets-regularisation" number="27.102">
 <h2>
-<span class="header-section-number">27.102</span> Regularisation<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-regularisation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.102</span> Regularisation<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-regularisation"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1275"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://glmnet.stanford.edu">glmnet</a></span><span class="op">)</span></span>
@@ -2150,9 +2157,9 @@ when you are also tuning hyperparameters.</p>
 <li>Elastic net: <code>alpha</code> between 0 and 1 blends ridge and lasso.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-multivariate-workhorses" class="section level2" number="27.103">
+<div class="section level2" id="sec-appendices-e-cheatsheets-multivariate-workhorses" number="27.103">
 <h2>
-<span class="header-section-number">27.103</span> Multivariate workhorses<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-multivariate-workhorses"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.103</span> Multivariate workhorses<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-multivariate-workhorses"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -2186,9 +2193,9 @@ when you are also tuning hyperparameters.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">pc</span><span class="op">)</span>   <span class="co"># proportion of variance per PC</span></span></code></pre></div>
 <p>Scale before PCA when variables are on different units.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-clustering" class="section level2" number="27.104">
+<div class="section level2" id="sec-appendices-e-cheatsheets-clustering" number="27.104">
 <h2>
-<span class="header-section-number">27.104</span> Clustering<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-clustering"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.104</span> Clustering<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-clustering"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1277"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">km</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, centers <span class="op">=</span> <span class="fl">4</span>, nstart <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
@@ -2199,9 +2206,9 @@ when you are also tuning hyperparameters.</p>
 <li>Scale first. K-means assumes round clusters of similar size.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-non-linear-embeddings" class="section level2" number="27.105">
+<div class="section level2" id="sec-appendices-e-cheatsheets-non-linear-embeddings" number="27.105">
 <h2>
-<span class="header-section-number">27.105</span> Non-linear embeddings<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-non-linear-embeddings"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.105</span> Non-linear embeddings<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-non-linear-embeddings"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1278"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jlmelville/uwot">uwot</a></span><span class="op">)</span></span>
@@ -2212,9 +2219,9 @@ when you are also tuning hyperparameters.</p>
 <p>Embeddings are <em>visualisations</em>, not distances you should input into
 downstream stats. Global geometry is often distorted.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-13" class="section level2" number="27.106">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-13" number="27.106">
 <h2>
-<span class="header-section-number">27.106</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-13"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.106</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-13"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Lots of predictors, small n → lasso; report <code>lambda.1se</code>.</li>
@@ -2223,9 +2230,9 @@ downstream stats. Global geometry is often distorted.</p>
 <li>Tuning anything → nested CV.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-13" class="section level2" number="27.107">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-13" number="27.107">
 <h2>
-<span class="header-section-number">27.107</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-13"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.107</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-13"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Selecting features on full data, then estimating error by k-fold.</li>
@@ -2234,27 +2241,27 @@ downstream stats. Global geometry is often distorted.</p>
 <li>Using AUC on rank-ordered hold-out error as if it were CV error.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-13" class="section level2" number="27.108">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-13" number="27.108">
 <h2>
-<span class="header-section-number">27.108</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-13"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.108</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-13"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Hastie, Tibshirani, Friedman, <em>The Elements of Statistical Learning</em>.</li>
 <li>James et al., <em>ISLR2</em>.</li>
 </ul>
-<div id="sec-appendices-e-cheatsheets-trees-boosting-and-interpretability-tree-based-models" class="section level3" number="27.108.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-trees-boosting-and-interpretability-tree-based-models" number="27.108.1">
 <h3>
-<span class="header-section-number">27.108.1</span> Trees, boosting, and interpretability<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-trees-boosting-and-interpretability-tree-based-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.108.1</span> Trees, boosting, and interpretability<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-trees-boosting-and-interpretability-tree-based-models"><i class="fas fa-link"></i></a>
 </h3>
-<div id="tree-based-models" class="section level4" number="27.108.1.1">
+<div class="section level4" id="tree-based-models" number="27.108.1.1">
 <h4>
-<span class="header-section-number">27.108.1.1</span> Tree-based models<a class="anchor" aria-label="anchor" href="#tree-based-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.108.1.1</span> Tree-based models<a aria-label="anchor" class="anchor" href="#tree-based-models"><i class="fas fa-link"></i></a>
 </h4>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="33%"/>
+<col width="33%"/>
+<col width="33%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Model</th>
@@ -2292,9 +2299,9 @@ downstream stats. Global geometry is often distorted.</p>
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-interpretability" class="section level2" number="27.109">
+<div class="section level2" id="sec-appendices-e-cheatsheets-interpretability" number="27.109">
 <h2>
-<span class="header-section-number">27.109</span> Interpretability<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-interpretability"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.109</span> Interpretability<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-interpretability"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1280"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://modeloriented.github.io/DALEX/">DALEX</a></span><span class="op">)</span>; <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://giuseppec.github.io/iml/">iml</a></span><span class="op">)</span></span>
@@ -2307,9 +2314,9 @@ downstream stats. Global geometry is often distorted.</p>
 <p>PDP assumes feature independence; if features are correlated, use ALE
 plots.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-tabular-neural-networks-with-torch" class="section level2" number="27.110">
+<div class="section level2" id="sec-appendices-e-cheatsheets-tabular-neural-networks-with-torch" number="27.110">
 <h2>
-<span class="header-section-number">27.110</span> Tabular neural networks with <code>torch</code><a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-tabular-neural-networks-with-torch"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.110</span> Tabular neural networks with <code>torch</code><a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-tabular-neural-networks-with-torch"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1281"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># sketch only — typically in a loop on GPU</span></span>
@@ -2322,9 +2329,9 @@ plots.</p>
 <p>On small biomedical tabular data, boosted trees usually beat NN. Use
 NN when you need end-to-end training with images, sequences, or text.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-tidymodels-pipeline" class="section level2" number="27.111">
+<div class="section level2" id="sec-appendices-e-cheatsheets-tidymodels-pipeline" number="27.111">
 <h2>
-<span class="header-section-number">27.111</span> tidymodels pipeline<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-tidymodels-pipeline"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.111</span> tidymodels pipeline<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-tidymodels-pipeline"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1282"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
@@ -2340,9 +2347,9 @@ NN when you need end-to-end training with images, sequences, or text.</p>
 <span><span class="va">tuned</span> <span class="op">&lt;-</span> <span class="fu">tune_grid</span><span class="op">(</span><span class="va">wf</span>, <span class="va">cv</span>, grid <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">tuned</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-14" class="section level2" number="27.112">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-14" number="27.112">
 <h2>
-<span class="header-section-number">27.112</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-14"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.112</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-14"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Tabular, &lt; 100k rows → gradient-boosted trees.</li>
@@ -2351,9 +2358,9 @@ NN when you need end-to-end training with images, sequences, or text.</p>
 <li>Reproducibility → <code>tidymodels</code> pipeline + fixed seed + locked recipe.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-14" class="section level2" number="27.113">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-14" number="27.113">
 <h2>
-<span class="header-section-number">27.113</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-14"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.113</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-14"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Reporting feature importance from a model trained on the full data.</li>
@@ -2362,21 +2369,21 @@ NN when you need end-to-end training with images, sequences, or text.</p>
 <li>Forgetting to set a seed for any tune / split operation.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-14" class="section level2" number="27.114">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-14" number="27.114">
 <h2>
-<span class="header-section-number">27.114</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-14"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.114</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-14"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Biecek &amp; Burzykowski, <em>Explanatory Model Analysis</em>.</li>
 <li>Molnar, <em>Interpretable Machine Learning</em>.</li>
 </ul>
-<div id="sec-appendices-e-cheatsheets-bayesian-and-survival-ml-bayesian-thinking" class="section level3" number="27.114.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-bayesian-and-survival-ml-bayesian-thinking" number="27.114.1">
 <h3>
-<span class="header-section-number">27.114.1</span> Bayesian and survival ML<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-bayesian-and-survival-ml-bayesian-thinking"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.114.1</span> Bayesian and survival ML<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-bayesian-and-survival-ml-bayesian-thinking"><i class="fas fa-link"></i></a>
 </h3>
-<div id="bayesian-thinking" class="section level4" number="27.114.1.1">
+<div class="section level4" id="bayesian-thinking" number="27.114.1.1">
 <h4>
-<span class="header-section-number">27.114.1.1</span> Bayesian thinking<a class="anchor" aria-label="anchor" href="#bayesian-thinking"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.114.1.1</span> Bayesian thinking<a aria-label="anchor" class="anchor" href="#bayesian-thinking"><i class="fas fa-link"></i></a>
 </h4>
 <p><span class="math inline">\(\underbrace{p(\theta \mid y)}_{\text{posterior}} \propto
 \underbrace{p(y \mid \theta)}_{\text{likelihood}}
@@ -2390,9 +2397,9 @@ Bayes factors, or LOO.</li>
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-brms-stan" class="section level2" number="27.115">
+<div class="section level2" id="sec-appendices-e-cheatsheets-brms-stan" number="27.115">
 <h2>
-<span class="header-section-number">27.115</span> <code>brms</code> / Stan<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-brms-stan"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.115</span> <code>brms</code> / Stan<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-brms-stan"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1283"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms">brms</a></span><span class="op">)</span></span>
@@ -2407,14 +2414,14 @@ Bayes factors, or LOO.</li>
 <p>Prior predictive check before fitting: simulate <span class="math inline">\(y\)</span> from the prior and
 confirm the implications are plausible.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-biomarker-statistics" class="section level2" number="27.116">
+<div class="section level2" id="sec-appendices-e-cheatsheets-biomarker-statistics" number="27.116">
 <h2>
-<span class="header-section-number">27.116</span> Biomarker statistics<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-biomarker-statistics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.116</span> Biomarker statistics<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-biomarker-statistics"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col width="50%"/>
+<col width="50%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Question</th>
@@ -2443,14 +2450,14 @@ confirm the implications are plausible.</p>
 <code class="sourceCode R"><span><span class="fu">pROC</span><span class="fu">::</span><span class="fu">roc</span><span class="op">(</span><span class="va">y</span>, <span class="va">biomarker</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">pROC</span><span class="fu">::</span><span class="fu">coords</span><span class="op">(</span><span class="st">"best"</span>, best.method <span class="op">=</span> <span class="st">"youden"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-survival-ml" class="section level2" number="27.117">
+<div class="section level2" id="sec-appendices-e-cheatsheets-survival-ml" number="27.117">
 <h2>
-<span class="header-section-number">27.117</span> Survival ML<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-survival-ml"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.117</span> Survival ML<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-survival-ml"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col width="50%"/>
+<col width="50%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Model</th>
@@ -2481,9 +2488,9 @@ confirm the implications are plausible.</p>
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">timeROC</span><span class="op">(</span>T <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">time</span>, delta <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">event</span>,</span>
 <span>             marker <span class="op">=</span> <span class="va">pred</span>, cause <span class="op">=</span> <span class="fl">1</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">365</span>, <span class="fl">730</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-external-validation" class="section level2" number="27.118">
+<div class="section level2" id="sec-appendices-e-cheatsheets-external-validation" number="27.118">
 <h2>
-<span class="header-section-number">27.118</span> External validation<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-external-validation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.118</span> External validation<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-external-validation"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Never trust the apparent performance on training data.</li>
@@ -2493,9 +2500,9 @@ confirm the implications are plausible.</p>
 curves.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-15" class="section level2" number="27.119">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-15" number="27.119">
 <h2>
-<span class="header-section-number">27.119</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-15"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.119</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-15"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Rare outcome with need for uncertainty → Bayesian, not bootstrap of MLE.</li>
@@ -2504,9 +2511,9 @@ curves.</li>
 <li>Any clinical claim → external validation before publication.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-15" class="section level2" number="27.120">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-15" number="27.120">
 <h2>
-<span class="header-section-number">27.120</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-15"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.120</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-15"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Reporting a posterior with default flat priors on unscaled predictors.</li>
@@ -2516,21 +2523,21 @@ to evaluate sensitivity / specificity.</li>
 <li>Publishing a prediction model without TRIPOD-compliant reporting.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-15" class="section level2" number="27.121">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-15" number="27.121">
 <h2>
-<span class="header-section-number">27.121</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-15"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.121</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-15"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Gelman et al., <em>Bayesian Data Analysis</em>, 3e.</li>
 <li>Royston &amp; Altman, <em>External validation of a Cox prognostic model</em>.</li>
 </ul>
-<div id="sec-appendices-e-cheatsheets-omics-fdr-and-tripod-ai-bulk-rna-seq" class="section level3" number="27.121.1">
+<div class="section level3" id="sec-appendices-e-cheatsheets-omics-fdr-and-tripod-ai-bulk-rna-seq" number="27.121.1">
 <h3>
-<span class="header-section-number">27.121.1</span> Omics, FDR, and TRIPOD-AI<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-omics-fdr-and-tripod-ai-bulk-rna-seq"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.121.1</span> Omics, FDR, and TRIPOD-AI<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-omics-fdr-and-tripod-ai-bulk-rna-seq"><i class="fas fa-link"></i></a>
 </h3>
-<div id="bulk-rna-seq" class="section level4" number="27.121.1.1">
+<div class="section level4" id="bulk-rna-seq" number="27.121.1.1">
 <h4>
-<span class="header-section-number">27.121.1.1</span> Bulk RNA-seq<a class="anchor" aria-label="anchor" href="#bulk-rna-seq"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.121.1.1</span> Bulk RNA-seq<a aria-label="anchor" class="anchor" href="#bulk-rna-seq"><i class="fas fa-link"></i></a>
 </h4>
 <div class="sourceCode" id="cb1286"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">DESeq2</span><span class="op">)</span></span>
@@ -2547,9 +2554,9 @@ to evaluate sensitivity / specificity.</li>
 <span><span class="fu">topTags</span><span class="op">(</span><span class="va">qlf</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="33%"/>
+<col width="33%"/>
+<col width="33%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Package</th>
@@ -2577,9 +2584,9 @@ to evaluate sensitivity / specificity.</li>
 </div>
 </div>
 </div>
-<div id="sec-appendices-e-cheatsheets-enrichment" class="section level2" number="27.122">
+<div class="section level2" id="sec-appendices-e-cheatsheets-enrichment" number="27.122">
 <h2>
-<span class="header-section-number">27.122</span> Enrichment<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-enrichment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.122</span> Enrichment<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-enrichment"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1288"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">fgsea</span><span class="op">)</span></span>
@@ -2591,9 +2598,9 @@ to evaluate sensitivity / specificity.</li>
 <p>Always pre-rank by a <em>signed</em> statistic (log-FC × -log10 p), not by
 raw p alone.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-single-cell-rna-seq-seurat-pattern" class="section level2" number="27.123">
+<div class="section level2" id="sec-appendices-e-cheatsheets-single-cell-rna-seq-seurat-pattern" number="27.123">
 <h2>
-<span class="header-section-number">27.123</span> Single-cell RNA-seq (Seurat pattern)<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-single-cell-rna-seq-seurat-pattern"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.123</span> Single-cell RNA-seq (Seurat pattern)<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-single-cell-rna-seq-seurat-pattern"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1289"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://satijalab.org/seurat">Seurat</a></span><span class="op">)</span></span>
@@ -2607,14 +2614,14 @@ raw p alone.</p>
 <span>  <span class="fu">RunUMAP</span><span class="op">(</span>dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></span>
 <span><span class="fu">DimPlot</span><span class="op">(</span><span class="va">so</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-fdr-knockoffs-replication" class="section level2" number="27.124">
+<div class="section level2" id="sec-appendices-e-cheatsheets-fdr-knockoffs-replication" number="27.124">
 <h2>
-<span class="header-section-number">27.124</span> FDR, knockoffs, replication<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-fdr-knockoffs-replication"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.124</span> FDR, knockoffs, replication<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-fdr-knockoffs-replication"><i class="fas fa-link"></i></a>
 </h2>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col width="50%"/>
+<col width="50%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Correction</th>
@@ -2644,9 +2651,9 @@ raw p alone.</p>
 <p>Replication crisis shorthand: pre-register + report effect sizes +
 share data. Power, not p-values.</p>
 </div>
-<div id="sec-appendices-e-cheatsheets-tripod-ai-fairness" class="section level2" number="27.125">
+<div class="section level2" id="sec-appendices-e-cheatsheets-tripod-ai-fairness" number="27.125">
 <h2>
-<span class="header-section-number">27.125</span> TRIPOD-AI + fairness<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-tripod-ai-fairness"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.125</span> TRIPOD-AI + fairness<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-tripod-ai-fairness"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>TRIPOD-AI extends TRIPOD for prediction models built with ML.</li>
@@ -2656,9 +2663,9 @@ performance, calibration, external validation.</li>
 Disparities in calibration are often larger than in AUC.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-reproducibility-at-scale-with-targets" class="section level2" number="27.126">
+<div class="section level2" id="sec-appendices-e-cheatsheets-reproducibility-at-scale-with-targets" number="27.126">
 <h2>
-<span class="header-section-number">27.126</span> Reproducibility at scale with <code>targets</code><a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-reproducibility-at-scale-with-targets"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.126</span> Reproducibility at scale with <code>targets</code><a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-reproducibility-at-scale-with-targets"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb1291"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># _targets.R</span></span>
@@ -2672,9 +2679,9 @@ Disparities in calibration are often larger than in AUC.</li>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb1292"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1292-1"><a href="sec-appendices-e-cheatsheets.html#cb1292-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'targets::tar_make()'</span></span></code></pre></div>
 </div>
-<div id="sec-appendices-e-cheatsheets-decision-rule-16" class="section level2" number="27.127">
+<div class="section level2" id="sec-appendices-e-cheatsheets-decision-rule-16" number="27.127">
 <h2>
-<span class="header-section-number">27.127</span> Decision rule<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-16"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.127</span> Decision rule<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-decision-rule-16"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Bulk DE → DESeq2 for small samples, edgeR/limma for large.</li>
@@ -2685,9 +2692,9 @@ annotation.</li>
 <li>Any multi-step analysis → <code>targets</code> pipeline.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-common-pitfalls-16" class="section level2" number="27.128">
+<div class="section level2" id="sec-appendices-e-cheatsheets-common-pitfalls-16" number="27.128">
 <h2>
-<span class="header-section-number">27.128</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-16"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.128</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-common-pitfalls-16"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Running DE on a pathway-level aggregate rather than gene-level.</li>
@@ -2697,9 +2704,9 @@ annotation.</li>
 <li>Submitting a paper without a <code><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo()</a></code> or a lock file.</li>
 </ul>
 </div>
-<div id="sec-appendices-e-cheatsheets-further-reading-16" class="section level2" number="27.129">
+<div class="section level2" id="sec-appendices-e-cheatsheets-further-reading-16" number="27.129">
 <h2>
-<span class="header-section-number">27.129</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-appendices-e-cheatsheets-further-reading-16"><i class="fas fa-link"></i></a>
+<span class="header-section-number">27.129</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-appendices-e-cheatsheets-further-reading-16"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Love, Huber, Anders (2014), <em>Moderated estimation of fold change…</em>
@@ -2711,11 +2718,10 @@ annotation.</li>
 </div>
 <!-- Dark / light mode toggle (replaces Harrer's emoji with a Font Awesome glyph) -->
 <div class="sticky-item">
-  <button type="button" id="mode-switch" class="btn-circle-mode" aria-label="Toggle dark mode">
-    <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
-  </button>
+<button aria-label="Toggle dark mode" class="btn-circle-mode" id="mode-switch" type="button">
+<i aria-hidden="true" class="fa-solid fa-circle-half-stroke"></i>
+</button>
 </div>
-
 <script>
   (function () {
     var stored = localStorage.getItem('themeMode');
@@ -2734,52 +2740,15 @@ annotation.</li>
       });
     });
   })();
-</script><!-- Offer only downloads produced and inventoried by this build. --><script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    var source = document.getElementById("book-source");
-    var extra = source && source.closest(".book-extra");
-    if (!extra) return;
-    try {
-      var response = await fetch("downloads.json");
-      if (!response.ok) return;
-      var files = await response.json();
-      var current = window.location.pathname.split("/").pop() || "index.html";
-      var candidates = [
-        ["methods-in-r.pdf", "Entire book (PDF)"],
-        ["methods-in-r.epub", "Entire book (EPUB)"]
-      ];
-      if (current !== "index.html")
-        candidates.push(["pdf-chapters/" + current.replace(/\.html$/, ".pdf"), "This chapter (PDF)"]);
-      var available = candidates.filter(function (item) { return files.includes(item[0]); });
-      if (!available.length) return;
-      var wrap = document.createElement("div");
-      wrap.className = "book-downloads";
-      var heading = document.createElement("h6");
-      heading.textContent = "Downloads";
-      wrap.appendChild(heading);
-      var list = document.createElement("ul");
-      list.className = "list-unstyled";
-      available.forEach(function (item) {
-        var li = document.createElement("li");
-        var link = document.createElement("a");
-        link.href = item[0]; link.textContent = item[1];
-        li.appendChild(link); list.appendChild(li);
-      });
-      wrap.appendChild(list);
-      extra.parentNode.insertBefore(wrap, extra);
-    } catch (error) {
-      // An unavailable inventory means there are no verified download links.
-    }
-  });
-</script><!-- Footer attribution --><div class="bookdown-attribution">
+</script><!-- Offer only downloads produced and inventoried by this build. --><!-- Footer attribution --><div class="bookdown-attribution">
   This book was built by the <a href="https://bookdown.org/"><strong>bookdown</strong></a> R package.
 </div>
-  <div class="chapter-nav">
+<div class="chapter-nav">
 <div class="prev"><a href="sec-appendices-d-writing-a-report.html"><span class="header-section-number">26</span> Writing a report</a></div>
 <div class="next"><a href="sec-95-colophon.html">Colophon</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
+<nav aria-label="On this page" data-toggle="toc" id="toc"><h2>On this page</h2>
+<ul class="nav navbar-nav">
 <li><a class="nav-link" href="#sec-appendices-e-cheatsheets"><span class="header-section-number">27</span> Cheatsheets</a></li>
 <li>
 <a class="nav-link" href="#sec-appendices-e-cheatsheets-foundations"><span class="header-section-number">27.1</span> Foundations</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#sec-appendices-e-cheatsheets-toolchain-tidy-data-and-ggplot2-the-research-workflow"><span class="header-section-number">27.1.1</span> Toolchain, tidy data, and ggplot2</a></li></ul>
@@ -2943,29 +2912,23 @@ annotation.</li>
 <li><a class="nav-link" href="#sec-appendices-e-cheatsheets-common-pitfalls-16"><span class="header-section-number">27.128</span> Common pitfalls</a></li>
 <li><a class="nav-link" href="#sec-appendices-e-cheatsheets-further-reading-16"><span class="header-section-number">27.129</span> Further reading</a></li>
 </ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/CTTIR/methods-in-r/blob/main/appendices/E-cheatsheets.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/CTTIR/methods-in-r/edit/main/appendices/E-cheatsheets.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
-        </ul>
+<div class="book-extra">
+<ul class="list-unstyled">
+<li><a href="https://github.com/CTTIR/methods-in-r/blob/main/appendices/E-cheatsheets.Rmd" id="book-source">View source <i class="fab fa-github"></i></a></li>
+<li><a href="https://github.com/CTTIR/methods-in-r/edit/main/appendices/E-cheatsheets.Rmd" id="book-edit">Edit this page <i class="fab fa-github"></i></a></li>
+</ul>
 </div>
-    </nav>
+</nav>
 </div>
-
 </div>
 </div> <!-- .container -->
-
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-09.</p>
-  </div>
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
+<div class="col-12 col-md-6 mt-3">
+<p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-09.</p>
+</div>
+<div class="col-12 col-md-6 mt-3">
+<p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+</div>
 </div></div>
 </footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {

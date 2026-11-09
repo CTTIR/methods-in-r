@@ -1,31 +1,32 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
 <title>Chapter 20 TRIPOD-AI — prediction models | Methods in R</title>
-<meta name="author" content="R. Heller">
-<meta name="description" content="TRIPOD-AI — Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis, AI extension — covers prediction models, including those built with machine learning....">
-<meta name="generator" content="bookdown 0.48 with bs4_book()">
-<meta property="og:title" content="Chapter 20 TRIPOD-AI — prediction models | Methods in R">
-<meta property="og:type" content="book">
-<meta property="og:url" content="https://cttir.github.io/methods-in-r/sec-reporting-tripod-ai.html">
-<meta property="og:image" content="https://cttir.github.io/methods-in-r/images/cover.png">
-<meta property="og:description" content="TRIPOD-AI — Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis, AI extension — covers prediction models, including those built with machine learning....">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 20 TRIPOD-AI — prediction models | Methods in R">
-<meta name="twitter:description" content="TRIPOD-AI — Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis, AI extension — covers prediction models, including those built with machine learning....">
-<meta name="twitter:image" content="https://cttir.github.io/methods-in-r/images/cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet">
-<link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
-<script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+<meta content="R. Heller" name="author"/>
+<meta content="TRIPOD-AI — Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis, AI extension — covers prediction models, including those built with machine learning...." name="description"/>
+<meta content="bookdown 0.48 with bs4_book()" name="generator"/>
+<meta content="Chapter 20 TRIPOD-AI — prediction models | Methods in R" property="og:title"/>
+<meta content="book" property="og:type"/>
+<meta content="https://cttir.github.io/methods-in-r/sec-reporting-tripod-ai.html" property="og:url"/>
+<meta content="https://cttir.github.io/methods-in-r/images/cover.png" property="og:image"/>
+<meta content="TRIPOD-AI — Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis, AI extension — covers prediction models, including those built with machine learning...." property="og:description"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Chapter 20 TRIPOD-AI — prediction models | Methods in R" name="twitter:title"/>
+<meta content="TRIPOD-AI — Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis, AI extension — covers prediction models, including those built with machine learning...." name="twitter:description"/>
+<meta content="https://cttir.github.io/methods-in-r/images/cover.png" name="twitter:image"/>
+<!-- JS --><script crossorigin="anonymous" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script><script crossorigin="anonymous" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js"></script><script crossorigin="anonymous" src="https://kit.fontawesome.com/6ecbd6c532.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet"/>
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet"/>
+<link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet"/>
+<script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet"/>
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="style/font-awesome.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js"></script><script crossorigin="anonymous" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
@@ -51,29 +52,36 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style/style.css">
-</head>
+<link href="style/style.css" rel="stylesheet"/>
+<style id="unified-book-download-style">
+.book-downloads--unified {display:flex!important;flex-wrap:wrap;gap:12px 24px;margin:16px 0 24px!important;padding:14px 16px!important;border:1px solid #a8adb4;border-radius:8px;background:transparent;color:inherit;font-family:system-ui,sans-serif;font-size:14px;line-height:1.4;box-sizing:border-box;max-width:100%;}
+.book-downloads--unified .book-download-group {display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.book-downloads--unified .book-download-label {font-weight:600;margin-right:4px;}
+.book-downloads--unified a {display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border:1px solid currentColor;border-radius:5px;text-decoration:none!important;font-weight:600;color:inherit;}
+.book-downloads--unified a:hover {background:rgba(127,127,127,.14);}
+.book-downloads--unified a:focus-visible {outline:3px solid #2684d9;outline-offset:3px;}
+.book-downloads--unified svg {height:20px;width:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.book-downloads:not(.book-downloads--unified),.book-download-footer,.sidebar-downloads {display:none!important;}
+@media(max-width:500px){.book-downloads--unified{gap:12px;padding:12px!important;}.book-downloads--unified .book-download-group{width:100%;}.book-downloads--unified .book-download-label{min-width:92px;}}
+@media print{.book-downloads--unified{display:none!important;}}
+</style></head>
 <body data-spy="scroll" data-target="#toc">
-
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
-
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="A topic reference for biomedical research and peer review">Methods in R</a>:
+<header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<div class="d-flex align-items-start justify-content-between">
+<h1>
+<a href="index.html" title="A topic reference for biomedical research and peer review">Methods in R</a>:
         <small class="text-muted">A topic reference for biomedical research and peer review</small>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
-
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</h1>
+<button aria-controls="main-nav" aria-expanded="true" class="btn btn-outline-primary d-lg-none ml-2 mt-1" data-target="#main-nav" data-toggle="collapse" type="button"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+</div>
+<div class="collapse-lg" id="main-nav">
+<form role="search">
+<input aria-label="Search" class="form-control" id="search" placeholder="Search" type="search"/>
 </form>
-
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
+<nav aria-label="Table of contents"><h2>Table of contents</h2>
+<ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Welcome!</a></li>
 <li><a class="" href="sec-00-impressum.html">Impressum</a></li>
 <li><a class="" href="sec-00-acknowledgments.html">Acknowledgments</a></li>
@@ -112,21 +120,20 @@
 <li><a class="" href="sec-98-citing-this-guide.html">Citing this Guide</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
-
-        <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/CTTIR/methods-in-r">View book source <i class="fab fa-github"></i></a></p>
-        </div>
-      </nav>
+<div class="book-extra">
+<p><a href="https://github.com/CTTIR/methods-in-r" id="book-repo">View book source <i class="fab fa-github"></i></a></p>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="sec-reporting-tripod-ai" class="section level1" number="20">
+</nav>
+</div>
+</header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div class="section level1" id="sec-reporting-tripod-ai" number="20">
 <h1>
-<span class="header-section-number">20</span> TRIPOD-AI — prediction models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai"><i class="fas fa-link"></i></a>
-</h1>
-<p>TRIPOD-AI — <em>Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis, AI extension</em> — covers prediction models, including those built with machine learning. The checklist is at <a href="https://www.tripod-statement.org/" class="uri">https://www.tripod-statement.org/</a>. The templates below cover model development, validation, calibration, and fairness reporting.</p>
+<span class="header-section-number">20</span> TRIPOD-AI — prediction models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai"><i class="fas fa-link"></i></a>
+</h1><nav aria-label="Book and chapter downloads" class="book-downloads book-downloads--unified"><div class="book-download-group"><span class="book-download-label">Entire book</span><a aria-label="Download entire book as PDF" download="" href="methods-in-r.pdf" title="Download entire book as PDF"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M14 2H5v20h14V7z"></path><path d="M14 2v6h5M8 13h8M8 17h6"></path></svg><span>PDF</span></a><a aria-label="Download entire book as EPUB" download="" href="methods-in-r.epub" title="Download entire book as EPUB"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM21 4h-5a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h5z"></path></svg><span>EPUB</span></a></div><div class="book-download-group"><span class="book-download-label">This chapter</span><a aria-label="Download this chapter as PDF" download="" href="downloads/chapters/sec-reporting-tripod-ai.pdf" title="Download this chapter as PDF"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M14 2H5v20h14V7z"></path><path d="M14 2v6h5M8 13h8M8 17h6"></path></svg><span>PDF</span></a><a aria-label="Download this chapter as EPUB" download="" href="downloads/chapters/sec-reporting-tripod-ai.epub" title="Download this chapter as EPUB"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM21 4h-5a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h5z"></path></svg><span>EPUB</span></a></div></nav>
+<p>TRIPOD-AI — <em>Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis, AI extension</em> — covers prediction models, including those built with machine learning. The checklist is at <a class="uri" href="https://www.tripod-statement.org/">https://www.tripod-statement.org/</a>. The templates below cover model development, validation, calibration, and fairness reporting.</p>
 <p>This page contains <strong>163 method-specific templates</strong>. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.</p>
-<div id="sec-reporting-tripod-ai-a-complete-mlr3-workflow" class="section level3" number="20.0.1">
+<div class="section level3" id="sec-reporting-tripod-ai-a-complete-mlr3-workflow" number="20.0.1">
 <h3>
-<span class="header-section-number">20.0.1</span> A Complete mlr3 Workflow<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-a-complete-mlr3-workflow"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.1</span> A Complete mlr3 Workflow<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-a-complete-mlr3-workflow"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -139,9 +146,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-mlr3-workflow-for-reviewers"><code>mlr3-workflow</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-a-complete-tidymodels-workflow" class="section level3" number="20.0.2">
+<div class="section level3" id="sec-reporting-tripod-ai-a-complete-tidymodels-workflow" number="20.0.2">
 <h3>
-<span class="header-section-number">20.0.2</span> A Complete tidymodels Workflow<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-a-complete-tidymodels-workflow"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.2</span> A Complete tidymodels Workflow<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-a-complete-tidymodels-workflow"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -154,9 +161,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-tidymodels-workflow-for-reviewers"><code>tidymodels-workflow</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-accelerated-failure-time-models" class="section level3" number="20.0.3">
+<div class="section level3" id="sec-reporting-tripod-ai-accelerated-failure-time-models" number="20.0.3">
 <h3>
-<span class="header-section-number">20.0.3</span> Accelerated Failure Time Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-accelerated-failure-time-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.3</span> Accelerated Failure Time Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-accelerated-failure-time-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -169,9 +176,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-accelerated-failure-time-for-reviewers"><code>accelerated-failure-time</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-adaptive-trial-designs" class="section level3" number="20.0.4">
+<div class="section level3" id="sec-reporting-tripod-ai-adaptive-trial-designs" number="20.0.4">
 <h3>
-<span class="header-section-number">20.0.4</span> Adaptive Trial Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-adaptive-trial-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.4</span> Adaptive Trial Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-adaptive-trial-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -184,9 +191,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-adaptive-design-for-reviewers"><code>adaptive-design</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-added-variable-plots" class="section level3" number="20.0.5">
+<div class="section level3" id="sec-reporting-tripod-ai-added-variable-plots" number="20.0.5">
 <h3>
-<span class="header-section-number">20.0.5</span> Added-Variable Plots<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-added-variable-plots"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.5</span> Added-Variable Plots<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-added-variable-plots"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -199,9 +206,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-added-variable-plots-for-reviewers"><code>added-variable-plots</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-alpha-spending-functions" class="section level3" number="20.0.6">
+<div class="section level3" id="sec-reporting-tripod-ai-alpha-spending-functions" number="20.0.6">
 <h3>
-<span class="header-section-number">20.0.6</span> Alpha-Spending Functions<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-alpha-spending-functions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.6</span> Alpha-Spending Functions<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-alpha-spending-functions"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -214,9 +221,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-alpha-spending-for-reviewers"><code>alpha-spending</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-anomaly-detection" class="section level3" number="20.0.7">
+<div class="section level3" id="sec-reporting-tripod-ai-anomaly-detection" number="20.0.7">
 <h3>
-<span class="header-section-number">20.0.7</span> Anomaly Detection<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-anomaly-detection"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.7</span> Anomaly Detection<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-anomaly-detection"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -229,9 +236,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-anomaly-detection-for-reviewers"><code>anomaly-detection</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-bagging" class="section level3" number="20.0.8">
+<div class="section level3" id="sec-reporting-tripod-ai-bagging" number="20.0.8">
 <h3>
-<span class="header-section-number">20.0.8</span> Bagging<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-bagging"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.8</span> Bagging<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-bagging"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -244,9 +251,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-bagging-for-reviewers"><code>bagging</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-baseline-adjustment-with-ancova" class="section level3" number="20.0.9">
+<div class="section level3" id="sec-reporting-tripod-ai-baseline-adjustment-with-ancova" number="20.0.9">
 <h3>
-<span class="header-section-number">20.0.9</span> Baseline Adjustment with ANCOVA<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-baseline-adjustment-with-ancova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.9</span> Baseline Adjustment with ANCOVA<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-baseline-adjustment-with-ancova"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -259,9 +266,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-baseline-adjustment-ancova-for-reviewers"><code>baseline-adjustment-ancova</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-best-subset-selection" class="section level3" number="20.0.10">
+<div class="section level3" id="sec-reporting-tripod-ai-best-subset-selection" number="20.0.10">
 <h3>
-<span class="header-section-number">20.0.10</span> Best Subset Selection<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-best-subset-selection"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.10</span> Best Subset Selection<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-best-subset-selection"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -274,9 +281,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-best-subset-selection-for-reviewers"><code>best-subset-selection</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-beta-regression" class="section level3" number="20.0.11">
+<div class="section level3" id="sec-reporting-tripod-ai-beta-regression" number="20.0.11">
 <h3>
-<span class="header-section-number">20.0.11</span> Beta Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-beta-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.11</span> Beta Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-beta-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -289,9 +296,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-beta-regression-for-reviewers"><code>beta-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-bland-altman-limits-of-agreement" class="section level3" number="20.0.12">
+<div class="section level3" id="sec-reporting-tripod-ai-bland-altman-limits-of-agreement" number="20.0.12">
 <h3>
-<span class="header-section-number">20.0.12</span> Bland-Altman Limits of Agreement<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-bland-altman-limits-of-agreement"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.12</span> Bland-Altman Limits of Agreement<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-bland-altman-limits-of-agreement"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -304,9 +311,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-bland-altman-analysis-for-reviewers"><code>bland-altman-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-blinding-procedures" class="section level3" number="20.0.13">
+<div class="section level3" id="sec-reporting-tripod-ai-blinding-procedures" number="20.0.13">
 <h3>
-<span class="header-section-number">20.0.13</span> Blinding Procedures<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-blinding-procedures"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.13</span> Blinding Procedures<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-blinding-procedures"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -319,9 +326,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-blinding-procedures-for-reviewers"><code>blinding-procedures</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-block-randomisation" class="section level3" number="20.0.14">
+<div class="section level3" id="sec-reporting-tripod-ai-block-randomisation" number="20.0.14">
 <h3>
-<span class="header-section-number">20.0.14</span> Block Randomisation<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-block-randomisation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.14</span> Block Randomisation<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-block-randomisation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -334,9 +341,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-block-randomization-for-reviewers"><code>block-randomization</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-calibration-plots" class="section level3" number="20.0.15">
+<div class="section level3" id="sec-reporting-tripod-ai-calibration-plots" number="20.0.15">
 <h3>
-<span class="header-section-number">20.0.15</span> Calibration Plots<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-calibration-plots"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.15</span> Calibration Plots<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-calibration-plots"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -349,9 +356,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-calibration-plots-for-reviewers"><code>calibration-plots</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-catboost" class="section level3" number="20.0.16">
+<div class="section level3" id="sec-reporting-tripod-ai-catboost" number="20.0.16">
 <h3>
-<span class="header-section-number">20.0.16</span> CatBoost<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-catboost"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.16</span> CatBoost<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-catboost"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -364,9 +371,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-catboost-for-reviewers"><code>catboost</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-censoring-types" class="section level3" number="20.0.17">
+<div class="section level3" id="sec-reporting-tripod-ai-censoring-types" number="20.0.17">
 <h3>
-<span class="header-section-number">20.0.17</span> Censoring Types<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-censoring-types"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.17</span> Censoring Types<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-censoring-types"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -379,9 +386,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-censoring-types-for-reviewers"><code>censoring-types</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-centring-and-scaling-predictors" class="section level3" number="20.0.18">
+<div class="section level3" id="sec-reporting-tripod-ai-centring-and-scaling-predictors" number="20.0.18">
 <h3>
-<span class="header-section-number">20.0.18</span> Centring and Scaling Predictors<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-centring-and-scaling-predictors"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.18</span> Centring and Scaling Predictors<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-centring-and-scaling-predictors"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -394,9 +401,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-centered-scaled-predictors-for-reviewers"><code>centered-scaled-predictors</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-checking-cox-assumptions" class="section level3" number="20.0.19">
+<div class="section level3" id="sec-reporting-tripod-ai-checking-cox-assumptions" number="20.0.19">
 <h3>
-<span class="header-section-number">20.0.19</span> Checking Cox Assumptions<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-checking-cox-assumptions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.19</span> Checking Cox Assumptions<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-checking-cox-assumptions"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -409,9 +416,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-cox-assumptions-check-for-reviewers"><code>cox-assumptions-check</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-class-weights-for-imbalanced-data" class="section level3" number="20.0.20">
+<div class="section level3" id="sec-reporting-tripod-ai-class-weights-for-imbalanced-data" number="20.0.20">
 <h3>
-<span class="header-section-number">20.0.20</span> Class Weights for Imbalanced Data<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-class-weights-for-imbalanced-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.20</span> Class Weights for Imbalanced Data<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-class-weights-for-imbalanced-data"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -424,9 +431,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-class-weights-imbalanced-for-reviewers"><code>class-weights-imbalanced</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-clinical-equivalence-trials" class="section level3" number="20.0.21">
+<div class="section level3" id="sec-reporting-tripod-ai-clinical-equivalence-trials" number="20.0.21">
 <h3>
-<span class="header-section-number">20.0.21</span> Clinical Equivalence Trials<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-clinical-equivalence-trials"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.21</span> Clinical Equivalence Trials<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-clinical-equivalence-trials"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -439,9 +446,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-equivalence-clinical-for-reviewers"><code>equivalence-clinical</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-cluster-randomised-trials" class="section level3" number="20.0.22">
+<div class="section level3" id="sec-reporting-tripod-ai-cluster-randomised-trials" number="20.0.22">
 <h3>
-<span class="header-section-number">20.0.22</span> Cluster-Randomised Trials<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-cluster-randomised-trials"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.22</span> Cluster-Randomised Trials<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-cluster-randomised-trials"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -454,9 +461,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-cluster-rct-for-reviewers"><code>cluster-rct</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-cohen-s-kappa" class="section level3" number="20.0.23">
+<div class="section level3" id="sec-reporting-tripod-ai-cohen-s-kappa" number="20.0.23">
 <h3>
-<span class="header-section-number">20.0.23</span> Cohen’s Kappa<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-cohen-s-kappa"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.23</span> Cohen’s Kappa<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-cohen-s-kappa"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -469,9 +476,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-cohens-kappa-for-reviewers"><code>cohens-kappa</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-competing-risks-cumulative-incidence" class="section level3" number="20.0.24">
+<div class="section level3" id="sec-reporting-tripod-ai-competing-risks-cumulative-incidence" number="20.0.24">
 <h3>
-<span class="header-section-number">20.0.24</span> Competing Risks: Cumulative Incidence<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-competing-risks-cumulative-incidence"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.24</span> Competing Risks: Cumulative Incidence<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-competing-risks-cumulative-incidence"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -484,9 +491,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-competing-risks-cif-for-reviewers"><code>competing-risks-cif</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-concordance-and-the-c-index" class="section level3" number="20.0.25">
+<div class="section level3" id="sec-reporting-tripod-ai-concordance-and-the-c-index" number="20.0.25">
 <h3>
-<span class="header-section-number">20.0.25</span> Concordance and the C-Index<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-concordance-and-the-c-index"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.25</span> Concordance and the C-Index<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-concordance-and-the-c-index"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -499,9 +506,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-concordance-c-index-for-reviewers"><code>concordance-c-index</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-conditional-power" class="section level3" number="20.0.26">
+<div class="section level3" id="sec-reporting-tripod-ai-conditional-power" number="20.0.26">
 <h3>
-<span class="header-section-number">20.0.26</span> Conditional Power<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-conditional-power"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.26</span> Conditional Power<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-conditional-power"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -514,9 +521,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-conditional-power-for-reviewers"><code>conditional-power</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-conditional-survival" class="section level3" number="20.0.27">
+<div class="section level3" id="sec-reporting-tripod-ai-conditional-survival" number="20.0.27">
 <h3>
-<span class="header-section-number">20.0.27</span> Conditional Survival<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-conditional-survival"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.27</span> Conditional Survival<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-conditional-survival"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -529,9 +536,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-conditional-survival-for-reviewers"><code>conditional-survival</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-contrasts-in-r" class="section level3" number="20.0.28">
+<div class="section level3" id="sec-reporting-tripod-ai-contrasts-in-r" number="20.0.28">
 <h3>
-<span class="header-section-number">20.0.28</span> Contrasts in R<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-contrasts-in-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.28</span> Contrasts in R<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-contrasts-in-r"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -544,9 +551,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-contrasts-in-r-for-reviewers"><code>contrasts-in-r</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-convolutional-neural-networks-introduction" class="section level3" number="20.0.29">
+<div class="section level3" id="sec-reporting-tripod-ai-convolutional-neural-networks-introduction" number="20.0.29">
 <h3>
-<span class="header-section-number">20.0.29</span> Convolutional Neural Networks: Introduction<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-convolutional-neural-networks-introduction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.29</span> Convolutional Neural Networks: Introduction<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-convolutional-neural-networks-introduction"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -559,9 +566,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-cnn-introduction-for-reviewers"><code>cnn-introduction</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-cook-s-distance" class="section level3" number="20.0.30">
+<div class="section level3" id="sec-reporting-tripod-ai-cook-s-distance" number="20.0.30">
 <h3>
-<span class="header-section-number">20.0.30</span> Cook’s Distance<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-cook-s-distance"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.30</span> Cook’s Distance<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-cook-s-distance"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -574,9 +581,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-cooks-distance-for-reviewers"><code>cooks-distance</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-cox-proportional-hazards-regression" class="section level3" number="20.0.31">
+<div class="section level3" id="sec-reporting-tripod-ai-cox-proportional-hazards-regression" number="20.0.31">
 <h3>
-<span class="header-section-number">20.0.31</span> Cox Proportional Hazards Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-cox-proportional-hazards-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.31</span> Cox Proportional Hazards Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-cox-proportional-hazards-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -589,9 +596,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-cox-proportional-hazards-for-reviewers"><code>cox-proportional-hazards</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-cox-regression-as-regression" class="section level3" number="20.0.32">
+<div class="section level3" id="sec-reporting-tripod-ai-cox-regression-as-regression" number="20.0.32">
 <h3>
-<span class="header-section-number">20.0.32</span> Cox Regression as Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-cox-regression-as-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.32</span> Cox Regression as Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-cox-regression-as-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -604,9 +611,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-survival-regression-cox-for-reviewers"><code>survival-regression-cox</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-cross-validation" class="section level3" number="20.0.33">
+<div class="section level3" id="sec-reporting-tripod-ai-cross-validation" number="20.0.33">
 <h3>
-<span class="header-section-number">20.0.33</span> Cross-Validation<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-cross-validation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.33</span> Cross-Validation<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-cross-validation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -619,9 +626,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-cross-validation-for-reviewers"><code>cross-validation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-crossover-rct-design" class="section level3" number="20.0.34">
+<div class="section level3" id="sec-reporting-tripod-ai-crossover-rct-design" number="20.0.34">
 <h3>
-<span class="header-section-number">20.0.34</span> Crossover RCT Design<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-crossover-rct-design"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.34</span> Crossover RCT Design<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-crossover-rct-design"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -634,9 +641,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-rct-design-crossover-for-reviewers"><code>rct-design-crossover</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-cutpoint-selection" class="section level3" number="20.0.35">
+<div class="section level3" id="sec-reporting-tripod-ai-cutpoint-selection" number="20.0.35">
 <h3>
-<span class="header-section-number">20.0.35</span> Cutpoint Selection<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-cutpoint-selection"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.35</span> Cutpoint Selection<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-cutpoint-selection"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -649,9 +656,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-cutpoint-selection-for-reviewers"><code>cutpoint-selection</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-dbscan-as-an-ml-tool" class="section level3" number="20.0.36">
+<div class="section level3" id="sec-reporting-tripod-ai-dbscan-as-an-ml-tool" number="20.0.36">
 <h3>
-<span class="header-section-number">20.0.36</span> DBSCAN as an ML Tool<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-dbscan-as-an-ml-tool"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.36</span> DBSCAN as an ML Tool<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-dbscan-as-an-ml-tool"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -664,9 +671,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-clustering-dbscan-ml-for-reviewers"><code>clustering-dbscan-ml</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-decision-trees-cart" class="section level3" number="20.0.37">
+<div class="section level3" id="sec-reporting-tripod-ai-decision-trees-cart" number="20.0.37">
 <h3>
-<span class="header-section-number">20.0.37</span> Decision Trees (CART)<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-decision-trees-cart"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.37</span> Decision Trees (CART)<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-decision-trees-cart"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -679,9 +686,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-decision-trees-cart-for-reviewers"><code>decision-trees-cart</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-diagnostic-test-accuracy" class="section level3" number="20.0.38">
+<div class="section level3" id="sec-reporting-tripod-ai-diagnostic-test-accuracy" number="20.0.38">
 <h3>
-<span class="header-section-number">20.0.38</span> Diagnostic Test Accuracy<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-diagnostic-test-accuracy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.38</span> Diagnostic Test Accuracy<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-diagnostic-test-accuracy"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -694,9 +701,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-diagnostic-accuracy-for-reviewers"><code>diagnostic-accuracy</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-dirichlet-regression" class="section level3" number="20.0.39">
+<div class="section level3" id="sec-reporting-tripod-ai-dirichlet-regression" number="20.0.39">
 <h3>
-<span class="header-section-number">20.0.39</span> Dirichlet Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-dirichlet-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.39</span> Dirichlet Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-dirichlet-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -709,9 +716,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-dirichlet-regression-for-reviewers"><code>dirichlet-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-dropout-and-early-stopping" class="section level3" number="20.0.40">
+<div class="section level3" id="sec-reporting-tripod-ai-dropout-and-early-stopping" number="20.0.40">
 <h3>
-<span class="header-section-number">20.0.40</span> Dropout and Early Stopping<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-dropout-and-early-stopping"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.40</span> Dropout and Early Stopping<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-dropout-and-early-stopping"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -724,9 +731,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-dropout-early-stopping-for-reviewers"><code>dropout-early-stopping</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-dummy-coding" class="section level3" number="20.0.41">
+<div class="section level3" id="sec-reporting-tripod-ai-dummy-coding" number="20.0.41">
 <h3>
-<span class="header-section-number">20.0.41</span> Dummy Coding<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-dummy-coding"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.41</span> Dummy Coding<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-dummy-coding"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -739,9 +746,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-dummy-coding-for-reviewers"><code>dummy-coding</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-effect-deviation-coding" class="section level3" number="20.0.42">
+<div class="section level3" id="sec-reporting-tripod-ai-effect-deviation-coding" number="20.0.42">
 <h3>
-<span class="header-section-number">20.0.42</span> Effect (Deviation) Coding<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-effect-deviation-coding"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.42</span> Effect (Deviation) Coding<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-effect-deviation-coding"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -754,9 +761,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-effect-coding-for-reviewers"><code>effect-coding</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-elastic-net" class="section level3" number="20.0.43">
+<div class="section level3" id="sec-reporting-tripod-ai-elastic-net" number="20.0.43">
 <h3>
-<span class="header-section-number">20.0.43</span> Elastic Net<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-elastic-net"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.43</span> Elastic Net<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-elastic-net"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -769,9 +776,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-elastic-net-for-reviewers"><code>elastic-net</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-extremely-randomised-trees" class="section level3" number="20.0.44">
+<div class="section level3" id="sec-reporting-tripod-ai-extremely-randomised-trees" number="20.0.44">
 <h3>
-<span class="header-section-number">20.0.44</span> Extremely Randomised Trees<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-extremely-randomised-trees"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.44</span> Extremely Randomised Trees<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-extremely-randomised-trees"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -784,9 +791,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-extremely-randomized-trees-for-reviewers"><code>extremely-randomized-trees</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-factorial-trials" class="section level3" number="20.0.45">
+<div class="section level3" id="sec-reporting-tripod-ai-factorial-trials" number="20.0.45">
 <h3>
-<span class="header-section-number">20.0.45</span> Factorial Trials<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-factorial-trials"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.45</span> Factorial Trials<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-factorial-trials"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -799,9 +806,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-factorial-trial-for-reviewers"><code>factorial-trial</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-feature-engineering" class="section level3" number="20.0.46">
+<div class="section level3" id="sec-reporting-tripod-ai-feature-engineering" number="20.0.46">
 <h3>
-<span class="header-section-number">20.0.46</span> Feature Engineering<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-feature-engineering"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.46</span> Feature Engineering<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-feature-engineering"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -814,9 +821,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-feature-engineering-for-reviewers"><code>feature-engineering</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-feature-selection" class="section level3" number="20.0.47">
+<div class="section level3" id="sec-reporting-tripod-ai-feature-selection" number="20.0.47">
 <h3>
-<span class="header-section-number">20.0.47</span> Feature Selection<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-feature-selection"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.47</span> Feature Selection<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-feature-selection"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -829,9 +836,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-feature-selection-for-reviewers"><code>feature-selection</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-feedforward-networks-in-torch" class="section level3" number="20.0.48">
+<div class="section level3" id="sec-reporting-tripod-ai-feedforward-networks-in-torch" number="20.0.48">
 <h3>
-<span class="header-section-number">20.0.48</span> Feedforward Networks in torch<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-feedforward-networks-in-torch"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.48</span> Feedforward Networks in torch<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-feedforward-networks-in-torch"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -844,9 +851,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-feedforward-networks-torch-for-reviewers"><code>feedforward-networks-torch</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-fine-gray-subdistribution-hazards" class="section level3" number="20.0.49">
+<div class="section level3" id="sec-reporting-tripod-ai-fine-gray-subdistribution-hazards" number="20.0.49">
 <h3>
-<span class="header-section-number">20.0.49</span> Fine-Gray Subdistribution Hazards<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-fine-gray-subdistribution-hazards"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.49</span> Fine-Gray Subdistribution Hazards<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-fine-gray-subdistribution-hazards"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -859,9 +866,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-fine-gray-regression-for-reviewers"><code>fine-gray-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-frailty-models" class="section level3" number="20.0.50">
+<div class="section level3" id="sec-reporting-tripod-ai-frailty-models" number="20.0.50">
 <h3>
-<span class="header-section-number">20.0.50</span> Frailty Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-frailty-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.50</span> Frailty Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-frailty-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -874,9 +881,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-frailty-models-for-reviewers"><code>frailty-models</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-gamms-additive-mixed-models" class="section level3" number="20.0.51">
+<div class="section level3" id="sec-reporting-tripod-ai-gamms-additive-mixed-models" number="20.0.51">
 <h3>
-<span class="header-section-number">20.0.51</span> GAMMs: Additive Mixed Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-gamms-additive-mixed-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.51</span> GAMMs: Additive Mixed Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-gamms-additive-mixed-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -889,9 +896,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-gamm-additive-mixed-for-reviewers"><code>gamm-additive-mixed</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-gams-introduction" class="section level3" number="20.0.52">
+<div class="section level3" id="sec-reporting-tripod-ai-gams-introduction" number="20.0.52">
 <h3>
-<span class="header-section-number">20.0.52</span> GAMs: Introduction<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-gams-introduction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.52</span> GAMs: Introduction<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-gams-introduction"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -904,9 +911,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-gam-introduction-for-reviewers"><code>gam-introduction</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-generalised-estimating-equations" class="section level3" number="20.0.53">
+<div class="section level3" id="sec-reporting-tripod-ai-generalised-estimating-equations" number="20.0.53">
 <h3>
-<span class="header-section-number">20.0.53</span> Generalised Estimating Equations<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-generalised-estimating-equations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.53</span> Generalised Estimating Equations<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-generalised-estimating-equations"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -919,9 +926,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-generalized-estimating-equations-for-reviewers"><code>generalized-estimating-equations</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-glmer-generalised-mixed-models" class="section level3" number="20.0.54">
+<div class="section level3" id="sec-reporting-tripod-ai-glmer-generalised-mixed-models" number="20.0.54">
 <h3>
-<span class="header-section-number">20.0.54</span> glmer: Generalised Mixed Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-glmer-generalised-mixed-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.54</span> glmer: Generalised Mixed Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-glmer-generalised-mixed-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -934,9 +941,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-glmer-generalized-mixed-for-reviewers"><code>glmer-generalized-mixed</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-gradient-boosting" class="section level3" number="20.0.55">
+<div class="section level3" id="sec-reporting-tripod-ai-gradient-boosting" number="20.0.55">
 <h3>
-<span class="header-section-number">20.0.55</span> Gradient Boosting<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-gradient-boosting"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.55</span> Gradient Boosting<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-gradient-boosting"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -949,9 +956,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-gradient-boosting-for-reviewers"><code>gradient-boosting</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-hazard-survival-and-cumulative-hazard" class="section level3" number="20.0.56">
+<div class="section level3" id="sec-reporting-tripod-ai-hazard-survival-and-cumulative-hazard" number="20.0.56">
 <h3>
-<span class="header-section-number">20.0.56</span> Hazard, Survival, and Cumulative Hazard<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-hazard-survival-and-cumulative-hazard"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.56</span> Hazard, Survival, and Cumulative Hazard<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-hazard-survival-and-cumulative-hazard"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -964,9 +971,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-hazard-survival-cumulative-for-reviewers"><code>hazard-survival-cumulative</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-hurdle-models" class="section level3" number="20.0.57">
+<div class="section level3" id="sec-reporting-tripod-ai-hurdle-models" number="20.0.57">
 <h3>
-<span class="header-section-number">20.0.57</span> Hurdle Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-hurdle-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.57</span> Hurdle Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-hurdle-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -979,9 +986,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-hurdle-models-for-reviewers"><code>hurdle-models</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-interactions-in-regression" class="section level3" number="20.0.58">
+<div class="section level3" id="sec-reporting-tripod-ai-interactions-in-regression" number="20.0.58">
 <h3>
-<span class="header-section-number">20.0.58</span> Interactions in Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-interactions-in-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.58</span> Interactions in Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-interactions-in-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -994,9 +1001,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-interactions-in-regression-for-reviewers"><code>interactions-in-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-interim-analyses-and-group-sequential-designs" class="section level3" number="20.0.59">
+<div class="section level3" id="sec-reporting-tripod-ai-interim-analyses-and-group-sequential-designs" number="20.0.59">
 <h3>
-<span class="header-section-number">20.0.59</span> Interim Analyses and Group Sequential Designs<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-interim-analyses-and-group-sequential-designs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.59</span> Interim Analyses and Group Sequential Designs<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-interim-analyses-and-group-sequential-designs"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1009,9 +1016,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-interim-analysis-group-sequential-for-reviewers"><code>interim-analysis-group-sequential</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-interval-censored-data" class="section level3" number="20.0.60">
+<div class="section level3" id="sec-reporting-tripod-ai-interval-censored-data" number="20.0.60">
 <h3>
-<span class="header-section-number">20.0.60</span> Interval-Censored Data<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-interval-censored-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.60</span> Interval-Censored Data<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-interval-censored-data"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1024,9 +1031,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-interval-censored-data-for-reviewers"><code>interval-censored-data</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-intraclass-correlation-coefficient-icc" class="section level3" number="20.0.61">
+<div class="section level3" id="sec-reporting-tripod-ai-intraclass-correlation-coefficient-icc" number="20.0.61">
 <h3>
-<span class="header-section-number">20.0.61</span> Intraclass Correlation Coefficient (ICC)<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-intraclass-correlation-coefficient-icc"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.61</span> Intraclass Correlation Coefficient (ICC)<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-intraclass-correlation-coefficient-icc"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1039,9 +1046,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-icc-continuous-agreement-for-reviewers"><code>icc-continuous-agreement</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-isolation-forest" class="section level3" number="20.0.62">
+<div class="section level3" id="sec-reporting-tripod-ai-isolation-forest" number="20.0.62">
 <h3>
-<span class="header-section-number">20.0.62</span> Isolation Forest<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-isolation-forest"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.62</span> Isolation Forest<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-isolation-forest"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1054,9 +1061,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-isolation-forest-for-reviewers"><code>isolation-forest</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-isotonic-regression-calibration" class="section level3" number="20.0.63">
+<div class="section level3" id="sec-reporting-tripod-ai-isotonic-regression-calibration" number="20.0.63">
 <h3>
-<span class="header-section-number">20.0.63</span> Isotonic Regression Calibration<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-isotonic-regression-calibration"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.63</span> Isotonic Regression Calibration<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-isotonic-regression-calibration"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1069,9 +1076,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-isotonic-regression-for-reviewers"><code>isotonic-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-itt-vs-per-protocol-analysis" class="section level3" number="20.0.64">
+<div class="section level3" id="sec-reporting-tripod-ai-itt-vs-per-protocol-analysis" number="20.0.64">
 <h3>
-<span class="header-section-number">20.0.64</span> ITT vs Per-Protocol Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-itt-vs-per-protocol-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.64</span> ITT vs Per-Protocol Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-itt-vs-per-protocol-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1084,9 +1091,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-itt-vs-pp-analysis-for-reviewers"><code>itt-vs-pp-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-joint-longitudinal-survival-models" class="section level3" number="20.0.65">
+<div class="section level3" id="sec-reporting-tripod-ai-joint-longitudinal-survival-models" number="20.0.65">
 <h3>
-<span class="header-section-number">20.0.65</span> Joint Longitudinal-Survival Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-joint-longitudinal-survival-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.65</span> Joint Longitudinal-Survival Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-joint-longitudinal-survival-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1099,9 +1106,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-joint-longitudinal-survival-for-reviewers"><code>joint-longitudinal-survival</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-k-means-as-an-ml-tool" class="section level3" number="20.0.66">
+<div class="section level3" id="sec-reporting-tripod-ai-k-means-as-an-ml-tool" number="20.0.66">
 <h3>
-<span class="header-section-number">20.0.66</span> k-Means as an ML Tool<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-k-means-as-an-ml-tool"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.66</span> k-Means as an ML Tool<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-k-means-as-an-ml-tool"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1114,9 +1121,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-clustering-kmeans-ml-for-reviewers"><code>clustering-kmeans-ml</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-k-nearest-neighbours-classification" class="section level3" number="20.0.67">
+<div class="section level3" id="sec-reporting-tripod-ai-k-nearest-neighbours-classification" number="20.0.67">
 <h3>
-<span class="header-section-number">20.0.67</span> k-Nearest Neighbours Classification<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-k-nearest-neighbours-classification"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.67</span> k-Nearest Neighbours Classification<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-k-nearest-neighbours-classification"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1129,9 +1136,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-knn-classification-for-reviewers"><code>knn-classification</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-k-nearest-neighbours-regression" class="section level3" number="20.0.68">
+<div class="section level3" id="sec-reporting-tripod-ai-k-nearest-neighbours-regression" number="20.0.68">
 <h3>
-<span class="header-section-number">20.0.68</span> k-Nearest Neighbours Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-k-nearest-neighbours-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.68</span> k-Nearest Neighbours Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-k-nearest-neighbours-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1144,9 +1151,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-knn-regression-for-reviewers"><code>knn-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-kaplan-meier-estimation" class="section level3" number="20.0.69">
+<div class="section level3" id="sec-reporting-tripod-ai-kaplan-meier-estimation" number="20.0.69">
 <h3>
-<span class="header-section-number">20.0.69</span> Kaplan-Meier Estimation<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-kaplan-meier-estimation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.69</span> Kaplan-Meier Estimation<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-kaplan-meier-estimation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1159,9 +1166,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-kaplan-meier-for-reviewers"><code>kaplan-meier</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-kernel-svms" class="section level3" number="20.0.70">
+<div class="section level3" id="sec-reporting-tripod-ai-kernel-svms" number="20.0.70">
 <h3>
-<span class="header-section-number">20.0.70</span> Kernel SVMs<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-kernel-svms"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.70</span> Kernel SVMs<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-kernel-svms"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1174,9 +1181,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-svm-kernel-for-reviewers"><code>svm-kernel</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-landmark-analysis" class="section level3" number="20.0.71">
+<div class="section level3" id="sec-reporting-tripod-ai-landmark-analysis" number="20.0.71">
 <h3>
-<span class="header-section-number">20.0.71</span> Landmark Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-landmark-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.71</span> Landmark Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-landmark-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1189,9 +1196,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-landmark-analysis-for-reviewers"><code>landmark-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-lasso-regression" class="section level3" number="20.0.72">
+<div class="section level3" id="sec-reporting-tripod-ai-lasso-regression" number="20.0.72">
 <h3>
-<span class="header-section-number">20.0.72</span> Lasso Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-lasso-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.72</span> Lasso Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-lasso-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1204,9 +1211,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-lasso-regression-for-reviewers"><code>lasso-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-left-truncation" class="section level3" number="20.0.73">
+<div class="section level3" id="sec-reporting-tripod-ai-left-truncation" number="20.0.73">
 <h3>
-<span class="header-section-number">20.0.73</span> Left Truncation<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-left-truncation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.73</span> Left Truncation<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-left-truncation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1219,9 +1226,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-left-truncation-for-reviewers"><code>left-truncation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-leverage-and-influence" class="section level3" number="20.0.74">
+<div class="section level3" id="sec-reporting-tripod-ai-leverage-and-influence" number="20.0.74">
 <h3>
-<span class="header-section-number">20.0.74</span> Leverage and Influence<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-leverage-and-influence"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.74</span> Leverage and Influence<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-leverage-and-influence"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1234,9 +1241,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-leverage-influence-for-reviewers"><code>leverage-influence</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-lightgbm" class="section level3" number="20.0.75">
+<div class="section level3" id="sec-reporting-tripod-ai-lightgbm" number="20.0.75">
 <h3>
-<span class="header-section-number">20.0.75</span> LightGBM<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-lightgbm"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.75</span> LightGBM<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-lightgbm"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1249,9 +1256,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-lightgbm-for-reviewers"><code>lightgbm</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-likelihood-ratios" class="section level3" number="20.0.76">
+<div class="section level3" id="sec-reporting-tripod-ai-likelihood-ratios" number="20.0.76">
 <h3>
-<span class="header-section-number">20.0.76</span> Likelihood Ratios<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-likelihood-ratios"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.76</span> Likelihood Ratios<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-likelihood-ratios"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1264,9 +1271,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-likelihood-ratios-for-reviewers"><code>likelihood-ratios</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-lime-explanations" class="section level3" number="20.0.77">
+<div class="section level3" id="sec-reporting-tripod-ai-lime-explanations" number="20.0.77">
 <h3>
-<span class="header-section-number">20.0.77</span> LIME Explanations<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-lime-explanations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.77</span> LIME Explanations<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-lime-explanations"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1279,9 +1286,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-lime-explanations-for-reviewers"><code>lime-explanations</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-linear-discriminant-as-ml" class="section level3" number="20.0.78">
+<div class="section level3" id="sec-reporting-tripod-ai-linear-discriminant-as-ml" number="20.0.78">
 <h3>
-<span class="header-section-number">20.0.78</span> Linear Discriminant as ML<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-linear-discriminant-as-ml"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.78</span> Linear Discriminant as ML<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-linear-discriminant-as-ml"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1294,9 +1301,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-linear-discriminant-ml-for-reviewers"><code>linear-discriminant-ml</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-linear-regression-assumptions" class="section level3" number="20.0.79">
+<div class="section level3" id="sec-reporting-tripod-ai-linear-regression-assumptions" number="20.0.79">
 <h3>
-<span class="header-section-number">20.0.79</span> Linear Regression Assumptions<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-linear-regression-assumptions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.79</span> Linear Regression Assumptions<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-linear-regression-assumptions"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1309,9 +1316,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-regression-assumptions-for-reviewers"><code>regression-assumptions</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-linear-support-vector-machines" class="section level3" number="20.0.80">
+<div class="section level3" id="sec-reporting-tripod-ai-linear-support-vector-machines" number="20.0.80">
 <h3>
-<span class="header-section-number">20.0.80</span> Linear Support Vector Machines<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-linear-support-vector-machines"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.80</span> Linear Support Vector Machines<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-linear-support-vector-machines"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1324,9 +1331,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-svm-linear-for-reviewers"><code>svm-linear</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-log-rank-test-details" class="section level3" number="20.0.81">
+<div class="section level3" id="sec-reporting-tripod-ai-log-rank-test-details" number="20.0.81">
 <h3>
-<span class="header-section-number">20.0.81</span> Log-Rank Test: Details<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-log-rank-test-details"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.81</span> Log-Rank Test: Details<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-log-rank-test-details"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1339,9 +1346,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-log-rank-test-details-for-reviewers"><code>log-rank-test-details</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-logistic-regression" class="section level3" number="20.0.82">
+<div class="section level3" id="sec-reporting-tripod-ai-logistic-regression" number="20.0.82">
 <h3>
-<span class="header-section-number">20.0.82</span> Logistic Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-logistic-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.82</span> Logistic Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-logistic-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1354,9 +1361,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-logistic-regression-for-reviewers"><code>logistic-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-logistic-regression-as-ml" class="section level3" number="20.0.83">
+<div class="section level3" id="sec-reporting-tripod-ai-logistic-regression-as-ml" number="20.0.83">
 <h3>
-<span class="header-section-number">20.0.83</span> Logistic Regression as ML<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-logistic-regression-as-ml"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.83</span> Logistic Regression as ML<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-logistic-regression-as-ml"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1369,9 +1376,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-logistic-regression-ml-for-reviewers"><code>logistic-regression-ml</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-logistic-regression-diagnostics" class="section level3" number="20.0.84">
+<div class="section level3" id="sec-reporting-tripod-ai-logistic-regression-diagnostics" number="20.0.84">
 <h3>
-<span class="header-section-number">20.0.84</span> Logistic Regression Diagnostics<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-logistic-regression-diagnostics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.84</span> Logistic Regression Diagnostics<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-logistic-regression-diagnostics"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1384,9 +1391,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-logistic-regression-diagnostics-for-reviewers"><code>logistic-regression-diagnostics</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-minimisation-algorithm" class="section level3" number="20.0.85">
+<div class="section level3" id="sec-reporting-tripod-ai-minimisation-algorithm" number="20.0.85">
 <h3>
-<span class="header-section-number">20.0.85</span> Minimisation Algorithm<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-minimisation-algorithm"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.85</span> Minimisation Algorithm<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-minimisation-algorithm"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1399,9 +1406,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-minimization-algorithm-for-reviewers"><code>minimization-algorithm</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-missing-data-in-rcts" class="section level3" number="20.0.86">
+<div class="section level3" id="sec-reporting-tripod-ai-missing-data-in-rcts" number="20.0.86">
 <h3>
-<span class="header-section-number">20.0.86</span> Missing Data in RCTs<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-missing-data-in-rcts"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.86</span> Missing Data in RCTs<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-missing-data-in-rcts"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1414,9 +1421,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-missing-data-rct-for-reviewers"><code>missing-data-rct</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-mixed-effects-models-introduction" class="section level3" number="20.0.87">
+<div class="section level3" id="sec-reporting-tripod-ai-mixed-effects-models-introduction" number="20.0.87">
 <h3>
-<span class="header-section-number">20.0.87</span> Mixed-Effects Models: Introduction<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-mixed-effects-models-introduction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.87</span> Mixed-Effects Models: Introduction<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-mixed-effects-models-introduction"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1429,9 +1436,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-mixed-models-intro-for-reviewers"><code>mixed-models-intro</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-model-selection-with-aic-and-bic" class="section level3" number="20.0.88">
+<div class="section level3" id="sec-reporting-tripod-ai-model-selection-with-aic-and-bic" number="20.0.88">
 <h3>
-<span class="header-section-number">20.0.88</span> Model Selection with AIC and BIC<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-model-selection-with-aic-and-bic"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.88</span> Model Selection with AIC and BIC<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-model-selection-with-aic-and-bic"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1444,9 +1451,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-model-selection-aic-bic-for-reviewers"><code>model-selection-aic-bic</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-multi-state-models" class="section level3" number="20.0.89">
+<div class="section level3" id="sec-reporting-tripod-ai-multi-state-models" number="20.0.89">
 <h3>
-<span class="header-section-number">20.0.89</span> Multi-State Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-multi-state-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.89</span> Multi-State Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-multi-state-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1459,9 +1466,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-multi-state-models-for-reviewers"><code>multi-state-models</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-multicollinearity-and-vif" class="section level3" number="20.0.90">
+<div class="section level3" id="sec-reporting-tripod-ai-multicollinearity-and-vif" number="20.0.90">
 <h3>
-<span class="header-section-number">20.0.90</span> Multicollinearity and VIF<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-multicollinearity-and-vif"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.90</span> Multicollinearity and VIF<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-multicollinearity-and-vif"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1474,9 +1481,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-multicollinearity-vif-for-reviewers"><code>multicollinearity-vif</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-multinomial-logistic-regression" class="section level3" number="20.0.91">
+<div class="section level3" id="sec-reporting-tripod-ai-multinomial-logistic-regression" number="20.0.91">
 <h3>
-<span class="header-section-number">20.0.91</span> Multinomial Logistic Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-multinomial-logistic-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.91</span> Multinomial Logistic Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-multinomial-logistic-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1489,9 +1496,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-multinomial-logistic-for-reviewers"><code>multinomial-logistic</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-multiple-imputation" class="section level3" number="20.0.92">
+<div class="section level3" id="sec-reporting-tripod-ai-multiple-imputation" number="20.0.92">
 <h3>
-<span class="header-section-number">20.0.92</span> Multiple Imputation<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-multiple-imputation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.92</span> Multiple Imputation<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-multiple-imputation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1504,9 +1511,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-multiple-imputation-for-reviewers"><code>multiple-imputation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-multiple-linear-regression" class="section level3" number="20.0.93">
+<div class="section level3" id="sec-reporting-tripod-ai-multiple-linear-regression" number="20.0.93">
 <h3>
-<span class="header-section-number">20.0.93</span> Multiple Linear Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-multiple-linear-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.93</span> Multiple Linear Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-multiple-linear-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1519,9 +1526,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-multiple-linear-regression-for-reviewers"><code>multiple-linear-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-naive-bayes" class="section level3" number="20.0.94">
+<div class="section level3" id="sec-reporting-tripod-ai-naive-bayes" number="20.0.94">
 <h3>
-<span class="header-section-number">20.0.94</span> Naive Bayes<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-naive-bayes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.94</span> Naive Bayes<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-naive-bayes"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1534,9 +1541,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-naive-bayes-for-reviewers"><code>naive-bayes</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-negative-binomial-regression" class="section level3" number="20.0.95">
+<div class="section level3" id="sec-reporting-tripod-ai-negative-binomial-regression" number="20.0.95">
 <h3>
-<span class="header-section-number">20.0.95</span> Negative Binomial Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-negative-binomial-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.95</span> Negative Binomial Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-negative-binomial-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1549,9 +1556,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-negative-binomial-regression-for-reviewers"><code>negative-binomial-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-nested-cross-validation" class="section level3" number="20.0.96">
+<div class="section level3" id="sec-reporting-tripod-ai-nested-cross-validation" number="20.0.96">
 <h3>
-<span class="header-section-number">20.0.96</span> Nested Cross-Validation<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-nested-cross-validation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.96</span> Nested Cross-Validation<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-nested-cross-validation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1564,9 +1571,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-nested-cv-for-reviewers"><code>nested-cv</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-nested-vs-crossed-random-effects" class="section level3" number="20.0.97">
+<div class="section level3" id="sec-reporting-tripod-ai-nested-vs-crossed-random-effects" number="20.0.97">
 <h3>
-<span class="header-section-number">20.0.97</span> Nested vs Crossed Random Effects<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-nested-vs-crossed-random-effects"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.97</span> Nested vs Crossed Random Effects<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-nested-vs-crossed-random-effects"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1579,9 +1586,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-nested-crossed-random-effects-for-reviewers"><code>nested-crossed-random-effects</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-neural-networks-introduction" class="section level3" number="20.0.98">
+<div class="section level3" id="sec-reporting-tripod-ai-neural-networks-introduction" number="20.0.98">
 <h3>
-<span class="header-section-number">20.0.98</span> Neural Networks: Introduction<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-neural-networks-introduction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.98</span> Neural Networks: Introduction<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-neural-networks-introduction"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1594,9 +1601,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-neural-networks-intro-for-reviewers"><code>neural-networks-intro</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-non-inferiority-margin-selection" class="section level3" number="20.0.99">
+<div class="section level3" id="sec-reporting-tripod-ai-non-inferiority-margin-selection" number="20.0.99">
 <h3>
-<span class="header-section-number">20.0.99</span> Non-Inferiority Margin Selection<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-non-inferiority-margin-selection"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.99</span> Non-Inferiority Margin Selection<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-non-inferiority-margin-selection"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1609,9 +1616,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-non-inferiority-margin-for-reviewers"><code>non-inferiority-margin</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-o-brien-fleming-boundary" class="section level3" number="20.0.100">
+<div class="section level3" id="sec-reporting-tripod-ai-o-brien-fleming-boundary" number="20.0.100">
 <h3>
-<span class="header-section-number">20.0.100</span> O’Brien-Fleming Boundary<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-o-brien-fleming-boundary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.100</span> O’Brien-Fleming Boundary<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-o-brien-fleming-boundary"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1624,9 +1631,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-obrien-fleming-boundary-for-reviewers"><code>obrien-fleming-boundary</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-offsets-in-regression" class="section level3" number="20.0.101">
+<div class="section level3" id="sec-reporting-tripod-ai-offsets-in-regression" number="20.0.101">
 <h3>
-<span class="header-section-number">20.0.101</span> Offsets in Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-offsets-in-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.101</span> Offsets in Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-offsets-in-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1639,9 +1646,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-offsets-in-regression-for-reviewers"><code>offsets-in-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-ordinal-logistic-regression" class="section level3" number="20.0.102">
+<div class="section level3" id="sec-reporting-tripod-ai-ordinal-logistic-regression" number="20.0.102">
 <h3>
-<span class="header-section-number">20.0.102</span> Ordinal Logistic Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-ordinal-logistic-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.102</span> Ordinal Logistic Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-ordinal-logistic-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1654,9 +1661,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-ordinal-logistic-for-reviewers"><code>ordinal-logistic</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-parallel-group-rct-design" class="section level3" number="20.0.103">
+<div class="section level3" id="sec-reporting-tripod-ai-parallel-group-rct-design" number="20.0.103">
 <h3>
-<span class="header-section-number">20.0.103</span> Parallel-Group RCT Design<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-parallel-group-rct-design"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.103</span> Parallel-Group RCT Design<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-parallel-group-rct-design"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1669,9 +1676,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-rct-design-parallel-for-reviewers"><code>rct-design-parallel</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-parametric-survival-log-normal" class="section level3" number="20.0.104">
+<div class="section level3" id="sec-reporting-tripod-ai-parametric-survival-log-normal" number="20.0.104">
 <h3>
-<span class="header-section-number">20.0.104</span> Parametric Survival: Log-Normal<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-parametric-survival-log-normal"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.104</span> Parametric Survival: Log-Normal<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-parametric-survival-log-normal"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1684,9 +1691,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-parametric-survival-lognormal-for-reviewers"><code>parametric-survival-lognormal</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-parametric-survival-weibull" class="section level3" number="20.0.105">
+<div class="section level3" id="sec-reporting-tripod-ai-parametric-survival-weibull" number="20.0.105">
 <h3>
-<span class="header-section-number">20.0.105</span> Parametric Survival: Weibull<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-parametric-survival-weibull"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.105</span> Parametric Survival: Weibull<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-parametric-survival-weibull"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1699,9 +1706,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-parametric-survival-weibull-for-reviewers"><code>parametric-survival-weibull</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-partial-correlation" class="section level3" number="20.0.106">
+<div class="section level3" id="sec-reporting-tripod-ai-partial-correlation" number="20.0.106">
 <h3>
-<span class="header-section-number">20.0.106</span> Partial Correlation<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-partial-correlation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.106</span> Partial Correlation<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-partial-correlation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1714,9 +1721,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-partial-correlation-for-reviewers"><code>partial-correlation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-partial-dependence-plots" class="section level3" number="20.0.107">
+<div class="section level3" id="sec-reporting-tripod-ai-partial-dependence-plots" number="20.0.107">
 <h3>
-<span class="header-section-number">20.0.107</span> Partial Dependence Plots<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-partial-dependence-plots"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.107</span> Partial Dependence Plots<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-partial-dependence-plots"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1729,9 +1736,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-partial-dependence-plots-for-reviewers"><code>partial-dependence-plots</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-platt-scaling" class="section level3" number="20.0.108">
+<div class="section level3" id="sec-reporting-tripod-ai-platt-scaling" number="20.0.108">
 <h3>
-<span class="header-section-number">20.0.108</span> Platt Scaling<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-platt-scaling"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.108</span> Platt Scaling<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-platt-scaling"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1744,9 +1751,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-platt-scaling-for-reviewers"><code>platt-scaling</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-pocock-boundary" class="section level3" number="20.0.109">
+<div class="section level3" id="sec-reporting-tripod-ai-pocock-boundary" number="20.0.109">
 <h3>
-<span class="header-section-number">20.0.109</span> Pocock Boundary<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-pocock-boundary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.109</span> Pocock Boundary<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-pocock-boundary"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1759,9 +1766,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-pocock-boundary-for-reviewers"><code>pocock-boundary</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-poisson-regression" class="section level3" number="20.0.110">
+<div class="section level3" id="sec-reporting-tripod-ai-poisson-regression" number="20.0.110">
 <h3>
-<span class="header-section-number">20.0.110</span> Poisson Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-poisson-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.110</span> Poisson Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-poisson-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1774,9 +1781,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-poisson-regression-for-reviewers"><code>poisson-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-polynomial-regression" class="section level3" number="20.0.111">
+<div class="section level3" id="sec-reporting-tripod-ai-polynomial-regression" number="20.0.111">
 <h3>
-<span class="header-section-number">20.0.111</span> Polynomial Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-polynomial-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.111</span> Polynomial Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-polynomial-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1789,9 +1796,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-polynomial-regression-for-reviewers"><code>polynomial-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-predictive-values-and-prevalence" class="section level3" number="20.0.112">
+<div class="section level3" id="sec-reporting-tripod-ai-predictive-values-and-prevalence" number="20.0.112">
 <h3>
-<span class="header-section-number">20.0.112</span> Predictive Values and Prevalence<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-predictive-values-and-prevalence"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.112</span> Predictive Values and Prevalence<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-predictive-values-and-prevalence"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1804,9 +1811,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-predictive-values-prevalence-for-reviewers"><code>predictive-values-prevalence</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-preprocessing-with-recipes" class="section level3" number="20.0.113">
+<div class="section level3" id="sec-reporting-tripod-ai-preprocessing-with-recipes" number="20.0.113">
 <h3>
-<span class="header-section-number">20.0.113</span> Preprocessing with recipes<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-preprocessing-with-recipes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.113</span> Preprocessing with recipes<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-preprocessing-with-recipes"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1819,9 +1826,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-recipes-preprocessing-for-reviewers"><code>recipes-preprocessing</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-probit-regression" class="section level3" number="20.0.114">
+<div class="section level3" id="sec-reporting-tripod-ai-probit-regression" number="20.0.114">
 <h3>
-<span class="header-section-number">20.0.114</span> Probit Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-probit-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.114</span> Probit Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-probit-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1834,9 +1841,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-probit-regression-for-reviewers"><code>probit-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-quantile-regression" class="section level3" number="20.0.115">
+<div class="section level3" id="sec-reporting-tripod-ai-quantile-regression" number="20.0.115">
 <h3>
-<span class="header-section-number">20.0.115</span> Quantile Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-quantile-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.115</span> Quantile Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-quantile-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1849,9 +1856,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-quantile-regression-for-reviewers"><code>quantile-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-quasi-poisson-regression" class="section level3" number="20.0.116">
+<div class="section level3" id="sec-reporting-tripod-ai-quasi-poisson-regression" number="20.0.116">
 <h3>
-<span class="header-section-number">20.0.116</span> Quasi-Poisson Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-quasi-poisson-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.116</span> Quasi-Poisson Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-quasi-poisson-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1864,9 +1871,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-quasi-poisson-for-reviewers"><code>quasi-poisson</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-r-squared-and-adjusted-r-squared" class="section level3" number="20.0.117">
+<div class="section level3" id="sec-reporting-tripod-ai-r-squared-and-adjusted-r-squared" number="20.0.117">
 <h3>
-<span class="header-section-number">20.0.117</span> R-Squared and Adjusted R-Squared<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-r-squared-and-adjusted-r-squared"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.117</span> R-Squared and Adjusted R-Squared<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-r-squared-and-adjusted-r-squared"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1879,9 +1886,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-r-squared-adjusted-for-reviewers"><code>r-squared-adjusted</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-random-forests" class="section level3" number="20.0.118">
+<div class="section level3" id="sec-reporting-tripod-ai-random-forests" number="20.0.118">
 <h3>
-<span class="header-section-number">20.0.118</span> Random Forests<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-random-forests"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.118</span> Random Forests<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-random-forests"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1894,9 +1901,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-random-forest-for-reviewers"><code>random-forest</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-random-intercept-models" class="section level3" number="20.0.119">
+<div class="section level3" id="sec-reporting-tripod-ai-random-intercept-models" number="20.0.119">
 <h3>
-<span class="header-section-number">20.0.119</span> Random-Intercept Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-random-intercept-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.119</span> Random-Intercept Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-random-intercept-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1909,9 +1916,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-random-intercepts-for-reviewers"><code>random-intercepts</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-random-slope-models" class="section level3" number="20.0.120">
+<div class="section level3" id="sec-reporting-tripod-ai-random-slope-models" number="20.0.120">
 <h3>
-<span class="header-section-number">20.0.120</span> Random-Slope Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-random-slope-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.120</span> Random-Slope Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-random-slope-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1924,9 +1931,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-random-slopes-for-reviewers"><code>random-slopes</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-randomisation-methods" class="section level3" number="20.0.121">
+<div class="section level3" id="sec-reporting-tripod-ai-randomisation-methods" number="20.0.121">
 <h3>
-<span class="header-section-number">20.0.121</span> Randomisation Methods<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-randomisation-methods"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.121</span> Randomisation Methods<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-randomisation-methods"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1939,9 +1946,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-randomization-methods-for-reviewers"><code>randomization-methods</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-recurrent-events" class="section level3" number="20.0.122">
+<div class="section level3" id="sec-reporting-tripod-ai-recurrent-events" number="20.0.122">
 <h3>
-<span class="header-section-number">20.0.122</span> Recurrent Events<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-recurrent-events"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.122</span> Recurrent Events<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-recurrent-events"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1954,9 +1961,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-recurrent-events-for-reviewers"><code>recurrent-events</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-regularisation-in-ml" class="section level3" number="20.0.123">
+<div class="section level3" id="sec-reporting-tripod-ai-regularisation-in-ml" number="20.0.123">
 <h3>
-<span class="header-section-number">20.0.123</span> Regularisation in ML<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-regularisation-in-ml"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.123</span> Regularisation in ML<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-regularisation-in-ml"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1969,9 +1976,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-regularization-ridge-lasso-ml-for-reviewers"><code>regularization-ridge-lasso-ml</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-reliability-and-cronbach-s-alpha" class="section level3" number="20.0.124">
+<div class="section level3" id="sec-reporting-tripod-ai-reliability-and-cronbach-s-alpha" number="20.0.124">
 <h3>
-<span class="header-section-number">20.0.124</span> Reliability and Cronbach’s Alpha<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-reliability-and-cronbach-s-alpha"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.124</span> Reliability and Cronbach’s Alpha<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-reliability-and-cronbach-s-alpha"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1984,9 +1991,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-reliability-cronbach-alpha-for-reviewers"><code>reliability-cronbach-alpha</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-residual-diagnostics" class="section level3" number="20.0.125">
+<div class="section level3" id="sec-reporting-tripod-ai-residual-diagnostics" number="20.0.125">
 <h3>
-<span class="header-section-number">20.0.125</span> Residual Diagnostics<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-residual-diagnostics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.125</span> Residual Diagnostics<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-residual-diagnostics"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -1999,9 +2006,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-residual-diagnostics-for-reviewers"><code>residual-diagnostics</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-restricted-mean-survival-time-rmst" class="section level3" number="20.0.126">
+<div class="section level3" id="sec-reporting-tripod-ai-restricted-mean-survival-time-rmst" number="20.0.126">
 <h3>
-<span class="header-section-number">20.0.126</span> Restricted Mean Survival Time (RMST)<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-restricted-mean-survival-time-rmst"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.126</span> Restricted Mean Survival Time (RMST)<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-restricted-mean-survival-time-rmst"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2014,9 +2021,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-restricted-mean-survival-time-for-reviewers"><code>restricted-mean-survival-time</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-ridge-regression" class="section level3" number="20.0.127">
+<div class="section level3" id="sec-reporting-tripod-ai-ridge-regression" number="20.0.127">
 <h3>
-<span class="header-section-number">20.0.127</span> Ridge Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-ridge-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.127</span> Ridge Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-ridge-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2029,9 +2036,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-ridge-regression-for-reviewers"><code>ridge-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-rnns-and-lstms-introduction" class="section level3" number="20.0.128">
+<div class="section level3" id="sec-reporting-tripod-ai-rnns-and-lstms-introduction" number="20.0.128">
 <h3>
-<span class="header-section-number">20.0.128</span> RNNs and LSTMs: Introduction<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-rnns-and-lstms-introduction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.128</span> RNNs and LSTMs: Introduction<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-rnns-and-lstms-introduction"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2044,9 +2051,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-rnn-lstm-intro-for-reviewers"><code>rnn-lstm-intro</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-robust-regression" class="section level3" number="20.0.129">
+<div class="section level3" id="sec-reporting-tripod-ai-robust-regression" number="20.0.129">
 <h3>
-<span class="header-section-number">20.0.129</span> Robust Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-robust-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.129</span> Robust Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-robust-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2059,9 +2066,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-robust-regression-for-reviewers"><code>robust-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-roc-analysis" class="section level3" number="20.0.130">
+<div class="section level3" id="sec-reporting-tripod-ai-roc-analysis" number="20.0.130">
 <h3>
-<span class="header-section-number">20.0.130</span> ROC Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-roc-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.130</span> ROC Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-roc-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2074,9 +2081,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-roc-analysis-for-reviewers"><code>roc-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-roc-and-auc-for-logistic-models" class="section level3" number="20.0.131">
+<div class="section level3" id="sec-reporting-tripod-ai-roc-and-auc-for-logistic-models" number="20.0.131">
 <h3>
-<span class="header-section-number">20.0.131</span> ROC and AUC for Logistic Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-roc-and-auc-for-logistic-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.131</span> ROC and AUC for Logistic Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-roc-and-auc-for-logistic-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2089,9 +2096,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-roc-auc-for-logistic-for-reviewers"><code>roc-auc-for-logistic</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-royston-parmar-flexible-parametric-models" class="section level3" number="20.0.132">
+<div class="section level3" id="sec-reporting-tripod-ai-royston-parmar-flexible-parametric-models" number="20.0.132">
 <h3>
-<span class="header-section-number">20.0.132</span> Royston-Parmar Flexible Parametric Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-royston-parmar-flexible-parametric-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.132</span> Royston-Parmar Flexible Parametric Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-royston-parmar-flexible-parametric-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2104,9 +2111,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-flexible-parametric-royston-parmar-for-reviewers"><code>flexible-parametric-royston-parmar</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-sample-size-re-estimation" class="section level3" number="20.0.133">
+<div class="section level3" id="sec-reporting-tripod-ai-sample-size-re-estimation" number="20.0.133">
 <h3>
-<span class="header-section-number">20.0.133</span> Sample Size Re-Estimation<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-sample-size-re-estimation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.133</span> Sample Size Re-Estimation<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-sample-size-re-estimation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2119,9 +2126,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-sample-size-reestimation-for-reviewers"><code>sample-size-reestimation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-schoenfeld-residuals" class="section level3" number="20.0.134">
+<div class="section level3" id="sec-reporting-tripod-ai-schoenfeld-residuals" number="20.0.134">
 <h3>
-<span class="header-section-number">20.0.134</span> Schoenfeld Residuals<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-schoenfeld-residuals"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.134</span> Schoenfeld Residuals<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-schoenfeld-residuals"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2134,9 +2141,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-schoenfeld-residuals-for-reviewers"><code>schoenfeld-residuals</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-sensitivity-analyses-in-clinical-trials" class="section level3" number="20.0.135">
+<div class="section level3" id="sec-reporting-tripod-ai-sensitivity-analyses-in-clinical-trials" number="20.0.135">
 <h3>
-<span class="header-section-number">20.0.135</span> Sensitivity Analyses in Clinical Trials<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-sensitivity-analyses-in-clinical-trials"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.135</span> Sensitivity Analyses in Clinical Trials<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-sensitivity-analyses-in-clinical-trials"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2149,9 +2156,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-sensitivity-analysis-clinical-for-reviewers"><code>sensitivity-analysis-clinical</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-shap-values" class="section level3" number="20.0.136">
+<div class="section level3" id="sec-reporting-tripod-ai-shap-values" number="20.0.136">
 <h3>
-<span class="header-section-number">20.0.136</span> SHAP Values<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-shap-values"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.136</span> SHAP Values<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-shap-values"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2164,9 +2171,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-shap-values-for-reviewers"><code>shap-values</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-simple-linear-regression" class="section level3" number="20.0.137">
+<div class="section level3" id="sec-reporting-tripod-ai-simple-linear-regression" number="20.0.137">
 <h3>
-<span class="header-section-number">20.0.137</span> Simple Linear Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-simple-linear-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.137</span> Simple Linear Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-simple-linear-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2179,9 +2186,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-simple-linear-regression-for-reviewers"><code>simple-linear-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-simulating-survival-data" class="section level3" number="20.0.138">
+<div class="section level3" id="sec-reporting-tripod-ai-simulating-survival-data" number="20.0.138">
 <h3>
-<span class="header-section-number">20.0.138</span> Simulating Survival Data<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-simulating-survival-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.138</span> Simulating Survival Data<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-simulating-survival-data"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2194,9 +2201,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-survival-simulation-for-reviewers"><code>survival-simulation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-smote-for-imbalanced-classes" class="section level3" number="20.0.139">
+<div class="section level3" id="sec-reporting-tripod-ai-smote-for-imbalanced-classes" number="20.0.139">
 <h3>
-<span class="header-section-number">20.0.139</span> SMOTE for Imbalanced Classes<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-smote-for-imbalanced-classes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.139</span> SMOTE for Imbalanced Classes<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-smote-for-imbalanced-classes"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2209,9 +2216,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-smote-imbalanced-for-reviewers"><code>smote-imbalanced</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-spline-regression" class="section level3" number="20.0.140">
+<div class="section level3" id="sec-reporting-tripod-ai-spline-regression" number="20.0.140">
 <h3>
-<span class="header-section-number">20.0.140</span> Spline Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-spline-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.140</span> Spline Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-spline-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2224,9 +2231,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-spline-regression-for-reviewers"><code>spline-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-stacking-ensembles" class="section level3" number="20.0.141">
+<div class="section level3" id="sec-reporting-tripod-ai-stacking-ensembles" number="20.0.141">
 <h3>
-<span class="header-section-number">20.0.141</span> Stacking Ensembles<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-stacking-ensembles"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.141</span> Stacking Ensembles<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-stacking-ensembles"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2239,9 +2246,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-stacking-ensembles-for-reviewers"><code>stacking-ensembles</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-stepped-wedge-trial" class="section level3" number="20.0.142">
+<div class="section level3" id="sec-reporting-tripod-ai-stepped-wedge-trial" number="20.0.142">
 <h3>
-<span class="header-section-number">20.0.142</span> Stepped-Wedge Trial<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-stepped-wedge-trial"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.142</span> Stepped-Wedge Trial<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-stepped-wedge-trial"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2254,9 +2261,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-stepped-wedge-trial-for-reviewers"><code>stepped-wedge-trial</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-stepwise-regression-pitfalls" class="section level3" number="20.0.143">
+<div class="section level3" id="sec-reporting-tripod-ai-stepwise-regression-pitfalls" number="20.0.143">
 <h3>
-<span class="header-section-number">20.0.143</span> Stepwise Regression: Pitfalls<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-stepwise-regression-pitfalls"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.143</span> Stepwise Regression: Pitfalls<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-stepwise-regression-pitfalls"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2269,9 +2276,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-stepwise-regression-pitfalls-for-reviewers"><code>stepwise-regression-pitfalls</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-stratified-cox-models" class="section level3" number="20.0.144">
+<div class="section level3" id="sec-reporting-tripod-ai-stratified-cox-models" number="20.0.144">
 <h3>
-<span class="header-section-number">20.0.144</span> Stratified Cox Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-stratified-cox-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.144</span> Stratified Cox Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-stratified-cox-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2284,9 +2291,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-stratified-cox-for-reviewers"><code>stratified-cox</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-stratified-randomisation" class="section level3" number="20.0.145">
+<div class="section level3" id="sec-reporting-tripod-ai-stratified-randomisation" number="20.0.145">
 <h3>
-<span class="header-section-number">20.0.145</span> Stratified Randomisation<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-stratified-randomisation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.145</span> Stratified Randomisation<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-stratified-randomisation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2299,9 +2306,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-stratified-randomization-for-reviewers"><code>stratified-randomization</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-subgroup-analyses" class="section level3" number="20.0.146">
+<div class="section level3" id="sec-reporting-tripod-ai-subgroup-analyses" number="20.0.146">
 <h3>
-<span class="header-section-number">20.0.146</span> Subgroup Analyses<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-subgroup-analyses"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.146</span> Subgroup Analyses<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-subgroup-analyses"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2314,9 +2321,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-subgroup-analysis-for-reviewers"><code>subgroup-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-subgroup-forest-plots" class="section level3" number="20.0.147">
+<div class="section level3" id="sec-reporting-tripod-ai-subgroup-forest-plots" number="20.0.147">
 <h3>
-<span class="header-section-number">20.0.147</span> Subgroup Forest Plots<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-subgroup-forest-plots"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.147</span> Subgroup Forest Plots<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-subgroup-forest-plots"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2329,9 +2336,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-forest-plot-subgroup-for-reviewers"><code>forest-plot-subgroup</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-supervised-learning-overview" class="section level3" number="20.0.148">
+<div class="section level3" id="sec-reporting-tripod-ai-supervised-learning-overview" number="20.0.148">
 <h3>
-<span class="header-section-number">20.0.148</span> Supervised Learning: Overview<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-supervised-learning-overview"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.148</span> Supervised Learning: Overview<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-supervised-learning-overview"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2344,9 +2351,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-supervised-learning-overview-for-reviewers"><code>supervised-learning-overview</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-the-bias-variance-tradeoff" class="section level3" number="20.0.149">
+<div class="section level3" id="sec-reporting-tripod-ai-the-bias-variance-tradeoff" number="20.0.149">
 <h3>
-<span class="header-section-number">20.0.149</span> The Bias-Variance Tradeoff<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-the-bias-variance-tradeoff"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.149</span> The Bias-Variance Tradeoff<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-the-bias-variance-tradeoff"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2359,9 +2366,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-bias-variance-tradeoff-for-reviewers"><code>bias-variance-tradeoff</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-the-brier-score-for-survival" class="section level3" number="20.0.150">
+<div class="section level3" id="sec-reporting-tripod-ai-the-brier-score-for-survival" number="20.0.150">
 <h3>
-<span class="header-section-number">20.0.150</span> The Brier Score for Survival<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-the-brier-score-for-survival"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.150</span> The Brier Score for Survival<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-the-brier-score-for-survival"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2374,9 +2381,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-brier-score-survival-for-reviewers"><code>brier-score-survival</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-the-nelson-aalen-estimator" class="section level3" number="20.0.151">
+<div class="section level3" id="sec-reporting-tripod-ai-the-nelson-aalen-estimator" number="20.0.151">
 <h3>
-<span class="header-section-number">20.0.151</span> The Nelson-Aalen Estimator<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-the-nelson-aalen-estimator"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.151</span> The Nelson-Aalen Estimator<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-the-nelson-aalen-estimator"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2389,9 +2396,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-nelson-aalen-estimator-for-reviewers"><code>nelson-aalen-estimator</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-time-dependent-roc" class="section level3" number="20.0.152">
+<div class="section level3" id="sec-reporting-tripod-ai-time-dependent-roc" number="20.0.152">
 <h3>
-<span class="header-section-number">20.0.152</span> Time-Dependent ROC<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-time-dependent-roc"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.152</span> Time-Dependent ROC<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-time-dependent-roc"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2404,9 +2411,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-time-dependent-roc-for-reviewers"><code>time-dependent-roc</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-time-varying-covariates" class="section level3" number="20.0.153">
+<div class="section level3" id="sec-reporting-tripod-ai-time-varying-covariates" number="20.0.153">
 <h3>
-<span class="header-section-number">20.0.153</span> Time-Varying Covariates<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-time-varying-covariates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.153</span> Time-Varying Covariates<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-time-varying-covariates"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2419,9 +2426,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-time-varying-covariates-for-reviewers"><code>time-varying-covariates</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-tobit-regression" class="section level3" number="20.0.154">
+<div class="section level3" id="sec-reporting-tripod-ai-tobit-regression" number="20.0.154">
 <h3>
-<span class="header-section-number">20.0.154</span> Tobit Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-tobit-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.154</span> Tobit Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-tobit-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2434,9 +2441,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-tobit-regression-for-reviewers"><code>tobit-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-train-test-splits" class="section level3" number="20.0.155">
+<div class="section level3" id="sec-reporting-tripod-ai-train-test-splits" number="20.0.155">
 <h3>
-<span class="header-section-number">20.0.155</span> Train-Test Splits<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-train-test-splits"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.155</span> Train-Test Splits<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-train-test-splits"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2449,9 +2456,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-train-test-split-for-reviewers"><code>train-test-split</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-transformers-overview" class="section level3" number="20.0.156">
+<div class="section level3" id="sec-reporting-tripod-ai-transformers-overview" number="20.0.156">
 <h3>
-<span class="header-section-number">20.0.156</span> Transformers: Overview<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-transformers-overview"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.156</span> Transformers: Overview<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-transformers-overview"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2464,9 +2471,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-transformer-overview-for-reviewers"><code>transformer-overview</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-truncated-regression" class="section level3" number="20.0.157">
+<div class="section level3" id="sec-reporting-tripod-ai-truncated-regression" number="20.0.157">
 <h3>
-<span class="header-section-number">20.0.157</span> Truncated Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-truncated-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.157</span> Truncated Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-truncated-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2479,9 +2486,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-truncated-regression-for-reviewers"><code>truncated-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-variable-importance" class="section level3" number="20.0.158">
+<div class="section level3" id="sec-reporting-tripod-ai-variable-importance" number="20.0.158">
 <h3>
-<span class="header-section-number">20.0.158</span> Variable Importance<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-variable-importance"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.158</span> Variable Importance<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-variable-importance"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2494,9 +2501,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-variable-importance-for-reviewers"><code>variable-importance</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-weighted-kappa" class="section level3" number="20.0.159">
+<div class="section level3" id="sec-reporting-tripod-ai-weighted-kappa" number="20.0.159">
 <h3>
-<span class="header-section-number">20.0.159</span> Weighted Kappa<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-weighted-kappa"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.159</span> Weighted Kappa<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-weighted-kappa"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2509,9 +2516,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-14-clinical.html#sec-chapters-14-clinical-weighted-kappa-for-reviewers"><code>weighted-kappa</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-weighted-log-rank-tests" class="section level3" number="20.0.160">
+<div class="section level3" id="sec-reporting-tripod-ai-weighted-log-rank-tests" number="20.0.160">
 <h3>
-<span class="header-section-number">20.0.160</span> Weighted Log-Rank Tests<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-weighted-log-rank-tests"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.160</span> Weighted Log-Rank Tests<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-weighted-log-rank-tests"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2524,9 +2531,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-11-survival.html#sec-chapters-11-survival-weighted-log-rank-for-reviewers"><code>weighted-log-rank</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-worked-lme4-lmer-examples" class="section level3" number="20.0.161">
+<div class="section level3" id="sec-reporting-tripod-ai-worked-lme4-lmer-examples" number="20.0.161">
 <h3>
-<span class="header-section-number">20.0.161</span> Worked lme4::lmer Examples<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-worked-lme4-lmer-examples"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.161</span> Worked lme4::lmer Examples<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-worked-lme4-lmer-examples"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2539,9 +2546,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-lme4-lmer-examples-for-reviewers"><code>lme4-lmer-examples</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-xgboost" class="section level3" number="20.0.162">
+<div class="section level3" id="sec-reporting-tripod-ai-xgboost" number="20.0.162">
 <h3>
-<span class="header-section-number">20.0.162</span> XGBoost<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-xgboost"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.162</span> XGBoost<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-xgboost"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2554,9 +2561,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-13-ml.html#sec-chapters-13-ml-xgboost-for-reviewers"><code>xgboost</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-tripod-ai-zero-inflated-models" class="section level3" number="20.0.163">
+<div class="section level3" id="sec-reporting-tripod-ai-zero-inflated-models" number="20.0.163">
 <h3>
-<span class="header-section-number">20.0.163</span> Zero-Inflated Models<a class="anchor" aria-label="anchor" href="#sec-reporting-tripod-ai-zero-inflated-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">20.0.163</span> Zero-Inflated Models<a aria-label="anchor" class="anchor" href="#sec-reporting-tripod-ai-zero-inflated-models"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -2568,16 +2575,14 @@
 </blockquote>
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-07-regression.html#sec-chapters-07-regression-zero-inflated-models-for-reviewers"><code>zero-inflated-models</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
-
 </div>
 </div>
 <!-- Dark / light mode toggle (replaces Harrer's emoji with a Font Awesome glyph) -->
 <div class="sticky-item">
-  <button type="button" id="mode-switch" class="btn-circle-mode" aria-label="Toggle dark mode">
-    <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
-  </button>
+<button aria-label="Toggle dark mode" class="btn-circle-mode" id="mode-switch" type="button">
+<i aria-hidden="true" class="fa-solid fa-circle-half-stroke"></i>
+</button>
 </div>
-
 <script>
   (function () {
     var stored = localStorage.getItem('themeMode');
@@ -2596,52 +2601,15 @@
       });
     });
   })();
-</script><!-- Offer only downloads produced and inventoried by this build. --><script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    var source = document.getElementById("book-source");
-    var extra = source && source.closest(".book-extra");
-    if (!extra) return;
-    try {
-      var response = await fetch("downloads.json");
-      if (!response.ok) return;
-      var files = await response.json();
-      var current = window.location.pathname.split("/").pop() || "index.html";
-      var candidates = [
-        ["methods-in-r.pdf", "Entire book (PDF)"],
-        ["methods-in-r.epub", "Entire book (EPUB)"]
-      ];
-      if (current !== "index.html")
-        candidates.push(["pdf-chapters/" + current.replace(/\.html$/, ".pdf"), "This chapter (PDF)"]);
-      var available = candidates.filter(function (item) { return files.includes(item[0]); });
-      if (!available.length) return;
-      var wrap = document.createElement("div");
-      wrap.className = "book-downloads";
-      var heading = document.createElement("h6");
-      heading.textContent = "Downloads";
-      wrap.appendChild(heading);
-      var list = document.createElement("ul");
-      list.className = "list-unstyled";
-      available.forEach(function (item) {
-        var li = document.createElement("li");
-        var link = document.createElement("a");
-        link.href = item[0]; link.textContent = item[1];
-        li.appendChild(link); list.appendChild(li);
-      });
-      wrap.appendChild(list);
-      extra.parentNode.insertBefore(wrap, extra);
-    } catch (error) {
-      // An unavailable inventory means there are no verified download links.
-    }
-  });
-</script><!-- Footer attribution --><div class="bookdown-attribution">
+</script><!-- Offer only downloads produced and inventoried by this build. --><!-- Footer attribution --><div class="bookdown-attribution">
   This book was built by the <a href="https://bookdown.org/"><strong>bookdown</strong></a> R package.
 </div>
-  <div class="chapter-nav">
+<div class="chapter-nav">
 <div class="prev"><a href="sec-reporting-consort.html"><span class="header-section-number">19</span> CONSORT — randomised trials</a></div>
 <div class="next"><a href="sec-reporting-prisma.html"><span class="header-section-number">21</span> PRISMA — systematic reviews &amp; meta-analyses</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li>
+<nav aria-label="On this page" data-toggle="toc" id="toc"><h2>On this page</h2>
+<ul class="nav navbar-nav"><li>
 <a class="nav-link" href="#sec-reporting-tripod-ai"><span class="header-section-number">20</span> TRIPOD-AI — prediction models</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#sec-reporting-tripod-ai-a-complete-mlr3-workflow"><span class="header-section-number">20.0.1</span> A Complete mlr3 Workflow</a></li>
 <li><a class="nav-link" href="#sec-reporting-tripod-ai-a-complete-tidymodels-workflow"><span class="header-section-number">20.0.2</span> A Complete tidymodels Workflow</a></li>
@@ -2808,29 +2776,23 @@
 <li><a class="nav-link" href="#sec-reporting-tripod-ai-zero-inflated-models"><span class="header-section-number">20.0.163</span> Zero-Inflated Models</a></li>
 </ul>
 </li></ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/CTTIR/methods-in-r/blob/main/reporting/tripod-ai.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/CTTIR/methods-in-r/edit/main/reporting/tripod-ai.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
-        </ul>
+<div class="book-extra">
+<ul class="list-unstyled">
+<li><a href="https://github.com/CTTIR/methods-in-r/blob/main/reporting/tripod-ai.Rmd" id="book-source">View source <i class="fab fa-github"></i></a></li>
+<li><a href="https://github.com/CTTIR/methods-in-r/edit/main/reporting/tripod-ai.Rmd" id="book-edit">Edit this page <i class="fab fa-github"></i></a></li>
+</ul>
 </div>
-    </nav>
+</nav>
 </div>
-
 </div>
 </div> <!-- .container -->
-
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-09.</p>
-  </div>
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
+<div class="col-12 col-md-6 mt-3">
+<p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-09.</p>
+</div>
+<div class="col-12 col-md-6 mt-3">
+<p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+</div>
 </div></div>
 </footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {

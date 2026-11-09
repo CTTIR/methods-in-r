@@ -1,31 +1,32 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
 <title>Chapter 22 ARRIVE — animal research | Methods in R</title>
-<meta name="author" content="R. Heller">
-<meta name="description" content="ARRIVE — Animal Research: Reporting of In Vivo Experiments — covers preclinical animal research. The 21-item checklist is at https://arriveguidelines.org/. The templates below cover the...">
-<meta name="generator" content="bookdown 0.48 with bs4_book()">
-<meta property="og:title" content="Chapter 22 ARRIVE — animal research | Methods in R">
-<meta property="og:type" content="book">
-<meta property="og:url" content="https://cttir.github.io/methods-in-r/sec-reporting-arrive.html">
-<meta property="og:image" content="https://cttir.github.io/methods-in-r/images/cover.png">
-<meta property="og:description" content="ARRIVE — Animal Research: Reporting of In Vivo Experiments — covers preclinical animal research. The 21-item checklist is at https://arriveguidelines.org/. The templates below cover the...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 22 ARRIVE — animal research | Methods in R">
-<meta name="twitter:description" content="ARRIVE — Animal Research: Reporting of In Vivo Experiments — covers preclinical animal research. The 21-item checklist is at https://arriveguidelines.org/. The templates below cover the...">
-<meta name="twitter:image" content="https://cttir.github.io/methods-in-r/images/cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet">
-<link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
-<script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+<meta content="R. Heller" name="author"/>
+<meta content="ARRIVE — Animal Research: Reporting of In Vivo Experiments — covers preclinical animal research. The 21-item checklist is at https://arriveguidelines.org/. The templates below cover the..." name="description"/>
+<meta content="bookdown 0.48 with bs4_book()" name="generator"/>
+<meta content="Chapter 22 ARRIVE — animal research | Methods in R" property="og:title"/>
+<meta content="book" property="og:type"/>
+<meta content="https://cttir.github.io/methods-in-r/sec-reporting-arrive.html" property="og:url"/>
+<meta content="https://cttir.github.io/methods-in-r/images/cover.png" property="og:image"/>
+<meta content="ARRIVE — Animal Research: Reporting of In Vivo Experiments — covers preclinical animal research. The 21-item checklist is at https://arriveguidelines.org/. The templates below cover the..." property="og:description"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Chapter 22 ARRIVE — animal research | Methods in R" name="twitter:title"/>
+<meta content="ARRIVE — Animal Research: Reporting of In Vivo Experiments — covers preclinical animal research. The 21-item checklist is at https://arriveguidelines.org/. The templates below cover the..." name="twitter:description"/>
+<meta content="https://cttir.github.io/methods-in-r/images/cover.png" name="twitter:image"/>
+<!-- JS --><script crossorigin="anonymous" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script><script crossorigin="anonymous" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js"></script><script crossorigin="anonymous" src="https://kit.fontawesome.com/6ecbd6c532.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet"/>
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet"/>
+<link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet"/>
+<script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet"/>
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="style/font-awesome.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js"></script><script crossorigin="anonymous" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
@@ -51,29 +52,36 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style/style.css">
-</head>
+<link href="style/style.css" rel="stylesheet"/>
+<style id="unified-book-download-style">
+.book-downloads--unified {display:flex!important;flex-wrap:wrap;gap:12px 24px;margin:16px 0 24px!important;padding:14px 16px!important;border:1px solid #a8adb4;border-radius:8px;background:transparent;color:inherit;font-family:system-ui,sans-serif;font-size:14px;line-height:1.4;box-sizing:border-box;max-width:100%;}
+.book-downloads--unified .book-download-group {display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.book-downloads--unified .book-download-label {font-weight:600;margin-right:4px;}
+.book-downloads--unified a {display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border:1px solid currentColor;border-radius:5px;text-decoration:none!important;font-weight:600;color:inherit;}
+.book-downloads--unified a:hover {background:rgba(127,127,127,.14);}
+.book-downloads--unified a:focus-visible {outline:3px solid #2684d9;outline-offset:3px;}
+.book-downloads--unified svg {height:20px;width:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.book-downloads:not(.book-downloads--unified),.book-download-footer,.sidebar-downloads {display:none!important;}
+@media(max-width:500px){.book-downloads--unified{gap:12px;padding:12px!important;}.book-downloads--unified .book-download-group{width:100%;}.book-downloads--unified .book-download-label{min-width:92px;}}
+@media print{.book-downloads--unified{display:none!important;}}
+</style></head>
 <body data-spy="scroll" data-target="#toc">
-
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
-
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="A topic reference for biomedical research and peer review">Methods in R</a>:
+<header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<div class="d-flex align-items-start justify-content-between">
+<h1>
+<a href="index.html" title="A topic reference for biomedical research and peer review">Methods in R</a>:
         <small class="text-muted">A topic reference for biomedical research and peer review</small>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
-
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</h1>
+<button aria-controls="main-nav" aria-expanded="true" class="btn btn-outline-primary d-lg-none ml-2 mt-1" data-target="#main-nav" data-toggle="collapse" type="button"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+</div>
+<div class="collapse-lg" id="main-nav">
+<form role="search">
+<input aria-label="Search" class="form-control" id="search" placeholder="Search" type="search"/>
 </form>
-
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
+<nav aria-label="Table of contents"><h2>Table of contents</h2>
+<ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Welcome!</a></li>
 <li><a class="" href="sec-00-impressum.html">Impressum</a></li>
 <li><a class="" href="sec-00-acknowledgments.html">Acknowledgments</a></li>
@@ -112,21 +120,20 @@
 <li><a class="" href="sec-98-citing-this-guide.html">Citing this Guide</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
-
-        <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/CTTIR/methods-in-r">View book source <i class="fab fa-github"></i></a></p>
-        </div>
-      </nav>
+<div class="book-extra">
+<p><a href="https://github.com/CTTIR/methods-in-r" id="book-repo">View book source <i class="fab fa-github"></i></a></p>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="sec-reporting-arrive" class="section level1" number="22">
+</nav>
+</div>
+</header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div class="section level1" id="sec-reporting-arrive" number="22">
 <h1>
-<span class="header-section-number">22</span> ARRIVE — animal research<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive"><i class="fas fa-link"></i></a>
-</h1>
-<p>ARRIVE — <em>Animal Research: Reporting of In Vivo Experiments</em> — covers preclinical animal research. The 21-item checklist is at <a href="https://arriveguidelines.org/" class="uri">https://arriveguidelines.org/</a>. The templates below cover the statistical analyses most commonly required.</p>
+<span class="header-section-number">22</span> ARRIVE — animal research<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive"><i class="fas fa-link"></i></a>
+</h1><nav aria-label="Book and chapter downloads" class="book-downloads book-downloads--unified"><div class="book-download-group"><span class="book-download-label">Entire book</span><a aria-label="Download entire book as PDF" download="" href="methods-in-r.pdf" title="Download entire book as PDF"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M14 2H5v20h14V7z"></path><path d="M14 2v6h5M8 13h8M8 17h6"></path></svg><span>PDF</span></a><a aria-label="Download entire book as EPUB" download="" href="methods-in-r.epub" title="Download entire book as EPUB"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM21 4h-5a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h5z"></path></svg><span>EPUB</span></a></div><div class="book-download-group"><span class="book-download-label">This chapter</span><a aria-label="Download this chapter as PDF" download="" href="downloads/chapters/sec-reporting-arrive.pdf" title="Download this chapter as PDF"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M14 2H5v20h14V7z"></path><path d="M14 2v6h5M8 13h8M8 17h6"></path></svg><span>PDF</span></a><a aria-label="Download this chapter as EPUB" download="" href="downloads/chapters/sec-reporting-arrive.epub" title="Download this chapter as EPUB"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM21 4h-5a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h5z"></path></svg><span>EPUB</span></a></div></nav>
+<p>ARRIVE — <em>Animal Research: Reporting of In Vivo Experiments</em> — covers preclinical animal research. The 21-item checklist is at <a class="uri" href="https://arriveguidelines.org/">https://arriveguidelines.org/</a>. The templates below cover the statistical analyses most commonly required.</p>
 <p>This page contains <strong>50 method-specific templates</strong>. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.</p>
-<div id="sec-reporting-arrive-alignment-with-bwa-and-bowtie" class="section level3" number="22.0.1">
+<div class="section level3" id="sec-reporting-arrive-alignment-with-bwa-and-bowtie" number="22.0.1">
 <h3>
-<span class="header-section-number">22.0.1</span> Alignment with BWA and Bowtie<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-alignment-with-bwa-and-bowtie"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.1</span> Alignment with BWA and Bowtie<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-alignment-with-bwa-and-bowtie"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -139,9 +146,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-bwa-bowtie-alignment-for-reviewers"><code>bwa-bowtie-alignment</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-atac-seq-analysis" class="section level3" number="22.0.2">
+<div class="section level3" id="sec-reporting-arrive-atac-seq-analysis" number="22.0.2">
 <h3>
-<span class="header-section-number">22.0.2</span> ATAC-Seq Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-atac-seq-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.2</span> ATAC-Seq Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-atac-seq-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -154,9 +161,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-atac-seq-analysis-for-reviewers"><code>atac-seq-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-batch-correction-with-combat" class="section level3" number="22.0.3">
+<div class="section level3" id="sec-reporting-arrive-batch-correction-with-combat" number="22.0.3">
 <h3>
-<span class="header-section-number">22.0.3</span> Batch Correction with ComBat<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-batch-correction-with-combat"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.3</span> Batch Correction with ComBat<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-batch-correction-with-combat"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -169,9 +176,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-batch-correction-combat-for-reviewers"><code>batch-correction-combat</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-bulk-rna-seq-differential-expression-with-deseq2" class="section level3" number="22.0.4">
+<div class="section level3" id="sec-reporting-arrive-bulk-rna-seq-differential-expression-with-deseq2" number="22.0.4">
 <h3>
-<span class="header-section-number">22.0.4</span> Bulk RNA-seq Differential Expression with DESeq2<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-bulk-rna-seq-differential-expression-with-deseq2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.4</span> Bulk RNA-seq Differential Expression with DESeq2<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-bulk-rna-seq-differential-expression-with-deseq2"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -184,9 +191,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-bulk-rnaseq-differential-expression-for-reviewers"><code>bulk-rnaseq-differential-expression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-cell-type-annotation" class="section level3" number="22.0.5">
+<div class="section level3" id="sec-reporting-arrive-cell-type-annotation" number="22.0.5">
 <h3>
-<span class="header-section-number">22.0.5</span> Cell-Type Annotation<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-cell-type-annotation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.5</span> Cell-Type Annotation<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-cell-type-annotation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -199,9 +206,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-scrna-cell-type-annotation-for-reviewers"><code>scrna-cell-type-annotation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-chip-seq-analysis" class="section level3" number="22.0.6">
+<div class="section level3" id="sec-reporting-arrive-chip-seq-analysis" number="22.0.6">
 <h3>
-<span class="header-section-number">22.0.6</span> ChIP-Seq Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-chip-seq-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.6</span> ChIP-Seq Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-chip-seq-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -214,9 +221,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-chip-seq-analysis-for-reviewers"><code>chip-seq-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-copy-number-variation-analysis" class="section level3" number="22.0.7">
+<div class="section level3" id="sec-reporting-arrive-copy-number-variation-analysis" number="22.0.7">
 <h3>
-<span class="header-section-number">22.0.7</span> Copy Number Variation Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-copy-number-variation-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.7</span> Copy Number Variation Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-copy-number-variation-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -229,9 +236,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-cnv-analysis-for-reviewers"><code>cnv-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-counting-reads-with-featurecounts" class="section level3" number="22.0.8">
+<div class="section level3" id="sec-reporting-arrive-counting-reads-with-featurecounts" number="22.0.8">
 <h3>
-<span class="header-section-number">22.0.8</span> Counting Reads with featureCounts<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-counting-reads-with-featurecounts"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.8</span> Counting Reads with featureCounts<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-counting-reads-with-featurecounts"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -244,9 +251,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-counting-reads-feature-counts-for-reviewers"><code>counting-reads-feature-counts</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-differential-expression-with-edger" class="section level3" number="22.0.9">
+<div class="section level3" id="sec-reporting-arrive-differential-expression-with-edger" number="22.0.9">
 <h3>
-<span class="header-section-number">22.0.9</span> Differential Expression with edgeR<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-differential-expression-with-edger"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.9</span> Differential Expression with edgeR<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-differential-expression-with-edger"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -259,9 +266,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-edger-differential-expression-for-reviewers"><code>edger-differential-expression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-differential-expression-with-limma-voom" class="section level3" number="22.0.10">
+<div class="section level3" id="sec-reporting-arrive-differential-expression-with-limma-voom" number="22.0.10">
 <h3>
-<span class="header-section-number">22.0.10</span> Differential Expression with limma-voom<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-differential-expression-with-limma-voom"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.10</span> Differential Expression with limma-voom<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-differential-expression-with-limma-voom"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -274,9 +281,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-limma-voom-for-reviewers"><code>limma-voom</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-dna-methylation-analysis" class="section level3" number="22.0.11">
+<div class="section level3" id="sec-reporting-arrive-dna-methylation-analysis" number="22.0.11">
 <h3>
-<span class="header-section-number">22.0.11</span> DNA Methylation Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-dna-methylation-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.11</span> DNA Methylation Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-dna-methylation-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -289,9 +296,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-methylation-analysis-for-reviewers"><code>methylation-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-drug-target-interaction-mining" class="section level3" number="22.0.12">
+<div class="section level3" id="sec-reporting-arrive-drug-target-interaction-mining" number="22.0.12">
 <h3>
-<span class="header-section-number">22.0.12</span> Drug-Target Interaction Mining<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-drug-target-interaction-mining"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.12</span> Drug-Target Interaction Mining<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-drug-target-interaction-mining"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -304,9 +311,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-drug-target-interaction-for-reviewers"><code>drug-target-interaction</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-fastq-quality-control" class="section level3" number="22.0.13">
+<div class="section level3" id="sec-reporting-arrive-fastq-quality-control" number="22.0.13">
 <h3>
-<span class="header-section-number">22.0.13</span> FASTQ Quality Control<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-fastq-quality-control"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.13</span> FASTQ Quality Control<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-fastq-quality-control"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -319,9 +326,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-fastq-quality-control-for-reviewers"><code>fastq-quality-control</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-finding-marker-genes" class="section level3" number="22.0.14">
+<div class="section level3" id="sec-reporting-arrive-finding-marker-genes" number="22.0.14">
 <h3>
-<span class="header-section-number">22.0.14</span> Finding Marker Genes<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-finding-marker-genes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.14</span> Finding Marker Genes<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-finding-marker-genes"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -334,9 +341,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-scrna-marker-genes-for-reviewers"><code>scrna-marker-genes</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-gene-annotation-with-biomart" class="section level3" number="22.0.15">
+<div class="section level3" id="sec-reporting-arrive-gene-annotation-with-biomart" number="22.0.15">
 <h3>
-<span class="header-section-number">22.0.15</span> Gene Annotation with biomaRt<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-gene-annotation-with-biomart"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.15</span> Gene Annotation with biomaRt<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-gene-annotation-with-biomart"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -349,9 +356,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-biomart-annotation-for-reviewers"><code>biomart-annotation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-gene-ontology-enrichment" class="section level3" number="22.0.16">
+<div class="section level3" id="sec-reporting-arrive-gene-ontology-enrichment" number="22.0.16">
 <h3>
-<span class="header-section-number">22.0.16</span> Gene Ontology Enrichment<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-gene-ontology-enrichment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.16</span> Gene Ontology Enrichment<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-gene-ontology-enrichment"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -364,9 +371,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-gene-ontology-enrichment-for-reviewers"><code>gene-ontology-enrichment</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-gsea-preranked-analysis" class="section level3" number="22.0.17">
+<div class="section level3" id="sec-reporting-arrive-gsea-preranked-analysis" number="22.0.17">
 <h3>
-<span class="header-section-number">22.0.17</span> GSEA Preranked Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-gsea-preranked-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.17</span> GSEA Preranked Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-gsea-preranked-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -379,9 +386,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-gsea-preranked-for-reviewers"><code>gsea-preranked</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-gsva-single-sample-enrichment" class="section level3" number="22.0.18">
+<div class="section level3" id="sec-reporting-arrive-gsva-single-sample-enrichment" number="22.0.18">
 <h3>
-<span class="header-section-number">22.0.18</span> GSVA Single-Sample Enrichment<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-gsva-single-sample-enrichment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.18</span> GSVA Single-Sample Enrichment<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-gsva-single-sample-enrichment"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -394,9 +401,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-gsva-single-sample-for-reviewers"><code>gsva-single-sample</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-heatmaps-for-rna-seq" class="section level3" number="22.0.19">
+<div class="section level3" id="sec-reporting-arrive-heatmaps-for-rna-seq" number="22.0.19">
 <h3>
-<span class="header-section-number">22.0.19</span> Heatmaps for RNA-seq<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-heatmaps-for-rna-seq"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.19</span> Heatmaps for RNA-seq<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-heatmaps-for-rna-seq"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -409,9 +416,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-heatmaps-rnaseq-for-reviewers"><code>heatmaps-rnaseq</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-integration-with-harmony" class="section level3" number="22.0.20">
+<div class="section level3" id="sec-reporting-arrive-integration-with-harmony" number="22.0.20">
 <h3>
-<span class="header-section-number">22.0.20</span> Integration with Harmony<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-integration-with-harmony"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.20</span> Integration with Harmony<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-integration-with-harmony"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -424,9 +431,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-scrna-integration-harmony-for-reviewers"><code>scrna-integration-harmony</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-kegg-pathway-enrichment" class="section level3" number="22.0.21">
+<div class="section level3" id="sec-reporting-arrive-kegg-pathway-enrichment" number="22.0.21">
 <h3>
-<span class="header-section-number">22.0.21</span> KEGG Pathway Enrichment<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-kegg-pathway-enrichment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.21</span> KEGG Pathway Enrichment<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-kegg-pathway-enrichment"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -439,9 +446,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-pathway-enrichment-kegg-for-reviewers"><code>pathway-enrichment-kegg</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-ma-plots" class="section level3" number="22.0.22">
+<div class="section level3" id="sec-reporting-arrive-ma-plots" number="22.0.22">
 <h3>
-<span class="header-section-number">22.0.22</span> MA Plots<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-ma-plots"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.22</span> MA Plots<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-ma-plots"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -454,9 +461,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-ma-plots-for-reviewers"><code>ma-plots</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-metagenomic-profiling" class="section level3" number="22.0.23">
+<div class="section level3" id="sec-reporting-arrive-metagenomic-profiling" number="22.0.23">
 <h3>
-<span class="header-section-number">22.0.23</span> Metagenomic Profiling<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-metagenomic-profiling"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.23</span> Metagenomic Profiling<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-metagenomic-profiling"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -469,9 +476,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-metagenomic-profiling-for-reviewers"><code>metagenomic-profiling</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-microbiome-analysis-with-dada2" class="section level3" number="22.0.24">
+<div class="section level3" id="sec-reporting-arrive-microbiome-analysis-with-dada2" number="22.0.24">
 <h3>
-<span class="header-section-number">22.0.24</span> Microbiome Analysis with DADA2<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-microbiome-analysis-with-dada2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.24</span> Microbiome Analysis with DADA2<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-microbiome-analysis-with-dada2"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -484,9 +491,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-microbiome-dada2-for-reviewers"><code>microbiome-dada2</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-microbiome-diversity-metrics" class="section level3" number="22.0.25">
+<div class="section level3" id="sec-reporting-arrive-microbiome-diversity-metrics" number="22.0.25">
 <h3>
-<span class="header-section-number">22.0.25</span> Microbiome Diversity Metrics<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-microbiome-diversity-metrics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.25</span> Microbiome Diversity Metrics<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-microbiome-diversity-metrics"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -499,9 +506,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-microbiome-diversity-for-reviewers"><code>microbiome-diversity</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-multi-omics-integration" class="section level3" number="22.0.26">
+<div class="section level3" id="sec-reporting-arrive-multi-omics-integration" number="22.0.26">
 <h3>
-<span class="header-section-number">22.0.26</span> Multi-Omics Integration<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-multi-omics-integration"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.26</span> Multi-Omics Integration<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-multi-omics-integration"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -514,9 +521,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-multiomics-integration-for-reviewers"><code>multiomics-integration</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-multiple-sequence-alignment" class="section level3" number="22.0.27">
+<div class="section level3" id="sec-reporting-arrive-multiple-sequence-alignment" number="22.0.27">
 <h3>
-<span class="header-section-number">22.0.27</span> Multiple Sequence Alignment<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-multiple-sequence-alignment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.27</span> Multiple Sequence Alignment<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-multiple-sequence-alignment"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -529,9 +536,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-msa-biostrings-for-reviewers"><code>msa-biostrings</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-pca-of-rna-seq-samples" class="section level3" number="22.0.28">
+<div class="section level3" id="sec-reporting-arrive-pca-of-rna-seq-samples" number="22.0.28">
 <h3>
-<span class="header-section-number">22.0.28</span> PCA of RNA-seq Samples<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-pca-of-rna-seq-samples"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.28</span> PCA of RNA-seq Samples<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-pca-of-rna-seq-samples"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -544,9 +551,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-pca-of-rnaseq-for-reviewers"><code>pca-of-rnaseq</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-phylogenetic-trees-with-ape" class="section level3" number="22.0.29">
+<div class="section level3" id="sec-reporting-arrive-phylogenetic-trees-with-ape" number="22.0.29">
 <h3>
-<span class="header-section-number">22.0.29</span> Phylogenetic Trees with ape<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-phylogenetic-trees-with-ape"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.29</span> Phylogenetic Trees with ape<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-phylogenetic-trees-with-ape"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -559,9 +566,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-phylogenetic-trees-ape-for-reviewers"><code>phylogenetic-trees-ape</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-population-genetics-basics" class="section level3" number="22.0.30">
+<div class="section level3" id="sec-reporting-arrive-population-genetics-basics" number="22.0.30">
 <h3>
-<span class="header-section-number">22.0.30</span> Population Genetics Basics<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-population-genetics-basics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.30</span> Population Genetics Basics<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-population-genetics-basics"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -574,9 +581,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-population-genetics-basics-for-reviewers"><code>population-genetics-basics</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-protein-structure-prediction" class="section level3" number="22.0.31">
+<div class="section level3" id="sec-reporting-arrive-protein-structure-prediction" number="22.0.31">
 <h3>
-<span class="header-section-number">22.0.31</span> Protein Structure Prediction<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-protein-structure-prediction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.31</span> Protein Structure Prediction<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-protein-structure-prediction"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -589,9 +596,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-protein-structure-prediction-for-reviewers"><code>protein-structure-prediction</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-proteomics-with-msstats" class="section level3" number="22.0.32">
+<div class="section level3" id="sec-reporting-arrive-proteomics-with-msstats" number="22.0.32">
 <h3>
-<span class="header-section-number">22.0.32</span> Proteomics with MSstats<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-proteomics-with-msstats"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.32</span> Proteomics with MSstats<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-proteomics-with-msstats"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -604,9 +611,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-proteomics-msstats-for-reviewers"><code>proteomics-msstats</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-pseudoalignment-with-salmon-and-kallisto" class="section level3" number="22.0.33">
+<div class="section level3" id="sec-reporting-arrive-pseudoalignment-with-salmon-and-kallisto" number="22.0.33">
 <h3>
-<span class="header-section-number">22.0.33</span> Pseudoalignment with Salmon and Kallisto<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-pseudoalignment-with-salmon-and-kallisto"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.33</span> Pseudoalignment with Salmon and Kallisto<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-pseudoalignment-with-salmon-and-kallisto"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -619,9 +626,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-salmon-kallisto-pseudoalignment-for-reviewers"><code>salmon-kallisto-pseudoalignment</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-read-trimming-and-adapter-removal" class="section level3" number="22.0.34">
+<div class="section level3" id="sec-reporting-arrive-read-trimming-and-adapter-removal" number="22.0.34">
 <h3>
-<span class="header-section-number">22.0.34</span> Read Trimming and Adapter Removal<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-read-trimming-and-adapter-removal"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.34</span> Read Trimming and Adapter Removal<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-read-trimming-and-adapter-removal"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -634,9 +641,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-read-trimming-adapters-for-reviewers"><code>read-trimming-adapters</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-rna-seq-normalisation" class="section level3" number="22.0.35">
+<div class="section level3" id="sec-reporting-arrive-rna-seq-normalisation" number="22.0.35">
 <h3>
-<span class="header-section-number">22.0.35</span> RNA-seq Normalisation<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-rna-seq-normalisation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.35</span> RNA-seq Normalisation<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-rna-seq-normalisation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -649,9 +656,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-rnaseq-normalization-for-reviewers"><code>rnaseq-normalization</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-scrna-clustering" class="section level3" number="22.0.36">
+<div class="section level3" id="sec-reporting-arrive-scrna-clustering" number="22.0.36">
 <h3>
-<span class="header-section-number">22.0.36</span> scRNA Clustering<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-scrna-clustering"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.36</span> scRNA Clustering<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-scrna-clustering"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -664,9 +671,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-scrna-clustering-for-reviewers"><code>scrna-clustering</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-scrna-normalisation" class="section level3" number="22.0.37">
+<div class="section level3" id="sec-reporting-arrive-scrna-normalisation" number="22.0.37">
 <h3>
-<span class="header-section-number">22.0.37</span> scRNA Normalisation<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-scrna-normalisation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.37</span> scRNA Normalisation<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-scrna-normalisation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -679,9 +686,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-scrna-normalization-for-reviewers"><code>scrna-normalization</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-scrna-qc-and-filtering" class="section level3" number="22.0.38">
+<div class="section level3" id="sec-reporting-arrive-scrna-qc-and-filtering" number="22.0.38">
 <h3>
-<span class="header-section-number">22.0.38</span> scRNA QC and Filtering<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-scrna-qc-and-filtering"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.38</span> scRNA QC and Filtering<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-scrna-qc-and-filtering"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -694,9 +701,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-scrna-qc-filtering-for-reviewers"><code>scrna-qc-filtering</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-sequence-alignment-overview" class="section level3" number="22.0.39">
+<div class="section level3" id="sec-reporting-arrive-sequence-alignment-overview" number="22.0.39">
 <h3>
-<span class="header-section-number">22.0.39</span> Sequence Alignment: Overview<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-sequence-alignment-overview"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.39</span> Sequence Alignment: Overview<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-sequence-alignment-overview"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -709,9 +716,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-sequence-alignment-overview-for-reviewers"><code>sequence-alignment-overview</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-single-cell-with-seurat" class="section level3" number="22.0.40">
+<div class="section level3" id="sec-reporting-arrive-single-cell-with-seurat" number="22.0.40">
 <h3>
-<span class="header-section-number">22.0.40</span> Single-Cell with Seurat<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-single-cell-with-seurat"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.40</span> Single-Cell with Seurat<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-single-cell-with-seurat"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -724,9 +731,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-single-cell-seurat-intro-for-reviewers"><code>single-cell-seurat-intro</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-spatial-transcriptomics" class="section level3" number="22.0.41">
+<div class="section level3" id="sec-reporting-arrive-spatial-transcriptomics" number="22.0.41">
 <h3>
-<span class="header-section-number">22.0.41</span> Spatial Transcriptomics<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-spatial-transcriptomics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.41</span> Spatial Transcriptomics<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-spatial-transcriptomics"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -739,9 +746,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-spatial-transcriptomics-for-reviewers"><code>spatial-transcriptomics</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-star-spliced-alignment" class="section level3" number="22.0.42">
+<div class="section level3" id="sec-reporting-arrive-star-spliced-alignment" number="22.0.42">
 <h3>
-<span class="header-section-number">22.0.42</span> STAR: Spliced Alignment<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-star-spliced-alignment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.42</span> STAR: Spliced Alignment<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-star-spliced-alignment"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -754,9 +761,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-star-spliced-alignment-for-reviewers"><code>star-spliced-alignment</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-structural-variant-detection" class="section level3" number="22.0.43">
+<div class="section level3" id="sec-reporting-arrive-structural-variant-detection" number="22.0.43">
 <h3>
-<span class="header-section-number">22.0.43</span> Structural Variant Detection<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-structural-variant-detection"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.43</span> Structural Variant Detection<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-structural-variant-detection"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -769,9 +776,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-structural-variant-detection-for-reviewers"><code>structural-variant-detection</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-surrogate-variable-analysis-sva" class="section level3" number="22.0.44">
+<div class="section level3" id="sec-reporting-arrive-surrogate-variable-analysis-sva" number="22.0.44">
 <h3>
-<span class="header-section-number">22.0.44</span> Surrogate Variable Analysis (SVA)<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-surrogate-variable-analysis-sva"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.44</span> Surrogate Variable Analysis (SVA)<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-surrogate-variable-analysis-sva"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -784,9 +791,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-surrogate-variable-analysis-sva-for-reviewers"><code>surrogate-variable-analysis-sva</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-trajectory-analysis" class="section level3" number="22.0.45">
+<div class="section level3" id="sec-reporting-arrive-trajectory-analysis" number="22.0.45">
 <h3>
-<span class="header-section-number">22.0.45</span> Trajectory Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-trajectory-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.45</span> Trajectory Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-trajectory-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -799,9 +806,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-scrna-trajectory-analysis-for-reviewers"><code>scrna-trajectory-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-transcript-to-gene-summarisation" class="section level3" number="22.0.46">
+<div class="section level3" id="sec-reporting-arrive-transcript-to-gene-summarisation" number="22.0.46">
 <h3>
-<span class="header-section-number">22.0.46</span> Transcript-to-Gene Summarisation<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-transcript-to-gene-summarisation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.46</span> Transcript-to-Gene Summarisation<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-transcript-to-gene-summarisation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -814,9 +821,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-tx-to-gene-summarization-for-reviewers"><code>tx-to-gene-summarization</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-variant-annotation-with-vep" class="section level3" number="22.0.47">
+<div class="section level3" id="sec-reporting-arrive-variant-annotation-with-vep" number="22.0.47">
 <h3>
-<span class="header-section-number">22.0.47</span> Variant Annotation with VEP<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-variant-annotation-with-vep"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.47</span> Variant Annotation with VEP<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-variant-annotation-with-vep"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -829,9 +836,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-annotation-variant-vep-for-reviewers"><code>annotation-variant-vep</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-variant-calling-with-gatk" class="section level3" number="22.0.48">
+<div class="section level3" id="sec-reporting-arrive-variant-calling-with-gatk" number="22.0.48">
 <h3>
-<span class="header-section-number">22.0.48</span> Variant Calling with GATK<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-variant-calling-with-gatk"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.48</span> Variant Calling with GATK<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-variant-calling-with-gatk"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -844,9 +851,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-variant-calling-gatk-for-reviewers"><code>variant-calling-gatk</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-vcf-manipulation" class="section level3" number="22.0.49">
+<div class="section level3" id="sec-reporting-arrive-vcf-manipulation" number="22.0.49">
 <h3>
-<span class="header-section-number">22.0.49</span> VCF Manipulation<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-vcf-manipulation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.49</span> VCF Manipulation<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-vcf-manipulation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -859,9 +866,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-vcf-manipulation-for-reviewers"><code>vcf-manipulation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-arrive-volcano-plots" class="section level3" number="22.0.50">
+<div class="section level3" id="sec-reporting-arrive-volcano-plots" number="22.0.50">
 <h3>
-<span class="header-section-number">22.0.50</span> Volcano Plots<a class="anchor" aria-label="anchor" href="#sec-reporting-arrive-volcano-plots"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.0.50</span> Volcano Plots<a aria-label="anchor" class="anchor" href="#sec-reporting-arrive-volcano-plots"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -873,18 +880,17 @@
 </blockquote>
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-12-bioinformatics.html#sec-chapters-12-bioinformatics-volcano-plots-for-reviewers"><code>volcano-plots</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
-
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting" class="section level2" number="22.1">
+<div class="section level2" id="sec-reporting-lab-explanation-vs-prediction-reporting" number="22.1">
 <h2>
-<span class="header-section-number">22.1</span> Week 4, Session 5 — Explanation vs prediction; reporting<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1</span> Week 4, Session 5 — Explanation vs prediction; reporting<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting"><i class="fas fa-link"></i></a>
 </h2>
 <div class="callout callout-note">
 <p><strong>Workflow lab:</strong> Goal → Approach → Execution → Check → Report.</p>
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-learning-objectives" class="section level3" number="22.1.1">
+<div class="section level3" id="sec-reporting-lab-explanation-vs-prediction-reporting-learning-objectives" number="22.1.1">
 <h3>
-<span class="header-section-number">22.1.1</span> Learning objectives<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-learning-objectives"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.1</span> Learning objectives<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-learning-objectives"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
 <li>Distinguish explanatory from predictive modelling, and choose the
@@ -895,15 +901,15 @@ is meant for.</li>
 numbers trace directly to the fitted model.</li>
 </ul>
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-prerequisites" class="section level3" number="22.1.2">
+<div class="section level3" id="sec-reporting-lab-explanation-vs-prediction-reporting-prerequisites" number="22.1.2">
 <h3>
-<span class="header-section-number">22.1.2</span> Prerequisites<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-prerequisites"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.2</span> Prerequisites<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-prerequisites"><i class="fas fa-link"></i></a>
 </h3>
 <p>The regression tools covered earlier in the book.</p>
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-background" class="section level3" number="22.1.3">
+<div class="section level3" id="sec-reporting-lab-explanation-vs-prediction-reporting-background" number="22.1.3">
 <h3>
-<span class="header-section-number">22.1.3</span> Background<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-background"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.3</span> Background<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-background"><i class="fas fa-link"></i></a>
 </h3>
 <p>Breiman’s 1998 essay <em>The Two Cultures</em> and Shmueli’s 2010 essay <em>To
 Explain or to Predict?</em> draw the same line from opposite sides. In
@@ -922,9 +928,9 @@ TRIPOD (now TRIPOD-AI) for prediction models each specify the items a
 reader needs to evaluate the claim. A checklist filled in as you write
 is much easier than one filled in at submission.</p>
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-setup" class="section level3" number="22.1.4">
+<div class="section level3" id="sec-reporting-lab-explanation-vs-prediction-reporting-setup" number="22.1.4">
 <h3>
-<span class="header-section-number">22.1.4</span> Setup<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-setup"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.4</span> Setup<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-setup"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb1228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -934,25 +940,25 @@ is much easier than one filled in at submission.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/get_theme.html">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-1-goal" class="section level3" number="22.1.5">
+<div class="section level3" id="sec-reporting-lab-explanation-vs-prediction-reporting-1-goal" number="22.1.5">
 <h3>
-<span class="header-section-number">22.1.5</span> 1. Goal<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-1-goal"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.5</span> 1. Goal<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-1-goal"><i class="fas fa-link"></i></a>
 </h3>
 <p>Fit a single linear model to the penguins data and present it two ways:
 once as an explanatory analysis (what drives body mass?) and once as a
 predictive model (can we predict body mass on held-out birds?).</p>
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-2-approach" class="section level3" number="22.1.6">
+<div class="section level3" id="sec-reporting-lab-explanation-vs-prediction-reporting-2-approach" number="22.1.6">
 <h3>
-<span class="header-section-number">22.1.6</span> 2. Approach<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-2-approach"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.6</span> 2. Approach<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-2-approach"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb1229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">peng</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">drop_na</span><span class="op">(</span><span class="va">body_mass_g</span>, <span class="va">flipper_length_mm</span>, <span class="va">sex</span>, <span class="va">species</span><span class="op">)</span></span>
 <span><span class="va">fit_expl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">body_mass_g</span> <span class="op">~</span> <span class="va">flipper_length_mm</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">species</span>, data <span class="op">=</span> <span class="va">peng</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-3-execution" class="section level3" number="22.1.7">
+<div class="section level3" id="sec-reporting-lab-explanation-vs-prediction-reporting-3-execution" number="22.1.7">
 <h3>
-<span class="header-section-number">22.1.7</span> 3. Execution<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-3-execution"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.7</span> 3. Execution<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-3-execution"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb1230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">peng</span> <span class="op">|&gt;</span></span>
@@ -961,9 +967,9 @@ predictive model (can we predict body mass on held-out birds?).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, linewidth <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Flipper length (mm)"</span>, y <span class="op">=</span> <span class="st">"Body mass (g)"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-4-check" class="section level3" number="22.1.8">
+<div class="section level3" id="sec-reporting-lab-explanation-vs-prediction-reporting-4-check" number="22.1.8">
 <h3>
-<span class="header-section-number">22.1.8</span> 4. Check<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-4-check"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.8</span> 4. Check<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-4-check"><i class="fas fa-link"></i></a>
 </h3>
 <p>Explanatory evaluation: effect sizes with intervals, residual
 diagnostics, and adjusted <em>R</em>².</p>
@@ -983,9 +989,9 @@ transparent.</p>
 <span><span class="va">mean_rmse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rmse_k</span><span class="op">)</span></span>
 <span><span class="va">mean_rmse</span></span></code></pre></div>
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-5-report" class="section level3" number="22.1.9">
+<div class="section level3" id="sec-reporting-lab-explanation-vs-prediction-reporting-5-report" number="22.1.9">
 <h3>
-<span class="header-section-number">22.1.9</span> 5. Report<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-5-report"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.9</span> 5. Report<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-5-report"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb1233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tbl_regression</span><span class="op">(</span><span class="va">fit_expl</span>, intercept <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -997,15 +1003,15 @@ associated with flipper length, sex, and species (adjusted <em>R</em>² =
 performance, estimated by 5-fold cross-validation, was RMSE =
 <code>round(mean_rmse, 0)</code> g.</p>
 </blockquote>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-reporting-guideline-map" class="section level4" number="22.1.9.1">
+<div class="section level4" id="sec-reporting-lab-explanation-vs-prediction-reporting-reporting-guideline-map" number="22.1.9.1">
 <h4>
-<span class="header-section-number">22.1.9.1</span> Reporting-guideline map<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-reporting-guideline-map"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.9.1</span> Reporting-guideline map<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-reporting-guideline-map"><i class="fas fa-link"></i></a>
 </h4>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="33%"/>
+<col width="33%"/>
+<col width="33%"/>
 </colgroup>
 <thead><tr class="header">
 <th>Design</th>
@@ -1016,35 +1022,35 @@ performance, estimated by 5-fold cross-validation, was RMSE =
 <tr class="odd">
 <td>Randomised trial</td>
 <td>CONSORT</td>
-<td><a href="https://www.consort-statement.org/" class="uri">https://www.consort-statement.org/</a></td>
+<td><a class="uri" href="https://www.consort-statement.org/">https://www.consort-statement.org/</a></td>
 </tr>
 <tr class="even">
 <td>Observational study</td>
 <td>STROBE</td>
-<td><a href="https://www.strobe-statement.org/" class="uri">https://www.strobe-statement.org/</a></td>
+<td><a class="uri" href="https://www.strobe-statement.org/">https://www.strobe-statement.org/</a></td>
 </tr>
 <tr class="odd">
 <td>Diagnostic-accuracy study</td>
 <td>STARD</td>
-<td><a href="https://www.equator-network.org/reporting-guidelines/stard/" class="uri">https://www.equator-network.org/reporting-guidelines/stard/</a></td>
+<td><a class="uri" href="https://www.equator-network.org/reporting-guidelines/stard/">https://www.equator-network.org/reporting-guidelines/stard/</a></td>
 </tr>
 <tr class="even">
 <td>Prediction-model study</td>
 <td>TRIPOD / TRIPOD-AI</td>
-<td><a href="https://www.tripod-statement.org/" class="uri">https://www.tripod-statement.org/</a></td>
+<td><a class="uri" href="https://www.tripod-statement.org/">https://www.tripod-statement.org/</a></td>
 </tr>
 <tr class="odd">
 <td>Systematic review</td>
 <td>PRISMA</td>
-<td><a href="http://prisma-statement.org/" class="uri">http://prisma-statement.org/</a></td>
+<td><a class="uri" href="http://prisma-statement.org/">http://prisma-statement.org/</a></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-common-pitfalls" class="section level3" number="22.1.10">
+<div class="section level3" id="sec-reporting-lab-explanation-vs-prediction-reporting-common-pitfalls" number="22.1.10">
 <h3>
-<span class="header-section-number">22.1.10</span> Common pitfalls<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-common-pitfalls"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.10</span> Common pitfalls<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-common-pitfalls"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
 <li>Choosing a predictor set by <em>R</em>² and reporting a predictive claim, or
@@ -1054,9 +1060,9 @@ drafting.</li>
 <li>Assuming in-sample <em>R</em>² generalises.</li>
 </ul>
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-further-reading" class="section level3" number="22.1.11">
+<div class="section level3" id="sec-reporting-lab-explanation-vs-prediction-reporting-further-reading" number="22.1.11">
 <h3>
-<span class="header-section-number">22.1.11</span> Further reading<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-further-reading"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.11</span> Further reading<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-further-reading"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
 <li>Breiman L. (2001). <em>Statistical Modeling: The Two Cultures.</em>
@@ -1066,23 +1072,21 @@ drafting.</li>
 <a href="sec-appendices-d-writing-a-report.html#sec-appendices-d-writing-a-report">Writing a report</a>.</li>
 </ul>
 </div>
-<div id="sec-reporting-lab-explanation-vs-prediction-reporting-session-info" class="section level3" number="22.1.12">
+<div class="section level3" id="sec-reporting-lab-explanation-vs-prediction-reporting-session-info" number="22.1.12">
 <h3>
-<span class="header-section-number">22.1.12</span> Session info<a class="anchor" aria-label="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-session-info"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1.12</span> Session info<a aria-label="anchor" class="anchor" href="#sec-reporting-lab-explanation-vs-prediction-reporting-session-info"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb1234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-
 </div>
 </div>
 </div>
 <!-- Dark / light mode toggle (replaces Harrer's emoji with a Font Awesome glyph) -->
 <div class="sticky-item">
-  <button type="button" id="mode-switch" class="btn-circle-mode" aria-label="Toggle dark mode">
-    <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
-  </button>
+<button aria-label="Toggle dark mode" class="btn-circle-mode" id="mode-switch" type="button">
+<i aria-hidden="true" class="fa-solid fa-circle-half-stroke"></i>
+</button>
 </div>
-
 <script>
   (function () {
     var stored = localStorage.getItem('themeMode');
@@ -1101,52 +1105,15 @@ drafting.</li>
       });
     });
   })();
-</script><!-- Offer only downloads produced and inventoried by this build. --><script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    var source = document.getElementById("book-source");
-    var extra = source && source.closest(".book-extra");
-    if (!extra) return;
-    try {
-      var response = await fetch("downloads.json");
-      if (!response.ok) return;
-      var files = await response.json();
-      var current = window.location.pathname.split("/").pop() || "index.html";
-      var candidates = [
-        ["methods-in-r.pdf", "Entire book (PDF)"],
-        ["methods-in-r.epub", "Entire book (EPUB)"]
-      ];
-      if (current !== "index.html")
-        candidates.push(["pdf-chapters/" + current.replace(/\.html$/, ".pdf"), "This chapter (PDF)"]);
-      var available = candidates.filter(function (item) { return files.includes(item[0]); });
-      if (!available.length) return;
-      var wrap = document.createElement("div");
-      wrap.className = "book-downloads";
-      var heading = document.createElement("h6");
-      heading.textContent = "Downloads";
-      wrap.appendChild(heading);
-      var list = document.createElement("ul");
-      list.className = "list-unstyled";
-      available.forEach(function (item) {
-        var li = document.createElement("li");
-        var link = document.createElement("a");
-        link.href = item[0]; link.textContent = item[1];
-        li.appendChild(link); list.appendChild(li);
-      });
-      wrap.appendChild(list);
-      extra.parentNode.insertBefore(wrap, extra);
-    } catch (error) {
-      // An unavailable inventory means there are no verified download links.
-    }
-  });
-</script><!-- Footer attribution --><div class="bookdown-attribution">
+</script><!-- Offer only downloads produced and inventoried by this build. --><!-- Footer attribution --><div class="bookdown-attribution">
   This book was built by the <a href="https://bookdown.org/"><strong>bookdown</strong></a> R package.
 </div>
-  <div class="chapter-nav">
+<div class="chapter-nav">
 <div class="prev"><a href="sec-reporting-prisma.html"><span class="header-section-number">21</span> PRISMA — systematic reviews &amp; meta-analyses</a></div>
 <div class="next"><a href="sec-appendices-a-research-workflow.html"><span class="header-section-number">23</span> The research workflow</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
+<nav aria-label="On this page" data-toggle="toc" id="toc"><h2>On this page</h2>
+<ul class="nav navbar-nav">
 <li>
 <a class="nav-link" href="#sec-reporting-arrive"><span class="header-section-number">22</span> ARRIVE — animal research</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#sec-reporting-arrive-alignment-with-bwa-and-bowtie"><span class="header-section-number">22.0.1</span> Alignment with BWA and Bowtie</a></li>
@@ -1218,29 +1185,23 @@ drafting.</li>
 </ul>
 </li>
 </ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/CTTIR/methods-in-r/blob/main/reporting/arrive.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/CTTIR/methods-in-r/edit/main/reporting/arrive.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
-        </ul>
+<div class="book-extra">
+<ul class="list-unstyled">
+<li><a href="https://github.com/CTTIR/methods-in-r/blob/main/reporting/arrive.Rmd" id="book-source">View source <i class="fab fa-github"></i></a></li>
+<li><a href="https://github.com/CTTIR/methods-in-r/edit/main/reporting/arrive.Rmd" id="book-edit">Edit this page <i class="fab fa-github"></i></a></li>
+</ul>
 </div>
-    </nav>
+</nav>
 </div>
-
 </div>
 </div> <!-- .container -->
-
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-09.</p>
-  </div>
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
+<div class="col-12 col-md-6 mt-3">
+<p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-09.</p>
+</div>
+<div class="col-12 col-md-6 mt-3">
+<p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+</div>
 </div></div>
 </footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {

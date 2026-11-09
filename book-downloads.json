@@ -1,0 +1,270 @@
+{
+  "book": "methods-in-r",
+  "title": "Methods in R",
+  "site": "https://cttir.github.io/methods-in-r/",
+  "whole": {
+    "pdf": "methods-in-r.pdf",
+    "epub": "methods-in-r.epub"
+  },
+  "chapters": [
+    {
+      "path": "index.html",
+      "title": "Welcome!",
+      "epub_source": "EPUB/text/ch001.xhtml",
+      "pdf": "downloads/chapters/index.pdf",
+      "epub": "downloads/chapters/index.epub"
+    },
+    {
+      "path": "sec-00-impressum.html",
+      "title": "Impressum",
+      "epub_source": "EPUB/text/ch002.xhtml",
+      "pdf": "downloads/chapters/sec-00-impressum.pdf",
+      "epub": "downloads/chapters/sec-00-impressum.epub"
+    },
+    {
+      "path": "sec-00-acknowledgments.html",
+      "title": "Acknowledgments",
+      "epub_source": "EPUB/text/ch003.xhtml",
+      "pdf": "downloads/chapters/sec-00-acknowledgments.pdf",
+      "epub": "downloads/chapters/sec-00-acknowledgments.epub"
+    },
+    {
+      "path": "sec-00-notation.html",
+      "title": "Notation",
+      "epub_source": "EPUB/text/ch004.xhtml",
+      "pdf": "downloads/chapters/sec-00-notation.pdf",
+      "epub": "downloads/chapters/sec-00-notation.epub"
+    },
+    {
+      "path": "sec-00-about-the-author.html",
+      "title": "About the author",
+      "epub_source": "EPUB/text/ch005.xhtml",
+      "pdf": "downloads/chapters/sec-00-about-the-author.pdf",
+      "epub": "downloads/chapters/sec-00-about-the-author.epub"
+    },
+    {
+      "path": "sec-how-to-use.html",
+      "title": "How to use this book",
+      "epub_source": "EPUB/text/ch006.xhtml",
+      "pdf": "downloads/chapters/sec-how-to-use.pdf",
+      "epub": "downloads/chapters/sec-how-to-use.epub"
+    },
+    {
+      "path": "sec-find-your-method.html",
+      "title": "Find your method",
+      "epub_source": "EPUB/text/ch007.xhtml",
+      "pdf": "downloads/chapters/sec-find-your-method.pdf",
+      "epub": "downloads/chapters/sec-find-your-method.epub"
+    },
+    {
+      "path": "sec-ch-01-foundations.html",
+      "title": "1 Statistical Foundations",
+      "epub_source": "EPUB/text/ch008.xhtml",
+      "pdf": "downloads/chapters/sec-ch-01-foundations.pdf",
+      "epub": "downloads/chapters/sec-ch-01-foundations.epub"
+    },
+    {
+      "path": "sec-ch-02-descriptives.html",
+      "title": "2 Descriptive Statistics",
+      "epub_source": "EPUB/text/ch009.xhtml",
+      "pdf": "downloads/chapters/sec-ch-02-descriptives.pdf",
+      "epub": "downloads/chapters/sec-ch-02-descriptives.epub"
+    },
+    {
+      "path": "sec-ch-03-probability.html",
+      "title": "3 Probability Theory",
+      "epub_source": "EPUB/text/ch010.xhtml",
+      "pdf": "downloads/chapters/sec-ch-03-probability.pdf",
+      "epub": "downloads/chapters/sec-ch-03-probability.epub"
+    },
+    {
+      "path": "sec-ch-04-inferential.html",
+      "title": "4 Inferential Statistics",
+      "epub_source": "EPUB/text/ch011.xhtml",
+      "pdf": "downloads/chapters/sec-ch-04-inferential.pdf",
+      "epub": "downloads/chapters/sec-ch-04-inferential.epub"
+    },
+    {
+      "path": "sec-ch-05-power.html",
+      "title": "5 Sample Size & Power",
+      "epub_source": "EPUB/text/ch012.xhtml",
+      "pdf": "downloads/chapters/sec-ch-05-power.pdf",
+      "epub": "downloads/chapters/sec-ch-05-power.epub"
+    },
+    {
+      "path": "sec-ch-06-visualisation.html",
+      "title": "6 Data Visualisation",
+      "epub_source": "EPUB/text/ch013.xhtml",
+      "pdf": "downloads/chapters/sec-ch-06-visualisation.pdf",
+      "epub": "downloads/chapters/sec-ch-06-visualisation.epub"
+    },
+    {
+      "path": "sec-ch-07-regression.html",
+      "title": "7 Regression & Modelling",
+      "epub_source": "EPUB/text/ch014.xhtml",
+      "pdf": "downloads/chapters/sec-ch-07-regression.pdf",
+      "epub": "downloads/chapters/sec-ch-07-regression.epub"
+    },
+    {
+      "path": "sec-ch-08-multivariate.html",
+      "title": "8 Multivariate Methods",
+      "epub_source": "EPUB/text/ch015.xhtml",
+      "pdf": "downloads/chapters/sec-ch-08-multivariate.pdf",
+      "epub": "downloads/chapters/sec-ch-08-multivariate.epub"
+    },
+    {
+      "path": "sec-ch-09-timeseries.html",
+      "title": "9 Time-Series Analysis",
+      "epub_source": "EPUB/text/ch016.xhtml",
+      "pdf": "downloads/chapters/sec-ch-09-timeseries.pdf",
+      "epub": "downloads/chapters/sec-ch-09-timeseries.epub"
+    },
+    {
+      "path": "sec-ch-10-bayesian.html",
+      "title": "10 Bayesian Statistics",
+      "epub_source": "EPUB/text/ch017.xhtml",
+      "pdf": "downloads/chapters/sec-ch-10-bayesian.pdf",
+      "epub": "downloads/chapters/sec-ch-10-bayesian.epub"
+    },
+    {
+      "path": "sec-ch-11-survival.html",
+      "title": "11 Survival Analysis",
+      "epub_source": "EPUB/text/ch018.xhtml",
+      "pdf": "downloads/chapters/sec-ch-11-survival.pdf",
+      "epub": "downloads/chapters/sec-ch-11-survival.epub"
+    },
+    {
+      "path": "sec-ch-12-bioinformatics.html",
+      "title": "12 Bioinformatics",
+      "epub_source": "EPUB/text/ch019.xhtml",
+      "pdf": "downloads/chapters/sec-ch-12-bioinformatics.pdf",
+      "epub": "downloads/chapters/sec-ch-12-bioinformatics.epub"
+    },
+    {
+      "path": "sec-ch-13-ml.html",
+      "title": "13 Machine Learning",
+      "epub_source": "EPUB/text/ch020.xhtml",
+      "pdf": "downloads/chapters/sec-ch-13-ml.pdf",
+      "epub": "downloads/chapters/sec-ch-13-ml.epub"
+    },
+    {
+      "path": "sec-ch-14-clinical.html",
+      "title": "14 Clinical Biostatistics",
+      "epub_source": "EPUB/text/ch021.xhtml",
+      "pdf": "downloads/chapters/sec-ch-14-clinical.pdf",
+      "epub": "downloads/chapters/sec-ch-14-clinical.epub"
+    },
+    {
+      "path": "sec-ch-15-metaanalysis.html",
+      "title": "15 Meta-Analysis",
+      "epub_source": "EPUB/text/ch022.xhtml",
+      "pdf": "downloads/chapters/sec-ch-15-metaanalysis.pdf",
+      "epub": "downloads/chapters/sec-ch-15-metaanalysis.epub"
+    },
+    {
+      "path": "sec-ch-16-design.html",
+      "title": "16 Experimental Design",
+      "epub_source": "EPUB/text/ch023.xhtml",
+      "pdf": "downloads/chapters/sec-ch-16-design.pdf",
+      "epub": "downloads/chapters/sec-ch-16-design.epub"
+    },
+    {
+      "path": "sec-reporting-index.html",
+      "title": "17 Reporting Templates",
+      "epub_source": "EPUB/text/ch024.xhtml",
+      "pdf": "downloads/chapters/sec-reporting-index.pdf",
+      "epub": "downloads/chapters/sec-reporting-index.epub"
+    },
+    {
+      "path": "sec-reporting-strobe.html",
+      "title": "18 STROBE \u2014 observational studies",
+      "epub_source": "EPUB/text/ch025.xhtml",
+      "pdf": "downloads/chapters/sec-reporting-strobe.pdf",
+      "epub": "downloads/chapters/sec-reporting-strobe.epub"
+    },
+    {
+      "path": "sec-reporting-consort.html",
+      "title": "19 CONSORT \u2014 randomised trials",
+      "epub_source": "EPUB/text/ch026.xhtml",
+      "pdf": "downloads/chapters/sec-reporting-consort.pdf",
+      "epub": "downloads/chapters/sec-reporting-consort.epub"
+    },
+    {
+      "path": "sec-reporting-tripod-ai.html",
+      "title": "20 TRIPOD-AI \u2014 prediction models",
+      "epub_source": "EPUB/text/ch027.xhtml",
+      "pdf": "downloads/chapters/sec-reporting-tripod-ai.pdf",
+      "epub": "downloads/chapters/sec-reporting-tripod-ai.epub"
+    },
+    {
+      "path": "sec-reporting-prisma.html",
+      "title": "21 PRISMA \u2014 systematic reviews & meta-analyses",
+      "epub_source": "EPUB/text/ch028.xhtml",
+      "pdf": "downloads/chapters/sec-reporting-prisma.pdf",
+      "epub": "downloads/chapters/sec-reporting-prisma.epub"
+    },
+    {
+      "path": "sec-reporting-arrive.html",
+      "title": "22 ARRIVE \u2014 animal research",
+      "epub_source": "EPUB/text/ch029.xhtml",
+      "pdf": "downloads/chapters/sec-reporting-arrive.pdf",
+      "epub": "downloads/chapters/sec-reporting-arrive.epub"
+    },
+    {
+      "path": "sec-appendices-a-research-workflow.html",
+      "title": "23 The research workflow",
+      "epub_source": "EPUB/text/ch030.xhtml",
+      "pdf": "downloads/chapters/sec-appendices-a-research-workflow.pdf",
+      "epub": "downloads/chapters/sec-appendices-a-research-workflow.epub"
+    },
+    {
+      "path": "sec-appendices-b-glossary.html",
+      "title": "24 Glossary",
+      "epub_source": "EPUB/text/ch031.xhtml",
+      "pdf": "downloads/chapters/sec-appendices-b-glossary.pdf",
+      "epub": "downloads/chapters/sec-appendices-b-glossary.epub"
+    },
+    {
+      "path": "sec-appendices-c-common-errors.html",
+      "title": "25 Common errors",
+      "epub_source": "EPUB/text/ch032.xhtml",
+      "pdf": "downloads/chapters/sec-appendices-c-common-errors.pdf",
+      "epub": "downloads/chapters/sec-appendices-c-common-errors.epub"
+    },
+    {
+      "path": "sec-appendices-d-writing-a-report.html",
+      "title": "26 Writing a report",
+      "epub_source": "EPUB/text/ch033.xhtml",
+      "pdf": "downloads/chapters/sec-appendices-d-writing-a-report.pdf",
+      "epub": "downloads/chapters/sec-appendices-d-writing-a-report.epub"
+    },
+    {
+      "path": "sec-appendices-e-cheatsheets.html",
+      "title": "27 Cheatsheets",
+      "epub_source": "EPUB/text/ch034.xhtml",
+      "pdf": "downloads/chapters/sec-appendices-e-cheatsheets.pdf",
+      "epub": "downloads/chapters/sec-appendices-e-cheatsheets.epub"
+    },
+    {
+      "path": "sec-95-colophon.html",
+      "title": "Colophon",
+      "epub_source": "EPUB/text/ch035.xhtml",
+      "pdf": "downloads/chapters/sec-95-colophon.pdf",
+      "epub": "downloads/chapters/sec-95-colophon.epub"
+    },
+    {
+      "path": "sec-98-citing-this-guide.html",
+      "title": "Citing this Guide",
+      "epub_source": "EPUB/text/ch036.xhtml",
+      "pdf": "downloads/chapters/sec-98-citing-this-guide.pdf",
+      "epub": "downloads/chapters/sec-98-citing-this-guide.epub"
+    },
+    {
+      "path": "references.html",
+      "title": "References",
+      "epub_source": "EPUB/text/ch037.xhtml",
+      "pdf": "downloads/chapters/references.pdf",
+      "epub": "downloads/chapters/references.epub"
+    }
+  ]
+}

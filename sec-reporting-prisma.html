@@ -1,31 +1,32 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
 <title>Chapter 21 PRISMA — systematic reviews &amp; meta-analyses | Methods in R</title>
-<meta name="author" content="R. Heller">
-<meta name="description" content="PRISMA — Preferred Reporting Items for Systematic reviews and Meta-Analyses — covers systematic reviews and meta-analyses. The 27-item checklist and flow diagram are at...">
-<meta name="generator" content="bookdown 0.48 with bs4_book()">
-<meta property="og:title" content="Chapter 21 PRISMA — systematic reviews &amp; meta-analyses | Methods in R">
-<meta property="og:type" content="book">
-<meta property="og:url" content="https://cttir.github.io/methods-in-r/sec-reporting-prisma.html">
-<meta property="og:image" content="https://cttir.github.io/methods-in-r/images/cover.png">
-<meta property="og:description" content="PRISMA — Preferred Reporting Items for Systematic reviews and Meta-Analyses — covers systematic reviews and meta-analyses. The 27-item checklist and flow diagram are at...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 21 PRISMA — systematic reviews &amp; meta-analyses | Methods in R">
-<meta name="twitter:description" content="PRISMA — Preferred Reporting Items for Systematic reviews and Meta-Analyses — covers systematic reviews and meta-analyses. The 27-item checklist and flow diagram are at...">
-<meta name="twitter:image" content="https://cttir.github.io/methods-in-r/images/cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet">
-<link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
-<script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+<meta content="R. Heller" name="author"/>
+<meta content="PRISMA — Preferred Reporting Items for Systematic reviews and Meta-Analyses — covers systematic reviews and meta-analyses. The 27-item checklist and flow diagram are at..." name="description"/>
+<meta content="bookdown 0.48 with bs4_book()" name="generator"/>
+<meta content="Chapter 21 PRISMA — systematic reviews &amp; meta-analyses | Methods in R" property="og:title"/>
+<meta content="book" property="og:type"/>
+<meta content="https://cttir.github.io/methods-in-r/sec-reporting-prisma.html" property="og:url"/>
+<meta content="https://cttir.github.io/methods-in-r/images/cover.png" property="og:image"/>
+<meta content="PRISMA — Preferred Reporting Items for Systematic reviews and Meta-Analyses — covers systematic reviews and meta-analyses. The 27-item checklist and flow diagram are at..." property="og:description"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Chapter 21 PRISMA — systematic reviews &amp; meta-analyses | Methods in R" name="twitter:title"/>
+<meta content="PRISMA — Preferred Reporting Items for Systematic reviews and Meta-Analyses — covers systematic reviews and meta-analyses. The 27-item checklist and flow diagram are at..." name="twitter:description"/>
+<meta content="https://cttir.github.io/methods-in-r/images/cover.png" name="twitter:image"/>
+<!-- JS --><script crossorigin="anonymous" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script><script crossorigin="anonymous" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js"></script><script crossorigin="anonymous" src="https://kit.fontawesome.com/6ecbd6c532.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet"/>
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet"/>
+<link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet"/>
+<script src="libs/bs3compat-0.12.0/transition.js"></script><script src="libs/bs3compat-0.12.0/tabs.js"></script><script src="libs/bs3compat-0.12.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet"/>
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="style/font-awesome.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js"></script><script crossorigin="anonymous" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
@@ -51,29 +52,36 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style/style.css">
-</head>
+<link href="style/style.css" rel="stylesheet"/>
+<style id="unified-book-download-style">
+.book-downloads--unified {display:flex!important;flex-wrap:wrap;gap:12px 24px;margin:16px 0 24px!important;padding:14px 16px!important;border:1px solid #a8adb4;border-radius:8px;background:transparent;color:inherit;font-family:system-ui,sans-serif;font-size:14px;line-height:1.4;box-sizing:border-box;max-width:100%;}
+.book-downloads--unified .book-download-group {display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.book-downloads--unified .book-download-label {font-weight:600;margin-right:4px;}
+.book-downloads--unified a {display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border:1px solid currentColor;border-radius:5px;text-decoration:none!important;font-weight:600;color:inherit;}
+.book-downloads--unified a:hover {background:rgba(127,127,127,.14);}
+.book-downloads--unified a:focus-visible {outline:3px solid #2684d9;outline-offset:3px;}
+.book-downloads--unified svg {height:20px;width:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.book-downloads:not(.book-downloads--unified),.book-download-footer,.sidebar-downloads {display:none!important;}
+@media(max-width:500px){.book-downloads--unified{gap:12px;padding:12px!important;}.book-downloads--unified .book-download-group{width:100%;}.book-downloads--unified .book-download-label{min-width:92px;}}
+@media print{.book-downloads--unified{display:none!important;}}
+</style></head>
 <body data-spy="scroll" data-target="#toc">
-
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
-
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="A topic reference for biomedical research and peer review">Methods in R</a>:
+<header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<div class="d-flex align-items-start justify-content-between">
+<h1>
+<a href="index.html" title="A topic reference for biomedical research and peer review">Methods in R</a>:
         <small class="text-muted">A topic reference for biomedical research and peer review</small>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
-
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</h1>
+<button aria-controls="main-nav" aria-expanded="true" class="btn btn-outline-primary d-lg-none ml-2 mt-1" data-target="#main-nav" data-toggle="collapse" type="button"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+</div>
+<div class="collapse-lg" id="main-nav">
+<form role="search">
+<input aria-label="Search" class="form-control" id="search" placeholder="Search" type="search"/>
 </form>
-
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
+<nav aria-label="Table of contents"><h2>Table of contents</h2>
+<ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Welcome!</a></li>
 <li><a class="" href="sec-00-impressum.html">Impressum</a></li>
 <li><a class="" href="sec-00-acknowledgments.html">Acknowledgments</a></li>
@@ -112,21 +120,20 @@
 <li><a class="" href="sec-98-citing-this-guide.html">Citing this Guide</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
-
-        <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/CTTIR/methods-in-r">View book source <i class="fab fa-github"></i></a></p>
-        </div>
-      </nav>
+<div class="book-extra">
+<p><a href="https://github.com/CTTIR/methods-in-r" id="book-repo">View book source <i class="fab fa-github"></i></a></p>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="sec-reporting-prisma" class="section level1" number="21">
+</nav>
+</div>
+</header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div class="section level1" id="sec-reporting-prisma" number="21">
 <h1>
-<span class="header-section-number">21</span> PRISMA — systematic reviews &amp; meta-analyses<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma"><i class="fas fa-link"></i></a>
-</h1>
-<p>PRISMA — <em>Preferred Reporting Items for Systematic reviews and Meta-Analyses</em> — covers systematic reviews and meta-analyses. The 27-item checklist and flow diagram are at <a href="https://www.prisma-statement.org/" class="uri">https://www.prisma-statement.org/</a>. The templates below cover pairwise and network meta-analysis methods.</p>
+<span class="header-section-number">21</span> PRISMA — systematic reviews &amp; meta-analyses<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma"><i class="fas fa-link"></i></a>
+</h1><nav aria-label="Book and chapter downloads" class="book-downloads book-downloads--unified"><div class="book-download-group"><span class="book-download-label">Entire book</span><a aria-label="Download entire book as PDF" download="" href="methods-in-r.pdf" title="Download entire book as PDF"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M14 2H5v20h14V7z"></path><path d="M14 2v6h5M8 13h8M8 17h6"></path></svg><span>PDF</span></a><a aria-label="Download entire book as EPUB" download="" href="methods-in-r.epub" title="Download entire book as EPUB"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM21 4h-5a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h5z"></path></svg><span>EPUB</span></a></div><div class="book-download-group"><span class="book-download-label">This chapter</span><a aria-label="Download this chapter as PDF" download="" href="downloads/chapters/sec-reporting-prisma.pdf" title="Download this chapter as PDF"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M14 2H5v20h14V7z"></path><path d="M14 2v6h5M8 13h8M8 17h6"></path></svg><span>PDF</span></a><a aria-label="Download this chapter as EPUB" download="" href="downloads/chapters/sec-reporting-prisma.epub" title="Download this chapter as EPUB"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM21 4h-5a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h5z"></path></svg><span>EPUB</span></a></div></nav>
+<p>PRISMA — <em>Preferred Reporting Items for Systematic reviews and Meta-Analyses</em> — covers systematic reviews and meta-analyses. The 27-item checklist and flow diagram are at <a class="uri" href="https://www.prisma-statement.org/">https://www.prisma-statement.org/</a>. The templates below cover pairwise and network meta-analysis methods.</p>
 <p>This page contains <strong>25 method-specific templates</strong>. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.</p>
-<div id="sec-reporting-prisma-bivariate-sroc-curves" class="section level3" number="21.0.1">
+<div class="section level3" id="sec-reporting-prisma-bivariate-sroc-curves" number="21.0.1">
 <h3>
-<span class="header-section-number">21.0.1</span> Bivariate SROC Curves<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-bivariate-sroc-curves"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.1</span> Bivariate SROC Curves<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-bivariate-sroc-curves"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -139,9 +146,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-bivariate-sroc-for-reviewers"><code>bivariate-sroc</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-converting-between-effect-sizes" class="section level3" number="21.0.2">
+<div class="section level3" id="sec-reporting-prisma-converting-between-effect-sizes" number="21.0.2">
 <h3>
-<span class="header-section-number">21.0.2</span> Converting Between Effect Sizes<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-converting-between-effect-sizes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.2</span> Converting Between Effect Sizes<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-converting-between-effect-sizes"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -154,9 +161,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-effect-size-conversion-for-reviewers"><code>effect-size-conversion</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-cumulative-meta-analysis" class="section level3" number="21.0.3">
+<div class="section level3" id="sec-reporting-prisma-cumulative-meta-analysis" number="21.0.3">
 <h3>
-<span class="header-section-number">21.0.3</span> Cumulative Meta-Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-cumulative-meta-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.3</span> Cumulative Meta-Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-cumulative-meta-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -169,9 +176,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-cumulative-meta-analysis-for-reviewers"><code>cumulative-meta-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-egger-s-test-for-funnel-asymmetry" class="section level3" number="21.0.4">
+<div class="section level3" id="sec-reporting-prisma-egger-s-test-for-funnel-asymmetry" number="21.0.4">
 <h3>
-<span class="header-section-number">21.0.4</span> Egger’s Test for Funnel Asymmetry<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-egger-s-test-for-funnel-asymmetry"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.4</span> Egger’s Test for Funnel Asymmetry<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-egger-s-test-for-funnel-asymmetry"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -184,9 +191,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-egger-test-for-reviewers"><code>egger-test</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-fixed-effect-vs-random-effects-meta-analysis" class="section level3" number="21.0.5">
+<div class="section level3" id="sec-reporting-prisma-fixed-effect-vs-random-effects-meta-analysis" number="21.0.5">
 <h3>
-<span class="header-section-number">21.0.5</span> Fixed-Effect vs. Random-Effects Meta-Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-fixed-effect-vs-random-effects-meta-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.5</span> Fixed-Effect vs. Random-Effects Meta-Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-fixed-effect-vs-random-effects-meta-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -199,9 +206,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-fixed-vs-random-effects-for-reviewers"><code>fixed-vs-random-effects</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-forest-plots-in-meta-analysis" class="section level3" number="21.0.6">
+<div class="section level3" id="sec-reporting-prisma-forest-plots-in-meta-analysis" number="21.0.6">
 <h3>
-<span class="header-section-number">21.0.6</span> Forest Plots in Meta-Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-forest-plots-in-meta-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.6</span> Forest Plots in Meta-Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-forest-plots-in-meta-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -214,9 +221,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-forest-plot-meta-for-reviewers"><code>forest-plot-meta</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-funnel-plots" class="section level3" number="21.0.7">
+<div class="section level3" id="sec-reporting-prisma-funnel-plots" number="21.0.7">
 <h3>
-<span class="header-section-number">21.0.7</span> Funnel Plots<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-funnel-plots"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.7</span> Funnel Plots<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-funnel-plots"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -229,9 +236,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-funnel-plot-meta-for-reviewers"><code>funnel-plot-meta</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-individual-participant-data-meta-analysis" class="section level3" number="21.0.8">
+<div class="section level3" id="sec-reporting-prisma-individual-participant-data-meta-analysis" number="21.0.8">
 <h3>
-<span class="header-section-number">21.0.8</span> Individual Participant Data Meta-Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-individual-participant-data-meta-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.8</span> Individual Participant Data Meta-Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-individual-participant-data-meta-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -244,9 +251,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-ipd-meta-analysis-for-reviewers"><code>ipd-meta-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-leave-one-out-meta-analysis" class="section level3" number="21.0.9">
+<div class="section level3" id="sec-reporting-prisma-leave-one-out-meta-analysis" number="21.0.9">
 <h3>
-<span class="header-section-number">21.0.9</span> Leave-One-Out Meta-Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-leave-one-out-meta-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.9</span> Leave-One-Out Meta-Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-leave-one-out-meta-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -259,9 +266,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-leave-one-out-for-reviewers"><code>leave-one-out</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-meta-analysis-of-diagnostic-accuracy" class="section level3" number="21.0.10">
+<div class="section level3" id="sec-reporting-prisma-meta-analysis-of-diagnostic-accuracy" number="21.0.10">
 <h3>
-<span class="header-section-number">21.0.10</span> Meta-Analysis of Diagnostic Accuracy<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-meta-analysis-of-diagnostic-accuracy"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.10</span> Meta-Analysis of Diagnostic Accuracy<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-meta-analysis-of-diagnostic-accuracy"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -274,9 +281,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-diagnostic-test-meta-for-reviewers"><code>diagnostic-test-meta</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-meta-regression" class="section level3" number="21.0.11">
+<div class="section level3" id="sec-reporting-prisma-meta-regression" number="21.0.11">
 <h3>
-<span class="header-section-number">21.0.11</span> Meta-Regression<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-meta-regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.11</span> Meta-Regression<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-meta-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -289,9 +296,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-meta-regression-for-reviewers"><code>meta-regression</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-network-meta-analysis-introduction" class="section level3" number="21.0.12">
+<div class="section level3" id="sec-reporting-prisma-network-meta-analysis-introduction" number="21.0.12">
 <h3>
-<span class="header-section-number">21.0.12</span> Network Meta-Analysis: Introduction<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-network-meta-analysis-introduction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.12</span> Network Meta-Analysis: Introduction<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-network-meta-analysis-introduction"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -304,9 +311,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-network-meta-analysis-intro-for-reviewers"><code>network-meta-analysis-intro</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-nma-consistency-and-inconsistency" class="section level3" number="21.0.13">
+<div class="section level3" id="sec-reporting-prisma-nma-consistency-and-inconsistency" number="21.0.13">
 <h3>
-<span class="header-section-number">21.0.13</span> NMA Consistency and Inconsistency<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-nma-consistency-and-inconsistency"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.13</span> NMA Consistency and Inconsistency<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-nma-consistency-and-inconsistency"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -319,9 +326,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-nma-consistency-for-reviewers"><code>nma-consistency</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-nma-league-tables" class="section level3" number="21.0.14">
+<div class="section level3" id="sec-reporting-prisma-nma-league-tables" number="21.0.14">
 <h3>
-<span class="header-section-number">21.0.14</span> NMA League Tables<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-nma-league-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.14</span> NMA League Tables<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-nma-league-tables"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -334,9 +341,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-nma-league-tables-for-reviewers"><code>nma-league-tables</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-pooling-correlation-coefficients" class="section level3" number="21.0.15">
+<div class="section level3" id="sec-reporting-prisma-pooling-correlation-coefficients" number="21.0.15">
 <h3>
-<span class="header-section-number">21.0.15</span> Pooling Correlation Coefficients<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-pooling-correlation-coefficients"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.15</span> Pooling Correlation Coefficients<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-pooling-correlation-coefficients"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -349,9 +356,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-correlation-pooling-for-reviewers"><code>correlation-pooling</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-pooling-log-odds-ratios" class="section level3" number="21.0.16">
+<div class="section level3" id="sec-reporting-prisma-pooling-log-odds-ratios" number="21.0.16">
 <h3>
-<span class="header-section-number">21.0.16</span> Pooling Log-Odds Ratios<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-pooling-log-odds-ratios"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.16</span> Pooling Log-Odds Ratios<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-pooling-log-odds-ratios"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -364,9 +371,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-log-odds-ratio-pooling-for-reviewers"><code>log-odds-ratio-pooling</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-pooling-risk-ratios" class="section level3" number="21.0.17">
+<div class="section level3" id="sec-reporting-prisma-pooling-risk-ratios" number="21.0.17">
 <h3>
-<span class="header-section-number">21.0.17</span> Pooling Risk Ratios<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-pooling-risk-ratios"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.17</span> Pooling Risk Ratios<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-pooling-risk-ratios"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -379,9 +386,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-risk-ratio-pooling-for-reviewers"><code>risk-ratio-pooling</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-prediction-intervals-in-meta-analysis" class="section level3" number="21.0.18">
+<div class="section level3" id="sec-reporting-prisma-prediction-intervals-in-meta-analysis" number="21.0.18">
 <h3>
-<span class="header-section-number">21.0.18</span> Prediction Intervals in Meta-Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-prediction-intervals-in-meta-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.18</span> Prediction Intervals in Meta-Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-prediction-intervals-in-meta-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -394,9 +401,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-prediction-interval-meta-for-reviewers"><code>prediction-interval-meta</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-quantifying-heterogeneity-q-and-i-2" class="section level3" number="21.0.19">
+<div class="section level3" id="sec-reporting-prisma-quantifying-heterogeneity-q-and-i-2" number="21.0.19">
 <h3>
-<span class="header-section-number">21.0.19</span> Quantifying Heterogeneity: Q and I^2<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-quantifying-heterogeneity-q-and-i-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.19</span> Quantifying Heterogeneity: Q and I^2<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-quantifying-heterogeneity-q-and-i-2"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -409,9 +416,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-heterogeneity-q-i2-for-reviewers"><code>heterogeneity-q-i2</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-selection-models-for-publication-bias" class="section level3" number="21.0.20">
+<div class="section level3" id="sec-reporting-prisma-selection-models-for-publication-bias" number="21.0.20">
 <h3>
-<span class="header-section-number">21.0.20</span> Selection Models for Publication Bias<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-selection-models-for-publication-bias"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.20</span> Selection Models for Publication Bias<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-selection-models-for-publication-bias"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -424,9 +431,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-selection-models-bias-for-reviewers"><code>selection-models-bias</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-standardised-mean-difference-hedges-g" class="section level3" number="21.0.21">
+<div class="section level3" id="sec-reporting-prisma-standardised-mean-difference-hedges-g" number="21.0.21">
 <h3>
-<span class="header-section-number">21.0.21</span> Standardised Mean Difference: Hedges’ g<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-standardised-mean-difference-hedges-g"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.21</span> Standardised Mean Difference: Hedges’ g<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-standardised-mean-difference-hedges-g"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -439,9 +446,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-smd-hedges-g-for-reviewers"><code>smd-hedges-g</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-subgroup-meta-analysis" class="section level3" number="21.0.22">
+<div class="section level3" id="sec-reporting-prisma-subgroup-meta-analysis" number="21.0.22">
 <h3>
-<span class="header-section-number">21.0.22</span> Subgroup Meta-Analysis<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-subgroup-meta-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.22</span> Subgroup Meta-Analysis<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-subgroup-meta-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -454,9 +461,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-subgroup-meta-analysis-for-reviewers"><code>subgroup-meta-analysis</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-sucra-rankings" class="section level3" number="21.0.23">
+<div class="section level3" id="sec-reporting-prisma-sucra-rankings" number="21.0.23">
 <h3>
-<span class="header-section-number">21.0.23</span> SUCRA Rankings<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-sucra-rankings"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.23</span> SUCRA Rankings<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-sucra-rankings"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -469,9 +476,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-nma-sucra-for-reviewers"><code>nma-sucra</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-tau-squared-estimation" class="section level3" number="21.0.24">
+<div class="section level3" id="sec-reporting-prisma-tau-squared-estimation" number="21.0.24">
 <h3>
-<span class="header-section-number">21.0.24</span> Tau-Squared Estimation<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-tau-squared-estimation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.24</span> Tau-Squared Estimation<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-tau-squared-estimation"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -484,9 +491,9 @@
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-tau-squared-estimation-for-reviewers"><code>tau-squared-estimation</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
 </div>
-<div id="sec-reporting-prisma-trim-and-fill" class="section level3" number="21.0.25">
+<div class="section level3" id="sec-reporting-prisma-trim-and-fill" number="21.0.25">
 <h3>
-<span class="header-section-number">21.0.25</span> Trim-and-Fill<a class="anchor" aria-label="anchor" href="#sec-reporting-prisma-trim-and-fill"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.0.25</span> Trim-and-Fill<a aria-label="anchor" class="anchor" href="#sec-reporting-prisma-trim-and-fill"><i class="fas fa-link"></i></a>
 </h3>
 <p><strong>Methods paragraph (copy-paste, fill in italics):</strong></p>
 <blockquote>
@@ -498,16 +505,14 @@
 </blockquote>
 <p><strong>Reviewer checklist for this method.</strong> → <a href="sec-ch-15-metaanalysis.html#sec-chapters-15-metaanalysis-trim-and-fill-for-reviewers"><code>trim-and-fill</code> — For Reviewers</a></p>
 <!-- TODO:reporting-template -->
-
 </div>
 </div>
 <!-- Dark / light mode toggle (replaces Harrer's emoji with a Font Awesome glyph) -->
 <div class="sticky-item">
-  <button type="button" id="mode-switch" class="btn-circle-mode" aria-label="Toggle dark mode">
-    <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
-  </button>
+<button aria-label="Toggle dark mode" class="btn-circle-mode" id="mode-switch" type="button">
+<i aria-hidden="true" class="fa-solid fa-circle-half-stroke"></i>
+</button>
 </div>
-
 <script>
   (function () {
     var stored = localStorage.getItem('themeMode');
@@ -526,52 +531,15 @@
       });
     });
   })();
-</script><!-- Offer only downloads produced and inventoried by this build. --><script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    var source = document.getElementById("book-source");
-    var extra = source && source.closest(".book-extra");
-    if (!extra) return;
-    try {
-      var response = await fetch("downloads.json");
-      if (!response.ok) return;
-      var files = await response.json();
-      var current = window.location.pathname.split("/").pop() || "index.html";
-      var candidates = [
-        ["methods-in-r.pdf", "Entire book (PDF)"],
-        ["methods-in-r.epub", "Entire book (EPUB)"]
-      ];
-      if (current !== "index.html")
-        candidates.push(["pdf-chapters/" + current.replace(/\.html$/, ".pdf"), "This chapter (PDF)"]);
-      var available = candidates.filter(function (item) { return files.includes(item[0]); });
-      if (!available.length) return;
-      var wrap = document.createElement("div");
-      wrap.className = "book-downloads";
-      var heading = document.createElement("h6");
-      heading.textContent = "Downloads";
-      wrap.appendChild(heading);
-      var list = document.createElement("ul");
-      list.className = "list-unstyled";
-      available.forEach(function (item) {
-        var li = document.createElement("li");
-        var link = document.createElement("a");
-        link.href = item[0]; link.textContent = item[1];
-        li.appendChild(link); list.appendChild(li);
-      });
-      wrap.appendChild(list);
-      extra.parentNode.insertBefore(wrap, extra);
-    } catch (error) {
-      // An unavailable inventory means there are no verified download links.
-    }
-  });
-</script><!-- Footer attribution --><div class="bookdown-attribution">
+</script><!-- Offer only downloads produced and inventoried by this build. --><!-- Footer attribution --><div class="bookdown-attribution">
   This book was built by the <a href="https://bookdown.org/"><strong>bookdown</strong></a> R package.
 </div>
-  <div class="chapter-nav">
+<div class="chapter-nav">
 <div class="prev"><a href="sec-reporting-tripod-ai.html"><span class="header-section-number">20</span> TRIPOD-AI — prediction models</a></div>
 <div class="next"><a href="sec-reporting-arrive.html"><span class="header-section-number">22</span> ARRIVE — animal research</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li>
+<nav aria-label="On this page" data-toggle="toc" id="toc"><h2>On this page</h2>
+<ul class="nav navbar-nav"><li>
 <a class="nav-link" href="#sec-reporting-prisma"><span class="header-section-number">21</span> PRISMA — systematic reviews &amp; meta-analyses</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#sec-reporting-prisma-bivariate-sroc-curves"><span class="header-section-number">21.0.1</span> Bivariate SROC Curves</a></li>
 <li><a class="nav-link" href="#sec-reporting-prisma-converting-between-effect-sizes"><span class="header-section-number">21.0.2</span> Converting Between Effect Sizes</a></li>
@@ -600,29 +568,23 @@
 <li><a class="nav-link" href="#sec-reporting-prisma-trim-and-fill"><span class="header-section-number">21.0.25</span> Trim-and-Fill</a></li>
 </ul>
 </li></ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/CTTIR/methods-in-r/blob/main/reporting/prisma.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/CTTIR/methods-in-r/edit/main/reporting/prisma.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
-        </ul>
+<div class="book-extra">
+<ul class="list-unstyled">
+<li><a href="https://github.com/CTTIR/methods-in-r/blob/main/reporting/prisma.Rmd" id="book-source">View source <i class="fab fa-github"></i></a></li>
+<li><a href="https://github.com/CTTIR/methods-in-r/edit/main/reporting/prisma.Rmd" id="book-edit">Edit this page <i class="fab fa-github"></i></a></li>
+</ul>
 </div>
-    </nav>
+</nav>
 </div>
-
 </div>
 </div> <!-- .container -->
-
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-09.</p>
-  </div>
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
+<div class="col-12 col-md-6 mt-3">
+<p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-09.</p>
+</div>
+<div class="col-12 col-md-6 mt-3">
+<p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+</div>
 </div></div>
 </footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
