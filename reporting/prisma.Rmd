@@ -1,5 +1,11 @@
 # PRISMA — systematic reviews & meta-analyses {#sec-reporting-prisma}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-08 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 PRISMA — *Preferred Reporting Items for Systematic reviews and Meta-Analyses* — covers systematic reviews and meta-analyses. The 27-item checklist and flow diagram are at <https://www.prisma-statement.org/>. The templates below cover pairwise and network meta-analysis methods.
 
 This page contains **25 method-specific templates**. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.

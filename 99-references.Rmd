@@ -1,3 +1,11 @@
-`r if (knitr::is_html_output()) '# References {-}'`
+# References {-}
+
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-11 · Last changed: 2026-11-10*
+:::
+<!-- page-provenance:end -->
+
+This library collects the general references and the software citations for this edition.
 
 <div id="refs"></div>

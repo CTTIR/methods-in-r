@@ -1,5 +1,11 @@
 # Statistical Foundations {#sec-ch-01-foundations}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-11 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 This chapter covers the prerequisites that every later chapter assumes: the scientific process, tidy data, the R/Quarto/`renv` toolchain, measurement quality, missingness, and reproducibility. If you have never built a project with `renv` or written a pre-registration, start here.
 
 This chapter contains **31 method pages** and **4 labs**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.

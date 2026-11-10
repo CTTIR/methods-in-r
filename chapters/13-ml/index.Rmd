@@ -1,5 +1,11 @@
 # Machine Learning {#sec-ch-13-ml}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-11 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 Cross-validation, regularisation (ridge/LASSO/elastic net), trees and ensembles, neural networks via `torch`/`keras`, SHAP and other interpretability tools, and the `tidymodels` workflow. False-discovery and knockoff-based selection are treated alongside CV as competing answers to the same question.
 
 This chapter contains **46 method pages** and **8 labs**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.

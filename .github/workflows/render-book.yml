@@ -16,6 +16,8 @@ jobs:
       RENV_CONFIG_AUTOLOADER_ENABLED: 'false'
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -59,14 +61,19 @@ jobs:
             "textcomp","geometry","setspace","titling","environ","pdftexcmds",
             "infwarerr","kvoptions","ltxcmds","epstopdf-pkg","colortbl","array",
             "multirow","wrapfig","threeparttable","threeparttablex","makecell",
-            "ragged2e","filehook"
+            "ragged2e","filehook","newunicodechar","dejavu","seqsplit","fvextra","fancyhdr","xurl"
           ))'
-        continue-on-error: true
 
       - name: Check lab source integrity
         run: |
           python3 -m unittest discover -s tests
           python3 scripts/check-lab-code.py
+
+      - name: Refresh source dates
+        run: python3 scripts/update-page-provenance.py
+
+      - name: Check PDF symbol coverage
+        run: Rscript tests/check-pdf-fonts.R
 
       - name: Render HTML (bs4_book)
         run: Rscript -e 'bookdown::render_book("index.Rmd", output_format = "bookdown::bs4_book")'
@@ -74,7 +81,6 @@ jobs:
       - name: Render EPUB
         id: epub
         run: Rscript -e 'bookdown::render_book("index.Rmd", output_format = "bookdown::epub_book")'
-        continue-on-error: true
 
       - name: Finalize EPUB navigation and citation attachments
         if: steps.epub.outcome == 'success'
@@ -82,22 +88,25 @@ jobs:
 
       - name: Render PDF
         run: Rscript -e 'bookdown::render_book("index.Rmd", output_format = "bookdown::pdf_book")'
-        continue-on-error: true
 
       - name: Split whole-book PDF into per-chapter PDFs
-        run: Rscript scripts/split-book-pdf.R
-        continue-on-error: true
+        run: python3 scripts/split-chapter-pdfs.py
 
-      # Per-chapter PDFs are rendered on demand by a separate manual
-      # workflow (.github/workflows/per-chapter-pdfs.yml) — 687 chapters at
-      # a few seconds each blow past the 90-min job ceiling and were
-      # blocking the gh-pages deploy.
+      # The splitter reuses the complete PDF without re-executing chapters.
 
       - name: Inventory available downloads
         run: python3 scripts/build-download-manifest.py
 
       - name: Check rendered navigation
         run: python3 scripts/check-html-links.py docs /tmp/methods-links.json
+
+      - name: Verify page notes and downloadable formats
+        run: |
+          python3 tests/test_page_provenance.py
+          python3 tests/test_book_delivery.py
+          python3 tests/test_split_chapter_pdfs.py
+          python3 scripts/finalize-book.py docs
+          python3 scripts/check-book.py docs
 
       - uses: actions/setup-python@v5
         with:

@@ -1,5 +1,11 @@
 # About the author {#sec-00-about-the-author .unnumbered}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-11 · Last changed: 2026-11-09*
+:::
+<!-- page-provenance:end -->
+
 **Raban Heller** is a biomedical researcher and applied statistician.
 This book consolidates the method pages and labs from his earlier public
 repositories (`CTTIR/courses`, `CTTIR/tutorials`) into a single

@@ -14,9 +14,9 @@ Given a data matrix $\mathbf{X}$ with $n$ rows (observations) and $p$ columns (v
 
 Algebraically, if $\mathbf{X}$ is centred (each column has mean zero), PCA is the eigendecomposition of the covariance matrix $\mathbf{S} = \frac{1}{n-1} \mathbf{X}^\top \mathbf{X}$:
 
-$$\mathbf{S} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^\top,$$
+$$\mathbf{S} = \mathbf{V} \boldsymbol{\Lambda} \mathbf{V}^\top,$$
 
-where the columns of $\mathbf{V}$ are the principal-component directions (loadings), and $\mathbf{\Lambda}$ is the diagonal matrix of variances along each direction (eigenvalues). The scores -- coordinates of the observations in the new basis -- are $\mathbf{Z} = \mathbf{X} \mathbf{V}$.
+where the columns of $\mathbf{V}$ are the principal-component directions (loadings), and $\boldsymbol{\Lambda}$ is the diagonal matrix of variances along each direction (eigenvalues). The scores -- coordinates of the observations in the new basis -- are $\mathbf{Z} = \mathbf{X} \mathbf{V}$.
 
 A practical issue: if the variables are on different scales, the variance-maximisation criterion is dominated by whichever variable happens to have the biggest numeric range. For heterogeneous data, PCA should be performed on the correlation matrix instead -- equivalent to standardising each variable to unit variance before the decomposition.
 

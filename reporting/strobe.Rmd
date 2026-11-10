@@ -1,5 +1,11 @@
 # STROBE — observational studies {#sec-reporting-strobe}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-08 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 STROBE — *Strengthening the Reporting of Observational Studies in Epidemiology* — covers cohort, case-control, and cross-sectional studies. The 22-item checklist is at <https://www.strobe-statement.org/>. The templates below cover the analytic methods you are most likely to use in a STROBE-aligned paper.
 
 This page contains **186 method-specific templates**. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.

@@ -1,5 +1,11 @@
 # Regression & Modelling {#sec-ch-07-regression}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-11 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 Linear models, GLMs, GAMs, non-linear least squares, the ANOVA family, ANCOVA, robust regression, residual diagnostics, calibration, and decision-curve analysis. The chapter treats regression as a single object viewed from different angles.
 
 This chapter contains **51 method pages** and **17 labs**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.

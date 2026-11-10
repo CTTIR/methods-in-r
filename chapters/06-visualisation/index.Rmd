@@ -1,5 +1,11 @@
 # Data Visualisation {#sec-ch-06-visualisation}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-11 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 The `ggplot2` grammar, panelled and faceted layouts, statistical graphics for regression and survival, and visual diagnostics. Style choices are biased toward what reproduces in print and what survives a black-and-white photocopy.
 
 This chapter contains **35 method pages** and **1 lab**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.

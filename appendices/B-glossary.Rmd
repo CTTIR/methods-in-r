@@ -3,6 +3,12 @@ toc: true
 ---
 # Glossary {#sec-appendices-b-glossary}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-11 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 <div class="hero">
 <div class="kicker">
 APPENDIX · GLOSSARY

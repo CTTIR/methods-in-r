@@ -14,7 +14,7 @@ For an $r \times c$ contingency table with observed counts $n_{ij}$, row totals 
 
 - **Expected count** under independence: $E_{ij} = n_{i+} \cdot n_{+j} / n$.
 - **Pearson residual**: $e_{ij} = (n_{ij} - E_{ij}) / \sqrt{E_{ij}}$.
-- **Standardised residual**: Pearson residual divided by $\sqrt{(1 - n_{i+}/n)(1 - n_{+j}/n)}$; approximately standard normal under the null.
+- **Standardised residual**: $e_{ij} / \sqrt{(1 - n_{i+}/n)(1 - n_{+j}/n)}$; approximately standard normal under the null.
 - **Chi-squared statistic**: $\chi^2 = \sum (n_{ij} - E_{ij})^2 / E_{ij}$; under the null, it follows $\chi^2$ with $(r - 1)(c - 1)$ df.
 
 Standardised residuals beyond $\pm 2$ flag cells that substantially exceed or fall short of independence.

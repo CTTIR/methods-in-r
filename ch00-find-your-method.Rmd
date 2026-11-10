@@ -1,5 +1,11 @@
 # Find your method {#sec-find-your-method .unnumbered}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-08 · Last changed: 2026-11-10*
+:::
+<!-- page-provenance:end -->
+
 Open the book here when you don't know which chapter to read. Three
 routes are offered: a flowchart from research question to statistical
 test, a quick lookup table, and a click-through wizard hosted live.
@@ -24,9 +30,9 @@ non-parametric test. Use the quick lookup links below to reach the chapters.
 This is an orientation aid; read the method's assumptions and study-design
 checks before selecting a test.
 
-![Decision tree from research question, outcome scale and study design to candidate statistical methods.](images/decision-tree.svg)
+![Decision tree from research question, outcome scale and study design to candidate statistical methods.](images/decision-tree.`r if (knitr::is_latex_output()) "pdf" else "svg"`)
 
-[Open the full-size decision tree](images/decision-tree.svg)
+[Open the full-size decision tree](images/decision-tree.`r if (knitr::is_latex_output()) "pdf" else "svg"`)
 
 ## Quick lookup {#sec-quick-lookup .unnumbered}
 

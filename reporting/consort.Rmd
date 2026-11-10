@@ -1,5 +1,11 @@
 # CONSORT — randomised trials {#sec-reporting-consort}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-08 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 CONSORT — *Consolidated Standards of Reporting Trials* — covers randomised controlled trials. The 25-item checklist and flow diagram are at <https://www.consort-statement.org/>. The templates below cover the analytic methods most often used for primary and secondary endpoints in a trial.
 
 This page contains **141 method-specific templates**. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.

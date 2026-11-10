@@ -140,3 +140,23 @@ The prose of this book is licensed under [CC BY 4.0](https://creativecommons.org
 
 Issues and PRs welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) or open an
 issue at <https://github.com/CTTIR/methods-in-r/issues>.
+
+## Validate a release build
+
+Use Python 3 with `pypdf`, the book’s R dependencies, Pandoc and XeLaTeX.
+Refresh the page notes before rendering; their dates follow source revisions,
+not the day the site is built. Then validate the actual downloadable artifacts:
+
+```sh
+python3 scripts/update-page-provenance.py
+Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
+python3 scripts/finalize-epub.py
+python3 scripts/split-chapter-pdfs.py
+python3 scripts/build-download-manifest.py
+python3 scripts/finalize-book.py
+python3 scripts/check-book.py
+```
+
+The final check fails on missing author/date notes, broken local links or anchors,
+and missing or unreadable whole-book PDF/EPUB files. Chapter downloads reuse the
+whole-book PDF’s bookmarks instead of executing every chapter a second time.

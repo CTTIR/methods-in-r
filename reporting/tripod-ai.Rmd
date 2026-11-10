@@ -1,5 +1,11 @@
 # TRIPOD-AI — prediction models {#sec-reporting-tripod-ai}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-08 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 TRIPOD-AI — *Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis, AI extension* — covers prediction models, including those built with machine learning. The checklist is at <https://www.tripod-statement.org/>. The templates below cover model development, validation, calibration, and fairness reporting.
 
 This page contains **163 method-specific templates**. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.

@@ -15,7 +15,7 @@ MANOVA decomposes the total cross-product matrix into hypothesis ($H$) and error
 - **Wilks' lambda**: $\Lambda = |E| / |H + E|$, the classical choice; small values reject the null.
 - **Pillai's trace**: $V = \mathrm{tr}(H (H + E)^{-1})$, robust to covariance heterogeneity and the recommended default.
 - **Hotelling–Lawley trace**: $T = \mathrm{tr}(H E^{-1})$, more powerful when one dimension dominates.
-- **Roy's greatest root**: $\theta = $ largest eigenvalue of $H E^{-1}$, most powerful when group differences are concentrated in one direction but liberal otherwise.
+- **Roy's greatest root**: $\theta =$ largest eigenvalue of $H E^{-1}$, most powerful when group differences are concentrated in one direction but liberal otherwise.
 
 All four test the same omnibus null hypothesis but have slightly different operating characteristics under non-Normality and unequal covariances.
 

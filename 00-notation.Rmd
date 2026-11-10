@@ -1,5 +1,11 @@
 # Notation {#sec-00-notation .unnumbered}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-11 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 This page lists the symbols, conventions, and abbreviations used
 throughout the book. Where a chapter departs from these conventions
 locally, the chapter says so explicitly.

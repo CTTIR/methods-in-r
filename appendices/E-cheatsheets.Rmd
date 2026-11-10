@@ -3,6 +3,12 @@ toc: true
 ---
 # Cheatsheets {#sec-appendices-e-cheatsheets}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-08 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 One-page topical summaries, aggregated here as a printable reference. Each is a self-contained reminder of the syntax, the assumptions, and the diagnostics that go with the methods it covers.
 
 ## Foundations {#sec-appendices-e-cheatsheets-foundations}

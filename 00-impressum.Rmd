@@ -1,5 +1,11 @@
 # Impressum {#sec-00-impressum .unnumbered}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-11 · Last changed: 2026-11-09*
+:::
+<!-- page-provenance:end -->
+
 **Methods in R: A Topic Reference for Biomedical Research and Peer Review**
 
 © `r format(Sys.Date(), "%Y")` Raban Heller.

@@ -1,5 +1,11 @@
 # How to use this book {#sec-how-to-use .unnumbered}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-08 · Last changed: 2026-11-10*
+:::
+<!-- page-provenance:end -->
+
 The book is organised around **method topics**, not courses. There are
 sixteen topic chapters, an unnumbered method chooser,
 five reporting-template chapters, and five appendices.
@@ -70,7 +76,12 @@ Python. It does not host the interactive decision-tree wizard
 ## Building locally {#sec-how-to-use-building-locally .unnumbered}
 
 ```bash
-Rscript --vanilla -e 'install.packages(c("bookdown","rmarkdown","knitr","bslib","downlit","xml2","htmltools","sessioninfo"), repos="https://cloud.r-project.org")'
+Rscript --vanilla -e '
+install.packages(
+  c("bookdown", "rmarkdown", "knitr", "bslib",
+    "downlit", "xml2", "htmltools", "sessioninfo"),
+  repos = "https://cloud.r-project.org"
+)'
 python3 -m unittest discover -s tests
 Rscript --vanilla -e 'bookdown::render_book("index.Rmd", output_format="bookdown::bs4_book")'
 python3 scripts/build-download-manifest.py

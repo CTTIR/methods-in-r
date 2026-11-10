@@ -1,5 +1,11 @@
 # Descriptive Statistics {#sec-ch-02-descriptives}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-11 · Last changed: 2026-11-10*
+:::
+<!-- page-provenance:end -->
+
 Methods for summarising a dataset before any inference: Table 1 construction, numerical summaries, and visual exploratory data analysis. Most papers in biomedicine open with a Table 1 — this chapter covers what belongs in it and how to render it cleanly with `gtsummary`.
 
 This chapter contains **25 method pages** and **1 lab**. If you are not sure which method to read, return to [Chapter 0](#sec-find-your-method) and follow the decision tree to the right node.

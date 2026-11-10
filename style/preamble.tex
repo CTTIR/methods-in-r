@@ -20,3 +20,66 @@
 \newenvironment{boximportant}{\begin{quote}}{\end{quote}}
 \newenvironment{boxreport}{\begin{quote}}{\end{quote}}
 \newenvironment{boxquestion}{\begin{quote}}{\end{quote}}
+
+\input{style/provenance.tex}
+
+% Wrap long code and URLs within the printable text area.
+\usepackage{fvextra}
+\fvset{breaklines=true,breakanywhere=true}
+\usepackage{xurl}
+
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines=true,breakanywhere=true}
+
+% Preserve Greek prose symbols with the standard text fonts.
+\usepackage{newunicodechar}
+\newunicodechar{α}{\ensuremath{\alpha}}
+\newunicodechar{μ}{\ensuremath{\mu}}
+\newunicodechar{β}{\ensuremath{\beta}}
+\newunicodechar{Δ}{\ensuremath{\Delta}}
+\newunicodechar{σ}{\ensuremath{\sigma}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{ρ}{\ensuremath{\rho}}
+\newunicodechar{χ}{\ensuremath{\chi}}
+\newunicodechar{γ}{\ensuremath{\gamma}}
+\newunicodechar{τ}{\ensuremath{\tau}}
+\newunicodechar{ν}{\ensuremath{\nu}}
+\newunicodechar{κ}{\ensuremath{\kappa}}
+\newunicodechar{δ}{\ensuremath{\delta}}
+\newunicodechar{ε}{\ensuremath{\varepsilon}}
+
+\newunicodechar{⁵}{\ensuremath{{}^5}}
+\newunicodechar{₀}{\ensuremath{{}_0}}
+\newunicodechar{₁}{\ensuremath{{}_1}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≠}{\ensuremath{\neq}}
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{𝛬}{\ensuremath{\Lambda}}
+\newunicodechar{𝜃}{\ensuremath{\theta}}
+
+\setmonofont{DejaVuSansMono.ttf}[
+  BoldFont=DejaVuSansMono-Bold.ttf,
+  ItalicFont=DejaVuSansMono-Oblique.ttf,
+  BoldItalicFont=DejaVuSansMono-BoldOblique.ttf
+]
+
+% The References chapter supplies the bibliography heading and page note.
+\providecommand{\bibsection}{}
+\renewcommand{\bibsection}{}
+
+\usepackage{seqsplit}
+\newunicodechar{₂}{\ensuremath{{}_2}}
+
+% Allow paragraph reflow before accepting text beyond the margin.
+\setlength{\emergencystretch}{3em}
+
+% Leave room for method section numbers and four-digit PDF page numbers.
+\makeatletter
+\renewcommand{\@pnumwidth}{2.7em}
+\renewcommand{\@tocrmarg}{3.7em}
+\renewcommand*{\l@section}{\@dottedtocline{1}{1.5em}{3.6em}}
+\renewcommand*{\l@subsection}{\@dottedtocline{2}{5.1em}{4.8em}}
+\renewcommand*{\l@subsubsection}{\@dottedtocline{3}{9.9em}{5.6em}}
+\makeatother

@@ -18,6 +18,10 @@ const { chromium } = require('playwright');
     },source);
     if (!svg.includes('<svg')) throw new Error('No SVG rendered');
     fs.writeFileSync(path.join(root,'images/decision-tree.svg'),svg);
-    console.log('Rendered the maintained decision-tree source to SVG');
+    require('node:child_process').execFileSync('rsvg-convert', [
+      '--format', 'pdf', '--output', path.join(root,'images/decision-tree.pdf'),
+      path.join(root,'images/decision-tree.svg')
+    ]);
+    console.log('Rendered the maintained decision-tree source to SVG and PDF');
   } finally { await browser.close(); }
 })().catch(error => { console.error(error);process.exitCode=1; });

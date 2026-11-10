@@ -1,5 +1,11 @@
 # ARRIVE — animal research {#sec-reporting-arrive}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-08 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 ARRIVE — *Animal Research: Reporting of In Vivo Experiments* — covers preclinical animal research. The 21-item checklist is at <https://arriveguidelines.org/>. The templates below cover the statistical analyses most commonly required.
 
 This page contains **50 method-specific templates**. Each is a skeleton with placeholders in italics; the prose is written so you can paste it into a manuscript and replace only the bracketed values.

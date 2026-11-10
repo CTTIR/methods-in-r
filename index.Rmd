@@ -2,10 +2,11 @@
 title: "Methods in R"
 subtitle: "A topic reference for biomedical research and peer review"
 author: "R. Heller"
-date: "`r Sys.Date()`"
+date: "2026-11-10"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [references.bib, packages.bib]
+nocite: "@*"
 biblio-style: apalike
 csl: style/vancouver.csl
 link-citations: yes
@@ -17,6 +18,12 @@ cover-image: "images/cover.png"
 ---
 
 # Welcome! {#sec-index .unnumbered}
+
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-08 · Last changed: 2026-11-10*
+:::
+<!-- page-provenance:end -->
 
 ---
 

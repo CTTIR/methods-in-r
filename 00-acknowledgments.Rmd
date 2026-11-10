@@ -1,5 +1,11 @@
 # Acknowledgments {#sec-00-acknowledgments .unnumbered}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-11 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 This book is built with [bookdown](https://bookdown.org/) by Yihui Xie and the R Markdown community.
 The wider R ecosystem — base R, the tidyverse, and the many domain-specific packages cited in the body — is the foundation on which every chapter rests.
 

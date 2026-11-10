@@ -20,43 +20,14 @@ bookdown::bs4_book:
       scroll_highlight: yes
     download: ["pdf", "epub"]
 
-bookdown::gitbook:
-  css: style/style.css
-  includes:
-    in_header: style/header.html
-    after_body: style/after-body.html
-  split_by: chapter
-  split_bib: no
-  config:
-    toc:
-      collapse: section
-      scroll_highlight: yes
-      before: |
-        <li><a href="./">Methods in R</a></li>
-    toolbar:
-      position: fixed
-    edit:
-      link: https://github.com/CTTIR/methods-in-r/edit/main/%s
-      text: "Edit"
-    download: ["pdf", "epub"]
-    sharing:
-      facebook: no
-      twitter: no
-      linkedin: no
-      weibo: no
-      instapaper: no
-      vk: no
-      whatsapp: no
-      all: ["github"]
-
 bookdown::pdf_book:
   latex_engine: xelatex
   citation_package: natbib
-  keep_tex: false
+  keep_tex: true
   toc_depth: 3
   includes:
     in_header: style/preamble.tex
-  pandoc_args: ["--top-level-division=chapter"]
+  pandoc_args: ["--top-level-division=chapter", "--lua-filter=scripts/wrap-inline-code.lua"]
 
 bookdown::epub_book:
   cover_image: "images/cover.png"

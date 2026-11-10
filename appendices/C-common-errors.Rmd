@@ -3,6 +3,12 @@ toc: true
 ---
 # Common errors {#sec-appendices-c-common-errors}
 
+<!-- page-provenance:start -->
+::: {.page-provenance}
+*R. Heller · Date: 2026-05-08 · Last changed: 2026-10-30*
+:::
+<!-- page-provenance:end -->
+
 <div class="hero">
 <div class="kicker">
 APPENDIX · COMMON ERRORS
