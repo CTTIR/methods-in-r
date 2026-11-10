@@ -6,16 +6,16 @@
 <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
 <title>Chapter 12 Bioinformatics | Methods in R</title>
 <meta content="R. Heller" name="author"/>
-<meta content="RNA-seq differential expression, pathway and GO enrichment, and single-cell RNA-seq. The chapter assumes basic familiarity with Bioconductor and points back to the regression and ML chapters for..." name="description"/>
+<meta content="R. Heller · Date: 2026-05-11 · Last changed: 2026-10-30  RNA-seq differential expression, pathway and GO enrichment, and single-cell RNA-seq. The chapter assumes basic familiarity with..." name="description"/>
 <meta content="bookdown 0.48 with bs4_book()" name="generator"/>
 <meta content="Chapter 12 Bioinformatics | Methods in R" property="og:title"/>
 <meta content="book" property="og:type"/>
 <meta content="https://cttir.github.io/methods-in-r/sec-ch-12-bioinformatics.html" property="og:url"/>
 <meta content="https://cttir.github.io/methods-in-r/images/cover.png" property="og:image"/>
-<meta content="RNA-seq differential expression, pathway and GO enrichment, and single-cell RNA-seq. The chapter assumes basic familiarity with Bioconductor and points back to the regression and ML chapters for..." property="og:description"/>
+<meta content="R. Heller · Date: 2026-05-11 · Last changed: 2026-10-30  RNA-seq differential expression, pathway and GO enrichment, and single-cell RNA-seq. The chapter assumes basic familiarity with..." property="og:description"/>
 <meta content="summary" name="twitter:card"/>
 <meta content="Chapter 12 Bioinformatics | Methods in R" name="twitter:title"/>
-<meta content="RNA-seq differential expression, pathway and GO enrichment, and single-cell RNA-seq. The chapter assumes basic familiarity with Bioconductor and points back to the regression and ML chapters for..." name="twitter:description"/>
+<meta content="R. Heller · Date: 2026-05-11 · Last changed: 2026-10-30  RNA-seq differential expression, pathway and GO enrichment, and single-cell RNA-seq. The chapter assumes basic familiarity with..." name="twitter:description"/>
 <meta content="https://cttir.github.io/methods-in-r/images/cover.png" name="twitter:image"/>
 <!-- JS --><script crossorigin="anonymous" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script><script crossorigin="anonymous" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js"></script><script crossorigin="anonymous" src="https://kit.fontawesome.com/6ecbd6c532.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet"/>
@@ -129,6 +129,11 @@
 <h1>
 <span class="header-section-number">12</span> Bioinformatics<a aria-label="anchor" class="anchor" href="#sec-ch-12-bioinformatics"><i class="fas fa-link"></i></a>
 </h1><nav aria-label="Book and chapter downloads" class="book-downloads book-downloads--unified"><div class="book-download-group"><span class="book-download-label">Entire book</span><a aria-label="Download entire book as PDF" download="" href="methods-in-r.pdf" title="Download entire book as PDF"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M14 2H5v20h14V7z"></path><path d="M14 2v6h5M8 13h8M8 17h6"></path></svg><span>PDF</span></a><a aria-label="Download entire book as EPUB" download="" href="methods-in-r.epub" title="Download entire book as EPUB"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM21 4h-5a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h5z"></path></svg><span>EPUB</span></a></div><div class="book-download-group"><span class="book-download-label">This chapter</span><a aria-label="Download this chapter as PDF" download="" href="downloads/chapters/sec-ch-12-bioinformatics.pdf" title="Download this chapter as PDF"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M14 2H5v20h14V7z"></path><path d="M14 2v6h5M8 13h8M8 17h6"></path></svg><span>PDF</span></a><a aria-label="Download this chapter as EPUB" download="" href="downloads/chapters/sec-ch-12-bioinformatics.epub" title="Download this chapter as EPUB"><svg aria-hidden="true" focusable="false" viewbox="0 0 24 24"><path d="M3 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H3zM21 4h-5a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h5z"></path></svg><span>EPUB</span></a></div></nav>
+<!-- page-provenance:start -->
+<div class="page-provenance">
+<p><em>R. Heller · Date: 2026-05-11 · Last changed: 2026-10-30</em></p>
+</div>
+<!-- page-provenance:end -->
 <p>RNA-seq differential expression, pathway and GO enrichment, and single-cell RNA-seq. The chapter assumes basic familiarity with <code>Bioconductor</code> and points back to the regression and ML chapters for the underlying machinery.</p>
 <p>This chapter contains <strong>50 method pages</strong> and <strong>3 labs</strong>. If you are not sure which method to read, return to <a href="sec-find-your-method.html#sec-find-your-method">Chapter 0</a> and follow the decision tree to the right node.</p>
 <div class="section level2" id="sec-chapters-12-bioinformatics-index-method-pages" number="12.1">
@@ -6633,7 +6638,11 @@ RNA-seq analysis: a tutorial</em>.</li>
 <div class="chapter-nav">
 <div class="prev"><a href="sec-ch-11-survival.html"><span class="header-section-number">11</span> Survival Analysis</a></div>
 <div class="next"><a href="sec-ch-13-ml.html"><span class="header-section-number">13</span> Machine Learning</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+</div>
+<!-- verified-downloads:start -->
+
+<!-- verified-downloads:end -->
+</main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
 <nav aria-label="On this page" data-toggle="toc" id="toc"><h2>On this page</h2>
 <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#sec-ch-12-bioinformatics"><span class="header-section-number">12</span> Bioinformatics</a></li>
@@ -7436,7 +7445,7 @@ RNA-seq analysis: a tutorial</em>.</li>
 </div> <!-- .container -->
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 <div class="col-12 col-md-6 mt-3">
-<p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-09.</p>
+<p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-10.</p>
 </div>
 <div class="col-12 col-md-6 mt-3">
 <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
