@@ -1,5 +1,15 @@
 # Catch missing symbols before rendering the complete reference book.
 engine <- Sys.which("xelatex")
+# tinytex::install_tinytex() links its binaries into ~/bin, which is not on the
+# PATH of later CI steps; bookdown finds TinyTeX itself, so look there too.
+if (!nzchar(engine) && requireNamespace("tinytex", quietly = TRUE)) {
+  root <- tinytex::tinytex_root(error = FALSE)
+  if (nzchar(root)) {
+    candidates <- file.path(list.dirs(file.path(root, "bin"), recursive = FALSE), "xelatex")
+    candidates <- candidates[file.exists(candidates)]
+    if (length(candidates)) engine <- candidates[[1]]
+  }
+}
 if (!nzchar(engine)) stop("xelatex is required for the PDF font check")
 folder <- tempfile("book-fonts-")
 dir.create(folder)
