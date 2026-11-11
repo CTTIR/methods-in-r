@@ -2,7 +2,7 @@
 title: "Methods in R"
 subtitle: "A topic reference for biomedical research and peer review"
 author: "R. Heller"
-date: "2026-11-10"
+date: "2026-11-11"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [references.bib, packages.bib]
@@ -21,7 +21,7 @@ cover-image: "images/cover.png"
 
 <!-- page-provenance:start -->
 ::: {.page-provenance}
-*R. Heller · Date: 2026-05-08 · Last changed: 2026-11-10*
+*R. Heller · Date: 2026-05-08 · Last changed: 2026-11-11*
 :::
 <!-- page-provenance:end -->
 
@@ -51,7 +51,7 @@ This book has been built using [**{rmarkdown}**](https://rmarkdown.rstudio.com/d
 
 - **Linear vs. lookup.** If you already know the method, jump to its chapter. If not, start at [Find your method](#sec-find-your-method) and follow the decision tree.
 - **Where the code lives.** Code in each method page and lab is display-only in the rendered book; copy it into an R session with the packages cited in that section attached. Reusable helpers are kept in `R/helpers.R` in the source repository.
-- **Per-chapter PDFs.** Every chapter has a *Download this chapter (PDF)* button at the top of its page; the full set is also available at `pdf-chapters/`.
+- **Per-chapter downloads.** Every chapter page offers the chapter as PDF and EPUB below its title.
 - **Whole-book PDF and EPUB.** Use the navbar *Download* menu for a single-file PDF or EPUB.
 - **Corrections and suggestions.** Open an issue at <https://github.com/CTTIR/methods-in-r/issues>.
 

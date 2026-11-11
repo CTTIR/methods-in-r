@@ -25,12 +25,12 @@ jobs:
         with:
           use-public-rspm: true
 
-      - name: Apt deps for PDF splitter (poppler headers + python)
+      - name: Apt deps for PDF checks (poppler headers + python)
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends libpoppler-cpp-dev python3-pip
 
-      - name: Python deps for PDF splitter
+      - name: Python deps for PDF checks
         run: pip install --break-system-packages --user pypdf
 
       - uses: r-lib/actions/setup-r-dependencies@v2
@@ -89,11 +89,6 @@ jobs:
       - name: Render PDF
         run: Rscript -e 'bookdown::render_book("index.Rmd", output_format = "bookdown::pdf_book")'
 
-      - name: Split whole-book PDF into per-chapter PDFs
-        run: python3 scripts/split-chapter-pdfs.py
-
-      # The splitter reuses the complete PDF without re-executing chapters.
-
       - name: Inventory available downloads
         run: python3 scripts/build-download-manifest.py
 
@@ -104,7 +99,6 @@ jobs:
         run: |
           python3 tests/test_page_provenance.py
           python3 tests/test_book_delivery.py
-          python3 tests/test_split_chapter_pdfs.py
           python3 scripts/finalize-book.py docs
           python3 scripts/check-book.py docs
 

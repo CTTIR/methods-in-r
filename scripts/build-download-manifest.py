@@ -8,8 +8,8 @@ import zipfile
 
 def collect(root):
     files = []
+    # Chapter downloads are linked from the panel under each chapter title.
     candidates = [root / "methods-in-r.pdf", root / "methods-in-r.epub"]
-    candidates += sorted((root / "pdf-chapters").glob("*.pdf"))
     for path in candidates:
         if not path.is_file():
             continue

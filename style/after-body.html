@@ -35,13 +35,11 @@
       var response = await fetch("downloads.json");
       if (!response.ok) return;
       var files = await response.json();
-      var current = window.location.pathname.split("/").pop() || "index.html";
+      // Chapter downloads come from the shared panel under each chapter title.
       var candidates = [
         ["methods-in-r.pdf", "Entire book (PDF)"],
         ["methods-in-r.epub", "Entire book (EPUB)"]
       ];
-      if (current !== "index.html")
-        candidates.push(["pdf-chapters/" + current.replace(/\.html$/, ".pdf"), "This chapter (PDF)"]);
       var available = candidates.filter(function (item) { return files.includes(item[0]); });
       if (!available.length) return;
       var wrap = document.createElement("div");
