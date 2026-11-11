@@ -159,13 +159,11 @@ the table of contents to find the page you are looking for.</p>
       var response = await fetch("downloads.json");
       if (!response.ok) return;
       var files = await response.json();
-      var current = window.location.pathname.split("/").pop() || "index.html";
+      // Chapter downloads come from the shared panel under each chapter title.
       var candidates = [
         ["methods-in-r.pdf", "Entire book (PDF)"],
         ["methods-in-r.epub", "Entire book (EPUB)"]
       ];
-      if (current !== "index.html")
-        candidates.push(["pdf-chapters/" + current.replace(/\.html$/, ".pdf"), "This chapter (PDF)"]);
       var available = candidates.filter(function (item) { return files.includes(item[0]); });
       if (!available.length) return;
       var wrap = document.createElement("div");
@@ -195,7 +193,7 @@ the table of contents to find the page you are looking for.</p>
 <div class="empty"></div>
 </div>
 <!-- verified-downloads:start -->
-<p class="page-provenance"><small>R. Heller · Date: 2026-05-08 · Last changed: 2026-11-10</small></p><nav class="book-download-footer" aria-label="Book downloads"><p><a href="methods-in-r.pdf">Entire book (PDF)</a> · <a href="methods-in-r.epub">Entire book (EPUB)</a></p></nav>
+<p class="page-provenance"><small>R. Heller · Date: 2026-05-08 · Last changed: 2026-11-11</small></p><nav class="book-download-footer" aria-label="Book downloads"><p><a href="methods-in-r.pdf">Entire book (PDF)</a> · <a href="methods-in-r.epub">Entire book (EPUB)</a></p></nav>
 <!-- verified-downloads:end -->
 </main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     </div>
@@ -206,7 +204,7 @@ the table of contents to find the page you are looking for.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-10.</p>
+    <p>"<strong>Methods in R</strong>: A topic reference for biomedical research and peer review" was written by R. Heller. It was last built on 2026-11-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
