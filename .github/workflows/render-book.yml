@@ -89,6 +89,10 @@ jobs:
       - name: Render PDF
         run: Rscript -e 'bookdown::render_book("index.Rmd", output_format = "bookdown::pdf_book")'
 
+      # The LaTeX source is a build intermediate, not a published download.
+      - name: Keep the LaTeX source off the site
+        run: find docs -name '*.tex' -print -delete
+
       - name: Inventory available downloads
         run: python3 scripts/build-download-manifest.py
 
